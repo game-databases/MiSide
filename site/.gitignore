@@ -12,7 +12,8 @@ public/feeds/
 # permitted art classes copied from extracted/art at build time — never committed
 public/cdn/
 
-# next env
+# next env — never commit a write key or a real .env
+.env
 .env*.local
 
 # misc
