@@ -1,0 +1,268 @@
+# A-LL2 arbitration — the dual-id-space binding law
+
+Arbiter ruling for board item "bind the id-space question before downstream
+tools consume it". Written 2026-08-26 against **buildId 19029065 /
+VERSION 0.93L**, after the logic-layer build (B-LL2) was ACCEPTED with the
+two verifier passes. Question raised by [logic-layer-scout.mdx](../logic-layer-scout.mdx)
+§4.4-Q2 lineage, [V-LL2a](logic-build-vA.mdx) §4 (dual-space binding
+discovery, ~15% collision propensity) and [V-LL2b](logic-build-vB.mdx)
+OBS-2/OBS-3 ("DISJOINT" overstates; mixed relink conventions). Downstream
+consumer: tool [ending-condition-explorer](../../../tools-plan.md) (§3.1,
+rank 1) — its spec chain starts on this ruling.
+
+Inputs read in full this pass: root [`AGENTS.md`](../../../../AGENTS.md),
+[`_foundation/decision-register.md`](../../../../_foundation/decision-register.md),
+[logic-layer.mdx](../../specs/logic-layer.mdx) (ACCEPTED, 426 ln),
+[V-LL2a](logic-build-vA.mdx), [V-LL2b](logic-build-vB.mdx);
+spot-checked on disk/corpus: `extracted/data/logic/{flag_instances,
+effect_calls,identity-ledger,emit-ledger}.jsonl`,
+`extracted/relinks/flag--gates.jsonl`,
+`contracts/registry/entities.json` (four `miside.logic.*` entries),
+`extracted/data/logic/build/emit_logic.py` (binding sites read directly),
+and fresh measurements over
+`D:\unpacked_game_data\MiSide\harvest\{mb-dump,asset-list}` (own scripts,
+listed in [§1](#1-measured-ground-truth-this-pass)). Read-only pass; no git;
+nothing regenerated.
+
+Sections:
+
+0. [Rulings at a glance](#0-rulings-at-a-glance)
+1. [Measured ground truth this pass](#1-measured-ground-truth-this-pass)
+2. [Ruling A — binding law](#2-ruling-a--binding-law)
+3. [Ruling B — the precedence hazard and its guard](#3-ruling-b--the-precedence-hazard-and-its-guard)
+4. [Ruling C — label truthing](#4-ruling-c--label-truthing)
+5. [Ruling D — explorer encoding obligations](#5-ruling-d--explorer-encoding-obligations)
+6. [Ruling E — fix order](#6-ruling-e--fix-order)
+
+---
+
+## 0. Rulings at a glance
+
+- **A. Binding law:** space-partitioned resolution. An integer id is
+  interpreted ONLY in the space its producer declares; serialized-PPtr
+  references resolve exclusively through the serialized space (asset-list
+  inventory) under unique same-class pairing; dump-filename suffix ids are
+  opaque harvest handles — they identify rows, they never adjudicate a
+  cross-record reference. Not a precedence law, not a rename.
+- **B. Hazard:** latent on the accepted build (measured 0 suffix-space binds
+  anywhere), live-imminent for the explorer — and V-LL2a's blast radius was
+  understated: LG2 tier-A `subject_ids` uses the same either-space fallback.
+  Guard = delete the suffix branch at both bind sites + a selfcheck
+  regression gate; ambiguity then has no code path and lands in the ledger.
+- **C. Label:** replace binary "DISJOINT" with **"mostly-disjoint, non-zero
+  numeric coincidence"** (measured 15.23% corpus-wide this pass). Fix the
+  `_meta`/emit-ledger verdict strings at the already-open F-1 revision; the
+  normative law text enters the explorer spec now, `logic-layer.mdx`
+  only if that round reopens it (recommended).
+- **D. Explorer:** precomputed-joins-only; no raw integer renders as a game
+  fact; absence-of-binding is a first-class fail-closed render (topology
+  joins the polarity fail-closed law); canonical string ids in URLs;
+  explicit prefix map across the two relink conventions.
+- **E. Order:** law + explorer obligations NOW (this document); code/meta
+  fixes ride the open B-LL2 F-1 re-emission; **no emergency re-emission** —
+  the accepted artifacts contain zero misbinds.
+
+## 1. Measured ground truth this pass
+
+Everything below was re-derived here with independent code (own XML/text
+parsers, own scans), not copied from the verifier reports.
+
+1. **The two spaces are real and mostly disjoint.** Corpus-wide over all 51
+   containers: **123,178** suffixed dump filenames (`*_#<id>.txt`), of which
+   **18,765 (15.23%)** have their numeric id present among the same
+   container's asset-list `<PathID>` values. Restricted to `Events_*`
+   carriers: **96 of 447 (21.5%)**. This independently reproduces the
+   emitter's 6/40 probe and V-LL2a's "~15%" — the spaces coincide roughly
+   one time in five-to-seven by pure numeric accident.
+2. **level4 is a clean natural experiment.** The Add() calls target PPtr ids
+   **4823 and 4918 — both ARE genuine level4 PathIDs** — while the
+   container's IntMemory dumps are bare + `_#3327`, and **3327 is NOT a
+   level4 PathID at all**. The targeting side demonstrably speaks serialized
+   space; the filename side demonstrably does not. Any join that lets a PPtr
+   match a suffix id is trusting a coincidence.
+3. **Zero suffix-space binds exist in the accepted build.** Only 3 instances
+   carry bindings (`level5/9/13` IntMemory, inventory-resolved 11272 /
+   18167 / 17830): all **20** `writers`/`readers` entries and all **20**
+   `effect_calls.subject_ids` flag binds have target PPtr == the
+   container's inventory-resolved pid. 0 suffix-only, 0 conflicts —
+   confirming both verifiers, now exhaustively across both consumers.
+4. **Second consumer found (corrects V-LL2a's blast radius).** V-LL2a named
+   writers/readers + `flag--gates.jsonl`. The emitter's tier-A subject
+   resolution (`build/emit_logic.py`, the `Events_IntMemory/Events_Data`
+   branch inside the LG2 loop) applies the **same suffix-first → true-id
+   fallback** to fill `effect_calls.subject_ids` — and subject_ids ride
+   exactly the rows the explorer will surface (flag-set ×63, flag-query
+   ×18 class census). Both bind sites must be fixed together.
+5. **K is single-space on its host axis.** `choice_nodes` and
+   `effect_calls.host_object_path_id` both derive from dump filenames, so
+   the AC-L1b join never crosses spaces. The dual-space hazard lives ONLY in
+   PPtr-target resolution (sites in point 4).
+6. **Class-blind keys.** `flag_by_key` / `flag_true_index` are keyed
+   `(container, id)` without component class; today no `(container,id)`
+   collision exists between `Events_IntMemory` and `Events_Data` suffixes
+   (measured 0), so this is noted as a latent property, not a defect.
+
+## 2. Ruling A — binding law
+
+**Ruled: space-partitioned resolution with a unique-pairing bridge.**
+Consumers MUST resolve ids by declared space:
+
+- Every emitted id-bearing field names its space mechanically:
+  - **suffix space** (opaque harvest handle): `flag_instances.object_path_id`
+    (filename-derived), `flag_id` strings, `edge_id`/node-id host segments,
+    `effect_calls.host_object_path_id`;
+  - **serialized-PPtr space**: `effect_calls.target.*.object_path_id`
+    (UnityEvent `m_Target.m_PathID`), `flag_instances.inventory_object_path_id`
+    (asset-list-resolved), `host_go_path_id`.
+- A PPtr reference resolves **only** against the serialized space, and only
+  where the (dump ↔ inventory-entry) same-class pairing is **unique**; that
+  resolution lands in `inventory_object_path_id` (already the emitter's
+  behavior for LG1 identity).
+- Suffix ids identify and display rows; they **never adjudicate** whether a
+  PPtr refers to them. Numeric equality between the spaces is coincidence by
+  measurement (15.23%), not identity.
+
+Why not the alternatives:
+
+- **Documented precedence** (suffix-first or true-first) is rejected:
+  precedence *picks a winner* among colliding candidates instead of
+  *detecting ambiguity*. At measured 15% coincidence a patch-day re-emission
+  will eventually produce both-match cases; precedence would absorb them
+  silently into `writers`/`readers`/`subject_ids` — precisely what the pack's
+  fail-closed law ([logic-layer.mdx](../../specs/logic-layer.mdx) Law 2
+  posture) forbids elsewhere. Identity is not a tiebreak decision.
+- **Rename-at-emission** as the primary mechanism is rejected: distinct
+  column names help humans but leave the join law itself unstated (equal
+  names already mean opposite spaces across these files), and churning
+  ACCEPTED schemas buys nothing once the emitter stops crossing spaces and
+  consumers are held to precomputed joins (ruling D).
+
+This is V-LL2a's hardening option taken to its sound form: stronger than
+"invert precedence", because inversion still resolves a both-match case by
+order rather than by refusing it.
+
+## 3. Ruling B — the precedence hazard and its guard
+
+**Live-risk status: latent on the accepted build, live the moment the
+explorer consumes flag bindings — which is now.**
+
+- Latent, proven: zero suffix-space binds exist in any artifact (§1.3), so
+  `flag--gates.jsonl`'s 40 rows and every `subject_ids` flag bind are
+  PPtr-derived and stay valid under the ruled law unchanged.
+- Live-imminent: the explorer answers "what does this flag gate / who sets
+  it" from `writers`/`readers` + `flag--gates.jsonl` + tier-A
+  `subject_ids`, and tools-plan §3.1 puts flag ids on screen. From that
+  commit forward, a silent misbind renders as player-facing advice — the
+  exact harm class the polarity law exists for. Additionally every future
+  re-emission re-rolls ~15%-propensity dice per suffixed instance.
+- Field-name trap (V-LL2a residual (b)): `object_path_id` means suffix space
+  in `flag_instances` but PPtr space inside `effect_calls.target.*`; a naive
+  equal-name join produces garbage today. Prose is the only current guard —
+  insufficient for a spec chain about to be written.
+
+**Guard that makes misresolution structurally impossible** (fold into the
+open B-LL2 F-1 revision, see [§6](#6-ruling-e--fix-order)):
+
+1. Delete the suffix branch from **both** bind sites in `emit_logic.py`
+   (tier-A subject resolution AND the writers/readers loop): PPtr targets
+   match `flag_true_index` only, under the existing unique-pairing rule.
+   Unmatched stays unresolved (today's 61 unresolved calls remain exactly
+   as honest as they are now).
+2. Add a selfcheck gate: recompute all writers/readers/subject binds
+   true-space-only and fail on any bind whose target PPtr equals an
+   instance's suffix id without an inventory-resolved true id behind it —
+   a regression tripwire for patch-day reruns.
+3. Detect-and-ledger, never resolve: if a target PPtr matches candidates in
+   BOTH spaces pointing at different rows, emit an identity-ledger row.
+   Ambiguity becomes data, never a silent pick.
+4. Document the field-name law in both files' `_meta` (`join_law`) so no
+   consumer writes an equal-name join.
+
+## 4. Ruling C — label truthing
+
+**Honest label: "mostly-disjoint — non-zero numeric coincidence treated as
+collision".** The binary "namespaces DISJOINT" is falsified by the
+emitter's own numbers (6/40) and by this pass's corpus-wide measure
+(15.23%; `Events_*` 21.5%). The posture built on the probe (never attribute
+an individual true id without a unique pairing) is sound and stands; only
+the label overstates. Note `flag_instances._meta.two_id_spaces` is also
+internally contradictory today ("numerically disjoint (suffix sample found
+6/40 times…)").
+
+Where it is corrected:
+
+- **Artifacts (ride the F-1 re-emission, not before):** the
+  `identity_namespace_check.verdict` string in
+  `flag_instances._meta`, the emit-ledger `identity-namespace-measurement`
+  verdict row, the `two_id_spaces` meta string, and the stale
+  `flag--gates` row `method` wording ("(container, object_path_id)" —
+  V-LL2a F4) which should name the inventory-resolved true-id basis.
+- **Spec text:** `logic-layer.mdx` never claims DISJOINT, so it owes no
+  correction; the normative binding-law paragraph (§2 above) enters the
+  **explorer spec now** as a consuming obligation, and should be folded
+  back into a short §4-LG1 amendment of `logic-layer.mdx` **if** the F-1
+  round reopens that spec (recommended — F-1 touches §5's edge_id shape
+  anyway, so the reopen is likely).
+- **One `missingdata.md` mechanics row** for the two-id-space facts when the
+  emitter pass next runs (closes V-LL2a F5's safer-move note).
+
+## 5. Ruling D — explorer encoding obligations
+
+The Ending Condition Explorer spec MUST carry, as acceptance-testable
+requirements (each extends an existing law rather than inventing one):
+
+1. **Precomputed joins only** (Law 1 applied to id resolution): flag
+   bindings are consumed from `flag_instances.writers/readers`,
+   `relinks/flag--gates.jsonl`, and `effect_calls.subject_ids`. The tool
+   never re-derives a binding by matching integer ids across files — the
+   frontend derives nothing (AGENTS rule 8), and id-resolution is
+   derivation.
+2. **No raw integer is a game fact:** flags render through their canonical
+   `logic:flag:*` strings; `object_path_id` / `inventory_object_path_id`
+   stay machine columns. The 49 unresolved instances render an explicit
+   **unnamed-flag state** — never a fabricated name, never a bare number
+   styled as meaning (tools-plan §3.1 prints flag ids, so this is
+   load-bearing).
+3. **Absence-of-binding is a first-class fail-closed state:** "wiring
+   unknown in this build" renders with the same visual grammar as unknown
+   polarity — never an empty list, never an omitted condition. This extends
+   the polarity law from value-space to topology-space: a misresolved or
+   unresolved predicate must be incapable of rendering as advice, which is
+   the same guarantee as [logic-layer.mdx §10](../../specs/logic-layer.mdx)
+   handoff obligation, now covering edges as well as directions.
+4. **Evidence-class rides every rendered predicate** (`static-proven` /
+   `inferred+citation` / `fail-closed-unknown`), community-attributed rows
+   visually distinct and never styled as advice (OQ-3 guardrails).
+5. **URL/deep-link space uses canonical string ids only** — the space
+   discrimination then inherits into routes; no raw integer ever appears in
+   a path or query parameter.
+6. **Explicit relink-prefix map:** `flag--gates` uses bare corpus ids
+   (`logic:flag:*`, `logic:call:*`) while `choice--consequence` uses
+   synthetic prefixes (`choice-node:`, `effect-call:`) — V-LL2b OBS-3. The
+   tool normalizes via a documented prefix table; string-similarity guessing
+   is banned.
+
+## 6. Ruling E — fix order
+
+1. **Now (this document → explorer spec author):** rulings A, C-label-law,
+   and D are binding input obligations of the ending-condition-explorer
+   spec chain. They cost no code and unblock the spec immediately.
+2. **Ride the already-open B-LL2 F-1 revision round** (one deterministic
+   re-emission alongside the edge_id uniqueness fix): emitter suffix-branch
+   deletion ×2 sites, new selfcheck bind-provenance gate, both-spaces-match
+   ledger tripwire, `_meta.join_law` strings, verdict-string truthing
+   (§4), `missingdata.md` row, optional minimal `logic-layer.mdx` §4-LG1
+   amendment. Registry counts/hashes refresh with the same emission.
+3. **No emergency re-emission of the accepted build:** measured zero
+   misbinds; every shipped binding is PPtr-derived and remains correct
+   under the ruled law. The defect is in the code path and the labels, not
+   in any shipped row.
+
+---
+
+*Ruling in one line: suffix ids name rows, PPtr ids name referents, and no
+code path may let one impersonate the other — binds happen only in
+serialized space under unique pairing, ambiguity lands in the ledger, and
+the explorer renders unresolved wiring as unknown, never as advice.*
+
+VERDICT: RULED
