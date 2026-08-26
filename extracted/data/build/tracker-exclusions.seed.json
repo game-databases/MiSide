@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "schema": "miside.tracker.exclusions.seed/1",
+    "build_id": "19029065",
+    "role": "FROZEN T0 INPUT (A-TR4 FIX-1) — curated exclusion-class counts for the tracker manifest. emit_tracker_manifest.py copies classes[].count into sets.core.json _meta.exclusion_ledger verbatim; this file joins T0's byte-freeze set (sha256 recorded pre/post emission).",
+    "why_a_seed": "The wiki-only x4 get NO row in any candidates JSONL by tier-4 ladder policy and the 48 lives only inside an evidence locator string — freeze-set widening cannot capture either without parsing prose/markdown, so the counts are pinned here instead.",
+    "derivation_check": "'notes' is independently re-derived by the emitter from extracted/data/documents/world_documents.jsonl (document_id prefix 'note-'); any seed-vs-derivation mismatch aborts non-zero naming the class."
+  },
+  "classes": [
+    {
+      "class": "notes",
+      "count": 160,
+      "basis": "world_documents.jsonl emits exactly 160 document_ids prefixed 'note-' (plus paperpart-level13-{0..4} x5 and novella-location18 x1 = 166 rows); excluded from v1 checklists per OQ-T3 EXCLUDE — consumer rule 1 forbids prose rendering while text_mechanism:'unresolved' on every row.",
+      "source_ref": "extracted/data/documents/world_documents.jsonl; missingdata.md DOC-1"
+    },
+    {
+      "class": "wiki_only_minigames",
+      "count": 4,
+      "basis": "Tier-4 wiki-only claims get no row and no candidate until client evidence exists (ladder policy); titles enumerated by CAR-6: Fly Console, Forgotten Panels, Monster-Slap, Destroying Glitches.",
+      "source_ref": "extracted/data/missingdata.md CAR-6"
+    },
+    {
+      "class": "cut_family_dumps",
+      "count": 48,
+      "basis": "Metroidvania_* cut-content family held as tier-3 candidate, never promoted; 48 byte-identical dumps ('Metroidvania_Interactive*.txt md5 a4c8a17f2deca7707d44078521dabb2d x48 identical').",
+      "source_ref": "extracted/data/cartridges/cartridges-minigames.candidates.jsonl candidate_id=metroidvania-family evidence locator; missingdata.md CAR-7"
+    }
+  ]
+}

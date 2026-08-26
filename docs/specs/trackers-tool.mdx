@@ -7,7 +7,11 @@ Documentator pass (brief D-TR2), over the scout
 pin: **buildId 19029065 / VERSION 0.93L**. The six datasets it checks against
 are ACCEPTED and contract-pinned; this spec designs no accounts, writes no
 code, and invents no rows — every checklist row is a shipped dataset row seen
-through a checkbox.
+through a checkbox. Revised 2026-08-26 landing arbiter ruling
+[A-TR4](../research/verifications/tr4-arbiter.mdx)
+(SPEC_FROZEN_PENDING_FIXES): fixes F1–F8 applied here; the F1 sibling
+one-liner in [data-contracts.mdx](data-contracts.mdx) §3.3 rode the
+orchestrator lane (FIX-3), outside this piece.
 
 Inputs read in full this pass: [trackers-scout.mdx](../research/trackers-scout.mdx)
 (primary) · [explorer-tool.mdx](explorer-tool.mdx) (sibling tool spec — house
@@ -123,13 +127,22 @@ contract — OQ-T2), choice nodes (explorer-exclusive — O6).
 **Scout corrections recorded this pass** (both wording slips, counts
 unaffected): (1) scout S4 says "four registries" while naming five — measured
 census is five (`key_source` values above); (2) scout S3 table lists pickup_ref
-"21 rows" which is correct, but its slug example pair `mtad2 → mta-cap` should
-read `mtacap → mta-cap`; on-disk boundary-split puts digit boundaries too
-(`plr1099 → plr-1099`, `mtad2 → mtad-2`).
+"21 rows" which is correct, but its slug example is wrong twice over: save_key
+`mtacap` emits `cartridge_id == "mtacap"` UNCHANGED — it contains no letter↔digit
+boundary, so no hyphen fires (the once-proposed `mtacap → mta-cap` correction
+was itself false, re-measured this pass); the real boundary splits are
+letter↔digit only: `mtad2 → mtad-2`, `plr1a → plr-1-a`, `plr1099 → plr-1099`.
 
 Tracked universe arithmetic: **8 sets, 122 items** (26+4+23+17+14+8+6+24);
 excluded-from-v1 ledger: notes ×160, wiki-only minigames ×4 (CAR-6),
-cut-content family ×48 dumps (CAR-7), outfits (no contract).
+cut-content family ×48 dumps (CAR-7), outfits (no contract). The 4/48 counts
+are PINNED in frozen seed `extracted/data/build/tracker-exclusions.seed.json`
+(`miside.tracker.exclusions.seed/1`): freeze-set widening cannot recover them,
+because the four wiki-only minigames get NO row in any candidates JSONL by
+tier-4 ladder policy and the 48 lives only inside an evidence locator string —
+the seed is T0's pinned source for those classes (§5.1 laws 2/5), while
+notes ×160 IS additionally re-derived from frozen `world_documents.jsonl` as a
+mismatch-abort cross-check.
 
 ## 4. Module breakdown & dependency edges
 
@@ -173,7 +186,8 @@ persistence change is a T1 change reviewed under TR-A4/A6.
 2. **Byte-freeze**: sha256 of every consumed file recorded before and after
    emission; mismatch aborts non-zero naming the file (AC-L1a/L5 tripwire
    pattern). Frozen set: the eight dataset JSONLs of §3 + `markers.jsonl` +
-   `minigame--achievement.jsonl`.
+   `minigame--achievement.jsonl` + `tracker-exclusions.seed.json` (curated
+   input at `extracted/data/build/`, joined to the byte-freeze set per A-TR4).
 3. **Counts fail-fast**: emitted per-set item counts reconcile against JSONL
    censuses inside the run (26/4/23/17/14/8/6/24); any drift aborts before
    writing the public artifact (TR-A1). This is the gate that makes T0 the
@@ -183,7 +197,14 @@ persistence change is a T1 change reviewed under TR-A4/A6.
    on contract id; rerun over unchanged inputs diffs empty (TR-A14).
 5. **Exclusion ledger**: rows deliberately not tracked (notes ×160, wiki-only
    minigames, cut-content family) enter ONLY `_meta.exclusion_ledger` counts —
-   they exist in the ledger so absence is measured, never silent.
+   they exist in the ledger so absence is measured, never silent. Emitted
+   ledger values are COPIED VERBATIM from the frozen seed
+   `tracker-exclusions.seed.json`; and because `notes` IS derivable, the
+   emitter ADDITIONALLY re-derives it from frozen `world_documents.jsonl`
+   (`document_id` prefix `note-`), aborting non-zero naming the class on any
+   seed ≠ derivation mismatch — belt-and-braces that keeps the seed honest
+   without coupling the gate to prose files (missingdata.md churn) or
+   violating the tier-4 no-row policy.
 
 ### 5.2 Manifest shape
 
@@ -200,7 +221,8 @@ oversight).
 // sets.core.json — miside.tracker.sets/1 (schema registered at T0 landing)
 {"_meta": {"schema": "miside.tracker.sets/1", "build_id": "19029065",
   "inputs": {"<artifact>": "<sha256>"}, "row_census": {"achievements": 26, "...": 0},
-  "exclusion_ledger": {"notes": 160, "wiki_only_minigames": 4, "cut_family_dumps": 48},
+  "exclusion_ledger": {"notes": 160, "wiki_only_minigames": 4,
+                       "cut_family_dumps": 48},  // copied verbatim from tracker-exclusions.seed.json (frozen input)
   "marker_kind_map": {"cartridge": "cartridges", "profile": "profiles",
                        "minigame": "minigames"}},          // singular→plural, markers' entity_kind form
  "sets": [
@@ -243,6 +265,8 @@ interface ItemRecord {
   done: boolean;
   ts: number;                 // epoch ms of last local transition — THE merge key
   tomb?: number;              // OPTIONAL deletion tombstone ts (reserved; see L5)
+  won?: boolean;              // reserved second axis (minigames); pattern = L5 tombstones
+  wonTs?: number;             // per-axis merge key for `won` (independent of ts)
 }
 ```
 
@@ -260,8 +284,12 @@ interface ItemRecord {
   (defensive parse: malformed envelopes quarantine to a typed error state, no
   silent wipe).
 - **L4 Deterministic merge (defined now, executed later).** Server sync, when
-  it arrives, merges per-item by max `ts`; equal-ts ties break deterministically
-  on `(contract-id asc, then local wins)`; set-level operations do not exist.
+  it arrives, merges PER-AXIS last-write-wins: `done` orders on `ts`, `won` on
+  `wonTs`, axes independent — non-minigame sets never write `won`/`wonTs`;
+  set-level operations do not exist. Equal-`ts` ties break executor-independently:
+  `done=true` beats `done=false`; records equal on BOTH `ts` and `done` are
+  semantically interchangeable and the merge is declared idempotent there — a
+  tie can therefore never silently un-check a row.
   This function ships NOW as pure code with unit proofs (TR-A6) even though no
   caller invokes it remotely — the schema is sync-ready because the semantics
   are already fixed, not because a server exists.
@@ -274,8 +302,12 @@ interface ItemRecord {
   `SyncAdapter` interface (sign-in push/pull; server authoritative, local
   demotes to cache) DECLARED but unimplemented — no auth code, no endpoints,
   no conflict UI ships (non-goal §16). A `FakeSyncAdapter` in the test suite
-  implements the seam and passes the SAME conformance suite as LocalAdapter
-  (TR-A6) — that test is what makes "seam only" a verified claim rather than a
+  implements the seam; the conformance suite SPLITS into UNIVERSAL laws
+  (envelope validation, drift preservation, deterministic merge, codec
+  round-trip) parameterized over BOTH adapters, and ADAPTER-SPECIFIC laws named
+  per adapter — the synchronous write-per-toggle spy (L1) binds LocalAdapter
+  only, while `FakeSyncAdapter` proves seam typing plus every universal law
+  (TR-A6). That split is what makes "seam only" a verified claim rather than a
   promise.
 - **L7 Degraded mode is honest.** When storage is unavailable (private mode,
   quota, disabled), the store reports a typed unavailable state; UI renders
@@ -284,7 +316,11 @@ interface ItemRecord {
   error as UX.
 - **L8 Share-code codec is lossless and typed.** Token format `MST1.<base64url>`
   over `{sets:{<set_id>:[checked contract ids, sorted]}}`; unknown ids ride
-  verbatim (lossless round-trip incl. drift, TR-A5). Import VALIDATES against
+  verbatim (lossless round-trip incl. drift, TR-A7). Reserved record fields
+  survive every store encode/decode cycle losslessly exactly like `tomb` — the
+  `won`/`wonTs` axis included (the token carries ids only, so axis state
+  persists locally and through merges, asserted in the TR-A6 suite).
+  Import VALIDATES against
   the current T0 manifest: ids absent from the manifest are DROPPED and listed
   in a typed report (`unknown-ids`) — import-time validation coexists with L3
   runtime preservation, and the distinction is asserted in the suite. Malformed
@@ -300,8 +336,8 @@ soul, never stock — DR-2026-08-24-miside-pack §3):
 
 - `CheckRow` — the atom: SSR-rendered `<li>` carrying label, group chip, status
   affordance; the interactive element is a real `<button aria-pressed>` hydrated
-  onto the served markup (no JS ⇒ static checked-state text still present,
-  TR-A5). Keyboard-complete: Space toggles, visible `--ring` focus.
+  onto the served markup (no JS ⇒ rows and default-state affordances fully
+  present; TR-A5). Keyboard-complete: Space toggles, visible `--ring` focus.
 - `SetGroupPanel` — collapsible group shell (`type_tag`/family/…), count in LCD
   register.
 - `PillGauge` — progress pill riding `GradientPill` grammar + `--ms-accent-gradient`;
@@ -370,8 +406,9 @@ to a routed view only if usage argues for it (OQ-T8).
   offset pin; everything else labels from `client_key` + CITED
   `community_alias` (repo-cited, never the bare key). Four tamagotchi rows
   visible-locked (`present_but_unreachable`). Scoring fence sentence on every
-  row (`scoring_derivable:false` ×17) — played/won is tracked, win thresholds
-  defer to the revealer + logic layer. Outfit-unlock rows (`pinguin`,
+  row (`scoring_derivable:false` ×17) — played is tracked; win thresholds defer
+  to the revealer + logic layer, where the schema-reserved `won` axis surfaces
+  (optional fields ship v1 — no migration ever needed). Outfit-unlock rows (`pinguin`,
   `location-17-pumpkin-clicker`) cross-link the outfit question without
   creating outfit rows (OQ-T2 posture).
 - **View E — Documents** (`/tools/trackers/documents`, three set panels:
@@ -407,8 +444,10 @@ through T1 subscription only — no duplicate store logic (single-owner law, §4
    and toggles never fill Back).
 4. Share-code: explicit generate (per set or all sets) → copy token; import
    paste → typed validation → BEFORE-apply diff preview (gains per set, dropped
-   `unknown-ids`, tombstone-safe) → apply writes through T1 (imported items
-   keep the codec's ts ordering; L4 governs any later merge).
+   `unknown-ids`, tombstone-safe) → apply writes through T1 (imported checks
+   are stamped import-time epoch-ms ts UNIFORMLY — MST1 carries ids only, no
+   ordering information survives the token; skew note: an import reads as a
+   local edit at the import instant, and L4 governs any later merge).
 5. Reset per set, confirmed, never cross-set (L9).
 6. Placement-bearing rows link `focus=` URLs into the owned map (two-way law
    with the map module; reverse popover→checkbox leg stays OUT of v1 —
@@ -473,8 +512,10 @@ tracker feels like the game's own HUD progress moment, not atlas chrome.
   share/import entry. Per-set segments: `/tools/trackers/<set_id>` for the five
   routed views (`achievements`, `endings`, `cartridges`, `minigames`,
   `documents`); `characters`, `profiles`, `books`, `papers` are STORE sets
-  whose user surfaces are the Documents view panels and entity tabs (their set
-  routes 301 to the owning view segment — no thin duplicate pages).
+  whose user surfaces are the Documents view panels and entity tabs; redirects
+  NAMED: `profiles`, `books`, `papers` 301 → `/tools/trackers/documents`;
+  `characters` 301 → `/tools/trackers` (the hub owns its gauges) — no thin
+  duplicate pages.
 - **Mirrors**: `(pivot)` bare + `[locale]` prefixed ×33, delegated through
   `src/lib/routes.ts`; `gen-routes.mjs` + `sitemapPartitions.ts` already know
   how to mirror and partition. Set/view routes ARE content and indexable;
@@ -532,18 +573,18 @@ Law carried from the data plane:
 
 | # | Criterion | Proof method |
 |---|---|---|
-| TR-A1 | **Manifest gate**: emitted counts equal the accepted datasets — achievements 26 · endings 4 · cartridges 23 · minigames 17 · profiles 14 · books 8 · papers 6 (5 parts + 1 novella) · characters 24; zero extra or missing ids; exclusion ledger reconciles (notes 160 + wiki-minigames 4 + cut-family) | T0 selfcheck reconciling emitted manifest vs JSONL censuses inside the run, fail-fast abort naming drift; sha256 freeze manifest in `emit-ledger.jsonl` diffed pre/post |
+| TR-A1 | **Manifest gate**: emitted counts equal the accepted datasets — achievements 26 · endings 4 · cartridges 23 · minigames 17 · profiles 14 · books 8 · papers 6 (5 parts + 1 novella) · characters 24; zero extra or missing ids; exclusion ledger reconciles (notes 160 + wiki-minigames 4 + cut-family) | T0 selfcheck reconciling emitted manifest vs JSONL censuses inside the run, fail-fast abort naming drift; sha256 freeze manifest in `emit-ledger.jsonl` diffed pre/post incl. `tracker-exclusions.seed.json`; ledger values copied verbatim from the seed with `notes` re-derived from `world_documents.jsonl` — mismatch aborts (law 5) |
 | TR-A2 | **Label totality ×34**: every rendered label resolves through a pointer/composition rule or renders the declared filler/id-form honest-missing; zero pivot-locale prose on non-EN pages (incl. EN-only descriptions confined to pivot) | per-locale snapshot fixture ×34 over all views + grep for pivot leakage; player-family cartridge rows assert `label_mode:"id-form"` |
 | TR-A3 | **No runtime extraction reads from client JS**: the island touches only localStorage + the emitted manifest | build-output grep: zero `extracted/` path references in `.next` client chunks; zero `fetch(` outside the manifest module in `src/lib/tracker/**` + tracker components |
-| TR-A4 | **Persistence survives reload; schema bump migrates; unknown ids tolerated AND preserved; write is synchronous per-toggle** | jsdom/vitest suite: seed → reload (fresh store instance) → state identical; synthetic id not in manifest survives ≥10 read/write cycles and appears in export; `v:1→v:2` fixture migrates without loss; storage-write spy asserts one synchronous write per toggle inside the handler (no debounce window) |
-| TR-A5 | **No-JS completeness (anti-Fandom)**: served HTML carries EVERY checklist row with correct checked-state representation, no script required | curl production build; per-view row counts == TR-A1 counts; DOM assertions for `aria-pressed`/static state text present in raw HTML |
-| TR-A6 | **Sync-readiness assertions (schema law)**: envelope versioned; per-item `ts` present; tombstone field round-trips; merge is deterministic LWW (equal-ts tiebreak stable); FakeSyncAdapter passes the SAME conformance suite as LocalAdapter | unit/property tests over `merge.ts` (incl. equal-ts fixtures); adapter conformance suite parameterized over both adapters passes green; grep proves zero network imports in T1 |
+| TR-A4 | **Persistence survives reload; schema bump migrates; unknown ids tolerated AND preserved; write is synchronous per-toggle** | jsdom/vitest suite: seed → reload (fresh store instance) → state identical; synthetic id not in manifest survives ≥10 read/write cycles and appears in export; `v:1→v:2` fixture migrates without loss; storage-write spy asserts one synchronous write per toggle inside the handler (no debounce window) — ADAPTER-SPECIFIC law, LocalAdapter only (L6 suite split) |
+| TR-A5 | **No-JS completeness (anti-Fandom)**: served HTML carries EVERY checklist row present in raw HTML with its default-state affordance structure (server-rendered unchecked default; locked/unreachable states rendered server-side), no script required; personal checked-state hydrates client-side without layout shift | curl production build; per-view row counts == TR-A1 counts; DOM assertions for row presence + default-affordance markup |
+| TR-A6 | **Sync-readiness assertions (schema law)**: envelope versioned; per-item `ts` present; tombstone field round-trips; reserved `won`/`wonTs` fields round-trip; merge is deterministic PER-AXIS LWW (equal ts ⇒ `done=true` wins; equal on ts+done ⇒ interchangeable, merge idempotent) | unit/property tests over `merge.ts` (incl. equal-ts fixtures); UNIVERSAL laws (envelope validation, drift preservation, deterministic merge, codec round-trip) parameterized over BOTH adapters pass green; ADAPTER-SPECIFIC laws named per adapter — sync-write spy binds LocalAdapter only, `FakeSyncAdapter` additionally proves seam typing; grep proves zero network imports in T1 |
 | TR-A7 | **Share-code round-trip lossless (incl. unknown ids); malformed tokens fail typed; import validates against manifest with `unknown-ids` report** | codec property tests (round-trip == identity over randomized states); corruption mutants (byte flips, bad prefix/version/payload) each assert the exact typed error — MUTANT: a suite run with validation removed FAILS |
 | TR-A8 | **Honest states render as typed states**: `mtad-2`/`mtacore` unresolved pickups, 4 unreachable minigames, `peaceful` stub, keyless profile row once, pending-export icons, id-form player labels, zh book-art cells | curl-grep positive (states present with declared words) + negative (zero fabricated display names/aliases anywhere; zero upstream icon URLs in served HTML) |
 | TR-A9 | **i18n ×34 + RTL + namespace split**: parity green incl. new keys; `ar`/`ar-EG` render `dir="rtl"` with mirrored layout; game-text labels never appear in chrome namespace | `check-chrome-parity.mjs` exit 0 in CI; route-shell attribute test for ar/ar-EG (and fa asserting LTR); grep proving chrome keys contain no achievement/cartridge/personage names; logical-property lint over tracker components |
 | TR-A10 | **Perf/CWV budgets**: hub + views meet scaffold budgets (LCP <2.5 s · scripted interaction <200 ms · CLS <0.1); `sets.core.json` ≤ 25 kB gzip; toggle-to-gauge recompute <100 ms on seeded 122-item store | lab trace harness + Lighthouse on production build; size assert in CI; vitest perf probe with seeded store |
 | TR-A11 | **Provenance two-class**: buildId stamps print on hub + views; zero repo-only tokens (source URLs, license tags, acquisition paths, commits) in any served pixel | curl-grep both directions (scaffold S9 pattern) |
-| TR-A12 | **Integration seams hold**: relationCard exclusions registered (no double-rendered edges on entity pages); focus-links resolve against `markers.jsonl` refs; entity track tabs hydrate on all covered kinds | component test walking covered entity pages asserting exactly one render of each tracked edge; focus href == `/map?focus=<plural kind>:<slug>&scene=<scene_id>` for all 70 marker-backed rows |
+| TR-A12 | **Integration seams hold**: relationCard exclusions registered (no double-rendered edges on entity pages); focus-links resolve against `markers.jsonl` refs; entity track tabs hydrate on all covered kinds | component test walking covered entity pages asserting exactly one render of each tracked edge; per-MARKER assertion — each of the 70 markers resolves to exactly one focus href built from its marker_id via `marker_kind_map` (singular→plural); measured 49 distinct `(entity_kind, entity_slug)` entities, tetris alone ×20. Personage href pin: links use `routes.ts KIND_SEGMENT` — mita → `<prefix>/mita/<slug>`, players → `<prefix>/players/<slug>`; no `characters` segment exists |
 | TR-A13 | **URL law**: real `<a href>` set routes; item state never ambient (no query param, no fragment, no beacon carries checked state); replaceState-only discipline; unknown set renders not-found well | code review + e2e history-length assertion across toggles/filters; crawler-view diff proving zero state in emitted URLs; robots check confirming nothing to exclude |
 | TR-A14 | **Regen determinism + no regression**: T0 double-run byte-identical; existing suites + parity checks stay green | double-run diff (AC-S8 pattern); CI exit codes |
 
@@ -551,6 +592,9 @@ Law carried from the data plane:
 
 - No accounts/auth, no server writes, no conflict UI, no SyncAdapter
   implementation — seam + schema readiness only (OQ-T1 owns timing).
+- No won-toggle UI in v1 — the `won`/`wonTs` axis is schema-reserved
+  (optional fields ship in the v1 envelope); the revealer + logic layer own
+  that surface when it lands.
 - No XP/gamification, streaks, or invented reward surfaces.
 - No invented display names or community aliases beyond cited ones.
 - No choice-node checklists — explorer-exclusive (O6/OQ-T4).
