@@ -349,6 +349,7 @@ function popoverFromPin(pin: MapPinVM): PopoverTarget {
     title: pin.title,
     pageHref: pin.pageHref,
     mechanism: pin.mechanism,
+    relinkStatus: pin.relinkStatus,
     sourceJoin: pin.sourceJoin,
     status: "projected",
   };
@@ -361,6 +362,7 @@ function popoverFromCell(cell: MapCellVM): PopoverTarget {
     title: cell.title,
     pageHref: cell.pageHref,
     mechanism: cell.mechanism,
+    relinkStatus: cell.relinkStatus,
     sourceJoin: cell.sourceJoin,
     status: cell.status,
     instanceCensus: cell.instanceCensus,

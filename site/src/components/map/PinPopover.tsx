@@ -6,10 +6,11 @@ import { kindChipStyle } from "./kindAxis";
 
 /*
  * PinPopover (map-viewer §5): the entity card for one marker — loc-correct
- * title, kind chip, placement-provenance cell (surfaced whenever the carry
- * law bites: mechanism !== "hard"), machine-voice status register for
- * non-projected rows, instance census so a count is never silently 1-of-N,
- * and the crawlable <a> to the entity page (the same anchor SSR renders).
+ * title, kind chip, placement-provenance cell (surfaced whenever the §7
+ * carry law bites: mechanism !== "hard" OR relink status !== "modeled"),
+ * machine-voice status register for non-projected rows, instance census so
+ * a count is never silently 1-of-N, and the crawlable <a> to the entity
+ * page (the same anchor SSR renders).
  */
 
 export interface PopoverTarget {
@@ -17,7 +18,13 @@ export interface PopoverTarget {
   kind: string;
   title: string;
   pageHref: string | null;
+  /** Placement mechanism verbatim (the carry law's first leg). */
   mechanism?: string;
+  /**
+   * Relink edge status verbatim — the carry law's second leg. Distinct from
+   * `status` above, which is the projection disposition register.
+   */
+  relinkStatus?: string;
   sourceJoin?: string;
   status?: "projected" | "awaiting-transform-stage" | "scene-granular";
   instanceCensus?: Record<string, number>;
@@ -41,8 +48,12 @@ export function PinPopover({
   className?: string;
   style?: React.CSSProperties;
 }) {
+  // §5/§7 carry law (F-7): the cell surfaces whenever mechanism !== "hard"
+  // OR the relink status !== "modeled" — a future relink edit cannot flip
+  // rendering silent. Absent fields never trip it (fail-closed).
   const provenanceBites =
-    Boolean(target.mechanism) && target.mechanism !== "hard";
+    (Boolean(target.mechanism) && target.mechanism !== "hard") ||
+    (Boolean(target.relinkStatus) && target.relinkStatus !== "modeled");
   const statusToken =
     target.status === "awaiting-transform-stage"
       ? "awaiting-transform-stage"
@@ -96,13 +107,19 @@ export function PinPopover({
       )}
 
       {provenanceBites && (
-        // §7 carry law: mechanism/source_join surfaced verbatim whenever the
-        // edge is not hard — a future relink edit cannot flip rendering silent
+        // §7 carry law: mechanism/relink status/source_join surfaced verbatim
+        // whenever the law bites — never paraphrased, never dropped
         <dl className="flex flex-col gap-0.5 rounded-md bg-secondary/60 px-3 py-2 text-xs text-muted-foreground">
           <div className="flex items-baseline gap-2">
             <dt className="font-lcd uppercase">mechanism</dt>
             <dd className="font-lcd">{target.mechanism}</dd>
           </div>
+          {target.relinkStatus && (
+            <div className="flex items-baseline gap-2">
+              <dt className="font-lcd uppercase">status</dt>
+              <dd className="font-lcd">{target.relinkStatus}</dd>
+            </div>
+          )}
           {target.sourceJoin && (
             <div className="flex items-baseline gap-2">
               <dt className="font-lcd uppercase">join</dt>

@@ -20,6 +20,8 @@ export interface MapPinVM {
   /** Deep link back into the viewer (emitter-written, locale-prefixed). */
   focusHref: string | null;
   mechanism?: string;
+  /** Relink edge status verbatim (§5 carry-law OR leg: status !== "modeled"). */
+  relinkStatus?: string;
   sourceJoin?: string;
 }
 
@@ -38,6 +40,8 @@ export interface MapCellVM {
   pageHref: string | null;
   focusHref: string | null;
   mechanism?: string;
+  /** Relink edge status verbatim (§5 carry-law OR leg: status !== "modeled"). */
+  relinkStatus?: string;
   sourceJoin?: string;
   /** Present when a container hosts >1 controller/minigame (never 1-of-N). */
   instanceCensus?: Record<string, number>;

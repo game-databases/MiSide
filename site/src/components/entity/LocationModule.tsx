@@ -3,15 +3,21 @@ import * as React from "react";
 import { VoidWell } from "@/components/kit/VoidWell";
 import { LcdTerminal } from "@/components/kit/LcdTerminal";
 import { cn } from "@/lib/utils";
+// aliased: the `scenes` prop below shadows any same-named module binding
+import { scenes as registryScenes } from "@/data/contracts";
 
 /*
  * Entity-page location module (map-viewer §7 M4): the mini schematic
  * placeholder (VoidWell until artwork), the "found in" scene links, and the
  * `/map?focus=<kind>:<id>&scene=<container>` anchor — ALL as plain <a href>
  * in SSR HTML (AC MV-4; the JS-only-link ban is what kills the v0
- * asymmetry). Provenance carry law (F-7): mechanism/status surface whenever
- * mechanism !== "hard" OR status !== "modeled" — same vocabulary and
- * treatment as the PinPopover provenance cell.
+ * asymmetry). The found-in value anchors ONLY when it resolves to a real
+ * /locations/[scene_id] route target (the scenes() registry ids that
+ * generateStaticParams enumerates); a scene-family label like books'
+ * `consumer_scene` ("Location House") rides as plain text verbatim — no
+ * invented mapping. Provenance carry law (F-7): mechanism/status surface
+ * whenever mechanism !== "hard" OR status !== "modeled" — same vocabulary
+ * and treatment as the PinPopover provenance cell.
  */
 
 export interface LocationSceneRef {
@@ -54,6 +60,10 @@ export function LocationModule({
     );
   }
 
+  // The route serves exactly the registry scene ids; anything else renders
+  // as text (M1, CW-MV1 review).
+  const routedSceneIds = new Set(registryScenes().map((row) => row.scene_id));
+
   return (
     <div data-slot="location-module" className={cn("flex flex-col gap-3", className)}>
       {/* mini schematic placeholder — authored art consumes this slot later */}
@@ -64,18 +74,26 @@ export function LocationModule({
           const provenanceBites =
             (Boolean(s.mechanism) && s.mechanism !== "hard") ||
             (Boolean(s.status) && s.status !== "modeled");
+          const routable = routedSceneIds.has(s.sceneId);
           return (
             <li
               key={`${s.sceneId}:${s.focusHref ?? ""}`}
               className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1"
             >
-              {/* found in → /locations/<scene_id> */}
-              <a
-                href={`${localePrefix}/locations/${encodeURIComponent(s.sceneId)}`}
-                className="rounded-full px-1 py-0.5 text-sm font-bold hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                {s.sceneTitle}
-              </a>
+              {/* found in → /locations/<scene_id> when the id is routed;
+                  a non-registry family label stays crawlable-text only */}
+              {routable ? (
+                <a
+                  href={`${localePrefix}/locations/${encodeURIComponent(s.sceneId)}`}
+                  className="rounded-full px-1 py-0.5 text-sm font-bold hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  {s.sceneTitle}
+                </a>
+              ) : (
+                <span className="rounded-full px-1 py-0.5 text-sm font-bold">
+                  {s.sceneTitle}
+                </span>
+              )}
               {/* two-way link → scene-locked viewer with this entity focused */}
               {s.focusHref && (
                 <a
