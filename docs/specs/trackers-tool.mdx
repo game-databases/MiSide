@@ -1,0 +1,637 @@
+# Collectible & Achievement Trackers — tool spec (D-TR2)
+
+Piece spec for board item **collectible & achievement trackers**
+([TODO.mdx](../TODO.mdx) Phase 3, `[~]` T-TR1). Authored 2026-08-26 by the
+Documentator pass (brief D-TR2), over the scout
+([trackers-scout.mdx](../research/trackers-scout.mdx)) as primary input. Build
+pin: **buildId 19029065 / VERSION 0.93L**. The six datasets it checks against
+are ACCEPTED and contract-pinned; this spec designs no accounts, writes no
+code, and invents no rows — every checklist row is a shipped dataset row seen
+through a checkbox.
+
+Inputs read in full this pass: [trackers-scout.mdx](../research/trackers-scout.mdx)
+(primary) · [explorer-tool.mdx](explorer-tool.mdx) (sibling tool spec — house
+module/AC structure, M0′ gating precedent, A-EC1 reserved tracker slot) ·
+[content-pipeline.mdx](content-pipeline.mdx) §2/§7 (feed/sitemap/honest-empty
+patterns) · [extracted/data/missingdata.md](../../extracted/data/missingdata.md)
+(stub classes, in full) · design tokens (`site/src/styles/design/tokens.css`,
+in full) · spot-checks on disk THIS PASS re-measuring every count below from
+the emitted JSONLs (header-line-aware: several datasets carry `_meta` or
+inline header first lines — raw `wc -l` overcounts by one) plus
+`extracted/data/scenes/markers.jsonl`,
+`extracted/relinks/minigame--achievement.jsonl`, the kit components under
+`site/src/components/{kit,map}/`, `site/src/i18n/chrome/` (34 files),
+`site/src/i18n/locales.ts`, and `site/src/lib/routes.ts`. Nothing copied on
+faith; two Scout wording slips corrected ([§3](#3-disk-audit--consumed-artifacts-measured)).
+
+Sections:
+
+1. [Purpose + player-experience framing](#1-purpose--player-experience-framing)
+2. [Binding obligations inherited](#2-binding-obligations-inherited)
+3. [Disk audit — consumed artifacts (measured)](#3-disk-audit--consumed-artifacts-measured)
+4. [Module breakdown & dependency edges](#4-module-breakdown--dependency-edges)
+5. [T0 — tracker-manifest emitter (data-side gating module)](#5-t0--tracker-manifest-emitter-data-side-gating-module)
+6. [T1 — TrackerStore state layer (sync-ready schema law)](#6-t1--trackerstore-state-layer-sync-ready-schema-law)
+7. [T2 — checklist UI kit](#7-t2--checklist-ui-kit)
+8. [T3 — five surface views](#8-t3--five-surface-views)
+9. [T4 — progress module](#9-t4--progress-module)
+10. [Interaction list (v1)](#10-interaction-list-v1)
+11. [Honest states & stub policy](#11-honest-states--stub-policy)
+12. [Design language requirements](#12-design-language-requirements)
+13. [Routes, hub & URL-state law](#13-routes-hub--url-state-law)
+14. [Chrome i18n ×34 including the RTL ar leg](#14-chrome-i18n-x34-including-the-rtl-ar-leg)
+15. [Acceptance criteria TR-A1–TR-A14](#15-acceptance-criteria-tr-a1tr-a14)
+16. [Non-goals](#16-non-goals)
+17. [Open questions for the Arbiter](#17-open-questions-for-the-arbiter)
+
+---
+
+## 1. Purpose + player-experience framing
+
+MiSide scatters its completion across twenty-six achievements, four endings,
+twenty-three flash cartridges, seventeen minigames, fourteen Mita profiles,
+eight books, six paper surfaces, and twenty-four personages — and gives the
+player no single place that says *how far along am I, what's missable, and
+what have I already walked past*. Competitors answer with JS-walled progress
+tables that crawllers cannot read (COMP S1 `table-progress-tracking`, the
+anti-precedent). This tool answers with **private-first checklists over the
+accepted corpus**: every row exists in served HTML before any script runs,
+progress persists synchronously in the browser, and sharing is an explicit
+opt-in export — never ambient leakage.
+
+The experience laws:
+
+- **One toggle, zero ceremony.** Clicking a row checks it, saves it, and moves
+  every gauge on the page — no submit control, no account wall, no debounce
+  loss window (the reactive-input law applied to persistence).
+- **Confidence is visible state.** A proven-hard award site, an
+  unverified-behavior native grant, and a community-attributed window look
+  different at a glance; unverified rows guide ("the interaction exists, here
+  is the container") without ever rendering as advice.
+- **Locked content stays visible.** Peaceful Mode, four unreachable tamagotchi
+  activities, and two unresolved pickups render as locked rows with their
+  reasons — checkerboard wells and lock chips, never omission-with-apology.
+- **Progress is private until exported.** Item-checked state never enters an
+  ambient URL, a sitemap, or any beacon. The share-code is an explicit
+  generate/import action with a diff preview.
+
+## 2. Binding obligations inherited
+
+Each obligation extends an existing law; none invents one. Every module below
+inherits all of them.
+
+| # | Obligation | Source | Where enforced |
+|---|---|---|---|
+| O1 | **Rows exist only where an owning dataset emits them.** The tracker projects accepted rows; candidates-ledger tiers 3–4 (CAR-6 wiki-only minigames, CAR-7 cut-content family) never become checklist rows. | AGENTS rule 8 (frontend consumes, never derives); scout §1 | T0 exclusion ledger; AC-TR-A7 negative |
+| O2 | **Contract ids are the only keys ever stored or shared** — `achievement_id`, `ending_id`, `cartridge_id`, `minigame_id`, `document_id`, `character_id`. Never `save_key` alone, never loc indices, never registry positions: patch reruns may reorder loc lines, but contract ids are the pinned stable vocabulary. | scout §2 ruling; contracts registry | T1 store + codec; AC-TR-A4 |
+| O3 | **Sync-ready schema law (the data-loss cliff).** v1 storage MUST survive the later arrival of server sync without a data migration: versioned envelope, per-item last-write timestamps, deletion tombstones reserved, drift tolerance (ids absent from the current build are preserved, never pruned), merge defined as deterministic last-write-wins. Server accounts are SEAM ONLY — spec §Section-map row 8's sign-in tie-in ([DR-2026-08-19-ugc-accounts]) does NOT gate v1. | scout §2 data-loss-cliff warning; DR-2026-08-19-ugc-accounts; TODO.mdx LANE-C ordering | T1 (whole module); AC-TR-A4/A6 |
+| O4 | **Served HTML carries every checklist row with no JS.** Checklist shells SSR from build-time readers; the client island touches ONLY localStorage/emitted manifest — it never reads `extracted/`. Fandom degradation is the named anti-precedent. | scout §2/§3; `site/src/data/contracts.ts` SERVER-ONLY banner | T3/T5; AC-TR-A3, AC-TR-A5 |
+| O5 | **Honest-missing styling wherever the client ships no name.** Player-family cartridges have no display name anywhere (id-form labels); note prose does not exist (consumer rule 1); icons are `pending-export`; availability renders from derived booleans, never asserted. | missingdata ACH-1/CAR-5/DOC-1/DOC-8/CH-2; design-standard §5.1 | §11; AC-TR-A7 |
+| O6 | **Endings are route context, not checkboxes.** The 371-node choice tree belongs to the Ending Condition Explorer; duplicating it here would double-render one graph (relationCards dedicated-module exclusion law, applied at product level). The `peaceful` mode-stub ships visible-locked, never omitted. | COMP J11; explorer-tool §15 non-goal; A-EC1 OQ-E5 reserved slot | §8 view E; OQ-T4 |
+| O7 | **Machine-plane numbers stay machine-plane in framing.** `steam.global_percent` renders as value + rarity band with the build stamp; the capture instant never prints. Confidence chips ride `unlock.status` verbatim (`proven-hard` / `unverified-behavior`); unverified rows never phrase advice. | DR-2026-08-22-numbers-stand-alone; logic-layer D4 pattern | §8 view A; §12; AC-TR-A7 |
+| O8 | **URL law: surface selection only.** `/tools/trackers/<set>` segments are real `<a href>` routes; item-checked state never enters an ambient URL; filter/group combinations create no URLs (facet law); state-bearing controls use `replaceState`. Share codes travel only through the export/import dialog. | site-scaffold §6–§7 rulings; scout §2 option B verdict | §13; AC-TR-A8 |
+| O9 | **Namespace split:** row LABELS are game text resolved through loc pointers at build; buttons/empty-states/progress words are chrome keys landing in all 34 tables. The namespaces never mix. Locale stays route-coded; direction `rtl` pins `ar`/`ar-EG` only (SB-1 finding logged: `fa` natively RTL but stays LTR until a spec amendment). | localization-architecture §4; `locales.ts` pin; DR-2026-08-26-corepunk-i18n-keep | §14; AC-TR-A9 |
+| O10 | **Provenance two-class.** `buildId` stamp prints on tracker surfaces (user-facing, data-bearing); repo-only tokens (source URLs, license tags, acquisition paths, commits) appear in no served pixel. Upstream Steam CDN icon URLs are therefore NOT hotlinked (see OQ-T7). | decision-register D2 as narrowed; scaffold S9 pattern | §13; AC-TR-A11 |
+| O11 | **Relation-card registration.** Families the tracker surfaces (achievement↔cartridge set, achievement↔profile set, achievement↔ending, minigame↔achievement, character↔cartridge) must be registered in `src/lib/relations/relationCards.ts` exclusions so an entity page never renders the same edge twice (card + track tab). | relationCards header law; scout §3 | T5; AC-TR-A12 suite |
+| O12 | **Explorer's reserved slot is consumed, not re-reserved.** A-EC1 OQ-E5 RULED reserve-now for `entity_kind`/`entity_slug` nullable columns on explorer cards; tracker-facing deep links fill that shape (`focus=` map links, entity tabs) using the SAME kind/slug vocabulary — one id space across tools. | explorer-tool §16 item 5 (RULED A-EC1) | §8 placement links; §13 |
+
+## 3. Disk audit — consumed artifacts (measured)
+
+All counts re-derived from disk this pass (python over jsonl lines; header
+lines excluded — noted per file). FROZEN inputs: T0 consumes them read-only
+and byte-freezes them (TR-A1).
+
+| Artifact | Rows | Measured content this pass |
+|---|---|---|
+| `extracted/data/achievements/achievements.jsonl` | **26** (flat, no header line) | `display` locale map complete ×34 on every row (26×34 = 884 cells, AC-A1 reconcile holds); descriptions EN-only Steam capture ×26 (keyed-endpoint hole XC-11); `type_tag`: story 11 · minigame 8 · ending 3 · collectible 2 · meta 1 · missable 1 (`ACHI_achi`); `unlock.predicate_class`: serialized-site 11 · code-body 12 · aggregate 3; `unlock.status`: proven-hard 11 · unverified-behavior 15; `icon.status` pending-export ×26; `joins.collectible_set` ×2 (`ACHA_cartridgeplayers`→`player-cartridges`, `ACHI_mitastory`→`mita-profiles`), `joins.ending_id` ×3, `joins.minigame_id` null ×26; `steam.{appid,global_percent,captured_at,captured_at_machine_plane}` ride per row |
+| `extracted/data/endings/endings.jsonl` | **4** | conditions-met · safe-of-life · is-this-the-end · peaceful (`kind:"mode-stub"`); safe-of-life windows attribution verbatim `[community] ch4@17%, ch18@98%, ch19-empty` |
+| `extracted/data/cartridges/cartridges.jsonl` | **23** (+`_meta`) | save_key vocabulary verbatim: character family 13 (`mta mtachi mtashh mtakd mtacap mtal mtaman mtaghost mtad mtad2 mla mtac mtacore`), player family 10 (`plr1a plr2v plr3vi plr4asw plr5bz plr6vcx plr7vczn plr8qeqe plr9mpa plr1099`); boundary-split slugs confirmed on disk (`mtad-2`, `plr-1099`, …); `pickup_ref` null exactly on `mtad-2`+`mtacore`; `collectible_set:"player-cartridges"` ×10; `depicts_character_id` null on `mta` + all 10 player rows |
+| `extracted/data/cartridges/minigames.jsonl` | **17** (+`_meta`) | source registries (`key_source`): scene_carrier_class 8 · tamagotchi_activity 4 · automate_resource 2 · tv_games_array 2 · automate_scene 1; `name_loc` non-null ×2 (`fight`, `pinguin` — TV rows, −1 offset pin); `present_but_unreachable:true` ×4 (all four tamagotchi activities); `community_alias` cited ×12; `scoring_derivable:false` ×17; `unlocks_outfits` ×2 (`pinguin`→Chirfns, `location-17-pumpkin-clicker`→HellVamp); embedded `achievement_ids` ×4 (fight/pinguin/location-7-game-dance/location-14-pc-snaker) |
+| `extracted/data/documents/profile_documents.jsonl` | **14** (+header) | `placement_mechanism`: placed 11 · script_granted 2 (rows 6/9 → `mtad2`,`mtacore`) · story_granted 1 (row 13); `flash_save_key` null exactly ×1 (row 13, keyless both namespaces) |
+| `extracted/data/documents/books.jsonl` | **8** (+header) | `art_per_locale` derived per locale; divergence finding verbatim: zh-Hans/zh-Hant ship 4/8 (Location19 pages absent — DOC-8) |
+| `extracted/data/documents/world_documents.jsonl` | **166** (+header) | ids encode class: `note-level*` ×160 · `paperpart-level13-{0..4}` ×5 (`puzzle_index` 0–4) · `novella-location18` ×1; `text_mechanism:"unresolved"` on every row (consumer rule 1 forbids prose rendering — DOC-1) |
+| `extracted/data/characters/personages.jsonl` | **24** (+`_meta`) | mita 14 · player 10; `gallery_order` present ×24 (canonical order); `palette_color1/2` RGBA floats (hex conversion pinned in characters contract); `name_loc`/`description_loc` pointers; gallery-icon gaps CH-2 |
+| `extracted/data/scenes/markers.jsonl` | **70** (+`_meta`) | kind census: minigames 38 · cartridges 21 · profiles 11; focus-URL contract `/map?focus=<kind>:<slug>&scene=<scene_id>`; positions `pptr-unresolved` until PIPE S9; icon fallback_state `named-explicit-missing`; NOTE: marker `entity_kind` is the PLURAL form (`"cartridges"`, `"profiles"`, `"minigames"`) — mapping pinned in §8 |
+| `extracted/relinks/minigame--achievement.jsonl` | **20** (+`_meta`) | forward 10 + inverse 10; 6 binds unresolved (tetro, racingfirst, logA, logB, hellwin, hellmegawin — ACH-3) |
+
+Adjacent relinks consumed for cross-links only: `character--cartridge`,
+`character--outfit`, `document--character` (shipped), plus
+`document--scene-membership` for paper-part scene refs. Adjacent but NOT
+checklist surfaces: save points (logic-layer subjects), outfits (no dataset
+contract — OQ-T2), choice nodes (explorer-exclusive — O6).
+
+**Scout corrections recorded this pass** (both wording slips, counts
+unaffected): (1) scout S4 says "four registries" while naming five — measured
+census is five (`key_source` values above); (2) scout S3 table lists pickup_ref
+"21 rows" which is correct, but its slug example pair `mtad2 → mta-cap` should
+read `mtacap → mta-cap`; on-disk boundary-split puts digit boundaries too
+(`plr1099 → plr-1099`, `mtad2 → mtad-2`).
+
+Tracked universe arithmetic: **8 sets, 122 items** (26+4+23+17+14+8+6+24);
+excluded-from-v1 ledger: notes ×160, wiki-only minigames ×4 (CAR-6),
+cut-content family ×48 dumps (CAR-7), outfits (no contract).
+
+## 4. Module breakdown & dependency edges
+
+Arrow = "consumes". T0 is the data-side gating module; no viewer module merges
+before T0's count AC passes (M0′ sequencing rule, same reason: a wrong id-space
+surfacing as player advice).
+
+| Module | Owns | Consumes | Blocked by |
+|---|---|---|---|
+| **T0** tracker-manifest emitter (data-side) | `emit_tracker_manifest.py` (home: `extracted/data/build/`, a new cross-dataset build dir beside `missingdata.md`, mirroring the `<ds>/build/` convention at parent level — XC-6 stage registration may relocate it; relocation is not a spec violation, the canonical tree stays the read surface) → emits `site/public/tools/tracker/sets.core.json` + `emit-ledger.jsonl` | §3 frozen inputs, read-only | — |
+| **T1** TrackerStore state layer | `site/src/lib/tracker/store.ts`, `codec.ts`, `merge.ts`, adapter seam types | T0 manifest (id universe only) | T0 |
+| **T2** checklist UI kit | `CheckRow`, `SetGroupPanel`, `PillGauge`, `MissableBadge`, `ConfidenceChip`, `RarityBand`, `LockedChip`, `ResetControl`, `ShareCodeDialog`, `StorageUnavailableNote` | kit components (§12); T1 hooks | T1 |
+| **T3** five surface views | Achievements / Endings / Cartridges / Minigames / Documents routed views + entity-page track tab modules (personage set rides tabs — §8 ruling) | T0 + T1 + T2 | T0, T1, T2 |
+| **T4** progress summary module | cross-set gauge strip (`TrackerStrip`), hub gauges | T0 + T1 | T0, T1 |
+| **T5** routes, hub, i18n ×34 | `/tools/trackers` hub + 8 set segments (pivot bare + prefixed mirrors ×33), EntityShell track-tab wiring, relationCard exclusions (O11), chrome keys ×34 + RTL leg | T3/T4 string freeze | T3, T4 |
+
+```
+six ACCEPTED datasets + markers + relinks ──► T0 ──► {T1, T3, T4}
+T0 ──► gate (TR-A1) ──► T1..T5 may merge        (hard gate, M0′ precedent)
+T1 ──► {T2, T3, T4}
+T2 ──► {T3, T4}
+{T3,T4} ──string freeze──► T5
+T5 ──► check-chrome-parity extension, sitemap partitions, search index segment
+```
+
+Hard rule: **T3/T4 blocked by T0+T1+T2; T5 blocked by T3/T4 string freeze;
+nothing merges behind T0 until TR-A1 passes.** `store.ts` has exactly one
+owner (T1); T2–T5 import its seam and MUST NOT modify state semantics — any
+persistence change is a T1 change reviewed under TR-A4/A6.
+
+## 5. T0 — tracker-manifest emitter (data-side gating module)
+
+### 5.1 Emission law
+
+1. **Consumes-never-derives.** The emitter reads the §3 artifacts and performs
+   ONLY projection: id extraction, group-key copying (`type_tag`, `family`,
+   `access_medium`, `placement_mechanism`), status enum copying, link/marker
+   ref assembly, label-free composition hints. It resolves NO new join and
+   invents NO display name; where the client ships none, the row carries
+   `label_mode:"id-form"` (O5) instead of a guess.
+2. **Byte-freeze**: sha256 of every consumed file recorded before and after
+   emission; mismatch aborts non-zero naming the file (AC-L1a/L5 tripwire
+   pattern). Frozen set: the eight dataset JSONLs of §3 + `markers.jsonl` +
+   `minigame--achievement.jsonl`.
+3. **Counts fail-fast**: emitted per-set item counts reconcile against JSONL
+   censuses inside the run (26/4/23/17/14/8/6/24); any drift aborts before
+   writing the public artifact (TR-A1). This is the gate that makes T0 the
+   M0′-class blocker: the id universe the island validates against is proven
+   before any viewer can consume it.
+4. **Determinism**: same inputs ⇒ byte-identical outputs; stable ordering keyed
+   on contract id; rerun over unchanged inputs diffs empty (TR-A14).
+5. **Exclusion ledger**: rows deliberately not tracked (notes ×160, wiki-only
+   minigames, cut-content family) enter ONLY `_meta.exclusion_ledger` counts —
+   they exist in the ledger so absence is measured, never silent.
+
+### 5.2 Manifest shape
+
+Locale-independent core; NO per-locale overlay — labels resolve server-side at
+SSR through the build-time readers (which stay the label authority), and the
+island receives labels via props for its own set only. This deviates from the
+explorer's `labels.<locale>.json` ×34 pattern deliberately: the tracker has no
+graph payload needing client-side joins, and multiplying 122 labels ×34 into
+public artifacts would buy nothing the props path doesn't already deliver
+(disk-efficiency ruling recorded here so the deviation is a decision, not an
+oversight).
+
+```jsonc
+// sets.core.json — miside.tracker.sets/1 (schema registered at T0 landing)
+{"_meta": {"schema": "miside.tracker.sets/1", "build_id": "19029065",
+  "inputs": {"<artifact>": "<sha256>"}, "row_census": {"achievements": 26, "...": 0},
+  "exclusion_ledger": {"notes": 160, "wiki_only_minigames": 4, "cut_family_dumps": 48},
+  "marker_kind_map": {"cartridge": "cartridges", "profile": "profiles",
+                       "minigame": "minigames"}},          // singular→plural, markers' entity_kind form
+ "sets": [
+  {"set_id": "achievements", "kind": "achievement", "route": "/tools/trackers/achievements",
+   "groups": {"axis": "type_tag"},                          // per-set axis, OQ-T6 axes
+   "items": [
+    {"id": "ACHI_WinFIght",
+     "group": "minigame",
+     "status": "proven-hard",                               // unlock.status verbatim
+     "flags": ["missable"],                                 // type_tag-derived closed set
+     "icon": {"status": "pending-export"},                  // no URL field by law (O10)
+     "label_mode": "pointer",                               // pointer | composed | id-form
+     "links": {"entity": "/achievements/ACHI_WinFIght",
+               "markers": ["level10:cartridge:mtal"],       // marker_ids for focus URLs
+               "relink": {"minigame": "fight"}}} ]},        // precomputed joins only
+  {"set_id": "characters", "kind": "character", "route": null, // tab-distributed set (§8)
+   "items": [ /* 24 ordered by gallery_order */ ]}
+ ]}
+```
+
+Consumers: T1 uses item ids + set membership ONLY (drift reconciliation);
+T2/T3 receive everything user-visible via SSR props. The island NEVER fetches
+anything else at runtime.
+
+## 6. T1 — TrackerStore state layer (sync-ready schema law)
+
+Pure TypeScript, zero React, zero network. One module owner; conformance-suite
+tested (TR-A6).
+
+### 6.1 Stored shape (versioned envelope)
+
+```ts
+// localStorage key: `miside.tracker.v1.<set_id>`   — ONE key per set
+interface StoredSet {
+  v: 1;                       // envelope version; bump migrates, never resets
+  setId: string;              // defensive mirror; mismatch = corrupt, typed error
+  items: Record<string, ItemRecord>;   // keys are CONTRACT IDS (O2)
+}
+interface ItemRecord {
+  done: boolean;
+  ts: number;                 // epoch ms of last local transition — THE merge key
+  tomb?: number;              // OPTIONAL deletion tombstone ts (reserved; see L5)
+}
+```
+
+### 6.2 Laws
+
+- **L1 Sync-write.** Every toggle calls the storage write synchronously inside
+  the event handler — no submit control, no debounce, no batched flush. Proof
+  obligation rides TR-A4 (write-per-toggle assertion).
+- **L2 Contract-id keys only.** Any future key form requires a schema-bump
+  migration in this module (O2).
+- **L3 Drift tolerance.** Ids absent from the current T0 manifest render
+  nowhere but are PRESERVED through read/write cycles and included in exports.
+  Reconciliation never rewrites history; a patch that removes and re-adds a
+  row must not lose the user's check. Unknown ids never crash render
+  (defensive parse: malformed envelopes quarantine to a typed error state, no
+  silent wipe).
+- **L4 Deterministic merge (defined now, executed later).** Server sync, when
+  it arrives, merges per-item by max `ts`; equal-ts ties break deterministically
+  on `(contract-id asc, then local wins)`; set-level operations do not exist.
+  This function ships NOW as pure code with unit proofs (TR-A6) even though no
+  caller invokes it remotely — the schema is sync-ready because the semantics
+  are already fixed, not because a server exists.
+- **L5 Tombstones reserved, never fabricated.** v1 writes no tombstones
+  (deletion-by-drift keeps records intact per L3). The field exists so a future
+  SyncAdapter can propagate deletions without resurrect-on-pull; codec and
+  conformance suite round-trip the field today.
+- **L6 Adapter seam.** `TrackerStore { read(set): SetState; write(set, patch):
+  void; subscribe(set, cb): () => void }` with `LocalAdapter` (v1) and a typed
+  `SyncAdapter` interface (sign-in push/pull; server authoritative, local
+  demotes to cache) DECLARED but unimplemented — no auth code, no endpoints,
+  no conflict UI ships (non-goal §16). A `FakeSyncAdapter` in the test suite
+  implements the seam and passes the SAME conformance suite as LocalAdapter
+  (TR-A6) — that test is what makes "seam only" a verified claim rather than a
+  promise.
+- **L7 Degraded mode is honest.** When storage is unavailable (private mode,
+  quota, disabled), the store reports a typed unavailable state; UI renders
+  read-only checklists with `StorageUnavailableNote` — progress visibly will
+  not persist, stated in chrome words. Never fake persistence, never a console
+  error as UX.
+- **L8 Share-code codec is lossless and typed.** Token format `MST1.<base64url>`
+  over `{sets:{<set_id>:[checked contract ids, sorted]}}`; unknown ids ride
+  verbatim (lossless round-trip incl. drift, TR-A5). Import VALIDATES against
+  the current T0 manifest: ids absent from the manifest are DROPPED and listed
+  in a typed report (`unknown-ids`) — import-time validation coexists with L3
+  runtime preservation, and the distinction is asserted in the suite. Malformed
+  tokens produce typed errors (`bad-prefix`, `bad-version`, `bad-payload`),
+  never exceptions through React.
+- **L9 Reset is per set, confirmed, destructive-local.** Reset clears one set's
+  key only; never crosses sets; confirmation dialog names the set and count.
+
+## 7. T2 — checklist UI kit
+
+New components extend the existing kit (shadcn primitives upgraded to the game
+soul, never stock — DR-2026-08-24-miside-pack §3):
+
+- `CheckRow` — the atom: SSR-rendered `<li>` carrying label, group chip, status
+  affordance; the interactive element is a real `<button aria-pressed>` hydrated
+  onto the served markup (no JS ⇒ static checked-state text still present,
+  TR-A5). Keyboard-complete: Space toggles, visible `--ring` focus.
+- `SetGroupPanel` — collapsible group shell (`type_tag`/family/…), count in LCD
+  register.
+- `PillGauge` — progress pill riding `GradientPill` grammar + `--ms-accent-gradient`;
+  recomputes IN PLACE on toggle (no layout shift, CLS budget TR-A10).
+- `MissableBadge` — alarm-red danger accent (`--ms-danger`) on
+  `type_tag:"missable"`; word+color, never color alone.
+- `ConfidenceChip` — `proven-hard` (signal green) vs `unverified-behavior`
+  (bg-2 + danger-tinted border) riding `unlock.status` verbatim; hover shows
+  the predicate-class gloss; banned-advice-word guard mirrors explorer E4
+  (TR-A7).
+- `RarityBand` — band word + percent value in machine voice; capture instant
+  never printed (O7).
+- `LockedChip` — visible-locked register reusing the map's `LockedCell`
+  grammar + `CorruptionHover` as state (locked/unreachable = compromised
+  state, not decoration).
+- `ResetControl`, `ShareCodeDialog` (export scope per-set/all-sets; import
+  diff-preview listing gains, drops, `unknown-ids`), `StorageUnavailableNote`.
+
+Accessibility floor: every toggle reachable and operable by keyboard; groups
+labelled; state changes announced via polite live region; honors
+`prefers-reduced-motion` (tokens.css loops already gated).
+
+## 8. T3 — five surface views
+
+Five routed views (one per scout §1 surface family) + the tab-distributed
+personage set. RULING: S6 personages gets NO sixth routed view — personage
+pages already own canonical gallery order and identity; the tracker reaches S6
+through EntityShell track TABS on every mita/player page (prev/next walks
+`gallery_order`) plus hub gauges reading the same `characters` set. T0 still
+emits the full `characters` set so the store/id universe is complete. Escalate
+to a routed view only if usage argues for it (OQ-T8).
+
+- **View A — Achievements** (`/tools/trackers/achievements`, 26 rows, grouped by
+  `type_tag`). Missable row (`ACHI_achi`) wears MissableBadge; every row carries
+  ConfidenceChip + RarityBand; collectible-set rows (`ACHI_cartridgeplayers`,
+  `ACHI_mitastory`) deep-link their member rows in the Cartridges/Profiles
+  panels and render the exact consumer-rule-4 predicate for the profile set:
+  `achievement_sets ∪ (flash_save_key IS NULL AND
+  placement_mechanism='story_granted')` = 12 keyed + 1 keyless; ending joins ×3
+  cross-link View B; minigame edges come ONLY from the relink (10 binds; 6
+  unresolved render the declared unresolved-bind state, never guessed — ACH-3).
+  EN Steam descriptions render on the pivot page only; prefixed locales render
+  a localized availability note (chrome words) — zero untranslated game-prose
+  leakage (O9; TR-A9 negative grep).
+- **View B — Endings** (`/tools/trackers/endings`, 4 anchors). Labels resolve
+  through `display_name_loc` (stub cites `Menu#line_index=130`). The view is
+  ROUTE CONTEXT: a caption links the Ending Condition Explorer for the 371-node
+  tree — checking nodes here is forbidden (O6). Safe-window percentages print
+  verbatim with the `[community]` badge, distinct-from-advice styling (O7).
+  `peaceful` ships visible-locked with its two evidence pointers and the XC-12
+  patch-day sentence.
+- **View C — Cartridges** (`/tools/trackers/cartridges`, 23 rows, grouped
+  mta/plr family). Character-family labels COMPOSE at render from
+  `depicts_character_id → personage.name_loc` ×34; player-family rows render
+  ID-FORM labels in the honest-missing treatment (`label_mode:"id-form"`) —
+  no invented aliases (O5; curated alias column only if OQ-T2-adjacent ruling
+  grants one). `mtad-2`/`mtacore` render locked rows naming the unresolved
+  pickup (CAR-1); the other 21 carry "show on map" links built from
+  `markers.jsonl` refs through the focus contract
+  `/map?focus=cartridges:<slug>&scene=<scene_id>` — REAL scene-granular links
+  today, upgrading automatically when PIPE S9 lands coordinates (positions stay
+  `pptr-unresolved` until then; the named-explicit-missing pin state is owned
+  by the map viewer, not duplicated here).
+- **View D — Minigames** (`/tools/trackers/minigames`, 17 rows, grouped by
+  `access_medium`). TV rows (`fight`, `pinguin`) resolve labels under the −1
+  offset pin; everything else labels from `client_key` + CITED
+  `community_alias` (repo-cited, never the bare key). Four tamagotchi rows
+  visible-locked (`present_but_unreachable`). Scoring fence sentence on every
+  row (`scoring_derivable:false` ×17) — played/won is tracked, win thresholds
+  defer to the revealer + logic layer. Outfit-unlock rows (`pinguin`,
+  `location-17-pumpkin-clicker`) cross-link the outfit question without
+  creating outfit rows (OQ-T2 posture).
+- **View E — Documents** (`/tools/trackers/documents`, three set panels:
+  profiles 14 · books 8 · papers 6). Profiles panel implements consumer rule 4
+  exactly (13-row completion set for the idx-13 achievement); keyless row 13
+  counted ONCE. Books panel derives art availability per locale from the
+  derived booleans (Location19 zh pages render the DOC-8 declared-missing cell,
+  never asserted). Papers panel tracks the 5 indexed paper parts + novella
+  surface; the 160 notes stay OUT (OQ-T3 recommendation) and are named in the
+  exclusion caption linking the scenes/map surfaces where placed notes DO
+  render.
+
+Every view: rows cross-link their entity pages and vice versa (aggressive
+internal linking mandate); group/filter controls are client-local and create
+no URLs (O8).
+
+## 9. T4 — progress module
+
+`TrackerStrip`: one embeddable gauge strip over all 8 sets — per-set PillGauge
+(done/total in machine voice), overall fraction, link per set to its view.
+Embeds on the home surface, the hub, and entity pages (via the track-tab
+module). Recomputes IN PLACE on any toggle anywhere on the page (feel bar
+§5.3 discipline; <200 ms scripted-interaction budget, TR-A10). Reads state
+through T1 subscription only — no duplicate store logic (single-owner law, §4).
+
+## 10. Interaction list (v1)
+
+1. Toggle any row → synchronous persist (L1), optimistic render, full keyboard
+   + screen-reader semantics; gauges recompute in place.
+2. Group/filter controls per view — client-local, create no URLs (facet law).
+3. Surface navigation by real `<a href>` route segments; address bar carries
+   surface selection only; state-bearing controls use `replaceState` (typing
+   and toggles never fill Back).
+4. Share-code: explicit generate (per set or all sets) → copy token; import
+   paste → typed validation → BEFORE-apply diff preview (gains per set, dropped
+   `unknown-ids`, tombstone-safe) → apply writes through T1 (imported items
+   keep the codec's ts ordering; L4 governs any later merge).
+5. Reset per set, confirmed, never cross-set (L9).
+6. Placement-bearing rows link `focus=` URLs into the owned map (two-way law
+   with the map module; reverse popover→checkbox leg stays OUT of v1 —
+   explorer's reserved slot vocabulary reused, O12).
+7. Every row cross-links its entity page and vice versa; the two collectible-set
+   achievements deep-link member rows; idx-13 profile achievement renders the
+   exact consumer-rule-4 predicate.
+8. RarityBand + ConfidenceChip ride every achievement row; missable wears
+   alarm-red; locked rows wear LockedChip; unverified rows never phrase advice.
+
+## 11. Honest states & stub policy
+
+Per `extracted/data/missingdata.md` classes — stubs DECLARED, never papered
+over; every row below re-verified on disk this pass.
+
+| Situation | Count | Policy |
+|---|---|---|
+| Achievement icons `pending-export` | 26 | named-explicit-missing cell (VoidWell/LockedCell grammar); NO Steam CDN hotlink (upstream URLs are repo-only class, O10) — art re-export is the fix (ACH-1); OQ-T7 |
+| Unresolved pickups | 2 (`mtad-2`, `mtacore`) | locked row naming the state + CAR-1 pointer; card renders the row's other faces |
+| Peaceful Mode | 1 | visible-locked stub citing `Menu#line_index=130`; patch-day rerun flips mechanically (XC-12) |
+| Tamagotchi activities unreachable | 4 | visible-locked rows, reason stated (Peaceful-Mode-adjacent lock, CAR-8/XC-12 watch) |
+| Keyless profile row | 1 (row 13) | rendered once, counted once, story_granted mechanism labeled |
+| Player-family cartridge names | 10 | id-form labels, honest-missing styling; no invented aliases (CAR-5) |
+| Minigame display names | 15 of 17 | `client_key` + cited `community_alias`; filler chain per localization-architecture §5; a locale page never leaks another locale's text |
+| Book art, zh Location19 pages | 2 locales ×4 pages | derived-availability cell from disk booleans (DOC-8); filler renders |
+| Note prose | ×160 notes | excluded from v1 checklists (OQ-T3 rec); exclusion ledger count; consumer rule 1 stands even if notes become trackable later |
+| Personage portraits unset/shared-pointer | 14 + players 1–9 | named-explicit-missing portrait cell (CH-2) |
+| Unverified predicates | 15 | ConfidenceChip `unverified-behavior`, advice-word ban (ACH-2) |
+| Safe-window percentages | 1 attribution | `[community]` verbatim + badge (END-2) |
+| Storage unavailable | runtime | read-only mode + `StorageUnavailableNote` (L7) — honesty about OUR limitation, styled like every other declared gap |
+| EN-only descriptions | 26 | pivot-only render; prefixed locales get a localized availability note (XC-11) |
+
+## 12. Design language requirements
+
+Soul grounding: `site/src/styles/design/tokens.css` (three tiers) — the
+tracker feels like the game's own HUD progress moment, not atlas chrome.
+
+- **Gauges ride the pill grammar**: `PillGauge` over `--ms-accent-gradient`,
+  radius family `--ms-radius-*`, glow `--ms-glow-pink` on the active/hover
+  state only. Hot pink `--ms-accent` reserved for identity + actions (primary
+  toggle state, focused row), never a per-kind hue.
+- **Checked state is warm completion**: cream `--ms-warm` fill + signal-green
+  check tick in machine voice; unchecked rows stay quiet plum.
+- **Locked/unreachable wear corruption as STATE**: `CorruptionHover`
+  (`--ms-glow-glitch`, `ms-vhs-drift`) + `LockedCell` grammar; readable under
+  reduced motion (banding persists statically).
+- **Machine voice = CRT green**: counts, percentages, buildId stamp, share-code
+  tokens render in the LCD register (`--ms-font-lcd`) on
+  `[data-slot="lcd-terminal"]` with `ms-scan-breathe`; body labels
+  `--ms-font-sans` ≥12 px. Share tokens keep LTR isolation
+  (`unicode-bidi: isolate`) so base64url stays legible inside RTL prose.
+- **Honest empties use VoidWell** (checkerboard), equal height to filled rows —
+  never captions-of-absence, never placeholder cards.
+- No uncited hex anywhere under `src/components` (AC-S8 defect class); a
+  missing axis lands in `tokens.css` first. Motion is state; hover does work
+  everywhere (chip hover opens gloss popovers).
+
+## 13. Routes, hub & URL-state law
+
+- **Hub**: `/tools/trackers` becomes the FIRST REAL OCCUPANT of the tools
+  StubSectionContent slot — hub page = TrackerStrip + eight set cards +
+  share/import entry. Per-set segments: `/tools/trackers/<set_id>` for the five
+  routed views (`achievements`, `endings`, `cartridges`, `minigames`,
+  `documents`); `characters`, `profiles`, `books`, `papers` are STORE sets
+  whose user surfaces are the Documents view panels and entity tabs (their set
+  routes 301 to the owning view segment — no thin duplicate pages).
+- **Mirrors**: `(pivot)` bare + `[locale]` prefixed ×33, delegated through
+  `src/lib/routes.ts`; `gen-routes.mjs` + `sitemapPartitions.ts` already know
+  how to mirror and partition. Set/view routes ARE content and indexable;
+  NO token parameter exists in v1 (share-code travels through the dialog only),
+  so there is nothing to noindex — if a future import-via-link is ever ruled
+  in, seo-standard §2 robots discipline applies first (OQ-T5).
+- **History discipline**: `replaceState` for toggles/filters/groups;
+  `pushState` only when a navigation-equivalent change occurs (opening the
+  share dialog does not navigate; nothing else does either in v1 — Back
+  undoes real navigations only).
+- **Cold-load restore**: surface routes restore fully from URL; an unknown
+  `set_id` renders the not-found well naming the id class — never a silent
+  redirect masking a broken link.
+- **Search**: no new searchable kinds; the hub joins the existing `tools`
+  index segment (`INDEX_SEGMENTS` already contains `tools`); MIN_QUERY_LENGTH=2
+  and kind-balanced truncation inherited.
+- **Provenance stamp**: buildId prints on hub + views (user-facing,
+  data-bearing); repo-only tokens absent (TR-A11 both directions).
+
+## 14. Chrome i18n ×34 including the RTL ar leg
+
+New keys extend `site/src/i18n/chrome/*.json` — **34 files, all ship, none
+staged**; parity enforced by extending `site/scripts/check-chrome-parity.mjs`
+coverage to the new namespace (exit 1 names tag + key + referencing file).
+
+Additions (final wording at implementation; ~36 keys):
+`tracker.open` · `tracker.hub.title/desc` · `tracker.set.<achievements|endings|
+cartridges|minigames|profiles|books|papers|characters>` (8 set titles) ·
+`tracker.progress.template` (`{done}/{total}`) · `tracker.progress.all` ·
+`tracker.action.check/uncheck/reset/resetConfirm/share/import/apply` ·
+`tracker.share.title/copy/diffGain/diffDrops/diffUnknown` ·
+`tracker.error.badPrefix/badVersion/badPayload/storageUnavailable` ·
+`tracker.state.locked/unreachable/unresolvedPickup/nameMissing/
+descriptionEnOnly` · `tracker.chip.provenHard/unverified` ·
+`tracker.rarity.<rare|uncommon|common>` · `tracker.missable.badge` ·
+`tracker.map.showOnMap` · `tracker.explorer.routeCaption` ·
+`tracker.tab.track` (EntityShell track-tab label).
+
+Law carried from the data plane:
+
+- Game-content strings (achievement names ×34, ending names, personage
+  `name_loc`, composed cartridge labels, cited community aliases) come from loc
+  pointers at build — they NEVER enter the chrome namespace. Chrome localizes
+  STRUCTURE (set titles as section words, actions, states, templates); the data
+  plane supplies names.
+- **RTL leg**: `ar`, `ar-EG` set `dir="rtl"` at the route shell (`locales.ts`
+  pin; `fa` stays LTR per the logged SB-1 note until a spec amendment);
+  checklist rows, gauges, chips, dialogs mirror via logical CSS properties
+  (`margin-inline-*`, `inset-inline-*`), never left/right literals;
+  machine-voice runs (counts, tokens, ids) keep LTR isolation inside RTL prose.
+- `ru-x-prerev` rides normal parity (shipped locale file, alias to `ru`).
+- Locale stays route-coded (`/ru/tools/trackers`) — never a same-page toggle.
+
+## 15. Acceptance criteria TR-A1–TR-A14
+
+| # | Criterion | Proof method |
+|---|---|---|
+| TR-A1 | **Manifest gate**: emitted counts equal the accepted datasets — achievements 26 · endings 4 · cartridges 23 · minigames 17 · profiles 14 · books 8 · papers 6 (5 parts + 1 novella) · characters 24; zero extra or missing ids; exclusion ledger reconciles (notes 160 + wiki-minigames 4 + cut-family) | T0 selfcheck reconciling emitted manifest vs JSONL censuses inside the run, fail-fast abort naming drift; sha256 freeze manifest in `emit-ledger.jsonl` diffed pre/post |
+| TR-A2 | **Label totality ×34**: every rendered label resolves through a pointer/composition rule or renders the declared filler/id-form honest-missing; zero pivot-locale prose on non-EN pages (incl. EN-only descriptions confined to pivot) | per-locale snapshot fixture ×34 over all views + grep for pivot leakage; player-family cartridge rows assert `label_mode:"id-form"` |
+| TR-A3 | **No runtime extraction reads from client JS**: the island touches only localStorage + the emitted manifest | build-output grep: zero `extracted/` path references in `.next` client chunks; zero `fetch(` outside the manifest module in `src/lib/tracker/**` + tracker components |
+| TR-A4 | **Persistence survives reload; schema bump migrates; unknown ids tolerated AND preserved; write is synchronous per-toggle** | jsdom/vitest suite: seed → reload (fresh store instance) → state identical; synthetic id not in manifest survives ≥10 read/write cycles and appears in export; `v:1→v:2` fixture migrates without loss; storage-write spy asserts one synchronous write per toggle inside the handler (no debounce window) |
+| TR-A5 | **No-JS completeness (anti-Fandom)**: served HTML carries EVERY checklist row with correct checked-state representation, no script required | curl production build; per-view row counts == TR-A1 counts; DOM assertions for `aria-pressed`/static state text present in raw HTML |
+| TR-A6 | **Sync-readiness assertions (schema law)**: envelope versioned; per-item `ts` present; tombstone field round-trips; merge is deterministic LWW (equal-ts tiebreak stable); FakeSyncAdapter passes the SAME conformance suite as LocalAdapter | unit/property tests over `merge.ts` (incl. equal-ts fixtures); adapter conformance suite parameterized over both adapters passes green; grep proves zero network imports in T1 |
+| TR-A7 | **Share-code round-trip lossless (incl. unknown ids); malformed tokens fail typed; import validates against manifest with `unknown-ids` report** | codec property tests (round-trip == identity over randomized states); corruption mutants (byte flips, bad prefix/version/payload) each assert the exact typed error — MUTANT: a suite run with validation removed FAILS |
+| TR-A8 | **Honest states render as typed states**: `mtad-2`/`mtacore` unresolved pickups, 4 unreachable minigames, `peaceful` stub, keyless profile row once, pending-export icons, id-form player labels, zh book-art cells | curl-grep positive (states present with declared words) + negative (zero fabricated display names/aliases anywhere; zero upstream icon URLs in served HTML) |
+| TR-A9 | **i18n ×34 + RTL + namespace split**: parity green incl. new keys; `ar`/`ar-EG` render `dir="rtl"` with mirrored layout; game-text labels never appear in chrome namespace | `check-chrome-parity.mjs` exit 0 in CI; route-shell attribute test for ar/ar-EG (and fa asserting LTR); grep proving chrome keys contain no achievement/cartridge/personage names; logical-property lint over tracker components |
+| TR-A10 | **Perf/CWV budgets**: hub + views meet scaffold budgets (LCP <2.5 s · scripted interaction <200 ms · CLS <0.1); `sets.core.json` ≤ 25 kB gzip; toggle-to-gauge recompute <100 ms on seeded 122-item store | lab trace harness + Lighthouse on production build; size assert in CI; vitest perf probe with seeded store |
+| TR-A11 | **Provenance two-class**: buildId stamps print on hub + views; zero repo-only tokens (source URLs, license tags, acquisition paths, commits) in any served pixel | curl-grep both directions (scaffold S9 pattern) |
+| TR-A12 | **Integration seams hold**: relationCard exclusions registered (no double-rendered edges on entity pages); focus-links resolve against `markers.jsonl` refs; entity track tabs hydrate on all covered kinds | component test walking covered entity pages asserting exactly one render of each tracked edge; focus href == `/map?focus=<plural kind>:<slug>&scene=<scene_id>` for all 70 marker-backed rows |
+| TR-A13 | **URL law**: real `<a href>` set routes; item state never ambient (no query param, no fragment, no beacon carries checked state); replaceState-only discipline; unknown set renders not-found well | code review + e2e history-length assertion across toggles/filters; crawler-view diff proving zero state in emitted URLs; robots check confirming nothing to exclude |
+| TR-A14 | **Regen determinism + no regression**: T0 double-run byte-identical; existing suites + parity checks stay green | double-run diff (AC-S8 pattern); CI exit codes |
+
+## 16. Non-goals (v1)
+
+- No accounts/auth, no server writes, no conflict UI, no SyncAdapter
+  implementation — seam + schema readiness only (OQ-T1 owns timing).
+- No XP/gamification, streaks, or invented reward surfaces.
+- No invented display names or community aliases beyond cited ones.
+- No choice-node checklists — explorer-exclusive (O6/OQ-T4).
+- No note-prose rendering, ever, until the corpus proves text exists (consumer
+  rule 1 stands even if notes become trackable).
+- No map-popover→checkbox reverse leg; no runtime-capture features; no
+  save-file parsing.
+- No outfit set until a dataset contract exists (cross-link rows only).
+- No per-chapter grouping while `chapter` is null corpus-wide (OQ-T6).
+
+## 17. Open questions for the Arbiter
+
+All seven scout questions carried forward with recommendations; one added.
+
+1. **OQ-T1 — Account-seam timing.** Spec §Section-map row 8 binds trackers to
+   accounts ([DR-2026-08-19-ugc-accounts]); UGC waits behind LANE-C
+   ([TODO.mdx](../TODO.mdx)). Does client-first v1 behind the T1 seam satisfy
+   the interim? *Recommendation: SHIP v1.* Private-first local state harms no
+   mandated surface, and the sync-ready schema (L4/L5/L6, proven by TR-A6's
+   dual-adapter suite) makes server accounts purely additive — no migration, no
+   data loss. Holding trackers hostage to LANE-C would ship nothing checkable
+   for months.
+2. **OQ-T2 — Outfit surface ownership.** No outfit dataset contract exists (3
+   subjects in the logic layer + cloth/unlock relinks). Stub a visible-locked
+   outfit set, fold unlock rows elsewhere, or defer entirely?
+   *Recommendation: DEFER the set; keep cross-links* (`unlocks_outfits` ×2,
+   `character--outfit`) as plain links. A locked set of rows we cannot emit
+   honestly would violate O1; revisit when a contract lands.
+3. **OQ-T3 — World-notes membership.** 160 notes carry no display text
+   (`text_mechanism:"unresolved"`, consumer rule 1). Exclude from v1 checklists
+   or admit as id-labeled rows? *Recommendation: EXCLUDE* — 160 unlabeled boxes
+   are id soup and anti-honesty; the exclusion ledger counts them and the
+   papers-panel caption links the map surfaces where placed notes DO render.
+   Revisit after XC-4 proves sprite carriers.
+4. **OQ-T4 — Endings set membership.** Confirm the 4-row set including
+   `peaceful` as visible-locked, and that choice-node progress stays
+   explorer-exclusive. *Recommendation: CONFIRM both* — the stub ships as a
+   locked row per COMP J11; duplicating the 371-node tree would double-render
+   one graph (dedicated-module exclusion law at product level). View B's
+   caption links `/explorer`.
+5. **OQ-T5 — Share-code URL policy.** Confirm per-set routes are indexable
+   content and that NO token parameter exists in v1 (dialog-only transport).
+   *Recommendation: CONFIRM* — routes are content; dialog-only transport means
+   zero robots debt. Any future `?code=` import link must arrive with
+   seo-standard §2 noindex discipline in the same commit.
+6. **OQ-T6 — Grouping axes.** `chapter` is null corpus-wide until the
+   level↔chapter map lands (XC-2). Confirm `type_tag` / family /
+   `access_medium` / `placement_mechanism` as the v1 axes with auto-upgrade
+   when chapters land. *Recommendation: CONFIRM* — the four axes are emitted
+   data today; chapter grouping built on community numbers would fabricate
+   structure the corpus does not own (same logic as explorer OQ-E3, RULED).
+7. **OQ-T7 — Row visuals during the icon gap.** Steam CDN `official_url`
+   interim vs named-explicit-missing cells until the art re-export (ACH-1).
+   *Recommendation: NAMED-EXPLICIT-MISSING CELLS, reject the CDN interim* —
+   hotlinking leaks an upstream URL into served pixels (repo-only class,
+   provenance two-class law) and breaks the static/offline posture; the
+   declared-missing cell costs nothing and the re-export is derivable-later.
+8. **OQ-T8 — Personage set routing** *(new this pass)*. S6 rides entity tabs +
+   hub gauges rather than a sixth routed view (§8 ruling). Confirm, or rule a
+   routed `/tools/trackers/characters` gallery view (24 rows in
+   `gallery_order`) if the tab distribution proves too hidden.
+   *Recommendation: CONFIRM tab distribution for v1*; escalate only on usage
+   evidence.
+
+---
+
+*One-line summary: 122 honest checkboxes over 8 accepted sets — persisted
+synchronously and privately, shared only on explicit export, gated by a
+count-proven manifest the way the explorer is gated by its bundle; every
+unknown renders as a guided unknown, and the schema is already fluent in a
+server that does not exist yet.*
+
+## See also
+
+[trackers-scout.mdx](../research/trackers-scout.mdx) (ACCEPTED primary input —
+surfaces, persistence design space, integration points) ·
+[explorer-tool.mdx](explorer-tool.mdx) (sibling tool spec; M0′ gating
+precedent; A-EC1 reserved tracker slot) ·
+[content-pipeline.mdx](content-pipeline.mdx) §7 (feed/sitemap/honest-empty
+patterns) · [map-viewer.mdx](map-viewer.mdx) (focus-URL contract owner) ·
+[site-scaffold.mdx](site-scaffold.mdx) §6–§7 (tool-input URL rulings) ·
+[missingdata.md](../../extracted/data/missingdata.md) (stub classes) ·
+`contracts/registry/entities.json` (consumed schemas) ·
+`site/src/styles/design/tokens.css` (token spine).
