@@ -1,0 +1,235 @@
+# R-CT1 — Review of `docs/specs/content-pipeline.mdx` (PrepareTask step 3)
+
+Reviewer pass 2026-08-26 over commit `9b46a25` (file measures **544** lines,
+not the recorded 455 — see L-5). Method: spec read in full; inputs read
+(content-scout.mdx full; data-contracts.mdx §1–§3 + AC table;
+missingdata.md full); every site-layer file/function cited by the spec
+opened; every corpus count re-measured with `wc -l` / JSONL header parse.
+No agent spawning, no git, read-only except this file.
+
+Sections: [Findings](#findings) · [GOOD — verified correct](#good--verified-correct) · [Verdict](#verdict)
+
+## Findings
+
+Severity: HIGH blocks build · MEDIUM fix before CodeWriter · LOW note.
+
+### M-1 · Disk-audit table misstates the scene count (rows-vs-lines slip)
+
+Spec §0.1: "| Scenes | **25 rows** | `data/scenes/scenes.jsonl` |".
+
+Disk evidence: `extracted/data/scenes/scenes.jsonl` first line carries
+`"_meta":{…"schema":"miside.scenes.registry/1","row_count":24…}` —
+**24 data rows**, 25 lines including the header; `docs/specs/data-contracts.mdx`
+§3.9 independently pins "`scene` (24)". This is exactly the
+rows-vs-lines class of error the spec itself polices two rows earlier when
+correcting the scout's POI count (986 not 987). The table presents itself as
+first-hand measured authority; a builder quoting it could mis-pin. Fix: "24
+rows (+1 `_meta` header = 25 lines)". All neighboring rows verified exact
+(see GOOD).
+
+### M-2 · OQ-1's mandate citation "[promptForDB Note#7]" is unverifiable on disk
+
+Spec §8.2: "But promptForDB Note#7 demands translation to every corpus
+locale WITHOUT authorizing machine translation".
+
+Disk evidence: `../promptForDB.md` (repo root, read in full) contains no
+numbered notes at all — its only numbering is PrepareTask steps 1–6 and
+Agent-pipeline steps 1–6 — and the string "Note#7" appears nowhere in the
+repo outside MiSide's own docs (content-scout.mdx:346,390;
+content-pipeline.mdx:409,503; TODO.mdx:102,112). The underlying board line
+is real ([docs/TODO.mdx](../../TODO.mdx) line 112, verbatim), so the demand
+itself stands; but the owner-gate question anchors its authority chain to a
+citation that cannot be produced when the owner asks "what does Note#7
+actually say?". Fix before the ruling is requested: re-cite the actual
+source (TODO Phase-3 line + whoever originated the note number) or record
+in the spec that the note lives off-repo and quote its text.
+
+### M-3 · Pinned renderer property is false: stock `marked` does NOT escape HTML, and the no-JSX/no-HTML body law has no enforcing AC
+
+Spec §2: "Article bodies stay JSX-free markdown inside `.mdx` files … no
+React-runtime MDX toolchain". Spec §5: "Escape-by-default markdown
+rendering keeps first-party authored HTML inert." and "Bodies contain **no
+JSX, no HTML, no iframes**."
+
+Disk evidence: `site/package.json` dependency table pins no markdown lib
+today (verified), so `marked` will be added exactly as pinned — and
+`marked` renders raw inline/block HTML passthrough by default; its
+`sanitize` option was removed in v5+. The §5 escape claim is therefore a
+property the pinned dep does not have, and the §5 law ("no JSX, no HTML")
+has no enforcing criterion: C9 greps only third-party hosts, remote images,
+and `<script>` — arbitrary injected HTML (e.g. `<img onerror=…>`) would
+pass C9 while violating §5. Bodies are first-party repo prose, so exploit
+surface is small, but the spec states an invariant the toolchain won't hold
+by itself. Fix before CodeWriter: require M2 to reject/escape HTML + JSX
+tokens during its lexer walk (the AST is already in-hand for TOC/word
+counts), and fold "zero raw HTML/JSX tokens in bodies" into C9 (or a new
+AC) with a seeded-violation proof.
+
+### M-4 · V3 deterministic linking is unsound at three named edges (shared names, nameless rows, locale holes)
+
+Spec §4 V3: "each listed entity's known name forms link occurrences in body
+order, first occurrence only, in every locale version … identical across
+locales by construction".
+
+Disk evidence: (a) `mita-usual` ↔ `mita-true` deliberately share one display
+string (`data-contracts.mdx` §3.1 `name_is_shared` anti-merge note: both
+read Menu 83) — first-occurrence linking cannot decide which listed entity
+owns the mention; (b) cartridge rows ship no client display name at all
+(missingdata.md CAR-5: `name_loc:null`, pages compose `client_key` + cited
+`community_alias`) — "known name" is undefined for 13+10 collection-guide
+anchors; (c) names resolve per locale via loc pointers, and the corpus has
+precedent for a name being absent/contentless in specific locales (MA-2
+French 0-byte shell; CAR-9 Arabic tail skew) — the cross-locale-identical
+guarantee needs a declared skip rule. None of these three is ruled on; the
+law is mechanical only after they are. Fix: pin tie-break semantics
+(first-listed wins / ambiguous name never links / nameless rows link zero
+occurrences) and the per-locale empty-name behavior.
+
+### M-5 · Seed guide "secrets compilation (world documents)" cannot satisfy the §4 link law — the 160 notes are unreachable by any routed kind
+
+Spec §6.4: "secrets compilation (world documents)" listed as a seed guide;
+§0.2: "all ten routed kinds already resolve through `ENTITY_KINDS`".
+
+Disk evidence: `site/src/data/contracts.ts:358` — the routed kind for world
+documents is `lore` with `filter: ["paper_part","novella_surface"]`, so
+`kindIds("lore")` (which honors the filter, `contracts.ts:415–426`) yields
+only the 6 non-note rows; no `ENTITY_KINDS` key resolves any of the 160
+`family:"note"` rows. A secrets guide is precisely a notes guide; under
+V1/V2 it cannot carry note-level entity links, and the spec never
+acknowledges this. Fix: either scope the seed guide's link set to
+profiles/lore/books rows explicitly, or record "routed kind for notes" as a
+dataminer work item per AGENTS rule 8 instead of leaving the seed map
+silently inexpressible.
+
+### M-6 · Staleness model detects entity-row drift only — translated-file rot is invisible exactly when OQ-1 mass-produces translations
+
+Spec §3.3 hashes referenced entity rows; nothing hashes article sources
+per locale.
+
+Disk evidence: registry row shape (§3.1) stores per-locale
+path/title/description/word_count but no source hash;
+`article_locales.jsonl` cells (§8.1) likewise. When a pivot EN body is
+edited, every sibling translation becomes silently outdated with no flag —
+and option C (or B) will multiply these files ×34. Cheap fix before
+CodeWriter: store a `body_sha16` per admitted locale cell (hash of the
+`.mdx` at admission time); emit prints `TRANSLATION-STALE:` when pivot hash
+moves. Same machine-plane discipline as §3.3, one column.
+
+### L-1 · Registry header phrasing conflates the two corpus header classes
+
+Spec §3.1: "Line 1 `_meta` header (BARE shape, matching the documents-family
+convention `readJsonl()` already handles)". Disk evidence:
+data-contracts.mdx §2.2 defines class A = `_meta` wrapper (scenes/
+characters/cartridges) vs class B = bare descriptor WITHOUT `_meta`
+(documents family). The parenthetical calls a class-A line "BARE …
+documents-family convention" — backwards. Enforcement is unaffected
+(`contracts.ts:36–68 looksLikeHeader()` handles both shapes), but reword to
+"class-A `_meta` wrapper" so the CodeWriter emits the intended form.
+
+### L-2 · Stack-pin amendment lives only in this spec; site-scaffold S1 will read it as manifest drift
+
+Spec §2 records `marked` as "the single allowed manifest addition under
+scaffold AC-S1 discipline". Disk evidence: `docs/specs/site-scaffold.mdx`
+AC S1 reads "`site/package.json` pins exactly the §1.1 table". Landing
+`marked` without editing that table makes the older spec's verifier fail
+its own proof method. Amend §1.1+S1 in the same landing (the justification
+itself is sound — see GOOD).
+
+### L-3 · §8.2 option-A cost cell contradicts the RU paragraph; decision table lacks rollout tiering
+
+Option A cost says "RU co-primary audience waits"; four lines later:
+"whichever option rules, RU is launch content, not a later wave." Both can
+be true (RU prioritized first wave even under human-only), but the cell
+should say that instead of implying RU waits. Also, nothing in the A/B/C
+table addresses per-locale tiering / wave shape (e.g. tier-1 de/fr/es first)
+— worth one arbiter sub-question since "all 34" is the mandate but the
+launch set beyond RU is unstated.
+
+### L-4 · Machine-plane consumer table omits llms.txt / static JSON API disposition
+
+§3.2 lists sitemap/search/feeds/reverse-links/route-admission. Scaffold S11
+makes `/api/v1/{kind}/{id}.json` derivable-from-page-URL a law for pages;
+whether articles join `/llms.txt` + `/api/v1` or are contract-kinds-only is
+unstated — silence invites silent omission (developer-distribution: real
+artifacts only). One sentence fixes it.
+
+### L-5 · Bookkeeping: landed length recorded as 455 ln, file is 544
+
+Disk evidence: `wc -l docs/specs/content-pipeline.mdx` → 544;
+docs/TODO.mdx:102 records "455 ln". Either post-commit growth without a
+note or a miscount at landing; correct the board line so future reviewers
+don't suspect tampering.
+
+## GOOD — verified correct
+
+Re-measured this pass, not trusted from the spec:
+
+- **POI count + correction**: `poi.jsonl` `_meta.row_count=986`,
+  `position_truth_census {inline:298, pptr-unresolved:76, none:612}` —
+  verbatim; the scout's "987" correction is right and honestly labeled.
+- **Endings family**: 4 / 371 / 1555 / 5 rows (`wc -l`). Achievements 26;
+  personages 25 lines (24+meta); cartridges 24 lines (23+meta); minigames
+  18 lines — all exact.
+- **Documents family**: 14 / 166 / 8 + relink edges 28·28·354·370·12 —
+  verbatim against `extracted/data/documents/README.md`.
+- **Dialogue**: nodes.jsonl = 2,839 rows; DLG-3 arithmetic checks
+  (107 speaker-less / 2,839 → 96.23%).
+- **Site machinery cited**: `ENTITY_KINDS` (ten routed keys)
+  contracts.ts:358; `kindIds()` :424 honoring pinned filters; `readJsonl()`
+  row-count throw :72–77; `buildId()` :654; sitemap placeholder ternary
+  with `"achievements"` at exactly sitemapPartitions.ts:39–46;
+  `HtmlShell lang={def.code} dir={def.dir}` at exactly
+  `[locale]/layout.tsx:37`; SB-1 fa comment at exactly locales.ts:50–53;
+  chrome ×34 files with `nav.guides` in all 34; `check-chrome-parity.mjs` +
+  `check-no-third-party-maps.mjs` both real and wired into prebuild
+  (package.json:7); feeds skeletons both exist as valid empty channels;
+  StubSectionContent+buildSectionMetadata stubs in both trees;
+  `MAX_VISIBLE_ROWS=60` searchRows.ts:45; MiniSearch dep pinned;
+  `buildAlternates` x-default→bare; `buildEntityMetadata`;
+  CartridgeCard/GradientPill/KeycapKbd/VoidWell/buildIndexData/indexArtFor
+  all exported; SceneMap.tsx family + LocationModule pattern on
+  EntityDetailRoute (buildModules :123); `--ms-danger:#fc0f43` +
+  `--ms-glitch-split-a/b` in site/src/styles/design/tokens.css:42.
+- **Ledger**: locale_availability.jsonl = 2,686 cells, three row kinds
+  (category_presence 1734 / dialogue_bucket 680 / book_page 272) — exact.
+- **V2 vocabulary** matches the actual route tree (`profiles`/`mita` are
+  the routed keys; no `documents`/`characters` keys exist).
+- **Embed closure otherwise sound**: closed three-module map, per-module
+  prop validation, LANE-B slot optional with VoidWell fallback; the checker
+  today scopes src/scripts/public and skips .md/.mdx extensions, so the
+  "extend the grep to site/content/**" requirement is genuinely needed and
+  correctly identified.
+- **Foundation citations accurate**: localization-architecture §6 MT
+  non-goal (verbatim) and §5(5) filler policy; seo-standard §2 IndexNow
+  (:37); site-sections rule 23 RSS CORE-cheap + aggressive internal linking;
+  DR-2026-08-19-ugc-accounts News-mandate covering game+database;
+  DR-2026-08-22-numbers-stand-alone; scaffold ACs S1/S3/S6/S9/S14 mean what
+  the spec uses them for.
+- **§9 honesty fences** all trace to missingdata.md exactly: DOC-1 ×160
+  unresolved notes; DOC-8 zh 4/8 book pages; CAR-5 composed display names;
+  XC-2 chapter:null ×14 ceiling; END-2 safe-window `[community]`; END-1 /
+  COMP J11 Peaceful visible-locked; ACH-2 gloss-labeled predicates;
+  CAR-2/SCN-3 curation rows. No invented fence, no smoothed-over class.
+- **OQ framing**: MT correctly treated as NOT in scope absent a register
+  entry (matches localization-architecture §6 letter: non-goal is stated
+  "of missing locales", so the override question is legitimately open);
+  freeze-until-ruling applied to mass non-pivot authoring only, pipeline
+  builds under all three options — consistent with promptForDB Hard-STOP
+  rules.
+- **ACs**: C1–C13 each carry a runnable proof method; mutations are
+  mutation-shaped (bogus id / synonym kind / draft flag; corrupted ledger
+  cell; mutated row hash; seeded grep violation; injected chrome drift);
+  RTL and metadata asserts are concrete curl matrices incl. one RTL locale.
+- **Stack pin**: package.json verifiably pins no markdown/MDX dep today;
+  `marked` is zero-dependency and its lexer AST serves the TOC + word-count
+  needs; heavier alternatives (remark/unified package sprawl, MDX runtime)
+  rightly avoided given §5 bans JSX bodies.
+
+## Verdict
+
+No HIGH findings; six MEDIUM items, all fixable as spec edits before
+CodeWriter starts (none requires rework of the module design). The design
+core — registry-as-only-handoff, mechanical link law, closed embed map,
+omit-fallback i18n, honesty fences — is sound and thoroughly disk-grounded.
+
+VERDICT: NEEDS_REVISION — 11 items
