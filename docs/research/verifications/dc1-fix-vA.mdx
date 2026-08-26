@@ -1,0 +1,195 @@
+# V-DC1a — Verifier A: re-review of `docs/specs/data-contracts.mdx` after F-DC1 fixes
+
+Verifier A of the D-C1 fix round. Reviewed [data-contracts.mdx](../../specs/data-contracts.mdx)
+@ c53721c (500 lines; diff base 2894a7b0 → c53721c) against work order
+[dc1-review.mdx](dc1-review.md) findings F-1…F-6. Every number below is MY OWN re-measurement over
+`extracted/data/` + `extracted/relinks/` via inline Python (stdlib json only) — neither the original
+reviewer's nor the fixer's counts were trusted as input. Measured 2026-08-26 on the same tree
+(buildId 19029065 / VERSION 0.93L confirmed in `extracted/EXTRACTION-LOG.md`).
+
+Method notes: relation-file data rows = lines after the `_meta` first line; class-B descriptor lines
+skipped iff they carry `row_count`; class-C files parsed from line 1. The four prior-round numeric
+disputes (D-1…D-4 in the orchestrator brief) each get an explicit ruling with the measurement.
+
+## 1. Headline recount — the quantities both prior agents disputed
+
+Relation tree (`extracted/relinks/`, 25 relation files after `_meta` first lines):
+
+| Quantity | Reviewer (dc1-review) | Fixer | THIS verification |
+|---|---|---|---|
+| data rows, 25 files summed | 1,159 | 1,159 | **1,159** (per-family counts match §4.1 row-for-row, incl. 0/0/0 meta-only) |
+| edges carrying `from`/`to` fields | 1,142 | — | **1,142** |
+| anchor slots on those edges | 2,284 | — | **2,284** (= 1,142 × 2) |
+| string endpoint values | ≥1,527 unknown-form subset | 2,259 | **2,259** |
+| JSON `null` endpoints | — | 59 | **25** |
+| edges with NO `from`/`to` key at all | — | — | **17** (award-site 11, achievement--ending 3, cloth-site--outfit 2, encoding-residue 1) = **34 absent slots** |
+| bare no-colon endpoints | 52 | 172 = 96 + 76 | **172** = slug 96 + `@`-composite 76 |
+
+Form census over the 2,259 string endpoints (split on FIRST colon) — every figure in the fixed
+§4.2 paragraph reproduced exactly: `note:` 686 · `target:` 370 + `controller:` 10 (=380) ·
+`container:` 354 · bare 172 · `scene:` 134 · `loc:` 113 · `achievement:` 92 · `minigame:` 88 ·
+`profile_document:` 78 · `flashes:` 44 · `character:` 37 · `paper_part:` 20 · `save_point:` 19 ·
+`speaker-theme:` 14 · `outfit:` 8 · `novella_surface:` 6 · `dialogue-carriers:` 6 · `scene-class:` 4 ·
+`choice_flag:` 2 · `prop_family:` 2. Sum = 2,259 ✔. Bare composition: slugs 96
+(character--achievement 44 + character--cartridge 44 + character--scene-membership 8) +
+`scene-class-family@<container>` 76 (minigame--scene-carrier fwd+inv). The four DECLARED-but-absent
+forms (`cartridge:`, `document:`, `cloth-site:`, `encoding-residue:`) occur 0 times ✔.
+
+Mechanism/status censuses (§3.10) reproduce exactly: mechanism {hard 1024, logic 104, inferred 20,
+`scrMain PPtr (hard)` 10 (all document--minigame), ABSENT 1 (residue)} = 1,159; status {modeled 1043,
+partial 73, ABSENT 17 (award-site 11 + ending 3 + cloth 2 + residue 1), `scrMain PPtr (hard)` 10,
+provisional-pending-ds1 9, pending-curation 5, inferred 2 (document--minigame)} = 1,159.
+
+## 2. Finding rulings
+
+### F-1 anchor grammar + AC C4 — PARTIAL
+
+Coverage is now complete and C4 is passable: every one of the 21 measured endpoint prefixes is
+enumerated, the bare/composite split (96 + 76) is exact, the four never-occurring declared forms are
+correctly identified, and per-family grammars are derivable from the form→family matrix I measured
+(e.g. `note:` only in document--event-wiring/membership; `flashes:` only character--cartridge;
+`save_point:` only scene--save-vocabulary). **Residual defect introduced by the fix:** the new census
+sentence "1,159 edges = 2,259 string endpoints + 59 deliberate nulls" and the law "Nulls ×59 legal
+ONLY on … (award-site 22, minigame--achievement 12, ending 6, speaker-theme 5,
+outfit/cloth/membership/residue 14)" conflate two different states. Measured: 2,259 strings +
+**25 JSON nulls** (minigame--achievement 12 [from×6 + to×6], speaker-theme--character 5 [to],
+character--outfit 4 [from], character--scene-membership 4 [from]) + **34 absent anchor slots** on 17
+edges that carry NO `from`/`to` key at all (award-site 22, achievement--ending 6, cloth-site--outfit
+4, encoding-residue 2 — those rows key by `achievement_id`/`achievement_id`+`ending_id`/`cloth_id`/
+`node_id` columns). award-site and achievement--ending have ZERO null rows; a joins.json/C4
+implementer following the sentence literally expects null-bearing anchors there and a wrong total.
+This spec's own bar (preamble "Every count below was measured"; C1/C2 full-recount discipline)
+makes the misdescription revision-grade.
+
+### F-2 POI space enum — RESOLVED
+
+Measured over all 986 poi.jsonl rows: `position.source` {none 612, inline 298, pptr-unresolved 76};
+`position.space` {unknown 668, parent-local 56, object-local-offset 262}; rows with
+`space:"world-assumed"` = **0**. scenes.jsonl `spawn`: populated ×20 ALL `{source:inline,
+space:world-assumed}` + null ×4. The corrected §3.9/Q2 claims (SCENE-level only, never POI) match
+the disk cell-for-cell.
+
+### F-3 speaker-null taxonomy — RESOLVED
+
+nodes.jsonl: speaker null ×129, spanning exactly five kinds: choice_case 70 + pet_dialogue 24 +
+quest_box 13 + branch_group 11 + grouped_scene_dialogue 11 = 129. Kind enum totals 2,839
+(ambient_line 2710 + the five). §3.7's fixed sentence is exact. Corroborated: next_resolved
+{resolved 2161, 'null' 572, unresolved-in-level 12} on 2,745 rows + key-absent 94; style null
+×2,826 / set ×13 (all quest_box); chapter null ×2,839; voice_present null ×2,839; level 19 distinct,
+no level18.
+
+### F-4 dialogue-edge fields — RESOLVED
+
+edges.jsonl (3,776): key `ptr` occurs **0** times; `call_index` 3,776/3,776; `call` 1,535 with keys
+exactly {target_type, method, target_ptr, args, mode, call_state}; `resolved_to` 1,535;
+`anchor_entry` 142. Kind enum {next 2161, on_finish_action 1535, choice 70, branch_left 5,
+branch_right 5} = 3,776. `label_ref` on 80 rows (all non-null); `resolution`
+{text-keyed-no-node-carrier 10, key-absent 3,766}. §3.7's edge block matches disk field-for-field.
+
+### F-5 enums: scrMain PPtr + curation statuses — RESOLVED
+
+Per-family: document--minigame mechanism AND status both {`scrMain PPtr (hard)` ×10, inferred ×2};
+dialogue-speaker-theme--character status {provisional-pending-ds1 9, pending-curation 5}; the four
+reverse-index/residue families carry NO status (11/3/2/1 = 17). §3.10 now declares both columns FREE
+TEXT with these exact values — verified.
+
+### F-6 completeness of field inventory — PARTIAL
+
+Every omission the finding named is now present AND correctly counted: dialogue_node `level`
+(19 containers)/`voice_present` (null ×2,839); ending `notes_community` (null ×4);
+world_document `scr_main` ({file_id 0, path_id 19195} ×5) + `audio_source_refs` ×1;
+achievement.steam.`captured_at_machine_plane` (true ×26); spawn_table all seven named fields
+(`spawn_table_id`, `level`, `status:"unresolved-target"` ×24, four census ints); poi `level`
+(23 containers)/`location_id` (null ×30). Full field-union audits against the §3 blocks:
+personage, candidates, cartridge, minigame, choice_node, branch_edge, flag_table, book, scene, poi,
+spawn_table, scene_link, ending, world_document are COMPLETE (keys + stamps accounted).
+Two residuals falsify the §3 preamble "COMPLETE field inventory" claim:
+
+- `profile_document`.`family` (value `"profile"` on all 14 rows) — absent from §3.8's profile block.
+  (Note: dc1-review §F-6 had called this block complete; it is not.)
+- `dialogue_node`.`source`.embedded_index — optional nested key present on all 70 choice_case rows;
+  §3.7 lists source{class, container, gameobject_path_id, path_id} only.
+
+## 3. Dispute rulings (own measurements)
+
+- **D-1 bare-id anchors — FIXER'S MEASUREMENT SUPPORTED.** Colon-less endpoints = **172** in
+  exactly 4 families (96 `<character_id>` slugs + 76 `scene-class-family@<container>`), matching the
+  fixed §4.2 verbatim. The reviewer's "52 from-side in 3 families" does not reproduce under any
+  natural reading: from-side identity slugs = 48 (22+22+4); all-sides identity slugs = 96. The
+  reviewer's underlying critique (bare ids missing from the old grammar) was directionally right.
+- **D-2 anchored edges/endpoints — SPLIT; SPEC TEXT ADOPTS THE WRONG HALF.** Reviewer's 1,142
+  anchored edges / 2,284 anchor slots reproduce exactly (edges that carry `from`/`to`). Fixer's 2,259
+  string endpoints reproduces exactly. Fixer's "59 deliberate nulls" does NOT reproduce as nulls:
+  real nulls 25 + field-absent slots 34 = 59. The spec's null law (award-site 22 / ending 6 as
+  "nulls") misdescribes the corpus → revision item 1 below.
+- **D-3 scene_link completeness — FIXER SUPPORTED.** scene-links.jsonl fields = {from_level,
+  to_sub_scene, via_component, path_id, edge_kind, mechanism, resolves, note, chapter_name_loc};
+  `note` non-null ×16, `chapter_name_loc` non-null ×15, mechanism `hard` ×57, edge_kind
+  {loads 19, continues 15, chapter_name 15, unloads 7, ledger 1}. Both omitted fields are real and
+  now listed; the reviewer's "complete" verdict was wrong.
+- **D-4 dialogue_node omissions — FIXER SUBSTANTIVELY SUPPORTED.** The post-fix node block covers
+  every field in the 2,839-row union except the nested `source.embedded_index`, so far more than the
+  reviewer's 2 omissions existed. The fixer's exact pre-fix count (17) cannot be audited without the
+  pre-fix text and is moot — current state rules.
+
+## 4. Regression sweep
+
+- **Counts coherent as a set:** §4.1 per-family edge table = disk exactly; §4.2 census sums to its
+  own total (2,259) and to §4.1's 1,159-edge base; §5 availability fully reproduces (2,686 cells =
+  bucket 680 {646/33/1} + presence 1,734 {1462/264/8} + book_page 272 {true 264/false 8}; totals
+  2,108/297/9); reads-line ledger split 83 = 12 XC + 9 CH + 7 ACH + 6 END + 10 DLG + 9 CAR + 8 DOC +
+  11 SCN + 3 DOCX + 8 MA (re-counted from the md's table rows); locale domain 34 distinct client dir
+  names incl. `Português-Brasil`/`Pre-revolutionaryRussian`; 27 relink files exist (n3 fixed);
+  graphs 19, no level18; markers 0 data rows; schema id `miside.scenes.poi-kinds/1` observed;
+  `availability.csv` exists at extracted/data/dialogue/ (not phantom); buildId 19029065 pinned in
+  EXTRACTION-LOG.md.
+- **Spot re-verifications held:** personages 24 (14/10), gallery_icon null ×15/populated 9 shared
+  pointer, save_key "" ×2, resource_path "" ×9, hex #cc73a2 re-derived; cartridges 23
+  {registered-pickup 21, unresolved-pickup 2, pickup_ref null ×2}; minigames 17 with exact
+  access_medium/key_source splits, scoring_derivable false ×17, present_but_unreachable true ×4;
+  candidates 26 (22 mita_variant + 4 player_character) + 2 minigame; documents 14/166/8 with
+  placement null ×3 (mita-2-d/core/true), flash_save_key null ×1, sprite_ptr ×18, family enum
+  {note 160, paper_part 5, novella_surface 1}, art cells 272/264; endings 4 (3+mode-stub),
+  effect_class splits 709/468/356/10/8/3/1, feeds_ending null ×1555; achievements display cells 884
+  = 26×34, icon pending-export ×26, joins.chapter_attribution null ×26, get_bool_trusted false ×26,
+  predicate/unlock/type_tag splits exact; stamp shapes per §6.1 verified incl. int build_id
+  (achievements/endings/dialogue nodes/relation rows) vs string pairs elsewhere; spawn_table
+  prefab_refs file_id>0 ×1728.
+- **ACs C1–C10 remain machine-checkable and mutually coherent** after the rewrite; C3's 1,159-sum and
+  C4's three-shape grammar are now grounded (C4's lint needs the item-1 wording fix to describe
+  anchor-less families correctly, but stays implementable today since those families simply have no
+  `from`/`to` to parse).
+- **Prior nits:** n1 (gallery_icon pathID-0) FIXED; n2 (preview_prefab_key label claim) FIXED;
+  n3 (27 files) FIXED. Still open, non-blocking: n4 — §2.2's schema-id list still omits
+  `miside.cartridges.candidates/1` (measured on cartridges-minigames.candidates.jsonl); n5 — class
+  table still silent on locale_availability/_assembly-provenance; n6 — §5 totals' exclusion of the
+  272 boolean book_page cells still unlabeled; n7 — C6 still folds the dialogue `next_resolved:'null'`
+  trap into availability tests.
+
+## 5. Revision items
+
+1. **data-contracts.mdx §4.2** — null accounting wrong: "1,159 edges = 2,259 string endpoints + 59
+   deliberate nulls" and "Nulls ×59 legal ONLY on … (award-site 22, minigame--achievement 12, ending
+   6, speaker-theme 5, outfit/cloth/membership/residue 14)". Disk: 1,142 edges carry anchors
+   (2,259 strings + **25 nulls**: minigame--achievement 12, speaker-theme 5, outfit 4, membership 4);
+   17 edges carry NO from/to (award-site 11, achievement--ending 3, cloth-site--outfit 2,
+   encoding-residue 1 = 34 absent slots). Reword to separate null-endpoint families from
+   anchor-less-key families.
+2. **data-contracts.mdx §4.2 + §3.10** — "`partial` always carries `missing_fields`" /
+   "partial ×73 (+`missing_fields`)": FALSE for 29 of 73 partial rows (every inverse mirror:
+   character--achievement inv 22, character--dialogue-speaker inv 3, character--scene-membership inv
+   4 carry status:partial with no missing_fields key; 44 do carry it non-empty).
+3. **data-contracts.mdx §3 preamble/§3.7/§3.8** — completeness claim still falsified by
+   `profile_document`.`family` (`"profile"` ×14, unlisted in §3.8) and
+   `dialogue_node`.`source`.`embedded_index` (×70 choice_case, unlisted in §3.7). Add both or drop
+   the COMPLETE claim (same remedy the original F-6 offered).
+4. **data-contracts.mdx §3.10 + §6.1** — wording-vs-disk: "direction … present in the
+   character-/minigame-/scene- families" omits dialogue-speaker-theme--character (direction forward
+   ×14, measured); §6.1 calls scene-links and candidates "class-C artifacts" though §2.2 classes both
+   A (their stamplessness is real; the class label is wrong).
+
+Items 1–3 are the same failure class the six findings were raised for (corpus-contradicted normative
+text in a registry consumers generate from); item 4 is minor but same nature. Everything else in the
+fix round verified exact.
+
+VERDICT: NEEDS_REVISION — 4
