@@ -1,0 +1,211 @@
+# contracts-fix-vB — Verifier B: re-verification of the F-CT2 fix round (2026-08-26)
+
+Target: `23c9ef7` (`contracts/check_contracts.py` + `contracts/registry/{entities,joins,fingerprints,
+availability,stub-markers}.json`) — the F1/F2/F3 fix round over my own build-round findings
+([contracts-build-vB.mdx](contracts-build-vB.mdx)). Independent of vA (`contracts-fix-vA.mdx` NOT
+read). Constraints honored: no agents spawned; `git` never executed (byte identity pinned by
+textual `.git/HEAD` + reflog reads only); read-only except this file; checker run in verify /
+self-test / report only — generate never invoked.
+
+**Identity of the verified bytes.** Reflog (textual): `23c9ef70…` = "lane-A: F-CT2 landed on board
+— V-CT2a re-verification in flight"; registry mtimes 10:15 and checker 10:13 match its commit
+instant. Three LATER `main` commits exist (lane-C content-spec chain `cb4152e…→b0adc5b…`); none
+touch `contracts/` per mtimes, so this pass verifies working-tree bytes attributable to `23c9ef7`
+with that one caveat.
+
+## Method
+
+1. Full reads: repo AGENTS.md chain (decision-register in full), pack spec.md / README /
+   data-acquisition.md, [data-contracts.mdx](../../specs/data-contracts.mdx) (all 545 lines),
+   [logic-layer.mdx](../../specs/logic-layer.mdx) (all 427 lines),
+   [map-viewer.mdx](../../specs/map-viewer.mdx) §4.1 (marker v2 shape),
+   check_contracts.py (all 2,224 lines), my prior contracts-build-vB.mdx, docs/TODO.mdx board line.
+2. Checker modes executed: verify, self-test, report ×2 (determinism byte-compared via process
+   substitution; no scratch files written).
+3. Every truth claim recomputed by throwaway python of my own (hashlib/json/Counter over the raw
+   JSONL/JSON). The checker module was imported ONCE, instrumented read-only to enumerate gate-ok
+   strings; it was never trusted for a measurement.
+4. Corpus spot-probes: pooled relink truth vs registry; last-artifact-wins simulation (the old
+   defect) for contrast; full 29-type field/nullability/type inventory diff; 53 enum paths diff;
+   effect_call edge_id duplicate census; AC-L1b key-K independent re-join; marker decl vs rows;
+   stub ledger scan; fingerprints membership; unregistered-family shape.
+
+## Surgery audit
+
+### 1. `entity_row_pool()` — pooling holds for every measured dimension (F1 fixed)
+
+The defect was `fields.update(...)` / `enums.update(...)` inside the per-artifact loop. The fix
+pools first, measures once: `entity_row_pool()` (checker ~1067–1093) concatenates every
+contributing artifact's data rows in declaration order, and `build_entities` (~1099–1103) runs
+`measure_fields(pool)` + `measure_enums(pool, …)` exactly once after the loop. No per-artifact
+merge of measured inventories remains anywhere in `build_entities`; the other dimensions are
+pool-native by construction — `row_total` sums across artifacts, `row_stamp_style` is a union set,
+the key-uniqueness gate re-scans each artifact in full, and `header_class`/`schema_id` take the
+declared representative (lossless today: relink_edge's 25 files are all class A, dialogue_graph's
+19 all class S).
+
+Concrete pooled-vs-per-file divergence constructed from the corpus, both directions:
+
+| dimension | last-file-wins WOULD say (simulated) | pooled disk truth | registry carries |
+|---|---|---|---|
+| `enums.direction` | `{forward:3, inverse:3}` | `{forward:196, inverse:154}` | `{forward:196, inverse:154}` ✔ |
+| `enums.kind` | `{forward:6, inverse:6}` | `{forward:396, inverse:396}` | `{forward:396, inverse:396}` ✔ |
+| `from` absent/null | last-file value | 31 | 31, `nullable:true` ✔ |
+| `to` absent/null | — | 28 | 28 ✔ |
+| `direction` absent/null | — | 809 | 809 ✔ |
+| `award_site` absent/null | 14 (vB's example) | 1153 | 1153 ✔ |
+
+My simulation reproduced vB's recorded wrong values digit-for-digit, which simultaneously proves
+the old bug was real and that the shipped bytes are the pooled union, not the merge. Beyond spot
+checks: an independent top-level inventory (type / nullable / absent_or_null_rows) over ALL 29
+entity types × their full pools produced **0 diffs**, and **53/53 declared enum paths** matched
+registry distributions. Pooling law confirmed corpus-wide.
+
+### 2. Gate liveness census — "22 green, all live" exact
+
+Instrumented run: `verify` prints **22 oks, 1 warning, 0 failures, exit 0**; the enumerated ok
+strings are C1 ×5 (byte-compare), C2 verified (400 committed field claims re-measured), C3 ×4
+(recount / meta-only trio / anchor census / provenance consolidation), C4 verified (2,259 endpoints
+vs COMMITTED grammar), C5 clean (82 artifacts), C6 cells, C6 unit matrix, C9 discrimination, five
+negative probes (C2 unknown-field, C2 comparator bite, C4 foreign-anchor rejection, C5 tamper, C1
+row-drop mutation), C10 ×2 (header-class table, dataset field-table names). That is exactly the
+claim.
+
+Every ok-emitting branch has a paired fail branch in the same function (verified by reading each
+gate end-to-end): C1 fails on missing/unparseable/differing bytes (+C8 classifier); gate_never_null
+fails on any contradicted claim; C3 has four distinct fail arms; C4 fails on unreadable committed
+grammar OR violations; C5 fails on sha/row/stamp mismatch; C6/C9 fail inside the matrix loops;
+each negative probe fails if its control fails ("undetected", "control failed", "collision?!");
+C10 has two fail arms. All five `except` blocks in the file checked: none converts an exception
+into an ok (key-gate KeyError → FATAL exit; committed-parse → FAIL; `committed_registry` → None →
+downstream FAIL or WARN; stdout-reconfigure cosmetic). Additionally, several fail-loud paths ride
+`SystemExit` OUTSIDE the Report counter (pipeline pin, header-class mismatch at split, join schema
+drift, edge-total ≠ 1159, duplicate keys, locale domain ≠ 34, stub pinned-count drift, ledger
+coverage gaps, orphan markers) — they exit non-zero without a green summary, so they cannot inflate
+"22 green". The one warning (C10 registry fields named only by the umbrella spec / relation metas)
+is explicitly legal-with-bump-record prose, not a suppressed failure.
+
+### 3. Lint independence (F3 fixed)
+
+`gate_anchor_lint` receives ONLY `committed_registry("joins.json")` — a fresh parse of the
+committed file from disk. The freshly-built joins dict exists solely for C1's byte-compare;
+derivation (generate-time) and lint (verify-time) are different objects with no shared state, and
+ordering is irrelevant to independence (no mutable coupling). A novel anchor form in the corpus now
+fails TWICE independently: C1 (regenerated grammar grows → byte diff) and C4 itself (committed
+grammar lacks the form → violation). The live proof ships in verify: the C4 negative probe injects
+`cartridge:mta` into minigame--scene-carrier through the same lint surface verify uses and asserts
+REJECTION against the committed grammar (green line #18). vB's demonstrated auto-admission path no
+longer exists in code.
+
+### 4. EXTEND correctness — logic entities absorbed soundly
+
+The four logic types (`effect_call`, `flag_instance`, `minigame_tunable`, `predicate_record`,
+schemas `miside.logic.*/1`) are generated from `extracted/data/logic/*.jsonl` under the EXTEND
+branch, authorized by [logic-layer.mdx](../../specs/logic-layer.mdx) AC-L6 (LG emission commit
+inserts its four schema ids into entities.json). Verified:
+
+- Row counts: effect_call 20,485 · flag_instance **384** (= AC-L2 census 5 IntMemory + 379 Data,
+  enum split matches) · minigame_tunable 29 · predicate_record 93; all class A `_meta`-first on
+  disk; `_meta.schema` on disk == declared ids; build stamps 19029065; all four ARE fingerprinted
+  (82 fingerprinted artifacts total).
+- Field inventories: predicate_record (13 fields) and minigame_tunable (14) are covered by my 0-diff
+  full-inventory sweep; enum blocks byte-match disk (`status` = the five pinned A-LL1/F-7 values;
+  `rule_status:{not-a-threshold:29}`, `kind:{envelope:29}` — the AC-L4 fence stands; zero
+  `"negative"` polarity rows; zero value+fail-closed pairs; inferred rows all carry citations —
+  AC-L3 laws hold on my independent scan).
+- `effect_call.key=None` ruling is FACTUALLY grounded: edge_id has **37 duplicate groups**
+  (20,485 rows / 20,313 distinct; max group 27), and sampled groups genuinely vary in
+  (effect_class, tier, internal_only) — e.g. `level2:Events_Animator_#2830…eventAnim:0` carries 8
+  census-grain rows — so uniqueness enforcement would be wrong, and the note correctly reroutes
+  join discipline to AC-L1b key K. The three keyed logic types have truly unique keys (0 dupes), so
+  their gates bite.
+- AC-L1b key K independently REPRODUCED: mapping K = (node.container, node.event_field,
+  node.object_path_id, edge.from_option→option_index, call_index, target.type, target.method,
+  target.object_path_id, args-tuple) across choice_nodes × branch_edges × effect_calls resolves
+  **exactly-one effect_call for 1,555/1,555 edges, 0 ambiguous, 0 unresolved**. (My first naive
+  probe resolved 0/1555 because I flattened `target`; the nested shape on BOTH sides is the real
+  contract — worth knowing for frontend implementers.)
+
+### 5. Marker-projection-v1 absorption — byte-consistent
+
+markers.jsonl now carries `_meta(schema=miside.markers.projection/1)` + **70 typed rows**, every
+row keyed by unique non-empty `marker_id`. The registry marker block (15 fields, 6 enum paths)
+matches disk exactly on all enums: kind {cartridge 21, minigame_access 38, profile_document 11} ·
+entity_kind {cartridges 21, minigames 38, profiles 11} · icon.fallback_state {named-explicit-missing
+×70} · placement.mechanism {hard ×70} · position.source {none 2, pptr-unresolved 19} · position.status
+{awaiting-transform-stage 19, scene-granular 51}. Absorption authority is traceable:
+data-contracts Q5 deferred v1 precisely until XC-5 landed; [map-viewer.mdx](../../specs/map-viewer.mdx)
+§4.1 defines this exact emitted shape ("Marker row v2"), M0 landed it, and the stub side flipped
+coherently — `marker-projection-v1` measured marker = 70 occurrences ≥ minimum 60, XC-5 and SCN-1
+ledger rows map to it, and the 83-row missingdata.md scan matches stub-markers.json ids
+composition-for-composition (XC12 CH9 ACH7 END6 DLG10 CAR9 DOC8 SCN11 DOCX3 MA8).
+
+### 6. Determinism + self-test
+
+report ×2 **byte-identical**; verify exit 0 twice (once plain, once instrumented — identical
+verdicts); self-test **7 green, 0 failures** (C6 matrix + C9 + the five negative probes). The
+self-test probes are no longer tautologies: each asserts detection of a real fault through the real
+compare surface (committed registries / measurement functions) and would FAIL if the mechanism
+broke (control-fail branches present).
+
+### 7. Registration question — flag--gates (40) + choice--consequence (1,555)
+
+Measured facts: both files exist as LG2 pure projections with `_meta.authority_ruling` naming
+[logic-layer.mdx](../../specs/logic-layer.mdx) §5 (flag--gates fwd 20 / inv 20, `logic:` anchors
+both sides; choice--consequence forward-only, `choice-node:` → `effect-call:`). They are absorbed
+NOWHERE in the contract layer: not in JOIN_DECLS → absent from joins.json (still the frozen
+25-family/1,159-edge pin of data-contracts §4.1/C3, unamended on disk), **not fingerprinted**
+(absent from CONSUMED_ARTIFACTS), not header-classed, not linted, no declared schema id.
+
+**Recommendation: REGISTER both families** (spec §4.1 amendment 25→27 families / 2,754 edges +
+JOIN_DECLS + TOTAL_EDGES_EXPECTED bump, one commit per §6.3), for these reasons:
+
+1. **Silent-corruption blind spot.** Today a truncated or corrupted choice--consequence.jsonl —
+   1,555 rows — passes `check_contracts.py verify` with 22 green: no fingerprint, no row-count
+   check, nothing. This is exactly the drift class §6 exists to kill; the asymmetry with the three
+   meta-only families (registered AT ZERO edges so absence stays loud) is indefensible once the
+   edges exist.
+2. **Consumption-law honesty.** joins.json `_meta.consumption_law` tells consumers links ride ONLY
+   through its edges, while the tree ships 1,595 more of them; the relink bare-minimum doctrine
+   ([DR-2026-08-17-relink]) wants the pairwise matrix shipped AS the registry artifact. Rule 8
+   makes the ending-explorer consumer read flag-gate edges from somewhere — better the pinned
+   grammar than ad hoc.
+3. **Cost is bounded and mechanical**: two JOIN_DECLS rows (anchor modes already regular), the
+   totals bump, regenerated registries; blast radius to fold honestly — entities.relink_edge
+   row_count 1159→2754 and its notes' free-text counts must be updated in the same commit.
+   Internal-only character belongs in the binds/notes column (vocabulary already supports it);
+   registering does not make tier-B presentation wiring user-facing — LG3 exclusion still governs
+   surfacing.
+
+KEEP-PINNED is defensible only as a freeze of the *consumer* surface, and even then the MINIMUM
+acceptable companion is fingerprinting both files (add to CONSUMED_ARTIFACTS) so drift is loud —
+but that half-measure leaves the consumption_law false and the completeness claim weaker than the
+doctrine requires. Register.
+
+## Residual findings (all MINOR / observations — none blocks)
+
+- **m1:** DECLARED_SCHEMA_IDS for entity artifacts (including the four logic files and
+  markers.jsonl) are never compared against the file's own `_meta.schema` — only relation files get
+  the FATAL compare (build_joins) and markers a partial probe. They match on disk today; a drifted
+  id would still trip C5 via content change, but not BY NAME. One-line hardening opportunity.
+- **m2 (pre-existing):** `stamp_keys` samples each artifact's first 50 rows for stamp-style
+  detection; uniform emitters make this safe today, and per-artifact build stamps ride fingerprints
+  regardless.
+- **m3 (observation):** fail-loud `SystemExit` paths bypass the gate counter (exit ≠ 0 without a
+  printed summary) — honest, but a reader of the log sees no FAIL line for those classes.
+- **m4 (observation):** gate_never_null WARNS (rather than fails) when committed entities.json is
+  unreadable; acceptable since existence/parity is C1's failure and C1 does fail — no false green
+  possible.
+
+## Verdict
+
+All three vB defects are genuinely fixed at the code level and proven fixed against the corpus:
+pooling is union-true on every measured dimension (old wrongness reproducible only by simulating
+the deleted merge), the 22-gate split is exactly honest (every green has a live red), and the lint
+now judges against committed bytes it cannot influence. The EXTEND absorption (4 logic types +
+marker-v1 ×70) is spec-traceable, byte-consistent, and empirically reconciled (AC-L1b K re-joined
+1,555/1,555 independently). Determinism and self-test are green. Remaining items are minors plus
+one process recommendation (register the two LG2 projection families) that does not impugn the
+landed artifacts.
+
+VERDICT: APPROVE
