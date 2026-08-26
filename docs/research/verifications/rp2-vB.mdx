@@ -1,0 +1,87 @@
+# rp2-vB — Verifier B: F-RP2 fix-round delta verification of rp1-vA's 4 findings (2026-08-26)
+
+Method: independent re-read of the whole touched surface fresh (`site/src/lib/relations/relationCards.ts`,
+`site/src/lib/search/searchSource.ts`, `site/src/data/joins.ts`, `RelationCards.tsx`, `routes.ts`,
+`entityPages.tsx`, `[locale]/endings/[ending_id]/page.tsx`) against rp1-vA's statements and
+[data-contracts.mdx](../../specs/data-contracts.mdx) §3.10/§7; live-corpus probes executed directly
+(no builder tooling reused): full award-site card sweep over all 26 achievements, full-corpus
+card-href sweep over every routed kind × id against the route census, census-gate probes with a
+fictional kind appended to the LIVE pivot rows, and a byte-compare of `method`/`mechanism`/`status`
+for all 1,159 parsed edges against their raw relink files. Suite run once + tsc. Caveat: this
+session may not run git, so the working tree was not SHA-compared to `8c37c72`; everything below
+verifies the tree as recorded landed (`docs/TODO.mdx` line 84).
+
+**F1 — flat grant-site payload: FIXED.** The nested-object read is gone: the
+`achievement--award-site` branch (`relationCards.ts:385–407`) builds the label from
+`edge.scalars.level` + `edge.scalars.file` + `edge.method`; grep-clean — no `.award_site`
+property access remains anywhere in `site/src` (the two surviving strings are the label prefix
+and a comment explaining why the nested shape belongs to OTHER families). Traced one REAL join
+row end-to-end: joins.json family `achievement--award-site` (id-columns, measured 11) → disk row
+`{achievement_id: ACHI_WinFIght, level: "level6", file: "Dialogue_3DText_#7081.txt", method:
+"AchievementGet", …}` ships FLAT (verified byte-level: nested key absent from all 11 rows) →
+`familyEdges()` parses it into `scalars.{level,file,…}` + top-level `method` →
+`relationCardsFor("achievements","ACHI_WinFIght")` returns VM item label
+`site:level6 · Dialogue_3DText_#7081.txt · AchievementGet` (state text, arrow →, mechanism hard)
+— rendered verbatim by `RelationCards.tsx`. Corpus sweep: all 11 award-site items across the 26
+achievement pages match the flat-shape grammar, and `<absent>` appears in NO card label anywhere
+over every routed kind × id (rp1-vA's ×11/11 false absence is extinct). Degradation is
+fixture-pinned: the payload-less fixture row renders the NAMED absence
+`site:award_site: <missing level/file>` (deepEqual-pinned, test "[B-RP2] award-site fail-closed"),
+naming the absent keys per §7 rule 2 instead of machine `<absent>` text.
+
+**F2 — unknown-kind guard: FIXED, loud and by name.** `assertSearchCensus`
+(`searchSource.ts:201–211`) now rejects every pivot-index kind not present in
+`expectedSearchCensus()`'s segment keys BEFORE count reconciliation, throwing
+`search census (en): index carries unregistered kind "widgets" — entities.json pins no searchable
+census for it`. Probed against the LIVE corpus, not fixtures: the 152 unperturbed pivot rows pass;
+appending one fictional `widgets` row throws exactly that message. Reasoned through the other
+ingress paths: a fictional type added to `ENTITY_KINDS` without a `KIND_SEGMENT` entry dies at
+row build ("routed kind without URL segment"); a kind invented only in a non-pivot locale dies in
+the subset check naming kind+id. Residual (pre-existing, unchanged): a fictional kind that emits
+ZERO searchable rows trips neither guard — but then nothing entered the index, so nothing
+user-visible drifts; the unit-lane deepEqual remains the backstop for that null case.
+
+**F3 — method plumbed verbatim: FIXED.** `RelationEdge.method: string | null`
+(`joins.ts:142`), read verbatim (`:232`), listed in `PROVENANCE_KEYS` (`:148–153`) hence excluded
+from `scalars` — exactly mechanism/status's treatment, matching §3.10 which defines `method` as
+the shared relink-edge "recorded derivation". Byte-verified corpus-wide: all 1,159 parsed edges
+(= §4.1 total) compared against their raw relink lines — method matches disk verbatim on all
+1,155 carrying rows, `method` leaks into `scalars` on ZERO edges, and mechanism/status remain
+verbatim too (0 mismatches). Pinned by "[B-RP2] method rides RelationEdge like
+mechanism/status".
+
+**F4 — ending anchors link: FIXED, no new orphans.** `resolveAnchor` gained the `"ending:"`
+case → `{routeKind: "endings", routeId}` (`relationCards.ts:186–190`); links still render only
+after `findRow` confirms the owning endings row (no-orphan law intact). The routes exist:
+`[locale]/endings/[ending_id]/page.tsx` + `(pivot)` twin carry
+`generateStaticParams = entityIdParamsByLocale("endings", …)` = `kindIds("endings")`, and
+`KIND_SEGMENT.endings = "endings"`. Full-corpus re-sweep (every routed kind × id at pivot):
+135 linked hrefs — rp1-vA counted 132; the +3 are precisely the new
+`/endings/safe-of-life`, `/endings/conditions-met`, `/endings/is-this-the-end` links, each ⊆ the
+route census — **zero targets outside the census**. The fourth ending `peaceful` has no shipped
+`achievement--ending` pair (family holds exactly 3 rows), so it correctly surfaces nothing;
+asymmetry resolved without inventing an edge.
+
+**Deviation — ruled ACCEPTABLE.** The census guard lives inside `assertSearchCensus` in
+`searchSource.ts`, not the brief's named file. Verified properties: the gate exists EXACTLY once
+in the tree (single `unregistered kind` site), inside the function that is already the one
+emit-time reconciliation surface `emit-artifacts.mjs:31,105` imports and calls before writing any
+index — so the teeth fire at build time and are inherited by every caller including both test
+lanes. A separately named module would have added a second census surface or a pass-through
+wrapper with zero additional teeth. The diff stays one-guard-shaped: rp1-vA-fix markers appear in
+exactly three src files (+ the joins.ts field), and the suite delta is the five `[B-RP2]` tests.
+
+**Suite + types:** `npm test` → **tests 138 / pass 138 / fail 0**, exit 0 (one run);
+`npx tsc --noEmit --incremental false` → clean. No build performed (disk constraint).
+
+## Findings
+
+| # | Severity | Where | Statement |
+|---|---|---|---|
+| F1 | RESOLVED | `relationCards.ts:385–407` | Award-site cards consume the flat `level/file/method` payload; live trace + 26-page sweep show 0 `<absent>` and 11/11 correct labels; payload-less rows degrade to the named `<missing level/file>` state (fixture-pinned). |
+| F2 | RESOLVED | `searchSource.ts:201–211` | Kind-growth gate rejects unregistered index kinds by name at emit time; probe-proven loud on live rows; single statement of the gate, called by the emitter. |
+| F3 | RESOLVED | `joins.ts:142,232` | `method` carried verbatim on `RelationEdge`, excluded from `scalars`; byte-verified across all 1,159 edges (0 leaks, 0 drift). |
+| F4 | RESOLVED | `relationCards.ts:186–190` | `ending:` anchors resolve to routed `/endings/<id>`; +3 links all in the route census, 0 orphans corpus-wide. |
+| D1 | DEVIATION OK | guard placement | Census guard in `searchSource.ts` instead of the brief's named file: one-guard-only diff, sits on the existing single emit path — accepted. |
+
+VERDICT: APPROVE
