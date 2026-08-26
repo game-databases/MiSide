@@ -11,9 +11,13 @@ import { kindChipStyle } from "./kindAxis";
  * Hide All. Hovering a chip highlights its pins and hovering a pin highlights
  * its chip — the bidirectional join of design-standard §5.3; tint-only hover
  * would fail review. Every target ≥44 px (AC MV-7).
+ *
+ * F-MV4 microcopy law: chips print the chrome-keyed kind label, never the raw
+ * snake_case token; the token survives only in the title/aria join.
  */
 export function KindFilter({
   kinds,
+  kindLabels,
   hoveredKind,
   onToggle,
   onHover,
@@ -23,6 +27,8 @@ export function KindFilter({
   hideAllLabel,
 }: {
   kinds: Array<{ kind: string; count: number; enabled: boolean }>;
+  /** Raw poi-kind token → localized label (`map.kind.*`); falls back to token. */
+  kindLabels: Record<string, string>;
   hoveredKind: string | null;
   onToggle: (kind: string) => void;
   onHover: (kind: string | null) => void;
@@ -39,6 +45,7 @@ export function KindFilter({
           key={kind}
           type="button"
           aria-pressed={enabled}
+          title={kind}
           onMouseEnter={() => onHover(kind)}
           onMouseLeave={() => onHover(null)}
           onFocus={() => onHover(kind)}
@@ -51,7 +58,7 @@ export function KindFilter({
             !enabled && "opacity-60"
           )}
         >
-          <span>{kind}</span>
+          <span>{kindLabels[kind] ?? kind}</span>
           <span className="font-lcd text-[var(--ms-signal)]">{count}</span>
         </button>
       ))}

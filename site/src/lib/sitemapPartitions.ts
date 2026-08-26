@@ -9,6 +9,7 @@
 import { LOCALES } from "@/i18n/locales";
 import { kindAvailable } from "@/data/availability";
 import { kindIds } from "@/data/contracts";
+import { admittedArticlePaths } from "@/data/articles";
 import { INDEX_SEGMENTS, KIND_SEGMENT } from "@/lib/routes";
 
 export const BUILD_STAMP =
@@ -30,15 +31,20 @@ export function sitemapPartitionIds(): string[] {
   const ids: string[] = [];
   const sections = ["home", ...INDEX_SEGMENTS, ...KIND_SECTIONS];
   for (const section of sections) {
+    // content pipeline (M2 real gate): /guides and /news partitions exist in
+    // every serving locale — their URL lists are ARTICLE-LEDGER derived in
+    // partitionUrls(); the scaffold's "achievements" placeholder dies here.
+    if (section === "guides" || section === "news") {
+      for (const locale of LOCALES) ids.push(`${section}@${locale.code}`);
+      continue;
+    }
     const gate =
       section === "home" || section === "map"
         ? "mita"
         : INDEX_SEGMENTS.includes(section as never)
           ? section === "lore/books"
             ? "books"
-            : section === "guides" ||
-                section === "news" ||
-                section === "tools" ||
+            : section === "tools" ||
                 section === "glossary" ||
                 section === "media" ||
                 section === "devlog" ||
@@ -64,6 +70,14 @@ export function partitionUrls(id: string): string[] {
   const prefix = def.prefix;
 
   if (section === "home") return [prefix || "/"];
+  // content pipeline: index URL + exactly the article paths the M5 ledger
+  // admits for THIS locale (full diff both directions is AC C2/C3)
+  if (section === "guides" || section === "news") {
+    return [
+      `${prefix}/${section}`,
+      ...admittedArticlePaths(section, def.code),
+    ];
+  }
   if ((KIND_SECTIONS as readonly string[]).includes(section)) {
     const segment = KIND_SEGMENT[section];
     return [`${prefix}/${segment}`, ...kindIds(section).map((i) => `${prefix}/${segment}/${i}`)];

@@ -45,14 +45,137 @@ const SEG_FOR = {
   locations: "locations",
 };
 const STUBS = [
-  "guides",
-  "news",
   "tools",
   "glossary",
   "media",
   "devlog",
   "feedback",
 ];
+// content pipeline (M3/M4) — real section factories, not stubs
+const CONTENT_SECTIONS = [
+  { seg: "guides", param: "guide_slug" },
+  { seg: "news", param: "news_slug" },
+];
+
+function contentRoutes() {
+  /* ---------- pivot index + detail ---------- */
+  for (const { seg, param } of CONTENT_SECTIONS) {
+    write(
+      join(PIVOT, seg, "page.tsx"),
+      `
+import {
+  ArticleIndexContent,
+  buildArticleIndexMetadata,
+} from "@/components/routes/articlePages";
+import type { Metadata } from "next";
+
+export default function Page() {
+  return ArticleIndexContent({ section: "${seg}", localeCode: "en" });
+}
+export async function generateMetadata(): Promise<Metadata> {
+  return buildArticleIndexMetadata("${seg}", "en");
+}
+`
+    );
+    write(
+      join(PIVOT, seg, `[${param}]`, "page.tsx"),
+      `
+import {
+  ArticleContent,
+  buildArticleMetadata,
+  articleParamsPivot,
+} from "@/components/routes/articlePages";
+import type { Metadata } from "next";
+
+export const dynamicParams = false;
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ ${param}: string }>;
+}) {
+  const { ${param} } = await params;
+  return ArticleContent({ section: "${seg}", slug: ${param}, localeCode: "en" });
+}
+export async function generateMetadata(args: {
+  params: Promise<{ ${param}: string }>;
+}): Promise<Metadata> {
+  const { ${param} } = await args.params;
+  return buildArticleMetadata("${seg}", ${param}, "en");
+}
+export function generateStaticParams() {
+  return articleParamsPivot("${seg}");
+}
+`
+    );
+  }
+  /* ---------- [locale] mirrors ---------- */
+  for (const { seg, param } of CONTENT_SECTIONS) {
+    write(
+      join(LOCTREE, seg, "page.tsx"),
+      `
+import {
+  ArticleIndexContent,
+  buildArticleIndexMetadata,
+} from "@/components/routes/articlePages";
+import { PREFIXED_LOCALES } from "@/i18n/locales";
+import type { Metadata } from "next";
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return ArticleIndexContent({ section: "${seg}", localeCode: locale });
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildArticleIndexMetadata("${seg}", locale);
+}
+export function generateStaticParams() {
+  return PREFIXED_LOCALES.map((l) => ({ locale: l.code }));
+}
+`
+    );
+    write(
+      join(LOCTREE, seg, `[${param}]`, "page.tsx"),
+      `
+import {
+  ArticleContent,
+  buildArticleMetadata,
+  articleParamsByLocale,
+} from "@/components/routes/articlePages";
+import type { Metadata } from "next";
+
+export const dynamicParams = false;
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string; ${param}: string }>;
+}) {
+  const { locale, ${param} } = await params;
+  return ArticleContent({ section: "${seg}", slug: ${param}, localeCode: locale });
+}
+export async function generateMetadata(args: {
+  params: Promise<{ locale: string; ${param}: string }>;
+}): Promise<Metadata> {
+  const { locale, ${param} } = await args.params;
+  return buildArticleMetadata("${seg}", ${param}, locale);
+}
+export function generateStaticParams() {
+  return articleParamsByLocale("${seg}");
+}
+`
+    );
+  }
+}
+contentRoutes();
 
 function write(file, body) {
   mkdirSync(dirname(file), { recursive: true });

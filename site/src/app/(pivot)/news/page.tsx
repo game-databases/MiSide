@@ -1,13 +1,13 @@
 import {
-  StubSectionContent,
-  buildSectionMetadata,
-} from "@/components/routes/sectionPages";
+  ArticleIndexContent,
+  buildArticleIndexMetadata,
+} from "@/components/routes/articlePages";
 import type { Metadata } from "next";
 
 export default function Page() {
-  return StubSectionContent({ segment: "news", localeCode: "en" });
+  return ArticleIndexContent({ section: "news", localeCode: "en" });
 }
 export async function generateMetadata(): Promise<Metadata> {
-  return buildSectionMetadata("en", "news", "nav.news");
+  return buildArticleIndexMetadata("news", "en");
 }
 

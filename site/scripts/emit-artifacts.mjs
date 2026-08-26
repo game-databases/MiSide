@@ -6,9 +6,15 @@
  *   • map registry     public/map/registry.json + public/map/markers.json
  *   • llms.txt         public/llms.txt
  *
- * Self-contained on purpose (no TS import): reads the SAME contract files and
- * resolves the SAME pointers as src/data/*; both sides are pinned to the
- * contract documents so they cannot drift silently.
+ * B-RP1 RE-PIN: the private KINDS table, per-kind title functions, de-slug
+ * helper and per-locale row assembly that lived here were a SECOND copy of
+ * the contract readers — free to drift from what pages serve. This script now
+ * imports THE reader layer itself (src/data/contracts.ts +
+ * src/components/routes/entityDisplay.ts + src/lib/search/searchSource.ts,
+ * executed by Node's native type stripping), so emitted artifacts are built
+ * from exactly the shapes the site serves, and the pivot census is
+ * reconciled against contracts/registry/entities.json at emit time
+ * (assertSearchCensus).
  *
  * Run: node scripts/emit-artifacts.mjs   (wired as prebuild)
  */
@@ -16,191 +22,20 @@ import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { ENTITY_KINDS, kindRows, readJsonl } from "../src/data/contracts.ts";
+import { displayName } from "../src/components/routes/entityDisplay.ts";
+import { KIND_SEGMENT } from "../src/lib/routes.ts";
+import { LOCALES } from "../src/i18n/locales.ts";
+import {
+  buildAllLocaleSearchRows,
+  assertSearchCensus,
+} from "../src/lib/search/searchSource.ts";
+
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const extracted =
   process.env.MISIDE_EXTRACTED_ROOT ?? join(root, "..", "extracted");
 const pub = join(root, "public");
-
-/* ---------- locale table (mirror of src/i18n/locales.ts — parity-tested) */
-const LOCALES = [
-  ["en", "English", ""],
-  ["ru", "Russian", "/ru"],
-  ["uk", "Ukrainian", "/uk"],
-  ["be", "Belarusian", "/be"],
-  ["bg", "Bulgarian", "/bg"],
-  ["zh-Hans", "ChineseSimplified", "/zh-Hans"],
-  ["zh-Hant", "ChineseTraditional", "/zh-Hant"],
-  ["hr", "Croatian", "/hr"],
-  ["cs", "Czech", "/cs"],
-  ["fil", "Filipino", "/fil"],
-  ["fr", "French", "/fr"],
-  ["de", "German", "/de"],
-  ["hu", "Hungarian", "/hu"],
-  ["id", "Indonesia", "/id"],
-  ["it", "Italian", "/it"],
-  ["ja", "Japanese", "/ja"],
-  ["kk", "Kazakh", "/kk"],
-  ["ko", "Korean", "/ko"],
-  ["fa", "Persian", "/fa"],
-  ["pl", "Polish", "/pl"],
-  ["pt-PT", "Portugues Portugal", "/pt-PT"],
-  ["pt-BR", "Português-Brasil", "/pt-BR"],
-  ["ro", "Romanian", "/ro"],
-  ["sr-Latn", "Serbian (Latin)", "/sr-Latn"],
-  ["sk", "Slovak", "/sk"],
-  ["es-419", "Spanish (LatinAmerica)", "/es-419"],
-  ["es-ES", "Spanish (Spain)", "/es-ES"],
-  ["sv", "Swedish", "/sv"],
-  ["th", "Thai", "/th"],
-  ["tr", "Turkish", "/tr"],
-  ["vi", "Vietnamese", "/vi"],
-  ["ar", "Arabic", "/ar"],
-  ["ar-EG", "Arabic (Egyptian)", "/ar-EG"],
-  ["ru-x-prerev", "Pre-revolutionaryRussian", "/ru-x-prerev"],
-];
-
-/* ---------- jsonl helpers ---------- */
-function looksLikeHeader(obj, idField) {
-  if (!obj || typeof obj !== "object") return false;
-  const keys = Object.keys(obj);
-  if (keys.includes("_meta")) return true;
-  return (
-    ["derived_fields", "schema", "schema_id", "generator"].some((k) =>
-      keys.includes(k)
-    ) && (!idField || !keys.includes(idField))
-  );
-}
-
-// Two corpus header shapes (wrapped _meta vs documents-family bare header);
-// empty-by-contract files tolerated. Must mirror src/data/contracts.ts.
-function readJsonl(rel, idField) {
-  let raw;
-  try {
-    raw = readFileSync(join(extracted, rel), "utf8");
-  } catch (err) {
-    if (err.code === "ENOENT") return { meta: null, rows: [] };
-    throw err;
-  }
-  const lines = raw.split("\n").filter((l) => l.trim());
-  if (lines.length === 0) return { meta: null, rows: [] };
-  let meta = null;
-  let start = 0;
-  const first = JSON.parse(lines[0]);
-  if (looksLikeHeader(first, idField)) {
-    meta = first._meta !== undefined ? first._meta : first;
-    start = 1;
-  }
-  const rows = lines.slice(start).map((l) => JSON.parse(l));
-  if (meta && typeof meta.row_count === "number" && meta.row_count !== rows.length) {
-    throw new Error(`${rel}: _meta.row_count ${meta.row_count} != ${rows.length}`);
-  }
-  return { meta, rows };
-}
-
-const locCache = new Map();
-function locLines(dirName, category) {
-  const key = `${dirName} ${category}`;
-  if (locCache.has(key)) return locCache.get(key);
-  const file = join(extracted, "localization", dirName, `${category}.jsonl`);
-  const lines = [];
-  if (existsSync(file)) {
-    for (const line of readFileSync(file, "utf8").split("\n")) {
-      if (!line.trim()) continue;
-      const rec = JSON.parse(line);
-      lines[rec.line_index] = rec.text ?? "";
-    }
-  }
-  locCache.set(key, lines);
-  return lines;
-}
-/** ARITHMETIC-FREE resolution (AC S13): pointers already carry emitted offsets. */
-function resolveLoc(dirName, pointer) {
-  if (!pointer) return "";
-  const v = locLines(dirName, pointer.category)[pointer.line_index];
-  return typeof v === "string" ? v : "";
-}
-
-function paletteHex(rgba) {
-  const ch = (f) =>
-    Math.min(255, Math.max(0, Math.round(f * 255))).toString(16).padStart(2, "0");
-  return `#${ch(rgba[0])}${ch(rgba[1])}${ch(rgba[2])}`;
-}
-
-// VC-2 fix #1: honest de-slug for ids the client never names — separators
-// become spaces, letter↔digit and camelCase boundaries split, words
-// title-cased ("mta"→"Mta", "Books0"→"Books 0"). Re-spaces shipped strings;
-// never composes a lore name. Mirrors desluggedLabel() in entityView.tsx.
-function deslug(raw) {
-  return raw
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/([a-zA-Z])(\d)/g, "$1 $2")
-    .replace(/(\d)([a-zA-Z])/g, "$1 $2")
-    .replace(/[-_.]+/g, " ")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
-
-/* ---------- kinds ---------- */
-// [apiKind, file, idField, segment, filter?, titleFn(row, dirName)]
-const KINDS = [
-  ["mita", "data/characters/personages.jsonl", "character_id", "mita",
-    (r) => r.kind === "mita",
-    (r, dir) => resolveLoc(dir, r.name_loc)],
-  ["players", "data/characters/personages.jsonl", "character_id", "players",
-    (r) => r.kind === "player",
-    (r, dir) => resolveLoc(dir, r.name_loc)],
-  ["cartridges", "data/cartridges/cartridges.jsonl", "cartridge_id", "cartridges",
-    null,
-    // VC-2 fix #1: label rides the PINNED joins only — depicts (character) /
-    // contains (player) resolve to the registry's own human labels; a row
-    // with neither anchor (`mta`, DS-4 namespace honesty) keeps its save_key
-    // re-spaced. Mirrors displayName() in entityView.tsx.
-    (r, dir) => {
-      const via = r.depicts_character_id ?? r.contains_player_id;
-      if (via) {
-        const dep = characterNameById.get(via);
-        if (dep) {
-          const named = resolveLoc(dir, dep);
-          if (named) return named;
-        }
-      }
-      return deslug(r.save_key) || r.save_key;
-    }],
-  ["minigames", "data/cartridges/minigames.jsonl", "minigame_id", "minigames",
-    null,
-    (r, dir) => (r.name_loc ? resolveLoc(dir, r.name_loc) : "") || deslug(r.client_key) || r.client_key],
-  ["achievements", "data/achievements/achievements.jsonl", "achievement_id", "achievements",
-    null,
-    (r, dir, code) => r.display?.[code]?.name ?? r.achievement_id],
-  ["endings", "data/endings/endings.jsonl", "ending_id", "endings",
-    null,
-    (r, dir) => (r.display_name_loc ? resolveLoc(dir, r.display_name_loc) : "") || deslug(r.ending_id)],
-  ["profiles", "data/documents/profile_documents.jsonl", "document_id", "lore/profiles",
-    null,
-    (r, dir) => resolveLoc(dir, r.name_loc)],
-  ["lore", "data/documents/world_documents.jsonl", "document_id", "lore",
-    (r) => ["paper_part", "novella_surface"].includes(r.family),
-    (r) => deslug(r.document_id)],
-  ["books", "data/documents/books.jsonl", "book_id", "lore/books",
-    null,
-    // No display-name column exists: the client's own texture basename
-    // ("Book 1") IS the label — re-spaced so "Books0" reads "Books 0".
-    (r) => {
-      const base = r.texture_rel ? r.texture_rel.split("/").pop().replace(/\.(webp|png)$/i, "") : "";
-      return (base && deslug(base)) || r.book_id;
-    }],
-  ["locations", "data/scenes/scenes.jsonl", "scene_id", "locations",
-    null,
-    // VC-1 fix #2: human titles — scenes ride their client chapter name;
-    // nameless containers fall back to a re-spaced id on pages/API and are
-    // kept OUT of the search index by the searchable predicate below.
-    (r, dir) => (r.chapter_name_loc ? resolveLoc(dir, r.chapter_name_loc) : "") || deslug(r.scene_id),
-    // boot/menu/title containers have no human name anywhere: not searchable
-    (r) => Boolean(r.chapter_name_loc)],
-];
+void extracted; // readers resolve the corpus root themselves (jsonl.ts)
 
 function emitJson(rel, obj) {
   const file = join(pub, rel);
@@ -208,12 +43,14 @@ function emitJson(rel, obj) {
   writeFileSync(file, JSON.stringify(obj), "utf8");
 }
 
+import { emitContent } from "./build-content.mjs";
+
 /* ---------- main ---------- */
-// VC-1 fix #2: cartridges carry no display-name table, so their search text
-// resolves through the DEPICTED CHARACTER's name (personages name_loc).
-const characterNameById = new Map(); // character_id -> name_loc pointer
-for (const row of readJsonl("data/characters/personages.jsonl", "character_id").rows) {
-  if (row.character_id) characterNameById.set(String(row.character_id), row.name_loc);
+// Content pipeline (M2): compile authored articles BEFORE any consumer reads
+// the registry — search rows, static API and llms.txt all join it below.
+const contentResult = emitContent();
+if (!contentResult.ok) {
+  throw new Error(`build-content failed with ${contentResult.errors?.length ?? "?"} error(s)`);
 }
 
 const scenesMeta = readJsonl("data/scenes/scenes.jsonl", "scene_id").meta;
@@ -227,106 +64,57 @@ const VERSION_LABEL = buildIdPins.versionLabel ?? "0.93L";
 
 for (const locale of LOCALES) mkdirSync(join(pub, "search"), { recursive: true });
 
-// VC-1 fix #2: per-locale row ACCUMULATOR — each kind appends; the file is
-// written once after the loop. (Writing inside the kind loop made every kind
-// overwrite the previous one, so only locations survived in the index.)
-const searchByLocale = new Map(); // code -> SearchRow[]
-for (const [code] of LOCALES) searchByLocale.set(code, []);
-
 let entityCount = 0;
-for (const [apiKind, file, idField, segment, filter, titleFn, searchable] of KINDS) {
-  let { rows } = readJsonl(file, idField);
-  if (filter) rows = rows.filter(filter);
+// Routed kinds drive BOTH emissions — ENTITY_KINDS is the single kind table
+// (AC S6: generateStaticParams == owning contract id column).
+for (const [kind, def] of Object.entries(ENTITY_KINDS)) {
+  const segment = KIND_SEGMENT[kind];
+  if (!segment) throw new Error(`routed kind without URL segment: ${kind}`);
+  const rows = kindRows(kind);
 
-  // static JSON API — mirrors page facts (id/kind/name/build/url)
-  mkdirSync(join(pub, "api", "v1", apiKind), { recursive: true });
+  // static JSON API — mirrors page facts (id/kind/name/build/url); names ride
+  // the SAME display-name layer the pages use, EN pivot only (glue register)
+  mkdirSync(join(pub, "api", "v1", kind), { recursive: true });
   const indexRows = [];
   for (const row of rows) {
-    const id = String(row[idField]);
+    const id = String(row[def.idField]);
     const record = {
       id,
-      kind: apiKind,
-      name_en: apiKind === "achievements" || apiKind === "endings"
-        ? titleFn(row, "English", "en")
-        : titleFn(row, "English"),
+      kind,
+      name_en: displayName(kind, row, "en"),
       build_id: row.build_id ?? BUILD_ID,
       version_label: row.version_label ?? VERSION_LABEL,
       url: `/${segment}/${id}`,
     };
-    emitJson(join("api", "v1", apiKind, `${id}.json`), record);
+    emitJson(join("api", "v1", kind, `${id}.json`), record);
     indexRows.push(record);
     entityCount++;
   }
-  emitJson(join("api", "v1", `${apiKind}.json`), {
-    kind: apiKind,
+  emitJson(join("api", "v1", `${kind}.json`), {
+    kind,
     count: indexRows.length,
     build_id: BUILD_ID,
     items: indexRows,
   });
+}
 
-  // search rows ×34 — resolved per-locale strings, never EN passthrough.
-  // A row whose title resolves empty in a locale is omitted THERE (the
-  // declared omission half of the filler policy): the index holds named
-  // entities, never raw ids dressed as titles.
-  for (const [code, dirName, prefix] of LOCALES) {
+// Search rows ×34 — built ONCE by the shared reader-side builder
+// (availability-gated, filler-policy omissions included), reconciled against
+// entities.json, then written per locale.
+const searchByLocale = buildAllLocaleSearchRows();
+assertSearchCensus(searchByLocale);
+
+// Article rows join the SAME per-locale indexes (spec §3.2): one row per
+// published article × its ADMITTED locale cells; the namespacing pass below
+// yields the law's "guides:<slug>" / "news:<slug>" document ids.
+let articleRowCount = 0;
+for (const row of contentResult.registryRows) {
+  const kind = row.type === "guide" ? "guides" : "news";
+  for (const [code, cell] of Object.entries(row.locales)) {
     const acc = searchByLocale.get(code);
-    for (const row of rows) {
-      const id = String(row[idField]);
-      const title = titleFn(row, dirName, code);
-      if (!title) continue;
-      if (searchable && !searchable(row)) continue;
-      let text = "";
-      if (row.description_loc) text = resolveLoc(dirName, row.description_loc);
-      else if (row.lore_loc) text = resolveLoc(dirName, row.lore_loc);
-      // cartridges carry no client display-name table (cartridges contract
-      // DS-4 rule 2: the save_key IS the label) — the depicted character's
-      // name is the honest human text that makes them findable.
-      if (!text && row.depicts_character_id) {
-        const dep = characterNameById.get(row.depicts_character_id);
-        if (dep) text = resolveLoc(dirName, dep) || row.depicts_character_id;
-      }
-      acc.push({
-        id,
-        kind: segment,
-        title,
-        text,
-        url: `${prefix}/${segment}/${id}`,
-      });
-    }
-  }
-}
-
-/* ---------- dialogue containers — routed transcript views ---------- */
-// /dialogue/<level> pages exist for every carrier level; titles ride the
-// scene chapter names where the scenes dataset holds one (per locale).
-const dialogueRowsSrc = readJsonl("data/dialogue/nodes.jsonl", "id").rows;
-const dialogueLevelCounts = new Map();
-for (const n of dialogueRowsSrc) {
-  const lvl = String(n.id).split(":")[0];
-  dialogueLevelCounts.set(lvl, (dialogueLevelCounts.get(lvl) ?? 0) + 1);
-}
-const sceneChapterLoc = new Map(); // level -> chapter_name_loc
-for (const s of readJsonl("data/scenes/scenes.jsonl", "scene_id").rows) {
-  if (s.chapter_name_loc) sceneChapterLoc.set(s.scene_id, s.chapter_name_loc);
-}
-for (const [code, dirName, prefix] of LOCALES) {
-  const acc = searchByLocale.get(code);
-  for (const [lvl, nodeCount] of [...dialogueLevelCounts].sort()) {
-    const ch = sceneChapterLoc.get(lvl);
-    // R-FVC1 minor #1: carriers the scenes dataset does not name stay OUT of
-    // the search index — the same predicate locations use ("never raw ids
-    // dressed as titles"). The /dialogue/<lvl> pages themselves still ship.
-    if (!ch) continue;
-    acc.push({
-      // R-FVC1 minor #2: plain carrier id here — the final namespacing pass
-      // below prepends the kind once ("dialogue:<lvl>"); pre-prefixing made
-      // every dialogue row "dialogue:dialogue:<lvl>".
-      id: lvl,
-      kind: "dialogue",
-      title: resolveLoc(dirName, ch),
-      text: `nodes:${nodeCount}`,
-      url: `${prefix}/dialogue/${lvl}`,
-    });
+    if (!acc) continue;
+    acc.push({ id: row.slug, kind, title: cell.title, text: cell.description, url: cell.path });
+    articleRowCount++;
   }
 }
 
@@ -345,7 +133,7 @@ for (const [code, rows] of searchByLocale) {
   }
 }
 
-/* ---------- search index files — written ONCE per locale after all appends ---------- */
+/* ---------- search index files — written ONCE per locale ---------- */
 // Document ids are kind-namespaced: MiniSearch requires globally-unique ids
 // and separate kinds DO collide on the raw column (a scene_id and a dialogue
 // carrier level are both "level4"). A duplicate id makes addAll throw, which
@@ -397,6 +185,43 @@ emitJson(join("map", "markers.json"), {
   rows: markerFile.rows,
 });
 
+/* ---------- article static JSON API (AC S11 law extends to articles) ----- */
+for (const section of ["guides", "news"]) {
+  const rows = contentResult.registryRows.filter((r) =>
+    section === "guides" ? r.type === "guide" : r.type !== "guide"
+  );
+  mkdirSync(join(pub, "api", "v1", section), { recursive: true });
+  const indexItems = [];
+  for (const r of rows) {
+    const record = {
+      id: r.slug,
+      type: r.type,
+      slug: r.slug,
+      title_en: r.title_en,
+      locales: Object.fromEntries(
+        Object.entries(r.locales).map(([code, c]) => [
+          code,
+          { path: c.path, title: c.title, description: c.description, word_count: c.word_count },
+        ])
+      ),
+      spoiler: r.spoiler,
+      verified_build_id: r.verified_build_id,
+      published_at: r.published_at,
+      updated_at: r.updated_at,
+      url: r.locales.en ? r.locales.en.path : undefined,
+      entities: r.entities,
+    };
+    emitJson(join("api", "v1", section, `${r.slug}.json`), record);
+    indexItems.push({ id: r.slug, type: r.type, url: record.url, title_en: r.title_en });
+  }
+  emitJson(join("api", "v1", `${section}.json`), {
+    section,
+    count: indexItems.length,
+    build_id: BUILD_ID,
+    items: indexItems,
+  });
+}
+
 /* ---------- llms.txt ---------- */
 writeFileSync(
   join(pub, "llms.txt"),
@@ -423,12 +248,18 @@ data; records carry the buildId of the extraction run.
   profiles, lore, books, locations.
 - Search rows per locale: /search/{locale}.idx.json
 - Map registry: /map/registry.json ; markers: /map/markers.json
+- Articles: /api/v1/guides/{slug}.json and /api/v1/news/{slug}.json
+  (indexes: /api/v1/guides.json, /api/v1/news.json)
 
 ## Pages
 
 Entity pages exist at bare paths (English) and under each locale prefix:
 /${"{locale}"}/{kind}/{id}. The site has no search route; the header field
 answers in place.
+
+Guides live at /guides/{slug} and news at /news/{slug} (bare English paths,
+prefixed per translated locale). A translated page exists only where that
+locale's own authored article exists — locales never mix languages.
 
 ## What this database does not hold
 
@@ -440,7 +271,9 @@ pending. Audio, video and 3D assets are catalogued, never served.
 
 console.log(
   `emit-artifacts: ${entityCount} entity records, ${
-    KINDS.length
+    contentResult.registryRows.length
+  } article records (${articleRowCount} article search rows), ${
+    Object.keys(ENTITY_KINDS).length
   } kind indexes, ${LOCALES.length} search indexes, map registry ${
     sceneRows.length
   } scenes, markers ${markerFile.rows.length}, build ${BUILD_ID}`

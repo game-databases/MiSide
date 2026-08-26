@@ -37,6 +37,54 @@ import type {
 
 const ROLE_ORDER = ["boot", "title", "menu", "unbound"] as const;
 
+/**
+ * F-MV4: the poi-kind vocabulary whose tokens can reach the glass — marker
+ * kinds (markers.jsonl) plus the eligible POI listing kinds (poi-kinds.json).
+ * Chrome carries a localized label per token (`map.kind.<token>`); anything
+ * outside this set falls back to the raw token in the UI rather than hiding.
+ */
+export const KIND_LABEL_KEYS = [
+  "cartridge",
+  "profile_document",
+  "minigame_access",
+  "safe",
+  "travel_gate",
+  "monster",
+  "interactable",
+  "move_point",
+  "spawn_event",
+  "other",
+] as const;
+
+/** instance_census keys → their `map.census.*` chrome legend entries. */
+export const CENSUS_LABEL_MAP = {
+  bare: "map.census.bare",
+  suffixed: "map.census.suffixed",
+  total: "map.census.total",
+  minigames_hosted: "map.census.hosted",
+} as const;
+
+/** Role-group tokens → their `map.role.*` chrome entries. */
+export const ROLE_LABEL_MAP = {
+  boot: "map.role.boot",
+  title: "map.role.title",
+  menu: "map.role.menu",
+  unbound: "map.role.unbound",
+} as const;
+
+/** Localized labels keyed by raw token; absent keys fall back to the token. */
+function labelMap(
+  chrome: Record<string, string>,
+  map: Record<string, string>
+): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const [token, key] of Object.entries(map)) {
+    const v = chrome[key];
+    if (typeof v === "string" && v.length > 0) out[token] = v;
+  }
+  return out;
+}
+
 /** Locale-prefixed href for an emitter-written root-relative path. */
 function prefixed(
   prefix: string,
@@ -146,12 +194,14 @@ export function registryEntries(localeCode: string): SceneEntryVM[] {
 /**
  * Switcher groups (map-viewer §5): story scenes grouped by chapter pointer
  * order; chapters missing on a story level group as unlabeled (never a
- * guessed chapter); boot/title/menu/unbound keep their role tokens in the
- * machine-voice register.
+ * guessed chapter). Role groups (boot/title/menu/unbound) take their
+ * chrome-keyed labels when provided — the raw token is the group id, never
+ * the rendered copy (F-MV4 microcopy law).
  */
 export function switcherGroups(
   localeCode: string,
-  chromeChapterUnlabeled: string
+  chromeChapterUnlabeled: string,
+  roleLabels?: Record<string, string>
 ): SwitcherGroup[] {
   const entries = registryEntries(localeCode);
   const groups = new Map<string, SwitcherGroup>();
@@ -179,7 +229,12 @@ export function switcherGroups(
     } else {
       let g = groups.get(e.role);
       if (!g) {
-        g = { id: e.role, label: e.role, lcd: true, scenes: [] };
+        g = {
+          id: e.role,
+          label: roleLabels?.[e.role] ?? e.role,
+          lcd: true,
+          scenes: [],
+        };
         groups.set(e.role, g);
       }
       g.scenes.push(e);
@@ -341,9 +396,15 @@ export function sceneLabel(sceneId: string, localeCode: string): string {
 
 /**
  * The map.* chrome subset the viewer island needs, extracted once — both
- * route trees pass it through unchanged.
+ * route trees pass it through unchanged. Kind/role/census labels ride the
+ * keyed maps so no raw vocabulary token ever renders as copy (F-MV4).
  */
 export function mapChromeStrings(chrome: Record<string, string>): MapChromeStrings {
+  const kindLabels: Record<string, string> = {};
+  for (const kind of KIND_LABEL_KEYS) {
+    const v = chrome[`map.kind.${kind}`];
+    if (typeof v === "string" && v.length > 0) kindLabels[kind] = v;
+  }
   return {
     scenes: chrome["map.scenes"],
     sceneLocked: chrome["map.sceneLocked"],
@@ -360,5 +421,8 @@ export function mapChromeStrings(chrome: Record<string, string>): MapChromeStrin
     zoomIn: chrome["map.zoomIn"],
     zoomOut: chrome["map.zoomOut"],
     chapterUnlabeled: chrome["map.chapterUnlabeled"],
+    kindLabels,
+    roleLabels: labelMap(chrome, ROLE_LABEL_MAP),
+    censusLabels: labelMap(chrome, CENSUS_LABEL_MAP),
   };
 }

@@ -32,12 +32,13 @@ function* walk(dir) {
     if (p === SELF) continue; // this checker names the banned hosts by necessity
     const st = statSync(p);
     if (st.isDirectory()) yield* walk(p);
-    else if (/\.(mjs|js|ts|tsx|json|html|css|txt|xml)$/.test(entry)) yield p;
+    else if (/\.(mjs|js|ts|tsx|json|html|css|txt|xml|mdx|md)$/.test(entry)) yield p;
   }
 }
 
 let hits = 0;
-for (const scope of ["src", "scripts", "public"]) {
+// content pipeline C9: authored article sources join the negative grep
+for (const scope of ["src", "scripts", "public", "content"]) {
   const dir = join(root, scope);
   try {
     statSync(dir);

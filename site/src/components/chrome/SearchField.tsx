@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import MiniSearch from "minisearch";
 import { SearchIcon, XIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
@@ -12,6 +11,8 @@ import {
   MAX_VISIBLE_ROWS,
   MIN_QUERY_LENGTH,
   countSearchHits,
+  createSearchIndex,
+  indexAll,
   searchRows,
   type SearchHit,
   type SearchRow,
@@ -55,21 +56,22 @@ export function SearchField({
   // remainder so the render cap never reads as "these are all".
   const [total, setTotal] = React.useState(0);
   const [showAll, setShowAll] = React.useState(false);
-  const indexRef = React.useRef<MiniSearch<SearchRow> | null>(null);
+  // Built exclusively through createSearchIndex — no second MiniSearch config
+  const indexRef = React.useRef<ReturnType<typeof createSearchIndex> | null>(
+    null
+  );
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   // Lazy-load the emitted per-locale index once, then run the ONE matching
-  // function on the browser side — same function the server uses.
+  // path on the browser side — the SAME constructor and matching function the
+  // server uses (B-RP1: a second hand-rolled MiniSearch config here could
+  // drift from createSearchIndex; there is exactly one now).
   const ensureIndex = React.useCallback(async () => {
     if (indexRef.current) return indexRef.current;
     const res = await fetch(`/search/${localeCode}.idx.json`);
     const rows = (await res.json()) as SearchRow[];
-    const index = new MiniSearch<SearchRow>({
-      fields: ["title", "text"],
-      storeFields: ["id", "kind", "title", "url"],
-      searchOptions: { prefix: true, fuzzy: 0.2, boost: { title: 3 } },
-    });
-    index.addAll(rows);
+    const index = createSearchIndex(rows);
+    indexAll(index, rows);
     indexRef.current = index;
     return index;
   }, [localeCode]);

@@ -1,0 +1,106 @@
+<p>This page compiles the secret surfaces MiSide actually routes today: the five
+puzzle-indexed paper fragments of Level 13, the novella surface, and the
+fourteen character profile photos. Everything below is read from the extracted
+client of build 19029065 (v0.93L); where the client proves nothing, this page
+says so instead of inventing copy.</p>
+<h2 id="which-secrets-are-actually-routed">Which secrets are actually routed?</h2>
+<p>Three families of hidden papers are reachable through routed pages right now:</p>
+<ul>
+<li><strong>World papers</strong> — six rows: the five <code>paper_part</code> fragments plus one
+<code>novella_surface</code>. They live under <code>/lore</code>, re-spaced ids and all, because
+the client ships no display titles for them.</li>
+<li><strong>Profile documents</strong> — fourteen rows, one photo page per character, all
+bound to the single <code>mita-profiles</code> collectible set.</li>
+<li><strong>Books</strong> — eight shelf books with their own gallery; they are dressing-layer
+catalogue rows rather than secrets, so this page only points at them.</li>
+</ul>
+<p>The 160 <code>note</code> rows are deliberately absent from the linked lists below. No
+routed kind reaches them yet — widening that vocabulary is a governed contract
+change, not an editorial decision — so until then notes appear here only as
+plain text mentions, never as links.</p>
+<h2 id="where-do-the-five-paper-fragments-sit">Where do the five paper fragments sit?</h2>
+<p>All five sit in one scene: Level 13, whose client chapter name reads
+&quot;She Just Wants to Sleep&quot;. The shipped relink rows bind each fragment to that
+container with a hard, modeled edge:</p>
+<ul>
+<li><a href="/lore/paperpart-level13-0">Paperpart Level 13 0</a> carries puzzle index 0.</li>
+<li><a href="/lore/paperpart-level13-1">Paperpart Level 13 1</a> carries puzzle index 1.</li>
+<li><a href="/lore/paperpart-level13-2">Paperpart Level 13 2</a> carries puzzle index 2.</li>
+<li><a href="/lore/paperpart-level13-3">Paperpart Level 13 3</a> carries puzzle index 3.</li>
+<li><a href="/lore/paperpart-level13-4">Paperpart Level 13 4</a> carries puzzle index 4.</li>
+</ul>
+<p>The numbered names are the honest labels — the client serializes these papers
+with zero payload fields beyond their MonoBehaviour base, so no title exists
+to translate. Their readable text is equally unresolved on every row
+(<code>text_mechanism: unresolved</code>), which is why this compilation describes
+placement and wiring only.</p>
+<h2 id="what-about-the-novella-surface">What about the novella surface?</h2>
+<p>One further world paper is routed: the novella surface. Its id encodes
+&quot;location18&quot;, but the pinned relink row binds it to the Level 20 container —
+the scene the client names &quot;Reading Books, Destroying Glitches&quot;. The id is
+historical naming; the relink row is the authority this database follows. Its
+page carries the same honest label as every title-less paper:
+<a href="/lore/novella-location18">Novella Location 18</a>.</p>
+<h2 id="how-do-profile-photos-work">How do profile photos work?</h2>
+<p>Each of the fourteen profile documents records a <code>FlashTaker</code> carrier — the
+in-game flash camera — and eleven of them carry a pinned scene edge. Two
+scenes hold two profiles each:</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Subject scene</th>
+<th>Chapter name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="/lore/profiles/mita-short-hairs-profile">Short-haired Mita</a></td>
+<td>level12</td>
+<td>(unnamed)</td>
+</tr>
+<tr>
+<td>Kind Mita</td>
+<td>level17</td>
+<td>Cappie</td>
+</tr>
+<tr>
+<td>Mita</td>
+<td>level17</td>
+<td>Cappie</td>
+</tr>
+<tr>
+<td>Ghostly Mita</td>
+<td>level13</td>
+<td>She Just Wants to Sleep</td>
+</tr>
+<tr>
+<td>Dummy Mita</td>
+<td>level13</td>
+<td>She Just Wants to Sleep</td>
+</tr>
+</tbody></table>
+<p>The remaining placed profiles: Cap-wearing Mita in Level 9 (&quot;The Loop&quot;),
+Tiny Mita in Level 10 (&quot;Chibi Mita&quot;), Chibi Mita in Level 11 (&quot;Dummies and
+Forgotten Puzzles&quot;), Creepy Mita in Level 14 (&quot;Being Candid&quot;), Sleepy Mita in
+Level 19 (&quot;Novels&quot;), and Mila in Level 21 (&quot;Run and Hide!&quot;). Three profiles —
+2D, Core, and the true Mita — ship no placement edge yet; their pages render
+the honest unplaced state rather than a guess.</p>
+<p>Two of those table rows share one client string. The usual Mita&#39;s photo and
+the true Mita&#39;s photo both resolve to the byte-identical name &quot;Mita&quot; in every
+locale, so neither auto-links anywhere on this page: a wrong-entity link is
+worse than no link. Short-haired Mita keeps her link because her string is
+unique.</p>
+<h2 id="what-do-you-actually-do-with-a-profile">What do you actually do with a profile?</h2>
+<p>Unlocking is photography. The route below is the whole mechanic — no
+missables ride on it beyond reaching the scene:</p>
+<p>Every unlocked photo joins the same <code>mita-profiles</code> collectible set, tracked
+on each profile page alongside its achievement links.</p>
+<h2 id="are-the-books-and-notes-secrets-too">Are the books and notes secrets too?</h2>
+<p>Books are shelf dressing with a gallery: eight volumes whose art exists in all
+34 client locales except the two Chinese variants, which ship four covers each
+(the Location19 pages are absent there). They are catalogued, not hunted.</p>
+<p>The 160 notes stay catalogued-only: their placement containers and event
+wiring are measured, their serialized text mechanism is unresolved on every
+row, and no routed kind reaches them yet. When a contract change widens that
+vocabulary, this compilation grows a notes section — written from evidence,
+the same as everything above.</p>

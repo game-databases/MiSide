@@ -9,7 +9,6 @@ import { KindFilter } from "./KindFilter";
 import { PinPopover, type PopoverTarget } from "./PinPopover";
 import { SceneMap } from "./SceneMap";
 import { SceneSwitcher } from "./SceneSwitcher";
-import { kindChipStyle } from "./kindAxis";
 import type {
   MapCellVM,
   MapChromeStrings,
@@ -76,19 +75,24 @@ export function MapViewer({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- cold load once
   }, []);
 
-  // Back/forward walks the scene trail — re-sync from the URL, never rewrite
+  // Back/forward walks the scene trail — re-sync from the URL, never rewrite.
+  // F-MV4: FULL re-sync — a URL without a usable ?scene= restores the default
+  // scene instead of stranding the select on whatever was open before Back.
   React.useEffect(() => {
     if (mode !== "full") return;
     const onPop = () => {
       const st = parseMapState(new URLSearchParams(window.location.search));
-      if (st.scene && sceneIds.includes(st.scene)) setSceneId(st.scene);
+      setSceneId(
+        st.scene && sceneIds.includes(st.scene) ? st.scene : initialSceneId
+      );
       setEnabledKinds(st.kinds ? new Set(st.kinds) : null);
       setFocus(st.focus ? { kind: st.focus.kind, slug: st.focus.slug } : null);
       setSelectedId(null);
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
-  }, [mode, sceneIds]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- resync law
+  }, [mode, sceneIds, initialSceneId]);
 
   const vm = markersByScene[sceneId] ?? EMPTY_MARKERS;
 
@@ -121,14 +125,27 @@ export function MapViewer({
       vm.pins.filter((p) => isEnabled(p.kind) && matchesQuery(p.title)),
     [vm, isEnabled, matchesQuery]
   );
+  // F-MV4 filter law: the kind toggles and the quicksearch gate EVERY
+  // rendered row — plotted pins, deferred chips and the in-panel cells alike.
+  // A row that is on screen is always a row that passes the filters.
+  const visiblePending = React.useMemo(
+    () =>
+      vm.pending.filter((c) => isEnabled(c.kind) && matchesQuery(c.title)),
+    [vm, isEnabled, matchesQuery]
+  );
+  const visibleGranular = React.useMemo(
+    () =>
+      vm.granular.filter((c) => isEnabled(c.kind) && matchesQuery(c.title)),
+    [vm, isEnabled, matchesQuery]
+  );
 
   const focusKey = focus ? `${focus.kind}:${focus.slug}` : null;
-  const focusedMarkerId =
-    (focusKey &&
-      [...vm.pins, ...vm.pending, ...vm.granular].find(
+  const focusedRow = focusKey
+    ? [...vm.pins, ...vm.pending, ...vm.granular].find(
         (m) => m.entityKey === focusKey
-      )?.markerId) ||
-    null;
+      )
+    : undefined;
+  const focusedMarkerId = focusedRow?.markerId ?? null;
 
   // --- history-law writers -------------------------------------------
   // canonical kinds order = the chip row's order (sorted vocabulary)
@@ -187,9 +204,10 @@ export function MapViewer({
     return cell ? popoverFromCell(cell) : null;
   }, [selectedId, vm]);
 
-  const pendingCount = vm.pending.length;
-  const granularCount = vm.granular.length;
-  const totalRows = vm.pins.length + pendingCount + granularCount;
+  // The quicksearch LCD speaks for what IS on screen — every disposition,
+  // so "0 shown" can never contradict a visible list (F-MV4).
+  const shownCount =
+    visiblePins.length + visiblePending.length + visibleGranular.length;
 
   return (
     <div data-slot="map-viewer" className={cn("flex flex-col gap-3", className)}>
@@ -209,14 +227,19 @@ export function MapViewer({
           </LcdTerminal>
         )}
         {focus && (
+          // F-MV4 microcopy law: the chip prints the entity's own loc-correct
+          // name (markerTitle); the raw `kind:slug` key stays on title/aria
+          // only, as the machine-plane join.
           <button
             type="button"
             onClick={clearFocus}
             title={`${focus.kind}:${focus.slug}`}
+            aria-label={`${focus.kind}:${focus.slug}`}
             className="inline-flex min-h-11 items-center gap-2 rounded-full bg-primary px-4 font-lcd text-xs uppercase tracking-wide text-primary-foreground shadow-glow-pulse hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <span aria-hidden>*</span>
-            {focus.kind}:{focus.slug}
+            {(focusedRow?.title ?? "").toUpperCase() ||
+              `${focus.kind}:${focus.slug}`}
             <span aria-hidden className="text-base leading-none">
               ×
             </span>
@@ -228,6 +251,7 @@ export function MapViewer({
       <div className="flex flex-col gap-2">
         <KindFilter
           kinds={kindChips}
+          kindLabels={chromeStrings.kindLabels}
           hoveredKind={hoveredKind}
           onToggle={(k) => {
             let next: Set<string>;
@@ -259,7 +283,7 @@ export function MapViewer({
           />
           {query.trim().length > 0 && (
             <LcdTerminal className="w-fit rounded-full px-4 py-1.5 text-sm">
-              {visiblePins.length} {chromeStrings.resultsCount}
+              {shownCount} {chromeStrings.resultsCount}
             </LcdTerminal>
           )}
         </div>
@@ -270,8 +294,8 @@ export function MapViewer({
         bounds={null /* registry bounds land with S9/P5 calibration */}
         zoom={[1, 4]}
         pins={visiblePins}
-        pendingCount={pendingCount}
-        granularCount={granularCount}
+        pendingCells={visiblePending}
+        granularCells={visibleGranular}
         pendingLabel={chromeStrings.awaitingTransform}
         granularLabel={chromeStrings.sceneGranular}
         focusedMarkerId={focusedMarkerId}
@@ -283,6 +307,10 @@ export function MapViewer({
           openPage: chromeStrings.openPage,
           close: chromeStrings.close,
         }}
+        popoverLabels={{
+          kindLabels: chromeStrings.kindLabels,
+          censusLabels: chromeStrings.censusLabels,
+        }}
         controlLabels={{
           zoomIn: chromeStrings.zoomIn,
           zoomOut: chromeStrings.zoomOut,
@@ -293,45 +321,22 @@ export function MapViewer({
         onPinHover={onPinHover}
       />
 
-      {/* scene-level presence of non-plotted rows — chips, never pins */}
-      {(pendingCount > 0 || granularCount > 0) && (
+      {/* F-MV4 one-row law: deferred rows render ONCE — as the in-panel
+          LockedCell strip (SceneMap), whose cells are themselves the
+          crawlable <a href> anchors (AC MV-4) with the popover on click.
+          The old below-panel chip stack is gone; only PLOTTED pins keep a
+          dedicated SSR anchor pill row here, since their markers live inside
+          the Leaflet canvas where crawlers cannot see them. */}
+      {visiblePins.length > 0 && (
         <ul className="flex flex-wrap gap-1.5">
-          {[...vm.pending, ...vm.granular].map((c) => (
-            <li key={c.markerId}>
-              <a
-                href={c.pageHref ?? undefined}
-                onMouseEnter={() => setHoveredKind(c.kind)}
-                onMouseLeave={() => setHoveredKind(null)}
-                className={cn(
-                  "inline-flex min-h-11 items-center gap-2 rounded-full border px-3 text-xs hover:brightness-110",
-                  hoveredKind === c.kind && "ring-2 ring-ring"
-                )}
-                style={kindChipStyle(c.kind, false)}
-              >
-                <span className="font-bold">{c.title}</span>
-                <LcdTerminal className="rounded-full px-2 py-0.5 text-[12px]">
-                  {c.status === "scene-granular"
-                    ? chromeStrings.sceneGranular
-                    : "awaiting-transform-stage"}
-                </LcdTerminal>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* SSR crawlable marker anchors (AC MV-4): the same targets the
-          popover links, as plain <a href> in served HTML */}
-      {totalRows > 0 && (
-        <ul className="flex flex-wrap gap-1.5">
-          {[...vm.pins, ...vm.pending, ...vm.granular].map((m) =>
-            m.pageHref ? (
-              <li key={`anchor-${m.markerId}`}>
+          {visiblePins.map((p) =>
+            p.pageHref ? (
+              <li key={`anchor-${p.markerId}`}>
                 <a
-                  href={m.pageHref}
+                  href={p.pageHref}
                   className="inline-block rounded-full bg-secondary px-3 py-1 font-lcd text-xs text-secondary-foreground hover:bg-accent"
                 >
-                  {m.title}
+                  {p.title}
                 </a>
               </li>
             ) : null

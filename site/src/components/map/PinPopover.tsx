@@ -33,6 +33,7 @@ export interface PopoverTarget {
 export function PinPopover({
   target,
   chrome,
+  labels,
   onClose,
   className,
   style,
@@ -44,21 +45,27 @@ export function PinPopover({
     openPage: string;
     close: string;
   };
+  /** Localized label maps (kind chips, census legend) keyed by raw token. */
+  labels?: {
+    kindLabels?: Record<string, string>;
+    censusLabels?: Record<string, string>;
+  };
   onClose: () => void;
   className?: string;
   style?: React.CSSProperties;
 }) {
+  const { kindLabels = {}, censusLabels = {} } = labels ?? {};
   // §5/§7 carry law (F-7): the cell surfaces whenever mechanism !== "hard"
   // OR the relink status !== "modeled" — a future relink edit cannot flip
   // rendering silent. Absent fields never trip it (fail-closed).
   const provenanceBites =
     (Boolean(target.mechanism) && target.mechanism !== "hard") ||
     (Boolean(target.relinkStatus) && target.relinkStatus !== "modeled");
-  const statusToken =
+  const statusLabel =
     target.status === "awaiting-transform-stage"
-      ? "awaiting-transform-stage"
+      ? chrome.awaitingTransform
       : target.status === "scene-granular"
-        ? "scene-granular"
+        ? chrome.sceneGranular
         : null;
 
   return (
@@ -87,22 +94,16 @@ export function PinPopover({
       </div>
 
       <span
+        title={target.kind}
         className="w-fit rounded-full border px-2.5 py-1 font-lcd text-xs uppercase tracking-wide"
         style={kindChipStyle(target.kind, false)}
       >
-        {target.kind}
+        {kindLabels[target.kind] ?? target.kind}
       </span>
 
-      {statusToken && (
-        <LcdTerminal
-          title={
-            target.status === "scene-granular"
-              ? chrome.sceneGranular
-              : chrome.awaitingTransform
-          }
-          className="rounded-full px-3 py-1.5 text-xs"
-        >
-          {statusToken}
+      {statusLabel && (
+        <LcdTerminal title={statusLabel} className="rounded-full px-3 py-1.5 text-xs">
+          {statusLabel}
         </LcdTerminal>
       )}
 
@@ -130,13 +131,18 @@ export function PinPopover({
       )}
 
       {target.instanceCensus && (
+        // F-MV4 microcopy law: the emitter's census vocabulary (bare/suffixed/
+        // total/minigames_hosted) never renders raw — each count rides its
+        // chrome-keyed legend label; an unmapped key falls back to the token
+        // so a count can never silently vanish.
         <div className="flex flex-wrap gap-1">
           {Object.entries(target.instanceCensus).map(([k, v]) => (
             <span
               key={k}
+              title={censusLabels[k] ?? k}
               className="rounded-full bg-secondary px-2 py-0.5 font-lcd text-xs text-[var(--ms-signal)]"
             >
-              {k}:{v}
+              {censusLabels[k] ?? k}: {v}
             </span>
           ))}
         </div>

@@ -76,7 +76,16 @@ export interface SwitcherGroup {
   scenes: SceneEntryVM[];
 }
 
-/** Minimal chrome subset the island needs (strings resolved server-side). */
+/**
+ * Minimal chrome subset the island needs (strings resolved server-side).
+ *
+ * F-MV4 microcopy law: vocabulary that reaches the glass is chrome-keyed —
+ * poi-kind names (`map.kind.*`), switcher role groups (`map.role.*`) and the
+ * instance-census legend (`map.census.*`) arrive as localized labels keyed by
+ * the raw token. The raw token stays the lookup key (machine plane); it never
+ * renders as copy. An absent label falls back to the token rather than
+ * silently hiding a row (fail-open display, fail-closed claims).
+ */
 export interface MapChromeStrings {
   scenes: string;
   sceneLocked: string;
@@ -93,4 +102,10 @@ export interface MapChromeStrings {
   zoomIn: string;
   zoomOut: string;
   chapterUnlabeled: string;
+  /** Raw poi-kind token → localized chip label. */
+  kindLabels: Record<string, string>;
+  /** Raw role token → localized switcher group label. */
+  roleLabels: Record<string, string>;
+  /** Raw instance-census key → localized legend label. */
+  censusLabels: Record<string, string>;
 }

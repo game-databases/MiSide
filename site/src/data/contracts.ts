@@ -8,75 +8,14 @@
  * §Files); data rows follow one JSON object per line. The _meta line is
  * parsed and exposed, never skipped silently.
  */
+// Leaf reader lives in ./jsonl.ts so the joins registry reader (joins.ts)
+// sits on ONE copy of the loader — re-exported here for API stability.
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { extractedRoot, readJsonl } from "./jsonl.ts";
 
-/** Repo-root extracted/ (override for exotic checkouts; build runs with cwd=site). */
-export function extractedRoot(): string {
-  return (
-    process.env.MISIDE_EXTRACTED_ROOT ?? join(process.cwd(), "..", "extracted")
-  );
-}
-
-export interface JsonlFile<T> {
-  meta: Record<string, unknown> | null;
-  rows: T[];
-}
-
-/*
- * Two _meta header shapes exist in the corpus (measured 2026-08-25):
- *  • WRAPPED: {"_meta": {...}} — characters, cartridges, scenes, dialogue
- *    graphs, markers.
- *  • BARE: a header object as line 1 without the "_meta" key (carries
- *    build_id / derived_fields / schema keys instead) — documents family.
- * Files may also be EMPTY by contract (endings relink launch-member) or carry
- * no header at all (achievements/endings/dialogue data files, ledger files).
- */
-function looksLikeHeader(obj: unknown, idField?: string): boolean {
-  if (!obj || typeof obj !== "object") return false;
-  const keys = Object.keys(obj as Record<string, unknown>);
-  if (keys.includes("_meta")) return true;
-  return (
-    ["derived_fields", "schema", "schema_id", "generator"].some((k) =>
-      keys.includes(k)
-    ) && (!idField || !keys.includes(idField))
-  );
-}
-
-/** Read a contract .jsonl file: header (any corpus shape) + typed rows. */
-export function readJsonl<T>(relPath: string, idField?: string): JsonlFile<T> {
-  let raw: string;
-  try {
-    raw = readFileSync(join(extractedRoot(), relPath), "utf8");
-  } catch (err) {
-    if ((err as NodeJS.ErrnoException).code === "ENOENT") {
-      // empty-by-contract file (e.g. endings relink launch member)
-      return { meta: null, rows: [] };
-    }
-    throw err;
-  }
-  const lines = raw.split("\n").filter((l) => l.trim().length > 0);
-  if (lines.length === 0) return { meta: null, rows: [] };
-  let meta: Record<string, unknown> | null = null;
-  let start = 0;
-  const first = JSON.parse(lines[0]) as Record<string, unknown>;
-  if (looksLikeHeader(first, idField)) {
-    meta =
-      first._meta !== undefined
-        ? (first._meta as Record<string, unknown>)
-        : first;
-    start = 1;
-  }
-  const rows = lines.slice(start).map((l) => JSON.parse(l) as T);
-  // Contract row-count pin: declared count must equal the data-row count.
-  const declared = meta && typeof meta.row_count === "number" ? meta.row_count : null;
-  if (declared !== null && declared !== rows.length) {
-    throw new Error(
-      `${relPath}: _meta.row_count=${declared} but ${rows.length} data rows`
-    );
-  }
-  return { meta, rows };
-}
+export { extractedRoot, readJsonl } from "./jsonl.ts";
+export type { JsonlFile } from "./jsonl.ts";
 
 /* ------------------------------------------------------------------ */
 /* Dataset row types — only the fields the scaffold consumes.          */
@@ -465,7 +404,12 @@ export function poiKinds(): PoiKindRuling[] {
 }
 
 /* Shipped relink rows (extracted/relinks/) — modules join ONLY these; the
-   site never derives an edge the corpus does not pin (AGENTS.md rule 8). */
+   site never derives an edge the corpus does not pin (AGENTS.md rule 8).
+   Every reader below is a thin typed view over ONE generic consumption path:
+   joins.familyEdges(), which parses the file through the registry's own
+   anchor grammar and census-gates against joins.json. Bespoke per-family
+   loaders that could drift from the registry were the B-RP1 defect class. */
+import { familyEdges } from "./joins.ts";
 
 /** Forward character→achievement membership (relink family
     character--achievement; mechanism/status ride the row). */
@@ -477,26 +421,18 @@ export interface CharacterAchievementEdge {
 }
 
 export function characterAchievementEdges(): CharacterAchievementEdge[] {
-  const { rows } = readJsonl<{
-    direction?: string;
-    from?: string | null;
-    to?: string | null;
-    mechanism?: string;
-    status?: string;
-  }>("relinks/character--achievement.jsonl");
-  return rows
+  return familyEdges("character--achievement")
     .filter(
-      (r) =>
-        r.direction === "forward" &&
-        typeof r.from === "string" &&
-        typeof r.to === "string" &&
-        r.to.startsWith("achievement:")
+      (e) =>
+        e.direction === "forward" &&
+        e.from?.raw != null &&
+        e.to?.form === "achievement:"
     )
-    .map((r) => ({
-      from: r.from as string,
-      achievement_id: (r.to as string).slice("achievement:".length),
-      mechanism: r.mechanism ?? "",
-      status: r.status ?? "",
+    .map((e) => ({
+      from: e.from?.raw ?? "",
+      achievement_id: e.to?.id ?? "",
+      mechanism: e.mechanism ?? "",
+      status: e.status ?? "",
     }));
 }
 
@@ -511,28 +447,20 @@ export interface CharacterSceneEdge {
 }
 
 export function characterSceneEdges(): CharacterSceneEdge[] {
-  const { rows } = readJsonl<{
-    direction?: string;
-    from?: string | null;
-    to?: string | null;
-    mechanism?: string;
-    status?: string;
-  }>("relinks/character--scene-membership.jsonl");
-  return rows
+  return familyEdges("character--scene-membership")
     .filter(
-      (r) =>
-        r.direction === "forward" &&
-        typeof r.from === "string" &&
-        typeof r.to === "string" &&
-        r.to.startsWith("scene:")
+      (e) =>
+        e.direction === "forward" &&
+        e.from?.raw != null &&
+        e.to?.form === "scene:"
     )
-    .map((r) => ({
-      from: r.from as string,
-      scene_id: (r.to as string).slice("scene:".length),
+    .map((e) => ({
+      from: e.from?.raw ?? "",
+      scene_id: e.to?.id ?? "",
       // provenance carry law (map-viewer §7 F-7): mechanism rides through to
       // render — surfaced whenever it is not "hard"
-      mechanism: r.mechanism ?? "",
-      status: r.status ?? "",
+      mechanism: e.mechanism ?? "",
+      status: e.status ?? "",
     }));
 }
 
@@ -551,29 +479,21 @@ export interface DocumentSceneEdge {
 }
 
 export function documentSceneEdges(): DocumentSceneEdge[] {
-  const { rows } = readJsonl<{
-    kind?: string;
-    from?: string | null;
-    to?: string | null;
-    mechanism?: string;
-    status?: string;
-  }>("relinks/document--scene-membership.jsonl");
-  const out: DocumentSceneEdge[] = [];
-  for (const r of rows) {
-    if (r.kind !== "forward") continue;
-    if (typeof r.from !== "string" || typeof r.to !== "string") continue;
-    const sep = r.from.indexOf(":");
-    if (!r.to.startsWith("container:")) continue;
-    if (sep <= 0) continue;
-    out.push({
-      family: r.from.slice(0, sep),
-      document_id: r.from.slice(sep + 1),
-      container: r.to.slice("container:".length),
-      mechanism: r.mechanism ?? "",
-      status: r.status ?? "",
-    });
-  }
-  return out;
+  return familyEdges("document--scene-membership")
+    .filter(
+      (e) =>
+        e.direction === "forward" &&
+        e.from?.raw != null &&
+        e.from.form !== "<bare>" &&
+        e.to?.form === "container:"
+    )
+    .map((e) => ({
+      family: e.from!.form.slice(0, -1),
+      document_id: e.from!.id,
+      container: e.to!.id,
+      mechanism: e.mechanism ?? "",
+      status: e.status ?? "",
+    }));
 }
 
 /**
@@ -588,68 +508,79 @@ export interface MinigameCarrierEdge {
   status: string;
 }
 
+const SCENE_CLASS_FAMILY = "scene-class-family@";
+
 export function minigameCarrierEdges(): MinigameCarrierEdge[] {
-  const { rows } = readJsonl<{
-    direction?: string;
-    from?: string | null;
-    to?: string | null;
-    mechanism?: string;
-    status?: string;
-  }>("relinks/minigame--scene-carrier.jsonl");
-  const out: MinigameCarrierEdge[] = [];
-  for (const r of rows) {
-    if (
-      r.direction !== "forward" ||
-      typeof r.from !== "string" ||
-      typeof r.to !== "string" ||
-      !r.from.startsWith("minigame:") ||
-      !r.to.startsWith("scene-class-family@")
+  return familyEdges("minigame--scene-carrier")
+    .filter(
+      (e) =>
+        e.direction === "forward" &&
+        e.from?.form === "minigame:" &&
+        e.to?.raw != null &&
+        e.to.raw.startsWith(SCENE_CLASS_FAMILY)
     )
-      continue;
-    out.push({
-      minigame_id: r.from.slice("minigame:".length),
-      container: r.to.slice("scene-class-family@".length),
-      mechanism: r.mechanism ?? "",
-      status: r.status ?? "",
-    });
-  }
-  return out;
+    .map((e) => ({
+      minigame_id: e.from!.id,
+      container: (e.to!.raw as string).slice(SCENE_CLASS_FAMILY.length),
+      mechanism: e.mechanism ?? "",
+      status: e.status ?? "",
+    }));
 }
 /** Minigame ids carried by one scene container (relink family
     minigame--scene-carrier, inverse direction): rows the corpus pins as
     "<Name>Class<" co-presence in that container's own asset list. Keyed
     "scene-class-family@<container>"; unknown containers return []. */
 export function minigamesInContainer(container: string): string[] {
-  const { rows } = readJsonl<{
-    direction?: string;
-    from?: string | null;
-    to?: string | null;
-  }>("relinks/minigame--scene-carrier.jsonl");
   const ids = new Set<string>();
-  for (const r of rows) {
+  for (const e of familyEdges("minigame--scene-carrier")) {
     if (
-      r.direction === "inverse" &&
-      r.from === `scene-class-family@${container}` &&
-      typeof r.to === "string" &&
-      r.to.startsWith("minigame:")
+      e.direction === "inverse" &&
+      e.from?.raw === `${SCENE_CLASS_FAMILY}${container}` &&
+      e.to?.form === "minigame:"
     ) {
-      ids.add(r.to.slice("minigame:".length));
+      ids.add(e.to.id);
     }
   }
   return [...ids].sort();
 }
 
+/**
+ * save_key → cartridge row — the owning dataset's own identity column
+ * (cartridges contract DS-4). The `flashes:<save_key>` anchor form of the
+ * character--cartridge join resolves THROUGH this index and never through a
+ * guessed nameSave equality; an unknown save_key is an orphan (no link).
+ */
+let cartridgeSaveKeyIndex: Map<string, CartridgeRow> | null = null;
+export function cartridgeBySaveKey(): Map<string, CartridgeRow> {
+  if (!cartridgeSaveKeyIndex) {
+    cartridgeSaveKeyIndex = new Map(
+      kindRows("cartridges").map((r) => {
+        const c = r as unknown as CartridgeRow;
+        return [c.save_key, c];
+      })
+    );
+  }
+  return cartridgeSaveKeyIndex;
+}
+
 export function poi(): PoiRow[] {
   return readJsonl<PoiRow>("data/scenes/poi.jsonl", "poi_id").rows;
 }
-export function dialogueLevels(): string[] {
+/** Carrier level → node count (one read; search text + transcript census). */
+export function dialogueLevelNodeCounts(): Map<string, number> {
   // graphs/<level>.json — 19 carrier levels (dialogue contract §Files).
   // Node records key on `id` ("<container>:<Class>#<truePathID>", contract
   // §Identity scheme).
   const { rows } = readJsonl<{ id: string }>("data/dialogue/nodes.jsonl", "id");
-  const levels = new Set<string>();
-  for (const r of rows) levels.add(r.id.split(":")[0]);
-  return [...levels].sort();
+  const counts = new Map<string, number>();
+  for (const r of rows) {
+    const lvl = r.id.split(":")[0];
+    counts.set(lvl, (counts.get(lvl) ?? 0) + 1);
+  }
+  return counts;
+}
+export function dialogueLevels(): string[] {
+  return [...dialogueLevelNodeCounts().keys()].sort();
 }
 export function buildId(): string {
   const { meta } = readJsonl<unknown>("data/scenes/scenes.jsonl");

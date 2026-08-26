@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import { VoidWell } from "@/components/kit/VoidWell";
-import { LcdTerminal } from "@/components/kit/LcdTerminal";
+import { ProvenanceChip } from "@/components/entity/ProvenanceChip";
+import { provenanceBites } from "@/lib/relations/relationCards";
 import { cn } from "@/lib/utils";
 // aliased: the `scenes` prop below shadows any same-named module binding
 import { scenes as registryScenes } from "@/data/contracts";
@@ -38,6 +39,7 @@ export function LocationModule({
   localePrefix,
   openMapLabel,
   unplacedLabel,
+  censusLabels,
   className,
 }: {
   scenes: LocationSceneRef[];
@@ -47,6 +49,12 @@ export function LocationModule({
   openMapLabel: string;
   /** Localized aria label for the unplaced well (chrome map.unplaced). */
   unplacedLabel?: string;
+  /**
+   * F-MV4 microcopy law: instance-census keys (bare/suffixed/total/
+   * minigames_hosted) are emitter vocabulary and never render raw — each
+   * count rides its chrome-keyed legend label (`map.census.*`).
+   */
+  censusLabels?: Record<string, string>;
   className?: string;
 }) {
   // An entity the corpus places nowhere renders an honest unplaced well of
@@ -71,9 +79,7 @@ export function LocationModule({
 
       <ul className="flex flex-col gap-1.5">
         {scenes.map((s) => {
-          const provenanceBites =
-            (Boolean(s.mechanism) && s.mechanism !== "hard") ||
-            (Boolean(s.status) && s.status !== "modeled");
+          const bites = provenanceBites(s.mechanism, s.status);
           const routable = routedSceneIds.has(s.sceneId);
           return (
             <li
@@ -103,18 +109,17 @@ export function LocationModule({
                   {openMapLabel}
                 </a>
               )}
-              {provenanceBites && (
-                <LcdTerminal className="w-fit rounded-full px-2.5 py-0.5 text-xs">
-                  {[s.mechanism, s.status].filter(Boolean).join(" · ")}
-                </LcdTerminal>
+              {bites && (
+                <ProvenanceChip mechanism={s.mechanism} status={s.status} />
               )}
               {s.census &&
                 Object.entries(s.census).map(([k, v]) => (
                   <span
                     key={k}
+                    title={censusLabels?.[k] ?? k}
                     className="rounded-full bg-secondary px-2 py-0.5 font-lcd text-xs text-[var(--ms-signal)]"
                   >
-                    {k}:{v}
+                    {censusLabels?.[k] ?? k}: {v}
                   </span>
                 ))}
             </li>

@@ -26,15 +26,16 @@ export function MapRoute({
   localeCode: string;
   localePrefix: string;
 }) {
-  const unlabeled = chrome["map.chapterUnlabeled"];
+  const chromeStrings = mapChromeStrings(chrome);
+  const unlabeled = chromeStrings.chapterUnlabeled;
   return (
     <MapViewer
       mode="full"
-      groups={switcherGroups(localeCode, unlabeled)}
+      groups={switcherGroups(localeCode, unlabeled, chromeStrings.roleLabels)}
       sceneIds={scenes().map((s) => s.scene_id)}
       initialSceneId={defaultSceneId(localeCode, unlabeled)}
       markersByScene={markersByScene(localePrefix, localeCode)}
-      chromeStrings={mapChromeStrings(chrome)}
+      chromeStrings={chromeStrings}
     />
   );
 }

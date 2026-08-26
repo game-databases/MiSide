@@ -8,7 +8,7 @@ import { VoidWell } from "@/components/kit/VoidWell";
 import { LockedCell } from "./LockedCell";
 import { PinPopover, type PopoverTarget } from "./PinPopover";
 import { kindPinStyle } from "./kindAxis";
-import type { MapPinVM } from "./viewTypes";
+import type { MapCellVM, MapPinVM } from "./viewTypes";
 
 /*
  * SceneMap — the Leaflet island host (map-viewer §5). Island boundary
@@ -22,6 +22,13 @@ import type { MapPinVM } from "./viewTypes";
  * when the registry carries bounds, until then the deterministic default
  * view centers on the MEAN of the plotted points (presentation math over
  * consumed rows — OQ-6 ruling).
+ *
+ * F-MV4 in-panel law: rows WITHOUT projecting coordinates are not hidden —
+ * they render INSIDE the panel as a deterministic stacked LockedCell strip
+ * over the grid's start edge. The strip is a list, not a map claim: fixed
+ * offsets carry zero spatial meaning and never fake a coordinate. Every cell
+ * opens the same PinPopover a pin does (provenance cell included), so the
+ * detail layer is reachable on today's all-deferred corpus.
  *
  * Imagery law (OQ-2 progressive + §3.1 fence): authored schematics live at
  * public/map/<scene_id>/base.svg (+ optional meta.json anchors). An image is
@@ -37,9 +44,9 @@ export interface SceneMapProps {
   bounds: [number, number, number, number] | null;
   zoom: [number, number];
   pins: MapPinVM[];
-  /** Non-plotted counts for the visible-locked strips. */
-  pendingCount: number;
-  granularCount: number;
+  /** Non-plotted rows of THIS scene after the viewer's filters. */
+  pendingCells: MapCellVM[];
+  granularCells: MapCellVM[];
   pendingLabel: string;
   granularLabel: string;
   focusedMarkerId: string | null;
@@ -50,6 +57,10 @@ export interface SceneMapProps {
     sceneGranular: string;
     openPage: string;
     close: string;
+  };
+  popoverLabels?: {
+    kindLabels?: Record<string, string>;
+    censusLabels?: Record<string, string>;
   };
   /** Localized control labels (≥44 px pill controls, AC MV-7). */
   controlLabels: { zoomIn: string; zoomOut: string; resetView: string };
@@ -76,14 +87,15 @@ export function SceneMap(props: SceneMapProps) {
     bounds,
     zoom,
     pins,
-    pendingCount,
-    granularCount,
+    pendingCells,
+    granularCells,
     pendingLabel,
     granularLabel,
     focusedMarkerId,
     hoveredKind,
     popoverTarget,
     popoverChrome,
+    popoverLabels,
     controlLabels,
     onSelectPin,
     onClosePopover,
@@ -99,8 +111,19 @@ export function SceneMap(props: SceneMapProps) {
   const [mapReady, setMapReady] = React.useState(0);
   const [imageryReady, setImageryReady] = React.useState(false);
 
+  /** The scene's non-plotted rows in deterministic strip order. */
+  const cells = React.useMemo(
+    () => [...pendingCells, ...granularCells],
+    [pendingCells, granularCells]
+  );
+
   const selectedPin =
     (popoverTarget && pins.find((p) => p.markerId === popoverTarget.markerId)) ||
+    null;
+  const selectedCell =
+    (popoverTarget &&
+      !selectedPin &&
+      cells.find((c) => c.markerId === popoverTarget.markerId)) ||
     null;
 
   // --- island lifecycle: one Leaflet map per scene -------------------
@@ -297,22 +320,29 @@ export function SceneMap(props: SceneMapProps) {
       />
       <div ref={hostRef} className="absolute inset-0 z-[400]" />
 
-      {pins.length === 0 && (
-        /* zero plotted rows: the honest explicit-missing well — never a
-           caption sentence (design-standard §5.1) */
+      {pins.length === 0 && cells.length === 0 && (
+        /* zero rows of ANY disposition: the honest explicit-missing well —
+           never a caption sentence (design-standard §5.1) */
         <VoidWell className="pointer-events-none absolute inset-6 z-[450] rounded-md border-dashed opacity-60" aria-label={pendingLabel} />
       )}
 
-      {bounds !== null && imageryReady && pendingCount > 0 && (
-        <LockedCell count={pendingCount} label={pendingLabel} className="z-[500]" />
-      )}
-      {bounds !== null && imageryReady && granularCount > 0 && (
+      {/* F-MV4: the scene's own non-plotted rows render INSIDE the panel —
+          a deterministic stacked strip over the grid's start edge. Fixed
+          offsets are list order, not coordinates; nothing is faked and no
+          bounds/imagery gate can hide the rows again. */}
+      {cells.map((c, i) => (
         <LockedCell
-          count={granularCount}
-          label={granularLabel}
-          className="z-[500] top-16"
+          key={c.markerId}
+          cell={c}
+          statusLabel={
+            c.status === "scene-granular" ? granularLabel : pendingLabel
+          }
+          hovered={hoveredKind === c.kind}
+          onOpen={onSelectPin}
+          onHover={onPinHover}
+          style={{ top: `${12 + i * 52}px`, insetInlineStart: 12 }}
         />
-      )}
+      ))}
 
       {/* pill controls — every target ≥44 px */}
       <div className="absolute end-3 top-3 z-[500] flex flex-col gap-2">
@@ -345,8 +375,9 @@ export function SceneMap(props: SceneMapProps) {
         </button>
       </div>
 
-      {/* popover anchor — desktop pins to the marker, ≤640 px becomes the
-          side sheet (CSS vars keep breakpoints in charge of placement) */}
+      {/* popover — plotted pins anchor to their marker through pan/zoom;
+          position-less cells anchor bottom-start (a list row has no spot to
+          pin to and none may be invented). ≤640 px is the side sheet. */}
       {popoverTarget && (
         <div
           ref={anchorRef}
@@ -355,10 +386,13 @@ export function SceneMap(props: SceneMapProps) {
           <PinPopover
             target={popoverTarget}
             chrome={popoverChrome}
+            labels={popoverLabels}
             onClose={onClosePopover}
             className={cn(
               "pointer-events-auto absolute",
-              "left-[var(--pin-x)] top-[var(--pin-y)] -translate-x-1/2 -translate-y-full",
+              selectedCell
+                ? "bottom-3 left-3"
+                : "left-[var(--pin-x)] top-[var(--pin-y)] -translate-x-1/2 -translate-y-full",
               "max-[640px]:inset-x-3 max-[640px]:bottom-3 max-[640px]:top-auto max-[640px]:w-auto max-[640px]:translate-x-0 max-[640px]:translate-y-0"
             )}
           />

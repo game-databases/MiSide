@@ -6,6 +6,7 @@ import {
   LocationModule,
   type LocationSceneRef,
 } from "@/components/entity/LocationModule";
+import { RelationCards } from "@/components/entity/RelationCards";
 import { MapViewer } from "@/components/map/MapViewer";
 import { VoidWell } from "@/components/kit/VoidWell";
 import {
@@ -31,6 +32,7 @@ import {
   markers,
   minigameCarrierEdges,
   minigamesInContainer,
+  cartridgeBySaveKey,
   type BookRow,
   type CartridgeRow,
   type ProfileDocumentRow,
@@ -39,6 +41,11 @@ import {
   type EndingRow,
   type SceneRow,
 } from "@/data/contracts";
+import {
+  edgesAnchoringPage,
+  relationCardsFor,
+} from "@/lib/relations/relationCards";
+import { articlesReferencing } from "@/data/articles";
 import { KIND_SEGMENT, entityHref } from "@/lib/routes";
 import { asRoute } from "@/lib/utils";
 import type { Chrome } from "@/i18n/request";
@@ -158,14 +165,22 @@ function buildModules(
       (data.row as unknown as ProfileDocumentRow).placement_mechanism !== "placed";
     if (refs.length > 0 || unplacedWell) {
       tabs.push({
+        // F-MV4 one-locations-tab law: this is THE locations-bearing module of
+        // every non-location entity page — count rides the tab label, the
+        // census chips ride chrome-keyed legend labels, and no second
+        // "Locations N" ModuleList tab duplicates it below.
         id: "location",
-        label: chrome["nav.locations"],
+        label:
+          refs.length > 0
+            ? tabLabel(chrome["nav.locations"], refs.length)
+            : chrome["nav.locations"],
         panel: (
           <LocationModule
             scenes={refs}
             localePrefix={localePrefix}
             openMapLabel={chrome["map.openMap"]}
             unplacedLabel={chrome["map.unplaced"]}
+            censusLabels={mapChromeStrings(chrome).censusLabels}
           />
         ),
       });
@@ -173,9 +188,25 @@ function buildModules(
   }
 
   if (data.kind === "mita" || data.kind === "players") {
-    const cartridges = kindRows("cartridges").filter(
-      (r) => (r as unknown as CartridgeRow).depicts_character_id === data.id
-    );
+    // B-RP1 conversion — cartridges ride the REGISTERED family
+    // character--cartridge through edgesAnchoringPage; the old ad-hoc
+    // depicts_character_id filter was a frontend join that also missed the
+    // player side entirely. Peer anchors are `flashes:<save_key>` resolved
+    // through the owning cartridge save_key column; an orphan save_key never
+    // renders a row (no-orphan law).
+    const cartIds = new Set<string>();
+    for (const { peer } of edgesAnchoringPage(
+      "character--cartridge",
+      data.kind,
+      data.id
+    )) {
+      if (!peer || peer.form !== "flashes:") continue;
+      const c = cartridgeBySaveKey().get(peer.id);
+      if (c) cartIds.add(c.cartridge_id);
+    }
+    const cartridges = [...cartIds]
+      .map((cid) => findRow("cartridges", cid) as unknown as CartridgeRow | undefined)
+      .filter((c): c is CartridgeRow => Boolean(c));
     if (cartridges.length > 0) {
       tabs.push({
         id: "cartridges",
@@ -186,7 +217,7 @@ function buildModules(
               const c = r as unknown as CartridgeRow;
               return {
                 href: entityHref(localePrefix, "cartridges", c.cartridge_id),
-                label: displayName("cartridges", r as Record<string, unknown>, localeCode),
+                label: displayName("cartridges", r as unknown as Record<string, unknown>, localeCode),
                 // VC-3 fix #1: reader-meaning chips only — where the flash is
                 // found (pinned pickup container → scene title) and which
                 // collectible set it belongs to. save_key is machine-plane
@@ -201,9 +232,20 @@ function buildModules(
         ),
       });
     }
-    const profiles = kindRows("profiles").filter(
-      (r) => (r as unknown as ProfileDocumentRow).subject_character_id === data.id
-    );
+    // B-RP1 conversion — profiles ride the registered document--character
+    // family (the corpus's subject-identity join), not a subject_character_id
+    // dataset filter re-derived per page.
+    const profileIds = new Set<string>();
+    for (const { peer } of edgesAnchoringPage(
+      "document--character",
+      data.kind,
+      data.id
+    )) {
+      if (peer?.form === "profile_document:") profileIds.add(peer.id);
+    }
+    const profiles = [...profileIds]
+      .map((pid) => findRow("profiles", pid) as unknown as ProfileDocumentRow | undefined)
+      .filter((p): p is ProfileDocumentRow => Boolean(p));
     if (profiles.length > 0) {
       tabs.push({
         id: "profiles",
@@ -217,7 +259,7 @@ function buildModules(
               // identity; it never renders).
               return {
                 href: entityHref(localePrefix, "profiles", p.document_id),
-                label: displayName("profiles", r as Record<string, unknown>, localeCode),
+                label: displayName("profiles", r as unknown as Record<string, unknown>, localeCode),
               };
             })}
           />
@@ -225,40 +267,10 @@ function buildModules(
       });
     }
 
-    // Appearances — shipped relink rows only (character--scene-membership);
-    // a character the corpus does not place gets no module, never a guess.
-    const sceneIds = [
-      ...new Set(
-        characterSceneEdges()
-          .filter((e) => e.from === data.id)
-          .map((e) => e.scene_id)
-      ),
-    ];
-    if (sceneIds.length > 0) {
-      const sceneRows = sceneIds
-        .map((sid) =>
-          kindRows("locations").find(
-            (r) => (r as unknown as SceneRow).scene_id === sid
-          ) as unknown as SceneRow | undefined
-        )
-        .filter((r): r is SceneRow => Boolean(r));
-      if (sceneRows.length > 0) {
-        tabs.push({
-          id: "appearances",
-          label: tabLabel(chrome["nav.locations"], sceneRows.length),
-          panel: (
-            <ModuleList
-              links={sceneRows.map((s) => ({
-                href: entityHref(localePrefix, "locations", s.scene_id),
-                label:
-                  displayName("locations", s as unknown as Record<string, unknown>, localeCode),
-                stats: [s.role],
-              }))}
-            />
-          ),
-        });
-      }
-    }
+    // F-MV4 merge: the old "appearances" ModuleList tab re-listed the SAME
+    // character--scene-membership edges the location module above already
+    // renders (with the two-way map anchors on top) under a second
+    // "Locations N" tab. Collapsed — one locations-bearing tab per page.
 
     // Collectible-set membership — shipped relink rows only
     // (character--achievement forward edges).
@@ -318,28 +330,10 @@ function buildModules(
     }
     const container = c.pickup_ref?.container ?? null;
     if (container) {
-      const scene = findRow("locations", container) as unknown as SceneRow | undefined;
-      if (scene) {
-        tabs.push({
-          id: "found-in",
-          label: tabLabel(chrome["nav.locations"], 1),
-          panel: (
-            <ModuleList
-              links={[
-                {
-                  href: entityHref(localePrefix, "locations", scene.scene_id),
-                  label: displayName(
-                    "locations",
-                    scene as unknown as Record<string, unknown>,
-                    localeCode
-                  ),
-                  stats: [desluggedLabel(scene.scene_id)],
-                },
-              ]}
-            />
-          ),
-        });
-      }
+      // F-MV4 merge: the old "found-in" ModuleList tab duplicated the scene
+      // link the location module already renders (scene anchor + OPEN MAP +
+      // census chips). Collapsed — the pickup scene lives only in the
+      // location tab now.
       // The minigames the same container carries (shipped relink family
       // minigame--scene-carrier, keyed on the row's own pickup container) —
       // the second pinned hop of VC-3 fix #2. Chips carry where the game is
@@ -373,13 +367,21 @@ function buildModules(
   }
 
   if (data.kind === "minigames") {
-    const m = data.row as unknown as MinigameRow;
-    const achievements = m.achievement_ids
+    // B-RP1 conversion — award binds ride the registered minigame--achievement
+    // family (award-site ∪ type-tag, J3), not the row's achievement_ids
+    // column restated per page. Null-anchor partials drop out fail-closed.
+    const achIds = new Set<string>();
+    for (const { peer } of edgesAnchoringPage(
+      "minigame--achievement",
+      "minigames",
+      data.id
+    )) {
+      if (peer?.form === "achievement:") achIds.add(peer.id);
+    }
+    const achievements = [...achIds]
       .map(
         (aid) =>
-          kindRows("achievements").find(
-            (r) => (r as unknown as AchievementRow).achievement_id === aid
-          ) as unknown as AchievementRow | undefined
+          findRow("achievements", aid) as unknown as AchievementRow | undefined
       )
       .filter((a): a is AchievementRow => Boolean(a));
     if (achievements.length > 0) {
@@ -392,19 +394,80 @@ function buildModules(
   }
 
   if (data.kind === "endings") {
-    const e = data.row as unknown as EndingRow;
-    if (e.achievement_id) {
-      const a = kindRows("achievements").find(
-        (r) => (r as unknown as AchievementRow).achievement_id === e.achievement_id
-      ) as unknown as AchievementRow | undefined;
-      if (a) {
-        tabs.push({
-          id: "achievement",
-          label: tabLabel(chrome["nav.achievements"], 1),
-          panel: <AchievementModule rows={[a]} localePrefix={localePrefix} localeCode={localeCode} />,
-        });
-      }
+    // B-RP1 conversion — the award achievement rides the registered
+    // achievement--ending reverse-index family (id-columns pair).
+    const awardIds = new Set<string>();
+    for (const { peer } of edgesAnchoringPage(
+      "achievement--ending",
+      "endings",
+      data.id
+    )) {
+      if (peer?.form === "achievement:") awardIds.add(peer.id);
     }
+    const awarded = [...awardIds]
+      .map(
+        (aid) =>
+          findRow("achievements", aid) as unknown as AchievementRow | undefined
+      )
+      .filter((a): a is AchievementRow => Boolean(a));
+    if (awarded.length > 0) {
+      tabs.push({
+        id: "achievement",
+        label: tabLabel(chrome["nav.achievements"], awarded.length),
+        panel: <AchievementModule rows={awarded} localePrefix={localePrefix} localeCode={localeCode} />,
+      });
+    }
+  }
+
+  // B-RP1 — relation cards: every remaining registered family that anchors
+  // this entity, grouped per family with direction-aware peers, carry-law
+  // provenance chips and fail-closed states. Cards exist only when the
+  // registry ships an edge for this entity (module omission, never an empty
+  // section). The tab label is the machine register ("edges·N") — a database
+  // voice, like the LCD role tokens, so no chrome key is fabricated.
+  const cards = relationCardsFor(data.kind, data.id, localeCode, localePrefix);
+  if (cards.length > 0) {
+    const itemCount = cards.reduce((n, c) => n + c.items.length, 0);
+    tabs.push({
+      id: "relations",
+      label: (
+        <span className="font-lcd text-xs uppercase tracking-wide">
+          edges·{itemCount}
+        </span>
+      ),
+      panel: <RelationCards cards={cards} />,
+    });
+  }
+
+  // content pipeline M2 reverse module (spec §3.2): "featured in guides/news"
+  // — crawlable <a href> in BOTH directions with the article graph. Reads
+  // ONLY the emitted registry (never article sources); the link rides THIS
+  // locale's admitted cell when one exists, otherwise the pivot path —
+  // cross-locale navigation, never a mixed-language page.
+  const featured = articlesReferencing(data.kind, data.id);
+  if (featured.length > 0) {
+    tabs.push({
+      id: "featured-in",
+      label: tabLabel(chrome["article.featuredIn"], featured.length),
+      panel: (
+        <ModuleList
+          links={featured.map((a) => {
+            const own = a.locales[localeCode];
+            const cell =
+              own && own.path
+                ? { path: own.path, title: own.title }
+                : a.locales.en && a.locales.en.path
+                  ? { path: a.locales.en.path, title: a.locales.en.title }
+                  : undefined;
+            return {
+              href: cell?.path ?? "/",
+              label: cell?.title ?? a.title_en,
+              stats: [a.type === "guide" ? "guide" : a.type],
+            };
+          })}
+        />
+      ),
+    });
   }
 
   return tabs;
@@ -665,6 +728,7 @@ function LocationsScenePanel({
   const poiGroups = scenePoiListing(sceneId);
   const eligibleGroups = poiGroups.filter((g) => g.eligible);
   const ineligibleGroups = poiGroups.filter((g) => !g.eligible);
+  const chromeStrings = mapChromeStrings(chrome);
   return (
     <div className="flex flex-col gap-5">
       <MapViewer
@@ -675,7 +739,7 @@ function LocationsScenePanel({
         markersByScene={{
           [sceneId]: sceneMarkers(sceneId, localePrefix, localeCode),
         }}
-        chromeStrings={mapChromeStrings(chrome)}
+        chromeStrings={chromeStrings}
       />
 
       {hints.length > 0 && (
@@ -688,14 +752,17 @@ function LocationsScenePanel({
         </ul>
       )}
 
-      {/* POI listing — list form over poi.jsonl (consumed, never derived) */}
+      {/* POI listing — list form over poi.jsonl (consumed, never derived).
+          F-MV4: group headers print the chrome-keyed kind label; the raw
+          token stays on title only. */}
       {eligibleGroups.map((g) => (
         <section key={`e:${g.kind}`} className="flex flex-col gap-1.5">
           <span
+            title={g.kind}
             className="w-fit rounded-full border px-3 py-1 font-lcd text-xs uppercase tracking-wide"
             style={{ color: "var(--ms-text-2)" }}
           >
-            {g.kind}
+            {chromeStrings.kindLabels[g.kind] ?? g.kind}
           </span>
           <ul className="flex flex-wrap gap-1.5">
             {g.classes.map((c) => (

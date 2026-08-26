@@ -6,10 +6,13 @@
  *  • labels come from emitted fields + re-spacing ONLY — never an invented
  *    proper noun (CH-6 measured-absence; map-viewer §4 forbidden list).
  */
+// RELATIVE imports only (B-RP1): this module is also loaded by
+// scripts/emit-artifacts.mjs under plain Node, where the "@/..." alias does
+// not exist. Same behavior for the Next.js bundler.
 import {
   ENTITY_KINDS,
   personages,
-} from "@/data/contracts";
+} from "../../data/contracts.ts";
 import type {
   AchievementRow,
   BookRow,
@@ -20,8 +23,8 @@ import type {
   ProfileDocumentRow,
   SceneRow,
   WorldDocumentRow,
-} from "@/data/contracts";
-import { resolveLoc } from "@/data/resolveLoc";
+} from "../../data/contracts.ts";
+import { resolveLoc } from "../../data/resolveLoc.ts";
 
 /** Display name for a row in a locale — pointers stay truth, EN copies are glue. */
 export function displayName(
