@@ -35,7 +35,7 @@ byte-verifiable floor ([OQ-1](#13-open-questions-carried-for-the-arbiter)).
 | Pin surface | Verified this pass |
 |---|---|
 | Live install | `A:\SteamLibrary\steamapps\appmanifest_2527500.acf`: `buildid 19029065` == `TargetBuildID` (grep re-run this pass) |
-| [extracted/EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md) | `pipeline-defaults`: buildId 19029065 · versionLabel 0.93L · Unity 2021.3.35f1 · IL2CPP v29; run events `loc-run 9e0dc0f9` + `decompile-run 2682a4c6`, both 2026-08-24 — a single-generation corpus |
+| [extracted/EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md) / [toolchain.md](../../toolchain.md) | `pipeline-defaults` ([EXTRACTION-LOG] l.7): buildId 19029065 · versionLabel 0.93L · Unity 2021.3.35f1. IL2CPP metadata v29 is a separate pin — [toolchain.md l.59](../../toolchain.md) ("Metadata v29 is inside its supported…"). Run events `loc-run 9e0dc0f9` + `decompile-run 2682a4c6`, both 2026-08-24 — a single-generation corpus |
 | [contracts/registry/fingerprints.json](../../contracts/registry/fingerprints.json) | `_meta{conventions, generated_by: contracts/check_contracts.py generate, patch_day law, spec pointer}` · `pipeline_pin {build_id: "19029065", version_label: "0.93L"}` · `artifacts`: **84 entries = 55 under `extracted/data/**`** (achievements 2 · cartridges 3 · characters 2 · dialogue 30 · documents 3 · endings 5 · logic 4 · scenes 6) **+ 29 under `extracted/relinks/`**, every one `build_id: "19029065"`; stamp classes header-stamp 38 · document-stamp 22 · pipeline-defaults 21 · row-stamp 3; summed pinned `row_count` = **37,264 data rows** |
 | Depotcache (this host) | exactly ONE MiSide manifest (`2527501_*`) — zero older snapshots survive locally |
 | Demo 2527520 | never installed on any root; acquisition DROPPED 2026-08-24 ([questions #2](../questions.md)) |
@@ -64,7 +64,7 @@ its output" is exactly the division of labor codified below.
 ## 1. Scope
 
 In: M1 emitters (`extracted/data/changelog/`); M2 dormant diff stage
-(`run_all` S9); M3 server-only readers; M4 routes ×2 trees + hub/feed/
+(`run_all` S10); M3 server-only readers; M4 routes ×2 trees + hub/feed/
 sitemap/search/JSON-API consumption; M5 i18n, interaction, and corruption
 semantics; acceptance criteria incl. the Scout's eight, each with a proof
 method; open questions carried with recommendations.
@@ -85,7 +85,7 @@ interactive compare-tool ambitions of [tools-plan §3.7](../../tools-plan.md)
 | Module | Owns | Key files (new unless noted) |
 |---|---|---|
 | **M1 Emitters** | The three changelog artifacts, stamped and gated | `contracts/emit_changelog.py`; curated seed `contracts/registry/patch_seed.jsonl`; artifacts `extracted/data/changelog/patches.jsonl`, `build_integrity.jsonl`, `save_point_renames.jsonl` |
-| **M2 Diff activation stage** | Dormant-by-design diff arm + code-plane digests + re-pin coupling | `run_all` stage **S9 `changelog`** (stage table gains its row in the same commit); outputs `extracted/data/changelog/changesets/<from>-to-<to>/*.jsonl` + `code_plane_digests.jsonl` |
+| **M2 Diff activation stage** | Dormant-by-design diff arm + prior-pin witness + code-plane digests + re-pin coupling | `run_all` stage **S10 `changelog`** (stage table gains its row in the same commit); outputs `extracted/data/changelog/_pins/` (prior-pin witness, written first) + `changesets/<from>-to-<to>/*.jsonl` + `code_plane_digests.jsonl` |
 | **M3 Readers** | Server-only typed access beside the contracts reader | extends `site/src/data/contracts.ts` siblings: `src/data/changelog.ts` |
 | **M4 Routes & feeds** | `/news/patch/[patch_slug]` ×2 trees via shared factory; feed/sitemap/search/API | `(pivot)/news/patch/[patch_slug]/page.tsx` + `[locale]/…` mirror; factory `PatchRoute` beside `src/components/routes/sectionPages.tsx`; fills `feeds/patch.xml/route.ts` (existing skeleton) |
 | **M5 i18n + semantics** | Chrome keys ×34, RTL legs, ledger gating, corruption visual grammar | locale files; components under `src/components/changelog/` |
@@ -96,7 +96,7 @@ Dependency edges:
 fingerprints.json ──► M1 ──► {M3}             (readers consume ONLY emitted jsonl)
 patch_seed.jsonl ──► M1                        (traceability gate at emit, CL-3)
 spec entities.save_point attrs ──► M1          (rename-lineage join, documented-note)
-run_all S1–S8 ──► S9(M1 emit; M2 diff arm)     (S9 registered last; dormant exits 0)
+run_all env…logic-layer ──► S10(M1 emit; M2 diff arm)   (S10 registered last, AFTER logic-layer; dormant exits 0)
 update watch (DAQ) ══► M2                      (buildid change → keep tree N−1 → rerun)
 M2 ──► changesets + code_plane_digests         (zero bytes until ≥2 trees, CL-8)
 M2 ──► fingerprints re-pin, SAME commit        (patch_day law; rebuild fails until re-pinned)
@@ -226,8 +226,17 @@ patch-note evidence:
 The emitter **refuses** `evidence_class: "computed"` unless the row was
 produced by an M2 changeset in the same run — enforced structurally (M2
 writes those rows itself; M1 can only emit `documented-note`) and by test
-(CL-1). Seed rows: `Cap → Cappie`, `Open Dialogue → Be Candid` at v0.921
-(COMP J9); minigame tuning notes at v0.93 stay `summary_facts` on the
+(CL-1). Seed rows — three at v0.921 (COMP J9): `Cap → Cappie`
+(`entity_id: "cap"`), `Open Dialogue → Be Candid`
+(`entity_id: "open-dialogue"`), and `Out of the Core → Leave The Core`
+(`entity_id: "out-of-the-core"`) — all `attribute: "display_name"`,
+`evidence_class: "documented-note"`. Spelling caveat recorded: D1's
+chapter table writes `"Leave the Core!"` while its rename line writes
+`Leave The Core`; `to_value` pins VERBATIM to the rename line, which is
+the patch-note-derived evidence CL-3 resolves against. Entity ids remain
+provisional joins to the spec-declared `save_point` entity
+([spec.md](../../spec.md)) until LEVELS checkpoint configs are
+extracted. Minigame tuning notes at v0.93 stay `summary_facts` on the
 patch row until a computed diff decomposes them.
 
 ### 3.4 Emission laws (fail loudly, never silently unlink)
@@ -252,15 +261,22 @@ patch row until a computed diff decomposes them.
 
 ### 4.1 Dormancy contract
 
-S9 registers in `run_all` after census S8 and **exits 0 emitting zero
-bytes whenever fewer than two distinct build trees exist** — no stub
-changesets, no empty-shell files, no log noise beyond one machine-plane
-line stating the dormancy condition. Honest omission is the feature
-(CL-8). Today's tree: S9 runs M1 (always) + the diff arm (never).
+S10 registers in `run_all` LAST, after `logic-layer`, and **exits 0
+emitting zero bytes whenever fewer than two distinct build trees exist**
+— no stub changesets, no empty-shell files, no log noise beyond one
+machine-plane line stating the dormancy condition. Honest omission is
+the feature (CL-8). Today's tree: S10 runs M1 (always) + the diff arm
+(never). The anchor sits after `logic-layer` BY NAME, not by number,
+for two measured reasons: M1 projects all 84 fingerprints — including
+the four `extracted/data/logic/**` entries logic-layer rewrites on a
+patch-day rerun — so registering before logic-layer would snapshot
+stale digests (CL-2 red) and let the diff arm compare mid-rerun pins;
+and positional numbers drift when scene-transform (canonically reserved
+S9) eventually inserts mid-list, while name-based ordering does not.
 
 ### 4.2 Trigger chain (ridden, not rebuilt)
 
-The update watch is DAQ's design; S9 is its last consumer:
+The update watch is DAQ's design; S10 is its last consumer:
 
 1. appmanifest `buildid` ≠ 19029065 (local read + keyless appdetails
    cross-check);
@@ -269,7 +285,8 @@ The update watch is DAQ's design; S9 is its last consumer:
    ([data-acquisition §update watch](../../data-acquisition.md));
 3. `./run_all <path>` rerun → every fingerprint invalidated → re-pinned
    in the emit-stage commit (patch_day law) → site rebuild unblocked;
-4. S9 diff arm compares tree N−1 vs N and emits.
+4. S10's diff arm writes the prior-pin witness from tree N−1 FIRST
+   (§4.3), then compares N−1 vs N and emits.
 
 ### 4.3 Diff algorithm when armed
 
@@ -282,6 +299,19 @@ The update watch is DAQ's design; S9 is its last consumer:
   `record_id + field`.
 - **Renames**: a removal paired with an addition whose non-name fields
   match ⇒ `renames.jsonl` row with `evidence_class: "computed"`.
+- **Outputs — prior-pin witness (first)**: at trigger time, BEFORE tree
+  N−1 is released and before any changeset is written, M2 hashes tree
+  N−1's fingerprinted artifact set under fingerprints conventions and
+  writes `extracted/data/changelog/_pins/<from>-to-<to>.json`, schema
+  `miside.changelog.prior_pin/1` — fields `from_build_id`,
+  `from_version_label`, `to_build_id`, `to_version_label`,
+  `artifacts[]{path, sha256}` (the from-side digest map), `row_count`;
+  the ids must parse from the directory name. This record is the durable
+  witness for CL-1: tree N−1 itself is deleted once diffing completes
+  (keep-until-diffed law, §4.2 step 2), so without it the from-side of
+  every changeset rests on nothing verifiable. Pre-trigger the stage
+  emits zero bytes including zero `_pins/` files (dormancy law
+  unchanged).
 - **Outputs**: `changesets/<from>-to-<to>/{artifacts,records,renames}.jsonl`
   (schemas `miside.changelog.changeset_{artifacts,records,renames}/1`)
   plus `code_plane_digests.jsonl`.
@@ -301,7 +331,7 @@ The update watch is DAQ's design; S9 is its last consumer:
 Demo 2527520 covers ch 0–3 and shares no time lineage with the full
 game: it is a **scope slice, not an ancestor build**, and never produces
 a `/news/patch/` page. Its only sanctioned use to date is as a
-mechanics-shakeout second tree for S9 behind an owner SteamGuard session
+mechanics-shakeout second tree for S10 behind an owner SteamGuard session
 (OQ-2); a user-facing demo-vs-full comparison, if ever ruled in, belongs
 to a compare tool, not the changelog.
 
@@ -397,8 +427,11 @@ content-pipeline §7.5.
 count == published patch pages, and correct-as-empty (`<channel>` with
 zero items) until the first publish — the current skeleton's shape,
 retained (CL-6). Feed entries carry dates and titles only; machine-plane
-`source_ref`s stay out of the channel too (they are repo-only even in
-XML per content-pipeline §7.2's split).
+`source_ref`s stay out of the channel too — ground: AGENTS rule 3 /
+decision-register D2 (repo-only tokens are banned from every served
+pixel, and RSS readers render channel items as user text); NOT
+content-pipeline §7.2, which admits machine-plane tokens into the
+JSON-LD/feed layers and therefore cannot authorize this stricter rule.
 
 ---
 
@@ -411,7 +444,7 @@ picker targets are the existing slugs, written as segments/params
 (`?from=&to=` form reserved for the future compare state). **At one
 build the picker does not render at all** — not disabled, not shown with
 one item; the timeline itself is the version list. When build #2 arms
-S9, the picker enumerates only existing build pages + changeset pages;
+S10, the picker enumerates only existing build pages + changeset pages;
 any filter answers as typed, no submit controls
 ([DR-2026-08-22-inputs-answer-as-you-type]). A control that implies
 choice where none exists is the same defect as a fake diff.
@@ -456,8 +489,11 @@ visual anywhere in the piece.)
 Chrome keys land ×34 in one commit with identical key sets (parity
 checker gate). Timeline rails get an RTL leg mirroring the MV-1
 precedent; ar/ar-EG serve `dir="rtl"` (CL-12). Page admission follows
-localization-architecture §5.5 **option A — omit, never mix**: pivot EN
-publishes immediately; a non-pivot `/de/news/patch/<slug>` exists iff a
+`_foundation/localization-architecture.md` §1 bullet 2 (localized
+content is never mixed across languages on one page) + §5 item 5 (a page
+lacking admitted content in a locale is either omitted or rendered with
+a pack-declared filler — this pack rules OMIT): pivot EN publishes
+immediately; a non-pivot `/de/news/patch/<slug>` exists iff a
 translated cell is admitted under content-pipeline §8's translation-
 authority gate. Summary facts are never machine-translated and never
 EN-passthrough onto a localized URL.
@@ -488,6 +524,7 @@ table it does not rot between patches.
 | `extracted/data/changelog/patches.jsonl` | M1 | content-pipeline M2 (materialization), M3 reader |
 | `extracted/data/changelog/build_integrity.jsonl` | M1 | M3 reader (integrity panel) |
 | `extracted/data/changelog/save_point_renames.jsonl` | M1 (+M2 rows post-trigger) | M3 reader |
+| `extracted/data/changelog/_pins/<from>-to-<to>.json` | M2 (trigger-time capture) | CL-1 gate, CI layer-scope checks |
 | `extracted/data/changelog/changesets/<from>-to-<to>/*.jsonl` | M2 (dormant) | M3 reader, reverse-link module |
 | `extracted/data/changelog/code_plane_digests.jsonl` | M2 (dormant; OQ-3) | CI layer-scope checks |
 | registry type-`patch` rows | content-pipeline M2 | hub, feed, sitemap, search, JSON API |
@@ -501,14 +538,14 @@ proof method.
 
 | # | Criterion | Proof method |
 |---|---|---|
-| CL-1 | **Honesty gate** (Scout 1): build FAILS if any changeset/renames artifact exists while `fingerprints.json` holds <2 distinct `build_id`s; M1 structurally cannot emit `evidence_class:"computed"` | suite asserts emitter refusal + empty output glob in a single-build sandbox tree; mutation: drop a fixture changeset into the sandbox → nonzero exit naming the file |
+| CL-1 | **Honesty gate** (Scout 1, re-keyed to the prior-pin witness): build FAILS if any changeset/renames artifact exists without its matching `_pins/<from>-to-<to>.json` record whose ids are coherent with the directory name and whose from-side artifact map covers every path the changeset reports changed/removed — plus the unchanged structural arm: M1 structurally cannot emit `evidence_class:"computed"`. `fingerprints.json` always holds EXACTLY ONE generation of pins per the patch_day replacement law; stale rows are never accumulated to satisfy any count | pre-trigger refusal: emitter refusal + empty output globs asserted in the single-build sandbox; mutation: inject a fixture changeset WITHOUT a pin record → nonzero exit naming the file AND the missing `_pins/` path. Post-trigger acceptance: CL-10's two-tree sandbox WITH a coherent pin record → green; mutation: corrupt one digest inside the pin record → red. Both suites share the CL-10 tree-pair harness |
 | CL-2 | **Byte-truth** (Scout 2): recomputed sha256 over all 84 artifacts equals `fingerprints.json`; `build_integrity.jsonl` matches 1:1 (path, digest, row_count, stamp class) | `check_contracts.py verify` extension runs in-suite; corrupt one fixture byte → red; restored → green |
 | CL-3 | **Traceability** (Scout 3): every `patches.jsonl` row resolves date+label to its `source_ref`; unresolved row fails emit | join sweep test; inject an unresolvable seed row → nonzero exit naming slug |
 | CL-4 | **Plane separation** (Scout 4): no `game_version` entity id renders where a buildId/version label is expected, and vice versa | negative grep over emitted HTML for the v0-93l and v0-921 pages |
 | CL-5 | **Locale parity** (Scout 5): `/news/patch/<slug>` exists ×2 trees × locale IFF the availability ledger admits it; hreflang cluster == ledger cells; metadata law per page (unique localized title/description, self-canonical, x-default → bare path) | mechanical route-manifest ∩ ledger equality both directions + existing metadata checker over ≥3 locales incl. one RTL |
 | CL-6 | **Feed validity** (Scout 6): `patch.xml` parses; item count == published patch pages; valid while zero | XML parse + count assert against registry; zeroed-fixture case exercised |
 | CL-7 | **Machine-plane hygiene** (Scout 7): no refresh-time/status vocabulary on any served surface; dates appear only as article facts; zero repo-plane tokens (source identities, upstream URLs, extractor names, license tags) | banned-token sweep both directions (Phase-4 CI lane; S9-pattern grep) |
-| CL-8 | **Dormant silence** (Scout 8): M2 pre-trigger produces no bytes, exits 0; on-page corollaries (changed-entity block, picker, reverse module) render nothing at one build | suite runs S9 against the single-build sandbox; curl a patch page asserting absence of the three modules without placeholders |
+| CL-8 | **Dormant silence** (Scout 8): M2 pre-trigger produces no bytes, exits 0; on-page corollaries (changed-entity block, picker, reverse module) render nothing at one build | suite runs S10 against the single-build sandbox; curl a patch page asserting absence of the three modules without placeholders |
 | CL-9 | **Stream coherence**: registry type-`patch` rows == `patches.jsonl` published rows 1:1; hub chip count == same; sitemap `news@<locale>` includes every admitted patch URL | join sweep registry ↔ patches.jsonl ↔ partition output, full diff |
 | CL-10 | **Changeset completeness + layer scoping** (arms post-trigger; OQ-3-gated): every fingerprint delta between two re-pins appears in exactly one changeset; every changeset carries `code_plane_digests.jsonl` coverage for all five declared digest inputs | two-tree sandbox fixture: injected artifact/record mutations each land in exactly one changeset; delete one digest input from a fixture → emit fails |
 | CL-11 | **Emitted-page invariants**: served patch HTML passes the C14 three-invariant re-parse (closed element allowlist, zero `on*` attributes, destination allowlist) despite having no markdown source | ct1-fix-vC re-parse checker pointed at rendered patch output; seeded-violation probes fail naming element/attribute |
@@ -538,13 +575,13 @@ All six Scout OQs forward, each with this spec's recommendation.
 - **OQ-1 · Honest-stub ruling (the board's own question).** Ship-now vs
   defer the differentiator claim until trigger. **Recommendation: SHIP
   NOW** — Arm A is real, versioned, byte-verifiable, unfakeable; the
-  claim activates mechanically at build #2 via S9; deferral leaves D5's
+  claim activates mechanically at build #2 via S10; deferral leaves D5's
   launch-blocking patch-diff/changelog route unsatisfied, and the BPB
   waiver is explicitly scoped to that pack ([DR-2026-08-22-bpb-drop-changelog];
   §3.4 of the Scout rules dropping OUT for MiSide).
 - **OQ-2 · Demo semantics.** **Recommendation: OUT of the changelog
   product** — demo is a scope slice, never an ancestor (§4.4); permitted
-  solely as S9's mechanics-shakeout second tree if an owner SteamGuard
+  solely as S10's mechanics-shakeout second tree if an owner SteamGuard
   session happens anyway; any user-facing comparison is compare-tool
   material.
 - **OQ-3 · Code-plane rider.** **Recommendation: MANDATORY** —
@@ -581,7 +618,7 @@ All six Scout OQs forward, each with this spec's recommendation.
 3. **Source-ref drift**: patch rows depend on LANE-C news-ingest ids for
    two rows' `steam-news-item` refs; CL-3 must fail the build loudly,
    never silently unlink (row_count-pin lesson).
-4. **Second-build surprise**: when the trigger fires mid-other-work, S9's
+4. **Second-build surprise**: when the trigger fires mid-other-work, S10's
    diff + re-pin must complete in ONE commit or the site stays red by
    design (patch_day law); the runbook step belongs to DAQ's update
    watch doc, cross-referenced here.
@@ -597,5 +634,6 @@ All six Scout OQs forward, each with this spec's recommendation.
   KEEP-PINNED projections, fingerprint/hash rule
 - [tools-plan.md §3.7/§6](../../tools-plan.md) — scored tool lane and
   second-build scarcity risk this piece prices in
-- `_foundation/localization-architecture.md` §5.5 — omit-never-mix
-  admission law (option A)
+- `_foundation/localization-architecture.md` §1 bl.2 + §5 item 5 —
+  never-mix law and the omit-or-declared-filler admission policy (this
+  pack rules OMIT)

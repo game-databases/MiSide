@@ -1,4 +1,4 @@
-"""S9 logic-layer — LG1-LG4 dataset emitters (docs/specs/logic-layer.mdx).
+"""logic-layer — LG1-LG4 dataset emitters (docs/specs/logic-layer.mdx).
 
 Wraps extracted/data/logic/build/emit_logic.py (the B-LL2 builder) as a run_all
 stage so the delivery gate holds: a module is done only when its pipeline stage
