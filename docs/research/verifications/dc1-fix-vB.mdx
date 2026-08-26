@@ -1,0 +1,140 @@
+# V-DC1b — Verifier B: independent re-measurement + ruling on the F-DC1 fix round
+
+Second independent verifier of [data-contracts.mdx](../../specs/data-contracts.mdx) @ c53721c
+(post-fix, 500 lines measured; diff base 2894a7b0 → c53721c), against review
+[dc1-review.mdx](dc1-review.mdx) F-1…F-6 and the fixer's 6/6-resolved claim. Independence held: I
+did NOT read [dc1-fix-vA.mdx](dc1-fix-vA.mdx). Method: every number below was re-measured by me
+over `extracted/data/` + `extracted/relinks/` with fresh Python parses (full-file scans, no
+sampling, headers excluded per the §2.2 class rules); no citation trusted without re-derivation.
+Read-only session: no `git`, no writes except this file. Measured 2026-08-26.
+
+## 1. Independent re-measurement — what reproduces
+
+Headline: **the numeric fabric of the post-fix spec reproduces essentially 100%.** Of the 28 claim
+families I swept, 25 reproduce exactly; 3 diverge (§3). Every number the fix round ADDED
+reproduced.
+
+| # | Claim (spec loc) | My re-measurement | Verdict |
+|---|---|---|---|
+| 1 | Row counts: personages 24 (14 mita+10 player) · char-candidates 26 · cartridges 23 · minigames 17 · cart-candidates 2 · achievements 26 · endings 4 (3 ending+1 mode-stub) · choice_nodes 371 · branch_edges 1555 · flag_tables 5 · nodes 2839 · edges 3776 · residue 1 · profiles 14 · world 166 · books 8 · scenes 24 · poi 986 · spawn-tables 24 · scene-links 57 · markers 0 · graphs 19 (no level18) | all exact, incl. kind splits 14/10 and 3+1 | ✔ |
+| 2 | Header classes (§2.2): A on 10 dataset files + 25 relation files; B on 3 documents files (descriptor w/ `row_count`, no `_meta`); C on achievements/endings×4/dialogue×3/residue | exact | ✔ |
+| 3 | Personage values: save_key "" ×2 (`mita-usual`,`mita-true`) · resource_path "" ×9 · gallery_icon null ×15 / 9 populated ALL sharing level2/file_id 2/path_id 276 (zero pathID-0) · preview_prefab_key ×15 verbatim `Personages/<Name>` · `mita-usual` c1 hex `#cc73a2` re-derived · name_is_shared pair · build_id string | exact | ✔ |
+| 4 | Cartridges: family 13/10 · status registered-pickup ×21 + unresolved ×2 · pickup_ref null = `mtad-2`,`mtacore` · `[inferred]` binding ×21 | exact | ✔ |
+| 5 | Minigames: access_medium 7-value split 6/4/2/2/1/1/1 · key_source 8/4/2/2/1 · name_loc nonnull ×2 (TV) · scoring_derivable:false ×17 · present_but_unreachable:true ×4 | exact | ✔ |
+| 6 | Achievements: predicate_class 12/11/3 · unlock.status 11/15 · get_bool_trusted:false ×26 · icon pending-export ×26 · **steam captured_at_machine_plane true ×26** · display 34 locales ×26 rows · joins.chapter null ×26 · type_tag 11/8/3/2/1/1 · build_id int | exact | ✔ |
+| 7 | Endings: choice kinds 353/13/5 · active null ×371 · effect_class 709/468/356/10/8/3/1 · status proven-hard ×1555 · feeds_ending null ×1555 · notes_community null ×4 | exact | ✔ |
+| 8 | Nodes: kind 2710/70/24/13/11/11 · **speaker null ×129 = EXACTLY the five kinds 70/24/13/11/11** (F-3 fix verified) · 19 levels, level18 absent · voice_present null ×2839 · next_resolved resolved 2161 / string-'null' 572 / unresolved-in-level 12 / key-absent 94 · chapter null ×2839 · style nonnull ×13 all quest_box · build int | exact | ✔ |
+| 9 | Edges: kind 2161/1535/70/5/5 · **call_index ×3776, call ×1535, resolved_to ×1535, anchor_entry ×142** · `"ptr"` occurrences 0 (key scan AND raw-file regex) · label_ref present ×80, populated pointers · resolution {text-keyed-no-node-carrier ×10, absent ×3766} (F-4 fix verified) | exact | ✔ |
+| 10 | Speakers.json: curated_mapping ×14, statuses 9 provisional-pending-ds1 + 5 pending-curation; sidecar keys present | exact | ✔ |
+| 11 | Residue join: node_id `level14:Dialogue_3DText#5559` | exact | ✔ |
+| 12 | Documents: profiles flash_save_key null ×1 · placement null ×3 · mechanism 11/2/1 · chapter ×14; world family 160/5/1 · text_mechanism unresolved ×166 · text_loc null ×166 · sprite_ptr ×18 · scr_main ×5 (paperpart-level13-*, shared path_id 19195) · audio_source_refs ×1 · puzzle_index ×5; books art 272 cells / 264 true | exact | ✔ |
+| 13 | Scenes: role story ×20 + boot/title/menu/unbound · spawn populated ×20 ALL `{inline ∧ world-assumed}`, null ×4 (F-2 scene half verified) · display_name_loc null ×24 | exact | ✔ |
+| 14 | POI: source inline 298 / pptr-unresolved 76 / none 612 · **space unknown ×668 / parent-local ×56 / object-local-offset ×262, `world-assumed` ×0 on POI rows** (F-2 fix verified) · kind 9-value split 344/277/102/96/70/46/25/24/2 · location_id null ×30 · 23 level containers | exact | ✔ |
+| 15 | Spawn tables: **status:"unresolved-target" ×24**; census ints ×4, event_day/label, destroy_after_create, entries, spawn_table_id, level — full 12-key inventory | exact | ✔ |
+| 16 | Scene links: edge_kind loads 19 / continues 15 / chapter_name 15 / unloads 7 / ledger 1 (=57) · mechanism hard ×57 · **note ×16 · chapter_name_loc ×15** (D-3 fixer numbers verified) | exact | ✔ |
+| 17 | Relink families (§4.1): all 25 per-family data-row counts match the table digit-for-digit after `_meta` exclusion; sum **1159**; cartridge--scene-placement / minigame--choice-condition / ending--branch-edge = 0 rows (meta-only declarations shipped) | exact | ✔ |
+| 18 | Anchor form census (§4.2): note ×686 · target+controller ×370+10 · container ×354 · **BARE ×172** · scene ×134 · loc ×113 · achievement ×92 · minigame ×88 · profile_document ×78 · flashes ×44 · character ×37 · paper_part ×20 · save_point ×19 · speaker-theme ×14 · outfit ×8 · novella_surface/dialogue-carriers/scene-class ×6/×6/×4 · choice_flag/prop_family ×2/×2 — **sums to 2259 exactly**; the four declared never-forms (`cartridge:`,`document:`,`cloth-site:`,`encoding-residue:`) occur 0 times | exact | ✔ |
+| 19 | Direction splits: 22/22, 22/22, 3/3, fwd-only 4, 8/4, fwd-only 14, 10/10, 2/2, 38/38, 15/15, 20/20, 19/18 skew, fwd-only 19 | exact | ✔ |
+| 20 | Mechanism/status (F-5 fix): mechanism hard ×1024 / logic ×104 / inferred ×20 / "scrMain PPtr (hard)" ×10 doc--minigame / ABSENT ×1 residue; status modeled ×1043 / partial ×73 / provisional-pending-ds1 ×9 + pending-curation ×5 / scrMain ×10 + inferred ×2 / ABSENT ×17 (award-site 11 + ach-ending 3 + cloth-site 2 + residue 1) | exact | ✔ |
+| 21 | Endpoint arithmetic: 2259 strings = 1117 two-string edges ×2 + 14 + 11 singles; deliberate nulls 59 = 25 JSON nulls + 34 absent-key slots, distributed award-site 22 (=11 rows × both slots keyed-absent), minigame--achievement 12, ending 6, speaker-theme 5, outfit/cloth/membership/residue 4+4+4+2=14 — the spec's per-family split is exact under its declared convention | exact (convention-sensitive, see nit N-3) | ✔ |
+| 22 | Availability (§5): 2686 rows = 680 bucket (646/33/1) + 1734 presence (1462/264/8) + 272 book_page (264 true/8 false) · 34 distinct client-dir locale names · 50 distinct categories | exact | ✔ |
+| 23 | missingdata.md reads-line: 83 distinct IDs, family split 12 XC + 9 CH + 7 ACH + 6 END + 10 DLG + 9 CAR + 8 DOC + 11 SCN + 3 DOCX + 8 MA — identical | exact | ✔ |
+| 24 | Entity blocks completeness (F-6 fix): full key-set scans show personage (19 keys), candidates (10), cartridge (13), minigame (18), choice_node (13), flag_table (6), profile_document (16), world_document (14), book (9), scene (18), spawn_table (12), scene_link (9), dialogue_edge (10), dialogue_node (**all 30 emitted keys**) covered — every field the fixer added exists on disk with the stated counts | exact | ✔ |
+| 25 | Pins/provenance: EXTRACTION-LOG pipeline-defaults buildId 19029065 / versionLabel 0.93L; `_assembly-provenance.jsonl` 30 records; poi-kinds `_meta.schema` = miside.scenes.poi-kinds/1 | exact | ✔ |
+
+Not reproducible (findings) — §3. The fixer's "57/58 self-checks green" is recorded nowhere on
+disk (`docs/logs/` carries no DC1 fix-round log), so I cannot audit it; it plays no role in this
+verdict — my own sweep is the evidence base.
+
+## 2. Dispute rulings (my own measurements)
+
+**D-1 bare-id anchors — FIXER CORRECT: 172 endpoints, 4 families.** Bare (no-colon) endpoint
+occurrences: character--achievement 44 + character--cartridge 44 + character--scene-membership 8 =
+**96 `<character_id>` slug occurrences**, plus minigame--scene-carrier **76**
+`scene-class-family@<container>` occurrences = **172**, exactly as §4.2 now states. The reviewer's
+52 was an undercount artifact (distinct slugs are 22/22/2 = 46; 52 matches no clean measure —
+likely a distinct-vs-occurrence mix) and its 3-family scope missed the composite form entirely.
+Occurrence counting is what C4's lint needs, so the spec's framing is the right one.
+
+**D-2 anchored edges/endpoints — BOTH COUNTS ARE REAL; different denominators over one disk.**
+Measured edge shapes across the 1159 data rows: 1117 edges carry two string anchors, 14 carry
+(from-null,string), 11 carry (string,null), and 17 carry NO anchor slots at all — those ship id
+columns instead (`achievement_id`, `ending_id`, `cloth_id`, `node_id` verified in their payloads).
+Hence: strings 2259 = 1117×2+14+11 (fixer ✔ exact); "59 deliberate nulls" = 25 JSON nulls + 34
+key-absent slots (spec's convention; per-family split exact, claim row 21); reviewer's 1142 =
+edges with ≥1 string anchor and 2284 = 2259 strings + 25 explicit nulls only. No factual error on
+either side. The spec's sentence is internally consistent ONCE the reader accepts absent-key ≡
+deliberate-null on the named families — which the spec does declare ("those families key rows by
+id columns … or ship meta-only"). Ruling: fixer's framing accepted; nit N-3 records the lint
+consequence.
+
+**D-3 scene_link completeness — FIXER CORRECT.** Disk fields on the 57 rows: from_level,
+to_sub_scene, via_component, path_id, edge_kind, mechanism ×57, `resolves` present ×41,
+**chapter_name_loc ×15, note ×16** — all nine keys now covered by §3.9. The reviewer's "complete"
+missed the two optional fields (and that `resolves` is key-ABSENT on the chapter_name 15 + ledger
+1 rows rather than a always-present bool).
+
+**D-4 dialogue_node omissions (2 vs 17) — MOOT HISTORICALLY; END-STATE IS WHAT BINDS AND IT
+VERIFIES.** The pre-fix text is not readable without git (which I may not run), and D-C1.log
+(4 lines) doesn't carry it, so neither tally can be re-derived from this tree. What I CAN verify:
+the post-fix §3.7 block covers **all 30 keys emitted on nodes.jsonl** — including level,
+voice_present, next_resolved, condition_hints, events_with_calls, style, source, location,
+chapter, build, emotion and every kind-payload key — so the completeness defect F-6 targeted is
+closed for this block, with ONE residual misassignment (finding V-B-1 below). The reviewer's 2-item
+list came from sampled reconciliation; the fixer's 17 is not reproducible either way; no verdict
+weight to either number.
+
+## 3. Findings against the post-fix spec
+
+### V-B-1 (MODERATE) — §3.7 misassigns `groups[]` to branch_group; grouped_scene_dialogue's payload is unlisted
+
+Payload-key split measured over nodes.jsonl: branch_group rows (×11) carry exactly
+`entries`,`forks`,`main_ptr`; **`groups` occurs ONLY on the 11 grouped_scene_dialogue rows** (which
+also carry next_resolved ×11). §3.7 states "kind-payload on exactly its kind's rows — …
+branch_group{entries[],forks[],groups[],main_ptr}" and gives grouped_scene_dialogue no payload at
+all. Same defect class as F-6, and it would propagate into entities.json as a wrong per-kind
+payload map (fails the spec's own C2/C10 intent). Fix: move `groups[]` to grouped_scene_dialogue.
+
+### V-B-2 (MINOR-MODERATE) — §3.9 claims scene-level `chapter_name_loc/en` are "null v1"; disk has them populated ×15 / null ×9
+
+Measured scenes.jsonl: display_name_loc null ×24 (null-v1 correct), but chapter_name_loc and
+chapter_name_en are populated on **15 of 24 scenes** (15 of 20 story levels) and null on 9. SCN-8
+itself — the cited ledger — says exactly this ("display_name_loc null v1 + chapters … 15 non-zero
+pointers of 20 story levels"), so the spec's own citation contradicts its compression. A consumer
+reading §3.9 would conclude scene-level chapter names don't exist yet when they do. Fix: pin
+`display_name_loc` null v1 ×24; `chapter_name_loc/en` populated ×15 / null ×9 (SCN-8/XC-2).
+
+### V-B-3 (MINOR) — §5 "Row shapes" attributes five numeric fields to BOTH bucket and presence rows; each kind lacks some
+
+Measured: dialogue_bucket rows carry classification + line_count/pivot_line_count/tail_delta/
+file_bytes and NO record_count; category_presence rows carry classification + record_count and NO
+line_count/pivot_line_count/tail_delta/file_bytes. As written ("bucket/presence rows carry … +
+line_count/pivot_line_count/tail_delta/record_count/file_bytes") a parser built to the sentence
+KeyErrors on both kinds. Fix: state the two shapes separately.
+
+## 4. Non-blocking residuals
+
+- N-1: observed schema-id enumeration (§2.2) still omits `miside.cartridges.candidates/1`
+  (cartridges-minigames.candidates.jsonl `_meta.schema` measured = exactly that string). Reviewer
+  nit n4, unfixed.
+- N-2: §5 totals "present 2,108 / filler 297 / contentless 9" still silently exclude the 272
+  boolean book_page cells (raw class counts incl. book_page: present 2372 / false 8). Reviewer nit
+  n6, unfixed.
+- N-3: §4.2's "59 deliberate nulls" counts 34 ABSENT-KEY slots as nulls (25 are JSON nulls).
+  Arithmetic is exact under that convention and the family split matches, but C4's checker must
+  explicitly treat absent-key as legal-null on the five named slot-shapes or it will flag real
+  rows; one clause would pin it.
+- N-4: scene_link `resolves` is key-absent on 16 rows (15 chapter_name + 1 ledger), not an
+  always-present bool; §3.9 says "`resolves` bool" without the optionality note.
+
+## 5. Verdict
+
+F-1…F-6: all six verified RESOLVED against disk (each added number reproduces exactly; §4.1
+table, §4.2 grammar census, §3.10 free-text distributions, POI space enum, speaker taxonomy, edge
+fields, and the completeness sweep are clean). D-1/D-3 rule for the fixer; D-2 shows both sides
+measuring one consistent corpus with different denominators; D-4 is moot with the end-state
+verified complete. Three residual corpus contradictions found by my own sweep (one payload
+misassignment, one wrong null-v1 claim, one row-shape conflation) — all localized text fixes, none
+touching the architecture, ACs, or the reproduced numeric fabric.
+
+VERDICT: NEEDS_REVISION — 3
