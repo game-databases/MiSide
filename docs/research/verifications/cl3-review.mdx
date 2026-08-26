@@ -1,0 +1,183 @@
+# R-CL3 — Review of docs/specs/changelog-viewer.mdx (D-CL2 @ 931285d)
+
+Reviewer pass 2026-08-26. Inputs read in full: the spec (601 ln),
+[changelog-scout](../changelog-scout.mdx),
+[content-pipeline](../../specs/content-pipeline.mdx),
+[game-research §1/§7](../game-research.mdx),
+[missingdata.md](../../../extracted/data/missingdata.md),
+[_foundation/decision-register.md](../../../../_foundation/decision-register.md);
+fingerprints.json parsed programmatically; every disk claim re-measured
+this pass. Verdict basis: 2 HIGH, 4 LOW, no MEDIUM; GOOD list below.
+
+## Findings
+
+### HIGH-1 — Stage-ID collision: "run_all stage S9" is already booked twice; ordering anchor wrong (after census S8 → must be after logic-layer)
+
+Spec quotes (≥10 sites): §2 module table "`run_all` stage **S9
+`changelog`** (stage table gains its row in the same commit)" (l.88);
+dependency edge "run_all S1–S8 ──► S9(M1 emit; M2 diff arm) … S9 registered
+last" (l.99); §4.1 "S9 registers in `run_all` after census S8" (l.255);
+also l.67, 259, 263, 272, 304, 414, 511 (CL-8 proof "suite runs S9"), 541,
+547, 584.
+
+Evidence (measured):
+1. `pipeline/stages/logic_layer.py` l.1: `"""S9 logic-layer — LG1-LG4
+   dataset emitters"""` — **S9 is a shipped, registered stage**;
+   `pipeline/stages/__init__.py` registry order is env → detect →
+   il2cpp-dump → mono-typed-dump → loc-jsonl → art-export → decompile →
+   census → **logic-layer** (last).
+2. Canon reserves S9 differently again: `site-scaffold.mdx` l.512
+   "pending-placement … until the transform stage (PIPE S9)";
+   `extracted/data/missingdata.md` XC-3 "PIPE S9 `scene-transform`
+   UnityPy walk"; `docs/specs/data-contracts.mdx` l.256/496 "XC-3/S9".
+   The canonical pipeline spec's own table stops at S8.
+3. Ordering: census is second-to-last; logic-layer sits between census and
+   any later stage, and M1's `build_integrity.jsonl` projects
+   fingerprints over `extracted/data/logic/**` (4 entries) + the 29
+   relinks incl. the LG2 projections — so on a patch-day full rerun,
+   registering after census S8 snapshots fingerprints **before**
+   logic-layer re-pins those families → stale digests → CL-2 verify red,
+   and the diff arm would compare mid-rerun pins.
+
+Fix: renumber the changelog stage to the next free slot (**S10**) with
+registration anchored after logic-layer, and flag the pre-existing dual
+booking of S9 (logic-layer docstring vs scene-transform reservation in
+scaffold/missingdata/data-contracts) to the Arbiter for reconciliation.
+Note: within this same spec "S9" also denotes scaffold AC S9 (l.247, 511)
+— a second, unrelated referent that compounds the confusion.
+
+### HIGH-2 — CL-1's anti-fake predicate cannot hold post-trigger: a correctly re-pinned corpus holds exactly ONE distinct build_id while changesets legitimately exist
+
+Spec quote: CL-1 (l.504) "build FAILS if any changeset/renames artifact
+exists while `fingerprints.json` holds <2 distinct `build_id`s"; §13-OQ-1
+"the claim activates mechanically at build #2 via S9".
+
+Evidence: `_meta.patch_day` (fingerprints.json, quoted verbatim in spec
+§0.1): "a new buildId invalidates every fingerprint; rerun re-pins them"
+— re-pin is **replacement**, not accumulation; measured today all 84 rows
+carry the single value `19029065`, and nothing in the spec records the
+prior pin anywhere. So on trigger day the committed corpus has ONE
+distinct build_id plus valid changesets ⇒ the gate as written fails
+every legitimate post-trigger build, pressuring implementers to weaken it
+(exactly the path around the anti-fake law this AC exists to close) or to
+pollute fingerprint semantics with stale rows. Worse, the *transient*
+mid-rerun state (some rows re-pinned, some not) is the one moment
+"<2 distinct ids" flips true — an accidental-arm window keyed to commit
+timing, i.e. noise, not evidence of two trees.
+
+The gate IS correctly placed at emit time (not render time) — keep that.
+Fix the predicate to one of: (a) **structural authorship** — changesets/
+`evidence_class:"computed"` rows may exist only when produced by M2 in
+the same run that verified two trees (mirrors the spec's own §3.3
+structural refusal, which is sound); or (b) **prior-pin record** — M2
+writes `changelog/_pins/<from>.json` (or equivalent) before re-pin and
+the gate requires that record per changeset `<from>`. Re-proof CL-1 both
+pre-trigger (refusal) and post-trigger (acceptance) in the suite.
+
+### LOW-1 — Citation anchor `localization-architecture §5.5 "option A"` does not exist
+
+Spec §8.5 (l.459) + See-also (l.600): "localization-architecture §5.5
+**option A — omit, never mix**". The foundation file's heading map is
+§1–§6 with no §5.5 and no "option A" label; the never-mix law lives at
+§1 bullet 2 (l.14) and the omit-at-gap rule inside §5 (l.73). Same drift
+already present in content-pipeline and the scout — cite §1/§5 (or add
+the anchor upstream); the law itself is faithfully restated, so
+implementation is not misled.
+
+### LOW-2 — §0.1 audit row over-attributes engine pins to EXTRACTION-LOG
+
+Spec §0.1: "[EXTRACTION-LOG.md] … Unity 2021.3.35f1 · IL2CPP v29".
+EXTRACTION-LOG carries `"unity": "2021.3.35f1"` (l.7) but not v29 —
+metadata v29 is pinned in `toolchain.md` l.59. Fact true, source cell
+imprecise; split the attribution.
+
+### LOW-3 — Third documented rename unseeded from the spec's own cited evidence
+
+D1 §1 documents THREE official v0.921 load-point renames — `Cap→Cappie`,
+`Open Dialogue→Be Candid`, **and `Out of the Core→Leave The Core`** — but
+§3.3 seeds only the first two. Under-seeding is honest (never a
+fabrication risk) and may be deliberate if `save_point` lacks a
+resolvable id for the third; say which, so the emitter's join law is
+testable for it.
+
+### LOW-4 — Feed exclusion cites the wrong authority
+
+§7.4: "machine-plane `source_ref`s stay out of the channel too (they are
+repo-only even in XML per content-pipeline §7.2's split)" — but
+content-pipeline §7.2 explicitly allows machine-plane fields in "the
+JSON-LD/feed layer". The exclusion is RIGHT and stricter, but its actual
+ground is AGENTS rule 3 / D2 (repo-only banned from user surfaces; feed
+readers render channel items). Cite rule 3; keep the stricter rule.
+
+## GOOD list (verified, not merely plausible)
+
+- **Every headline number byte-verifies**: fingerprints.json parsed — 84
+  artifacts = 55 `extracted/data/**` + 29 `extracted/relinks/`; stamp
+  split header-stamp 38 / document-stamp 22 / pipeline-defaults 21 /
+  row-stamp 3; summed `row_count` = 37,264; distinct build_ids =
+  {19029065} exactly; §3.2's sample row reproduces the achievements
+  entry byte-for-byte (sha `f4220fcc…ea89be`, row_count 26, row-stamp).
+- One-build world re-proven independently: appmanifest_2527500.acf
+  `buildid == TargetBuildID == 19029065`; depotcache holds exactly one
+  MiSide manifest (`2527501_5992599505980992417.manifest`);
+  `extracted/data/changelog/` absent; demo dropped (questions.md #2,
+  2026-08-24) and no install anywhere.
+- **Anti-fake architecture is sound in placement**: gates live at EMIT
+  time (traceability exit, plane-hygiene fail, computed-row structural
+  refusal, CL-1 build failure), never render time; page layer derives
+  nothing (§2 hard rule mirrors AGENTS rule 8); picker absent at one
+  build, reverse module omitted without caption (anti-slop omission law).
+- Dormant arm produces nothing false today: single tree, single manifest,
+  demo absent; same-build hash drift cannot arm (gate is id-keyed, not
+  drift-keyed) — modulo HIGH-2's transient caveat.
+- **Scout corrections ruled sane**: dropping EXTRACTION-LOG run-event
+  seeding is exactly AGENTS rule 3 (extractor identity is repo-only);
+  narrowing event_class to release|patch|demo removes the four dated
+  items D1 §7 shares with content-pipeline §7.1's game stream — no
+  duplicate URLs minted; the 8 kept rows quote D1 §7 dates/facts
+  faithfully (all eight checked line-by-line).
+- **Token law intact**: every hex/token in §8.3 exists in tokens.css —
+  `--ms-danger #fc0f43` (l.42), `--ms-signal #08cb05` (l.44),
+  `--ms-glitch-split-a/b #08cb05/#ff009c` (l.65–66), `--ms-glow-glitch`
+  (l.63), `--ms-font-lcd` (l.154), `--ms-text-1/2` (l.29/31), and the
+  `.ms-vhs-drift` keyframes (l.283–292); T2 sampling citations
+  ([steam-ss8], [comm-minigame-lcd-defeat]) verified in ui-style-scout.
+- **Seam facts exact**: `articles.ts:59` ArticleType includes `"patch"`
+  at precisely line 59; `feeds/patch.xml/route.ts` skeleton exists (32
+  ln); `check-chrome-parity.mjs` exists; 34 chrome locale files on disk
+  (×34 claim correct); ar/ar-EG serve `dir="rtl"`, fa stays ltr
+  (untouched, deferring to content-pipeline OQ-7); MV-1 RTL precedent
+  real (map-viewer l.656, A-MV1 F-8); VoidWell component present;
+  content-pipeline §7.1/§12 seam quotes accurate ("schema-ready,
+  empty-honest until LANE-A ⛓"; non-goal "patch pages consume its
+  output").
+- **Trigger chain verbatim**: data-acquisition.md l.131–133 carries
+  "keep the previous build until diffing completes" and the
+  `D:\Games\MiSide_<buildid>` pull target exactly as ridden in §4.2.
+- **Contract citations accurate**: data-contracts §2.2 class-A wrapper
+  fields match §3's header claim; §4.4 KEEP-PINNED (flag--gates +
+  choice--consequence fingerprinted) supports the code-plane rider; all
+  five digest inputs are real pipeline outputs (S3 emits dump.cs,
+  il2cpp.h, script.json, stringliteral.json; S7 emits decompiled/main/**).
+- **AC set coherent**: scout ACs 1–8 land as CL-1..8 with substance
+  unchanged and runnable proofs (sandbox/mutation patterns match the
+  pack's existing offline run_all suite style); added CL-9..12 fill real
+  gaps (registry↔stream coherence, armed-state completeness + layer
+  scoping, C14 re-parse despite no markdown source, chrome parity/RTL)
+  without duplicating the scout's eight; CL-7's "AC S9-pattern grep" and
+  §3.4-5's "both-directions grep family as AC S9" cite scaffold AC S9
+  correctly (scaffold l.567: zero repo-only tokens, curl-grep both
+  directions).
+- **OQ recommendations consistent with house law**: OQ-1 ship-now rests
+  on D5 CORE-min launch-blocking + the BPB waiver's explicit BPB-only
+  scope (register verbatim); OQ-2 keeps demo OUT with the owner-call
+  posture missingdata XC-9 already ledgered; OQ-3 mandatory digests is
+  the register's own BPB rationale made mechanical; OQ-4 split matches
+  content-pipeline's chips-not-sections law and reserves new top-level
+  sections to domain-doctrine; OQ-5 default-NO marks credentials and
+  manifest availability `[unverified]`; OQ-6 (evidence_class never
+  renders) implements the anti-slop ban on interface-explaining
+  sentences with the visual grammar carrying the distinction — all six
+  are carried as recommendations, none silently self-resolved.
+
+## VERDICT: NEEDS_REVISION — 6 items
