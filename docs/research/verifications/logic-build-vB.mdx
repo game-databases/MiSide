@@ -1,0 +1,257 @@
+# Logic-build verification B (V-LL2b) — adversarial data pass over commit 299bba1
+
+Verifier: V-LL2b · Date 2026-08-26 · Target: `extracted/data/logic/**` +
+relinks `flag--gates.jsonl` / `choice--consequence.jsonl` at buildId 19029065.
+Inputs: ACCEPTED [logic-layer.mdx](../../specs/logic-layer.mdx#1-purpose--the-two-governing-laws)
+(426 ln, read in full), the corpus, `build/selfcheck_logic.py`.
+Independent of verifier A's pass (its deliverable not opened).
+
+Method note: this is an **adversarial data pass**, not a spec re-read. Every
+number below was re-derived by this verifier's own scripts/methods against the
+raw harvest inputs (`D:\unpacked_game_data\MiSide\harvest\mb-dump\`,
+`il2cpp/dump.cs`) unless explicitly marked as taken from a file.
+
+## Checks
+
+(progress log — finalized per section as each lands)
+
+### T1 — effect_calls census rebuilt end-to-end (PASS)
+
+Recount method (deliberately independent of the builder's indent-parser):
+raw line-pattern counters over all 140,380 `.txt` dumps in
+`D:\unpacked_game_data\MiSide\harvest\mb-dump\<51 containers>\`:
+
+| counter | counts | result |
+|---|---|---|
+| A — lines matching `^\s*PersistentCall\b` | declaration blocks | **20,485** |
+| B — lines matching `m_MethodName =` | one per call block | **20,485** |
+| C — `(assembly,method)` pairs, empty assembly names included | paired calls | **20,485** |
+
+All three land exactly on the emitted `row_count` 20,485; A == B proves every
+block carries exactly one method line and none were invented or dropped.
+Emitted data rows re-tallied from the file itself (not `_meta`): tiers
+A **117** / B **20,368**, classes `audiovisual 2,782 · award 13 · cosmetic
+11,582 · dead-reference 372 · flag-query 18 · flag-set 63 · scene-flow 5,655`
+— both axes sum to 20,485 (`_meta.census_accounting.additive:true` confirmed).
+Per-container and per-file tallies of emitted rows vs my scan: **zero deltas**
+across all 51 containers / all files.
+
+Tier split re-derived without the emitter's table: I extracted the whitelist
+families' class bodies from `il2cpp/dump.cs` by brace tracking (anchors
+100303/100318/101787/101861/106767/128181) and confirmed all 16 whitelisted
+method names exist in their classes; then computed tier membership per call
+from my own pair scan → **tier A 117 / tier B 20,368**, matching the emitted
+split. Whitelisted-pair population measured corpus-wide:
+`AchievementGet ×11 · ClothCompleted ×2 · Events_Data.EV ×54 ·
+Events_IntMemory.{Add ×7, CheckEvent ×2, CheckEventIndex ×16, SetIgnory ×2} ·
+Scene_Load.{StartLoad ×19, SilentSave ×4}`.
+
+Verifier defect found and corrected en route (recorded for honesty): my first
+pair scan missed **612** calls because its regex demanded a non-empty
+`m_TargetAssemblyTypeName`; those calls serialize `""`. That is a real corpus
+population (empty-target calls, mostly `globalgamemanagers/Button*.txt`), the
+emitter handles it (`target.type == ""`, classified by the fallback rules),
+and the corrected scan closes to 20,485/117/20,368 exactly.
+
+### T2 — KEY-K stress: full join + 20-row hand resolution (PASS)
+
+Join reproduced independently from `endings/{choice_nodes,branch_edges}.jsonl`
+and `effect_calls.jsonl`: 371/371 unique node_ids, 0 unresolved `from_node`;
+**all 1,555 edges resolve under K to exactly one effect_calls row** (0
+ambiguous, 0 unmatched), matching `emit-ledger.ac-l1b`.
+
+Frozen pair-table vs DS-2 annotation: swept **all 1,555** edges (not just the
+sample) — `classify_effect` output equals the edge's own DS-2 annotation on
+**1,555/1,555**, zero mismatches; 133 distinct `(type,method)` pairs confirmed;
+exactly 2 multi-valued pairs (`UnityEngine.GameObject.SetActive`,
+`Animator_Functions.AnimationPlayState`) and both split cleanly under the
+dead-reference rule (0 residual conflicts); every pair in the frozen table is
+exercised live by some edge (no dead table entries).
+
+Discriminator ablations reproduce the spec's numbers exactly on the edge
+basis: drop `from_option` → **7** colliding groups; drop `call_index` → **1**
+(spec L1b: 7 / 1).
+
+20-edge seeded random sample (seed 42) hand-resolved: each K tuple computed
+from its choice_nodes-resolved host matched exactly one effect row; DS-2
+annotation, emitted class, and recomputed class agreed on all 20. Spot
+grounding: `level9/ObjectInteractive_#14830.txt` genuinely carries one
+`eventClick` group with 4 persistent calls (the sampled join used index 1);
+the spec's flagship orthogonality row
+`logic:call:level14:ObjectInteractive_#3695.txt:3695:eventClick:4`
+(`Scene_Load.StartLoad`, tier **A**, class **cosmetic**) verified verbatim in
+the emitted file.
+
+Finding (observation, not a defect): K is **not globally injective over
+effect_calls** — 65 duplicate-key groups covering 175 rows exist corpus-wide,
+all same-file array-position twins collapsed by the mapped leaf
+`event_field` (`eventsPlayer[0]` vs `[2]`, `dialogue[1].eventStart` vs
+`dialogue[2].eventStart`, `EventsOnTime[0]._event` vs `[3]._event`). No edge
+key touches any of these groups (join stayed unambiguous), the emitted
+`edge_id` keeps them distinct via its `field_path` segment, and AC-L1b is
+defined over the 1,555 edge rows where K *is* collision-free — so the spec's
+claim holds as written. Recorded so nobody later assumes K uniqueness beyond
+its defined basis.
+
+### T3 — polarity adversarial sweep over all 93 predicate rows (PASS)
+
+All 93 rows read individually (listing run row-by-row, not sampled). Mechanical
+enforcement of the [§3 derivation table](../../specs/logic-layer.mdx#3-evidence-law--the-mandatory-polarity-field)
+over every row: **zero anomalies**.
+
+| kind | expression_class | value | evidence_class | n |
+|---|---|---|---|---|
+| achievement | serialized-site | positive | static-proven | 11 |
+| achievement | code-body / aggregate | null | fail-closed-unknown | 12+3 |
+| cartridge | access-chain | positive | static-proven | 21 |
+| cartridge | access-chain (mtad-2, mtacore) | null | fail-closed-unknown | 2 |
+| ending | structural | null | fail-closed-unknown | 4 |
+| minigame | access-chain | null | static-proven | 17 |
+| outfit | serialized-site ×2 / structural ×1 | pos/null | static-proven/inferred | 3 |
+| safe-window | structural | positive | inferred (+community) | 1 |
+| save-point | save-literal | **null** | static-proven | 19 |
+
+Exactly the spec's expected population: 34 static-proven positives (= 11 award
+sites + 2 cloth sites + 21 pickup gates) + 1 community-attributed window.
+Adversarial probes all negative:
+
+- `"negative"` occurs **zero times as a value** (the only two string hits are
+  the `_meta` reservation note and the population counter field `negative:0`).
+- Every save-literal carries `value:null` — none is a positive.
+- No `value` rides `fail-closed-unknown`; the single directional `inferred`
+  row (`logic:safe-window:safe-of-life:0`) carries `sense_source:"community"`
+  + 2 citations and is the §6-row-3 exception exactly as scoped.
+- Every positive/static-proven row's site path resolves to a real file on
+  disk (dump paths checked, including `#`-suffixed names); HellVamp's
+  `inferred` row cites non-path attribution text per the typed-evidence law.
+- Status vocabulary stays inside the pinned five values
+  (proven-hard 70 · unknown-fail-closed 17 · proven-structure 3 · community 2 ·
+  locked-stub 1 = 93); no fail-closed marker sits in a user-meaning field;
+  `build_id` present on all rows.
+
+### T4 — identity-ledger honesty (PASS)
+
+`identity-ledger.jsonl`: 52 rows = **49 unresolved** + **3 bare-name-resolved**.
+
+- The 49 carry **no id fields at all**: `object_path_id:null` AND
+  `inventory_object_path_id:null` on every one (checked exhaustively). Nothing
+  fabricated. flag_instances agrees: 384 = 332 suffix-resolved + 49
+  both-null + 3 inventory-resolved.
+- The 3 resolutions verified against the harvest asset-list XMLs **on disk**:
+  `level5/Events_IntMemory → 11272`, `level9 → 18167`, `level13 → 17830`;
+  each container's asset-list carries **exactly one** same-class MonoBehaviour
+  entry, so the pairing is genuinely unambiguous and the PathID matches.
+- All ledger evidence paths exist (`harvest/mb-dump/<c>/<f>` +
+  `harvest/asset-list/<c>.xml`).
+
+### T5 — LG4 deny-list bite + flagship envelope (PASS)
+
+- `logic:tunable:location4fight:win` and `logic:tunable:tamagotchi_main:showinterface`
+  are **absent** from `minigame_tunables.jsonl`; both are ledgered as fenced in
+  `emit-ledger.ac-l4-scoring-fence`. The fence bit **real data**: all 48 raw
+  `Location4Fight*` dumps serialize a `win` field (verified by scan), and
+  `Tamagotchi_Main.showInterface` exists in `level3/Tamagotchi_Main.txt`.
+- Flagship envelope verified end-to-end from raw:
+  `logic:tunable:location4fight:enemyComplexity` — instance_count **48**
+  (one per container × 48 containers), serialized_value **6** on all 48 raw
+  carriers (my independent scan: distinct values `{6}`, max 6),
+  `declared_range {min:0,max:6}` matching `[Range(0, 6)] public int
+  enemyComplexity; // 0x78` at **dump.cs:121910** verbatim,
+  `kind:"envelope"`, `rule_status:"not-a-threshold"`.
+- Zero deny-list hits among the 29 emitted fields; envelope law holds on all
+  rows.
+
+### T6 — relink projections (PASS, with convention observation)
+
+- `flag--gates.jsonl`: 40 rows = 20 forward + 20 inverse, inverse set is the
+  exact mirror of forward; binds the 3 inventory-resolved IntMemory instances
+  to their 20 tier-A calls (`CheckEventIndex` ×16, `SetIgnory` ×2,
+  `CheckEvent` ×2 — flag-query/flag-set classes); ids-only field set
+  `{from,to,direction,mechanism,method,status}`; `_meta.authority_ruling`
+  names this spec; zero leaks of unresolvable-id flags.
+- `choice--consequence.jsonl`: 1,555 rows, forward-only, ids-only; after
+  stripping the `choice-node:`/`effect-call:` prefixes **0 dangling
+  endpoints**, all 371 nodes appear as sources, targets are 1,555 distinct
+  effect ids = perfect 1:1 with branch_edges; authority ruling present.
+- Observation OBS-3: the two sibling projection files use different id
+  conventions — gates uses bare corpus ids (`logic:flag:*`, `logic:call:*`),
+  consequence uses synthetic prefixes (`choice-node:`, `effect-call:`).
+  Spec-conform ("ids only") but a consumer joining across the relinks layer
+  must know two conventions.
+
+### T7 — selfcheck (PASS)
+
+Single run of `build/selfcheck_logic.py` (read-only; emitter never invoked):
+**22 passed, 0 failed, exit 0** — L1a/L1b(+uniqueness)/L1c(+sweep-universe
+close)/L2(+projection+ledger-absorption ban)/L3(×4)/L4/tier-A floors/
+internal_only pairing/DS-2 reproduction/5 disk-truth spot checks.
+
+### Integrity cross-check
+
+All six emitted outputs hash-match `input-manifest.outputs`, and all 13
+recorded inputs (incl. the four frozen `endings/*.jsonl`, dump.cs) hash-match
+the live tree — the artifacts under verification are exactly the ones the
+manifest pins.
+
+## Findings
+
+### F-1 (BLOCKING) — `effect_calls.edge_id` is not unique: 37 ids across 209 rows
+
+Measured: 37 duplicate `edge_id` values covering 209 rows (172 excess), all on
+array-of-events carriers — `Events_Animator` ×207 rows (11 containers,
+largest single id reused ×10 in `level5/Events_Animator_#7106.txt`),
+`FunctionsGame_PlayerWhyWalk` ×2 (`level9`). Raw ground truth
+(`level2/Events_Animator_#2830.txt`): **8 distinct `eventAnim` UnityEvent
+groups / 12 genuine calls** in one file; the parser collapses every element to
+the same `field_path` string (`events.data.eventAnim` — no array-element
+discriminator survives), so each group's restarting `call_index` collides.
+
+Why it matters despite everything else passing:
+
+- `effect_calls._meta.edge_id_shape` claims "a field_path segment keeps
+  multi-group hosts unique" — falsified by these carriers (multi-GROUP hosts
+  are exactly what collided);
+- the emitter's own `REGISTRY_ENTITY_DECLS` declares `key="edge_id"` for the
+  effect_call contract, and the landed `contracts/registry/entities.json`
+  entry — whose enum counts match this build exactly — is the one logic entity
+  registered with `key:null`;
+- extraction-doctrine Principle one makes identifiers the join glue; any
+  id-keyed consumer silently merges distinct serialized calls.
+
+Blast radius (measured, contained): all 209 rows are tier B /
+`internal_only:true`; **zero** branch_edges joins land on them under K;
+**zero** references from either projection; selfcheck green because it joins
+by K, not edge_id. AC-L1..L6 unaffected. Fix is mechanical (carry the group
+ordinal/index into `field_path` for `<Type> data` element-array groups) +
+deterministic re-emission; hashes and registry counts refresh with it.
+
+### Observations (non-blocking)
+
+- **OBS-1**: K's injectivity holds on its defined basis (the 1,555 edge keys)
+  but not corpus-wide over effect_calls: 65 duplicate-key groups / 175 rows —
+  same-file array-position twins collapsed by `_mapped_event_field`
+  (`eventsPlayer[0]` vs `[2]`, `dialogue[1].eventStart` vs `[2]`,
+  `EventsOnTime[0]._event` vs `[3]._event`). Same parser-limitation family as
+  F-1, different field; no current consumer touches those groups.
+- **OBS-2**: `identity-namespace-measurement` prints verdict "namespaces
+  DISJOINT" while its own numbers show 6/40 suffix ids occurring among
+  asset-list PathIDs (mostly-disjoint, not disjoint). The posture taken
+  (never attribute an individual true id without a unique pairing) remains
+  sound; only the binary label overstates.
+- **OBS-4**: predicate evidence arrays mix path bases (`data/achievements/…`
+  extracted-relative beside `extracted/relinks/…` repo-relative) — verbatim
+  per the spec's own example record, so conforming, but worth normalizing
+  when the explorer lands.
+
+## Verdict
+
+Every acceptance criterion L1–L6 reproduces, the census closes end-to-end
+under three independent counters, the K-join and classifier reproduce exactly,
+polarity law holds on all 93 rows, the identity ledger never fabricates, and
+the scoring fence demonstrably bites real serialized data. One blocking schema
+defect: F-1, duplicate primary identifiers on 209 tier-B rows — cheap to fix,
+contained today, corrosive to any future id-keyed consumer.
+
+VERDICT: NEEDS_REVISION — 1 item
+
+
