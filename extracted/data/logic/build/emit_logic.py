@@ -21,6 +21,12 @@ Binding laws carried from the spec:
   Law 2 fail-closed polarity — every predicate row carries evidence-classed polarity;
        "negative" is reserved (zero rows this build); save-literals are access points,
        never positives; value derivation is mechanical (spec section 3 table).
+  A-LL2 binding law — PPtr references resolve ONLY through the serialized space
+       (unique same-class pairing -> inventory_object_path_id); dump-suffix ids name
+       rows and never adjudicate a reference. Targets only a suffix id names fail
+       closed into the identity ledger; ids matching both spaces are ledgered as
+       detected ambiguity, never precedence-picked (docs/research/verifications/
+       ll2-arbiter.mdx, VERDICT: RULED).
 
 Deterministic outputs: stable row order, sorted JSON keys, UTF-8, LF, no BOM.
 Stdlib only. Run:  python extracted/data/logic/build/emit_logic.py  (repo root cwd)
@@ -872,16 +878,22 @@ def build(corpus_root, quiet=True, rebaseline=False):
                     calls_raw.append((c, fn, stem, pid, header, grp))
 
     # --- LG1: flag instances ------------------------------------------------------
-    # Two measured id spaces (this build):
-    #   * dump-file SUFFIX ids -- the pack-wide instance handle (DS-2 node ids,
-    #     poi_id, pickup_ref.file all use it); authoritative for object_path_id;
+    # Two measured id spaces (this build), governed by the A-LL2 arbitration
+    # (docs/research/verifications/ll2-arbiter.mdx, VERDICT: RULED):
+    #   * dump-file SUFFIX ids -- opaque harvest handles; they NAME rows
+    #     (authoritative for flag_instances.object_path_id) but never adjudicate
+    #     a cross-record reference;
     #   * SERIALIZED PPtr ids -- what other components' UnityEvent targets carry,
     #     mirrored by the harvest instance inventory (asset-list XML PathIDs).
-    # They are numerically disjoint (measured below), so writer/reader binding runs
-    # on BOTH spaces: a target matches an instance when it equals its suffix id OR
-    # its inventory-resolved true id. Individual true-id resolution requires the
-    # pairing to be unambiguous (exactly one same-class dump <-> exactly one
-    # same-class inventory entry in the container); otherwise null + ledger.
+    # The spaces are mostly-disjoint -- non-zero numeric coincidence (measured
+    # below; ~15% corpus-wide), never identity. BINDING LAW: every reference-bind
+    # resolves ONLY through the serialized space (flag_true_index) and only where
+    # the pairing is unambiguous (exactly one same-class dump <-> exactly one
+    # same-class inventory entry in the container); otherwise null + ledger. The
+    # former suffix-first branch is deleted at both bind sites; targets that only
+    # a suffix id names become fail-closed identity-ledger rows, and any target
+    # id matching BOTH spaces is ledgered as detected ambiguity, never resolved
+    # by precedence.
     inv_ns = _inventory_namespace_check(
         os.path.dirname(mb_root),
         census["events_int_memory"] + census["events_data"])
@@ -904,8 +916,8 @@ def build(corpus_root, quiet=True, rebaseline=False):
                            "never fabricated" % (len(files), len(inv_ids)))})
     identity_rows = []
     flag_rows = []
-    flag_by_key = {}
-    flag_true_index = {}
+    flag_true_index = {}    # serialized space -- the ONLY bind-resolution source
+    flag_suffix_index = {}  # suffix space -- tripwire/detection only, NEVER resolves
     for (c, fn, pid) in sorted(census["events_int_memory"] + census["events_data"],
                                key=lambda t: (container_key(t[0]), t[1])):
         stem, suffix_pid = split_dump_name(fn)
@@ -948,11 +960,13 @@ def build(corpus_root, quiet=True, rebaseline=False):
             "build_id": BUILD_ID,
             "evidence": ["harvest/mb-dump/%s/%s" % (c, fn)],
         })
-        flag_by_key[(c, object_path_id)] = flag_rows[-1]
+        if object_path_id is not None:
+            flag_suffix_index[(c, object_path_id)] = flag_rows[-1]
         if true_id is not None:
             flag_true_index[(c, true_id)] = flag_rows[-1]
         if suffix_pid is None:
             identity_rows.append({
+                "kind": "instance-identity",
                 "flag_id": flag_id,
                 "container": c,
                 "file": fn,
@@ -982,6 +996,7 @@ def build(corpus_root, quiet=True, rebaseline=False):
     class_totals = {}
     tier_counts = {"A": 0, "B": 0}
     unresolved_subjects = 0
+    flag_subject_binds = 0
     for (c, fn, stem, pid, header, grp) in calls_raw:
         for ci, call in enumerate(grp["calls"]):
             ttype, assembly = split_type_name(call.get("target_assembly_full"))
@@ -1010,11 +1025,14 @@ def build(corpus_root, quiet=True, rebaseline=False):
                 elif ttype == "Achievement_cloth" and args["string"]:
                     subject_ids.append("logic:outfit:%s" % args["string"].lower())
                 elif ttype in ("Events_IntMemory", "Events_Data") and tpid:
-                    tgt = flag_by_key.get((c, tpid))
-                    if tgt is None:
-                        tgt = flag_true_index.get((c, tpid))
+                    # A-LL2 binding law: serialized space ONLY. The deleted
+                    # suffix-first branch never adjudicates a reference; a target
+                    # only a suffix id names stays unresolved here (the
+                    # writers/readers sweep below ledgers it fail-closed).
+                    tgt = flag_true_index.get((c, tpid))
                     if tgt is not None:
                         subject_ids.append(tgt["flag_id"])
+                        flag_subject_binds += 1
                 if not subject_ids:
                     unresolved_subjects += 1
             mb = re.match(r"^buttons\[(\d+)\]\.", grp["field_path"])
@@ -1045,21 +1063,74 @@ def build(corpus_root, quiet=True, rebaseline=False):
             class_totals[effect_class] = class_totals.get(effect_class, 0) + 1
             tier_counts[tier] += 1
 
-    # writers/readers onto flag instances (LG1 superset columns); a targeting
-    # call's PPtr lives in the SERIALIZED id space, so match either the
-    # suffix-space object_path_id or the inventory-resolved true id.
+    # writers/readers onto flag instances (LG1 superset columns). A-LL2 binding
+    # law: a targeting call's PPtr lives in the SERIALIZED id space and resolves
+    # ONLY through flag_true_index (unique same-class pairing). The suffix
+    # branch is deleted: dump-suffix ids name rows, they never adjudicate a
+    # reference. Targets that only a suffix id names -> fail-closed identity-
+    # ledger rows (honest unresolved state, never silently dropped); targets
+    # matching BOTH spaces at different rows -> explicit dual-space-coincidence
+    # ledger rows (ambiguity detected, never precedence-resolved; the serialized
+    # space is not one candidate among two, it is the only admissible one).
     bound_writers = 0
+    bind_fail_closed = {}
+    dual_space_hits = {}
+    same_row_both_space = set()
     for row in effect_rows:
         t = row["target"]
-        if t["type"] in ("Events_IntMemory", "Events_Data") and t["object_path_id"]:
-            tgt = flag_by_key.get((row["container"], t["object_path_id"]))
-            if tgt is None and t["object_path_id"]:
-                tgt = flag_true_index.get((row["container"], t["object_path_id"]))
-            if tgt is not None:
-                kind = ("readers" if (t["method"] or "").startswith("Check")
-                        else "writers")
-                tgt[kind].append(row["edge_id"])
-                bound_writers += 1
+        if t["type"] not in ("Events_IntMemory", "Events_Data") \
+                or not t["object_path_id"]:
+            continue
+        key = (row["container"], t["object_path_id"])
+        true_tgt = flag_true_index.get(key)
+        suffix_tgt = flag_suffix_index.get(key)
+        if suffix_tgt is not None:
+            rec = (bind_fail_closed if true_tgt is None else dual_space_hits) \
+                if true_tgt is not suffix_tgt else None
+            if rec is None:
+                same_row_both_space.add(key)
+            else:
+                hit = rec.setdefault(key, {"suffix_flag_ids": set(),
+                                           "edge_ids": set()})
+                hit["suffix_flag_ids"].add(suffix_tgt["flag_id"])
+                hit["edge_ids"].add(row["edge_id"])
+        if true_tgt is not None:
+            kind = ("readers" if (t["method"] or "").startswith("Check")
+                    else "writers")
+            true_tgt[kind].append(row["edge_id"])
+            bound_writers += 1
+
+    # fail-closed / ambiguity rows land in the identity ledger (AC-L2 posture:
+    # any delta lands here, never absorbed, never dropped)
+    for key in sorted(bind_fail_closed):
+        rec = bind_fail_closed[key]
+        identity_rows.append({
+            "kind": "bind-fail-closed",
+            "container": key[0],
+            "target_pptr_id": key[1],
+            "suffix_named_flag_ids": sorted(rec["suffix_flag_ids"]),
+            "affected_edge_ids": sorted(rec["edge_ids"]),
+            "affected_call_count": len(rec["edge_ids"]),
+            "reason": ("target PPtr matches only dump-SUFFIX id(s) of this "
+                       "container -- no inventory-resolved serialized id stands "
+                       "behind them; under the A-LL2 binding law suffix ids never "
+                       "adjudicate a reference, so the bind stays UNRESOLVED "
+                       "(fail-closed), never silently dropped")})
+    for key in sorted(dual_space_hits):
+        rec = dual_space_hits[key]
+        identity_rows.append({
+            "kind": "dual-space-coincidence",
+            "container": key[0],
+            "target_pptr_id": key[1],
+            "serialized_space_flag_id": flag_true_index[key]["flag_id"],
+            "suffix_space_flag_ids": sorted(rec["suffix_flag_ids"]),
+            "affected_edge_ids": sorted(rec["edge_ids"]),
+            "affected_call_count": len(rec["edge_ids"]),
+            "reason": ("numeric id matches candidates in BOTH spaces pointing at "
+                       "different rows -- ambiguity LEDGERED, not precedence-"
+                       "picked; the bind follows the serialized space "
+                       "(inventory_object_path_id) per A-LL2 and the suffix-side "
+                       "equality is recorded as measured coincidence")})
 
     award_sites = {(r["container"], r["file"]) for r in effect_rows
                    if r["effect_class"] == "award"
@@ -1356,9 +1427,12 @@ def build(corpus_root, quiet=True, rebaseline=False):
     tunable_rows.sort(key=lambda r: r["tunable_id"])
 
     # --- flag_tables projection reconciliation (AC-L2 second half) ---------------------------
+    # Same-space lookup on purpose: flag_tables keys are the SUFFIX-space
+    # instance handle, matched against object_path_id (A-LL2: suffix ids may
+    # name/locate rows; only reference adjudication is serialized-space-only).
     ft_mismatches = []
     for ft in flag_tables:
-        hit = flag_by_key.get((ft["container"], ft["object_path_id"]))
+        hit = flag_suffix_index.get((ft["container"], ft["object_path_id"]))
         if hit is None:
             ft_mismatches.append("no flag instance for %r"
                                  % ((ft["container"], ft["object_path_id"]),))
@@ -1445,12 +1519,19 @@ def build(corpus_root, quiet=True, rebaseline=False):
                           "element-array hosts -- 'events[3].data.eventAnim', not a "
                           "collapsed 'events.data.eventAnim' -- so per-group call_index "
                           "values never collide)"),
+        "join_law": ("'target.object_path_id' here is SERIALIZED-PPtr space while "
+                     "flag_instances.object_path_id is SUFFIX space -- equal column "
+                     "names, different spaces (A-LL2 join_law). Flag subject binds "
+                     "consume flag_instances.inventory_object_path_id exclusively"),
         "subject_resolution": {
             "achievement": ("args.string -> achievements.jsonl id lowercased; "
                             "AchievementComplete(int) falls back to registry_index "
                             "when the int argument is non-zero"),
             "cloth": "args.string -> cloth id lowercased",
-            "flag": "(container, target object_path_id) -> flag_instances.flag_id",
+            "flag": ("(container, target PPtr) -> flag_instances.flag_id, matched "
+                     "against the SERIALIZED space (inventory_object_path_id) only; "
+                     "no suffix-space fallback (A-LL2)"),
+            "flag_binds_serialized_space": flag_subject_binds,
             "unresolved_subject_tier_a_rows": unresolved_subjects},
         "derived_fields": ["effect_class", "tier", "subject_ids", "internal_only"],
     }
@@ -1472,19 +1553,31 @@ def build(corpus_root, quiet=True, rebaseline=False):
                           "resolved separately into inventory_object_path_id when the "
                           "(dump, inventory-entry) pairing is unambiguous; never "
                           "fabricated"),
+        "join_law": ("field-name trap (V-LL2a residual b): 'object_path_id' in THIS "
+                     "file is SUFFIX space (opaque harvest handle); "
+                     "'inventory_object_path_id' is serialized-PPtr space; inside "
+                     "effect_calls.target.* 'object_path_id' is serialized-PPtr "
+                     "space. Equal column names across these files are NOT the same "
+                     "space: every reference-bind resolves only via "
+                     "inventory_object_path_id (A-LL2)"),
         "two_id_spaces": (
-            "measured on this build: dump-file SUFFIX ids and SERIALIZED PPtr ids are "
-            "numerically disjoint (suffix sample found %d/%d times among asset-list "
-            "PathIDs); writer/reader binding therefore matches a target against BOTH "
-            "spaces; level4 evidence: ObjectInteractive Add() calls target PPtr ids "
-            "4823/4918 while that class's dumps are bare + _#3327"
+            "mostly-disjoint -- non-zero numeric coincidence treated as collision "
+            "(measured: suffix sample found %d/%d times among asset-list PathIDs; "
+            "~15%% corpus-wide per A-LL2). Numeric equality between the spaces is "
+            "coincidence, not identity: writer/reader and tier-A subject binds "
+            "resolve ONLY through the serialized space (inventory_object_path_id, "
+            "unique pairing); targets naming only a suffix id fail closed into the "
+            "identity ledger. level4 evidence: ObjectInteractive Add() calls target "
+            "PPtr ids 4823/4918 while that class's dumps are bare + _#3327 (3327 is "
+            "not a level4 PathID at all)"
             % (inv_ns["hits"], inv_ns["sampled"])),
         "identity_namespace_check": inv_ns,
         "ambiguous_pairings": len(pairing_notes),
         "projection": ("endings/flag_tables.jsonl reconciles as a projection "
                        "(selfcheck L2); writers/readers populate where the targeting "
-                       "call's PPtr resolves in either id space (%d calls bound)"
-                       % bound_writers),
+                       "call's PPtr resolves through the serialized space only "
+                       "(%d calls bound; provenance audited by the selfcheck bind "
+                       "gate)" % bound_writers),
         "parent_name_note": ("GameObject display names are absent from the type-114 "
                              "typed-dump plane; emitted null, never guessed"),
         "derived_fields": ["writers", "readers"],
@@ -1537,6 +1630,20 @@ def build(corpus_root, quiet=True, rebaseline=False):
         "build_id": BUILD_ID, "version_label": VERSION_LABEL,
         "row_count": len(identity_rows),
         "law": "any delta lands here, never absorbed (AC-L2)",
+        "row_kinds": {
+            "instance-identity":
+                sum(1 for r in identity_rows if r["kind"] == "instance-identity"),
+            "bind-fail-closed":
+                sum(1 for r in identity_rows if r["kind"] == "bind-fail-closed"),
+            "dual-space-coincidence":
+                sum(1 for r in identity_rows
+                    if r["kind"] == "dual-space-coincidence")},
+        "row_kind_note": ("instance-identity = LG1 bare-named dumps; "
+                          "bind-fail-closed = targeting PPtr named only by a dump "
+                          "SUFFIX id (A-LL2: unresolved, never adjudicated by "
+                          "suffix); dual-space-coincidence = target id matched BOTH "
+                          "spaces at different rows (ambiguity ledgered; the "
+                          "serialized-space bind stands)"),
     }
     emit_ledger_rows = [
         {"ledger": "ac-l1a-byte-freeze", "files": frozen_files,
@@ -1579,10 +1686,21 @@ def build(corpus_root, quiet=True, rebaseline=False):
          "carrier_instance_dumps": census["carrier_instances"]},
         {"ledger": "identity-namespace-measurement", **inv_ns},
         {"ledger": "two-id-space-pairing", "ambiguous_pairings": pairing_notes,
+         "bind_law": ("A-LL2: PPtr references resolve ONLY through the serialized "
+                      "space under unique same-class pairing; dump-suffix ids name "
+                      "rows and never adjudicate a reference (both bind sites -- "
+                      "tier-A subject_ids and writers/readers -- run true-space-"
+                      "only; the suffix branch is deleted)"),
          "bound_writer_reader_calls": bound_writers,
-         "note": ("dump-suffix ids and serialized-PPtr ids are disjoint spaces; "
-                  "unambiguous (single dump <-> single inventory entry) pairings "
-                  "resolve into flag_instances.inventory_object_path_id")},
+         "tier_a_flag_subject_binds": flag_subject_binds,
+         "bind_fail_closed_targets": len(bind_fail_closed),
+         "dual_space_coincidence_targets": len(dual_space_hits),
+         "same_row_both_space_targets": len(same_row_both_space),
+         "note": ("the two id spaces are mostly-disjoint -- non-zero numeric "
+                  "coincidence treated as collision (measured %d/%d sampled "
+                  "suffix ids also occur among asset-list PathIDs); coincidence is "
+                  "ledgered in the identity ledger, never resolved by precedence"
+                  % (inv_ns["hits"], inv_ns["sampled"]))},
     ]
 
     # --- writes -------------------------------------------------------------------------------
@@ -1604,8 +1722,10 @@ def build(corpus_root, quiet=True, rebaseline=False):
             gates_rows.append({
                 "from": fr["flag_id"], "to": w, "direction": "forward",
                 "mechanism": "hard",
-                "method": ("writer/reader binding: persistent-call target PPtr resolves "
-                           "to the instance (container, object_path_id)"),
+                "method": ("writer/reader binding: persistent-call target PPtr "
+                           "resolves via the instance's inventory-resolved "
+                           "SERIALIZED-space id (container, "
+                           "inventory_object_path_id); no suffix-space fallback"),
                 "status": "modeled"})
             gates_rows.append({
                 "from": w, "to": fr["flag_id"], "direction": "inverse",
@@ -1756,7 +1876,9 @@ def _load_inventory_index(harvest_root):
 
     Falls back to mb-dump/<container>/assets.xml where the asset-list copy is
     absent. These PathIDs live in the SERIALIZED PPtr space (what UnityEvent
-    targets carry), which is measured disjoint from the dump-file suffix space.
+    targets carry) -- the ONLY admissible reference-resolution space per A-LL2;
+    mostly-disjoint from the dump-file suffix space (non-zero numeric
+    coincidence), never interchangeable with it.
     """
     import xml.etree.ElementTree as ET
 
@@ -1787,9 +1909,11 @@ def _inventory_namespace_check(harvest_root, samples, sample_limit=40):
     """Do suffixed dump ids appear among asset-list PathIDs of their container?
 
     The harvest instance inventory (asset-list/<container>.xml) is the only
-    path-id sidecar the corpus carries. If suffixed ids never appear there, the
-    inventory's PathID space is disjoint from the dump-file suffix space and
-    bare-name resolution through it would fabricate foreign ids -> fails closed.
+    path-id sidecar the corpus carries. Suffix hits there are NUMERIC
+    COINCIDENCE and measurably non-zero, so the spaces are mostly-disjoint --
+    not disjoint; individual bare-name resolution through the inventory would
+    still fabricate foreign ids without a unique same-class pairing -> fails
+    closed.
     """
     import xml.etree.ElementTree as ET
 
@@ -1821,8 +1945,9 @@ def _inventory_namespace_check(harvest_root, samples, sample_limit=40):
     return {"sampled": sampled, "hits": hits,
             "containers_checked": checked,
             "agreement": agreement,
-            "verdict": ("namespaces agree" if agreement else
-                        "namespaces DISJOINT -> bare-name resolution fails closed")}
+            "verdict": ("spaces agree on this sample" if agreement else
+                        "mostly-disjoint -- non-zero numeric coincidence treated "
+                        "as collision -> bare-name resolution fails closed")}
 
 
 def _status_crosswalk(native):
@@ -1877,12 +2002,14 @@ REGISTRY_ENTITY_DECLS = {
                                "space); bare-named dumps stay null (identity ledger)"),
             "inventory_object_path_id": ("TRUE serialized-PPtr id from the harvest "
                                          "instance inventory when the pairing is "
-                                         "unambiguous; the two id spaces are measured "
-                                         "disjoint on this build"),
+                                         "unambiguous; the two id spaces are "
+                                         "mostly-disjoint -- non-zero numeric "
+                                         "coincidence (A-LL2)"),
             "memory_branches": ("[{branch_ordinal,if_int,persistent_calls}]; superset "
                                 "of endings/flag_tables.jsonl"),
-            "writers/readers": ("tier-A LG2 edge_ids whose target PPtr resolves in "
-                                "either id space"),
+            "writers/readers": ("tier-A LG2 edge_ids whose target PPtr resolves "
+                                "through the SERIALIZED space only (A-LL2; no "
+                                "suffix-space fallback)"),
         },
         cites=["data-contracts.mdx (pending)", SPEC]),
     "effect_call": dict(

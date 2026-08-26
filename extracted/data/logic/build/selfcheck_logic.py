@@ -14,8 +14,12 @@ of trusting emitter _meta:
                           minigames.jsonl hash compare + rule_status gate
     L5   drift tripwire   recorded input manifest matches the live corpus
     plus  tier-A floors, DS-2 classifier reproduction over all 1,555 joined rows,
-          and disk-truth spot checks (target_path_id 18198, the tier/class
-          orthogonality row, the CoreSkip dead reference).
+          disk-truth spot checks (target_path_id 18198, the tier/class
+          orthogonality row, the CoreSkip dead reference), and the A-LL2
+          bind-provenance gate: every writer/reader + tier-A flag-subject bind
+          must reproduce from the SERIALIZED space alone -- any suffix-space
+          bind is a hard fail, and suffix-only / both-spaces targets must be
+          ledgered (docs/research/verifications/ll2-arbiter.mdx, RULED).
 
 Exit code 0 iff every check passes. Stdlib only; no git, no network.
 Run:  python extracted/data/logic/build/selfcheck_logic.py [--corpus-root PATH]
@@ -243,12 +247,88 @@ def main(argv=None):
           "all 5 flag_tables rows reconcile as projections of flag_instances")
 
     id_rows = read_rows(os.path.join(logic_dir, "identity-ledger.jsonl"))
+    inst_rows = [r for r in id_rows if r.get("kind") == "instance-identity"]
     unresolved_ids = [f for f in flags if f["identity_status"] == "unresolved"]
     check("L2 identity ledger absorption ban",
-          len(id_rows) == sum(1 for f in flags if f["identity_status"] != "resolved"),
-          "%d bare-named instances ledgered (identity_status bare-name/unresolved); "
-          "%d carry no resolvable id in either space"
-          % (len(id_rows), len(unresolved_ids)))
+          len(inst_rows) == sum(1 for f in flags
+                                if f["identity_status"] != "resolved"),
+          "%d instance-identity rows ledgered (bare-name/unresolved); %d carry no "
+          "resolvable id in either space; %d A-LL2 bind-law rows "
+          "(bind-fail-closed / dual-space-coincidence)"
+          % (len(inst_rows), len(unresolved_ids), len(id_rows) - len(inst_rows)))
+
+    # --- A-LL2 bind provenance: serialized-space-only binding (ruling B guard 2)
+    # Every reference-bind (writers/readers, tier-A logic:flag subjects) must be
+    # reproducible from the SERIALIZED space alone (inventory_object_path_id
+    # under unique pairing). Any bind whose target PPtr equals an instance's
+    # SUFFIX id without an inventory-resolved true id behind it is a suffix-
+    # space bind -> HARD FAIL. The tripwire half verifies that suffix-only and
+    # both-spaces target pids are LEDGERED (ambiguity becomes data, never a
+    # silent precedence pick).
+    suffix_idx, true_idx = {}, {}
+    for f in flags:
+        if f["object_path_id"] is not None:
+            suffix_idx[(f["container"], f["object_path_id"])] = f
+        if f["inventory_object_path_id"] is not None:
+            true_idx[(f["container"], f["inventory_object_path_id"])] = f
+    bound_edges = {e for f in flags for e in f["writers"] + f["readers"]}
+    exp_bind, tgt_pids = {}, {}
+    subj_bad, wr_bad, suffix_space_binds = [], [], []
+    for r in effects:
+        t = r["target"]
+        if t["type"] not in ("Events_IntMemory", "Events_Data") \
+                or not t["object_path_id"]:
+            continue
+        key = (r["container"], t["object_path_id"])
+        tgt_pids.setdefault(key, []).append(r["edge_id"])
+        tr, sf = true_idx.get(key), suffix_idx.get(key)
+        flag_subj = [s for s in r["subject_ids"] if s.startswith("logic:flag:")]
+        if tr is None:
+            if sf is not None and (flag_subj or r["edge_id"] in bound_edges):
+                suffix_space_binds.append(r["edge_id"])
+            want_flag_subj = []
+        else:
+            want_flag_subj = [tr["flag_id"]]
+            kind = ("readers" if (t["method"] or "").startswith("Check")
+                    else "writers")
+            exp_bind.setdefault(tr["flag_id"], {"writers": set(),
+                                                "readers": set()})
+            exp_bind[tr["flag_id"]][kind].add(r["edge_id"])
+        if r["tier"] == "A" and r["subject_ids"] != want_flag_subj:
+            subj_bad.append((r["edge_id"], r["subject_ids"]))
+    for f in flags:
+        want = exp_bind.get(f["flag_id"], {"writers": set(), "readers": set()})
+        if set(f["writers"]) != want["writers"] \
+                or set(f["readers"]) != want["readers"]:
+            wr_bad.append(f["flag_id"])
+
+    prov_ok = not subj_bad and not wr_bad and not suffix_space_binds
+    n_targets = sum(len(v) for v in tgt_pids.values())
+    if prov_ok:
+        prov_detail = ("all %d writer/reader binds + every tier-A flag subject "
+                       "reproduce from the SERIALIZED space alone (%d targeting "
+                       "calls over %d target pids); 0 suffix-space binds"
+                       % (len(bound_edges), n_targets, len(tgt_pids)))
+    else:
+        prov_detail = ("%d suffix-space binds / %d subject divergences / %d "
+                       "writer-reader set divergences e.g. %s"
+                       % (len(suffix_space_binds), len(subj_bad), len(wr_bad),
+                          (suffix_space_binds + [b[0] for b in subj_bad]
+                           + wr_bad)[:3]))
+    check("A-LL2 bind provenance (serialized-space only)", prov_ok, prov_detail)
+
+    led_ffc = {(r["container"], r["target_pptr_id"]) for r in id_rows
+               if r.get("kind") == "bind-fail-closed"}
+    led_dual = {(r["container"], r["target_pptr_id"]) for r in id_rows
+                if r.get("kind") == "dual-space-coincidence"}
+    exp_ffc = {k for k in tgt_pids if k not in true_idx and k in suffix_idx}
+    exp_dual = {k for k in tgt_pids if k in true_idx and k in suffix_idx
+                and suffix_idx[k] is not true_idx[k]}
+    check("A-LL2 both-match/suffix-only tripwire ledger",
+          led_ffc == exp_ffc and led_dual == exp_dual,
+          "recomputed %d suffix-only + %d dual-space target pids == ledger rows "
+          "(%d/%d); ambiguity ledgered, never precedence-resolved"
+          % (len(exp_ffc), len(exp_dual), len(led_ffc), len(led_dual)))
 
     # --- L3: polarity honesty ----------------------------------------------------------
     SITE_PREFIXES = ("harvest/mb-dump/", "il2cpp/dump.cs")
