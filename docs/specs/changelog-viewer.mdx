@@ -1,0 +1,601 @@
+# Changelog / patch-diff viewer — piece spec (D-CL2)
+
+Spec feeding board item "Changelog / patch-diff viewer (**CORE
+differentiator**)" ([docs/TODO.mdx](../TODO.mdx) Phase 3 T-CL1;
+[section-map row 15](../../spec.md)). Inputs:
+[changelog-scout](../research/changelog-scout.mdx) (PrepareTask step 1,
+whose central honest answer BINDS this spec),
+[contracts/registry/fingerprints.json](../../contracts/registry/fingerprints.json),
+[content-pipeline](content-pipeline.mdx) M4 (the frozen `ef022cc` seam this
+piece unhooks), [data-contracts §2.2/§4.4](data-contracts.mdx),
+[tokens.css](../../site/src/styles/design/tokens.css) +
+[T2 §4](../research/ui-style-scout.mdx),
+[tools-plan §3.7/§6](../../tools-plan.md),
+[D1 §7](../research/game-research.mdx). Survey date 2026-08-26, build
+**19029065** / **0.93L**; every number below re-measured from disk for this
+spec (corrections to the Scout called out inline, §3.1 and §13-OQ4).
+
+The binding honest answer, restated as law: **exactly one build exists**
+(19029065 / 0.93L on all 84 fingerprinted artifacts) and field-level
+diffing is therefore not scarce but *impossible* today. Any surface
+implying computed before/after state is fabrication, banned outright. The
+piece ships two arms: (A) documented truth at one version — dated
+timeline, fingerprints-as-integrity view, rename lineage, honestly-empty
+feed — and (B) a **dormant mechanical diff arm** that activates only when
+a second build lands, riding DAQ's keep-previous-build watch. Arm A is not
+a stub for Arm B; it is the differentiator's real, versioned,
+byte-verifiable floor ([OQ-1](#13-open-questions-carried-for-the-arbiter)).
+
+---
+
+## 0. Sequencing law — the one-build world is measured, not assumed
+
+### 0.1 Disk audit (re-measured 2026-08-26 for this spec)
+
+| Pin surface | Verified this pass |
+|---|---|
+| Live install | `A:\SteamLibrary\steamapps\appmanifest_2527500.acf`: `buildid 19029065` == `TargetBuildID` (grep re-run this pass) |
+| [extracted/EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md) | `pipeline-defaults`: buildId 19029065 · versionLabel 0.93L · Unity 2021.3.35f1 · IL2CPP v29; run events `loc-run 9e0dc0f9` + `decompile-run 2682a4c6`, both 2026-08-24 — a single-generation corpus |
+| [contracts/registry/fingerprints.json](../../contracts/registry/fingerprints.json) | `_meta{conventions, generated_by: contracts/check_contracts.py generate, patch_day law, spec pointer}` · `pipeline_pin {build_id: "19029065", version_label: "0.93L"}` · `artifacts`: **84 entries = 55 under `extracted/data/**`** (achievements 2 · cartridges 3 · characters 2 · dialogue 30 · documents 3 · endings 5 · logic 4 · scenes 6) **+ 29 under `extracted/relinks/`**, every one `build_id: "19029065"`; stamp classes header-stamp 38 · document-stamp 22 · pipeline-defaults 21 · row-stamp 3; summed pinned `row_count` = **37,264 data rows** |
+| Depotcache (this host) | exactly ONE MiSide manifest (`2527501_*`) — zero older snapshots survive locally |
+| Demo 2527520 | never installed on any root; acquisition DROPPED 2026-08-24 ([questions #2](../questions.md)) |
+| `extracted/data/changelog/` | does not exist yet (this spec creates it) |
+
+The `_meta.patch_day` law is the load-bearing contract for Arm B,
+verbatim: *"a new buildId invalidates every fingerprint; rerun re-pins
+them in the emit-stage commit; site rebuild fails until re-pinned (spec
+section 6.4)"*.
+
+### 0.2 What already exists on the seam
+
+Verified: `ArticleType` includes `"patch"`
+([site/src/data/articles.ts:59](../../site/src/data/articles.ts));
+`site/src/app/feeds/patch.xml/route.ts` exists as the empty-honest
+skeleton; `(pivot)/news/[news_slug]/page.tsx` + the `[locale]/**` mirror
+tree are the route shapes. [Content-pipeline §7.1](content-pipeline.mdx#7-m4--news-section)
+declares the patch stream "schema-ready, empty-honest until LANE-A ⛓" and
+its OQ-4 recommended holding thin pages rather than shipping twice —
+**this spec is LANE-A landing; it unhooks that chain** (seam mechanics in
+§5.2). Its §12 non-goal "Changelog/diff computation — patch pages consume
+its output" is exactly the division of labor codified below.
+
+---
+
+## 1. Scope
+
+In: M1 emitters (`extracted/data/changelog/`); M2 dormant diff stage
+(`run_all` S9); M3 server-only readers; M4 routes ×2 trees + hub/feed/
+sitemap/search/JSON-API consumption; M5 i18n, interaction, and corruption
+semantics; acceptance criteria incl. the Scout's eight, each with a proof
+method; open questions carried with recommendations.
+
+Out (non-goals, §12): authored patch prose (`.mdx` bodies — patch pages
+are data-rendered from typed fields); any computed diff before a second
+tree exists; demo-vs-full comparison (scope slice, not a time axis);
+historical v0.91–v0.92 tree reconstruction (OQ-5, default NO); a
+standalone `/changelog` top-level section (OQ-4 recommendation); the
+interactive compare-tool ambitions of [tools-plan §3.7](../../tools-plan.md)
+(they arm off the same changesets later); OG image templates; IndexNow
+(content-pipeline §7.5 disposition stands).
+
+---
+
+## 2. Module breakdown & dependency edges
+
+| Module | Owns | Key files (new unless noted) |
+|---|---|---|
+| **M1 Emitters** | The three changelog artifacts, stamped and gated | `contracts/emit_changelog.py`; curated seed `contracts/registry/patch_seed.jsonl`; artifacts `extracted/data/changelog/patches.jsonl`, `build_integrity.jsonl`, `save_point_renames.jsonl` |
+| **M2 Diff activation stage** | Dormant-by-design diff arm + code-plane digests + re-pin coupling | `run_all` stage **S9 `changelog`** (stage table gains its row in the same commit); outputs `extracted/data/changelog/changesets/<from>-to-<to>/*.jsonl` + `code_plane_digests.jsonl` |
+| **M3 Readers** | Server-only typed access beside the contracts reader | extends `site/src/data/contracts.ts` siblings: `src/data/changelog.ts` |
+| **M4 Routes & feeds** | `/news/patch/[patch_slug]` ×2 trees via shared factory; feed/sitemap/search/API | `(pivot)/news/patch/[patch_slug]/page.tsx` + `[locale]/…` mirror; factory `PatchRoute` beside `src/components/routes/sectionPages.tsx`; fills `feeds/patch.xml/route.ts` (existing skeleton) |
+| **M5 i18n + semantics** | Chrome keys ×34, RTL legs, ledger gating, corruption visual grammar | locale files; components under `src/components/changelog/` |
+
+Dependency edges:
+
+```
+fingerprints.json ──► M1 ──► {M3}             (readers consume ONLY emitted jsonl)
+patch_seed.jsonl ──► M1                        (traceability gate at emit, CL-3)
+spec entities.save_point attrs ──► M1          (rename-lineage join, documented-note)
+run_all S1–S8 ──► S9(M1 emit; M2 diff arm)     (S9 registered last; dormant exits 0)
+update watch (DAQ) ══► M2                      (buildid change → keep tree N−1 → rerun)
+M2 ──► changesets + code_plane_digests         (zero bytes until ≥2 trees, CL-8)
+M2 ──► fingerprints re-pin, SAME commit        (patch_day law; rebuild fails until re-pinned)
+M3 ──► M4 routes / feed / sitemap / search / JSON API
+M4 ◄─ ⛓ content-pipeline M2                    (registry materializes type-patch rows FROM M1 output, §5.2)
+M5 ◄─ tokens.css tier-1 rows                   (no uncited hex anywhere, scaffold AC-S8 law)
+```
+
+Hard rule (AGENTS.md rule 8 restated): **the page layer never derives.**
+It does not hash, diff, join lineage, or compute deltas at request time —
+every fact it renders was emitted by M1/M2 into `extracted/data/changelog/`
+and reaches it through the M3 reader.
+
+---
+
+## 3. M1 — Data-side emitters (`extracted/data/changelog/`)
+
+Writer is `contracts/emit_changelog.py` (beside `check_contracts.py`,
+same generate-and-verify discipline); nothing under `changelog/` is ever
+hand-edited after emit. All three artifacts are class-A `_meta` wrappers
+(data-contracts §2.2): first line carries `schema`, `generator`, `build_id`,
+`version_label`, `row_count`; readers dispatch on the wrapper, and
+`readJsonl()`'s pin-or-throw is the enforcement.
+
+### 3.1 `patches.jsonl` — the dated event registry (Arm A spine)
+
+Schema `miside.changelog.patches/1`. One row per dated public event:
+
+```json
+{
+  "patch_slug": "v0-921",
+  "label": "v0.921",
+  "date": "2024-12-29",
+  "event_class": "patch",
+  "title": "Load-point renames + six more languages",
+  "summary_facts": [
+    "Save-point labels renamed (Cap → Cappie, Open Dialogue → Be Candid)",
+    "Six language additions (id, th, hu, ro, sv + es-ES voice)",
+    "New Year decorations"
+  ],
+  "source_kind": "wiki-table",
+  "source_ref": "en-fandom:MiSide/Versions#v0.921",
+  "build_id": null
+}
+```
+
+- `event_class ∈ {release, patch, demo}` — schema /1 pins exactly these
+  three. **Correction to the Scout:** its draft vocabulary also listed
+  `collab | kickstarter | award | note`; those dated items belong to the
+  **game stream** by content-pipeline §7.1's own taxonomy ("Steam RSS
+  ingest + collab/Kickstarter/award items"), and duplicating them here
+  would mint a second URL per event. They are seeded once, in the game
+  stream. The `build_id` column stays nullable: only rows whose label the
+  corpus actually pins carry one (today exactly `v0-93l` =
+  `19029065`, per EXTRACTION-LOG's versionLabel pin).
+- `source_kind ∈ {wiki-table, steam-news-item, keyless-api, encyclopedia}`
+  and `source_ref` are **machine-plane forever** (AGENTS rule 3): the
+  served page renders date + label + facts, never the source identity.
+- Seed = the eight build-axis rows of [D1 §7](../research/game-research.mdx):
+
+| slug | date | label | class | source_kind |
+|---|---|---|---|---|
+| `itch-demo` | 2023-07 | itch.io demo | demo | encyclopedia |
+| `steam-demo` | 2023-08-18 | Steam demo (BGM + RU VO) | demo | encyclopedia |
+| `full-release` | 2024-12-10 | Full release | release | keyless-api |
+| `v0-91` | 2024-12-24 | v0.91 — Photo Mode, gore censor, 9 languages | patch | wiki-table |
+| `v0-921` | 2024-12-29 | v0.921 — renames, 6 languages, New Year | patch | wiki-table |
+| `v0-924` | 2025-02-05 | v0.924 — fa + sr-Latn, es-419 VO | patch | wiki-table |
+| `v0-93` | 2025-02-14 | v0.93 — fix pass, Spacecar tuning, console commands | patch | steam-news-item |
+| `v0-93l` | 2025-06-13 | v0.93L — newest release-notes post | patch | steam-news-item |
+
+Dates are the article's own facts and render user-facing
+([DR-2026-08-22-numbers-stand-alone]); refresh times and source health
+never do.
+
+**Second correction to the Scout:** its M1 sketch seeded
+`patches.jsonl` from "D1 §7 rows **+ EXTRACTION-LOG run events**". Run
+events are extractor-identity facts — repo-plane, banned from user
+surfaces by AGENTS rule 3; rendering a `loc-run` as a timeline entry
+would leak acquisition paths into served pixels. Run events stay where
+they are (EXTRACTION-LOG, machine plane); the database-generation story
+reaches users only through the *database* news stream's fact-stated items
+and the build stamp on each page.
+
+### 3.2 `build_integrity.jsonl` — fingerprints as a public artifact
+
+Schema `miside.changelog.build_integrity/1`. A normalized, order-stable
+projection of `fingerprints.json` — one row per artifact:
+
+```json
+{
+  "path": "extracted/data/achievements/achievements.jsonl",
+  "family": "achievements",
+  "plane": "data",
+  "sha256": "f4220fcc734deeb8a2c45f08341892332d858c654cac8bee205dd28786ea89be",
+  "row_count": 26,
+  "build_id": "19029065",
+  "build_id_source": "row-stamp"
+}
+```
+
+`plane ∈ {data, relink}` from the path prefix (55/29 today); the
+`pipeline_pin` rides the `_meta` header. This file is what makes the
+integrity panel (§8.2) possible: the frontend renders it verbatim and
+never recomputes anything. Emission fails closed: if
+`check_contracts.py verify` reports any mismatch, M1 refuses to write a
+stale projection (CL-2).
+
+### 3.3 `save_point_renames.jsonl` — documented lineage, labeled
+
+Schema `miside.changelog.save_point_renames/1`. Rows join the spec's
+`save_point` entity attributes (`name-per-build`, `rename-lineage`) to
+patch-note evidence:
+
+```json
+{
+  "entity_kind": "save_point",
+  "entity_id": "cap",
+  "attribute": "display_name",
+  "from_value": "Cap",
+  "to_value": "Cappie",
+  "patch_slug": "v0-921",
+  "evidence_class": "documented-note"
+}
+```
+
+The emitter **refuses** `evidence_class: "computed"` unless the row was
+produced by an M2 changeset in the same run — enforced structurally (M2
+writes those rows itself; M1 can only emit `documented-note`) and by test
+(CL-1). Seed rows: `Cap → Cappie`, `Open Dialogue → Be Candid` at v0.921
+(COMP J9); minigame tuning notes at v0.93 stay `summary_facts` on the
+patch row until a computed diff decomposes them.
+
+### 3.4 Emission laws (fail loudly, never silently unlink)
+
+1. **Traceability**: every `patches.jsonl` row must resolve `date` +
+   `label` against its `source_ref`; unresolved ⇒ nonzero exit naming the
+   slug (the row_count-pin lesson; Scout risk 3).
+2. **Row-count pins**: `_meta.row_count` exact; `readJsonl()` throws on
+   drift.
+3. **Slug uniqueness + route-safety**: slugs are lowercase `[a-z0-9-]`,
+   unique across the file, and never collide with an article slug in the
+   other streams.
+4. **Order stability**: artifacts sort by (`date`, `patch_slug`) /
+   (`path`) so byte-stable regeneration holds (PIPE AC-5 mode).
+5. **Plane hygiene at emit**: any seed row whose `title`/`summary_facts`
+   contains a repo-plane token (upstream URL, extractor name, license
+   tag) fails the build — the same both-directions grep family as AC S9.
+
+---
+
+## 4. M2 — Diff activation stage (dormant by design)
+
+### 4.1 Dormancy contract
+
+S9 registers in `run_all` after census S8 and **exits 0 emitting zero
+bytes whenever fewer than two distinct build trees exist** — no stub
+changesets, no empty-shell files, no log noise beyond one machine-plane
+line stating the dormancy condition. Honest omission is the feature
+(CL-8). Today's tree: S9 runs M1 (always) + the diff arm (never).
+
+### 4.2 Trigger chain (ridden, not rebuilt)
+
+The update watch is DAQ's design; S9 is its last consumer:
+
+1. appmanifest `buildid` ≠ 19029065 (local read + keyless appdetails
+   cross-check);
+2. DepotDownloader pull to `D:\Games\MiSide_<buildid>\`
+   **keeping tree N−1 until diffing completes**
+   ([data-acquisition §update watch](../../data-acquisition.md));
+3. `./run_all <path>` rerun → every fingerprint invalidated → re-pinned
+   in the emit-stage commit (patch_day law) → site rebuild unblocked;
+4. S9 diff arm compares tree N−1 vs N and emits.
+
+### 4.3 Diff algorithm when armed
+
+- **Level 1 — artifact sets**: symmetric difference of the per-artifact
+  sha256 maps between the two re-pins ⇒ added / removed / changed
+  artifacts.
+- **Level 2 — records**: inside changed `.jsonl` artifacts, join on
+  preserved internal identifiers (COMP net advantage 5 — ids survive
+  verbatim) ⇒ added / removed / value-changed records, keyed
+  `record_id + field`.
+- **Renames**: a removal paired with an addition whose non-name fields
+  match ⇒ `renames.jsonl` row with `evidence_class: "computed"`.
+- **Outputs**: `changesets/<from>-to-<to>/{artifacts,records,renames}.jsonl`
+  (schemas `miside.changelog.changeset_{artifacts,records,renames}/1`)
+  plus `code_plane_digests.jsonl`.
+- **Code-plane rider (OQ-3, recommended mandatory)**: every changeset
+  carries digests for the layers data rows cannot see — `il2cpp/dump.cs`,
+  `script.json`, `il2cpp.h`, `stringliteral.json`, and a sorted
+  path+sha256 manifest rolled up over `decompiled/main/**`. Any
+  "unchanged" claim the UI makes is thereby scoped to the layer actually
+  hashed; LG2 projections (`flag--gates.jsonl`, `choice--consequence.jsonl`)
+  already ride the fingerprint surface under KEEP-PINNED
+  ([data-contracts §4.4](data-contracts.mdx#44-keep-pinned-lg2-relink-projections-are-fingerprinted-not-join-families-f-ct3-2026-08-26)),
+  so the BPB failure mode — publishing "nothing changed" over invisible
+  script churn — is structurally fenced.
+
+### 4.4 Demo boundary
+
+Demo 2527520 covers ch 0–3 and shares no time lineage with the full
+game: it is a **scope slice, not an ancestor build**, and never produces
+a `/news/patch/` page. Its only sanctioned use to date is as a
+mechanics-shakeout second tree for S9 behind an owner SteamGuard session
+(OQ-2); a user-facing demo-vs-full comparison, if ever ruled in, belongs
+to a compare tool, not the changelog.
+
+---
+
+## 5. Data contract — the frontend CONSUMES, never derives
+
+### 5.1 Consumer table
+
+| Consumer | Reads | Contract |
+|---|---|---|
+| Reader `src/data/changelog.ts` | the three M1 artifacts + changesets when present | server-only, beside `src/data/contracts.ts`; same `readJsonl<T>()` discipline, `_meta` shapes, row_count pin-or-throw |
+| Content-pipeline M2 (emit) | `patches.jsonl` (+ `changesets/` when present) | materializes type-`patch` rows into `articles.jsonl` (§5.2) |
+| Hub `/news` + chips | registry | patch chip count == published patch rows (CL-9) |
+| Feeds — `feeds/patch.xml/route.ts` | registry | RSS items; valid empty channel while zero (CL-6) |
+| Sitemap — `sitemapPartitions.ts` | registry locales | patch URLs fold into the existing `news@<locale>` partition — no new partition kind |
+| Search — `emit-artifacts.mjs` | registry | one row per patch × admitted locale, `id: "patch:<slug>"`, kind-balanced cap untouched |
+| Reverse links — `EntityDetailRoute.buildModules` | `changesets/*/records.jsonl` | "Changed in <label>" panel — **armed only when changesets exist; absent otherwise, without a caption** (§8.4) |
+| Static JSON API + `/llms.txt` | registry | `/api/v1/news/patch/<slug>.json` fact-identical to the page (scaffold AC-S11 law); published patch pages listed in `/llms.txt` |
+
+### 5.2 Registry materialization (the content-pipeline seam)
+
+Patch pages are **not** authored `.mdx`; they are typed-field renders.
+To keep content-pipeline's law that the registry is the only hand-off
+surface, its emit step gains exactly one declared input: it reads
+`patches.jsonl` (+ changesets) and writes one registry row per published
+patch page — `article_id: "patch:<slug>"`, `type: "patch"`,
+`locales` per admission (§8.6), `entities[]` from changeset record refs
+(empty-honest at one build), **no `body_ref`** (nothing compiled; the
+page factory pulls typed fields through M3). Consequences, all inherited
+laws: escape-first/C14 applies vacuously to sources but the emitted-page
+invariant re-parse still runs (CL-11); `streams.patch` in the registry
+`_meta` stops being permanently empty; content-pipeline OQ-4's "hold the
+stream" disposition is discharged by THIS spec, not silently.
+
+---
+
+## 6. M3 — Frontend readers
+
+`src/data/changelog.ts`: typed shapes for the four artifact families,
+exporting `listPatches()`, `getPatch(slug)`, `getIntegrity()`,
+`getRenameLineage(patchSlug?)`, `getChangeset(from, to)` (returns `null`
+while none exist — callers treat `null` as "feature absent", never as
+zero-length). BuildId / version_label surfacing comes from the `_meta`
+handling this reader already inherits. No reader function accepts a path
+argument; no component imports `fs`.
+
+---
+
+## 7. M4 — Routes & placement ×2 trees + feeds
+
+### 7.1 Routes
+
+`(pivot)/news/patch/[patch_slug]/page.tsx` + `[locale]/news/patch/[patch_slug]/page.tsx`
+— both thin wrappers delegating to one shared `PatchRoute` factory beside
+`src/components/routes/sectionPages.tsx` (static segment wins over
+`[news_slug]`, the standard Next resolution; an article slug literally
+named `patch` is rejected at seed validation, §3.4-3). `generateStaticParams`
+enumerates exactly the admitted registry rows; unknown slugs 404 — no
+fallback rendering.
+
+### 7.2 Page anatomy (top to bottom)
+
+1. **Build-stamp header** in the LCD pixel voice (`--ms-font-lcd`):
+   label + date + `build_id` where pinned — machine truth about machine
+   state (T2 §4.4), never body text.
+2. **Summary facts** as a flat list — each fact one sentence, sourced to
+   the row; no narrative filler.
+3. **Changed-entity links** — crawlable `<a href>` per referenced
+   entity; renders only from changeset rows, so it is ABSENT at one
+   build, without a placeholder (CL-8 posture on-page).
+4. **Integrity panel** (`#integrity`, only on `build_id`-bearing pages —
+   today `v0-93l`): the 84-artifact table from `build_integrity.jsonl`
+   (§8.2).
+5. **Documented lineage block** (only where rows exist — today `v0-921`):
+   the rename table in the §8.3 grammar.
+6. **Related `game_version` links** visually separated below a rule —
+   the fictional metaspace may be LINKED from a patch page, never BE one
+   (COMP S2 avoidance; plane separation is CL-4).
+
+### 7.3 Metadata & discovery
+
+`buildEntityMetadata`-law per page: unique localized title/description
+from THAT locale's admitted strings, self-canonical with serving prefix,
+x-default → bare path, hreflang cluster == ledger membership. `NewsArticle`
+JSON-LD with the row's date. Search rows `patch:<slug>` per admitted
+locale into `public/search/<locale>.idx.json`. IndexNow: deferred per
+content-pipeline §7.5.
+
+### 7.4 Feeds
+
+`feeds/patch.xml/route.ts` fills from registry rows: valid RSS, item
+count == published patch pages, and correct-as-empty (`<channel>` with
+zero items) until the first publish — the current skeleton's shape,
+retained (CL-6). Feed entries carry dates and titles only; machine-plane
+`source_ref`s stay out of the channel too (they are repo-only even in
+XML per content-pipeline §7.2's split).
+
+---
+
+## 8. M5 — Interactions, i18n, and corruption semantics
+
+### 8.1 Version picker — single-entry honesty
+
+Selected state is a URL, never component-local (design-standard law):
+picker targets are the existing slugs, written as segments/params
+(`?from=&to=` form reserved for the future compare state). **At one
+build the picker does not render at all** — not disabled, not shown with
+one item; the timeline itself is the version list. When build #2 arms
+S9, the picker enumerates only existing build pages + changeset pages;
+any filter answers as typed, no submit controls
+([DR-2026-08-22-inputs-answer-as-you-type]). A control that implies
+choice where none exists is the same defect as a fake diff.
+
+### 8.2 Artifact integrity drill-down
+
+`#integrity` renders all 84 rows: path · short sha (first 16 hex, full
+digest in `title`/copy affordance) · `row_count` · `stamp class`. Group
+by family headers (55 data / 29 relink), sorted by path; ≤200 rows/page
+bound is met with room. Row expansion state lives in the URL fragment
+per-row anchor. The panel shows **values, not health words** — no
+"verified/fresh/stale" vocabulary (DR numbers-stand-alone); byte-truth is
+proven in CI (CL-2), not narrated at users.
+
+### 8.3 Rename-lineage grammar (corruption semantics, finally literal)
+
+State treatment, never decoration — token mapping pinned to tier-1 rows:
+
+| Change class | Treatment | Tokens |
+|---|---|---|
+| Deletion (record removed) | alarm red text + `--ms-glow-glitch` halo | `--ms-danger #fc0f43` [sampled steam-ss8] |
+| Addition (record added) | CRT green — the machine-truth register | `--ms-signal #08cb05` [sampled comm-minigame-lcd-defeat] |
+| Rename | old value **VHS-degraded** (chromatic split text-shadow `#08cb05/#ff009c` + optional `.ms-vhs-drift` banding, reduced-motion respected), current value crisp `--ms-text-1` | `--ms-glitch-split-a/b`, T2 §4.1 |
+| Unchanged | plain `--ms-text-2` | — |
+
+`evidence_class` is never printed as a caption (anti-slop ban on
+interface-explaining sentences): `documented-note` rows ARE the
+VHS-degraded ones; computed rows (post-trigger) render crisp. Machine
+plane carries the field; the grammar carries the meaning (OQ-6
+recommendation).
+
+### 8.4 Entity-scoped change views
+
+Reverse-index module "Changed in …" on entity pages, fed from
+`changesets/*/records.jsonl` via the consumer table. Absent until the
+first changeset exists — omitted entirely, never rendered as a captioned
+empty well. (The checkerboard `VoidWell` remains the only empty-state
+visual anywhere in the piece.)
+
+### 8.5 i18n
+
+Chrome keys land ×34 in one commit with identical key sets (parity
+checker gate). Timeline rails get an RTL leg mirroring the MV-1
+precedent; ar/ar-EG serve `dir="rtl"` (CL-12). Page admission follows
+localization-architecture §5.5 **option A — omit, never mix**: pivot EN
+publishes immediately; a non-pivot `/de/news/patch/<slug>` exists iff a
+translated cell is admitted under content-pipeline §8's translation-
+authority gate. Summary facts are never machine-translated and never
+EN-passthrough onto a localized URL.
+
+---
+
+## 9. Honest states, stub policy, and the starvation note
+
+Before M1 lands, the current empty-honest skeletons stand EXACTLY as
+shipped (`ArticleType` member present, empty `patch.xml`, no chip) — no
+preview cards, no "coming soon". After M1: chip appears, pages publish,
+feed fills; there is no transitional state between skeleton and truth.
+
+**Starvation is handled as content strategy, not fabricated cadence.**
+No release-notes post has appeared since v0.93L (2025-06-13 — ~14 months
+of patch silence while game news continues). The patch stream therefore
+ships a finite, dated, rot-free corpus and stops; retention belongs to
+the database stream and evergreen guides (content-pipeline §7.1, scout
+risk 1). This piece will never invent an event, extrapolate a date, or
+render silence as activity — a quiet changelog that is byte-true beats a
+busy one that is fiction, and unlike every competitor's hand-maintained
+table it does not rot between patches.
+
+## 10. Machine-plane artifacts summary
+
+| Artifact | Writer | Readers |
+|---|---|---|
+| `extracted/data/changelog/patches.jsonl` | M1 | content-pipeline M2 (materialization), M3 reader |
+| `extracted/data/changelog/build_integrity.jsonl` | M1 | M3 reader (integrity panel) |
+| `extracted/data/changelog/save_point_renames.jsonl` | M1 (+M2 rows post-trigger) | M3 reader |
+| `extracted/data/changelog/changesets/<from>-to-<to>/*.jsonl` | M2 (dormant) | M3 reader, reverse-link module |
+| `extracted/data/changelog/code_plane_digests.jsonl` | M2 (dormant; OQ-3) | CI layer-scope checks |
+| registry type-`patch` rows | content-pipeline M2 | hub, feed, sitemap, search, JSON API |
+
+---
+
+## 11. Acceptance criteria (verifier-checkable)
+
+Scout ACs 1–8 map to CL-1…CL-8 unchanged in substance; each carries its
+proof method.
+
+| # | Criterion | Proof method |
+|---|---|---|
+| CL-1 | **Honesty gate** (Scout 1): build FAILS if any changeset/renames artifact exists while `fingerprints.json` holds <2 distinct `build_id`s; M1 structurally cannot emit `evidence_class:"computed"` | suite asserts emitter refusal + empty output glob in a single-build sandbox tree; mutation: drop a fixture changeset into the sandbox → nonzero exit naming the file |
+| CL-2 | **Byte-truth** (Scout 2): recomputed sha256 over all 84 artifacts equals `fingerprints.json`; `build_integrity.jsonl` matches 1:1 (path, digest, row_count, stamp class) | `check_contracts.py verify` extension runs in-suite; corrupt one fixture byte → red; restored → green |
+| CL-3 | **Traceability** (Scout 3): every `patches.jsonl` row resolves date+label to its `source_ref`; unresolved row fails emit | join sweep test; inject an unresolvable seed row → nonzero exit naming slug |
+| CL-4 | **Plane separation** (Scout 4): no `game_version` entity id renders where a buildId/version label is expected, and vice versa | negative grep over emitted HTML for the v0-93l and v0-921 pages |
+| CL-5 | **Locale parity** (Scout 5): `/news/patch/<slug>` exists ×2 trees × locale IFF the availability ledger admits it; hreflang cluster == ledger cells; metadata law per page (unique localized title/description, self-canonical, x-default → bare path) | mechanical route-manifest ∩ ledger equality both directions + existing metadata checker over ≥3 locales incl. one RTL |
+| CL-6 | **Feed validity** (Scout 6): `patch.xml` parses; item count == published patch pages; valid while zero | XML parse + count assert against registry; zeroed-fixture case exercised |
+| CL-7 | **Machine-plane hygiene** (Scout 7): no refresh-time/status vocabulary on any served surface; dates appear only as article facts; zero repo-plane tokens (source identities, upstream URLs, extractor names, license tags) | banned-token sweep both directions (Phase-4 CI lane; S9-pattern grep) |
+| CL-8 | **Dormant silence** (Scout 8): M2 pre-trigger produces no bytes, exits 0; on-page corollaries (changed-entity block, picker, reverse module) render nothing at one build | suite runs S9 against the single-build sandbox; curl a patch page asserting absence of the three modules without placeholders |
+| CL-9 | **Stream coherence**: registry type-`patch` rows == `patches.jsonl` published rows 1:1; hub chip count == same; sitemap `news@<locale>` includes every admitted patch URL | join sweep registry ↔ patches.jsonl ↔ partition output, full diff |
+| CL-10 | **Changeset completeness + layer scoping** (arms post-trigger; OQ-3-gated): every fingerprint delta between two re-pins appears in exactly one changeset; every changeset carries `code_plane_digests.jsonl` coverage for all five declared digest inputs | two-tree sandbox fixture: injected artifact/record mutations each land in exactly one changeset; delete one digest input from a fixture → emit fails |
+| CL-11 | **Emitted-page invariants**: served patch HTML passes the C14 three-invariant re-parse (closed element allowlist, zero `on*` attributes, destination allowlist) despite having no markdown source | ct1-fix-vC re-parse checker pointed at rendered patch output; seeded-violation probes fail naming element/attribute |
+| CL-12 | **Chrome parity + RTL**: new keys present ×34 identical sets; ar/ar-EG patch pages serve `dir="rtl"`; timeline rail mirrored | `check-chrome-parity.mjs` exit 0; curl attr assert; stepper-mirror component test |
+
+## 12. Non-goals
+
+- Computed diffs, hashes, or lineage at request time — M1/M2 own all
+  derivation; pages consume (AGENTS rule 8).
+- Authored patch prose / `.mdx` bodies — patch pages are typed-field
+  renders; editorial game news lives in content-pipeline M4.
+- Demo-vs-full comparison surfaces; historical tree reconstruction
+  (OQ-5 default NO).
+- Standalone `/changelog` section (OQ-4 recommendation: hub shell stays
+  content-pipeline's; new top-level sections are a domain-doctrine owner
+  call).
+- The tools-lane interactive compare UI (tools-plan §3.7) — it arms off
+  these changesets when they exist.
+- OG/share image templates; IndexNow pings; comments/UGC runtime.
+- Fabricating any row to soften starvation (§9) — the anti-fake gate
+  makes it a build failure, not a policy preference.
+
+## 13. Open questions carried for the Arbiter
+
+All six Scout OQs forward, each with this spec's recommendation.
+
+- **OQ-1 · Honest-stub ruling (the board's own question).** Ship-now vs
+  defer the differentiator claim until trigger. **Recommendation: SHIP
+  NOW** — Arm A is real, versioned, byte-verifiable, unfakeable; the
+  claim activates mechanically at build #2 via S9; deferral leaves D5's
+  launch-blocking patch-diff/changelog route unsatisfied, and the BPB
+  waiver is explicitly scoped to that pack ([DR-2026-08-22-bpb-drop-changelog];
+  §3.4 of the Scout rules dropping OUT for MiSide).
+- **OQ-2 · Demo semantics.** **Recommendation: OUT of the changelog
+  product** — demo is a scope slice, never an ancestor (§4.4); permitted
+  solely as S9's mechanics-shakeout second tree if an owner SteamGuard
+  session happens anyway; any user-facing comparison is compare-tool
+  material.
+- **OQ-3 · Code-plane rider.** **Recommendation: MANDATORY** —
+  `code_plane_digests.jsonl` required in every changeset (CL-10) so
+  "unchanged" is always layer-scoped; this is the direct BPB lesson and
+  costs nothing until the arm wakes.
+- **OQ-4 · Placement & ownership.** **Recommendation: content-pipeline
+  owns the `/news` hub shell and the registry materialization; this spec
+  owns everything under `/news/patch/*` and the M1/M2 data plane.** No
+  standalone `/changelog` section — stream-filtered views are chip
+  states (content-pipeline §7.1), and a new top-level section is a
+  domain-doctrine owner call. Corrections bundled here: event_class
+  narrowed to `release|patch|demo` (collab/kickstarter/award/note belong
+  to the game stream — no duplicate URLs), and the Scout's EXTRACTION-LOG
+  run-event seeding dropped as repo-plane (§3.1 corrections).
+- **OQ-5 · Historical backfill (reconstruct v0.91–v0.93 trees from old
+  depot manifests).** **Recommendation: NO by default** — owner
+  credentials + manifest availability `[unverified]`, high effort,
+  uncertain yield; revisit only if an owner DepotDownloader session runs
+  for other reasons.
+- **OQ-6 · Labeling tone.** **Recommendation: evidence_class never
+  renders as text** — machine-plane field + the §8.3 visual grammar
+  (VHS-degraded = documented-note; crisp = computed) carry the
+  distinction without interface-explaining sentences.
+
+## 14. Risks
+
+1. **Starvation** (~14 mo game silence): structural mitigation in §9 —
+   ship truth that does not rot; retention rides database news +
+   evergreen guides. Not solved with data.
+2. **Disk (OPS GATE C)**: Phase-5 EMERGENCY pauses builds (TODO); M1
+   emission needs the ≥10 GB free window confirmed before it lands
+   (artifacts are small; the gate protects the rerun that re-pins).
+3. **Source-ref drift**: patch rows depend on LANE-C news-ingest ids for
+   two rows' `steam-news-item` refs; CL-3 must fail the build loudly,
+   never silently unlink (row_count-pin lesson).
+4. **Second-build surprise**: when the trigger fires mid-other-work, S9's
+   diff + re-pin must complete in ONE commit or the site stays red by
+   design (patch_day law); the runbook step belongs to DAQ's update
+   watch doc, cross-referenced here.
+
+## See also
+
+- [docs/research/changelog-scout.mdx](../research/changelog-scout.mdx) —
+  measured one-build world, competitor rulings, the skeleton this spec
+  realizes
+- [docs/specs/content-pipeline.mdx](content-pipeline.mdx) — hub/taxonomy/
+  registry laws this piece plugs into (§5.2, §7.1, §12)
+- [docs/specs/data-contracts.mdx](data-contracts.mdx) — header classes,
+  KEEP-PINNED projections, fingerprint/hash rule
+- [tools-plan.md §3.7/§6](../../tools-plan.md) — scored tool lane and
+  second-build scarcity risk this piece prices in
+- `_foundation/localization-architecture.md` §5.5 — omit-never-mix
+  admission law (option A)
