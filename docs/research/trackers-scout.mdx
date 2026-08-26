@@ -1,0 +1,445 @@
+# Trackers Scout — MiSide collectible & achievement trackers
+
+Scout pass (PrepareTask step 1) for board item **collectible & achievement
+trackers** ([../TODO.mdx](../TODO.mdx) Phase 3, `[~]` T-TR1). Build pin:
+**buildId 19029065 / VERSION 0.93L**. Deliverable of this file: the trackable
+surfaces over the ACCEPTED datasets, the persistence design space with a
+ship-first ruling, the existing site integration seams, and a spec skeleton for
+the Documentator (D-TR1). It designs no accounts and writes no code.
+
+Inputs read in full this pass: [AGENTS.md](../../../AGENTS.md) ·
+[decision-register](../../../_foundation/decision-register.md) ·
+[domain-doctrine](../../../_foundation/domain-doctrine.md) ·
+[site-sections](../../../_foundation/site-sections.md) ·
+[seo-standard](../../../_foundation/seo-standard.md) ·
+[localization-architecture](../../../_foundation/localization-architecture.md) ·
+[design-standard](../../../_foundation/design-standard.md) ·
+[spec.md](../../spec.md) · [README.md](../../README.md) ·
+[data-acquisition.md](../../data-acquisition.md) ·
+[competitor-research.md](../../competitor-research.md) ·
+[tools-plan.md](../../tools-plan.md) §3.4/§5/§6 · all six dataset contracts
+([achievements](../../contracts/dataset-achievements.mdx) ·
+[endings](../../contracts/dataset-endings.mdx) ·
+[characters](../../contracts/dataset-characters.mdx) ·
+[cartridges](../../contracts/dataset-cartridges.mdx) ·
+[documents](../../contracts/dataset-documents.mdx) ·
+[scenes](../../contracts/dataset-scenes.mdx)) ·
+[dataset-dialogue](../../contracts/dataset-dialogue.mdx) (adjacent) ·
+[explorer-tool.mdx](../specs/explorer-tool.mdx) (sibling tool spec — house
+module/AC structure, M0′ gating precedent) ·
+[site-scaffold.mdx](../specs/site-scaffold.mdx) §6–§7 rulings ·
+[TODO.mdx](../TODO.mdx) lane plan. Spot-checks on disk this pass: every count
+below re-measured from the emitted JSONLs and
+[contracts/registry/entities.json](../../contracts/registry/entities.json);
+nothing copied on faith.
+
+Sections:
+
+1. [Trackable surfaces in the corpus](#1-trackable-surfaces-in-the-corpus)
+2. [Persistence design space](#2-persistence-design-space)
+3. [Existing site integration points](#3-existing-site-integration-points)
+4. [Spec skeleton for the Documentator](#4-spec-skeleton-for-the-documentator)
+
+---
+
+## 1. Trackable surfaces in the corpus
+
+Every candidate checklist draws from a **PINNED, ACCEPTED** dataset — the
+tracker invents no rows, resolves no pointers differently, and inherits each
+dataset's honesty fences. Summary (counts re-measured from disk this pass):
+
+| # | Surface | Accepted artifact | Rows | Checklist key | Label ×34 | Placement link |
+|---|---|---|---:|---|---|---|
+| S1 | Achievements | `extracted/data/achievements/achievements.jsonl` | **26** | `achievement_id` (= Steam API name) | built-in `display` map, all 34 codes per row (AC-A1) | `unlock.sites[]` (11 hard award sites) |
+| S2 | Endings reached | `extracted/data/endings/endings.jsonl` | **4** (3 anchors + `peaceful` mode-stub) | `ending_id` | `display_name_loc` pointer | `award_chain[]`; windows on `safe-of-life` |
+| S3 | Cartridges collected | `extracted/data/cartridges/cartridges.jsonl` | **23** (13 character + 10 player) | `cartridge_id` slug over `save_key` | indirect — via `depicts_character_id` → personage `name_loc`; player family has **no** loc name | `pickup_ref` (21 rows) + markers v2 |
+| S4 | Minigames played | `extracted/data/cartridges/minigames.jsonl` | **17** | `minigame_id` | TV rows only (`TelevisionGames` −1 offset pin); rest `client_key` + cited `community_alias` | carrier containers + markers v2 (access) |
+| S5a | Mita Profiles found | `extracted/data/documents/profile_documents.jsonl` | **14** | `document_id` | `name_loc` (`Menu` 83–95) + `lore_loc` (`Personages` 1–14) | `placement` (11 placed / 2 script_granted / 1 story_granted) |
+| S5b | Books read | `extracted/data/documents/books.jsonl` | **8** | `book_id` | texture-subtree art (no text layer); per-locale art availability derived | `consumer_scene` (Location House / Location19) |
+| S5c | Paper parts + novella | `extracted/data/documents/world_documents.jsonl` | **6** of 166 (`paper_part` ×5 `puzzle_index` 0–4, `novella_surface` ×1) | `document_id` | none — see OQ-T3 | `scene_ref` + `document--scene-membership` |
+| S6 | Personage gallery (Mitas met / Players found) | `extracted/data/characters/personages.jsonl` | **24** (14 `mita` + 10 `player`) | `character_id` | `name_loc`/`description_loc`, category parity 165/26/47/13 in all 34 dirs | `character--scene-membership` relink |
+
+### S1 — Achievements (the verified-today spine)
+
+`achievement_id` PK preserves canonical spellings (`ACHI_WinFIght`,
+`ACHI_supermegapuperplayer`). A checklist row renders from:
+
+- `display` — locale→`{name, category, line_index}` map, **all 34 codes
+  present on every row** (AC-A1 count reconcile 26==26×34). Descriptions are
+  the EN-only Steam capture (keyed-endpoint hole, XC-11) — description cells
+  render only where captured, never translated by us.
+- `type_tag` (curated enum, registry enums): `story` 11 · `minigame` 8 ·
+  `ending` 3 · `collectible` 2 · `meta` 1 · `missable` 1 — natural grouping
+  axes; `missable` wears the alarm-red danger accent (T-P1 §3.4 sketch).
+- `unlock.predicate_class` (serialized-site 11 · code-body 12 · aggregate 3)
+  and `unlock.status` (**proven-hard 11 · unverified-behavior 15**) — the
+  tracker's confidence chip rides these verbatim; unverified rows never render
+  as advice (logic-layer D4 obligation pattern).
+- `joins.collectible_set` (`player-cartridges` idx 12, `mita-profiles`
+  idx 13) — the two set-completion achievements cross-link to S3/S5a instead
+  of standing alone; `joins.ending_id` on 3 rows cross-links S2;
+  `joins.minigame_id` is always null — the live edge is
+  `extracted/relinks/minigame--achievement.jsonl` (10 forward + 10 inverse,
+  6 binds unresolved: tetro, racingfirst, logA, logB, hellwin, hellmegawin).
+- `steam.global_percent` is machine-plane (emission rule 3): user surfaces
+  show **rarity bands**, never raw capture instants
+  ([DR-2026-08-22-numbers-stand-alone]).
+- Icon gap: `icon.status` = `pending-export` on all 26 (missingdata ACH-1;
+  0 pathID hits in the 437-file container-2d slice); interim
+  `icon.official_url` (Steam CDN) rides per-row — visual identity decision is
+  OQ-T7.
+
+### S2 — Endings reached (anchors, not the tree)
+
+Four rows: `conditions-met`, `safe-of-life`, `is-this-the-end`,
+`peaceful` (`kind:"mode-stub"`, visible-locked per COMP J11 discipline — it
+ships as a locked row, never omitted). Labels resolve through
+`display_name_loc` (endings share their achievement titles; stub cites
+`Menu#line_index=130`). The **371-node choice tree**
+(`choice_nodes.jsonl`: 13 dialogue-changer + 353 object-interactive +
+5 event-memory; 1,555 `branch_edges`) is *route context*, not 371 checkboxes —
+checking nodes is the Ending Condition Explorer's job
+([explorer-tool.mdx](../specs/explorer-tool.mdx)), and duplicating it here
+would double-render one graph (relationCards' dedicated-module exclusion law,
+applied at product level). Safe-window percentages stay inside
+`windows[].chapter_attribution` marked `[community]`, status
+`unverified-behavior` — the tracker repeats them only with that badge.
+
+### S3 — Cartridges (the save_key vocabulary is the row key)
+
+23 rows, `cartridge_id` = lowercased `save_key` with hyphens at letter↔digit
+boundaries (`mtacap → mta-cap`, `plr1099 → plr-1099`). The verbatim
+`save_key` vocabulary, re-read this pass:
+
+```
+character family (13): mta mtachi mtashh mtakd mtacap mtal mtaman mtaghost
+                       mtad mtad2 mla mtac mtacore
+player family   (10): plr1a plr2v plr3vi plr4asw plr5bz plr6vcx plr7vczn
+                       plr8qeqe plr9mpa plr1099
+```
+
+Row-shape facts that bind the tracker:
+
+- `status`: `registered-unresolved-pickup` exactly on `mtad2` + `mtacore`
+  (`pickup_ref` null — honest-missing, never backfilled); the other 21 carry
+  `pickup_ref {container, file:"FlashTaker.txt", field:"save", value}` and a
+  `container_location_binding` `levelN->LocationM` marked `[inferred]`.
+- `depicts_character_id` resolves on 12 of 13 character rows — `mta` has no
+  C13 anchor (DS-1 `nameSave` empty for MitaUsual/MitaTrue; recorded in
+  `missing_fields`). **Cartridge rows carry no name field at all**: mita-family
+  labels compose at render from the depicted personage's `name_loc` ×34;
+  player-family rows have no client display name anywhere — id-form labels +
+  honest-missing styling, or a curated alias column if the Arbiter grants one
+  (OQ-T2 adjacent).
+- `collectible_set = "player-cartridges"` on all 10 player rows — the set the
+  idx-12 achievement targets.
+- Placement links are real today: markers v2
+  (`extracted/data/scenes/markers.jsonl`, schema `miside.markers.projection/1`,
+  70 rows) emits **21 cartridge markers**, 11 profile markers, 38
+  minigame-access markers, each carrying the focus-URL contract
+  `/map?focus=<entity_kind>:<entity_slug>&scene=<scene_id>`. Positions are
+  `pptr-unresolved` until the PIPE S9 transform stage, so map links work at
+  scene granularity with the named-explicit-missing pin state.
+
+### S4 — Minigames played
+
+17 rows across the four registries (`automate_resource`, `automate_scene`,
+`tv_games_array`, `scene_carrier_class`, `tamagotchi_activity`). Row facts:
+`name_loc` exists only on the two TelevisionGames rows under the binding −1
+offset pin (Fight→line 0 `"Dairy Scandal"`, Pinguin→line 1 `"Penguin Piles"`
+— the identity offset is rejected mechanically, category size = 2 in all 34
+dirs); everything else labels from `client_key` + wiki-cited
+`community_alias` (repo-cited, never the key). `present_but_unreachable` is
+true on the four tamagotchi-phone activity rows — visible-locked checklist
+rows. `scoring_derivable` is false on all rows today (R1 fence), so the
+tracker tracks *played/won*, and win-threshold hints defer to the minigame
+revealer + logic layer (`minigame_tunables` registered in the contracts
+registry). `unlocks_outfits` (`Chirfns`, `HellVamp`) gives two rows a
+cross-link into the outfit question (OQ-T2).
+
+### S5 — Documents & books
+
+- **Profiles (S5a)**: 14 rows, `subject_character_id` → personages;
+  `flash_save_key` null exactly on row 13 (keyless both namespaces),
+  `placement_mechanism` = placed 11 / script_granted (rows 6, 9) /
+  story_granted (row 13). The contract's consumer rule 4 pins the exact
+  "Hi, Mita" completion predicate the tracker must implement:
+  `achievement_sets ∪ (flash_save_key IS NULL AND
+  placement_mechanism='story_granted')` — 12 keyed + 1 keyless row.
+- **Books (S5b)**: 8 rows; `art_per_locale` is derived per locale — Location
+  House pages 34/34, Location19 pages **32/34** (zh-Hans + zh-Hant do not
+  ship them; divergence 1 in the DS-5 README). Availability renders from the
+  derived booleans, never asserted.
+- **World papers (S5c)**: 160 notes + 5 paper parts + 1 novella surface.
+  `text_mechanism` is `"unresolved"` on every row and consumer rule 1 forbids
+  rendering note prose (there is none in the corpus) — 160 unlabeled boxes
+  would be id soup, so the scout proposal excludes notes from v1 checklists
+  (OQ-T3) while paper parts (indexed 0–4 against
+  `Location11_BlackRoom`) and the novella stay trackable.
+
+### S6 — Personages (Mitas met / Players found)
+
+24 rows with `gallery_order` (canonical in-game order), `palette_color1/2`
+RGBA floats → the token spine (hex conversion pinned in DS-1), and
+`name_loc`/`description_loc` pointers with measured category parity (165/26/
+47/13 records for Menu/Personages/Names/Clothes in **all 34** locale dirs).
+Honest gaps: `gallery_icon` null when pathID 0 — 14 Mita icons unset, players
+1–9 share one unresolved external pointer (`file_id 2, path_id 276`;
+missingdata CH-2); `save_key` empty on 2 mita rows; `resource_path` empty on
+9 player rows. Unlock-flavored edges already shipped as relinks:
+`character--outfit`, `character--cartridge`, `document--character`.
+
+Adjacent but **not** checklist surfaces: save points (19 logic-layer
+subjects + `scene--save-vocabulary.jsonl`) and outfits (3 logic-layer
+subjects; no outfit dataset contract exists — OQ-T2).
+
+---
+
+## 2. Persistence design space
+
+Where does checklist STATE live? Three options, evaluated against this pack's
+binding constraints: the UGC/accounts mandate
+([DR-2026-08-19-ugc-accounts] — every database MUST have sign-in/profiles;
+spec §Section map rows 8/18 tie trackers and saved checklists to accounts),
+the UGC lane ordering in [../TODO.mdx](../TODO.mdx) (UGC waits behind
+LANE-C), and the static-export posture (browser sees only emitted `public/`
+artifacts; `site/src/data/*` readers are server-only build-time).
+
+| Option | What it is | Wins | Costs | Verdict |
+|---|---|---|---|---|
+| A. localStorage only | Per-browser store, one namespaced key per set, written on every toggle | Zero infra; ships immediately; private by default; works offline and on static origins | Device-local (cleared by eviction/private mode); no cross-device, no public profile; silent-loss risk on schema drift | **Ships FIRST** — v1 |
+| B. URL / share-code state | Set selection as real routes; progress as an explicit opt-in compressed token | Shareable completion snapshots (design-standard §3 selected-state-is-a-URL; NWG published-build precedent); no infra | Personal state in a copyable string (shoulder-surf leak); token schema needs versioning; robots discipline owed | Ships with v1 as an **export/import action**, not ambient state |
+| C. Server accounts | Sign-in, server-side checklist rows, profile pages | The mandated end state ([DR-2026-08-19-ugc-accounts]); cross-device; feeds comments/corrections identity | Whole UGC stack (auth provider, moderation, privacy handling — per-database build-time call, [DR-2026-08-16] ruling 2); blocked behind LANE-C ordering | **Seam only** — designed here as an interface, built in the UGC piece |
+
+**Ruling proposed to the Documentator:** v1 = A + B behind a storage adapter
+interface shaped so C slots in without a data migration (T1 module, §4).
+Concretely:
+
+- One versioned key per set: `miside.tracker.v1.<set_id>` holding
+  `{schema:1, items:{<contract-id>:{done,ts}}}`. Writes are synchronous
+  per-toggle (the reactive-input law applied to persistence: no submit
+  control, no debounce loss window).
+- **Contract ids are the only keys ever stored** — `achievement_id`,
+  `cartridge_id`, `document_id`, `minigame_id`, `ending_id`,
+  `character_id`. Never `save_key` alone, never loc indices: patch reruns
+  may reorder loc lines but contract ids are the pinned stable vocabulary.
+- **Build-drift tolerance**: ids absent from the current emitted set render
+  nowhere but are *preserved* in storage (a patch that removes and later
+  re-adds a row must not lose the user's check); unknown ids never crash
+  render. Reconciliation happens against the emitted set manifest, never by
+  rewriting history.
+- Share-code: pure encode/decode functions over the same shape (bitset per
+  set, versioned prefix), imported read-only into the local store on
+  acceptance. Ambient URLs carry **surface selection only**
+  (`/tools/trackers/<set>` as real `<a href>` routes); item-checked state
+  never enters an ambient URL (privacy + the facet law: filter combinations
+  create no URLs, site-scaffold §6/§7).
+
+**Competitor precedent, honestly sourced:**
+
+- Fandom's `table-progress-tracking` extension (COMP S1 structural
+  weaknesses: JS-dependent rendering, content degrades without JS, crawlers
+  see partial tables) is the **anti-precedent**: our checklist rows must
+  exist in served HTML with JS only enhancing (AC-A6).
+- new-world.guide is the network's structural reference
+  ([design-standard §2](../../../_foundation/design-standard.md#2-reference-targets))
+  and its published-build share URLs are the closest precedent for option B —
+  but nothing in this repo documents NWG's actual persistence mechanism, so
+  this scout records it as **unverified** rather than asserting localStorage
+  patterns it cannot cite.
+- Steam's own global-% surface (S5 of COMP) supplies rarity context, not
+  persistence.
+
+**What NOT to decide here:** auth provider, moderation, privacy/data-handling
+for accounts — owner-domain per-database calls ([DR-2026-08-16] ruling 2).
+The seam is: `TrackerStore { read(set), write(set, patch), subscribe }` with
+`LocalAdapter` (v1) and a later `SyncAdapter` (sign-in push/pull, merge =
+last-write-wins per-item `ts` + deletion tombstones). Once signed in, the
+server is authoritative and the local store demotes to cache — no schema
+change, only a second adapter.
+
+---
+
+## 3. Existing site integration points
+
+The tracker adds a surface to a living site; every seam below already exists
+and none requires new derivation law.
+
+- **Data readers are server-only, build-time**
+  ([../../site/src/data/contracts.ts](../../site/src/data/contracts.ts):
+  "SERVER-ONLY build-time readers over ../extracted … the browser sees only
+  emitted public/ artifacts"). Consequence: the checklist shell SSRs from
+  build-time readers (rows, resolved labels, group keys as props), and the
+  client island touches ONLY localStorage — it never reads `extracted/`
+  (AC-A3). Where an island needs more than props (share-code import), it
+  consumes an emitted manifest, mirroring the explorer's M0′
+  emitter-under-`public/` pattern ([explorer-tool.mdx §5](../specs/explorer-tool.mdx)).
+- **EntityShell** composes every entity page from conditional `tabs[]`
+  modules, present only when the entity has that data, inactive panels hidden
+  but served ([../../site/src/components/entity/EntityShell.tsx](../../site/src/components/entity/EntityShell.tsx)).
+  The tracker slots in as a "track" tab/module on the routed kinds it covers
+  (achievements, cartridges, minigames, endings, profiles/books, mita/player
+  pages) plus a dedicated `/tools/trackers` hub. Mita-keyed colour identity
+  (`accentLocal`) and the `compromised` horror-as-state prop come free.
+- **Relation cards** run off the join registry (25 families in
+  [contracts/registry/joins.json](../../contracts/registry/joins.json)) with a
+  dedicated-module exclusion law: families surfaced by a dedicated module
+  stay off the cards so a page never shows the same edge twice
+  ([../../site/src/lib/relations/relationCards.ts](../../site/src/lib/relations/relationCards.ts)
+  header). The tracker module must register its families there — a cartridge
+  page would otherwise render its achievement edge twice (card + track tab).
+- **Map module**: markers v2 already projects the three placement-bearing
+  tracker kinds (cartridges 21 · profiles 11 · minigames-access 38) with the
+  focus contract `/map?focus=<kind>:<slug>&scene=<scene_id>`
+  ([dataset-scenes §markers](../../contracts/dataset-scenes.mdx)); positions
+  are `pptr-unresolved` until PIPE S9, and the map viewer already renders
+  that state with named-explicit-missing pins. Tracker rows get a
+  "show on map" link at scene granularity today; coordinates upgrade it
+  automatically when S9 lands. Reverse leg (map popover → track checkbox)
+  stays out of v1 scope (OQ-T5 adjacent).
+- **Search** is one matching function on both sides
+  ([../../site/src/lib/search/searchRows.ts](../../site/src/lib/search/searchRows.ts)),
+  rows typed `id = "<kind>:<contract-id>"`, census-pinned. The tracker adds
+  **no new searchable kinds**; the tools hub joins the existing `tools`
+  index segment ([../../site/src/lib/routes.ts](../../site/src/lib/routes.ts)
+  `INDEX_SEGMENTS`). Kind-balanced truncation and MIN_QUERY_LENGTH=2 are
+  inherited, not reimplemented.
+- **Chrome i18n ×34 incl. RTL**: site chrome is the keyed JSON namespace
+  [../../site/src/i18n/chrome/](../../site/src/i18n/chrome/) (78 top-level
+  keys in `en.json`, namespaces `nav.*`, `map.*`, `filters.*`, …) with strict
+  parity enforced by
+  [../../site/scripts/check-chrome-parity.mjs](../../site/scripts/check-chrome-parity.mjs)
+  (exit 1 naming tag + key + referencing file — the keyed-namespace-over-
+  next-intl posture kept network-wide in
+  [DR-2026-08-26-corepunk-i18n-keep]). Every tracker UI string is a chrome
+  key landing in all 34 tables; direction is pinned per locale in
+  [../../site/src/i18n/locales.ts](../../site/src/i18n/locales.ts) — `rtl`
+  for `ar`/`ar-EG` (with the logged SB-1 finding that `fa` is natively RTL
+  but stays LTR until a spec amendment), and the two declared aliases only.
+  Locale stays route-coded (`/ru/tools/trackers`), never a same-page toggle.
+  Namespace discipline: tracker row LABELS are **game text** resolved through
+  loc pointers at build; buttons/empty-states/progress words are **chrome** —
+  the two namespaces never mix (localization-architecture §4).
+- **Kit components ready to reuse**
+  ([../../site/src/components/kit/](../../site/src/components/kit/)):
+  `GradientPill` (progress gauges — the HUD pill grammar T-P1 §3.4 maps
+  literally), `KeycapKbd`, `VoidWell` (checkerboard honest-empty wells),
+  `CorruptionHover` (compromised/locked register), `LcdTerminal` (machine
+  voice for counts), plus the map's `LockedCell` for visible-locked rows.
+  New components (check row, missable badge, set panel) extend this kit —
+  shadcn primitives upgraded to the game soul, never stock
+  ([DR-2026-08-24-miside-pack] §3).
+- **Stub policy for untrackable items** (inherited, extended): rows exist
+  only where an owning dataset emits them — candidates-ledger tiers 3–4
+  never become checklist rows; honest-missing renders as the declared state
+  (`name_loc: null` → id-form label; `icon.status: pending-export` → named
+  explicit-missing cell, the markers-v2 fallback convention); locked
+  content stays visible-locked (`peaceful` mode-stub, four
+  `present_but_unreachable` minigames, unresolved pickups `mtad2`/`mtacore`)
+  — checkerboard wells and lock chips, never omission-with-apology
+  (design-standard §5.1 honesty without apology; anti-slop bans absence
+  announcements).
+- **Route plumbing**: `(pivot)` + `[locale]` mirror pairs delegate to
+  `src/lib/routes.ts`; the tools hub is currently
+  `StubSectionContent` ([../../site/src/app/(pivot)/tools/page.tsx](../../site/src/app/(pivot)/tools/page.tsx))
+  — the tracker is the first real occupant of that slot, and `gen-routes.mjs`
+  + `sitemapPartitions.ts` already know how to mirror and partition it.
+
+---
+
+## 4. Spec skeleton for the Documentator
+
+House structure per [explorer-tool.mdx](../specs/explorer-tool.mdx) (purpose
+→ inherited obligations → disk audit → modules → interactions → honest states
+→ design language → URL/i18n law → ACs → non-goals → open questions). This
+section hands that pass its outline; every count it needs is in §1.
+
+### 4.1 Module breakdown
+
+| Module | Owns | Consumes | Notes |
+|---|---|---|---|
+| **T0** tracker-manifest emitter (data-side) | `extracted/data/*/build/emit_tracker_manifest.py` → `site/public/tools/tracker/sets.core.json` + `emit-ledger.jsonl` | the six ACCEPTED datasets + relevant relinks, read-only | Compact per-set manifest: set_id, item ids, group keys (`type_tag`, `family`, `access_medium`, `placement_mechanism`), status enums, marker refs. sha256 byte-freeze of inputs; counts fail-fast (AC-A1 pattern). Variant the Documentator may weigh instead: SSR directly from build-time readers with no T0 file — costs the byte-freeze gate and the island's import path; keep T0 unless both are re-solved another way. |
+| **T1** tracker state layer | `site/src/lib/tracker/store.ts` (+ `codec.ts`) | T0 manifest (id universe only) | Versioned localStorage adapter, share-code codec, `TrackerStore` seam for the future SyncAdapter. Pure functions; zero React. |
+| **T2** checklist UI kit | `CheckRow`, `SetGroupPanel`, `PillGauge`, `MissableBadge`, `LockedChip`, `ResetControl`, `ShareCodeDialog` | kit components (§3) | SSR shells + small client islands; keyboard/AT-complete toggle semantics. |
+| **T3** per-surface views | Achievements / Cartridges / Minigames / Documents (profiles+books+paper parts) / Endings views | T0 + T1 + T2 | One view per §1 surface; grouping axes per OQ-T6 ruling. |
+| **T4** progress summary module | cross-set gauge strip | T0 + T1 | Embeddable on home + entity pages; recomputes in place on toggle (feel bar §5.3). |
+| **T5** routes, hub, i18n ×34 | `/tools/trackers` + per-set segments (pivot bare + 33 prefixed mirrors), entity-page track tabs, chrome keys ×34 + RTL leg | T1–T4 | Parity-script extension; sitemap decision per OQ-T5. |
+
+Dependency edges: T3/T4 blocked by T0+T1+T2; T5 blocked by T3/T4 string
+freeze. No viewer module merges before T0's count AC passes — the M0′
+sequencing rule, applied for the same reason (a wrong id-space surfacing as
+player advice).
+
+### 4.2 Interactions (v1)
+
+1. Toggle any row → persists synchronously to the local store; optimistic
+   render; full keyboard + screen-reader semantics.
+2. Group/filter controls per view — client-local, create no URLs (facet law).
+3. Surface navigation by real `<a href>` route segments; the address bar
+   carries surface selection only, never item state; any state-bearing
+   control follows `replaceState` (no keystroke fills Back).
+4. Share-code: explicit generate (per set or all sets) + import with a
+   before-apply diff preview; invalid tokens produce a typed error state.
+5. Reset per set, confirmed; never resets across sets.
+6. Placement-bearing rows link `focus=` URLs into the owned map (two-way
+   law with the map module).
+7. Every row cross-links its entity page and vice versa (aggressive internal
+   linking mandate); the two collectible-set achievements deep-link their
+   member rows; the idx-13 profile achievement renders the exact consumer
+   rule 4 predicate.
+8. Rarity band + confidence chip (`proven-hard` vs `unverified-behavior`)
+   ride every achievement row; missable rows wear the alarm-red treatment.
+
+### 4.3 Measurable acceptance criteria (draft — proof method named)
+
+| AC | Claim | Proof |
+|---|---|---|
+| TR-A1 | Manifest counts equal the accepted datasets: 26 / 23 / 17 / 14 / 8 / 4 (+5 paper parts +1 novella per OQ-T3 ruling); zero extra or missing ids | T0 selfcheck reconciling emitted manifest vs JSONL censuses; rerun byte-identical |
+| TR-A2 | Label totality ×34: every rendered label resolves through a pointer or renders the declared filler/id-form honest-missing; zero pivot-locale prose on non-EN pages | per-locale snapshot fixture ×34 + grep for pivot leakage |
+| TR-A3 | No runtime extraction reads from client JS | build output grep: no `extracted/` paths in `.next` client chunks |
+| TR-A4 | Persistence survives reload; schema bump migrates; unknown ids tolerated and preserved | jsdom/vitest suite with seeded storage incl. a synthetic id not in the manifest |
+| TR-A5 | Share-code round-trip is lossless (incl. unknown ids); malformed tokens fail typed | codec property/unit tests |
+| TR-A6 | Served HTML carries every checklist row with no JS (anti-Fandom-degradation) | curl + count per surface on the production build |
+| TR-A7 | Honest states render as typed states: `mtad2`/`mtacore` unresolved pickups, 4 `present_but_unreachable` minigames, `peaceful` mode-stub, keyless profile row counted once, `pending-export` icons | curl-grep positive (states present) + negative (no fabricated display names anywhere) |
+| TR-A8 | Chrome parity ×34 green including the new keys; `ar`/`ar-EG` render RTL with mirrored layout | `check-chrome-parity.mjs` exit 0 + DOM `dir` assertions |
+| TR-A9 | URL law: real hrefs for surface routes; item state never ambient; `replaceState` only | code review + e2e history-length assertion across toggles |
+| TR-A10 | CWV budgets on the tracker template: LCP <2.5s · scripted interaction <200ms · CLS <0.1 | lab trace harness (existing CWV budget tooling) |
+| TR-A11 | buildId stamp prints on tracker surfaces; zero repo-only provenance tokens | curl-grep both directions (scaffold S9 pattern) |
+| TR-A12 | No regression: existing suites + parity checks stay green | test runner exit codes in CI |
+
+### 4.4 Non-goals (v1)
+
+No accounts/auth, no server writes, no conflict UI, no XP/gamification, no
+invented display names or community aliases beyond cited ones, no
+choice-node checklists (explorer's job), no note-prose rendering (consumer
+rule 1 stands even if notes become trackable).
+
+### 4.5 Open questions for the Arbiter
+
+- **OQ-T1 — Account-seam timing.** Spec §Section map row 8 binds trackers to
+  accounts ([DR-2026-08-19-ugc-accounts]); the UGC lane waits behind LANE-C
+  ([../TODO.mdx](../TODO.mdx)). Does client-first v1 behind the T1 seam
+  satisfy the interim, or do trackers hold until accounts land? Scout
+  recommendation: ship v1; the seam makes C additive.
+- **OQ-T2 — Outfit surface ownership.** No outfit dataset contract exists
+  (not in the registry; 3 subjects live in the logic layer + cloth/unlock
+  relinks). Stub outfits as a visible-locked set, fold unlock rows into
+  minigame/cartridge views, or defer entirely?
+- **OQ-T3 — World notes membership.** 160 notes have no display text
+  (`text_mechanism: "unresolved"`, consumer rule 1). Exclude from v1
+  checklists (scout proposal) or admit as id-labeled rows?
+- **OQ-T4 — Endings set membership.** Confirm the 4-row set incl. the
+  `peaceful` mode-stub as visible-locked, and that choice-node progress
+  stays explorer-exclusive.
+- **OQ-T5 — Share-code URL policy.** Token parameter never sitemapped and
+  noindex'd per seo-standard §2 robots discipline; confirm the per-set
+  routes themselves are indexable (they are content).
+- **OQ-T6 — Grouping axes.** `chapter` is null corpus-wide until the
+  level↔chapter map lands (P5/spec gap 1), so per-chapter grouping is
+  unavailable; confirm type_tag / family / access_medium / placement_mechanism
+  as the v1 axes and auto-upgrade when chapters land.
+- **OQ-T7 — Row visuals during the icon gap.** `pending-export` achievement
+  icons + unset personage portraits (CH-2): Steam CDN `official_url`
+  interim vs named-explicit-missing cells until the art re-export lands.
+
+<!-- END OF docs/research/trackers-scout.mdx -->
