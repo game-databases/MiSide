@@ -1,0 +1,357 @@
+# Changelog / Patch-Diff Viewer Scout (PrepareTask step 1)
+
+Scout pass 2026-08-26 for the board item "Changelog / patch-diff viewer
+(CORE differentiator)" ([docs/TODO.mdx](../TODO.mdx) Phase 3, T-CL1;
+section-map row 15 of [spec.md](../../spec.md)). The board frames the
+central question: **a diff needs ≥2 builds — we hold exactly one. What
+does an honest piece look like at ONE version without faking depth?**
+Canon read in full this pass: AGENTS.md,
+[_foundation/decision-register.md](../../../_foundation/decision-register.md)
+(including [DR-2026-08-22-bpb-drop-changelog] — a sibling pack DROPPED
+this exact section; why, and why the ruling does not transfer, is §3.4),
+[spec.md](../../spec.md), [README.md](../../README.md),
+[data-acquisition.md](../../data-acquisition.md),
+[competitor-research.md](../../competitor-research.md), docs/TODO.mdx,
+[tools-plan.md](../../tools-plan.md) §3.7/§6. Corpus evidence measured on
+disk this pass against buildId **19029065** / version_label **0.93L**.
+
+Sections: [§1 Version/diff data in hand](#1-versiondiff-data-in-hand) ·
+[§2 Can ship today vs later](#2-what-a-viewer-can-ship-today-vs-later) ·
+[§3 Competitor rulings](#3-competitor-rulings) ·
+[§4 Spec skeleton for the Documentator](#4-spec-skeleton-for-the-documentator).
+
+## 1. Version/diff data in hand
+
+### 1.1 The one-version world (every pin surface, measured this pass)
+
+| Pin surface | What it carries |
+|---|---|
+| Live install | `A:\SteamLibrary\steamapps\appmanifest_2527500.acf` — `buildid 19029065` = `TargetBuildID` (re-checked this pass; client on this host) |
+| [extracted/EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md) | `pipeline-defaults` block: buildId 19029065 · versionLabel 0.93L · Unity 2021.3.35f1 · IL2CPP metadata v29 · toolchain pins; run events: `loc-run` + `decompile-run`, both 2026-08-24 — a **single-generation corpus** |
+| Every dataset `_meta` header | `build_id` + `version_label` on all rows and headers, plus `schema miside.<family>.<name>/N`, `row_count` pin, generator, `registry_pin` literals (sampled `cartridges.jsonl` this pass) |
+| [contracts/registry/fingerprints.json](../../contracts/registry/fingerprints.json) | **84 artifacts, every one build_id 19029065**; stamp classes: header-stamp 38 · document-stamp 22 · pipeline-defaults 21 · row-stamp 3; `pipeline_pin {build_id, version_label}`; `_meta.patch_day` law: "a new buildId invalidates every fingerprint; rerun re-pins them in the emit-stage commit; site rebuild fails until re-pinned" |
+| [extracted/census/detect.json](../../extracted/census/detect.json) | Flavor pins + `measured_at 2026-08-24T21:30:35Z` |
+
+Store frame (unchanged): appid **2527500**, demo **2527520**, soundtrack
+DLC **3404450**, released **2024-12-10** ([README.md](../../README.md);
+[DR-2026-08-24-miside-pack]).
+
+### 1.2 Is there ANY second build to diff against? — NO, and that is measured, not assumed
+
+- **Demo 2527520**: never installed on any library root (all four roots
+  checked, [data-acquisition.md §demo](../../data-acquisition.md));
+  acquisition **DROPPED 2026-08-24** ([docs/questions.md](../questions.md)
+  #2); TODO Phase-1 tail "Demo→full diff pass (deferred until needed)".
+- **Depotcache on this host**: exactly ONE MiSide manifest,
+  `2527501_5992599505980992417.manifest` — the *current* build's file
+  list for one depot. Zero older manifests survive, so not even a
+  file-list-level prior snapshot exists locally.
+- **extracted/**: one generation only — single run events per stage, no
+  prior-build directories anywhere.
+- **Keyless Steam surfaces** expose the *current* buildid only.
+  Reconstructing v0.91–v0.93 trees needs DepotDownloader + the owner
+  account (SteamGuard owner gate), and old-manifest serving is
+  `[unverified]`.
+
+**Verdict that shapes the whole piece:** field-level diffing is not
+scarce today — it is *impossible*. Any surface implying computed
+before/after state would be fabrication, which the anti-slop rulings and
+spec Non-goals ban outright. The piece must therefore ship truth at one
+version AND a mechanical activation contract for build #2 (§2.2).
+
+### 1.3 Multi-version data we DO hold (documented facts, not computed diffs)
+
+The corpus is not version-blind — it holds a rich *documented* history:
+
+- **The D1 §7 timeline** ([game-research.mdx §7](game-research.mdx))
+  pins real builds with dates and content facts: v0.91 (2024-12-24,
+  Photo Mode, gore censor, 9 language additions) · v0.921 (2024-12-29,
+  load-point renames, 6 more languages, New Year decorations) · v0.924
+  (2025-02-05, Persian + Serbian Latin, es-419 VO) · v0.93 (2025-02-14,
+  large fix pass, Spacecar tuning, Turkish VO, console gains
+  `setfps`/`skipdialogue`/`triggershow` + cheats) · v0.93L (2025-06-13,
+  newest public release-notes post) — plus release/demo/collab/
+  Kickstarter/Steam-Awards/anniversary dated items, several carrying
+  Steam news item ids. Several rows cite the EN wiki's Versions table as
+  source — the incumbent's own artifact is our raw material.
+- **Named diff inputs proven by patch notes** (COMP J9/J6; content-scout
+  §1.3 calls them "per-build diff inputs already proven"): save-point
+  rename lineage (`Cap`→`Cappie`, `Open Dialogue`→`Be Candid` at 0.921)
+  and minigame tuning deltas at 0.93. These are citable as *documented*
+  lineage with an explicit evidence class — never as our computed output.
+- **Steam News RSS** (`store.steampowered.com/feeds/news/app/2527500/`,
+  keyless) remains the official date-pinning feed (content-scout §1.3).
+- **Locale-addition history** (v0.91/v0.921/v0.924 waves) reconciles
+  against the *current* state in
+  [extracted/relinks/locale_availability.jsonl](../../extracted/relinks/locale_availability.jsonl)
+  (2,686 cells) — past tense documented, present tense measured.
+- **Per-record readiness**: spec `automation.staleness-model:
+  per-record` — every record carries `build_id`, and internal
+  identifiers are preserved verbatim (COMP net advantage 5), so
+  record-level add/remove/rename detection becomes mechanical the day a
+  second tree exists. The update-watch loop already designs for it:
+  DepotDownloader pulls go to `D:\Games\MiSide_<buildid>\`
+  "**keep the previous build until diffing completes**"
+  ([data-acquisition.md §update watch](../../data-acquisition.md)).
+
+## 2. What a viewer CAN ship today vs later
+
+### 2.1 Shippable today, at exactly one build
+
+1. **Patch-event timeline** — the D1 §7 skeleton as structured data:
+   dated rows, version labels, content-class tags (languages / renames /
+   tuning / console / modes). Dates here are the *article's own facts*,
+   which [DR-2026-08-22-numbers-stand-alone] explicitly keeps ("a news
+   article's publication date is the article's own fact") — while the
+   refresh-time/health ban stays enforced.
+2. **Per-version integrity view — the genuinely novel one-version
+   product.** `fingerprints.json` renders as a machine-verifiable "what
+   database v0.93L IS" panel: 84 artifacts × sha256 × row_count × stamp
+   class, byte-reverified at build (`check_contracts.py verify`
+   precedent: 22 gates green byte-stable). This is provenance as product
+   — D2's user-facing class (buildId + coverage scope) made interactive;
+   no competitor can even state what their data was built from.
+3. **Schema/version_label surfacing** — `_meta` blocks already carry
+   `schema miside.*./N`, generator, and registry-pin literals per family;
+   the changelog section aggregates them into one honest provenance
+   surface.
+4. **Documented rename-lineage page** — `save_point` attributes already
+   declare `name-per-build` + `rename-lineage` (spec §entities); rows
+   seed from patch notes labeled evidence-class `documented-note` until a
+   computed diff replaces them.
+5. **Locale-addition timeline** cross-checked against the availability
+   ledger's current cell set.
+6. **Route/feed scaffolding filled honestly** — `ArticleType` already
+   includes `"patch"` in `site/src/data/articles.ts`;
+   `site/src/app/feeds/patch.xml/route.ts` exists empty-honest;
+   `/news` type chips land with LANE-C's News section.
+
+### 2.2 What waits for build #2 (the diff-ready activation contract)
+
+The trigger chain is already designed; the viewer just rides it:
+
+appmanifest buildid change (local read + keyless appdetails
+cross-check) → DepotDownloader pull into `D:\Games\MiSide_<buildid>\`
+keeping tree N−1 → `./run_all <path>` rerun → fingerprints invalidated →
+re-pinned in the emit-stage commit (patch_day law) → **diff stage
+compares per-artifact sha256 sets, then per-record stamps inside changed
+artifacts → changesets emitted**. Zero waste: everything in §2.1 is row
+15's shape regardless; the diff arm plugs into the same artifacts.
+
+**Honesty rider inherited from Backpack Battles:** that pack dropped the
+section because data-row diffs published "nothing changed" over real
+script changes. MiSide has the same structural exposure — its logic
+layer lives in IL2CPP decompiled trees, and LG2 projections
+(`flag--gates.jsonl`, `choice--consequence.jsonl`) ride the fingerprint
+surface under KEEP-PINNED ([docs/specs/data-contracts.mdx §4.4](../specs/data-contracts.mdx)).
+Ruling needed (OQ-3): every changeset must carry code-plane hashes
+(assembly/decompile-tree digests) alongside data deltas so any
+"unchanged" claim is scoped to the layer actually hashed.
+
+### 2.3 The demo boundary is NOT a time axis
+
+Demo 2527520 covers ch 0–3 only (ends at the wardrobe choice, D1 §6).
+Demo-vs-full is a **scope slice**, not an ancestor build: different
+appid, no shared time lineage, no changelog semantics. Its acquisition
+stays dropped and owner-gated (SteamGuard DepotDownloader). If revived,
+it belongs in a compare tool — OQ-2 rules whether that product exists.
+What a demo pull WOULD add regardless: a second harvested tree to shake
+out the diff emitter's mechanics before a real patch day (same appid
+family, same pipeline), which is why DAQ kept calling it "the low-risk
+diff target".
+
+## 3. Competitor rulings
+
+Evidence base: [competitor-research.md](../../competitor-research.md)
+S1–S3 + D1 §7 sources (fresh fetches unnecessary this pass; if a later
+fetch returns blank, retry once with an AI-crawler UA per promptForDB
+Note#6, then record it as a finding and move on).
+
+### 3.1 S1 EN Fandom — one Versions table, two planes mixed
+
+- A single hand-maintained table mixes REAL build history (v0.91→v0.93L
+  with dates + summaries — literally the public source D1 §7 cites) with
+  the FICTIONAL in-game version lattice.
+- **BORROW**: the dated-table skeleton as the timeline reader model.
+- **AVOID**: unsourced prose, zero per-entity change annotation, silent
+  rot between patches.
+
+### 3.2 S2 RU Fandom — finest granularity, wrong plane
+
+- Standalone «Версия 0…1.9» + Цикличная версия pages: page-per-version
+  granularity is the best in the niche — but they document the fictional
+  metaspace, not builds.
+- **ADAPT**: one URL per REAL build (`/news/patch/<slug>`).
+- **AVOID**: plane confusion. Spec non-goal is explicit: "the fictional
+  version lattice never masquerades as site freshness". Our
+  `game_version` entity (~15 rows, IDX 805/809) may be LINKED from a
+  patch page; it may never BE one.
+
+### 3.3 S3 Steam guides + the official news hub
+
+- Guides: staleness is their defining weakness (top cartridge guide
+  dated 2024-12-26, pre-v0.93 fixes; "no diff discipline"). The AVOID
+  that defines our differentiator; X5 stands — nothing in the niche
+  versions anything (tools-plan §4).
+- News hub: dated posts, unstructured, no entity links, no diff.
+  **BORROW** dates as the canonical public pinning; **ADAPT** into
+  structured rows carrying entity refs and repo-plane source ids.
+
+Per-entity change annotations ("this cartridge moved in v0.93") are
+modeled nowhere — our X5 claim — but honesty gates them behind ≥2 builds
+before a single annotation renders (AC-1).
+
+### 3.4 The Backpack Battles precedent — why it does not transfer
+
+[DR-2026-08-22-bpb-drop-changelog] waived the section for BPB because
+BPB's star fields derive from decompiled scripts that change between
+patches invisibly to data rows — a data-only diff would be "a
+false-statement engine". The ruling's scope is explicitly BPB-only; the
+section KEEPS `[CORE differentiator]` status for other packs. Two things
+transfer anyway: (a) treat the code plane as a first-class diff input
+(§2.2 rider); (b) dropping is not on this pack's menu — D5's CORE-min
+makes a "patch-diff/changelog route" launch-blocking except where waived,
+and no waiver exists for MiSide.
+
+## 4. Spec skeleton for the Documentator
+
+Naming precedent: [docs/specs/map-viewer.mdx](../specs/map-viewer.mdx),
+[docs/specs/content-pipeline.mdx](../specs/content-pipeline.mdx). Seam
+with the frozen content pipeline (`ef022cc`): its M2 reserves the patch
+stream and hooks it ⛓ to this piece, and its OQ-4 recommended holding
+patch pages until changelog summaries exist — THIS spec is what unhooks
+that chain. Frontend consumes emitted artifacts only (AGENTS.md rule 8);
+it never derives diffs.
+
+### M1 — Data-side emitters (`extracted/data/changelog/`)
+
+- `patches.jsonl` — patch-event registry, one row per dated event:
+  `{patch_slug, label, date, event_class: release|patch|demo|collab|kickstarter|award|note, title, summary_facts[], source_kind: steam-news-item|extraction-log|wiki-table, source_ref, build_id?}`.
+  Seed = D1 §7 rows + EXTRACTION-LOG run events. `_meta`: schema
+  `miside.changelog.patches/1`, row_count pin, build_id/version_label
+  stamps. Repo-plane fields (source ids) stay machine-plane per D2 —
+  never rendered as user-facing provenance words.
+- `build_integrity.jsonl` — normalized projection of
+  `contracts/registry/fingerprints.json` (path · sha256 · row_count ·
+  build_id · build_id_source class) + census detect pins. Emitted by the
+  contracts tooling path, never hand-written.
+- `save_point_renames.jsonl` — documented lineage rows with
+  `evidence_class: documented-note`; the emitter REFUSES to emit
+  `evidence_class: computed` unless M2 produced the row (AC-1).
+
+### M2 — Diff activation stage (dormant by design)
+
+- Registered in `run_all` but exits 0 emitting ZERO bytes while fewer
+  than two build trees exist (honest omission — no stub changesets).
+- On trigger (update watch): diff tree N−1 vs N — per-artifact sha256
+  sets first, then per-record stamps inside changed artifacts → emits
+  `changesets/<from>-to-<to>/{artifacts,records,renames}.jsonl` plus a
+  code-plane digest manifest (OQ-3); fingerprints invalidated + re-pinned
+  in the same commit.
+
+### M3 — Frontend readers
+
+- Server-only reader beside `site/src/data/contracts.ts` under the same
+  `readJsonl()` discipline (`_meta` shapes, row_count pins); buildId /
+  version_label surfacing already exists via `_meta` handling.
+
+### M4 — Routes & placement
+
+- `/news/patch/[slug]` ×2 trees — thin wrappers delegating to a shared
+  factory beside `src/components/routes/`; the `/news` hub + type chips
+  (`game | database | patch`) belong to content-pipeline M4, the detail
+  page's data modules to this spec.
+- Page anatomy: build-stamp header in pixel font (machine voice about
+  machine state, T2 §4) → summary facts → changed-entity refs as
+  crawlable links → integrity panel (artifact table with short sha) →
+  related `game_version` links visually separated from build labels.
+- Feeds: `feeds/patch.xml` fills from M1/M2 rows; sitemap partition gate
+  replaces placeholders; search rows kind-namespaced `patch:<slug>`
+  (search-in-place law).
+
+### M5 — i18n + interactions
+
+- Chrome keys ×34 in one commit; RTL leg for timeline rails (MV-1
+  precedent); per-locale ledger cells gate non-pivot rendering — omit,
+  never mix (localization-architecture §5.5 option A).
+- Version picker = URL state (`?from=&to=` or segment form), never
+  component-local state (design-standard selected-state-is-a-URL); any
+  filter answers as typed ([DR-2026-08-22-inputs-answer-as-you-type],
+  gated: no submit controls).
+- Entity-scoped change views: reverse-index module on entity pages
+  ("changed in …") — armed only when changesets exist; absent otherwise,
+  without a caption.
+- Corruption semantics finally literal: deletions alarm red `#fc0f43`,
+  additions CRT green `#08cb05`, renamed rows VHS-degraded with current
+  value crisp (T2 §4.1/4.3/4.4; tools-plan §3.7 sketch) — state
+  treatment, not decoration.
+
+### Acceptance criteria (each with its proof method)
+
+1. **Honesty gate**: build FAILS if any changeset/renames artifact exists
+   while `fingerprints.json` holds <2 distinct build_ids. Proof: suite
+   asserts emitter refusal + empty output glob in a sandbox tree.
+2. **Byte-truth**: recomputed sha256 over all 84 artifacts equals
+   `fingerprints.json`; `build_integrity.jsonl` matches 1:1. Proof:
+   `check_contracts.py verify` extension runs in-suite.
+3. **Traceability**: every `patches.jsonl` row resolves date+label to its
+   `source_ref` (news item id or EXTRACTION-LOG heading); an unresolved
+   row fails emit. Proof: join sweep test.
+4. **Plane separation**: no `game_version` entity id renders where a
+   buildId/version label is expected, and vice versa. Proof: negative
+   grep over emitted HTML.
+5. **Locale parity**: `/news/patch/[slug]` exists ×2 trees × locale iff
+   the availability ledger says so; hreflang cluster == ledger cells;
+   metadata law per page (unique localized title/description,
+   self-canonical, x-default → bare path). Proof: mechanical
+   route-vs-ledger equality + existing metadata checker.
+6. **Feed validity**: `patch.xml` parses; item count == published patch
+   pages; valid while zero. Proof: XML parse + count assert.
+7. **Machine-plane hygiene**: no refresh-time/status vocabulary on any
+   surface; dates appear only as article facts. Proof: banned-token
+   sweep (Phase-4 CI lane).
+8. **Dormant silence**: M2 pre-trigger produces no bytes, exits 0.
+   Proof: suite runs the stage against a single-build sandbox tree.
+
+### Open questions for the Arbiter
+
+- **OQ-1 · The honest-stub ruling (the board's own question)**: is §2.1
+  — timeline + integrity view + documented lineage + dormant contract —
+  the right shape for "CORE differentiator" at one version, or does the
+  differentiator CLAIM defer until trigger? Recommendation: ship §2.1;
+  it is real, versioned, byte-verifiable, and unfakeable, the claim
+  activates mechanically on build #2 — and deferral would leave D5's
+  launch-blocking patch-diff/changelog route unsatisfied.
+- **OQ-2 · Demo semantics**: rule demo-vs-full OUT of the changelog
+  product (compare-tool material at best) or IN as a labeled non-time
+  comparison? Acquisition stays dropped either way pending an owner
+  SteamGuard session.
+- **OQ-3 · Code-plane rider**: make assembly/decompile digests mandatory
+  in every changeset so "no change" claims are layer-scoped (BPB
+  proofing)? Recommend mandatory.
+- **OQ-4 · Placement & ownership**: `/news/patch/[slug]` under the frozen
+  content pipeline vs a standalone `/changelog` section (row 15 names
+  both shapes); recommend content-pipeline owns the hub shell, this spec
+  owns detail-page data modules.
+- **OQ-5 · Historical backfill**: reconstruct v0.91–v0.93 trees from old
+  depot manifests? Owner credentials + manifest availability
+  `[unverified]`; high effort, uncertain yield — default NO.
+- **OQ-6 · Labeling tone**: mark `documented-note` vs `computed` rows
+  without interface-explaining sentences (anti-slop rulings ban them) —
+  evidence-class lives in the machine plane + visual grammar, not
+  captions?
+
+### Risks for the Arbiter's attention
+
+1. **Starvation**: no release-notes post since v0.93L 2025-06-13 (~14
+   months); game news continues but patch rows do not. Mitigation is
+   structural: the database-news stream and evergreen guides carry
+   retention (content-scout risk 2); this piece ships truth that does
+   not rot rather than cadence.
+2. **Disk**: OPS GATE C: EMERGENCY paused builds (TODO Phase 5) — emit
+   stages need the ≥10 GB window before M1 lands.
+3. **Source-ref drift**: patches rows depend on news-ingest ids landing
+   in LANE-C; the M1 traceability gate must fail loudly at build, never
+   silently unlink (the row_count-pin lesson).
+
+<!-- END OF docs/research/changelog-scout.mdx -->
