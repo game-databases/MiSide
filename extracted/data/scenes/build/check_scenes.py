@@ -6,15 +6,18 @@ on any failure.
 """
 import json
 import math
+import os
 import re
 import subprocess
 import sys
 from pathlib import Path
 
 PACK = Path(__file__).resolve().parents[4]
+HARVEST = Path(os.environ.get("MISIDE_HARVEST_ROOT")
+               or (PACK / "extracted/harvest"))
 OUT = PACK / "extracted/data/scenes"
-MB = PACK / "extracted/harvest/mb-dump"
-ASL_DIR = PACK / "extracted/harvest/asset-list"
+MB = HARVEST / "mb-dump"
+ASL_DIR = HARVEST / "asset-list"
 LOC = PACK / "extracted/localization"
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -229,8 +232,11 @@ for p in MB.glob("level*/Scene_Load*.txt"):
     for k in arr.kids:
         if k.key.endswith("data") and k.val:
             nv.add(k.val.strip('"'))
+_lit = PACK / "extracted/il2cpp/stringliteral.json"
+if not _lit.exists():  # il2cpp/ moved off C: (2026-08-25); sits beside harvest
+    _lit = HARVEST.parent / "il2cpp" / "stringliteral.json"
 lits = {e.get("value") for e in json.loads(
-    (PACK / "extracted/il2cpp/stringliteral.json").read_text(encoding="utf-8"))
+    _lit.read_text(encoding="utf-8"))
     if isinstance(e, dict) and str(e.get("value", "")).startswith("SaveGame")}
 check("S4 emitted vocabulary == 19 literals (both directions)",
       nv == lits and len(lits) == 19,
@@ -317,6 +323,11 @@ owners = {
     "character": PACK / "extracted/data/characters/personages.jsonl",
     "achievement": PACK / "extracted/data/achievements/achievements.jsonl",
     "ending": PACK / "extracted/data/endings/endings.jsonl",
+    # map-viewer §4.1 routed vocabulary (M0): marker entity_kind keys the
+    # routed registry; owning datasets DS-4 / DS-5 / minigames (AC MV-0.1)
+    "cartridges": PACK / "extracted/data/cartridges/cartridges.jsonl",
+    "profiles": PACK / "extracted/data/documents/profile_documents.jsonl",
+    "minigames": PACK / "extracted/data/cartridges/minigames.jsonl",
 }
 owner_slugs = {}
 missing_owners = []
@@ -332,7 +343,8 @@ for kind, path in owners.items():
                 continue
             slug = r.get("character_id") or r.get("slug") \
                 or r.get("steam_api_name") or r.get("ending_id") \
-                or r.get("node_id")
+                or r.get("node_id") or r.get("cartridge_id") \
+                or r.get("document_id") or r.get("minigame_id")
             if slug:
                 slugs.add(slug)
     owner_slugs[kind] = slugs
@@ -366,7 +378,8 @@ for f in sorted(OUT.glob("*.jsonl")) + sorted(OUT.glob("*.json")) + \
         [OUT / "README.md"]:
     hashes[f.name] = hashlib.md5(f.read_bytes()).hexdigest()
 subprocess.run([sys.executable, str(OUT / "build/emit_scenes.py")],
-               capture_output=True)
+               capture_output=True,
+               env=dict(os.environ, **{"MISIDE_HARVEST_ROOT": str(HARVEST)}))
 same = all(hashlib.md5(f.read_bytes()).hexdigest() == h
            for f, h in ((f, hashes[f.name]) for f in
                         sorted(OUT.glob("*.jsonl"))

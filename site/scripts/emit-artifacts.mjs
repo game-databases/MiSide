@@ -361,23 +361,37 @@ for (const [code, rows] of searchByLocale) {
   emitJson(join("search", `${code}.idx.json`), namespaced);
 }
 
-/* ---------- map registry + markers ---------- */
+/* ---------- map registry v2 + markers (map-viewer §3.2(d); additive over v1) ---------- */
 const sceneRows = readJsonl("data/scenes/scenes.jsonl", "scene_id").rows;
+const markerFile = readJsonl("data/scenes/markers.jsonl", "entity_kind");
+// Per-scene per-kind marker counts. Scene attribution mirrors the site's
+// markerSceneId() law (placement.scene_binding first, else the poi anchor).
+const perKindByScene = {};
+for (const m of markerFile.rows) {
+  const scene = m.placement?.scene_binding ?? String(m.poi_id ?? "").split(":")[0];
+  if (!scene) continue;
+  (perKindByScene[scene] ??= {});
+  perKindByScene[scene][m.kind] = (perKindByScene[scene][m.kind] ?? 0) + 1;
+}
 emitJson(
   join("map", "registry.json"),
   sceneRows.map((s) => ({
     scene_id: s.scene_id,
     role: s.role,
+    // chapter pointer or explicit null — never a guessed display label
+    display_label_loc: s.chapter_name_loc ?? null,
     bounds: null, // settles at the P5/S9 calibration rerun
     zoom: [1, 4],
     "coordinate-transform": "rect-per-map",
     imagery: "authored",
-    status: "awaiting-artwork",
+    status: existsSync(join(pub, "map", s.scene_id, "base.svg"))
+      ? "ready"
+      : "awaiting-artwork",
+    per_kind: perKindByScene[s.scene_id] ?? {},
     build_id: s.build_id,
   }))
 );
-const markerFile = readJsonl("data/scenes/markers.jsonl", "entity_kind");
-// v0 is _meta-only by contract (no-orphan rule); emit whatever data rows exist
+// emit whatever data rows exist (zero by contract until the M0 rerun lands)
 emitJson(join("map", "markers.json"), {
   _meta: markerFile.meta,
   rows: markerFile.rows,

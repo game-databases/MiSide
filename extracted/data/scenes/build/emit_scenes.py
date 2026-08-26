@@ -1,21 +1,33 @@
 #!/usr/bin/env python3
-"""DS-6 scenes dataset emitter — builder B-6 (2026-08-25).
+"""DS-6 scenes dataset emitter — builder B-6 (2026-08-25; M0 rerun 2026-08-26).
 
 Emits extracted/data/scenes/{scenes,scene-links,poi,spawn-tables,markers}.jsonl
 plus poi-kinds.json, README.md and parked relinks/ per
-docs/specs/dataset-scenes.mdx (post-F-DS6, ds6-vA PASS).
+docs/specs/dataset-scenes.mdx (post-F-DS6, ds6-vA PASS). The markers.jsonl
+projection is M0 of docs/specs/map-viewer.mdx §3: entity-backed rows over the
+landed owning datasets (DS-4 cartridges, DS-5 profile documents,
+minigame--scene-carrier edges), the two-list family ledger (A-MV1 F-1) and
+the PIPE S9 disposition accounting for the pptr-unresolved positions.
 
 Deterministic by construction: no wall-clock, fixed orderings, floats carried
 verbatim as they print in the MB dumps (class Raw). Run twice -> byte-identical.
+
+Harvest root: extracted/harvest/ is the default; when the corpus lives
+elsewhere (C:-pressure move of 2026-08-25), set MISIDE_HARVEST_ROOT to the
+directory holding mb-dump/ + asset-list/.
 """
 import json
+import os
 import re
 import sys
+from collections import Counter, defaultdict
 from pathlib import Path
 
 PACK = Path(__file__).resolve().parents[4]
-MB = PACK / "extracted/harvest/mb-dump"
-ASL_DIR = PACK / "extracted/harvest/asset-list"
+HARVEST = Path(os.environ.get("MISIDE_HARVEST_ROOT")
+               or (PACK / "extracted/harvest"))
+MB = HARVEST / "mb-dump"
+ASL_DIR = HARVEST / "asset-list"
 LOC = PACK / "extracted/localization"
 OUT = PACK / "extracted/data/scenes"
 RELINKS = OUT / "relinks"
@@ -833,33 +845,497 @@ def main():
     for r in poi_rows:
         del r["_pid"]
 
-    # ---------------- markers (projection deferred to owning datasets)
+    # ---------------- poi-kinds curated rulings
+    kinds_doc = {
+        "_meta": {
+            "schema": "miside.scenes.poi-kinds/1",
+            "generator": "B-6 dataset-builder curation pass",
+            "rule": "one ruling per class; marker_eligible=false rows are"
+                    " excluded from marker projection (spec §3.3)",
+            "build_id": BUILD_ID, "version_label": VERSION_LABEL,
+        },
+        "classes": [
+            {"class": "Basement_Safe", "kind": "safe", "marker_eligible": True,
+             "note": "scene furniture; window percentages stay logic-layer"},
+            {"class": "Event_CreateResource", "kind": "spawn_event",
+             "marker_eligible": True,
+             "note": "day/holiday-gated creation; table rows live in"
+                     " spawn-tables.jsonl"},
+            {"class": "FlashTaker", "kind": "cartridge",
+             "marker_eligible": True,
+             "note": "pickup carrier; placement authority DS-4 by reference"},
+            {"class": "TamagotchiGame_Cartridge", "kind": "cartridge",
+             "marker_eligible": True,
+             "note": "in-fiction phone-space pet cartridges - distinct kind"
+                     " from flash drives (AC S5)"},
+            {"class": "TamagotchiGame_Cartridge_Cartridge", "kind":
+             "cartridge", "marker_eligible": True,
+             "note": "pet-cartridge subclass stem"},
+            {"class": "Interface_KeyHint_Key", "kind": "interactable",
+             "marker_eligible": False,
+             "note": "enumerated NEXT TIER (382 level instances measured);"
+                     " UI hint chips, not places"},
+            {"class": "LightRenderer_Fog", "kind": "other",
+             "marker_eligible": False,
+             "note": "Fog-anomaly candidacy unproven (J6); never emitted as"
+                     " a monster"},
+            {"class": "Location10_MitaInShadow", "kind": "monster",
+             "marker_eligible": True, "note": ""},
+            {"class": "MakeManeken_Interaction", "kind": "interactable",
+             "marker_eligible": False,
+             "note": "dummy family enumerated next tier (~276 corpus-wide);"
+                     " exact per-level sweep pending"},
+            {"class": "MinigamesController", "kind": "minigame_access",
+             "marker_eligible": True,
+             "note": "access-location side of J7 hard; rules stay logic-layer"},
+            {"class": "Mob_ChibiMita", "kind": "monster",
+             "marker_eligible": True, "note": ""},
+            {"class": "Mob_Cockroach", "kind": "monster",
+             "marker_eligible": True, "note": ""},
+            {"class": "Mob_Maneken", "kind": "monster",
+             "marker_eligible": True, "note": ""},
+            {"class": "MitaAIMovePoint", "kind": "move_point",
+             "marker_eligible": True, "note": "targetMove PPtr unresolved"},
+            {"class": "MitaFreak Enter", "kind": "monster",
+             "marker_eligible": True, "note": ""},
+            {"class": "MitaKiller", "kind": "monster",
+             "marker_eligible": True,
+             "note": "chase system switches on mid-game (absent levels 3-7,"
+                     " 18)"},
+            {"class": "ObjectInteractive", "kind": "interactable",
+             "marker_eligible": True, "note": "eventClick call groups kept"},
+            {"class": "ObjectItem", "kind": "other",
+             "marker_eligible": False,
+             "note": "hand/face offsets - NEVER map-projected (spec §3.3)"},
+            {"class": "Player_Teleport", "kind": "travel_gate",
+             "marker_eligible": True,
+             "note": "inline destination floats, frame unproven (IL-stub)"
+                     " - space unknown"},
+            {"class": "QuadLiner_Enemy", "kind": "monster",
+             "marker_eligible": True, "note": ""},
+            {"class": "Scene_Load", "kind": "travel_gate",
+             "marker_eligible": True,
+             "note": "additive sub-scene gate; lattice owned by"
+                     " scene-links.jsonl"},
+            {"class": "Shooter_Enemy", "kind": "monster",
+             "marker_eligible": True, "note": "all four in unbound level23"},
+            {"class": "Transform_Position", "kind": "move_point",
+             "marker_eligible": True,
+             "note": "point sets; parent-relative where myParent!=0"},
+            {"class": "Trigger_DistanceCircle", "kind": "interactable",
+             "marker_eligible": True, "note": "proximity trigger"},
+            {"class": "Trigger_Teleport", "kind": "travel_gate",
+             "marker_eligible": True,
+             "note": "portal chamber (all 14 in level9)"},
+        ],
+    }
+
+    # ---------------- markers v1 (M0 projection rerun; map-viewer §3)
+    # Owning datasets, consumed BY REFERENCE (never re-derived). Only
+    # entities confirmed by these emitted files may carry a marker row.
+    def read_owned(rel, id_field):
+        out = []
+        for line in (PACK / rel).read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            if "_meta" in r:
+                continue
+            if "schema" in r and id_field not in r:
+                continue  # flat header shape (DS-5 documents family)
+            out.append(r)
+        return out
+
+    cart_rows = read_owned("extracted/data/cartridges/cartridges.jsonl",
+                           "cartridge_id")
+    prof_rows = read_owned("extracted/data/documents/profile_documents.jsonl",
+                           "document_id")
+    mini_rows = read_owned("extracted/data/cartridges/minigames.jsonl",
+                           "minigame_id")
+    mg_edges = read_owned("extracted/relinks/minigame--scene-carrier.jsonl",
+                          "from")
+    doc_edges = read_owned("extracted/relinks/document--scene-membership.jsonl",
+                           "from")
+
+    ROUTED_SEGMENT = {"cartridges": "cartridges", "profiles": "lore/profiles",
+                      "minigames": "minigames"}
+    loc_of_scene = {r["scene_id"]: r["location_id"] for r in scene_rows}
+
+    def layer_of(container):
+        # scene display layer: World.nameLocation when the scene binds one,
+        # else the scene id itself (menu/boot/title/unbound bind none)
+        return f"location-scenes/{loc_of_scene.get(container) or container}"
+
+    def dump_key_of(poi_id):
+        return poi_id.split(":", 1)[1]
+
+    def instance_census(cls, container):
+        """bare/suffixed/total recount of one class's instances in one
+        container, from the emitted per-instance poi pool."""
+        rows = [r for r in poi_rows
+                if r["class"] == cls and r["level"] == container]
+        bare = sum(1 for r in rows
+                   if not re.search(r"_#\d+$", dump_key_of(r["poi_id"])))
+        census = {"bare": bare, "suffixed": len(rows) - bare,
+                  "total": len(rows)}
+        assert census["total"] >= 1, \
+            f"instance_census: {cls} has no instance in {container}"
+        return census
+
+    marker_rows = []
+
+    # -- cartridge_item: FlashTaker poi rows <-> DS-4 via joins.save_key ----
+    cart_by_save = defaultdict(list)
+    for c in cart_rows:
+        if c.get("save_key"):
+            cart_by_save[c["save_key"]].append(c)
+    for r in poi_rows:
+        if r["class"] != "FlashTaker":
+            continue
+        save = r["joins"]["save_key"]
+        hits = cart_by_save.get(save, [])
+        assert len(hits) == 1, \
+            f"join audit FAIL: save_key {save!r} -> {len(hits)} DS-4 rows"
+        c = hits[0]
+        pref = c.get("pickup_ref")
+        assert pref and pref.get("container") == r["level"], \
+            f"join audit FAIL: {c['cartridge_id']} pickup_ref drift vs " \
+            f"{r['poi_id']} ({pref})"
+        slug = c["cartridge_id"]
+        container = r["level"]
+        pos = dict(r["position"])
+        # pptr rows name a transform target S9 will resolve; none-source rows
+        # serialize no target at all -> honest scene granularity, never a spot
+        pos["status"] = ("awaiting-transform-stage"
+                         if r["position"]["source"] == "pptr-unresolved"
+                         else "scene-granular")
+        ek = "cartridges"
+        marker_rows.append({
+            "marker_id": f"{container}:cartridge:{slug}",
+            "poi_id": r["poi_id"],
+            "layer": layer_of(container),
+            "kind": "cartridge",
+            "entity_kind": ek,
+            "entity_slug": slug,
+            "icon": {"source": None,
+                     "fallback_state": "named-explicit-missing"},
+            "position": pos,
+            "placement": {"mechanism": "hard", "source_join": "save_key",
+                          "scene_binding": container},
+            "links": {
+                "page_url": f"/{ROUTED_SEGMENT[ek]}/{slug}",
+                "focus_url": f"/map?focus={ek}:{slug}&scene={container}"},
+        })
+    cart_markers = len(marker_rows)
+
+    # -- profile_document: DS-5 placement column (scene-granular always) ----
+    doc_edge_by_id = {}
+    for e in doc_edges:
+        frm = e.get("from") or ""
+        if e.get("kind") == "forward" and frm.startswith("profile_document:"):
+            did = frm.split(":", 1)[1]
+            assert did not in doc_edge_by_id, f"duplicate edge for {did}"
+            doc_edge_by_id[did] = e
+    placed_docs = [d for d in prof_rows if d.get("placement")]
+    for d in placed_docs:
+        slug = d["document_id"]
+        pl = d["placement"]
+        container = pl["container"]
+        edge = doc_edge_by_id.get(slug)
+        assert edge is not None, \
+            f"join audit FAIL: no membership edge for {slug}"
+        assert edge["to"] == f"container:{container}", \
+            f"join audit FAIL: {slug} edge container {edge['to']} != DS-5 " \
+            f"placement.container {container}"
+        assert pl["carrier_class"] == "FlashTaker", \
+            f"{slug}: unexpected carrier_class {pl['carrier_class']}"
+        ek = "profiles"
+        marker_rows.append({
+            "marker_id": f"{container}:profile:{slug}",
+            "placement_source": "DS-5",
+            "document_id": slug,
+            "poi_id": None,
+            "layer": layer_of(container),
+            "kind": "profile_document",
+            "entity_kind": ek,
+            "entity_slug": slug,
+            "container": container,
+            "icon": {"source": None,
+                     "fallback_state": "named-explicit-missing"},
+            "position": {"x": None, "y": None, "z": None,
+                         "status": "scene-granular"},
+            "instance_census": instance_census("FlashTaker", container),
+            "placement": {"carrier_class": pl["carrier_class"],
+                          "component_path_id": pl["component_path_id"],
+                          "container": container,
+                          "mechanism": edge["mechanism"],
+                          "status": edge["status"],
+                          "method": edge["method"],
+                          "source_join": "DS-5 placement",
+                          "scene_binding": container},
+            "links": {
+                "page_url": f"/{ROUTED_SEGMENT[ek]}/{slug}",
+                "focus_url": f"/map?focus={ek}:{slug}&scene={container}"},
+        })
+    prof_markers = len(marker_rows) - cart_markers
+
+    # -- minigame_access: carrier edges only, scene-granular (OQ-7/F-2) -----
+    mg_ids = {m["minigame_id"] for m in mini_rows}
+    fwd_edges = [e for e in mg_edges if e.get("direction") == "forward"]
+    hosted_by_container = defaultdict(set)
+    for e in mg_edges:
+        if e.get("direction") != "inverse":
+            continue
+        frm, to = e.get("from") or "", e.get("to") or ""
+        if frm.startswith("scene-class-family@") and to.startswith("minigame:"):
+            hosted_by_container[frm.split("@", 1)[1]].add(
+                to.split(":", 1)[1])
+    seen_pairs = set()
+    covered_containers = set()
+    for e in fwd_edges:
+        assert e["from"].startswith("minigame:") \
+            and e["to"].startswith("scene-class-family@"), \
+            f"unexpected carrier edge grammar: {e['from']} -> {e['to']}"
+        mg = e["from"].split(":", 1)[1]
+        container = e["to"].split("@", 1)[1]
+        pair = (mg, container)
+        assert pair not in seen_pairs, f"duplicate carrier pair {pair}"
+        seen_pairs.add(pair)
+        covered_containers.add(container)
+        assert container in LEVELS, f"carrier container {container} not a level"
+        assert e["mechanism"] == "hard", \
+            f"carrier edge {pair} mechanism {e['mechanism']}"
+        assert mg in mg_ids, \
+            f"join audit FAIL: minigame {mg} not in minigames.jsonl ids"
+    for container in hosted_by_container:
+        fwd_set = {mg for (mg, cc) in seen_pairs if cc == container}
+        assert hosted_by_container[container] == fwd_set, \
+            f"carrier direction mismatch at {container}"
+    for mg, container in sorted(seen_pairs):
+        ek = "minigames"
+        census = instance_census("MinigamesController", container)
+        census["minigames_hosted"] = len(hosted_by_container[container])
+        edge = next(e for e in fwd_edges
+                    if e["from"] == f"minigame:{mg}"
+                    and e["to"] == f"scene-class-family@{container}")
+        marker_rows.append({
+            "marker_id": f"{container}:minigame:{mg}",
+            "placement_source": "minigame--scene-carrier",
+            "minigame_id": mg,
+            "poi_id": None,
+            "layer": layer_of(container),
+            "kind": "minigame_access",
+            "entity_kind": ek,
+            "entity_slug": mg,
+            "container": container,
+            "icon": {"source": None,
+                     "fallback_state": "named-explicit-missing"},
+            "position": {"x": None, "y": None, "z": None,
+                         "status": "scene-granular"},
+            "instance_census": census,
+            "placement": {"mechanism": edge["mechanism"],
+                          "status": edge["status"],
+                          "method": edge["method"],
+                          "role": edge.get("role"),
+                          "source_join": "minigame--scene-carrier",
+                          "scene_binding": container},
+            "links": {
+                "page_url": f"/{ROUTED_SEGMENT[ek]}/{mg}",
+                "focus_url": f"/map?focus={ek}:{mg}&scene={container}"},
+        })
+    marker_rows.sort(key=lambda r: (
+        {"cartridge": 0, "profile_document": 1,
+         "minigame_access": 2}[r["kind"]], r["marker_id"]))
+    cart_markers = sum(1 for r in marker_rows if r["kind"] == "cartridge")
+    prof_markers = sum(1 for r in marker_rows
+                       if r["kind"] == "profile_document")
+    mg_markers = sum(1 for r in marker_rows if r["kind"] == "minigame_access")
+
+    # -- two-list family ledger (A-MV1 F-1); counts recomputed, never v0 ----
+    eligible_kind_of = {c["class"]: c["kind"] for c in kinds_doc["classes"]
+                        if c["marker_eligible"]}
+    pool = [(r["kind"], r["class"], r["level"]) for r in poi_rows
+            if r["class"] in eligible_kind_of]
+    for k, c, _ in pool:
+        assert k == eligible_kind_of[c], \
+            f"kind ruling drift: {c} carries kind {k} != ruled " \
+            f"{eligible_kind_of[c]}"
+    tally = Counter((k, c) for k, c, _ in pool)
+
+    def fam_count(kinds, classes, include=None):
+        n = 0
+        for cls in classes:
+            for (k, c), _n_kc in tally.items():
+                if c != cls or k not in kinds:
+                    continue
+                by_lvl = Counter(l for (kk, cc, l) in pool
+                                 if cc == cls and kk == k)
+                if include is not None:
+                    n += sum(by_lvl[l] for l in include)
+                else:
+                    n += sum(by_lvl.values())
+        return n
+
+    controller_levels = sorted({l for (k, c, l) in pool
+                                if c == "MinigamesController"})
+    uncovered_containers = [l for l in controller_levels
+                            if l not in covered_containers]
+
+    def deferred(fid, kinds, classes, reason, owner, owning_dataset, unblock):
+        return {"family_id": fid, "poi_kinds": kinds, "poi_classes": classes,
+                "poi_rows": fam_count(kinds, classes),
+                "disposition": "deferred", "reason_code": reason,
+                "unblock_owner": owner, "owning_dataset": owning_dataset,
+                "unblock": unblock}
+
     pending_families = [
-        {"family": "cartridge_item", "poi_kinds": ["cartridge"],
-         "poi_rows": sum(1 for r in poi_rows if r["kind"] == "cartridge"),
-         "owning_dataset": "extracted/data/cartridges/cartridges.jsonl (DS-4,"
-                           " emission in flight at build time)",
-         "unblock": "rerun marker projection after DS-4 lands; join key "
-                    "save_key already stored on every cartridge poi row"},
-        {"family": "profile_document", "poi_kinds": [],
-         "poi_rows": 0,
-         "owning_dataset": "extracted/data/documents/profile_documents.jsonl"
-                           " (DS-5, in flight)",
-         "unblock": "document placements are DS-5 rows; markers emit from"
-                    " their placement column once published"},
-        {"family": "monster_anomaly", "poi_kinds": ["monster"],
-         "poi_rows": sum(1 for r in poi_rows if r["kind"] == "monster"),
-         "owning_dataset": "(no entity dataset emitted yet)",
-         "unblock": "entity slugs must come from the owning dataset before"
-                    " any marker row may exist (no-orphan rule)"},
-        {"family": "save_point", "poi_kinds": ["travel_gate"],
-         "poi_rows": 19,
-         "owning_dataset": "(SPEC save_point; no entity dataset emitted yet)",
-         "unblock": "fileSave/nameLevelSaves vocabulary shipped in"
-                    " scene-links + relinks; marker rows wait for the entity"
-                    " owner"},
+        {"family_id": "cartridge_item/flash-taker",
+         "poi_kinds": ["cartridge"], "poi_classes": ["FlashTaker"],
+         "poi_rows": fam_count(["cartridge"], ["FlashTaker"]),
+         "disposition": "emitted", "emitted_markers": cart_markers,
+         "owning_dataset": "extracted/data/cartridges/cartridges.jsonl",
+         "join_key": "joins.save_key",
+         "unblock": "emitted this rerun: DS-4 landed; projection re-derives"
+                    " from joins.save_key on every pass"},
+        deferred("cartridge_item/tamagotchi", ["cartridge"],
+                 ["TamagotchiGame_Cartridge",
+                  "TamagotchiGame_Cartridge_Cartridge"],
+                 "owner-ruling-pending", "DS-4 curator (OQ-8)",
+                 "(none - no DS-4 row exists for either class)",
+                 "extend DS-4 with tamagotchi rows, re-rule the kind, or "
+                 "confirm orphanhood; ships with CAR-8 compromised treatment "
+                 "when resolved"),
+        deferred("travel_gate/save-point", ["travel_gate"], ["Scene_Load"],
+                 "no-entity-dataset", "SCN-1/XC-5",
+                 "(SPEC save_point; no entity dataset emitted yet)",
+                 "fileSave/nameLevelSaves vocabulary lives in scene-links + "
+                 "relinks/scene--save-vocabulary; markers wait for the entity "
+                 "owner"),
+        deferred("travel_gate/unowned-teleports", ["travel_gate"],
+                 ["Trigger_Teleport", "Player_Teleport"],
+                 "no-entity-dataset", "SCN-6 tier-2 / scenes J8",
+                 "(no travel_gate entity dataset emitted yet)",
+                 "teleport targets are PPtr carriers; semantics stay "
+                 "logic-layer until the tier-2 enumeration"),
+        {"family_id": "minigame_access/carrier-covered",
+         "poi_kinds": ["minigame_access"],
+         "poi_classes": ["MinigamesController"],
+         "level_scope": {"include": sorted(covered_containers)},
+         "poi_rows": fam_count(["minigame_access"], ["MinigamesController"],
+                               include=sorted(covered_containers)),
+         "disposition": "emitted",
+         # no emitted_markers here: these rows are relink-sourced
+         # (placement-sourced shape), so their count appears exactly once,
+         # keyed by source, under placement_families[] below (A-MV1 F-1)
+         "emitted_via": "placement_families[]:"
+                        "minigame_access/minigame--scene-carrier",
+         "scope_rule": "containers holding >=1 forward carrier edge in "
+                       "extracted/relinks/minigame--scene-carrier.jsonl",
+         "owning_dataset": "extracted/relinks/minigame--scene-carrier.jsonl",
+         "unblock": "emitted scene-granular per A-MV1 OQ-7; pin-level"
+                    " upgrade waits for PIPE S9 carrier transforms"},
+        {"family_id": "minigame_access/no-carrier-edge",
+         "poi_kinds": ["minigame_access"],
+         "poi_classes": ["MinigamesController"],
+         "level_scope": {"include": uncovered_containers},
+         "poi_rows": fam_count(["minigame_access"], ["MinigamesController"],
+                               include=uncovered_containers),
+         "disposition": "deferred", "reason_code": "no-carrier-edge",
+         "unblock_owner": "DS-4 J7 follow-up",
+         "owning_dataset": "extracted/relinks/minigame--scene-carrier.jsonl",
+         "unblock": "these containers sit outside every carrier edge (joins "
+                    "carry is_scene:false); J7 follow-up owns the recheck"},
+        deferred("move_point", ["move_point"],
+                 ["MitaAIMovePoint", "Transform_Position"],
+                 "no-entity-dataset", "XC-5",
+                 "(no move-point entity dataset emitted yet)",
+                 "AI path waypoints have no entity registry to anchor slugs"),
+        deferred("spawn_event", ["spawn_event"], ["Event_CreateResource"],
+                 "unresolved-target-until-xc3", "XC-3",
+                 "extracted/data/scenes/spawn-tables.jsonl (status:"
+                 " unresolved-target)",
+                 "prefab refs resolve when the XC-3 global pathID index lands"),
+        deferred("safe", ["safe"], ["Basement_Safe"],
+                 "no-entity-dataset", "XC-5",
+                 "(no safe entity dataset emitted yet)",
+                 "window percentages stay logic-layer (poi-kinds ruling)"),
+        deferred("interactable", ["interactable"],
+                 ["ObjectInteractive", "Trigger_DistanceCircle"],
+                 "scn6-tier-2", "SCN-6",
+                 "(tier-2 trigger/enumeration pass owns these classes)",
+                 "next-tier POI enumeration (map-viewer §13 non-goal)"),
+        deferred("monster_anomaly", ["monster"],
+                 ["Location10_MitaInShadow", "Mob_Cockroach", "Mob_Maneken",
+                  "MitaKiller", "MitaFreak Enter", "Shooter_Enemy",
+                  "QuadLiner_Enemy", "Mob_ChibiMita"],
+                 "no-entity-dataset", "XC-5",
+                 "(no monster/anomaly entity dataset emitted yet)",
+                 "strict no-orphan wait (A-MV1 OQ-3); counted rows on "
+                 "/locations pages give the coverage meanwhile"),
+    ]
+    placement_families = [
+        {"family_id": "profile_document/ds5-placement",
+         "source_dataset":
+             "extracted/data/documents/profile_documents.jsonl",
+         "disposition": "emitted", "emitted_markers": prof_markers,
+         "shape": "placement-sourced (map-viewer §3.2(b)): poi_id null, "
+                  "scalar container split emitter-side, DS-5 placement "
+                  "verbatim, scene-granular always"},
+        {"family_id": "minigame_access/minigame--scene-carrier",
+         "source_dataset":
+             "extracted/relinks/minigame--scene-carrier.jsonl",
+         "disposition": "emitted", "emitted_markers": mg_markers,
+         "shape": "placement-sourced (map-viewer §3.2(b) per A-MV1 OQ-7): "
+                  "one row per (minigame_id, container) carrier pair; "
+                  "per-instance anchoring prohibited"},
     ]
 
+    # ledger arithmetic asserted at emit (AC MV-0.4 a/b + disjointness)
+    def claimed_by(kind, cls, level):
+        hits = []
+        for f in pending_families:
+            if kind not in f["poi_kinds"] or cls not in f["poi_classes"]:
+                continue
+            sc = f.get("level_scope")
+            if sc and "include" in sc and level not in sc["include"]:
+                continue
+            hits.append(f["family_id"])
+        return hits
+
+    for kind, cls, lvl in pool:
+        hits = claimed_by(kind, cls, lvl)
+        assert len(hits) == 1, \
+            f"ledger partition: {kind}|{cls}@{lvl} claimed by {hits}"
+    assert sum(f["poi_rows"] for f in pending_families) == len(pool), \
+        "ledger partition sum != eligible recount"
+
+    # -- position dispositions: total over the pptr-unresolved pool --------
+    pptr_pool = [r for r in poi_rows
+                 if r["position"]["source"] == "pptr-unresolved"]
+    pptr_by_class = Counter(r["class"] for r in pptr_pool)
+    position_dispositions = {"resolved-by-s9": 0,
+                             "deferred:s9-not-run": len(pptr_pool)}
+    assert sum(position_dispositions.values()) == len(pptr_pool)
+
+    # -- unplaced confirmed entities (A-MV1 OQ-9: exclusion confirmed) -----
+    unplaced = {
+        "cartridges": [
+            {"entity_kind": "cartridges", "entity_slug": c["cartridge_id"],
+             "save_key": c["save_key"], "status": c["status"],
+             "reason_code": "registered-unresolved-pickup",
+             "note": "DS-4 pickup_ref null - registered without a proven "
+                     "container; DOC-5 cited only as the analogous "
+                     "cartridge-side undumped-grant row"}
+            for c in cart_rows if not c.get("pickup_ref")],
+        "profiles": [
+            {"entity_kind": "profiles", "entity_slug": d["document_id"],
+             "reason_code": d["placement_mechanism"],
+             "note": "DS-5 placement_mechanism verbatim; no container "
+                     "inference from container_location_binding [inferred] "
+                     "(faked-spot law)"}
+            for d in prof_rows if not d.get("placement")],
+    }
+    assert len(unplaced["cartridges"]) == 2 and len(unplaced["profiles"]) == 3
     # ---------------- relinks (parked until stage registration)
     rel_scene_chapter = []
     for r in scene_rows:
@@ -971,6 +1447,11 @@ def main():
                 "method": "Scene_Load.fileSave / nameLevelSaves[] verbatim",
                 "status": "modeled"})
     lit_path = PACK / "extracted/il2cpp/stringliteral.json"
+    if not lit_path.exists():
+        # il2cpp/ moved off C: in the 2026-08-25 disk emergency; it sits
+        # beside the relocated harvest root (MISIDE_HARVEST_ROOT/..)
+        lit_path = HARVEST.parent / "il2cpp" / "stringliteral.json"
+    assert lit_path.exists(), f"stringliteral.json not found ({lit_path})"
     lits = {e.get("value") for e in json.loads(
         lit_path.read_text(encoding="utf-8"))
         if isinstance(e, dict) and str(e.get("value", "")).startswith(
@@ -1020,91 +1501,6 @@ def main():
     }
     for fname, (meta, rows) in relinks.items():
         write_jsonl(RELINKS / fname, meta, rows)
-
-    # ---------------- poi-kinds curated rulings
-    kinds_doc = {
-        "_meta": {
-            "schema": "miside.scenes.poi-kinds/1",
-            "generator": "B-6 dataset-builder curation pass",
-            "rule": "one ruling per class; marker_eligible=false rows are"
-                    " excluded from marker projection (spec §3.3)",
-            "build_id": BUILD_ID, "version_label": VERSION_LABEL,
-        },
-        "classes": [
-            {"class": "Basement_Safe", "kind": "safe", "marker_eligible": True,
-             "note": "scene furniture; window percentages stay logic-layer"},
-            {"class": "Event_CreateResource", "kind": "spawn_event",
-             "marker_eligible": True,
-             "note": "day/holiday-gated creation; table rows live in"
-                     " spawn-tables.jsonl"},
-            {"class": "FlashTaker", "kind": "cartridge",
-             "marker_eligible": True,
-             "note": "pickup carrier; placement authority DS-4 by reference"},
-            {"class": "TamagotchiGame_Cartridge", "kind": "cartridge",
-             "marker_eligible": True,
-             "note": "in-fiction phone-space pet cartridges - distinct kind"
-                     " from flash drives (AC S5)"},
-            {"class": "TamagotchiGame_Cartridge_Cartridge", "kind":
-             "cartridge", "marker_eligible": True,
-             "note": "pet-cartridge subclass stem"},
-            {"class": "Interface_KeyHint_Key", "kind": "interactable",
-             "marker_eligible": False,
-             "note": "enumerated NEXT TIER (382 level instances measured);"
-                     " UI hint chips, not places"},
-            {"class": "LightRenderer_Fog", "kind": "other",
-             "marker_eligible": False,
-             "note": "Fog-anomaly candidacy unproven (J6); never emitted as"
-                     " a monster"},
-            {"class": "Location10_MitaInShadow", "kind": "monster",
-             "marker_eligible": True, "note": ""},
-            {"class": "MakeManeken_Interaction", "kind": "interactable",
-             "marker_eligible": False,
-             "note": "dummy family enumerated next tier (~276 corpus-wide);"
-                     " exact per-level sweep pending"},
-            {"class": "MinigamesController", "kind": "minigame_access",
-             "marker_eligible": True,
-             "note": "access-location side of J7 hard; rules stay logic-layer"},
-            {"class": "Mob_ChibiMita", "kind": "monster",
-             "marker_eligible": True, "note": ""},
-            {"class": "Mob_Cockroach", "kind": "monster",
-             "marker_eligible": True, "note": ""},
-            {"class": "Mob_Maneken", "kind": "monster",
-             "marker_eligible": True, "note": ""},
-            {"class": "MitaAIMovePoint", "kind": "move_point",
-             "marker_eligible": True, "note": "targetMove PPtr unresolved"},
-            {"class": "MitaFreak Enter", "kind": "monster",
-             "marker_eligible": True, "note": ""},
-            {"class": "MitaKiller", "kind": "monster",
-             "marker_eligible": True,
-             "note": "chase system switches on mid-game (absent levels 3-7,"
-                     " 18)"},
-            {"class": "ObjectInteractive", "kind": "interactable",
-             "marker_eligible": True, "note": "eventClick call groups kept"},
-            {"class": "ObjectItem", "kind": "other",
-             "marker_eligible": False,
-             "note": "hand/face offsets - NEVER map-projected (spec §3.3)"},
-            {"class": "Player_Teleport", "kind": "travel_gate",
-             "marker_eligible": True,
-             "note": "inline destination floats, frame unproven (IL-stub)"
-                     " - space unknown"},
-            {"class": "QuadLiner_Enemy", "kind": "monster",
-             "marker_eligible": True, "note": ""},
-            {"class": "Scene_Load", "kind": "travel_gate",
-             "marker_eligible": True,
-             "note": "additive sub-scene gate; lattice owned by"
-                     " scene-links.jsonl"},
-            {"class": "Shooter_Enemy", "kind": "monster",
-             "marker_eligible": True, "note": "all four in unbound level23"},
-            {"class": "Transform_Position", "kind": "move_point",
-             "marker_eligible": True,
-             "note": "point sets; parent-relative where myParent!=0"},
-            {"class": "Trigger_DistanceCircle", "kind": "interactable",
-             "marker_eligible": True, "note": "proximity trigger"},
-            {"class": "Trigger_Teleport", "kind": "travel_gate",
-             "marker_eligible": True,
-             "note": "portal chamber (all 14 in level9)"},
-        ],
-    }
 
     # ---------------- meta headers
     scenes_meta = {
@@ -1199,37 +1595,58 @@ def main():
     markers_meta = {
         "_meta": {
             "schema": "miside.markers.projection/1",
-            "generator": "B-6 dataset-builder curation pass",
-            "source_table": "docs/specs/dataset-scenes.mdx §3.5",
+            "generator": "B-6 dataset-builder curation pass (M0 marker"
+                         " projection rerun; docs/specs/map-viewer.mdx §3)",
+            "source_table": "docs/specs/map-viewer.mdx §3.2/§4.1 (routed"
+                            " entity_kind vocabulary supersedes the"
+                            " dataset-scenes §3.5 example per A-MV1 OQ-4)",
             "schema_doc": "contracts/dataset-scenes.mdx",
             "build_id": BUILD_ID,
             "version_label": VERSION_LABEL,
-            "row_count": 0,
+            "row_count": len(marker_rows),
+            "ordering": "(family block cartridge_item, profile_document,"
+                        " minigame_access, then marker_id asc)",
             "no_orphan_rule": "markers exist ONLY for entities confirmed by"
                               " their owning dataset's emitted files; every"
                               " family below is deferred with its unblock -"
                               " none dropped silently",
-            "pending_families": pending_families,
             "focus_url_contract": "/map?focus=<entity_kind>:<entity_slug>"
-                                  "&scene=<scene_id>",
+                                  "&scene=<scene_id>; routed ENTITY_KINDS"
+                                  " keys: cartridges|profiles|minigames"
+                                  " (map-viewer §4.1)",
+            "layer_contract": "location-scenes/<World.nameLocation> when the"
+                             " scene binds a location, else the scene_id"
+                             " itself (boot/title/menu/unbound bind none)",
+            "pending_families": pending_families,
+            "placement_families": placement_families,
+            "position_dispositions": position_dispositions,
+            "position_dispositions_note":
+                f"total over the {len(pptr_pool)} pptr-unresolved poi rows;"
+                f" class split: "
+                + ", ".join(f"{c} ×{n}" for c, n in sorted(
+                    pptr_by_class.items())) +
+                "; PIPE S9 scene-transform (dataset-scenes §6) is the named"
+                " coordinate unblock and has not run — no coordinates are"
+                " fabricated, every row keeps its deferred reason code",
+            "unplaced": unplaced,
         },
     }
 
     # ---------------- README (honesty ledger)
     truth = poi_meta["_meta"]["position_truth_census"]
+    by_class = Counter(r["class"] for r in poi_rows)
     class_census = ", ".join(
-        f"{cls} ×{n}" for cls, n in sorted(
-            ((r["class"], sum(1 for x in poi_rows if x["class"] == r["class"]))
-             for r in poi_rows), key=lambda t: (-t[1], t[0])))
+        f"{cls} ×{n}" for cls, n in sorted(by_class.items(),
+                                           key=lambda t: (-t[1], t[0])))
     readme = f"""# scenes — dataset honesty ledger (DS-6)
 
 Emitted by `build/emit_scenes.py` (builder B-6, 2026-08-25) against
 [docs/specs/dataset-scenes.mdx](../../../docs/specs/dataset-scenes.mdx)
 (post-F-DS6; verifier [ds6-vA](../../../docs/research/verifications/ds6-vA.mdx)
 PASS). Build **{BUILD_ID}** / **{VERSION_LABEL}**. Regenerate:
-`python extracted/data/scenes/build/emit_scenes.py` — reruns are
-byte-identical (no wall-clock inputs; floats carried verbatim from the MB
-dumps).
+`python extracted/data/scenes/build/emit_scenes.py` (set `MISIDE_HARVEST_ROOT`
+when extracted/harvest/ lives elsewhere) — reruns are byte-identical (no
+wall-clock inputs; floats carried verbatim from the MB dumps).
 
 ## Files
 
@@ -1237,7 +1654,7 @@ dumps).
 - `scene-links.jsonl` — {len(link_rows)} rows: {sum(1 for r in link_rows if r.get('edge_kind')=='loads')} loads / {sum(1 for r in link_rows if r.get('edge_kind')=='unloads')} unloads / {sum(1 for r in link_rows if r.get('edge_kind')=='continues')} continues edges, {chapter_links} chapter pointers, 1 level18 absence ledger row.
 - `poi.jsonl` — {len(poi_rows)} placement-bearing instances: {class_census}.
 - `spawn-tables.jsonl` — {len(spawn_tables)} Event_CreateResource rows.
-- `markers.jsonl` — projection v0: zero data rows by the no-orphan rule (see below).
+- `markers.jsonl` — M0 projection rerun: {len(marker_rows)} entity-backed rows ({cart_markers} cartridge via DS-4 save_key · {prof_markers} profile_document from DS-5 placement · {mg_markers} minigame_access carrier pairs, the latter two families scene-granular with `poi_id:null`); family ledger + S9 dispositions in `_meta`.
 - `poi-kinds.json` — curated class→kind rulings.
 - `relinks/` — inverted indexes parked until stage registration (B-1 precedent).
 
@@ -1297,14 +1714,47 @@ Trigger_Event/ObjectInteractive evidence. Menu-side pickers (MenuLocation
 ×16, MenuNextLocation ×52) live in level2 and stay out of the physical
 carrier set.
 
-## Markers v0 — why zero rows
+## Markers v1 — M0 projection rerun (map-viewer §3)
 
-The no-orphan rule (spec §3.5) forbids marker rows whose owning entity
-dataset has not confirmed the entity. At build time DS-4 (cartridges) and
-DS-5 (documents) emissions were still in flight, and monster/save-point
-entity owners do not exist yet — so markers.jsonl ships its `_meta`
-accounting only. Rerun marker projection once those datasets land; join
-keys (`save_key`) are already stored on every cartridge POI row.
+The no-orphan rule (spec §3.5) still governs: markers exist only for
+entities an owning dataset's emitted file confirms. DS-4 (cartridges), DS-5
+(profile documents) and the minigame--scene-carrier relink have landed, so
+the rerun emits:
+
+- **{cart_markers} `cartridge` rows** — FlashTaker poi rows joined through
+  `joins.save_key` to DS-4 `cartridge_id`s (join audited: exactly one DS-4
+  row per save_key, pickup_ref.container equal to the poi container).
+  19 carry their pptr target with `status:"awaiting-transform-stage"`; the 2
+  whose `objectTake` is null serialize no transform at all and stay
+  `scene-granular` — never a faked spot.
+- **{prof_markers} `profile_document` rows** — placement-sourced shape
+  (`placement_source:"DS-5"`, `poi_id:null`, scalar `container` split
+  emitter-side out of any compound id, DS-5 `placement` verbatim,
+  `instance_census`). Scene-granular always: DS-5 names the carrier
+  component, not a resolved transform.
+- **{mg_markers} `minigame_access` rows** — placement-sourced carrier pairs
+  (`minigame_id` × `container`) over the {len(covered_containers)} covered
+  containers, edge `mechanism/status/method` verbatim;
+  `instance_census.minigames_hosted` keeps multi-minigame containers from
+  reading as one-of-N (level9 hosts 4 minigames over 3 controllers).
+  Per-instance controller anchoring is prohibited (A-MV1 OQ-7).
+
+Deferred families stay deferred with reason codes in `_meta`
+(`pending_families[]`, Σ poi_rows = {sum(f['poi_rows'] for f in pending_families)} eligible rows):
+tamagotchi pet cartridges ×4 (`owner-ruling-pending`), save points ×19 +
+unowned teleports ×27 (`no-entity-dataset`), move points ×102,
+spawn events ×24 (`unresolved-target-until-xc3`), safes ×2, interactables
+×344 (`scn6-tier-2`), monsters ×96, and level1's 3 controllers
+(`no-carrier-edge`). Confirmed-but-unplaced entities (`mtad-2`, `mtacore`,
+plus the 3 placement-less profiles under their DS-5-declared
+`script_granted`/`story_granted` vocabulary) are accounted in
+`_meta.unplaced` — no container inference from `[inferred]` bindings.
+
+The {len(pptr_pool)} pptr-unresolved positions all defer as
+`deferred:s9-not-run` (`_meta.position_dispositions`): PIPE S9's
+scene-transform walk is the coordinate unblock and has not run. Registry v2
+(display_label_loc, per-kind counts, artwork-driven status) is written by
+the site artifact step additively over v1 fields.
 
 ## Non-story levels (evidence classes, Principle zero)
 
@@ -1320,7 +1770,7 @@ win-animation tracks; no World, no Scene_Load, binds no location (§9-R5).
     write_jsonl(OUT / "scene-links.jsonl", links_meta, link_rows)
     write_jsonl(OUT / "poi.jsonl", poi_meta, poi_rows)
     write_jsonl(OUT / "spawn-tables.jsonl", st_meta, spawn_tables)
-    write_jsonl(OUT / "markers.jsonl", markers_meta, [])
+    write_jsonl(OUT / "markers.jsonl", markers_meta, marker_rows)
     write_json(OUT / "poi-kinds.json", kinds_doc)
     summary = {
         "scenes": len(scene_rows),
@@ -1329,6 +1779,12 @@ win-animation tracks; no World, no Scene_Load, binds no location (§9-R5).
         "dangling": dangling,
         "poi": len(poi_rows),
         "truth": truth,
+        "markers": len(marker_rows),
+        "markers_by_kind": {"cartridge": cart_markers,
+                            "profile_document": prof_markers,
+                            "minigame_access": mg_markers},
+        "eligible_pool": len(pool),
+        "pptr_disposition": position_dispositions,
         "spawn_tables": len(spawn_tables),
         "ecr_event_days": sorted({r["event_day_label"]
                                   for r in spawn_tables}),
