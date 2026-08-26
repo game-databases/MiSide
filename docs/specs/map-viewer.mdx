@@ -51,7 +51,7 @@ Join partners that landed since B-6 (the M0 unblocks):
 | Dataset | Data rows | Placement field |
 |---|---|---|
 | `extracted/data/cartridges/cartridges.jsonl` (DS-4) | 23 (13 character + 10 player; header line is flat, no `_meta` key) | `pickup_ref.container` on 21 rows; `mtad2`/`mtacore` are `registered-unresolved-pickup` with `pickup_ref: null` |
-| `extracted/data/documents/profile_documents.jsonl` (DS-5) | 14 (same flat-header shape) | `placement: {carrier_class:"FlashTaker", component_path_id, container}` on **11** rows; null on 3 (`mita-2-d-profile`, `mita-core-profile`, `mita-true-profile` — script-granted, DOC-5) |
+| `extracted/data/documents/profile_documents.jsonl` (DS-5) | 14 (same flat-header shape) | `placement: {carrier_class:"FlashTaker", component_path_id, container}` on **11** rows; null on 3 (`mita-2-d-profile`, `mita-core-profile`, `mita-true-profile` — declared `placement_mechanism`: `script_granted` ×2 + `story_granted` ×1 per the DS-5 column; DOC-5 cited only as the analogous cartridge-side undumped-grant row) |
 | `extracted/data/cartridges/minigames.jsonl` (DS-4) | 17 | carrier edges live in `extracted/relinks/minigame--scene-carrier.jsonl` (76 direction rows) |
 
 Measured join reality (this spec's corrections to optimistic readings):
@@ -157,14 +157,7 @@ tile layers, live tracking (Scout §3.2 avoid rulings all stand).
 | **M4** entity-page map module | `EntityShell` location tab + per-kind producers (server-side) | M0 (focus URLs resolvable), M2 (module reuse) | — |
 | **M5** chrome i18n + gates | new keys ×34, parity/negative-map/CWV gates | M2–M4 string freeze | — |
 
-```
-M0 ──► M1 ──► M2 ──► M3 ──► (ship)
- │            ▲▲
- │            ║╚── M4 ──► (ship)
- └────────────╣╚═════════ (M4 consumes focus URLs + marker rows)
-              M5 ◄─ strings frozen from M2–M4
-artwork piece ──► M1 (progressive; grid fallback covers absence)
-```
+Dependency edges are exactly the table above; M4 depends on M0+M2.
 
 Hard sequencing rule: **no M1+ module may merge before M0's ACs
 ([§12.1](#121-m0-acceptance-criteria)) pass.** A viewer merged onto a
@@ -215,11 +208,29 @@ yield is *not* its shipping gate; its honesty ledger *is*.
   (DS-4 §3.5/§8-R4 boilerplate rule, e.g. `MinigamesController` groups),
   the marker row carries `instance_census` so a count shown to a user is
   never silently one-of-N.
-- New schema piece — **profile-placement markers**: rows keyed by
-  `placement_source: "DS-5"` + `document_id`, carrying `placement`
-  verbatim (`carrier_class`, `component_path_id`, `container`) instead of
-  `poi_id`. They render at scene granularity (list-chip + scene-level
-  presence) until S9 resolves their carrier transforms into pins.
+- New schema piece — **placement-sourced markers** (A-MV1 F-2; one shape,
+  two sources): rows keyed by `placement_source` (`"DS-5"` |
+  `"minigame--scene-carrier"`) plus the owning id (`document_id` |
+  `minigame_id`) instead of a poi anchor; **`poi_id: null` mandatory**;
+  `position.status: "scene-granular"` always — never `"projected"`.
+  - `container` is emitted as its own scalar field, split emitter-side
+    out of the relink compound id (`to:"scene-class-family@levelN"`);
+    downstream string-splitting of a compound id is a forbidden
+    derivation (§4 defect class).
+  - Edge provenance rides verbatim (`mechanism`, `status`, `method`)
+    into `placement`.
+  - `instance_census` is required whenever a container hosts >1
+    controller instance or >1 minigame (measured: 22 covered containers,
+    9 hosting >1 minigame) so a count shown to a user is never silently
+    one-of-N.
+  - Forbidden: mapping specific `MinigamesController` poi rows to
+    specific minigames (level9 hosts 4 minigames over 3 controller rows —
+    any finer assignment would be fabricated), and rendering a
+    scene-granular marker as a plotted pin. These rows render at scene
+    granularity (list-chip + scene-level presence) until S9 resolves
+    their carrier transforms into pins.
+  - DS-5 profile rows additionally carry their `placement` verbatim
+    (`carrier_class`, `component_path_id`, `container`).
 - `PoiRow.position.points[]` stays in the site contract
   (`site/src/data/contracts.ts`) for Transform_Position point sets; the
   frontend never iterates it for plotting (parent-local/unknown spaces are
@@ -239,23 +250,69 @@ yield is *not* its shipping gate; its honesty ledger *is*.
 - `monster_anomaly` (96 rows) and `save_point` (19 `Scene_Load` rows):
   stay deferred — owning entity datasets still don't exist
   (missingdata XC-5, SCN-1).
-- Optional in the same rerun if the Arbiter approves
-  ([OQ-7](#14-open-questions-for-the-arbiter)): `minigame_access` family —
-  both sides exist (`minigames.jsonl` 17 rows + `minigame--scene-carrier`
-  76 edges), so no-orphan is satisfiable today.
-- **Make the `_meta` family ledger total:** v0 lists 4 families but 709
-  eligible rows span kinds (`interactable`, `move_point`, `spawn_event`,
-  `safe`, `minigame_access`) that no family names. The rerun's
-  `pending_families` must enumerate every `marker_eligible:true` kind with
-  its deferral reason and unblock owner — counts pinned, never dropped
-  (SCN-6 pattern).
+- `minigame_access` family — **ruled IN**, not optional
+  ([OQ-7](#14-open-questions-for-the-arbiter); A-MV1 F-2): emit under the
+  [placement-sourced marker shape](#3-m0--markerposition-emission-data-side-gating-module).
+  Measured yield: **≤38 scene-granular marker rows covering 67 of the 70
+  `MinigamesController` poi rows** (38 distinct
+  `(minigame_id, container)` carrier pairs over 22 containers, levels
+  2–23 only, every edge `mechanism:"hard"`); level1's 3 poi rows sit
+  outside every edge and defer under `no-carrier-edge` (their joins carry
+  `is_scene:false`; DS-4 J7 follow-up). Both families land in the
+  partition table below.
+- **Make the `_meta` family ledger total — two lists; families key finer
+  than kind (A-MV1 F-1).** v0 lists 4 bare-kind families, but 709 eligible
+  rows span classes no family names. The rerun writes:
+
+  1. `pending_families[]` — entries key a `(kind, class_axis)` pair and
+     name a closed class list:
+     `{family_id, poi_kinds[], poi_classes[], poi_rows, disposition,
+     emitted_markers?, reason_code?, unblock_owner?}`, where
+     `disposition ∈ {"emitted", "deferred"}`. No entry may key a bare
+     kind. Counts are recomputed at emit time from `poi-kinds.json` +
+     `poi.jsonl`, never inherited from v0 `_meta`.
+  2. Partition identity: **Σ `poi_rows` over `pending_families` = the
+     eligible-row recount (=709 today)**, with the axes pairwise disjoint
+     and jointly covering every `marker_eligible:true` row.
+  3. `placement_families[]` — sibling list for placement-sourced markers
+     (DS-5 profiles; minigame carriers per OQ-7): same fields minus
+     `poi_rows`/`poi_classes`, plus `source_dataset`. Their source rows
+     live outside the poi pool, which is why they must not be forced into
+     the 709. Total marker rows = Σ `emitted_markers` over **both**
+     lists; each marker row's emitted count appears in exactly one list,
+     keyed by its source (poi-pool rows ⇒ `pending_families`;
+     document/relink-sourced rows ⇒ `placement_families`).
+
+  Required partition (axes fixed by A-MV1; counts asserted at emit; every
+  number below recounted from disk for this spec):
+
+  | family_id | poi_kinds | poi_classes[] | poi_rows | disposition |
+  |---|---|---|---|---|
+  | `cartridge_item/flash-taker` | cartridge | FlashTaker | 21 | emitted |
+  | `cartridge_item/tamagotchi` | cartridge | TamagotchiGame_Cartridge, TamagotchiGame_Cartridge_Cartridge | 4 | deferred — `owner-ruling-pending` (OQ-8; DS-4 curator) |
+  | `travel_gate/save-point` | travel_gate | Scene_Load | 19 | deferred — `no-entity-dataset` (SCN-1/XC-5) |
+  | `travel_gate/unowned-teleports` | travel_gate | Trigger_Teleport, Player_Teleport | 27 | deferred — `no-entity-dataset` (SCN-6 tier-2 / scenes J8) |
+  | `minigame_access/carrier-covered` | minigame_access | MinigamesController @ containers with ≥1 carrier edge (22 today) | 67 | emitted — scene-granular via `placement_families[]` (OQ-7) |
+  | `minigame_access/no-carrier-edge` | minigame_access | MinigamesController @ level1 | 3 | deferred — `no-carrier-edge` (joins carry `is_scene:false`; DS-4 J7 follow-up) |
+  | `move_point` | move_point | MitaAIMovePoint (31), Transform_Position (71) | 102 | deferred — `no-entity-dataset` (XC-5) |
+  | `spawn_event` | spawn_event | Event_CreateResource | 24 | deferred — `unresolved-target-until-xc3` |
+  | `safe` | safe | Basement_Safe | 2 | deferred — `no-entity-dataset` |
+  | `interactable` | interactable | ObjectInteractive (312), Trigger_DistanceCircle (32) | 344 | deferred — `scn6-tier-2` |
+  | `monster_anomaly` | monster | Location10_MitaInShadow (28), Mob_Cockroach (16), Mob_Maneken (20), MitaKiller (15), MitaFreak Enter (8), Shooter_Enemy (4), QuadLiner_Enemy (2), Mob_ChibiMita (3) | 96 | deferred — `no-entity-dataset` (XC-5) |
+
+  Σ = 709. The two minigame families share one class but partition it by
+  container scope — which is why coverage/disjointness is asserted over
+  the `(class × row-subset)` axes, not over bare class names
+  ([AC MV-0.4](#121-m0-acceptance-criteria)).
 
 **(d) Registry v2** (`emit-artifacts.mjs` §"map registry + markers" →
 `public/map/registry.json`): per scene keep `bounds: null` until S9/P5
 calibration writes real ones (null is the honest value; never a bounding
 guess from spawns), add `display_label_loc` (chapter pointer or explicit
 null), `role`, per-kind marker counts, and `status:
-"awaiting-artwork" | "ready"` driven by artwork presence.
+"awaiting-artwork" | "ready"` driven by artwork presence. v2 extends the
+v1 registry object additively; no v1 field is removed — `bounds`,
+`coordinate-transform`, `imagery`, `zoom` survive unchanged.
 
 ### 3.3 Non-goals of M0
 
@@ -351,9 +408,9 @@ it):
 | `SceneMap.tsx` v1 | island host; imagery layer from `public/map/<scene_id>/` (format per [OQ-2](#14-open-questions-for-the-arbiter); SVG recommended) with the schematic-grid VoidWell as the awaiting-artwork state; clamped pan/zoom from registry zoom; reset control; plotted-pin layer; locked-cell layer for scene-granular markers |
 | `SceneSwitcher.tsx` | 24 scenes grouped story (by chapter pointer order) / boot / title / menu / unbound; labels from registry `display_label_loc` with the filler chain chapter name → re-spaced id (`desluggedLabel`); writes `?scene=` |
 | `KindFilter.tsx` | chip row over the poi-kind vocabulary restricted to kinds present in the active scene's markers; per-kind counts; Show All / Hide All; writes `?kinds=` |
-| `PinPopover.tsx` | entity card: loc-correct title, kind chip, placement provenance cell (`mechanism`/`source_join`), crawlable `<a>` to `/{locale}/{entity_kind}/{entity_slug}`; bidirectional highlight with the filter row (hover either side lights the join — design-standard §5.3) |
+| `PinPopover.tsx` | entity card: loc-correct title, kind chip, placement provenance cell (`mechanism`/`source_join`, surfaced whenever `mechanism !== "hard"` OR `status !== "modeled"` — §7 carry law), crawlable `<a>` to `/{locale}/{entity_kind}/{entity_slug}`; bidirectional highlight with the filter row (hover either side lights the join — design-standard §5.3) |
 | `LockedCell.tsx` | visible-locked treatment for scene-granular / awaiting-transform markers once imagery+bounds exist; checkerboard-void discipline, never a faked spot |
-| `mapState.ts` v2 | extends the focus grammar with `?kinds=` (ordered, deduped) and applies `?scene=` on load (v0 parses but ignores it — Scout gap #4) |
+| `mapState.ts` v2 | extends the focus grammar with `?kinds=` (ordered, deduped) and applies `?scene=` on load (v0 parses but ignores it — Scout gap #4). History law pinned here (A-MV1 OQ-5): `replaceState` for filter toggles, focus changes, focus clear, and `?kinds=` edits; `pushState` on scene change so Back walks the scene trail; cold load restores whatever the URL carries |
 
 Honest-state law continues v0's pattern: `chrome["map.pendingPlacement"]`
 chips and VoidWells — absence prose is a defect (design-standard §5.1,
@@ -368,7 +425,9 @@ pan/drag (clamped to bounds when known) · wheel + button zoom (clamped,
 Hide All · quicksearch box filtering pin labels in-place (corpus is
 hundreds of rows — no global search panel) · pin hover → highlight join ·
 pin click → popover (side sheet ≤640 px viewports) · popover entity link ·
-focus restore from URL on cold load · focus clear (dismiss chip) · reset
+focus restore from URL on cold load · focus clear (dismiss chip) · URL
+history per the `mapState.ts` law (`replaceState` on filter/focus/kinds/
+clear, `pushState` on scene change) · reset
 view · keyboard access to every control (visible focus ring via `--ring`)
 · touch pinch/drag · deep-link from entity pages into scene-locked mode.
 
@@ -377,7 +436,7 @@ category groups ADAPT (≈7 mappable kinds, not 70); rich detail pane BORROW;
 quicksearch ADAPT; checklist/tracker ADAPT-LATER (data slots
 `entity_kind`/`entity_slug` reserved); distance/radius tools, tile styles,
 live tracking, iframe embed, clustering all AVOID (largest scene holds 123
-marker-capable rows — clustering returns only if instance growth pushes a
+rows (102 marker-capable) — clustering returns only if instance growth pushes a
 scene past ~300 pins).
 
 ---
@@ -403,11 +462,27 @@ scene past ~300 pins).
   | Kind | Scene source (consumed, not derived) |
   |---|---|
   | `cartridges` | marker rows / `pickup_ref.container` via markers.jsonl |
-  | `profiles` | marker rows / DS-5 `placement.container` (3 script-granted profiles render an honest unplaced well) |
+  | `profiles` | marker rows / DS-5 `placement.container` (the 3 placement-less profiles — DS-5 declares `script_granted` ×2, `story_granted` ×1 — render an honest unplaced well) |
   | `minigames` | `minigame--scene-carrier.jsonl` carrier edges |
   | `mita` | `character--scene-membership.jsonl` (12 rows) |
   | `books` / `lore` | `document--scene-membership.jsonl` (`note:*` → `container:*`) |
   | `locations` | own row (`spawn` + lattice) |
+
+  Provenance carry law (A-MV1 F-7): every M4 module carries
+  `mechanism`/`status` from its source relink through to render and
+  surfaces them whenever `mechanism !== "hard"` OR
+  `status !== "modeled"` — same vocabulary and treatment as the PinPopover
+  provenance cell. Today that bites only for `mita-black` (its T1/T2
+  joins are `inferred`/`modeled`, forward + inverse); `mita-core` and the
+  document/minigame relinks are `hard`/`modeled`. The law stays mandatory
+  so a future relink edit cannot silently flip rendering — measured over
+  the 12 `character--scene-membership` rows: 8 `hard` / 4 `inferred`,
+  8 `modeled` / 4 `partial`. The four `from: null` scene-class census rows
+  (`MitaPerson` 93 instances / 45 containers, `MitaKiller`,
+  `MitaFreak Enter`, `Mob_ChibiMita` — all `partial`) have no registry
+  slug: they are **excluded from per-entity modules entirely** (nothing to
+  anchor) and may surface only as counted rows on `/locations/[scene_id]`
+  pages; rendering a container census as a per-entity fact is prohibited.
 
   Module contents: mini schematic placeholder (VoidWell until artwork),
   "found in" scene link(s) to `/locations/<scene_id>`, and the
@@ -427,7 +502,7 @@ papered over:
 |---|---|
 | No artwork yet (all 24 scenes) | schematic-grid VoidWell panel; `status:"awaiting-artwork"`; ships progressive — artwork landing flips scenes to `"ready"` one at a time |
 | Marker with no coordinates yet (S9 pending) | scene-granular list-chip + (once imagery exists) LockedCell; never plotted at a faked spot; popover shows `awaiting-transform-stage` status word in machine voice (LCD register) |
-| Entity confirmed but unplaced (`mtad2`, `mtacore`, 3 script-granted profiles) | entity page renders an unplaced well of equal height to a placed module — no absence sentence; `_meta.unplaced` carries the reason codes |
+| Entity confirmed but unplaced (`mtad2`, `mtacore`, and the 3 placement-less profiles — `script_granted` ×2 / `story_granted` ×1 per DS-5; DOC-5 is the analogous cartridge-side grant row) | entity page renders an unplaced well of equal height to a placed module — no absence sentence; `_meta.unplaced` carries the reason codes |
 | Unnamed instances (CH-6) | class-preserving label via `desluggedLabel` of class/id; no invented proper nouns |
 | Scene display names null (SCN-8: `display_name_loc` null ×24; chapters missing on 5 story levels) | filler chain per localization-architecture §5: localized chapter name → re-spaced `scene_id`; locale page never leaks another locale's text |
 | Compromised/reachability-flagged entities (CAR-8 tamagotchi `present_but_unreachable`) | `CorruptionHover` + VHS-drift STATE treatment on the chip — horror register as state, matching `EntityShell compromised` semantics |
@@ -444,9 +519,13 @@ The viewer must feel like holding the game's spaces, not like atlas chrome
   `--ms-bg-0/1/2` plum stack, pill/panel/cell radius family, border via
   `color-mix` on `--ms-accent-soft`. **No uncited hex anywhere under
   `src/components` (AC-S8 defect class)** — kind-chip color axes derive
-  from tier-1 rows via `color-mix` (accent / signal green / warm / danger)
+  via `color-mix` tints from four existing tier-1 rows over the
+  `--ms-bg-*` stack: `--ms-accent`, `--ms-signal`, `--ms-warm`,
+  `--ms-danger` (A-MV1 OQ-10; all four verified present in tokens.css) —
   and are otherwise monochrome; a rainbow category palette like MapGenie's
-  is off-soul anyway.
+  is off-soul anyway. If a future axis lacks a source row, the change
+  lands in `tokens.css` **first** (a tier-1 row), never as inline hex
+  under `src/components`.
 - Hot pink `--ms-accent` stays reserved for identity + actions (focused
   pin, active filter, primary popover link) — never a per-kind hue.
 - Machine-voice data (counts, `awaiting-transform-stage`, buildId stamp)
@@ -505,10 +584,13 @@ in the pattern of the negative-map gate.
 
 - **AC MV-0.1 — Rerun yields entity-backed markers.** `markers.jsonl`
   ships >0 data rows; every row joins to exactly one owning-dataset row
-  (21 cartridge via `save_key`; ≤11 profile via DS-5 placement); a
-  fabricated slug injected into the join audit fails loudly. *Proof:*
+  (21 cartridge via `save_key`; ≤11 profile whose slug resolves 1:1 to a
+  DS-5 `document_id`; every minigame carrier marker resolves to exactly
+  one `minigames.jsonl` key — 17 rows, keyed by `minigame_id`); a
+  fabricated id injected into the join audit fails loudly. *Proof:*
   emitter unit test + join-audit script diffing emitted rows against
-  `cartridges.jsonl` / `profile_documents.jsonl` id sets.
+  `cartridges.jsonl` / `profile_documents.jsonl` / `minigames.jsonl` id
+  sets.
 - **AC MV-0.2 — Disposition axis total for the 76.** Each of the 76
   pptr-unresolved rows ends `resolved-by-s9` or `deferred:<reason>`;
   `_meta.position_dispositions` reconciles exactly with a row recount;
@@ -518,10 +600,22 @@ in the pattern of the negative-map gate.
   `instance_census`; profile rows carry `placement` verbatim. *Proof:*
   schema test asserting uniqueness + required-field matrix over the full
   file (not sampled).
-- **AC MV-0.4 — Family ledger total.** `_meta.pending_families` names
-  every `marker_eligible:true` kind with deferral reason + unblock owner;
-  eligible-row arithmetic (709) reconciles against families + emitted
-  rows. *Proof: ledger-arithmetic unit test.*
+- **AC MV-0.4 — Two-list family ledger total (A-MV1 F-1).** Four
+  assertions over the §3.2(c) ledger, all computed from fresh
+  `poi-kinds.json` + `poi.jsonl` recounts at emit time (never v0 `_meta`
+  inheritance):
+  (a) **partition sum** — Σ `poi_rows` over `pending_families[]` equals
+  the eligible-row recount (=709 today);
+  (b) **coverage + disjointness** — the families' closed
+  `(poi_kinds, poi_classes)` axes, container-scoped where a family
+  declares a scope, jointly cover every `marker_eligible:true` row with
+  no row in two families;
+  (c) **emitted total** — Σ `emitted_markers` over `pending_families[]`
+  **and** `placement_families[]` equals the data-row count of
+  `markers.jsonl`;
+  (d) **deferred accountability** — every `disposition:"deferred"` entry
+  carries `reason_code` + `unblock_owner`.
+  *Proof: ledger-arithmetic unit test asserting (a)–(d).*
 - **AC MV-0.5 — Byte-stable rerun.** Two consecutive emissions are
   byte-identical (fixed ordering, single build stamp). *Proof:* double-run
   hash compare (AC S8 pattern).
@@ -542,10 +636,14 @@ in the pattern of the negative-map gate.
   update the URL without navigation; back/forward behaves per
   [OQ-5](#14-open-questions-for-the-arbiter) ruling. *Proof: scripted
   trace asserting DOM + history entries.*
-- **AC MV-4 — SSR link graph.** Every cartridge/profile/minigame/mita
-  page with placement data serves SSR HTML containing its
-  `/map?focus=…` anchor; every marker popover target is a crawlable
-  `<a href>` present in served HTML. *Proof: static grep in CI.*
+- **AC MV-4 — SSR link graph.** Every
+  cartridge/profile/minigame/mita/books/lore page with placement data
+  serves SSR HTML containing its `/map?focus=…` anchor (`books` and
+  `lore` are in the grep set because their focus anchors come from the
+  same producer code path); every marker popover target is a crawlable
+  `<a href>` present in served HTML. `locations` pages stay outside MV-4:
+  the location route is an M3 embed surface consuming the viewer, not a
+  focus-anchor producer. *Proof: static grep in CI.*
 - **AC MV-5 — Switcher totality + i18n.** All 24 scenes listed with
   non-null labels under the filler chain in every shipped locale; chrome
   parity green. *Proof: chrome-parity run + registry-driven snapshot
@@ -555,7 +653,12 @@ in the pattern of the negative-map gate.
   scripted trace.*
 - **AC MV-7 — Mobile.** At 375 px: all controls reachable with ≥44 px
   targets, pinch zooms, popover renders as side sheet, no horizontal
-  overflow. *Proof: scripted mobile trace + screenshot.*
+  overflow. RTL leg (A-MV1 F-8): one scripted trace under locale `ar`
+  cold-loading `/[locale]/map` at 375 px asserts no horizontal overflow,
+  controls reachable, switcher/popover render, and the popover `<a>`
+  href well-formed — full mirroring QA is not gated by this criterion,
+  but silent absence of any RTL assertion fails it. *Proof: scripted
+  mobile trace + screenshot, plus the `ar` RTL trace.*
 - **AC MV-8 — Budget/bundle gates.** CWV `map-shell` budgets green;
   Leaflet absent from non-map route bundles; CLS < 0.1 across
   awaiting-artwork → ready transition. *Proof: check-cwv.mjs + bundle
@@ -583,52 +686,118 @@ this piece.
 
 Carried from the Scout with recommendations; new ones marked.
 
+**All ten were ruled 2026-08-26** by
+[A-MV1](../research/verifications/mv1-arbiter.mdx) — every OQ below now
+carries its `RULED` disposition, and this section is a record of rulings,
+not an open queue. Original recommendation texts stand annotated, not
+deleted; where a ruling corrects spec text elsewhere, the correction has
+been applied in place (§3.2(b)/(c), §5, §7, §8, §9).
+
 - **OQ-1 (reframed by measurement) — instance identity.** The Scout's
   expansion question is moot: `poi.jsonl` is already per-instance
   (790/986 suffixed ids). Remaining call: may markers reference the
   bare-id *first* instance form (`level13:ObjectInteractive`) or must the
   emitter normalize all ids to suffixed form? **Recommend: keep
   corpus-verbatim ids; treat `poi_id` as opaque at the frontend.**
+  **RULED (A-MV1):** corpus-verbatim `poi_id`, opaque to the frontend;
+  bare-first-instance form preserved; no normalization without an owner
+  ruling — already correctly written in §3.2(b); binds M0.
 - **OQ-2 — scene artwork.** Author, format (recommend SVG schematics for
   zoom weight + text-free labelling), file contract
   `public/map/<scene_id>/base.svg` (+ optional `meta.json` overlay
   anchors), and progressive ship vs block. **Recommend: progressive —
   grid fallback is already honest; nothing blocks.**
+  **RULED (A-MV1):** progressive ship; SVG schematic per scene at
+  `public/map/<scene_id>/base.svg` (+ optional `meta.json` overlay
+  anchors); the grid fallback is the honest awaiting-artwork state. One
+  added constraint from the i18n law: authored SVG carries **no baked
+  text** — all labels come from the loc/data layer as overlay anchors.
+  Fully-owned art holds; `check-no-third-party-maps.mjs` stays a launch
+  gate. Artwork piece produces files; frontend consumes progressively.
 - **OQ-3 — monster/save_point families.** Wait for owning entity
   datasets (strict no-orphan) or ship scene-presence chips labeled
   unslugged? **Recommend: wait** — the scene POI listing on
   `/locations/[scene_id]` gives counted coverage without minting orphan
   slugs (CH-6 forbids attributing unnamed instances anyway).
+  **RULED (A-MV1):** wait (strict no-orphan). Scene POI listing provides
+  the counted coverage; CH-6 bars attributing unnamed instances; minting
+  unslugged chips would create the first orphan vocabulary. Unblock is
+  data-side later (owning entity datasets, XC-5/SCN-1); this piece only
+  ledgers them (F-1 partition table).
 - **OQ-4 — focus-kind namespace.** Resolved in-spec ([§4.1](#41-marker-row-v2-emitted-shape)):
   routed `ENTITY_KINDS` key + id column, written by the emitter into
   `links.*`; `_meta.focus_url_contract` updated. **Confirm the contract
   edit is acceptable within the scenes spec's freeze discipline.**
+  **RULED (A-MV1):** contract edit confirmed, with a supersession note —
+  a dated one-line note now sits under the marker example in
+  [dataset-scenes §3.5](dataset-scenes.mdx#35-markersjsonl--the-map-marker-projection-framework-26-contract)
+  marking its `entity_kind`/`links.*` values superseded by §4.1's routed
+  vocabulary; the example itself is left intact (freeze discipline).
 - **OQ-5 — history API.** **Recommend: `replaceState` for filter toggles
   and focus changes (typing-law), `pushState` on scene change so Back
   walks the scene trail.** Needs one ruling since v0 used replaceState
   for focus.
+  **RULED (A-MV1):** as recommended — `replaceState` for filter toggles,
+  focus changes, focus clear, and `?kinds=` edits (typing-law);
+  `pushState` on scene change; cold load restores whatever the URL
+  carries. Pinned in §5's `mapState.ts` row and §6; tested by AC MV-3.
 - **OQ-6 — bounds timing.** Confirm spawn-only mode (raw-coords plotting,
   mean-center fallback, fit-to-bounds when known) is acceptable for v1 if
   S9/P5 calibration slips. **Recommend: yes; viewer accepts null bounds
   indefinitely.**
+  **RULED (A-MV1):** confirmed — the viewer accepts `bounds:null`
+  indefinitely; raw-coords plotting on CRS.Simple with the deterministic
+  mean-center fallback is presentation math over consumed rows
+  (allowed); fit-to-bounds activates only when the registry carries
+  bounds. Null remains the honest value; never a bounding guess. §4.2
+  already states it; no edit beyond this disposition.
 - **OQ-7 (new) — include `minigame_access` in the same rerun?** Both
   owning sides exist (17 minigames; 76 carrier edges). **Recommend:
   include** — cheapest coverage win, no-orphan satisfied; else it becomes
   the first post-M0 delta.
+  **RULED (A-MV1):** INCLUDE, but only under the F-2 placement-sourced
+  shape — scene-granular, `poi_id:null`, emitter-split scalar
+  `container`, `instance_census`, edge provenance verbatim; level1's 3
+  rows defer `no-carrier-edge`. Per-instance anchoring is prohibited: the
+  edges prove class×container co-presence, and level9's 4-minigames-over-
+  3-controllers fact makes any finer claim fabrication. Yield ≤38 rows
+  covering 67/70 poi rows (§3.2(c) bullet + F-1 table).
 - **OQ-8 (new) — pet cartridges.** 4 POI rows (`TamagotchiGame_Cartridge`
   family) have kind `cartridge` but no DS-4 row. Owner ruling needed:
   extend DS-4 with tamagotchi rows, re-rule their kind, or ledger them
   deferred. **Recommend: defer with reason until a ruling lands.**
+  **RULED (A-MV1):** defer with reason until an owner ruling — both
+  classes ledgered under `cartridge_item/tamagotchi`, reason
+  `owner-ruling-pending`, unblock owner = DS-4 curator (extend DS-4,
+  re-rule the kind, or confirm orphanhood). When they eventually ship
+  they take the CAR-8 compromised treatment (F-1 table row).
 - **OQ-9 (new) — unplaced confirmed entities.** `mtad2`/`mtacore` +
   3 script-granted profiles are confirmed-but-unplaced. Spec excludes
   them from markers with `_meta.unplaced` accounting + honest wells.
   **Confirm exclusion** (alternative: infer container from
   `container_location_binding` — rejected here: `[inferred]` mechanism on
   a spatial claim is a faked spot).
+  **RULED (A-MV1):** exclusion confirmed — no container inference from
+  `container_location_binding [inferred]`; an `[inferred]` mechanism on a
+  spatial claim is a faked spot (§3.1 law). Hygiene correction folded in:
+  the "3 script-granted profiles" shorthand above was imprecise — DS-5
+  declares `placement_mechanism: script_granted` on `mita-2-d-profile`
+  and `mita-core-profile` but **`story_granted` on `mita-true-profile`**
+  (§0.1/§7/§8 now cite the DS-5 column as authority); DOC-5 covers the
+  mtad2/mtacore cartridge grants and is cited only as the analogous
+  undumped-grant ledger row. M0 carries the declared vocabulary into
+  `_meta.unplaced` reason codes.
 - **OQ-10 (new) — kind-chip color axis.** Token law bans uncited hex;
   chips derive hues via `color-mix` from tier-1 rows only. **Confirm the
   derived-axis palette** (or commission a T2-sampled extension row set
   before implementation).
+  **RULED (A-MV1):** derived-axis palette confirmed, resolved INTO the
+  token system — the four axes §9 names already exist as tier-1 rows in
+  `tokens.css` (`--ms-accent`, `--ms-signal`, `--ms-warm`, `--ms-danger`);
+  chips derive tints via `color-mix` from those rows over the `--ms-bg-*`
+  stack. No commission. Any future axis without a source row lands in
+  `tokens.css` first (a tier-1 row), never as inline hex under
+  `src/components` (AC-S8 defect class); §9 names the rows explicitly.
 
 ---
 
