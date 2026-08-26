@@ -1,0 +1,544 @@
+# Content pipeline — guides + news sections, shared authoring-to-render lane (D-CT1)
+
+Piece spec for board items "Guides section (entity-linked, localized)" +
+"News section (game + database news, localized)" ([docs/TODO.mdx](../TODO.mdx)
+Phase 3). One content pipeline serves both sections; they share storage
+(M1), the emit registry (M2), and the i18n/availability machinery (M5),
+and differ only in their route/render modules (M3/M4).
+
+Primary input: [docs/research/content-scout.mdx](../research/content-scout.mdx)
+(LANE-C scout, 2026-08-26). Site-layer facts re-verified against source
+this pass (§0.1 disk audit); every file/function cited below was opened,
+not quoted from the scout.
+
+Sections: [§0 Sequencing + disk audit](#0-sequencing-law--disk-audit) ·
+[§2 Modules](#2-module-breakdown--dependency-edges) ·
+[§3 Data contract](#3-data-contract--what-m2-emits-who-consumes) ·
+[§4 Entity-link law](#4-entity-link-law-mechanical) ·
+[§5 Embed contract](#5-embed-contract--our-components-only) ·
+[§6 Guides](#6-m3--guides-section) ·
+[§7 News](#7-m4--news-section) ·
+[§8 i18n + translation authority](#8-m5--article-i18n-and-the-translation-authority-gate) ·
+[§9 Stub policy](#9-honest-states--stub-policy) ·
+[§11 ACs](#11-acceptance-criteria-verifier-checkable) ·
+[§13 Arbiter questions](#13-open-questions-for-the-arbiter).
+
+## 0. Sequencing law — disk audit
+
+### 0.1 Disk audit (re-measured 2026-08-26, buildId 19029065 / v0.93L)
+
+Counts below measured first-hand this pass; anything not in this table is
+inherited from the scout and marked *(scout)*.
+
+| Claim | Measured | Source |
+|---|---|---|
+| POI rows | **986** data rows (+1 `_meta` header = 987 lines) | `extracted/data/scenes/poi.jsonl` `_meta.row_count=986`; census inline 298 / pptr-unresolved 76 / none 612 |
+| Scenes | 25 rows | `data/scenes/scenes.jsonl` |
+| Achievements | 26 rows | `data/achievements/achievements.jsonl` |
+| Endings / choice nodes / branch edges / flag tables | 4 / **371** / **1,555** / 5 | `data/endings/*.jsonl` |
+| Cartridges / minigames | 24 (23+meta) / 18 lines | `data/cartridges/*.jsonl` |
+| Personages | 25 lines | `data/characters/personages.jsonl` |
+| Profile docs / world docs / books | 14 / 166 / 8 (+5 relink files 28·28·354·370·12) | `extracted/data/documents/README.md` |
+
+**Scout correction:** §1.1 said "scenes 987 POIs". The file carries **986**
+POI data rows; 987 counts the `_meta` header line. This spec uses 986
+everywhere. All other spot-checked scout numbers held exactly (371/1,555,
+2,839-node dialogue consistent with DLG-3's 96.23%, 14/166/8 documents,
+26 achievements, chrome `nav.guides`/`nav.news` present in `en.json`,
+`HtmlShell lang={def.code} dir={def.dir}` at
+`site/src/app/[locale]/layout.tsx:37`, sitemap placeholder ternary at
+`site/src/lib/sitemapPartitions.ts:39–46`).
+
+### 0.2 Why this piece gates nothing upstream
+
+The pipeline is a pure consumer of landed contracts: all ten routed kinds
+already resolve through `ENTITY_KINDS`
+([site/src/data/contracts.ts](../../site/src/data/contracts.ts)), the
+availability ledger ships
+(`extracted/relinks/locale_availability.jsonl`), and both stub sections +
+both feed skeletons already route. Two lanes touch this piece without
+blocking it:
+
+- **LANE-A ⛓ (contracts/changelog):** `/news/patch/{id}` bodies render
+  changelog summaries only when that chain lands. Until then the `patch`
+  type is schema-ready and empty-honest (§7.4).
+- **LANE-B ⛓ (map viewer):** guide embed slots accept the map island once
+  its module contract is stable; until then guides embed cards and static
+  links only (§5). Slots are declared either way so no guide is rewritten.
+
+## 1. Scope
+
+In: article authoring format + storage; build-time compile/validate step;
+emit registry; guides routes ×2 trees; news hub + three typed streams;
+feeds fill; sitemap/search/reverse-link consumption; per-article locale
+ledger; chrome keys; stub/honest-state policy; ACs.
+
+Out (non-goals, §12): UGC comments runtime ([DR-2026-08-19-ugc-accounts]
+reserves the slot only); tool implementations ([tools-plan.md]);
+patch-diff summaries (LANE-A); machine translation (OWNER-GATED, §8.2);
+OG image templates (separate TODO row); IndexNow pings (deferred, §7.5);
+any third-party embed or analytics.
+
+## 2. Module breakdown & dependency edges
+
+Naming follows the skeleton in the scout §4; storage layout decided here
+(sibling-file translation model, §8.1).
+
+| Module | Owns | Key files (new unless noted) |
+|---|---|---|
+| **M1 Authoring** | Article sources, frontmatter schema, validation law | `site/content/guides/<slug>.mdx`, `site/content/news/<slug>.mdx`, `site/content/_schema/frontmatter.ts` (types + zod-less hand validator) |
+| **M2 Emit** | Compile bodies → HTML+TOC; validate refs; write registry; staleness hashes | `site/scripts/build-content.mjs`; artifact `site/content/emit/articles.jsonl` |
+| **M3 Guides render** | Routes ×2 trees, page anatomy, embeds, reverse links | `site/content/guides/…` wrappers mirroring `(pivot)/lore/profiles/[document_id]/page.tsx`; factories beside `src/components/routes/sectionPages.tsx` (`ArticleIndexRoute`, `ArticleRoute`) |
+| **M4 News render** | Hub + type chips, stream pages, JSON-LD, feeds | `(pivot)/news/[news_slug]/page.tsx` + mirror; fills `site/src/app/feeds/news.xml/route.ts` + `patch.xml/route.ts` (existing skeletons) |
+| **M5 i18n + availability** | Per-article ledger, gating, chrome keys, RTL legs | ledger `site/content/emit/article_locales.jsonl`; extends `src/data/availability.ts` readers |
+
+Dependency edges:
+
+```
+M1 ──► M2 ──► {M3, M4}          (render consumes ONLY the registry)
+M2 ──► M5 ledger ──► {M3, M4}   (route admission + hreflang + sitemap gate)
+M2 ──► sitemapPartitions.ts     (real gate replaces "achievements" placeholder)
+M2 ──► emit-artifacts.mjs       (search rows join the per-locale .idx.json)
+M2 ──► feeds news.xml/patch.xml (item lists from registry)
+M2 ──► EntityDetailRoute        ("featured in" reverse module)
+M3 ◄─ ⛓ LANE-B                  (map island embed slot, optional)
+M4 ◄─ ⛓ LANE-A                  (patch summaries; empty-honest meanwhile)
+M1 ◄─ OQ-1 ruling               (translation authority shapes M1 file layout)
+```
+
+Hard rule (AGENTS rule 8 restated for this piece): **the page layer never
+opens an `.mdx` source or re-derives TOC/counts/links at request time.**
+Routes read `content/emit/articles.jsonl` through a server-only reader
+beside `src/data/contracts.ts` (same `readJsonl<T>()` discipline, same
+`_meta.row_count` pin-or-throw). M2 is build machinery, not derivation of
+game data — it packages repo-authored prose only.
+
+Stack pin amendment: `site/package.json` currently pins NO markdown/MDX
+dependency (verified this pass). M2 adds exactly one pinned renderer
+(`marked`, zero-dep, gives lexer AST for TOC + word counts) — recorded
+here as the single allowed manifest addition under scaffold AC-S1
+discipline. Article bodies stay JSX-free markdown inside `.mdx` files
+(§5), so no React-runtime MDX toolchain is pulled in.
+
+## 3. Data contract — what M2 emits, who consumes
+
+### 3.1 Registry shape (`site/content/emit/articles.jsonl`)
+
+Line 1 `_meta` header (BARE shape, matching the documents-family
+convention `readJsonl()` already handles):
+`{schema: "miside.content.articles/1", generator, build_id,
+version_label, row_count, streams: {guide, game, database, patch}}`.
+
+One row per published article:
+
+```json
+{
+  "article_id": "guide:all-cartridges-route",
+  "type": "guide",
+  "slug": "all-cartridges-route",
+  "title_en": "...",
+  "locales": {"en": {"path": "/guides/all-cartridges-route",
+                     "title": "...", "description": "...",
+                     "word_count": 1240}},
+  "entities": [{"kind": "cartridges", "id": "mta-arcade"}],
+  "entity_row_hashes": {"cartridges:mta-arcade": "<sha16 of JSON row>"},
+  "toc": [{"id": "step-3", "text": "...", "level": 2}],
+  "spoiler": "mild",
+  "verified_build_id": "19029065",
+  "published_at": "2026-09-01",
+  "updated_at": "2026-09-01",
+  "status": "published",
+  "stale": false,
+  "body_ref": "guides/all-cartridges-route.en.html"
+}
+```
+
+Compiled HTML lands beside the registry
+(`site/content/emit/bodies/<file>`); the reader loads it lazily per page.
+`_meta.row_count` pins the row count; the existing throw-on-mismatch in
+`readJsonl()` is the enforcement, unchanged.
+
+### 3.2 Consumer table (each consumes; none derives)
+
+| Consumer | Reads | Contract |
+|---|---|---|
+| Sitemap — `src/lib/sitemapPartitions.ts` | registry locales + paths | `guides@<locale>` / `news@<locale>` partitions list index + article URLs; replaces the placeholder `"achievements"` ternary (lines 39–46); lastmod stays `BUILD_STAMP` (extraction stamp, never wall-clock, AC S14) |
+| Search — `scripts/emit-artifacts.mjs` | registry | one `SearchRow` per article × translated locale into `public/search/<locale>.idx.json`; `id` = `guides:<slug>` / `news:<slug>` (kind-namespaced law unchanged); kind-balanced cap (`MAX_VISIBLE_ROWS=60`) applies untouched |
+| Feeds — `feeds/news.xml/route.ts`, `feeds/patch.xml/route.ts` | registry | RSS items per stream; GET handlers read the emitted file server-side (no fetch, no client bundle) |
+| Reverse links — `EntityDetailRoute.buildModules` | registry entities[] | "Featured in guides/news" `ModuleList` panel when ≥1 published article references the entity; crawlable `<a href>` |
+| Route admission — availability extension | `article_locales.jsonl` | a non-pivot article URL exists iff the ledger cell exists (§8.1) |
+
+The registry is the ONLY hand-off surface: adding a consumer means
+teaching it the §3.1 shape, never re-parsing article sources.
+
+### 3.3 Staleness model (per-record)
+
+At emit, M2 hashes each referenced entity's full contract row into
+`entity_row_hashes`. Every rerun recomputes; any hash change flips
+`stale: true` on dependent articles, prints
+`STALE: <article_id> <- <kind:id> (<field-level diff omitted>)` to build
+output, and adds the article to a machine-plane list the editor works
+from. A stale article still renders (its facts were true at
+`verified_build_id`, which the page stamps user-facing per D2) — silence
+about drift is the defect this kills, mirroring the row_count-pin lesson.
+
+## 4. Entity-link law (mechanical)
+
+Frontmatter is validated mechanically by M2 before anything renders.
+Failure = nonzero exit + the offending file/id in stderr. No warnings, no
+auto-correction, no fuzzy fallback.
+
+Required frontmatter (all articles):
+
+```yaml
+---
+type: guide            # guide | game | database | patch
+slug: all-cartridges-route
+title: "Every cartridge location"
+description: "..."    # ≤160 chars, used verbatim in metadata + search rows
+status: published      # draft | published  (drafts never reach the registry)
+published_at: 2026-09-01
+verified_build_id: "19029065"
+spoiler: mild          # none | mild | full   (OQ-6 default pending)
+entities:              # ≥1 required for guides; optional for news
+  - cartridges: mta-arcade
+  - achievements: ACH_cartridges_all
+steps: []              # guides only, when the body honestly is steps
+embeds: []             # declared slots only (§5), never inline JSX
+---
+```
+
+Validation rules:
+
+- **V1 Resolution:** every `entities[]` entry must be `<routed-kind>: <id>`
+  where kind ∈ `ENTITY_KINDS` and id ∈ `kindIds(kind)` (exact string match
+  against the contract id column — the same totality AC S6 already
+  enforces for params). Unresolved → build fails.
+- **V2 Vocabulary:** the kind segment is the ROUTED kind
+  (`profiles`, not `documents`; `mita`, not `characters`). M2 rejects
+  non-routed synonyms outright.
+- **V3 Deterministic linking:** body mentions are linked FROM the explicit
+  list — each listed entity's known name forms link occurrences in body
+  order, first occurrence only, in every locale version. No autolinker,
+  no regex scavenging beyond the declared set; internal linking is
+  reviewable in diff and identical across locales by construction
+  (site-sections aggressive-linking rule satisfied mechanically).
+- **V4 Rename decay fails loud:** if LANE-A renames a contract id, V1
+  breaks the build at the next run — the article can never silently lose
+  its link graph (scout risk 3).
+- **V5 Draft isolation:** `status: draft` rows are excluded from the
+  registry entirely (not rendered-with-banner); nothing half-authored is
+  reachable, indexed, or counted.
+
+Guides require ≥1 entity (they are entity-linked by definition); database
+news SHOULD carry entities (they name datasets/kinds in prose); game/patch
+news MAY omit.
+
+## 5. Embed contract — OUR components only
+
+Bodies contain **no JSX, no HTML, no iframes**. Interactive behavior is
+declared in frontmatter `embeds[]` and rendered by `ArticleRoute` from a
+closed module map:
+
+```ts
+interface ArticleEmbed {
+  id: string;            // anchor target in the body, e.g. "route-map"
+  after?: string;        // heading/step id to insert after
+  module: "map-scene" | "entity-cards" | "checklist";
+  props: Record<string, unknown>;  // validated per-module below
+}
+```
+
+- `map-scene` → the LANE-B scene-map island
+  (`components/map/SceneMap.tsx` family, the `LocationModule` embed
+  pattern already shipped on entity pages). Props limited to
+  `{scene_id, focus_poi_id?, height?}`; renders the designed locked state
+  until LANE-B's marker emission fills rows. ⛓ optional: absent module ⇒
+  slot renders `VoidWell` honest-empty, never a substitute.
+- `entity-cards` → card grid over `entities[]` using the existing kit
+  (`CartridgeCard` / index-card builder `buildIndexData`), so guide
+  sidebars reuse the exact art-selection rules of `indexArtFor`
+  (no-image rows get the well, never a guess).
+- `checklist` → static ordered checklist cards with `KeycapKbd` keycap
+  hints; pure server markup, no hydration.
+
+Forbidden everywhere in this piece: third-party embeds of any kind
+(extends the `check-no-third-party-maps.mjs` grep to
+`site/content/**`), remote images, inline `<script>`, tool-internal
+imports (tools talk to guides only through this §5 contract). Escape-by-
+default markdown rendering keeps first-party authored HTML inert.
+
+## 6. M3 — Guides section
+
+### 6.1 Routes
+
+`/guides` + `/guides/[guide_slug]`, in BOTH trees
+(`(pivot)/guides/…` bare EN; `[locale]/guides/…` prefixed ×33), thin
+wrappers delegating to the new factories exactly as every existing
+section does. `generateStaticParams` = translated-and-admitted guides ×
+admitted locales, sourced from the M2 registry + M5 ledger (never from
+directory listing). Unknown slug ⇒ 404 (`notFound()`), matching AC S6.
+
+### 6.2 Page anatomy
+
+Answer-shaped lead block (what this achieves, key facts, entities
+touched — doubles as the seo-standard answer block) → TOC (from registry,
+anchor-linked) → steps/modules → related-entities row (cards) → comments
+slot (reserved, renders nothing until the UGC piece lands). Question-form
+H2s where the heading genuinely answers a player question (wikily ruling,
+borrowed deliberately).
+
+`HowTo` JSON-LD emitted ONLY when `steps[]` is populated and each step's
+text is the honest instruction — ship markup for understanding, expect no
+rich result (seo-standard posture). NewsArticle JSON-LD belongs to M4
+only; guides do not wear news markup.
+
+### 6.3 Tone & design law (tokens.css binding)
+
+- Steps, keycaps, checklist cards: cozy candy-pill register
+  (`GradientPill`, `KeycapKbd`); danger/negative conditions (an action
+  that loses an ending, a missable) use `--ms-danger` (#fc0f43) as
+  SEMANTIC state — red always means "this loses you something", never
+  decoration.
+- Corruption/CRT treatments (`--ms-glitch-split-a/b`) reserved for
+  compromised-information callouts (ending reveals, glitched-entity
+  notes), matching how entity pages mark corrupted entities. No
+  jumpscare mimicry, no motion-for-atmosphere; a11y floor owned by
+  LANE-D's audit.
+- Any horizontally-ordered component (stepper rail) ships an RTL leg in
+  its own tests; `dir="rtl"` arrives free from `[locale]/layout.tsx:37`
+  but component geometry does not.
+
+### 6.4 Seed demand map
+
+Editorial backlog = competitor demand (scout §1.4): 100% achievement run
+(26 achievements, missables flagged via joins), all-cartridges placement
+route (23 cartridges over DS-4 authority), ending-route walkthroughs
+(371 choice nodes / 1,555 branch edges rendered as step spines), outfit
+unlocks (minigames `unlocks_outfits`), secrets compilation (world
+documents). WHO writes them is OQ-2; the pipeline ships green with ZERO
+articles under the stub policy (§9) so authoring never blocks the build.
+
+## 7. M4 — News section
+
+### 7.1 Taxonomy — one hub, three typed streams
+
+`/news` hub lists all streams filtered by type chips; stream-filtered
+views are chip states, NOT separate URL sections (facet combinations
+create no URLs — search-in-place law analog). Types:
+
+- **game** — official game news: Steam RSS ingest + collab/Kickstarter/
+  award items. Ingest is an OFFLINE editorial step producing committed
+  `.mdx` files; the site build never fetches. Patch-date reality: four
+  patches Dec 2024–Feb 2025, silent since v0.93L — this stream alone
+  starves; database + evergreen guides carry retention (scout risk 2).
+- **database** — dataset/locale/coverage news, mandated by
+  [DR-2026-08-19-ugc-accounts] item 2. Anti-slop guard: items state
+  facts ("Cartridges dataset gained placement coordinates for 11
+  pickups"), never site self-narration ("we added a page").
+- **patch** — `/news/patch/{id}` per-build data-diff pages; the CORE
+  differentiator. Schema-ready, empty-honest until LANE-A ⛓ (OQ-4
+  recommends holding the whole stream rather than shipping thin pages
+  twice).
+
+### 7.2 Provenance two-class law (binding)
+
+User-facing: dates, titles, body, and `verified_build_id` /
+coverage-scope stamps where data-bearing (narrowest truthful granularity,
+DR-2026-08-22-numbers-stand-alone). Repo-only, banned from every served
+pixel: source identity (Steam RSS URL, Kickstarter), upstream URLs,
+license tags, acquisition paths — those live in frontmatter machine-plane
+fields and the JSON-LD/feed layer only, exactly the D2 split AC S9
+greps for. Official-worded quotes ride cite-and-attribute care; whether
+full official bodies are stored at all is OQ-3 (GW3 Steam precedent vs
+link-out summary).
+
+### 7.3 Metadata & discovery
+
+`buildEntityMetadata`-law per article: unique localized title/description
+from THAT locale's authored strings (never EN passthrough), canonical
+carrying the serving prefix, hreflang cluster == ledger membership via
+`buildAlternates`. `NewsArticle` JSON-LD with publication dates; news
+sitemap entries flow through the §3.2 partition gate.
+
+### 7.4 Honest empties
+
+A stream with zero published items omits its chip and its feed stays a
+valid empty `<channel>` (current skeleton shape) — no captions, no
+placeholder cards, ever.
+
+### 7.5 IndexNow
+
+seo-standard §2 ping on publish: DEFERRED to the LANE-D SEO batch if it
+complicates the static pipeline; recorded here as deferred either way
+(revisit at SEO-completion TODO row).
+
+## 8. M5 — Article i18n and the TRANSLATION AUTHORITY gate
+
+### 8.1 Mechanics (decided)
+
+- **Storage:** sibling files — `guides/<slug>.mdx` (pivot EN, always
+  authored) + `guides/<slug>.<code>.mdx` per translation. Greppable,
+  diffable, and the file set itself is the translation inventory.
+- **Per-article ledger** (emit artifact
+  `site/content/emit/article_locales.jsonl`, cells
+  `<article_id>@<locale>`): the single gate for route admission, sitemap
+  partitions, hreflang clusters, and the cross-locale row. Kept SEPARATE
+  from `locale_availability.jsonl` so game-content provenance stays
+  clean (OQ-5 recommendation; corpus ledger keeps its three row kinds
+  untouched).
+- **Fallback chain is OMIT, never mix:** no translated file ⇒ no
+  `/{locale}/guides/<slug>` URL, no sitemap row, no hreflang member, no
+  cross-locale cell — localization-architecture option A applied to
+  authored content. Rendering an EN body under `/de/` violates the
+  no-mixing law even behind a banner. Zero exceptions (AC C2).
+- **Chrome:** `nav.guides`/`nav.news` already ship ×34; NEW keys
+  (step/spoiler/updated equivalents) land in ALL 34 files in the same
+  commit — chrome ships only at complete coverage (enforced by the
+  existing `check-chrome-parity.mjs` in prebuild).
+- **RTL:** ar/ar-EG inherit `dir="rtl"` from the shell; guide-specific
+  horizontal components need their own RTL leg tests (MV-1 precedent).
+  Persian stays `ltr` per the pinned table comment (SB-1 finding,
+  `locales.ts:50–53`) until the flagged amendment — see OQ-7.
+
+### 8.2 Translation authority — OWNER-GATED (do not resolve silently)
+
+The board mandates coverage:
+[docs/TODO.mdx](../TODO.mdx) Phase-3 line "Localized content layer:
+blog posts/articles translated to all 34 corpus locales
+[promptForDB Note#7]". But promptForDB Note#7 demands translation to
+every corpus locale WITHOUT authorizing machine translation — and
+localization-architecture §6 names machine translation a non-goal (for
+missing game locales). These two must be reconciled by an explicit
+decision-register entry before M1 scales past pivot EN. Options, with
+honest costs:
+
+| Option | What it means | Cost / consequence |
+|---|---|---|
+| **A. Human-authored EN-first** | EN seeds; human translators produce each locale; omit-fallback hides gaps | Slowest ×34; RU co-primary audience waits; honesty perfect; zero new tooling; likely months for full matrix |
+| **B. Corpus-locale reuse** | Reuse only client-shipped locale TEXT for game terms (via `resolveLoc` pointers), human-authored connective prose per locale | Terminology stays game-native ×34 but connective prose still needs humans ≈ option A pace; highest fidelity where it matters; more editorial overhead per article |
+| **C. MT-assisted + human review** | Draft translations generated, human-reviewed before ledger admission | Fastest to 34; CONTRADICTS the §6 non-goal unless overridden; needs a named reviewer per locale to be honest; risk of subtle wrongness in walkthrough-critical steps |
+
+This spec builds identically under all three (the ledger admits whatever
+locales exist; nothing downstream assumes EN exists everywhere). What
+CANNOT proceed without the ruling: mass-producing non-pivot files. Until
+the register entry lands, M1 authors pivot EN only, and the sections
+launch with the omit-fallback doing its honest work. **Flagged
+explicitly per the task constraint: MT is NOT assumed in scope.**
+
+RU co-primary (scout §3.3): whichever option rules, RU is launch content,
+not a later wave.
+
+## 9. Honest states & stub policy
+
+missingdata.md classes govern what guide copy may say:
+
+- `measured-absence` facts render as designed states, never apology
+  copy: notes show placement + event wiring with NO invented prose (DOC-
+  1: `text_mechanism:"unresolved"` on all 160 notes); zh collectible
+  guides inherit the declared explicit-filler book pages (DOC-8, 4/8 in
+  both zh locales); cartridge display names compose `client_key` +
+  cited `community_alias` where the client ships none (CAR-5).
+- `derivable-later` gaps fence claims: NO chapter attributions in guide
+  copy until XC-2 lands (`chapter:null` ×14 profiles is the ceiling);
+  safe-window percentages stay `[community]`-labeled until END-2 proves
+  them; Peaceful Mode renders visible-locked (END-1/COMP J11), never as
+  a reachable route.
+- `owner-call` items are never smoothed over in prose (ACH-2 unverified
+  predicates gloss-labeled; CAR-2/SCN-3 curation rows cited as
+  unresolved).
+
+Section-level stubs until real articles land: today's chrome-only stub
+indexes stay EXACTLY as shipped (`StubSectionContent({segment})` +
+`buildSectionMetadata(...)` — verified this pass), because fake preview
+cards would be slop. The stub dies the moment the first real article is
+published; there is no transitional "coming soon" state. Empty streams
+omit themselves (§7.4). Checkerboard `VoidWell` is the only empty-state
+visual, never captioned absence.
+
+## 10. Machine-plane artifacts summary
+
+| Artifact | Writer | Readers |
+|---|---|---|
+| `site/content/emit/articles.jsonl` | M2 | sitemap, search emitter, feeds, reverse-links, article reader |
+| `site/content/emit/bodies/*.html` | M2 | article reader (lazy) |
+| `site/content/emit/article_locales.jsonl` | M2 | availability extension, sitemap, hreflang |
+| staleness flags (registry field + build output) | M2 | editor workflow (machine plane; never user-facing) |
+
+## 11. Acceptance criteria (verifier-checkable)
+
+| # | Criterion | Proof method |
+|---|---|---|
+| C1 | Build fails on any `entities[]` ref not resolving through `ENTITY_KINDS`/`kindIds()`; wrong-vocabulary kind rejected (V2); drafts excluded from the registry (V5) | mutation test: inject bogus id + synonym kind + draft flag into fixture articles → three nonzero exits naming file+id; clean tree exits 0 |
+| C2 | Non-pivot article URLs exist IFF `article_locales.jsonl` admits them — zero exceptions | mechanical sweep: emitted route manifest ∩ `/guides/*`,`/news/*` vs ledger cells, full diff both directions |
+| C3 | Sitemap partitions, hreflang clusters, and cross-locale rows derive from the SAME ledger — mismatch fails CI | corrupt one ledger cell in a fixture → CI red; restored → partition/URL equality check passes (S14/S3 pattern) |
+| C4 | Every published guide's `entities[]` page lists that guide back: crawlable `<a href>`, both directions | curl entity detail page → grep guide slug; curl guide → grep entity href; ×3 sampled pairs minimum |
+| C5 | Feeds return valid XML; per-stream item count equals published count; zero-item stream = valid empty channel | XML-parse both feeds; count `<item>` vs registry rows; empty-stream case exercised with a zeroed fixture |
+| C6 | Search indexes cover every published article × its translated locales, ids kind-namespaced, results kind-balanced | diff `public/search/<locale>.idx.json` rows vs registry × ledger; MiniSearch query returns guide kind alongside others under the 60-row cap |
+| C7 | Every article page passes the metadata law: unique localized title/description from that locale's strings, self-canonical WITH prefix, x-default → bare path | curl matrix ≥3 locales incl. one RTL; assert title differs per locale and canonical equals serving URL |
+| C8 | Every article stamps `verified_build_id` user-facing; a changed entity row flags dependent articles at next emit | grep served HTML for the stamp; mutate a fixture contract row hash → emit prints `STALE:` listing the dependent slug |
+| C9 | Zero third-party embeds / remote images / inline scripts under `site/content/**` | extend the `check-no-third-party-maps.mjs` grep; exit 0 on clean tree, ≠0 on seeded violation |
+| C10 | Served article HTML contains zero repo-only provenance tokens (source identities, upstream URLs, license tags) | grep served HTML for frontmatter machine-plane fields (S9 both-directions pattern) |
+| C11 | New chrome keys present ×34 with identical key sets | `node scripts/check-chrome-parity.mjs` exit 0; injected drift → ≠0 |
+| C12 | ar/ar-EG article pages serve `dir="rtl"`; any horizontal stepper component has a mirrored RTL test | curl attr assert + component test run |
+| C13 | Spoiler control (if OQ-6 ruled in) keeps selected state in the URL; uncollapsed text or honest summary visible to non-JS crawlers | curl without JS shows summary/uncollapsed text; toggle updates URL param |
+
+## 12. Non-goals
+
+- Comments/accounts runtime, moderation, uploads — UGC piece owns the
+  reserved slot only.
+- Changelog/diff computation — LANE-A; patch pages consume its output.
+- Map viewer internals — LANE-B; guides hold the §5 slot contract only.
+- Tool implementations — tools-plan.md scoring governs; no tool logic in
+  article code.
+- OG/share image templates — separate Phase-3 row.
+- Game-data derivation of ANY kind — every factual claim traces to
+  `extracted/` contracts via the §4 law; the pipeline packages prose,
+  never computes game truth (AGENTS rule 8).
+- Machine translation by default — OWNER-GATED (§8.2); no MT tooling may
+  be added under this spec without a register entry.
+
+## 13. Open questions for the Arbiter
+
+- **OQ-1 · Translation authority (THE gate):** does promptForDB Note#7
+  override the localization-architecture §6 MT non-goal for authored
+  articles? Pick A/B/C (§8.2 table) and record the register entry.
+  Everything else builds either way; mass non-pivot authoring does not
+  start without this.
+- **OQ-2 · Seed authorship:** CodeWriter-with-spec, Documentator, or
+  owner editorial pass for the five seed guides (§6.4)? Stub policy
+  holds meanwhile.
+- **OQ-3 · Official news bodies:** store full ingested bodies (GW3 Steam
+  precedent, Content-ToU verification riding along) or link-out summary
+  only? Decides M4 frontmatter fields and the legal-note citation.
+- **OQ-4 · Patch stream timing:** ship `/news/patch/{id}` thin against
+  EXTRACTION-LOG entries now, or hold the whole stream for LANE-A?
+  Recommendation: hold — avoid reworking twice.
+- **OQ-5 · Ledger separation:** confirm the separate
+  `article_locales.jsonl` (recommended) vs extending the corpus
+  `locale_availability.jsonl` with an article row kind.
+- **OQ-6 · Spoiler policy:** default `mild` with `full` blocks collapsed
+  behind a URL-stated control, and crawlers see EITHER the uncollapsed
+  text OR an honest summary — pick one rule for all templates; no
+  competitor models spoilers, so whatever is ruled becomes the category
+  standard.
+- **OQ-7 · fa direction:** fold the SB-1 Persian RTL amendment into this
+  piece (touches every article page + stepper RTL tests) or leave it on
+  the chrome-debt line?
+
+Risks carried from the scout, accepted by design above: translation
+throughput ×34 (omit-fallback keeps honesty while OQ-1 decides speed),
+patch-stream starvation (database stream + evergreen guides carry
+retention), entity-id rename decay (V1/V4 fail the build loudly).
+
+## See also
+
+- [docs/research/content-scout.mdx](../research/content-scout.mdx) —
+  source surplus, competitor rulings, demand map
+- [docs/specs/site-scaffold.mdx](site-scaffold.mdx) — factories, token
+  layer, sitemap/search/machine-plane laws this piece extends
+- [docs/specs/dataset-documents.mdx](dataset-documents.mdx) +
+  [extracted/data/missingdata.md](../../extracted/data/missingdata.md) —
+  honesty fences binding guide copy
+- `_foundation/localization-architecture.md` §5.5/§6 — omit-fallback +
+  MT posture (owner gate OQ-1)
