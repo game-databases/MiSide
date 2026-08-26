@@ -1,0 +1,229 @@
+# V-CL2a — Verification of the F-CL1 fix round on changelog-viewer
+
+Verifier A pass 2026-08-26. Object: [docs/specs/changelog-viewer.mdx](../../specs/changelog-viewer.mdx)
+as landed at `66f4252` (measured **639 ln**, up from the 601-ln base the
+[arbiter](cl4-arbiter.mdx) ruled on) **plus** the applied docstring rider in
+[pipeline/stages/logic_layer.py](../../../pipeline/stages/logic_layer.py).
+Basis: disk state only (no git invoked); landing corroborated by
+[TODO.mdx l.113](../../TODO.mdx) ("F-CL1 LANDED `66f4252` … spec 639 ln +
+docstring rider applied"). Every ruling below was re-measured against disk —
+none accepted on the fixer's or the arbiter's say-so. Method: each of the
+arbiter's nine FIX ORDER items ruled APPLIED/PARTIAL/MISSING/DEVIATED, then
+the HIGH-1 sweep, HIGH-2 witness law, and structural checks.
+
+## FIX ORDER rulings
+
+### F1 — Renumber changelog stage S9 → S10, 13 sites: APPLIED
+
+All 13 arbiter-listed changelog-stage sites now carry **S10**, mapping 1:1
+under the +38-line drift of the inserted laws (pre-fix l. → post-fix l.):
+
+| Arbiter site | Now at | Content confirmed |
+|---|---|---|
+| l.67 | 67 | Scope: "M2 dormant diff stage (`run_all` S10)" |
+| l.88 | 88 | Module table: "`run_all` stage **S10 `changelog`**" |
+| l.99 | 99 | Edge (new text, see F2) |
+| l.255 | 264 | §4.1 opening |
+| l.259 | 268 | "Today's tree: S10 runs M1 (always)…" |
+| l.263 | 279 | "S10 is its last consumer" (§4.2) |
+| l.272 | 288 | Trigger step 4 |
+| l.304 | 334 | §4.4 demo boundary |
+| l.414 | 447 | §8.1 version picker |
+| l.511 | 548 | CL-8 proof "suite runs S10 against the single-build sandbox" |
+| l.541 | 578 | OQ-1 "activates mechanically at build #2 via S10" |
+| l.547 | 584 | OQ-2 |
+| l.584 | 621 | Risk 4 |
+
+Both **protected sites survived untouched**: l.256 ("the same
+both-directions grep family as AC S9") and l.547 (CL-7 proof,
+"S9-pattern grep") — the scaffold acceptance-criterion namespace, exactly
+as ordered. Exit check met (see sweep below).
+
+### F2 — Re-anchor registration after logic-layer, BY NAME, with rationale: APPLIED
+
+§4.1 l.264 opens "**S10 registers in `run_all` LAST, after `logic-layer`**"
+— "after census S8" is gone (grep `census`: zero hits in the file). The
+dependency edge l.99 reads `run_all env…logic-layer ──► S10(M1 emit; M2
+diff arm)   (S10 registered last, AFTER logic-layer; dormant exits 0)` —
+the ordered replacement text. The mandated rationale sentence is present
+(l.269–275) with **both measured prongs intact**: (a) M1 projects all 84
+fingerprints including the four `extracted/data/logic/**` entries
+logic-layer rewrites on a patch-day rerun, so earlier registration would
+snapshot stale digests (CL-2 red) and let the diff arm compare mid-rerun
+pins; (b) positional numbers drift when scene-transform (canonically
+reserved S9) inserts, name-based ordering does not. Ground truth re-checked:
+`pipeline/stages/__init__.py` STAGES lists nine stages ending
+`("logic-layer", …)` registered last, so "LAST, after logic-layer" is
+coherent with shipped code; `contracts/registry/fingerprints.json`
+re-parsed this pass contains exactly the four logic entries named
+(effect_calls, flag_instances, minigame_tunables, predicate_records).
+
+### F3 — Docstring rider (only non-doc line): APPLIED, minimality PROVEN
+
+`pipeline/stages/logic_layer.py` line 1 is now `"""logic-layer — LG1-LG4
+dataset emitters (docs/specs/logic-layer.mdx).` — no S9 prefix. Because git
+was unavailable, minimality was proven from a second disk witness: the
+stale pre-rider bytecode `pipeline/stages/__pycache__/logic_layer.cpython-314.pyc`
+stores the ORIGINAL module docstring verbatim — it was the full 17-line form
+beginning `S9 logic-layer — LG1-LG4 dataset emitters (docs/specs/
+logic-layer.mdx).` (the review/arbiter one-liner quotes were truncated
+renders, not the whole string). Recompiling the current source and comparing
+code objects recursively against that pyc yields **equality modulo removal
+of the `S9 ` prefix from the docstring constant alone** — co_code, names,
+varnames, flags, line numbers and every other const identical. Nothing else
+in the file changed; no behavior delta is possible. Residual note: that
+`.pyc` still embeds the old prefix — auto-regenerating build residue, not a
+defect; live repo references to "S9 logic-layer" survive only in the
+historical records cl3-review/cl4-arbiter, as they must.
+
+### F4 — Prior-pin record law + CL-1 re-key: APPLIED
+
+(a) §4.3 gains "**Outputs — prior-pin witness (first)**" (l.302–314):
+written at trigger time BEFORE tree N−1 is released and before any changeset;
+hashes tree N−1's fingerprinted artifact set under fingerprints conventions;
+path `extracted/data/changelog/_pins/<from>-to-<to>.json`; schema
+`miside.changelog.prior_pin/1`; **all six fields present** — `from_build_id`,
+`from_version_label`, `to_build_id`, `to_version_label`,
+`artifacts[]{path, sha256}`, `row_count`; ids must parse from the directory
+name. Ordering is reinforced at §4.2 step 4 (l.288): "writes the prior-pin
+witness from tree N−1 FIRST (§4.3), then compares N−1 vs N and emits."
+Dormancy preserved twice over: §4.1 "exits 0 emitting zero bytes whenever
+fewer than two distinct build trees exist", and §4.3 closes the new bullet
+with "Pre-trigger the stage emits zero bytes including zero `_pins/` files
+(dormancy law unchanged)" — CL-8 unchanged alongside. (b) CL-1 (l.541)
+re-keyed exactly as ordered: fail on any changeset/renames artifact without
+its coherent matching `_pins/<from>-to-<to>.json` whose from-side artifact
+map covers every reported changed/removed path, **plus the unchanged
+structural arm** (M1 structurally cannot emit
+`evidence_class:"computed"`), and states explicitly: "`fingerprints.json`
+always holds EXACTLY ONE generation of pins per the patch_day replacement
+law; stale rows are never accumulated to satisfy any count." (c) §2 M2 row
+outputs gain `_pins/` "(prior-pin witness, written first)" (l.88); §10
+artifacts table gains `extracted/data/changelog/_pins/<from>-to-<to>.json |
+M2 (trigger-time capture) | CL-1 gate, CI layer-scope checks` (l.527).
+
+### F5 — CL-1 proof method, both arms: APPLIED
+
+Proof cell (l.541) carries the ordered two-arm cut verbatim in substance:
+pre-trigger refusal — emitter refusal + empty output globs asserted in the
+single-build sandbox, mutation injects a fixture changeset WITHOUT a pin
+record → nonzero exit naming the file AND the missing `_pins/` path;
+post-trigger acceptance — CL-10's two-tree sandbox WITH a coherent pin
+record → green, mutation corrupts one digest inside the pin record → red;
+explicit cross-reference closing with "Both suites share the CL-10
+tree-pair harness."
+
+### F6 — Third rename seeded verbatim + spelling caveat: APPLIED
+
+§3.3 (l.229–240): three v0.921 seed rows — `Cap → Cappie` (`cap`),
+`Open Dialogue → Be Candid` (`open-dialogue`), `Out of the Core → Leave The
+Core` (`out-of-the-core`) — all `attribute: "display_name"`,
+`evidence_class: "documented-note"`; `patch_slug: "v0-921"` pinned by the
+row template/example. The caveat sentence records D1's chapter-table variant
+(`"Leave the Core!"`) vs rename line (`Leave The Core`) and rules the
+rename-line form governs `to_value` VERBATIM; entity ids stay provisional
+joins to the spec-declared `save_point` entity until LEVELS checkpoint
+configs land. Upstream re-measured: game-research l.55 chapter table indeed
+reads `"Leave the Core!"`, rename lines l.58–59 indeed read
+`Out of the Core`→`Leave The Core` — the seeded value is verbatim-faithful.
+
+### F7 — Localization-law citations repaired ×2: APPLIED
+
+§8.5 (l.492–495) now cites §1 bullet 2 (never-mix) + §5 item 5
+(omit-or-pack-declared-filler, "this pack rules OMIT"), posture stated
+inline; See-also (l.637–639) cites the same two anchors. Grep for `5.5` and
+`option A` in the spec: **zero hits**. Upstream re-measured:
+`_foundation/localization-architecture.md` headings run §1–§6 (no §5.5
+exists); §1 bullet 2 IS the never-mix law verbatim; §5 item 5 IS the
+filler policy declared per pack. Citations now resolve to real text.
+
+### F8 — Engine-pin attribution split: APPLIED
+
+§0.1 audit cell (l.38) keeps `Unity 2021.3.35f1` attributed to
+[EXTRACTION-LOG] l.7 and moves the IL2CPP pin: "IL2CPP metadata v29 is a
+separate pin — [toolchain.md l.59] ('Metadata v29 is inside its
+supported…')". Re-measured: EXTRACTION-LOG.md l.7 is `"unity":
+"2021.3.35f1",` inside the `pipeline-defaults` JSON block (buildId/versionLabel
+at l.5–6); toolchain.md l.59 carries "Metadata v29 is inside its supported"
+verbatim. Split is accurate on both sides.
+
+### F9 — Feed-exclusion re-attributed: APPLIED
+
+§7.4 (l.430–434): machine-plane `source_ref`s stay out of the RSS channel,
+grounded in "AGENTS rule 3 / decision-register D2 (repo-only tokens are
+banned from every served pixel, and RSS readers render channel items as
+user text)" and explicitly negatives content-pipeline §7.2 ("admits
+machine-plane tokens into the JSON-LD/feed layers and therefore cannot
+authorize this stricter rule"). Grounding re-verified upstream: AGENTS.md
+rule 3 is the two-class provenance rule citing decision-register D2;
+decision-register.md l.402 "D2 — Provenance: two-class rule" bans repo-only
+from user surfaces. The stricter rule now stands on authority that actually
+holds it.
+
+## HIGH-1 sweep — residual `\bS9\b`
+
+Exactly **three** occurrences in the 639-ln spec, all legitimate:
+
+1. l.256 — "the same both-directions grep family as AC S9": protected
+   scaffold acceptance-criterion site (site-scaffold namespace), ordered
+   untouched.
+2. l.547 — "S9-pattern grep" (CL-7 proof): second protected site, same
+   namespace.
+3. l.275 — "scene-transform (canonically reserved S9)": the reservation
+   mention INSIDE the F2-mandated rationale sentence — the fix order itself
+   introduces this token; it asserts the canon reservation rather than
+   booking S9 for changelog.
+
+**CHANGELOG-stage `\bS9\b` references remaining: ZERO.** The 13 renamed
+sites all read S10. (Repo-wide residue outside the spec: the stale `.pyc`
+noted in F3, and historical quotes in cl3-review/cl4-arbiter — records, not
+live claims.)
+
+## HIGH-2 witness law — consolidated
+
+Schema `miside.changelog.prior_pin/1` fully fielded (six fields, §4.3);
+written FIRST at trigger step 4 (§4.2) and before any changeset (§4.3),
+before tree N−1 release; zero-bytes-including-zero-`_pins/` dormancy stated
+twice and CL-8 intact; CL-1 re-keyed with BOTH arms as proofs — witness-coherence
+arm AND structural same-run arm (M1 cannot emit `computed`) — plus the
+one-generation patch_day law stated explicitly in the criterion and grounded
+in the §0.1 verbatim quote (re-parsed fingerprints.json `_meta.patch_day`
+matches that quote word-for-word; corpus confirmed single-generation:
+84 artifacts, distinct build_ids exactly `{19029065}`, 55 data + 29 relink,
+row_count sum 37,264 — all matching the spec's audit cell).
+
+## Structural checks
+
+- **Module graph acyclic.** Edges: fingerprints/patch_seed/entities-attrs →
+  M1 → M3 → M4; M2 → {_pins, changesets, code_plane_digests}; M2 →
+  fingerprints re-pin (write side only; ordering pinned by
+  register-LAST + witness-FIRST, so the write-back creates no unsatisfied
+  read cycle); update-watch ⇒ M2 external; content-pipeline M2 ⛓→ M4 fed
+  FROM M1 output (one-directional seam, §5.2); M5 ← tokens.css. No cycles.
+- **ACs keep proof methods.** CL-1…CL-12 each carries a non-empty proof
+  cell; Scout ACs 1–8 map in substance (scout l.291–313 re-read); CL-1
+  retains both arms (F5).
+- **Cross-references resolve.** Internal anchor
+  `#13-open-questions-carried-for-the-arbiter` matches the §13 heading;
+  `[data-contracts §4.4]` slug matches the real heading (data-contracts
+  l.356 KEEP-PINNED… F-CT3, 2026-08-26); section-map row 15 = Changelog /
+  CORE differentiator (spec.md l.447); T-CL1 in TODO.mdx; questions #2 =
+  demo dropped 2026-08-24; `ArticleType` includes `"patch"` (articles.ts
+  l.59); all §8.3 grammar tokens exist as tier-1 rows in tokens.css
+  (`--ms-danger #fc0f43`, `--ms-signal #08cb05`,
+  `--ms-glitch-split-a/b #08cb05/#ff009c`, `--ms-glow-glitch`,
+  `--ms-font-lcd`); DR slugs `numbers-stand-alone`,
+  `inputs-answer-as-you-type`, `bpb-drop-changelog` all exist in
+  decision-register.md; run_all's stage table still numbers S1–S8 only, so
+  "S10 = next free slot, table row lands with M2 in the same commit"
+  remains internally consistent.
+- **Line-count contract:** 639 ln measured, matching the landing record.
+
+## Verdict
+
+Nine of nine FIX ORDER items APPLIED, none PARTIAL/MISSING/DEVIATED; HIGH-1
+exit condition met with the three legitimate survivors classified; HIGH-2
+witness law complete and internally grounded; rider proven comment-only by
+bytecode equality; structure sound.
+
+VERDICT: APPROVE
