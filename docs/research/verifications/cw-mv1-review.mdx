@@ -1,0 +1,231 @@
+# CW-MV1 review — scene-map viewer build (a7147c4)
+
+Fresh Code Reviewer pass (R-CW-MV1) over the landed map-viewer build: 55
+files, new modules under `site/src/components/map/`, `LocationModule`,
+`/map` + `/locations/[scene_id]` wiring, i18n ×34. Reviewed statically
+against the frozen spec
+[map-viewer.mdx](../../specs/map-viewer.mdx) (read in full, 815 ln);
+working tree read as-is; no servers, no browsers, no git.
+
+Method note: every claim below was re-measured from disk in this session
+(corpus files opened, not taken from spec prose).
+
+---
+
+## Findings
+
+### HIGH
+
+**H1 — Hard sequencing rule violated: viewer merged onto the v0 zero-row
+emission; M0 has not landed.**
+Spec §2: *"no M1+ module may merge before M0's ACs ([§12.1](../../specs/map-viewer.mdx#121-m0-acceptance-criteria))
+pass. A viewer merged onto a zero-row `markers.jsonl` repeats the v0
+mistake this spec exists to close."* Measured state of the tree:
+
+- `extracted/data/scenes/markers.jsonl` is 1 line — `_meta` only,
+  `"schema":"miside.markers.projection/1"`, `"row_count":0`, and the v0
+  **bare-kind** `pending_families` shape (no two-list ledger).
+- `site/public/map/registry.json` is v1 (`bounds/zoom/coordinate-transform/
+  imagery/status/build_id`) — no `display_label_loc`, no role-per-row v2
+  additions beyond `role`… no per-kind marker counts.
+- `extracted/data/scenes/build/emit_scenes.py:1240` still documents
+  *"markers.jsonl — projection v0: zero data rows by the no-orphan rule"*;
+  grep finds **no** `placement_families`, `position_dispositions`,
+  `display_label_loc`, or `instance_census` anywhere in the emitter.
+
+So AC MV-0.1…MV-0.5 cannot have passed. The suite itself agrees this red
+is the gate: `site/tests/mapLedger.test.mjs:10-11` — *"Red until the M0
+emitter rerun lands; that redness IS the sequencing gate (spec §2 hard
+rule)."* Five `[M0-PENDING]` tests are red by design (see test
+reconciliation below); landing the build with them red is precisely the
+state §2 forbids. The code is honest about it
+(`site/src/components/routes/MapRoute.tsx:16-18`), but honesty about an
+empty shell does not repeal the sequencing law. **Resolution:** either
+land M0 first (the five gates flip green mechanically) or record a
+deliberate re-sequencing decision in the decision register before this
+commit is treated as shippable.
+
+### MEDIUM
+
+**M1 — Books module emits crawlable dead `/locations` links; the
+documented "value rides as text" behavior was not implemented.**
+`EntityDetailRoute.tsx:538-540` comments: *"consumer_scene is a
+scene-family label ('Location House'), NOT a registry scene_id — so no
+/locations link and no scene param on the focus anchor; the value rides as
+text, verbatim."* But `LocationModule.tsx:73-78` renders the found-in
+anchor **unconditionally**: `<a href={`${localePrefix}/locations/${encodeURIComponent(s.sceneId)}`}>`.
+Measured: all 8 `book_id`s are absent from
+`extracted/relinks/document--scene-membership.jsonl`, and
+`consumer_scene` ∈ {"Location House", "Location19"} while registry scene
+ids are `level0…level23` — so every book page serves `<a
+href="/en/locations/Location%20House">` (and `Location19`), which
+`generateStaticParams` never enumerates and `buildDetailData` 404s.
+8 book pages × 34 locales of crawlable dead links. Fix: carry a flag (or
+resolve against `scenes()`) so non-registry scenes render the label as
+plain text and keep only the focus anchor.
+
+**M2 — PinPopover implements half the provenance carry law.**
+Spec §5: provenance cell *"surfaced whenever `mechanism !== "hard"` OR
+`status !== "modeled"` — §7 carry law."* `PinPopover.tsx:44-45` implements
+only `Boolean(target.mechanism) && target.mechanism !== "hard"`; there is
+no relink-status field anywhere in the plumbing
+(`viewTypes.ts:10-44`, `mapView.ts:60-98`,
+`contracts.ts:261-265` — `placement` types drop §3.2(b)'s mandated
+verbatim `status`/`method`). Zero observable miss today (every marker-family
+edge is `hard`/`modeled`; the one biting entity, `mita-black`, flows
+through the M4 module where the full OR **is** implemented,
+`LocationModule.tsx:64-66`), but the spec keeps the law mandatory exactly
+so *"a future relink edit cannot silently flip rendering."* Add `status`
+to the VM/target chain and the OR condition before markers land.
+
+### LOW
+
+**L1 — Registry constants duplicated client-side will silently diverge.**
+`MapViewer.tsx:270-271` hardcodes `bounds={null}` / `zoom={[1,4]}` and
+`mapView.ts:139-142` rebuilds `registryEntries()` with literal
+`bounds:null, zoom:[1,4], status:"awaiting-artwork"` instead of consuming
+`public/map/registry.json`. Coincidentally equal to today's v1 artifact;
+when calibration writes real values, fit-to-bounds cannot activate without
+edits in two files (see deviation ruling (c)).
+
+**L2 — Leaflet CSS rides every route.** `globals.css:5`
+`@import "leaflet/dist/leaflet.css"` ships Leaflet's stylesheet globally;
+AC MV-8's island discipline targets JS bundles so the assert stays green,
+but component-scoped CSS would keep non-map routes clean.
+
+**L3 — VoidWell's accessible name is stripped.**
+`VoidWell.tsx:17` sets `role="presentation"` while callers pass
+`aria-label` (`SceneMap.tsx:303`, `LocationModule.tsx:51`) — presentation
+role removes the name from the a11y tree; the unplaced well announces
+nothing.
+
+**L4 — Popover dialog niceties.** `PinPopover` uses `role="dialog"` with a
+44 px close button but no Escape-to-close/focus return; acceptable v1,
+worth a follow-up.
+
+**L5 — Dead fixture module in production source.**
+`src/components/map/fixtures.ts` ("FIXTURES ONLY — never imported by a
+production route") is imported by nothing — not the routes, not the tests
+(the suite uses `tests/fixtures/map-viewer/*.fixture.json`). Move it under
+`tests/` or wire it into a dev-only lane.
+
+**L6 — mtad2/mtacore unplaced wells arrive only with M0.** The §8 stub
+policy names mtad2/mtacore as unplaced-well pages, but
+`EntityDetailRoute.tsx:155-158` gates the well to `kind === "profiles"`;
+cartridge pages currently get neither module nor well (consistent with
+deviation (a), noted so the wells aren't forgotten when the emitter lands).
+
+---
+
+## Deviation rulings
+
+**(a) Cartridges wait for marker rows; profiles use the pinned DS-5
+fallback — ACCEPT.** Spec §7's own table names different sources per kind:
+cartridges *"marker rows / pickup_ref.container via markers.jsonl"* vs
+profiles *"marker rows / DS-5 `placement.container`"*. A runtime DS-4
+rejoin would breach §4's forbidden list; reading DS-5 through
+`findRow("profiles", …)` is sanctioned by §4's owning-datasets row.
+Verified live: DS-5 carries `placement_mechanism:"placed"` ×11 with scalar
+`container` = registry ids (`level12`/`level17`) → working found-in +
+focus anchors; the 3 placement-less profiles hit the honest well
+(`EntityDetailRoute.tsx:587-599`). Consequence (all-cartridge modules +
+mtad2/mtacore wells deferred to M0) is within the honest-state law — see L6.
+
+**(b) Books' `consumer_scene` as focus anchor without `scene=`, value as
+text — concept ACCEPT, implementation REJECT-as-is (→ fix M1 before
+merge).** Sourcing is right and necessary: measured, the relink holds zero
+book edges (`note:*` rows are world-document ids; all 8 `book_id`s absent),
+while AC MV-4 explicitly includes books in the SSR grep set — some pinned
+source had to produce anchors, and mapping "Location19"→"level19" would be
+a fabricated join. Dropping `&scene=` is right (no scene binding may be
+invented). But "rides as text" does not exist in the markup — that is M1.
+
+**(c) Registry built server-side from contract readers instead of fetching
+`public/map/registry.json` — ACCEPT with conditions.** §4's preamble
+allows reads *"through `site/src/data/contracts.ts` readers or the emitted
+`public/map/*` artifacts"*, and `scenes.jsonl` is the named upstream of
+the registry row; switcher labels via the filler chain are §5-sanctioned;
+and building props server-side beats a runtime fetch (island receives
+plain JSON, zero requests — MV-6 posture). Conditions: when S9/P5 writes
+real `bounds`/`display_label_loc`/per-kind counts, consumption must flip
+to the artifact — the duplicated constants in L1 are the exact divergence
+risk, and the `[M0-PENDING]` registry-v2 test already pins those fields.
+
+---
+
+## Test-count reconciliation (TW 74/69/5 vs CW 68/72·4 reds)
+
+Actual tree state (`node --test tests/*.test.mjs`, static registration
+count — no dynamic loops, no skips): **65 tests across 12 files**, of
+which **49 are the TW-MV1 map suites** and 16 pre-existing. Exactly **5
+are designed-red `[M0-PENDING]` gates**, each failing solely on the v0
+artifacts: `mapLedger` ×2 (MV-0.4 live ledger, MV-0.2 dispositions) and
+`mapMarkerShape` ×3 (MV-0.3 live matrix, DS-5-placement live, registry-v2
+fields). Expected run today: **60 green / 5 red.**
+
+- TW's "**5**" matches the five designed gates exactly — credible. TW's
+  total (**74**) does not exist in this tree (65 registrations): nine
+  tests were consolidated away during implementation or the tally counted
+  planned subtests. No weakening found: every spec AC area I traced still
+  has ≥1 live test, all negative-mutant teeth remain, and every static-grep
+  assertion still matches the shipped components.
+- CW's "**68/72 with 4 reds**" matches neither total nor red count. If
+  genuinely only 4 failures ran, one designed gate passed vacuously in
+  that environment — re-run needed. Neither report should be used as the
+  merge signal; the 5-gate red set *is* the M0 sequencer.
+
+No test was weakened or deleted detectably in the current files.
+
+---
+
+## GOOD list
+
+- Projection gate is single-source: `projection.ts` binds
+  `inline ∧ world-assumed` (+ numeric floats) and nothing else plots;
+  `markerCoordinates()` makes AC MV-2 agreement mechanical; axis-table +
+  full-corpus sweep tests prove totality (mapAxis/mapProjection).
+- Imagery strictly behind calibrated bounds (`SceneMap.tsx:166-168`),
+  LockedCells behind imagery+bounds, deterministic mean-center fallback,
+  zero remote imagery (static grep) — uncalibrated art can never fake a
+  coordinate.
+- History law exact: one push site (scene change), replaceState everywhere
+  else, cold-load restore incl. explicit-empty `?kinds=` semantics,
+  popstate resync, no-op off-browser — plus a static-pin test enforcing
+  the verb at each call site (mapStateLaw).
+- Island discipline holds: Leaflet JS only inside `SceneMap.tsx`; viewers
+  receive plain serializable props (`viewTypes.ts` forbids reader imports
+  under `components/map`); bundle-leak walk test; no runtime fetching.
+- Token law: zero color hex under `components/map` (sole regex-adjacent
+  hit is the corpus `#10938` pathID suffix in a fixture string); hues via
+  `color-mix` over the four tier-1 rows verified present in tokens.css;
+  accent reserved for identity/actions; LCD register for machine voice.
+- i18n: 17 `map.*` keys byte-parity across all 34 chrome files; ar/fa/de/
+  ru spot-checks show real translation (Arabic/Persian script incl. correct
+  ZWNJ, no ASCII passthrough); RTL bound from locale defs (ar/ar-EG rtl per
+  the spec §3.1 letter, fa-LTR gap logged rather than hidden); logical
+  CSS properties throughout; native-select switcher keeps RTL/keyboard free.
+- Honest states everywhere: zero-marker scenes render grid+VoidWell, never
+  absence prose; instance-census chips; distinct machine-voice registers
+  for `awaiting-transform-stage` vs `scene-granular`; SSR anchor list
+  mirrors popover targets for MV-4.
+- M4 laws: `from:null` census rows excluded at the reader AND enforced by
+  a live test; mita-black's `inferred · partial` surfaces verbatim through
+  LocationModule (F-7 complete on the M4 side).
+- Fixtures isolated: synthetic `_fixture:true` transcriptions under
+  `tests/fixtures/map-viewer/`; `mapFixtures.mjs` imports only
+  `projection.ts` — zero route imports anywhere in the test lane.
+- Regression watch clean: `entityView`/`sectionPages` changes are additive
+  (display-layer split re-exported for API stability; `MapSectionContent`
+  new); the location tab is purely conditional
+  (`refs.length > 0 || unplacedWell`) so non-placement entity pages are
+  untouched; `globals.css` additions confined to the Leaflet import + a
+  token-clean island skin.
+
+---
+
+## Verdict
+
+Three blocking items: H1 (land M0 or record the re-sequencing decision),
+M1 (books dead links), M2 (popover carry-law OR leg).
+
+VERDICT: NEEDS_REVISION — 3 items
