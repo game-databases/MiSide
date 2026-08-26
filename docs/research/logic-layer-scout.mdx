@@ -1,0 +1,498 @@
+# Logic-Layer Scout — MiSide unlock predicates & mini-game rules
+
+Scout report for board item **"Logic layer: unlock conditions/predicates,
+mini-game rules extraction"** (Phase 1 tail), feeding tool
+[ending-condition-explorer](../../tools-plan.md#31-ending-condition-explorer--2025-rank-1)
+(rank 1, T-P1). Written 2026-08-26 against **buildId 19029065 / VERSION
+0.93L** (Unity 2021.3.35f1, IL2CPP metadata v29).
+
+Inputs read in full for this pass: root
+[`AGENTS.md`](../../../AGENTS.md),
+[`_foundation/decision-register.md`](../../../_foundation/decision-register.md),
+[`_foundation/extraction-doctrine.md`](../../../_foundation/extraction-doctrine.md),
+pack [`README.md`](../../README.md) · [`spec.md`](../../spec.md) ·
+[`data-acquisition.md`](../../data-acquisition.md) ·
+[`tools-plan.md`](../../tools-plan.md) (§3.1) ·
+[`extracted/data/missingdata.md`](../../../extracted/data/missingdata.md);
+surveyed: `extracted/data/**` (all eight datasets), `extracted/relinks/*`,
+the relocated decompile tree `D:\unpacked_game_data\MiSide\{decompiled,
+il2cpp,harvest}` (see [§1](#1-where-logic-lives-in-the-corpus)), and the
+frozen dataset specs under
+[`docs/specs/`](../specs/dataset-achievements-endings.mdx).
+
+Sections:
+
+1. [Where logic lives in the corpus](#1-where-logic-lives-in-the-corpus)
+2. [What datasets already carry](#2-what-datasets-already-carry)
+3. [Feasibility ruling](#3-feasibility-ruling-the-core-deliverable)
+4. [Spec skeleton for the Documentator](#4-spec-skeleton-for-the-documentator)
+
+---
+
+## 1. Where logic lives in the corpus
+
+### 1.1 Corpus topology (measured this pass)
+
+The repo-side `extracted/` carries the curated planes; the three raw layers
+were relocated off C: on 2026-08-25 — pointer files
+`extracted/decompiled/MOVED-TO.txt` and `extracted/il2cpp/MOVED-TO.txt`
+both read `D:\unpacked_game_data\MiSide$d` (regenerable via `run_all`; the
+directory on disk is `D:\unpacked_game_data\MiSide\`). Measured sizes there:
+`decompiled/` 105 MB · `il2cpp/` 64 MB · `harvest/` 903 MB.
+
+| Plane | Path | Contents (measured) |
+|---|---|---|
+| Decompiled trees | `D:\unpacked_game_data\MiSide\decompiled\main\` | **57** assembly dirs (Assembly-CSharp … UnityEngine.*), **4,721** `.cs` files; `Assembly-CSharp/` alone holds **700** classes |
+| Structure graphs | `D:\unpacked_game_data\MiSide\decompiled\_structure\` | `types.json` (catalog), `hierarchy.json` (base/derived), `references.json` (intra-block type refs), `README.md` |
+| IL2CPP dump | `D:\unpacked_game_data\MiSide\il2cpp\dump.cs` | **288,102 lines**, **6,281** `TypeDefIndex` entries; `stringliteral.json` 619,523 B; `script.json` (RVA table); `DummyDll/` 58 DLLs |
+| Serialized scene dumps | `D:\unpacked_game_data\MiSide\harvest\mb-dump\<container>\` | **51 containers**: `globalgamemanagers`, `globalgamemanagers.assets`, `level0`–`level23`, `resources.assets`, `sharedassets0–23.assets` — one `.txt` per MonoBehaviour, Unity-YAML field dumps |
+
+Correction to the tasking brief: the decompiled surface measures **57
+assemblies** (`ls decompiled/main | wc -l`; `il2cpp/DummyDll` = 58 files),
+not 163. Everything else in the brief's framing checks out: `_structure/`
+graphs exist, and its `README.md` states they derive from dump.cs over a
+6,155-type catalog (vs 6,281 `TypeDefIndex` tokens in dump.cs — the delta
+is nested/compiler-generated types; cite both numbers with their sources).
+
+### 1.2 The single most important property: method bodies are stubs
+
+Every decompiled file is an Il2CppDummyDll signature tree re-emitted through
+ilspycmd (11.0.0.9335). Method bodies contain **no logic**:
+
+```csharp
+// D:\unpacked_game_data\MiSide\decompiled\main\Assembly-CSharp\AchievementsController.cs
+[Token(Token = "0x6000E82")]
+[Address(RVA = "0x3EEAA0", Offset = "0x3ED4A0", VA = "0x1803EEAA0")]
+public void AchievementCompleted(string _nameAchievement)
+{
+}
+```
+
+`_structure/README.md` says it in one line: *"Decompiler method bodies are
+garbage-prone in call-heavy serializers (IL2CPP); take structure, get
+semantics from data"* — and points at
+`does-not-work/decompiler-method-bodies.md`, **a file that does not exist in
+the tree** (broken pointer; only `_structure/README.md` matched `*.md` under
+`decompiled/`). What the dump *does* carry, and it is a lot:
+
+- **field inventories with offsets** (`[SerializeField] private string
+  fileSave; // 0x50`) — the serialized predicate grammar;
+- **RVA/VA addresses per method** (`Address(RVA = "0x3EEAA0"…)`, mirrored in
+  `il2cpp/script.json`) — the hook table a future native pass would drive;
+- **attribute-declared ranges/constants** (`[Range(0, 6)] public int
+  enemyComplexity`) — declared tuning envelopes;
+- **enum member tables and string literals** (`stringliteral.json`,
+  619,523 B).
+
+Consequence (ruling detail in [§3](#3-feasibility-ruling-the-core-deliverable)):
+anything the game decides inside a method body is invisible here; anything it
+*configures in the editor* and serializes into scenes is fully visible in
+`harvest/mb-dump/`. MiSide's architecture makes that split unusually
+favorable: the game is built on generic wiring components, so most gameplay
+decisions are editor-configured UnityEvent graphs, not code.
+
+### 1.3 The wiring-component grammar (where predicates physically live)
+
+These Assembly-CSharp classes define the vocabulary every serialized
+predicate uses. All paths relative to
+`D:\unpacked_game_data\MiSide\decompiled\main\Assembly-CSharp\`;
+line numbers refer to `il2cpp/dump.cs`.
+
+| Class | Role | Key members (from dump.cs) |
+|---|---|---|
+| `Events_IntMemory` (:1522, dump.cs:101861) | **int flag memory + branch table** — the game's state machine primitive | `SerializableIntMemory[] _memory` where each entry is `{int ifInt; UnityEvent _event}` (:1521); methods `CheckEvent()`, `CheckEventIndex(int)`, `Set(int)`, `Add()`, `Remove()` (+`*Ignory` variants) |
+| `Events_Data` (:1518, dump.cs:101787) | named-data event relay | `EV` persistent-call target (10 `flag-set` edges route through it) |
+| `Events_Objects` (:1523) | bulk scene mutation | `objectsDestroy/componentsDestroy/objectsActive/objectsDeactive/objectsRepositions` |
+| `ObjectInteractive` | interactable choice point | `eventClick` UnityEvent — 353 of 371 choice nodes |
+| `DialogueChanger` (:2119, dump.cs:125374) + `DialogueChangerCase` (:2120) | dialogue choice graphs | `buttons[]` each `{int stringFile; UnityEvent eventClick; bool closeClick/oneTime/exitButton/isClose/oneTimeUse}`; events `eventStart/eventClose/eventExit/eventLastStop` |
+| `Scene_Load` (:1691, dump.cs:106768) | scene transition **and save-point definition** | `string fileSave`, `string[] nameLevelSaves`, `SaveGame()`, `SilentSave(int)` |
+| `Trigger_*` family (dump.cs:108136–108449) | proximity/click/zoom/teleport triggers | `Trigger_DistanceCircle`, `Trigger_Teleport`, `Trigger_Event`, … |
+| `FlashTaker` (dump.cs:114391) | flash-drive (cartridge) pickup carrier | serialized per-level instances are the unlock gates |
+| `Achievement_function` | **achievement grant receiver** | `AchievementComplete(int x)`, `AchievementGet(string _nameAchievement)` |
+| `Achievement_cloth` (dump.cs:100303) | outfit unlock receiver | `ClothCompleted(string _nameCloth)` |
+| `AchievementsController` | steam-side poller | `DataAchievementsValues[] dataAchievements`, coroutine `CheckAchievementsSteam()` — body stripped |
+| `Location4Condition` (dump.cs:121852) | chapter-4 ending prerequisite tracker | private bools `lookStove/lookVentil` + toggle-pair methods `Lookstove/Nolookstove`, `Lookventil/Nolookventil`, `Takemagnetfridge`, `Trysous`, `Playconsole` |
+| `Basement_Safe` / `Basement_SafeConsole` | safe-of-life chain | keypad UI wiring (`eventRight` → `ObjectInteractive.Activation`); progress % lives native |
+| `MenuEnding` | ending screen UI only | `int click`, `Text textSafeDoor`, `MitaClickSafe()` — **no** determination logic |
+| `World` (:2172, dump.cs:128181) | scene root + story saves | `SaveStoryMita(string)`, `SaveStoryCartridge(string)`, `LevelLoad[] levelLoad` |
+| `MinigamesAutomate` (:1825, dump.cs:111689) | **minigame access/loader** | `[SerializeField] string resourceGame` (Resources prefab key), `string sceneGame`, `Vector3 positionCreateGame`, events `eventStartGame/eventFinishGame/eventStopGame` |
+| `MinigamesController` (:1826) / `MinigamesSettings` (:1830) / `MinigamesTelevisionController(_Game)` / `MinigamesTelevisionGame` | session shell + TV cabinet | fog/lighting config, `MinigamesTelevisionGame.indexStringNameGame` (name-offset pin in minigames `_meta`) |
+| Per-game controllers | the actual rules | `CarSpace_{Main,Boss,Car,Money,Player,…}`, `MakeManeken_{Main,Box,Switch,Interactive}`, `Location14_PCSnaker`, `Location17_PumpkinClicker`, `Location4Fight` (`[Range(0,6)] int enemyComplexity`), `Tamagotchi_MiniGame(Case)` |
+
+### 1.4 Family-by-family locator
+
+**(a) Achievement unlock conditions.** Grant mechanism is a serialized
+UnityEvent persistent call to `Achievement_function.AchievementGet(string)`
+with the achievement id as the string argument. Exactly **11 dumped grant
+sites corpus-wide** (`extracted/data/achievements/relink-achievement-award-site.jsonl`),
+e.g.:
+
+```json
+{"achievement_id":"ACHI_WinFIght","level":"level6","file":"Dialogue_3DText_#7081.txt",
+ "target_type":"Achievement_function","target_path_id":9330,"method":"AchievementGet",
+ "args_string":"ACHI_WinFIght","mechanism":"hard"}
+```
+
+The other 15 predicates ride native bodies (minigame win loops, set-completion
+counters) — missingdata [ACH-2]. Registry side:
+`DataAchievements` in `resources.assets` (26 rows, E1-proven three-way join).
+
+**(b) Ending-determination logic (DS-2's emitted trees).** Source classes:
+`Location4Condition` (chapter-4 toggle set), `Basement_Safe(_Console)`
+(safe chain), `Events_IntMemory` (branch tables), `Events_Data_#6042`
+(level6 award chain calling `CameraClickTelevision`/`DestroyGameobject`/
+`SetActive` then `AchievementGet("ACHI_none")`), `MenuEnding` (presentation
+only). Emitted artifacts: `endings.jsonl` (4 rows), `choice_nodes.jsonl`
+(371), `branch_edges.jsonl` (1,555), `flag_tables.jsonl` (5) — details in
+[§2](#2-what-datasets-already-carry).
+
+**(c) Cartridge/character unlock gates.** Pickup = serialized `FlashTaker`
+instance per level carrying a `save` string field; 22 of 24
+`cartridges.jsonl` rows have `pickup_ref` `{container, field:"save", …}`
+(two unresolved: `mtad2`, `mtacore` — [CAR-1]). Story-side mirrors:
+`World.SaveStoryCartridge/_Mita(string)`. In-fiction pet cartridges:
+`TamagotchiGame_Cartridge(_Details/_Cartridge)` family — four rows flagged
+`present_but_unreachable:true` ([CAR-8]).
+
+**(d) Save-flag vocabulary.** Two mechanisms:
+
+1. *Named save literals*: `Scene_Load.fileSave` + `nameLevelSaves[]`
+   (dump.cs:106788–106791). Already harvested:
+   `extracted/relinks/scene--save-vocabulary.jsonl` — 19 literals,
+   `stringliteral_parity: both-directions-equal` (`SaveGame 2ingame`,
+   `SaveGame wetogether`, `SaveGame startsecret`, `SaveGame basesub`, …).
+2. *Unnamed int memories*: `Events_IntMemory` instances keyed by
+   `(container, object_path_id)` — identity is the component, never a
+   string. This is why the flag universe has no name column today and why
+   `flag_if_int` targets are mostly unresolved (see [§3](#3-feasibility-ruling-the-core-deliverable)).
+
+**(e) Mini-game rule implementations (17 games per DS-4).**
+`cartridges/minigames.jsonl` `_meta.surface_count`: `carrier_class: 8,
+prefab_scene: 3, tamagotchi_activity: 4, tv: 2`. Access chain is fully
+serialized: `MinigamesAutomate.resourceGame` names the Resources prefab
+(`key_locator: harvest/mb-dump/level9/MinigamesAutomate.txt :: resourceGame`,
+value `"Minigame CarSpace"`), `sceneGame` the additive-scene variant.
+Rules/thresholds are **not** in any dump — every row carries
+`scoring_derivable: false` under the section 8-R1 IL-stub fence; what IS
+captured is `rule_evidence` (loc-string claims like `"Defeat the boss"`,
+`"Nitro"`) and serialized tunables (e.g. `Location4Fight.enemyComplexity`
+Range 0–6). TV cabinet name mapping is pinned in `_meta.tv_name_offset_pin`
+(`GetString("TelevisionGames", indexStringNameGame - 1)` chosen on
+semantic rejection of the identity offset).
+
+---
+
+## 2. What datasets already carry
+
+Read from `extracted/data/**` headers (`_meta` blocks / emit ledgers) and row
+samples this pass. Build pin on every dataset: `19029065` / `0.93L`.
+
+### 2.1 Per-dataset inventory
+
+**achievements — 26 rows** (`data/achievements/achievements.jsonl`, DS-2
+Part A). Present today: `display` ×34 locales + Steam `description`;
+`icon.path_id` + interim Steam CDN `official_url`; three-way join keys
+(`registry_index`, `line_translate`); `unlock.predicate_class` ∈
+{`serialized-site` ×11, `code-body` ×12, `aggregate` ×3} with `status` ∈
+{`proven-hard` ×11, `unverified-behavior` ×15}; emit-ledger honesty fences
+(`get-bool-pollution` → `get_bool_trusted_everywhere:false`, [ACH-5];
+the polluted field is `DataAchievementsValues.get // 0x24`,
+dump.cs:126830). Absent: any predicate *expression* for code-body /
+aggregate rows (native bodies), icon bytes ([ACH-1]), chapter attribution
+([ACH-4]).
+
+**endings — the DS-2 Part B tree set.**
+
+| File | Rows | Logic-relevant fields present |
+|---|---|---|
+| `endings.jsonl` | 4 (`conditions-met`, `safe-of-life`, `is-this-the-end`, `peaceful`) | `conditions[]` with `kind:"component-tracked"`, subject class + method list + serialized instances + `status:"proven-structure"`; `windows[]` (`safe-access`, `[community] ch4@17%, ch18@98%, ch19-empty`, `status:"unverified-behavior"`); full serialized `award_chain[]` call lists; `mode_unlocked{mode_id:"peaceful",state:"locked-stub"}` |
+| `choice_nodes.jsonl` | 371 | `kind`: `object-interactive` 353 · `dialogue-changer` 13 · `event-memory` 5; `prompt_loc`, per-option `modifiers{closeClick,oneTime,exitButton,isClose,oneTimeUse}`, `edge_ids`, `int_memory_default`, `branch_if_ints` |
+| `branch_edges.jsonl` | 1,555 (all `proven-hard`) | `effect_class`: scene-flow 709 · cosmetic 468 · audiovisual 356 · flag-set 10 · flag-query 8 · dead-reference 3 · award 1; target `{type,method,object_path_id,assembly}` + `args{string,int,float,bool,object_path_id}`; `feeds_ending:true` × **0** (MA-8) |
+| `flag_tables.jsonl` | 5 | per-`Events_IntMemory` branch tables `{branch_ordinal, if_int, calls}` + `int_memory_default` |
+
+**cartridges / minigames** (`data/cartridges/`). `minigames.jsonl`
+(17 rows): `access_medium` (resources-prefab / carrier-class /
+tamagotchi / tv), `carrier_containers`, `loader_ref` (verbatim
+`resourceGame` value), `ui_strings_loc` category + `rule_evidence[]`
+(loc-string rule claims with line locators), `achievement_ids`,
+`unlocks_outfits`, `present_but_unreachable`, and
+`scoring_derivable:false` ×17 under `_meta.scoring_fence`. 
+`cartridges.jsonl` (24 rows): `pickup_ref` `{container, field:"save"}` ×22,
+`depicts_character_id` (null for `mta` — [CAR-2]), placement per build.
+Relinks shipped: `minigame--achievement.jsonl` (J3 hard/logic split),
+`minigame--outfit-unlock.jsonl` (J5 — exactly **2** `ClothCompleted` sites:
+level5→`FIIdClSchool`, level6→`Chirfns`, one co-granted with
+`ACHI_PinguinTusim` in the same UnityEvent chain),
+`minigame--choice-condition.jsonl` (**meta-only file = measured absence**,
+MA-3), `cartridge--scene-placement.jsonl`.
+
+**dialogue** (`data/dialogue/nodes.jsonl`, 2,839 nodes). Carries
+`condition_hints[]` on **318** rows — but these are *loc-file comment text*
+harvested as strings, e.g.
+`{"lang":"en","line_index":58,"text":"// Quest 4 (Is this your house?) - MitaLittle"}`
+— provenance hints, not predicates. Structural condition data IS present:
+per-option `modifiers` (oneTime/closeClick…), `next_resolved`,
+`events_with_calls`. Absent: quest-gating predicates ([DLG-3] structural
+ceiling; [DLG-7] 8 unattached hint rows).
+
+**documents** (`data/documents/`). Books/profiles/world documents carry
+placement + `document--event-wiring.jsonl`; readable content unresolved
+([DOC-1], `text_mechanism:"unresolved"` ×160) and the set-completion
+predicates behind `ACHI_cartridgeplayers`/`ACHI_mitastory` are code-body
+holes ([DOC-6]).
+
+**scenes** (`data/scenes/`). `scenes.jsonl` 24 · `poi.jsonl` 986 ·
+`spawn-tables.jsonl` 24 · `scene-links.jsonl` (Scene_Load lattice) ·
+`poi-kinds.json` rulings that explicitly fence logic out to this layer:
+`Basement_Safe kind:safe — "window percentages stay logic-layer"`;
+`MinigamesController kind:minigame_access — "rules stay logic-layer"`;
+`Event_CreateResource kind:spawn_event — "day/holiday-gated creation;
+table rows live in spawn-tables.jsonl"`. Save vocabulary: 19 literals.
+Next-tier POI classes counted, not emitted ([SCN-6]: KeyHint ×382,
+Trigger_Event ×334, MakeManeken dummies ~276, Transform_Magnet ×191, …).
+
+### 2.2 The delta = the extraction target
+
+Already carried (no new extraction needed): award-site bindings (11),
+ending wiring trees (371 nodes / 1,555 edges / 5 flag tables), cartridge
+pickups (22 of 24), save literals (19), minigame access chain + UI-string
+rule evidence, outfit grant sites (2), serialized tunables where they exist.
+
+Absent today, statically reachable from the existing harvest, **and**
+load-bearing for the explorer:
+
+1. **Flag-instance registry.** No dataset names `Events_IntMemory` /
+   `Events_Data` components as first-class entities; they appear only as
+   edge targets (`object_path_id`) and inside the 5 `flag_tables` rows.
+   The explorer cannot answer "what does this flag gate / who sets it"
+   without a `(container, path_id) → thrown-by / gates` index.
+2. **Effect-call sweep beyond achievements/outfits.** The
+   `AchievementGet`/`ClothCompleted` sweeps prove the method; the same
+   sweep over `Events_IntMemory.{Set,Add,CheckEventIndex,CheckEvent}` and
+   `Events_Data.EV` has only been done inside ending contexts (18 edges),
+   not corpus-wide.
+3. **Choice-node ↔ prompt ↔ consequence join for non-ending choices.** 353
+   `object-interactive` nodes exist; only ending-relevant ones are joined
+   to outcomes today.
+4. **Serialized minigame tunables.** Declared ranges and non-default
+   public fields are dump-visible (e.g. `CarSpace_Money.animationFly`
+   keyframes dumped in full) but not extracted as records.
+
+Absent and **not** statically reachable at all (must stay labeled, or move
+to a runtime/native pass): predicate polarity and evaluation order,
+safe-window percentages, all scoring thresholds/win conditions, aggregate
+counting logic, Peaceful Mode behavior (the [XC-1] family).
+
+---
+
+## 3. Feasibility ruling (the core deliverable)
+
+Verdict vocabulary:
+
+- **STATIC** — recoverable from this dump by parsing serialized data /
+  metadata tables; no code execution or native code needed.
+- **PARTIAL** — structure recoverable statically; semantics require
+  cross-referencing multiple sites and even then stay incomplete without
+  native code or runtime observation.
+- **NOT STATIC** — decision lives in an IL2CPP *native* method body that
+  this corpus does not contain; extraction must stub it per
+  [missingdata.md](../../../extracted/data/missingdata.md) rules or wait
+  for a native/runtime pass ([XC-1]).
+
+| # | Logic family | Verdict | Basis |
+|---|---|---|---|
+| F1 | Achievement grant wiring (which interaction awards which achievement) | **STATIC** | 11 dumped `AchievementGet` sites; already emitted (`relink-achievement-award-site.jsonl`, all `mechanism:"hard"`) |
+| F2 | Achievement predicate expressions (code-body ×12, aggregate ×3) | **NOT STATIC** | bodies stripped ([ACH-2], [DOC-6]) |
+| F3 | Choice/branch graph structure (nodes, options, wired consequences) | **STATIC** | DS-2 proved the pipeline: 371 nodes / 1,555 edges all `proven-hard`; branch tables serialize completely |
+| F4 | Flag-memory identity & throw/gate topology | **STATIC** for identity, **PARTIAL** for value flow | components serialize (`_memory[]`, `int_memory_default`); writers/readers joinable via call targets; but `CheckEventIndex` calls persist `m_IntArgument = 0` — the live index is computed natively, so value-flow needs cross-referencing and stays incomplete |
+| F5 | Ending condition semantics (polarity of the Location-4 toggles, negative conditions, evaluation order) | **NOT STATIC** (structure STATIC) | class method table enumerates the toggles; serialized instances carry nothing (`level6/Location4Condition.txt` = base fields only; bools are private non-serialized) |
+| F6 | Safe-window percentages (17% / 98% / empty) | **NOT STATIC** | numeric gates ride native safe-chain bodies ([END-2]; DS-2 labels them `[community]`) |
+| F7 | Cartridge unlock gates | **STATIC** ×22, **NOT STATIC** ×2 + reachability | pickups dumped hard; `mtad2`/`mtacore` grants undumped ([CAR-1]); tamagotchi lock state present-but-unreachable ([CAR-8]) |
+| F8 | Save-point / save-slot vocabulary | **STATIC** (done) | `Scene_Load.fileSave/nameLevelSaves` → 19 literals, parity proven both directions |
+| F9 | Minigame access chain | **STATIC** (done) | `MinigamesAutomate.resourceGame/sceneGame` verbatim per level |
+| F10 | Minigame scoring rules & win thresholds | **NOT STATIC**; tuning envelopes PARTIAL | `scoring_derivable:false` ×17 fence; only UI strings + serialized presentation tunables exist |
+| F11 | Outfit unlock chain | **STATIC** ×2 sites; ×1 wiki-only | `ClothCompleted` sweep complete corpus-wide; pumpkin-clicker→`HellVamp` has no dumped site ([CAR-4]) |
+| F12 | Dialogue gating | **PARTIAL** | option modifiers structural; quest conditions survive only as loc comment hints (318 rows) |
+| F13 | Spawn/event gates (day/holiday creation) | **PARTIAL** | table rows serialized (`spawn-tables.jsonl` ×24); calendar semantics native |
+
+### 3.1 Evidence anchors
+
+**Static strength — branch tables serialize whole**
+(`harvest/mb-dump/level4/Events_IntMemory.txt`):
+
+```yaml
+SerializableIntMemory[] _memory
+  Array Array
+  int size = 4
+    [0] SerializableIntMemory data
+      SInt32 ifInt = 1
+      UnityEvent _event
+        PersistentCallGroup m_PersistentCalls
+          [0] PersistentCall data
+            m_TargetAssemblyTypeName = "UnityEngine.GameObject, UnityEngine"
+            m_MethodName = "SetActive"
+            m_Mode = 6 … m_BoolArgument = False
+```
+
+This is why F3/F4-identity are STATIC: the game's own condition objects are
+data rows in our harvest. `flag_tables.jsonl` already distills them
+(`level4:Events_IntMemory`: branches if_int 1→2 calls, 2→2, 3→2, 4→4).
+
+**Native wall — the ending tracker carries no state on disk**: the level6
+instance of the chapter-4 condition tracker dumps as base fields only
+(`m_GameObject/m_Script/m_Name`, nothing else); its `lookStove/lookVentil`
+bools are `private` non-serialized and every toggle method body is empty in
+the decompile. DS-2's honest labeling (`"polarity and evaluation order are
+native-body unverified-behavior"`) is exactly right — and the explorer's
+six documented prerequisites currently rest on that `[community]`
+attribution plus this structural skeleton, not on proven polarity.
+
+**Native wall — scoring**: minigame controllers keep win logic in
+`Update()` loops (bodies stripped); what survives on disk is presentation
+tuning (`CarSpace_Money.animationFly` keyframes dumped in full) and loc
+strings naming rule concepts (`"Defeat the boss"`, `"Coins collected"`).
+A "minigame-rule-revealer" built only from this corpus can reveal access,
+controls, and tuning envelope — never thresholds. Saying otherwise in a
+row would poison the tool.
+
+### 3.2 What flips the verdicts
+
+1. **XC-1 native pass** (owner-costed): `il2cpp/script.json` carries every
+   method RVA; a Ghidra/IDA-class decompile of `GameAssembly.dll` turns
+   every NOT STATIC above into PARTIAL-or-better. DS-2 §A.5 already names
+   this option. Highest-leverage single spend for this board item.
+2. **Runtime capture** (own-session playthrough probes): could pin polarity
+   and windows empirically; protocol-layer posture (single-player, no
+   server surface) makes this legitimate observation of our own sessions —
+   needs an orchestrator ruling on scope before anyone schedules it.
+3. **Community cross-check continuation** (already the DS-2 posture):
+   keeps `[community]` attribution honest where structure proves existence
+   but not sense.
+
+**Single biggest feasibility risk**: *polarity is unknowable statically.*
+The graph will draw itself beautifully from serialized data, yet the one
+bit that makes advice correct — "looking in the vent HELPS or HURTS" —
+lives in stripped native bodies. A wrong render is actively harmful in a
+game with Missable achievements (tools-plan §3.1 names this risk). Any spec
+must make polarity an evidence-classed field (`proven-hard` /
+`[community]` / `unknown-fail-closed`) and the frontend must render
+unknown polarity as unknown — never inferred from narrative vibes.
+
+---
+
+## 4. Spec skeleton for the Documentator
+
+What follows is skeleton, not frozen spec — the Documentator owns wording,
+schemas, and AC final form. Design center: **never mutate DS-2/DS-4
+emitted files** (the B-4 consumer-note pattern); the logic layer is a new
+dataset family that *references* existing rows by id and adds the missing
+index plane.
+
+### 4.1 Extraction modules
+
+| Module | Sweep | Emits |
+|---|---|---|
+| **LG1 flag-instance registry** | all 51 containers in `harvest/mb-dump/` for `Events_IntMemory` / `Events_Data` MonoBehaviours; capture `_memory[]` tables, `int_memory_default`, GameObject parent | `extracted/data/logic/flag_instances.jsonl` |
+| **LG2 effect-call registry** | corpus-wide persistent-call sweep with a method whitelist derived from dump.cs signatures: `AchievementGet`, `AchievementComplete(int)`, `ClothCompleted`, `Events_IntMemory.{Set,Add,Remove,CheckEvent,CheckEventIndex}` (+Ignory), `Events_Data.EV`, `Scene_Load.StartLoad/SilentSave`, `World.SaveStory*`; classify each call `award / flag-set / flag-query / scene-flow / cosmetic / audiovisual / dead-reference` | `extracted/data/logic/effect_calls.jsonl` (superset; DS-2's 1,555 edges must reconcile as a projection) |
+| **LG3 predicate records** | joins LG2 + existing datasets into one player-question-shaped record per unlockable subject (achievement, ending, outfit, cartridge, minigame access) | `extracted/data/logic/predicate_records.jsonl` |
+| **LG4 minigame tunables** | serialized non-default public fields + attribute-declared ranges (`[Range(0,6)]`) from mb-dump per minigame carrier | `extracted/data/logic/minigame_tunables.jsonl` |
+
+Reverse indexes go to `extracted/relinks/` per doctrine (`flag--gates`,
+`choice--consequence` projections of LG2). Pipeline-stage registration
+rides the XC-6 debt — emitters land with their `run_all` stage or they are
+not done.
+
+### 4.2 Record shape (illustrative, not frozen)
+
+```jsonc
+{
+  "predicate_id": "logic:achi_slaphead",
+  "subject": {"kind": "achievement", "id": "ACHI_slaphead"},
+  "question_en": "What unlocks \"Slap head\"?",
+  "condition": {
+    "expression_class": "serialized-site",
+    "site": {"container": "level9", "file": "Dialogue_3DText_#12820.txt",
+             "host_object_path_id": 12820},
+    "call": {"target_type": "Achievement_function", "method": "AchievementGet",
+             "args_string": "ACHI_slaphead"}
+  },
+  "polarity": {"value": "positive", "evidence_class": "proven-hard"},
+  "status": "proven-hard",           // proven-hard | proven-structure | community | unknown-fail-closed
+  "build_id": 19029065,
+  "evidence": ["data/achievements/relink-achievement-award-site.jsonl#…"]
+}
+```
+
+Hard rules baked into the shape:
+
+- `polarity.evidence_class` is mandatory; a row may not state a polarity
+  value without evidence ([§3 risk](#3-feasibility-ruling-the-core-deliverable)).
+- Unverifiable semantics render `"unknown-fail-closed"` — never omitted,
+  never guessed ([ACH-2] stub-ladder posture).
+- Every row stamps `build_id` so patch-day diffs are mechanical (XC-10).
+
+### 4.3 Measurable acceptance criteria (draft)
+
+1. **AC-L1 reconciliation**: every `branch_edges.jsonl` row resolves to
+   exactly one `effect_calls` row — 1,555/1,555, zero DS-2 file mutations.
+2. **AC-L2 census**: `flag_instances` count equals the corpus-wide
+   `Events_IntMemory`+`Events_Data` instance count measured by independent
+   grep of mb-dump; delta ledgered, not absorbed.
+3. **AC-L3 polarity honesty**: rows carrying a non-fail-closed polarity ==
+   rows with `proven-hard` evidence (11 award sites + any newly proven);
+   audit = join against evidence arrays.
+4. **AC-L4 scoring fence**: zero rows across the family assert a numeric
+   win threshold; `minigames.jsonl.scoring_derivable:false` survives
+   untouched (CAR-3 fence holds).
+5. **AC-L5 drift tripwire**: any input hash change (mb-dump, dump.cs)
+   fails emission until re-run — AC-A1 fail-fast pattern.
+6. **AC-L6 consumer contract**: frontend consumes records read-only;
+   no derivation beyond projection/filtering (AGENTS rule 8).
+
+### 4.4 Open questions for the Arbiter
+
+1. **Q1 — fund XC-1?** Native decompile pass over `GameAssembly.dll`
+   (script.json RVAs → Ghidra-class tooling) is the only path from
+   NOT STATIC to PARTIAL for F2/F5/F6/F10. Owner-costed call; explorer
+   scope depends on it.
+2. **Q2 — namespace**: new `extracted/data/logic/` family (proposed) vs
+   extending `endings/`. Ownership fences (DS-2 owns ending trees, scenes
+   owns scene joins) argue for the new family + id references.
+3. **Q3 — `[community]` polarity in machine rows?** DS-2 keeps windows
+   `[community]`-attributed inside data today; confirm that posture
+   extends to polarity values in predicate_records, or restrict
+   community-sourced sense to docs.
+4. **Q4 — runtime capture posture**: own-session empirical probing could
+   pin polarity/windows; needs an in-scope/out-of-scope ruling before
+   anyone schedules it.
+5. **Q5 — explorer MVP cut**: ship the STATIC structural graph with
+   fail-closed polarity rendering now, or hold for Q1?
+
+### 4.5 Player-facing framing check (rows vs real answers)
+
+Per the brief: flag families where extraction produces machine rows but NO
+user-meaningful answer — those stay internal planes, never pages:
+
+- **dead-reference edges (3)** and **cosmetic/audiovisual effects (~824)**:
+  wiring residue; no user question exists. Internal-only.
+- **Unnamed flag instances** (`level13:Events_IntMemory#…`): "what does
+  flag 11272 mean?" is unanswerable until joined to a `prompt_loc` /
+  dialogue context; surface only through such joins, else index-only.
+- **Minigame tunables (LG4)**: the player question ("how do I beat
+  CarSpace?") exists but the *answer* (thresholds) is NOT STATIC — emitting
+  tuning curves as if they were rules would be a false-statement engine
+  ([DR-2026-08-22-bpb-drop-changelog] analogy). Ship as labeled envelope
+  data or not at all.
+
+Families where every row answers a real question (the explorer's fuel):
+ending prerequisites incl. negatives + windows-attribution, missable
+achievements with grant locations, cartridge pickup gates, outfit unlock
+chains, save-point vocabulary, minigame access points.
+
+---
+
+*Scout verdict in one line: the wiring is data and is already largely won;
+the *sense* of the wiring is native code we do not have — build the
+explorer fail-closed on the wiring, and route the sense through [XC-1] or
+honest `[community]` labels.*
+
