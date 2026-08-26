@@ -1,0 +1,135 @@
+# V-TR2a — Verification of the F-TR1 fix round over `trackers-tool.mdx`
+
+Verifier A pass, 2026-08-26. Target: [trackers-tool.mdx](../../specs/trackers-tool.mdx)
+as landed post-fix (orchestrator names commit `d75368e`, "681 ln"; disk shows
+exactly **681** lines) plus new seed
+`extracted/data/build/tracker-exclusions.seed.json` and the routed-out FIX-3
+one-liner in [data-contracts.mdx](../../specs/data-contracts.mdx) §3.3.
+Pre-fix base `c1426d0` (arbiter-recorded 637 ln → post-fix 681 ln, +44) is
+consistent with the landed amendments' volume. Fix order source:
+[tr4-arbiter.mdx](tr4-arbiter.mdx) THE FIX ORDER items 1–9 (F1 sibling FIX-3
+rode the orchestrator lane; verified here against its file instead).
+
+Constraint note: this pass cannot run `git`, so "at commit `d75368e`" is
+verified as *disk state satisfying every fix-order item*, not as a SHA lookup.
+Method: each fix item ruled against disk; every load-bearing count re-measured
+first-hand this pass (python over the emitted JSONLs, header/`_meta` lines
+excluded); sync-law coherence audit over L1–L9 + TR-A4/A6; T0-gate strength
+analysis; structural sweep. Written during the pass.
+
+## Per-item rulings (FIX ORDER 1–9)
+
+| # | State | Evidence (line refs = disk state this pass) |
+|---|---|---|
+| FIX-1 | **APPLIED** | (a) Seed exists at `extracted/data/build/tracker-exclusions.seed.json` (29 ln): parses clean; `_meta.schema == "miside.tracker.exclusions.seed/1"`, `build_id == "19029065"`; classes exactly `{class,count,basis,source_ref}` × `{notes:160, wiki_only_minigames:4, cut_family_dumps:48}`; CAR-6 titles enumerated in order (Fly Console, Forgotten Panels, Monster-Slap, Destroying Glitches); cut basis quotes the x48 locator verbatim incl. md5 `a4c8a17f2deca7707d44078521dabb2d`; `why_a_seed` + `derivation_check` record the arbiter's rationale. (b) §5.1 law 2 (186–190): frozen set now ends "`markers.jsonl` + `minigame--achievement.jsonl` + `tracker-exclusions.seed.json` (curated input at `extracted/data/build/`, joined to the byte-freeze set per A-TR4)" — path matches actual seed location. (c) Law 5 (198–207): ledger values "COPIED VERBATIM from the frozen seed" + notes ADDITIONALLY re-derived from frozen `world_documents.jsonl` (`document_id` prefix `note-`), "aborting non-zero naming the class". (d) §5.2 manifest example (225): `// copied verbatim from tracker-exclusions.seed.json (frozen input)` annotation present; example keys `wiki_only_minigames`/`cut_family_dumps` match seed class ids. (e) §3 tail (136–145): 4/48 declared PINNED in the seed with the tier-4-no-row + evidence-locator reasoning restated. |
+| FIX-2 | **APPLIED** | §3 Scout-corrections item (2) (127–134) reads exactly the ruled content: save_key `mtacap` emits `cartridge_id == "mtacap"` UNCHANGED (no letter↔digit boundary; "the once-proposed `mtacap → mta-cap` correction was itself false"); real splits named as `mtad2 → mtad-2`, `plr1a → plr-1-a`, `plr1099 → plr-1099`. Corpus-wide grep finds no surviving uncorrected `mta-cap` claim anywhere in the spec (the single hit is this clause quoting the false form historically). |
+| FIX-3 | **APPLIED** | data-contracts.mdx §3.3 `cartridge_id` row (~121–123) now reads "(letter↔digit hyphen rule: \`mtad2\`→\`mtad-2\`, \`plr1099\`→\`plr-1099\`; letter-only names like \`mtacap\` pass unchanged — A-TR4 correction 2026-08-26)". Wording lightly adapted from the arbiter's literal ("`mtacap` passes through unchanged") but semantically identical: both required examples present, false example gone, attribution stamped. Orchestrator-lane ownership respected — trackers-tool.mdx does not touch data-contracts. |
+| FIX-4 | **APPLIED** | §15 TR-A5 (580) criterion is the ruled anti-Fandom reword verbatim (EVERY row in served HTML, default-state affordance structure, server-rendered unchecked default, hydrate-without-layout-shift) and its proof is the ruled trio (curl production build; per-view counts == TR-A1 counts; DOM assertions for presence + default-affordance markup) with "correct checked-state representation" gone corpus-wide. §7 CheckRow parenthetical aligned (340): "(no JS ⇒ rows and default-state affordances fully present; TR-A5)". |
+| FIX-5 | **APPLIED** | All six sub-targets landed: ItemRecord += `won?: boolean` / `wonTs?: number` with the ruled comments (268–269); L4 per-axis LWW sentence incl. "non-minigame sets never write `won`/`wonTs`" (286–288); §8 View D fence → "played is tracked; win thresholds defer to the revealer + logic layer, where the schema-reserved `won` axis surfaces (optional fields ship v1 — no migration ever needed)" (409–412); §16 non-goal "No won-toggle UI in v1" (594–597); L8 names `won`/`wonTs` in the lossless store-codec round-trip (319–323); TR-A6 criterion asserts both round-trip and PER-AXIS merge (581). |
+| FIX-6 | **APPLIED** | L4: "(contract-id asc, then local wins)" is gone (grep: zero "local wins" in the spec); replaced by the ruled tiebreak — equal ts ⇒ `done=true` wins; equal on ts+done ⇒ interchangeable, merge declared idempotent; "a tie can therefore never silently un-check" (288–292). L6 suite split (304–310) and TR-A6 (581): UNIVERSAL laws parameterized over BOTH adapters; ADAPTER-SPECIFIC named per adapter; TR-A4 spy phrasing scoped "ADAPTER-SPECIFIC law, LocalAdapter only (L6 suite split)" (579). |
+| FIX-7 | **APPLIED** | §15 TR-A12 (587) proof is now per-MARKER — "each of the 70 markers resolves to exactly one focus href built from its marker_id via `marker_kind_map` (singular→plural); measured 49 distinct `(entity_kind, entity_slug)` entities, tetris alone ×20" — and "70 marker-backed rows" is deleted (grep: zero hits). Href pin appended: mita → `<prefix>/mita/<slug>`, players → `<prefix>/players/<slug>`, "no `characters` segment exists". All three pins re-measured true on disk (below). |
+| FIX-8 | **APPLIED** | §13 hub bullet (512–518): redirects NAMED exactly as ruled — "`profiles`, `books`, `papers` 301 → `/tools/trackers/documents`; `characters` 301 → `/tools/trackers` (the hub owns its gauges)". |
+| FIX-9 | **APPLIED** | §10 interaction 4 (446–451): ordering claim replaced by the ruled text — import stamps "import-time epoch-ms ts UNIFORMLY — MST1 carries ids only, no ordering information survives the token", skew note present ("an import reads as a local edit at the import instant; … L4 governs any later merge"). Grep confirms zero survivors of "keep the codec's ts ordering". |
+
+**9/9 APPLIED** (FIX-3 with a semantically-null wording adaptation, noted above).
+
+## Re-measured load-bearing claims (all first-hand this pass)
+
+| Claim | My measurement | Result |
+|---|---|---|
+| Slug truth (FIX-2/seed) | `cartridges/cartridges.jsonl`: 23 rows (+1 `_meta` = 24 objects); boundary rule (`(?<=[A-Za-z])(?=\d)\|(?<=\d)(?=[A-Za-z])` → `-`) recomputed over ALL 23 rows: **0 mismatches**; spot pins `mtacap→mtacap`, `mtad2→mtad-2`, `plr1099→plr-1099`, `plr1a→plr-1-a`, `mtad→mtad`, `mtacore→mtacore` | confirmed |
+| Markers 70/49/tetris ×20 (FIX-7) | `scenes/markers.jsonl`: **70** rows (+1 `_meta` line); kind census cartridges 21 · profiles 11 · minigames 38 (= 70, matches §3 table); **49** distinct `(entity_kind, entity_slug)` pairs; entities with ≥2 markers exactly **3**: tetris ×20, minigame-shooter ×2, games-core ×2; `marker_id` shape `level10:cartridge:mtal` (singular kind inside id) vs `entity_kind:"cartridges"` (plural) — `marker_kind_map` singular→plural is disk-true | confirmed |
+| Seed notes=160 derivable | `documents/world_documents.jsonl`: **166** rows; `note-*` ×**160**, `paperpart-level13-{0..4}` ×5, `novella-location18` ×1; `text_mechanism:"unresolved"` on every row | confirmed |
+| Wiki-only ×4 absent by policy | `cartridges/cartridges-minigames.candidates.jsonl`: exactly **2** candidate rows; `_meta.ladder` verbatim "tier-4 wiki-only claims get no row and no candidate…"; the 48 appears ONLY inside locator `"Metroidvania_Interactive*.txt md5 a4c8a17f2deca7707d44078521dabb2d x48 identical"`; seed quotes it verbatim | confirmed |
+| CAR-6/CAR-7 transcription fidelity | `missingdata.md` L94: exactly the 4 titles, same order as seed; L95: "48 byte-identical dumps", tier-3 held never-promoted | confirmed |
+| Personage href pin | `site/src/lib/routes.ts` `KIND_SEGMENT`: `mita:"mita"`, `players:"players"` present; **no** `characters` key (profiles/books map to `lore/*` — unrelated to the tracker's own §13 route redirects) | confirmed |
+| TR-A1 censuses | achievements **26** (no meta line) · endings **4** (incl. `peaceful` `kind:"mode-stub"`) · cartridges **23** · minigames **17** · profile_documents **14** · books **8** · world_documents **166** (papers = 5 parts + 1 novella = 6) · personages **24** · `relinks/minigame--achievement.jsonl` **20** — every §3-table count reproduced | confirmed |
+
+## Sync-law coherence post-edit (L1–L9 + suite split)
+
+The `won`/`wonTs` axis appears at 8 sites (ItemRecord 268–269, L4 287–288,
+L8 320–322, View D 410–411, TR-A6 581, §16 594–597) and they agree on every
+dimension: optional fields ship in the `v:1` envelope (no migration ever);
+per-axis LWW with axes independent; non-minigame sets never write them; the
+MST1 token carries ids only so axis state persists locally and through merges;
+no toggle UI in v1. The suite split is stated three times without drift: L6
+defines it, TR-A4 scopes the synchronous write-per-toggle spy as
+ADAPTER-SPECIFIC/LocalAdapter-only, TR-A6 runs the UNIVERSAL laws (envelope
+validation, drift preservation, deterministic merge, codec round-trip) over
+BOTH adapters with seam typing on `FakeSyncAdapter`. L1's proof pointer (rides
+TR-A4) therefore still resolves correctly under the split; L4's "ships NOW as
+pure code with unit proofs (TR-A6)" matches TR-A6's equal-ts fixtures clause;
+L5 tombstone round-trip is covered by TR-A6's universal codec law. L8's
+import-time-stamp interaction (FIX-9) is coherent with L4 (merge governs any
+later merge) and with L3/L8's import-vs-runtime distinction. The ruled
+tiebreak is executor-independent and completion-preserving as claimed. **L1–L9
+remain internally consistent with the suite split.**
+
+Residual observations (LOW, backlog-grade — none touched by, or violating, the
+ruled FIX ORDER):
+
+1. Equal-`wonTs`-but-differing-`won` ties have no stated rule (the arbiter
+   ruled the tiebreak for the `done` axis only). Per-axis independence makes
+   every other pair deterministic; `merge.ts` unit proofs should pin this last
+   cell (symmetry suggests `won=true` wins or an interchangeability
+   declaration).
+2. §4 hard rule prose says "T3/T4 blocked by T0+T1+T2" while the module table's
+   T4 row lists Blocked-by "T0, T1" only (and T4 consumes T2's PillGauge per
+   §9). Pre-existing nit; the ASCII graph itself is acyclic either way.
+3. §2 obligations O1/O5/O7 enforcement cells cite "AC-TR-A7" (the share-code
+   codec criterion) where their substance actually verifies under TR-A1
+   (exclusion ledger reconcile), TR-A8/TR-A2 (honest states / `label_mode:
+   "id-form"`), and TR-A11 (machine-plane/provenance greps). Pre-existing
+   stale pointers outside the ruled order; the primary enforcement paths named
+   first in each cell are correct.
+
+## T0 gate strength
+
+Strong, and exactly the arbiter's ruled mechanism:
+
+- **Editing the seed** fails loudly: the seed is inside the sha256 byte-freeze
+  set (§5.1 law 2) and TR-A1's proof diffs the freeze manifest pre/post
+  emission "incl. `tracker-exclusions.seed.json`" — mismatch aborts non-zero
+  naming the file.
+- **Editing `world_documents.jsonl`** fails loudly TWICE: byte-freeze tripwire,
+  plus law 5's independent re-derivation of `notes` from the frozen file
+  aborting non-zero naming the class on any seed≠derivation mismatch — this
+  second tripwire survives even a refreshed hash ledger.
+- **Honest residual** (documented, accepted by A-TR4): `wiki_only_minigames`
+  and `cut_family_dumps` are non-derivable by tier-4 policy, so a coordinated
+  rewrite of seed values AND the recorded hashes would pass silently; that is
+  inherent to curated inputs, mitigated by hash-pinning the seed bytes, the
+  per-class `basis`/`source_ref` provenance strings, and the seed sitting
+  beside the emitter in `extracted/data/build/`. The gate does NOT depend on
+  parsing `missingdata.md` prose and does NOT violate the tier-4 no-row policy
+  — both arbiter constraints honored.
+
+## Structural sweep
+
+- Module graph acyclic: `six datasets ──► T0 ──► {T1,T3,T4}`, `T1 ──► {T2,T3,T4}`,
+  `T2 ──► {T3,T4}`, `{T3,T4} ──► T5`; no back edges (observation 2 above is a
+  blocked-by listing nit, not an edge).
+- T0 hard gate intact and stated twice (ASCII graph + "nothing merges behind
+  T0 until TR-A1 passes").
+- TR-A1..A14 all retain concrete proof methods; the rewritten proofs
+  (A4 spy scoping, A5 curl/DOM, A6 dual-adapter universals, A12 per-marker)
+  are testable as written.
+- Cross-refs resolve: §3 tail → §5.1 laws 2/5 exist; TR-A1 proof → "(law 5)"
+  exists; TR-A4 → "(L6 suite split)" exists; the repaired L8 reference now
+  cites **TR-A7** for share-code lossless round-trip (its actual subject) and
+  **TR-A6** for the won-axis merge/round-trip assertion — both correct targets
+  (previously the lossless claim pointed at no-JS TR-A5). Header (10–14)
+  records the revision, the A-TR4 ruling, and the FIX-3 lane split honestly.
+- Spec self-description matches disk: 681 lines; inputs-read list includes the
+  seed's sources; §5.2 example keys equal the seed's class ids.
+
+## Backlog minors (not revision-blocking)
+
+B1. Pin the equal-`wonTs` tie rule for the `won` axis in L4 when `merge.ts`
+lands (observation 1). B2. Reconcile §4 T4 blocked-by cell with the hard-rule
+prose (observation 2). B3. Repoint O1/O5/O7 enforcement cells to
+TR-A1/A8+A2/A11 respectively (observation 3).
+
+---
+
+VERDICT: APPROVE
