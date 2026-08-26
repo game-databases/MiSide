@@ -1,0 +1,242 @@
+# contracts-fix-vA — Verifier A: re-verification of the surgically fixed contracts layer (2026-08-26)
+
+Target: [23c9ef7] `contracts/check_contracts.py` + `contracts/registry/{entities,joins,fingerprints,
+availability,stub-markers}.json`, against [data-contracts.mdx](../../specs/data-contracts.mdx) and
+the corpus. Independent of F-CT2's claims; adversarial to them. Prior state:
+[contracts-build-vB.mdx](contracts-build-vB.mdx) ruled NEEDS_REVISION — 3 items (F1 MAJOR pooled-measure
+misstatement, F2 tautology gate, F3 self-derived lint); this pass rules each CLOSED/NOT-CLOSED by
+re-running vB's exact probes, then audits honest-gating, the EXTEND reconciliation, marker absorption,
+cross-registry coherence, and assesses the two unregistered relink families.
+
+Constraints honored: no agents spawned; git never executed; read-only except this file; checker run in
+verify / self-test / report only — generate never invoked (`python -B` throughout so not even a
+`__pycache__` refresh was written); fault injections performed in memory against loaded modules,
+never on disk.
+
+## Identity of the verified bytes
+
+Registry mtimes 10:15:45–46, check_contracts.py 10:13:10 — one lane, checker ~2 min before the
+registries it regenerates (the §6.3 one-unit shape vB-F6 demanded; commit unity itself not verifiable
+without git, attributed per mtimes + the C1 fixed point below).
+
+```
+eec5f07df9d002b183a39661fd5ddacf9a9c579c538c0ecde2cb754633b56ec0  contracts/check_contracts.py
+e4c68aef40a545af42aeeafe0c92108e2d6d584ec2fec28c7c9f87d3f56536bc  contracts/registry/entities.json      (81,818 B)
+ed41f8049be0828b9efcae43d49683eea70eb52c04e29001165365ecc724f2e8  contracts/registry/joins.json         (14,306 B)
+94e9b3785f658cc13f69ef57943f977f060cd63842e00ecbe5f00b863cea342d  contracts/registry/fingerprints.json  (16,794 B)
+7328e9ef31244b6584b4d4c3f921890ddbd2457f90d611898800c9d658503a5c  contracts/registry/availability.json   (2,319 B)
+4262e7ad6a3ac6081ccca7e78eec883df016442d988e466273c90f7721170dbc  contracts/registry/stub-markers.json  (16,770 B)
+```
+
+## Checker modes (allowed ones only)
+
+- `verify`: **22 gates green, 1 warning, 0 failures, exit 0**.
+- `self-test`: 7 green, 0 failures.
+- Determinism: `report` ×2 and `verify` ×2 **byte-identical** (process-substitution diff, no scratch files).
+
+## Method
+
+Full reads: AGENTS.md chain (decision-register, extraction-doctrine, extraction-host), pack spec.md /
+README / data-acquisition, data-contracts.mdx (all 546 lines), check_contracts.py (all 2,224 lines),
+logic-layer.mdx §4–§5, map-viewer.mdx §0.1/§4.1–4.2. Independent throwaway python recomputed every
+truth claim from disk without importing the checker's measurement code (separate pooling/inventory
+implementations); fault injections monkeypatched loaded module state only. All five registries parsed
+from their committed bytes for claim-level comparisons.
+
+## V-B F1 — CLOSED (pooled measurement is now corpus-wide truth)
+
+vB's probe re-run: pooled disk truth over all 25 relation files' 1,159 data rows, recomputed
+independently, vs the committed `relink_edge` block:
+
+| Measure | Pooled disk truth (my recount) | Registry | Verdict |
+|---|---|---|---|
+| `enums.direction` | `{forward:196, inverse:154}` | identical | MATCH |
+| `enums.kind` | `{forward:396, inverse:396}` | identical | MATCH |
+| `from` absent-or-null | **31** (17 anchor-less + 14 nulls) | nullable=true, 31 | MATCH |
+| `to` absent-or-null | 28 | 28 | MATCH |
+| `direction` absent | 809 · `kind` 367 · `status` 17 · `mechanism` 1 | all identical | MATCH |
+| `award_site` absent-or-null | 1153 | 1153 (vB saw 14) | MATCH |
+| mechanism distribution | hard 1024 / logic 104 / inferred 20 / scrMain 10 / absent 1 | notes identical | MATCH |
+| status distribution | modeled 1043 / partial 73 / absent 17 / scrMain 10 / prov-ds1 9 / pend-cur 5 / inferred 2 | notes identical | MATCH |
+
+The mechanism is structurally right, not just right today: `entity_row_pool()` pools every
+contributing artifact's rows in declaration order and `build_entities` measures ONCE over the pool;
+`_meta.notation` now states the pooling law explicitly ("never last-file-wins"). Single-artifact types
+are unaffected by construction. **CLOSED.**
+
+## vB F2 — CLOSED (`gate_never_null` now has a live, naming fail branch)
+
+The gate compares COMMITTED per-field claims (nullable / absent_or_null_rows / merged type) against a
+fresh full-scan measurement via `nullability_claim_problems`, and `rep.fail`s on any contradiction.
+Re-run of vB's execution style, in memory:
+
+- Control (committed entities.json as-is): `C2 VERIFIED (can fail): 400 committed field claims
+  re-measured over ALL rows of 29 entity types … hold` — 0 fails.
+- Fault (hand-edit-style flip `relink_edge.from.nullable` True→False, absent count dropped):
+  **FAIL** `C2 nullability/type claims contradict the corpus on 2 field claim(s):
+  ['relink_edge.from: nullable=False committed vs True measured', 'relink_edge.from:
+  absent_or_null_rows=0 committed vs 31 measured']` — names type + field + both sides.
+- The self-test carries the same bite as a permanent probe (flipped `gallery_icon` claim flagged).
+  Unlike vB-F2's 63 vacuous oks, the property is now verified AT the labeled step, not merely
+  transitively. **CLOSED.**
+
+## vB F3 — CLOSED (C4 lints the corpus against the COMMITTED grammar)
+
+`gate_anchor_lint` now takes `committed_registry("joins.json")`; derivation lives only at
+generate-time inside `build_joins`. Re-run of vB's exact injection:
+
+- Committed grammar for `minigame--scene-carrier`: `{from:['<bare>','minigame:'], to:[...]}`.
+- Injected `from:"cartridge:mta"` into a real row (in-memory): **FAIL**
+  `C4 anchor lint violations (1): ["minigame--scene-carrier:from='cartridge:mta'"]` — C4 fails
+  DIRECTLY, naming family, side and value; no reliance on C1's byte-diff.
+- Control (unmodified rows): `C4 VERIFIED (can fail): all 2259 string endpoints parse against the
+  COMMITTED joins.json grammar (18 endpoint families)`.
+- Load-bearing, not cosmetic: linting the same injected rows against the grammar freshly derived FROM
+  THEM yields **0 violations** (the derivation auto-admits `cartridge:`) — vB-F3's tautology is
+  confirmed dead because verify no longer uses that path. **CLOSED.**
+
+## Honest-gate audit (all 22 green lines reasoned from code)
+
+Live fail branch confirmed reachable for 21 of 22: C1 ×5 byte-compares (bite proven by the C1
+mutation probe and by vB-F6's observed red run); C2 comparator (proven above); C3 ×4 (pinned expected
+counts/meta-only set/census constants/provenance consolidation — any drift diverges from hardcoded
+spec constants); C4 (proven above); C6 ×2 (hardcoded spec census + semantics matrix);
+C9 (572/94/2161 pinned); the five negative probes (each carries its own rep.fail; two proven live
+above); C10 ×2 (header-class table vs measured reality; dataset-contract vocab membership).
+
+**F-A1 (MINOR, new): line 12 — `C5 fingerprints recomputed clean over 82 artifacts` — is
+green-by-construction.** `gate_fingerprints` receives the freshly-built fps dict and re-reads the
+same disk bytes within the same run: sha256/row_count/build-stamp mismatches are impossible under
+drift (both sides move together); only a mid-run TOCTOU rewrite (this tree HAS concurrent lanes) or
+an IO error can flip it, and the cross-buildId warn can fire. The committed-vs-corpus fingerprint
+property IS verified — by C1's fingerprints.json byte-compare (line 3) in the same run; I proved the
+bite surface independently (untouched flag_tables.jsonl matches its committed sha; one flipped byte
+diverges). So no assurance is lost — but the line wears a verification label for work C1 does, the
+exact pattern vB-F2 killed at scale, and self-test probe 19's message ("C5 compares against the
+COMMITTED fingerprints record") overstates what the verify-time C5 loop compares against. Fix shape
+(when next touched): pass `committed_registry("fingerprints.json")` to the gate, mirroring the C4
+fix, and correct the probe message. Backlog-grade: zero data misstatement, zero coverage gap.
+
+**22 vs old 83 — nothing that should be checked went unchecked.** The delta is retirement of the
+~61 per-field tautology lines plus consolidation: vB's manually-sampled schema-shape blocks are now
+covered continuously by C1 over all 29 types; the enums↔stub-map equivalence vB checked by hand is
+enforced mechanically (STUB_VOCAB pinned counts raise SystemExit inside build_stubs; enum
+distributions are fresh-measured and C1-compared); meta-only-family assertion retained; deferred-scope
+marker check superseded by marker absorption (below). Consumes-never-derives and the availability
+semantics are unchanged and still pinned.
+
+## EXTEND reconciliation (logic layer absorbed into ENTITY_DECLS)
+
+All four types generated from pinned rows, verified against disk with an independent inventory
+implementation (field set, nullability, absent counts, merged types — beyond the one-type spot-check
+asked):
+
+| Type | Disk rows | Registry row_count | Field-inventory deltas | Declared enums |
+|---|---|---|---|---|
+| effect_call | 20,485 | 20,485 | NONE (18 fields) | effect_class, tier — MATCH |
+| flag_instance | 384 | 384 | NONE (14 fields) | component, identity_status — MATCH |
+| minigame_tunable | 29 | 29 | NONE (14 fields) | kind, rule_status — MATCH (all `envelope`/`not-a-threshold`) |
+| predicate_record | 93 | 93 | NONE (13 fields) | subject.kind, condition.expression_class, polarity.evidence_class, status — MATCH |
+
+Schema ids match the `_meta.schema` on disk (`miside.logic.*​/1`); header classes A as declared; all
+four are fingerprinted (82-artifact count = vB's 78 + these four; independent hashlib recomputes
+clean). Pins: `extracted/data/logic/input-manifest.json` (generator "B-LL2 logic-layer emitter …
+ACCEPTED", build_id 19029065) pins 13 inputs + all outputs by sha256 — I verified every output hash
+against disk and all 13 inputs byte-match their pins (the corpus-root-relative `il2cpp/dump.cs`
+resolves under the manifest's own `corpus_root` D:\unpacked_game_data\MiSide).
+
+**Ruling on `effect_call.key=None`: SOUND, and mechanically forced.** Measured on disk: `edge_id`
+has **37 duplicate groups, max multiplicity 27** across the 20,485 rows (one serialized call site
+fans out per effect_class census grain). B-LL2-era keying on `edge_id` would trip
+`build_entities`' duplicate-key `SystemExit` on every verify — the correction is the only value
+consistent with the checker's own uniqueness law. logic-layer.mdx §5 never promises edge_id
+uniqueness: its example names `event_field`/`option_index`/`call_index` as AC-L1b's join
+discriminators, which is exactly what the registry note now documents ("join discipline rides AC-L1b
+key K … never edge_id uniqueness"). The other three keys (flag_id/tunable_id/predicate_id) are
+declared and pass the uniqueness scan.
+
+## Marker absorption (XC-5 landed; Q5 deferral superseded)
+
+Disk: `markers.jsonl` = `_meta` (`schema:"miside.markers.projection/1"`) + **70 typed rows, all with
+non-empty `marker_id`**. Registry `marker` block: row_count 70, key `marker_id`, 15 measured fields
+(superset of map-viewer §4.1's example shape — marker_id/poi_id/layer/kind/entity_kind/entity_slug/
+icon/position/placement/links plus container/document_id/minigame_id/instance_census/
+placement_source), and all six declared enums measured-MATCH: kind {cartridge 21, minigame_access 38,
+profile_document 11} · entity_kind {cartridges 21, minigames 38, profiles 11} ·
+icon.fallback_state {named-explicit-missing ×70} · position.source {pptr-unresolved 19, none 2} ·
+position.status {scene-granular 51, awaiting-transform-stage 19} · placement.mechanism {hard ×70}.
+Stub renamed accordingly: `marker-projection-v1`, occurrences **70**, description citing map-viewer M0
+§4.1 (which exists and defines the row-v2 emitted shape verbatim). LEDGER_COVERAGE XC-5/SCN-1 point at
+it. **Matches actual markers.jsonl on disk: YES.**
+
+**O-A1 (observation, outside the artifact set): map-viewer.mdx §0.1's disk-audit table (line 44,
+"verified 2026-08-26 for this spec") still reads `markers.jsonl | **0** | _meta only …` — stale
+against the 70-row projection the same spec's §4.1 defines and the tree now ships.** A consumer
+reading §0.1 believes zero markers exist. Orchestrator/doc-owner item; does not affect the contracts
+artifacts' correctness (their citation is to §3/§4.1, which agree with disk).
+
+## Cross-registry coherence re-run
+
+joins.json: 25 families, Σ `edge_count_measured` = **1,159** = `entities.relink_edge.row_count` =
+`anchor_census.total_edges`; census {endpoint edges 1142, strings 2259, nulls 25, anchor-less 17,
+absent slots 34} = spec §4.2 digit-for-digit. fingerprints: **82 artifacts**, spot-recomputed shas
+clean including all four logic files and markers.jsonl. stub-markers: 83 ledger entries covered, 13
+vocab ids all referenced, extended markers 28. Determinism: report ×2 and verify ×2 byte-identical.
+
+## ASSESSMENT for the orchestrator — `flag--gates` (40) + `choice--consequence` (1,555): KEEP-PINNED
+
+Measured facts: both files exist on disk with `_meta.authority_ruling = "docs/specs/logic-layer.mdx
+section 5 (LG2 pure projection; ids only; no new claims)"` / `"… pure projection of endings/
+branch_edges.jsonl under join key K; ids only"`; generator B-LL2; schemas
+`miside.relinks.flag--gates/1` and `miside.relinks.choice--consequence/1`. Rows carry only
+from/to/direction/mechanism/method/status — anchors in logic-id vocabularies (`logic:flag:*` ↔
+`logic:call:*` fwd20/inv20 mirrored; `choice-node:*` ↔ `effect-call:*` forward ×1555 = exactly the
+branch_edges row count). Neither appears in `_assembly-provenance.jsonl`, in JOIN_DECLS, or in
+fingerprints.json.
+
+**Recommendation: KEEP-PINNED — document them as projection outputs owned by logic-layer §5, NOT §4.1
+contract families — with one integrity rider.**
+
+1. The ACCEPTED logic-layer spec already rules their taxonomy: "Relink projections (**no new claims,
+   ids only**)". Registering them under §4.1 would override the newer accepted spec's own
+   classification without an owner-visible reason.
+2. Zero information lives outside the contract surface: every edge is mechanically derivable from
+   contract-pinned types (flag_instance/effect_call/branch_edge under AC-L1b key K — all now
+   ENTITY_DECLS types with verified inventories). Registering elevates derived views into canonical
+   family status; §4.1's character is measured serialized relations (its declared exceptions are
+   narrow), and §4.1+PROOF §5.2's 25×1,159 canon is reconciled across three verification passes.
+3. Blast radius argues against REGISTER: TOTAL_EDGES_EXPECTED 1159→2754 touches the C3 constants,
+   spec §4.1 table, §4.2 anchor census/grammar (four foreign `logic:`/`choice-node:`/`effect-call:`
+   forms), PROOF §5.2, and every downstream doc citing 1,159 — churn with no consumer gain, since the
+   consumption law is already satisfiable through the pinned logic entity types.
+4. Precedent inside the verified artifact set: `dialogue_graph` is kept out of joins but registered
+   as a labelled derived projection with a consumption note. Same treatment fits here.
+5. The rider closes the one real gap: today those 1,595 rows have **no integrity pinning at all**
+   (silent corruption undetectable). Add both files to CONSUMED_ARTIFACTS/fingerprints (or an explicit
+   "projection pins" block) and add a short data-contracts §4 paragraph naming them projection outputs
+   readable by consumers but outside the 1,159 canon. Rides existing §6 machinery; no C3/C4 changes.
+
+If a future lane finds these projections carrying claims NOT derivable from pinned rows, that flips
+to REGISTER (§4.1 amendment + regenerate in one §6.3 commit) — the rider's doc note should say so.
+
+## Findings
+
+- **F1 (vB, MAJOR): CLOSED** — pooled recount == registry, all probed measures, zero deltas.
+- **F2 (vB, MODERATE): CLOSED** — live fail branch proven, names the false claim.
+- **F3 (vB, MODERATE): CLOSED** — direct C4 fail on foreign anchor; self-derived path retired and
+  demonstrated inferior.
+- **F-A1 (new, MINOR):** verify line 12 (`C5 fingerprints recomputed clean`) cannot fail under drift
+  — within-run recompute of the built record; real bite rides C1 line 3; probe-19 message overstates
+  the compare target. Cosmetic-assurance defect only; fix mirrors the C4 change. Backlog.
+- **O-A1 (new, observation):** map-viewer.mdx §0.1 disk-audit row still declares markers.jsonl as
+  0-row/_meta-only — stale vs shipped 70-row state. Doc-owner item, outside the verified artifact set.
+
+## Verdict
+
+All three vB defects are precisely and verifiably fixed; the fix mechanism addresses causes
+(pool-once measurement, committed-state comparators, generate/lint separation), not symptoms. The
+EXTEND and marker absorptions are byte-faithful to disk and correctly keyed/pinned; cross-registry
+coherence reproduces every pinned census; the two unregistered families should stay pinned as
+projections with an added integrity pin. One cosmetic gate-label residual (F-A1) goes to backlog.
+
+VERDICT: APPROVE
