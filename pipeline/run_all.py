@@ -61,7 +61,7 @@ def build_parser():
         prog="run_all",
         description="MiSide extraction pipeline (P1): env -> detect -> "
                     "il2cpp-dump -> mono-typed-dump -> loc-jsonl -> art-export "
-                    "-> decompile -> census.",
+                    "-> decompile -> census -> logic-layer.",
         epilog=EPILOG, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("game_root", nargs="?", metavar="<game-root>",
                         help="game root: holds MiSideFull.exe, "

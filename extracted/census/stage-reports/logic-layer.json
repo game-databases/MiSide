@@ -1,0 +1,27 @@
+{
+  "stage": "logic-layer",
+  "host": "Ne8k",
+  "measured_at": "2026-08-26T07:06:08+00:00",
+  "status": "ok",
+  "corpus_root": "D:\\unpacked_game_data\\MiSide",
+  "rows": {
+    "flags": 384,
+    "effects": 20485,
+    "tier_a": 117,
+    "tier_b": 20368,
+    "resolved": 1555,
+    "edges": 1555,
+    "predicates": 93,
+    "tunables": 21,
+    "l6_registry_applied": true
+  },
+  "artifacts": {
+    "effect_calls.jsonl": "023aca7cfcd9e50a5a941dc4ba2b33050dcb8cddf2f1861b915c5262f6341184",
+    "flag_instances.jsonl": "226f9eeab558771b5c0a828044a5435efcb6760905b9ba01672bb63cb5f25599",
+    "minigame_tunables.jsonl": "bb77a1fe8ed82fc4857ff8589d1eae1fee0382903d5d84b51b0a9969e190fa6b",
+    "predicate_records.jsonl": "f54e065aa0eef1cd5a6f04089341de739e6dfd758c25fce157b3f08627a55f48"
+  },
+  "artifacts_changed_this_run": [],
+  "contracts_registry_entities_json_sha256": "7801f04db5674fa185abd9267c851237793ce06644feacf19e10402cece251f8",
+  "duration_s": 47.49
+}

@@ -20,6 +20,8 @@ STAGES = [
     ("census", "pipeline.stages.census",
      ["detect", "il2cpp-dump", "mono-typed-dump", "loc-jsonl", "art-export", "decompile"],
      "PROOF.md generator: source inventory, coverage reconciliation, residue ledger, protocol placeholder"),
+    ("logic-layer", "pipeline.stages.logic_layer", [],
+     "LG1-LG4 logic-layer emitters over harvest/mb-dump + dump.cs -> extracted/data/logic/ (docs/specs/logic-layer.mdx)"),
 ]
 
 _BY_NAME = {name: (module, deps, desc) for name, module, deps, desc in STAGES}
