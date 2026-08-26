@@ -1,0 +1,180 @@
+# TR3 — fresh reviewer verdict on `docs/specs/trackers-tool.mdx`
+
+Reviewer R-TR3 (PrepareTask step 3). Target:
+[trackers-tool.mdx](../../specs/trackers-tool.mdx) @ commit c1426d0 (637 ln).
+Inputs read in full this pass: the spec · [trackers-scout.mdx](../trackers-scout.mdx) ·
+[data-contracts.mdx §1–§3](../../specs/data-contracts.mdx) ·
+[missingdata.md](../../../extracted/data/missingdata.md) · spot-reads of
+[explorer-tool.mdx](../../specs/explorer-tool.mdx) (M0′/A-EC1 claims),
+`site/src/lib/routes.ts`, `site/src/i18n/locales.ts`,
+`site/src/styles/design/tokens.css`, kit/map components,
+`_foundation/decision-register.md`. Every census number below was re-measured
+from disk THIS PASS by this reviewer, independently of the spec's own audit;
+JSONL header classes dispatched per data-contracts §2.2 (class A `_meta`, class
+B bare descriptor, class C headerless).
+
+## Measured census — all spec counts HOLD
+
+Re-derived with python over the emitted JSONLs this pass:
+
+- **Achievements 26** (headerless): `display` map has exactly 34 locale codes on
+  every row (884 cells) · `type_tag` story 11 / minigame 8 / ending 3 /
+  collectible 2 / meta 1 / missable 1 · `unlock.predicate_class` serialized-site
+  11 / code-body 12 / aggregate 3 · `unlock.status` proven-hard 11 /
+  unverified-behavior 15 · `icon.status` pending-export ×26 ·
+  `joins.collectible_set` exactly `ACHI_cartridgeplayers→player-cartridges` +
+  `ACHI_mitastory→mita-profiles` · `joins.ending_id` ×3 · `joins.minigame_id`
+  null ×26 · `steam.{appid,global_percent,captured_at,captured_at_machine_plane}`
+  ride every row.
+- **Endings 4**: conditions-met / safe-of-life / is-this-the-end / peaceful
+  (`kind:"mode-stub"`, pointer `Menu#line_index=130` verified); safe-of-life
+  window attribution verbatim `[community] ch4@17%, ch18@98%, ch19-empty`.
+- **Cartridges 23**: save_key vocabulary verbatim — character family 13 (`mta
+  mtachi mtashh mtakd mtacap mtal mtaman mtaghost mtad mtad2 mla mtac mtacore`),
+  player family 10 (`plr1a plr2v plr3vi plr4asw plr5bz plr6vcx plr7vczn plr8qeqe
+  plr9mpa plr1099`) · `pickup_ref` null exactly on `mtad-2` + `mtacore` ·
+  `collectible_set:"player-cartridges"` ×10 · `depicts_character_id` null on
+  `mta` + all 10 player rows.
+- **Minigames 17**: `key_source` scene_carrier_class 8 / tamagotchi_activity 4 /
+  automate_resource 2 / tv_games_array 2 / automate_scene 1 (five registries —
+  the scout's "four registries" slip is real and the spec's fix is right) ·
+  `name_loc` non-null exactly `fight` (TelevisionGames line 0) + `pinguin`
+  (line 1), consistent with the −1 offset pin · `present_but_unreachable` ×4,
+  all tamagotchi activities · `community_alias` ×12 · `scoring_derivable:false`
+  ×17 · `unlocks_outfits` pinguin→Chirfns, location-17-pumpkin-clicker→HellVamp ·
+  embedded `achievement_ids` ×4 (fight/pinguin/location-7-game-dance/
+  location-14-pc-snaker).
+- **Documents**: profiles 14 (placed 11 / script_granted 2 = idx 6 `mita-2-d`
+  + idx 9 `mita-core` / story_granted 1 = idx 13; `flash_save_key` null exactly
+  idx 13) · books 8 (`art_per_locale`: 4 books full 34 locales; 4 books missing
+  exactly 2 locales each = the zh-Hans/zh-Hant Location19 divergence, "ship 4/8"
+  reads correctly) · world_documents 166 = `note-level*` ×160 +
+  `paperpart-level13-{0..4}` ×5 + `novella-location18` ×1, `text_mechanism:
+  "unresolved"` on all 166.
+- **Personages 24** = mita 14 + player 10, `gallery_order` present ×24.
+- **Markers 70** = minigames 38 / cartridges 21 / profiles 11; `marker_id`
+  grammar `<level>:<singular-kind>:<slug>` (e.g. `level10:cartridge:mtal`);
+  `entity_kind` is the PLURAL form as pinned; precomputed
+  `links.focus_url == "/map?focus=cartridges:mtal&scene=level10"` matches the
+  contract; icon `fallback_state:"named-explicit-missing"`.
+- **Relink minigame--achievement**: 20 data rows = forward 10 + inverse 10;
+  unresolved binds encoded `status:"partial"` with null endpoint — exactly the
+  six ids tetro, racingfirst, logA, logB, hellwin, hellmegawin (ACH-3). Spec's
+  "6 binds unresolved" is right in substance.
+- Universe arithmetic 8 sets / 122 items = 26+4+23+17+14+8+6+24 ✔;
+  excluded ledger notes 160 ✔ (world_documents), wiki-minigames 4 (CAR-6),
+  cut-family 48 dumps (CAR-7) match missingdata.md.
+
+Site seams verified present this pass: `site/src/i18n/chrome/` holds exactly 34
+locale files · `check-chrome-parity.mjs` exists · `routes.ts INDEX_SEGMENTS`
+contains `tools` · `(pivot)/tools/page.tsx` is `StubSectionContent` ·
+`relationCards.ts` carries the dedicated-module/no-orphan laws · kit components
+GradientPill / VoidWell / CorruptionHover / KeycapKbd / LcdTerminal and map
+LockedCell exist · tokens.css ships `--ms-accent-gradient`, `--ms-danger`,
+`--ms-warm`, `--ms-glow-pink`, `--ms-glow-glitch`, `--ms-radius-*`,
+`--ms-font-lcd`, plus `ms-scan-breathe`, `ms-vhs-drift`,
+`[data-slot="lcd-terminal"]` · `locales.ts` pins `rtl` only for `ar`/`ar-EG`
+with the SB-1 `fa`-stays-LTR note verbatim · explorer M0′ E1/E14 byte-freeze +
+hard merge gate is real, so T0 mirrors a live precedent, and A-EC1/OQ-E5 did
+RULED reserve the `entity_kind`/`entity_slug` tracker slot.
+
+## Findings
+
+### F1 — MEDIUM — the spec's own "corrected" slug example is false on disk
+
+§3, Scout corrections: *"its slug example pair `mtad2 → mta-cap` should read
+`mtacap → mta-cap`"*. Measured pairs this pass: save_key `mtacap` emits
+`cartridge_id == "mtacap"` — the hyphen rule fires only at letter↔digit
+boundaries and `mtacap` contains none; the actual boundary splits are
+`mtad2 → mtad-2` and the whole plr family (`plr1a → plr-1-a` …
+`plr1099 → plr-1099`). The spec repeats the scout's false example one sentence
+after restating the rule that disproves it, in a section claiming "nothing
+copied on faith". Slugs are the tracker's key vocabulary (O2 store keys,
+`focus=cartridges:<slug>` URLs, entity hrefs), so a CodeWriter trusting the
+prose example breaks lookups for that row. One-line fix: `mtacap → mtacap`.
+Sibling defect (report onward, out of scope here): data-contracts §3.3 pins the
+same false example (`mtacap`→`mta-cap`).
+
+### F2 — MEDIUM — TR-A5 promises personalized checked-state in raw HTML, impossible under the static-export posture
+
+§15 TR-A5: *"served HTML carries EVERY checklist row with correct checked-state
+representation, no script required"*. State lives in localStorage (T1); the site
+is statically exported (scout §2: "the browser sees only emitted public/
+artifacts"), so the server cannot know a returning user's checks — raw HTML can
+only carry the default unchecked affordance. As written the AC is
+unsatisfiable-as-stated and its curl proof passes vacuously (curl has empty
+storage). The anti-Fandom intent (rows exist and degrade completely without JS)
+is sound; reword to "every row present with its state affordance structure
+(server-rendered default), personal state hydrating client-side without layout
+shift".
+
+### F3 — MEDIUM — exclusion-ledger numbers have no frozen source in T0's byte-freeze set
+
+§5.1 law 2 freezes *"the eight dataset JSONLs of §3 + `markers.jsonl` +
+`minigame--achievement.jsonl`"* while §5.2 emits
+`"exclusion_ledger": {"notes": 160, "wiki_only_minigames": 4,
+"cut_family_dumps": 48}`. notes=160 derives from frozen world_documents.jsonl,
+but the wiki-only minigames (CAR-6, tier-4, `evidence:[]`) and the
+Metroidvania 48-dump cut family (CAR-7) live in the candidates ledgers
+(`cartridges-minigames.candidates.jsonl` et al.) which are NOT frozen. As
+written T0 must either invent the two constants (violating its own projection-
+only law 1) or read unfrozen inputs its tripwire cannot cover. Fix: add the
+candidates JSONLs to the frozen set, or derive the counts from already-frozen
+files. This is the riskiest item — it lands inside the gating module itself.
+
+### F4 — MEDIUM — View D's "played/won is tracked" does not fit the stored schema
+
+§8 View D: *"played/won is tracked"*; §6.1 stores one bit per item:
+`interface ItemRecord { done: boolean; ts: number; … }`. Played and won are two
+independent facts; one boolean cannot hold both, and the 8-set universe has no
+second minigames set. Adding a value axis after v1 ships is exactly the
+envelope-bump migration O3 exists to avoid. Fix now: either reword View D to a
+single register ("played") or extend the record while no installed base exists.
+
+### F5 — MEDIUM — L4's equal-ts tiebreak is executor-relative, and the "SAME conformance suite" claim conflicts with L1
+
+§6.2 L4: *"equal-ts ties break deterministically on `(contract-id asc, then
+local wins)`"*; L6/TR-A6: *"FakeSyncAdapter passes the SAME conformance suite as
+LocalAdapter"*. Two problems: (a) "local wins" resolves the same tie oppositely
+on device A vs device B — nondeterministic across replicas, undercutting the
+determinism claim that makes the schema sync-ready; (b) L1's synchronous-write-
+per-toggle spy (TR-A4) cannot bind a network-backed SyncAdapter, so an
+unqualified "same suite" is unimplementable — the suite silently weakens or the
+AC fails. Fix: pin an executor-independent total order (e.g. lexicographic on
+`(ts, contract-id, done)`, or declare server-resolves-ties) and split the suite
+into universal laws (both adapters) + adapter-specific laws (sync-write spy =
+LocalAdapter only).
+
+### F6 — LOW — `characters` store set has no defined 301 target
+
+§13: *"`characters`, `profiles`, `books`, `papers` are STORE sets whose user
+surfaces are the Documents view panels and entity tabs (their set routes 301 to
+the owning view segment…)"*. Under §8's ruling `characters` owns no routed view,
+so its redirect target is undefined. Name the hub as the target.
+
+### F7 — LOW — TR-A12 conflates markers with rows; personage entity-href kind split unpinned
+
+TR-A12: *"focus href == `/map?focus=<plural kind>:<slug>&scene=<scene_id>` for
+all 70 marker-backed rows"* — markers number 70 but the rows backing them are
+fewer (several rows carry ≥2 level markers); assert per-marker, not per-row.
+Relatedly, cross-linking the 24 character rows needs the `mita`/`players`
+segment split (`routes.ts KIND_SEGMENT` has no `characters` kind) — pin it.
+
+### F8 — LOW — share token carries no ts, yet §10 speaks of "the codec's ts ordering"
+
+§10 interaction 4: *"imported items keep the codec's ts ordering"*; L8's MST1
+payload is `{sets:{<set_id>:[checked contract ids, sorted]}}` — ids only, there
+is no ordering information to keep. Say what happens: imports stamp import-time
+ts (and note the skew implication).
+
+## Verdict summary
+
+HIGH 0 · MEDIUM 5 (F1–F5) · LOW 3 (F6–F8). The census, seam inventory, honest-
+missing enforcement (TR-A2 fixture + TR-A8 negatives), OQ rulings (SHIP-v1
+mirrors the GW3 named-deferral precedent under DR-2026-08-19-ugc-accounts; CDN
+rejection follows D2 two-class; outfits/notes deferrals follow O1/consumer rule
+1; grouping axes are all emitted fields), and the remaining AC proof methods
+(TR-A1/A3/A4/A6/A7/A8/A10/A11/A13/A14, incl. concrete reload-survival and RTL
+×34 legs) are sound and buildable once the five MEDIUMs land.
+
+VERDICT: NEEDS_REVISION — 8 items
