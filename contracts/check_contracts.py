@@ -147,6 +147,14 @@ EXPECTED_HEADER_CLASSES = {
     "extracted/data/logic/flag_instances.jsonl": "A",
     "extracted/data/logic/minigame_tunables.jsonl": "A",
     "extracted/data/logic/predicate_records.jsonl": "A",
+    # LG2 logic-relink projections (docs/specs/logic-layer.mdx section 5): class A _meta-first
+    # JSONL. F-CT3 KEEP-PINNED ruling (2026-08-26): integrity rides their fingerprints.json
+    # entries -- they reach CONSUMED_ARTIFACTS from here, so verify recomputes sha256 +
+    # row_count + build stamp like every other consumed artifact. Deliberately NOT JOIN_DECLS
+    # families 26/27 (ids-only projections derivable from contract-pinned types; data-contracts.mdx
+    # section 4 note) -- registration revisitable if a consumer ever needs join-family semantics.
+    "extracted/relinks/flag--gates.jsonl": "A",
+    "extracted/relinks/choice--consequence.jsonl": "A",
 }
 
 DECLARED_SCHEMA_IDS = {

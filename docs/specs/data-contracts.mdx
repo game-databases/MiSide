@@ -353,6 +353,20 @@ from a non-owner file, and treat parked `data/*/relinks/` copies as staging (rea
 (§3.5 `display`, §3.1 `name_en`, §3.9 `objective_hints_text_en`) are search/API glue — never rendered
 as prose on a non-pivot page (localization-architecture §1).
 
+### 4.4 KEEP-PINNED: LG2 relink projections are fingerprinted, not join families (F-CT3, 2026-08-26)
+
+Two logic-layer projection outputs ride the read surface without join-family status:
+[`flag--gates.jsonl`](../../extracted/relinks/flag--gates.jsonl) (**40 data rows**,
+`logic:flag:*` ↔ gated subject/consequence) and
+[`choice--consequence.jsonl`](../../extracted/relinks/choice--consequence.jsonl)
+(**1,555 data rows**, choice node ↔ effect call). Both are ids-only LG2 pure projections carrying
+no new claims ([logic-layer.mdx §5](./logic-layer.mdx)) — derivable from contract-pinned types,
+which is why they are deliberately NOT registered as join families 26/27 and the canonical family
+set above stays closed at 25 / 1,159 edges. Integrity rides their
+[fingerprints.json](../../contracts/registry/fingerprints.json) entries (sha256 + row_count +
+build stamp), recomputed by C5 like every other consumed artifact; registration stays revisitable
+if a consumer ever needs join-family semantics.
+
 ## 5. Locale availability semantics for consumers
 
 Authority:
