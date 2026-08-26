@@ -1,0 +1,237 @@
+# TR2-fix — verifier B verdict on the post-fix trackers spec
+
+Verifier V-TR2B of the TR2-fix double-review pair. Target:
+[trackers-tool.mdx](../../specs/trackers-tool.mdx) @ d75368e (**681 ln**,
+re-counted `wc -l` this pass) plus the new frozen seed
+`extracted/data/build/tracker-exclusions.seed.json` (29 ln, read in full).
+Fix-order input: [tr4-arbiter.mdx](tr4-arbiter.mdx) F-TR1 (9 items).
+Independent of verifier A by design — `tr2-fix-vA.mdx` was NOT opened.
+Every number below re-measured from disk THIS PASS with python over the
+emitted JSONLs (header/`_meta` first lines excluded); site seams spot-read
+(`routes.ts`, `locales.ts`, `i18n/chrome/`, `sectionPages.tsx`,
+`(pivot)/tools/page.tsx`, parity script). No git commands run; commit pin
+taken from the orchestrator brief.
+
+## 1. Independent re-measurement — all spec counts HOLD
+
+- **Achievements 26** (headerless): `type_tag` story 11 / minigame 8 / ending 3 /
+  collectible 2 / meta 1 / missable 1 (`ACHI_achi`) · predicate_class
+  serialized-site 11 / code-body 12 / aggregate 3 · `unlock.status`
+  proven-hard 11 / unverified-behavior 15 · `icon.status` pending-export ×26 ·
+  `display` = exactly 34 locales on every row (884 cells) · joins:
+  collectible_set exactly `ACHI_cartridgeplayers→player-cartridges` +
+  `ACHI_mitastory→mita-profiles`; `ending_id` ×3 (`ACHI_safelife`,
+  `ACHI_none`, `ACHI_final`); `minigame_id` null ×26 · steam quad on ×26.
+- **Endings 4**: conditions-met / safe-of-life / is-this-the-end /
+  peaceful (`kind:"mode-stub"`); safe-of-life windows attribution verbatim
+  `[community] ch4@17%, ch18@98%, ch19-empty`.
+- **Cartridges 23** (+`_meta`): family character 13 / player 10; save_key
+  vocabulary verbatim as §3 lists it. **Slug rule re-proved mechanically**: an
+  independently written hyphenate-at-every-letter↔digit-transition function
+  reproduces ALL 23 emitted `cartridge_id`s with ZERO mismatches — `mtacap`
+  passes through unchanged, `plr1a → plr-1-a`, `mtad2 → mtad-2`,
+  `plr1099 → plr-1099`. `pickup_ref` null exactly `mtad-2`+`mtacore`;
+  `collectible_set:"player-cartridges"` ×10; `depicts_character_id` null on
+  `mta` + all 10 player rows; status 21 pickup + 2 unresolved-pickup.
+- **Minigames 17** (+`_meta`): key_source scene_carrier_class 8 /
+  tamagotchi_activity 4 / automate_resource 2 / tv_games_array 2 /
+  automate_scene 1 (five registries) · `name_loc` non-null exactly
+  fight+pinguin · `present_but_unreachable` ×4, all tamagotchi ·
+  `community_alias` ×12 · `scoring_derivable:false` ×17 · unlocks_outfits
+  pinguin→Chirfns, location-17-pumpkin-clicker→HellVamp · embedded
+  achievement_ids ×4 (fight/pinguin/location-7-game-dance/
+  location-14-pc-snaker).
+- **Documents**: profiles 14 (+header) — placement placed 11 / script_granted 2
+  (idx 6 `mita-2-d-profile`, idx 9 `mita-core-profile`) / story_granted 1;
+  `flash_save_key` null exactly idx 13 · books 8 (+header) — divergence
+  measured precisely: 4 books `art_per_locale_available_count=34` /
+  `locales_missing []`, 4 books count=32 missing exactly
+  ChineseSimplified+ChineseTraditional ⇒ "zh ships 4/8" HOLDs · world_documents
+  166 (+header) = `note-level*` ×160 + `paperpart-level13-{0..4}` ×5 +
+  `novella-location18` ×1, `text_mechanism:"unresolved"` ×166.
+- **Personages 24** (+`_meta`): `kind` mita 14 / player 10; `gallery_order`
+  present ×24; palette_color1/2 present ×24.
+- **Markers 70** (+`_meta`): kind census minigames 38 / cartridges 21 /
+  profiles 11 · **49 distinct** `(entity_kind, entity_slug)` pairs ·
+  tetris ×20, minigame-shooter ×2, games-core ×2 (≥2 holds EXACTLY 3 times) ·
+  `marker_id` grammar `<level>:<singular>:<slug>` zero violations ·
+  precomputed focus_url on all 70, sample
+  `/map?focus=cartridges:mtal&scene=level10` matches the contract.
+- **Relink minigame--achievement**: 20 data rows (+`_meta`) = forward 10 +
+  inverse 10; partial ×12 = exactly SIX unresolved binds × both directions —
+  ACHI_tetro, ACHI_racingfirst, ACHI_logA, ACHI_logB, ACHI_hellwin,
+  ACHI_hellmegawin (minigame endpoint null). Spec's six ids HOLD.
+- **Universe arithmetic** 122 = 26+4+23+17+14+8+6+24 ✔.
+- **Seed integrity facts**: notes derivation re-run independently =
+  exactly 160 `note-` prefixed ids ✔; CAR-6 names exactly Fly Console /
+  Forgotten Panels / Monster-Slap / Destroying Glitches ✔; CAR-7 "48
+  byte-identical dumps" ✔ and the candidates evidence locator verbatim
+  `"Metroidvania_Interactive*.txt md5 a4c8a17f2deca7707d44078521dabb2d x48
+  identical"` matches the seed basis string character-for-character ✔;
+  `cartridges-minigames.candidates.jsonl` = `_meta` + exactly 2 candidate rows,
+  ladder statement verbatim as the arbiter quoted ✔.
+- **Site seams**: chrome dir = exactly 34 files · `KIND_SEGMENT` has
+  `mita`/`players` and NO `characters` key anywhere in `routes.ts` ·
+  `INDEX_SEGMENTS` contains `tools` · `check-chrome-parity.mjs` exists ·
+  `locales.ts` pins `dir:"rtl"` only for ar/ar-EG, `fa` explicitly ltr with the
+  SB-1 note · kit components referenced by §7 exist under
+  `site/src/components/{kit,map}/`.
+
+## 2. Fix order F-TR1 — 9/9 APPLIED
+
+| # | Item | Ruling | Evidence this pass |
+|---|---|---|---|
+| FIX-1 | F3 seed + freeze + re-derive | **APPLIED** | (a) seed exists w/ schema `miside.tracker.exclusions.seed/1`, buildId 19029065, three `{class,count,basis,source_ref}` rows; (b) §5.1 law 2 frozen set appends the seed; (c) law 5 verbatim-copy + `notes` re-derivation abort naming the class; (d) §5.2 `_meta` example annotates "copied from tracker-exclusions.seed.json (frozen input)"; (e) §3 tail cites the seed as pinned source of 4/48 |
+| FIX-2 | F1 spec leg | **APPLIED** | §3 correction (2): mtacap unchanged, splits mtad-2 / plr-1-a / plr-1099 — mechanically true per §1 above |
+| FIX-3 | F1 sibling (orchestrator lane) | **APPLIED** (out-of-piece, verified) | data-contracts.mdx §3.3 L122–123 now reads "(letter↔digit hyphen rule: `mtad2`→`mtad-2`, `plr1099`→`plr-1099`; letter-only names like `mtacap` pass unchanged — A-TR4 correction 2026-08-26)" |
+| FIX-4 | F2 TR-A5 reword | **APPLIED** | criterion + proof cell rewritten (default-state affordance, hydrate client-side, curl + DOM assertions); §7 CheckRow parenthetical aligned |
+| FIX-5 | F4 second axis | **APPLIED** | `ItemRecord.won/wonTs` shipped optional; L4 per-axis LWW; View D fence sentence w/ "optional fields ship v1"; §16 non-goal; L8 round-trip naming won/wonTs; TR-A6 cell names them |
+| FIX-6 | F5 tiebreak + suite split | **APPLIED** | "local wins" and "(contract-id asc …)" absent from the file (grep clean); ruled equal-ts ⇒ done=true + idempotent-on-full-tie inserted; UNIVERSAL/ADAPTER-SPECIFIC split in L6 + TR-A6 + TR-A4 spy scoped to LocalAdapter |
+| FIX-7 | F7 per-marker assertion | **APPLIED** | TR-A12 asserts per-MARKER (70 → one focus href each via marker_kind_map), 49 entities, tetris ×20; "70 marker-backed rows" gone; href pin mita/players present and true on disk |
+| FIX-8 | F6 redirect targets | **APPLIED** | §13: profiles/books/papers 301 → `/tools/trackers/documents`; characters 301 → hub |
+| FIX-9 | F8 import ts stamping | **APPLIED** | interaction 4: uniform import-time epoch-ms stamping, "no ordering information survives the token", skew note present |
+
+## 3. Structural laws
+
+- **Dependency graph acyclic** ✔ — datasets/markers/relinks → T0 → {T1,T3,T4};
+  T1 → {T2,T3,T4}; T2 → {T3,T4}; {T3,T4} —string freeze→ T5; T5 → checkers.
+  No back edge; single-owner law for store.ts stated.
+- **Hard gate stated twice** ✔ — once in the §4 diagram ("T0 ──► gate (TR-A1)
+  ──► T1..T5 may merge") and once in the §4 hard-rule paragraph ("nothing
+  merges behind T0 until TR-A1 passes"), reinforced by §5.1 law 3's M0′-blocker
+  framing and the Blocked-by column.
+- **TR-A proofs concrete** ✔ — every one of TR-A1..A14 names tool + artifact +
+  assertion (curl production build, vitest property tests incl. equal-ts
+  fixtures, corruption mutants asserting exact typed errors, size/perf numbers,
+  double-run byte diff, grep legs in both directions).
+
+## 4. Sync-readiness simulation (v1 → v2, two devices, skewed clocks)
+
+Scenario walked through L1–L9 as amended: device A (wall clock +10 min fast)
+and device B (accurate), both offline on the same T0 manifest; checks made on
+both; a SyncAdapter arrives later and merges via `merge.ts`.
+
+- **No v1-reachable loss path.** Single-writer localStorage; L1 writes
+  synchronously inside the handler (no debounce window to lose); L3 quarantines
+  malformed envelopes instead of wiping; drift-deleted ids are preserved across
+  read/write cycles and exports; L9 reset clears exactly one key after
+  confirmation. A remove-and-re-add patch round-trip restores the user's check.
+- **Tie determinism holds.** Equal `ts` with opposite `done` resolves to
+  `done=true` on either replica — executor-independent as F5 required; full
+  ties are declared interchangeable/idempotent, so replaying a merge cannot
+  flip state. Completion-preserving: no tie can silently un-check.
+- **Per-axis independence behaves** (`done`↔`ts`, `won`↔`wonTs`): merging can
+  produce axis combinations neither replica held — that is the definition of
+  independent axes, not a defect; non-minigame sets never write the second
+  axis.
+- **Import leg** stamps uniform import-time ts (FIX-9) with an explicit skew
+  note — an import reads as a local edit at the import instant; correct.
+
+Holes found — all strictly BEHIND the declared seam (no caller today), none
+reachable in v1, all non-gating:
+
+- **HOLE-1 (clock skew is unordered, not just tie-prone).** With A fast by
+  10 min: B checks item X at real 12:00 (ts_B); A un-checks X at real 12:05 but
+  its stamp reads 11:55-equivalent < ts_B ⇒ merge resurrects `done=true`. The
+  last REAL action silently loses. L4 orders on raw epoch ms; its guarantee is
+  scoped to EQUAL-ts ties (and imports); cross-replica skew has no law. The
+  spec's own words survive this ("a tie can therefore never silently un-check")
+  because it claims tie-safety, not causal correctness — but "the semantics are
+  already fixed" freezes wall-clock LWW in place, so a future HLC/monotonic
+  fix would need the additive-migration path rather than a reword. One
+  acknowledging sentence in L4 would close the gap between what a reader
+  assumes ("sync-ready") and what is guaranteed.
+- **HOLE-2 (`won`-axis tiebreak unstated).** The ruled tiebreak names only
+  `done` ("equal ts ⇒ done=true wins"); the symmetric clause for equal `wonTs`
+  with opposite `won` appears nowhere in L4 or TR-A6. Symmetry is implied, not
+  ruled — the same executor-relative ambiguity F5 killed could legally
+  re-enter through the second axis in a literal reading. No v1 writer emits
+  `won`, so nothing breaks today; one clause fixes it.
+- **HOLE-3 (tombstone-vs-live merge order undefined).** L5 reserves `tomb` and
+  requires codec/suite round-trip, but L4 defines merge keys only for the two
+  value axes. Nothing states `{tomb:t2}` beats a live record with `ts<t2`
+  (nor whether a tomb can be cleared), i.e. resurrection-on-pull prevention is
+  asserted at the schema level but not defined at the merge level where it
+  would actually live.
+- **HOLE-4 (reset × future sync = whole-set resurrection).** L9's reset clears
+  the set key while L5 forbids writing tombstones in v1 — so once a SyncAdapter
+  exists, reset-then-pull (or push-from-the-other-replica) reinstates every
+  row: mass resurrection of precisely the class the tomb field exists to
+  prevent. Unreachable in v1; the future adapter brief must define reset
+  semantics (per-row tombs or a set-generation counter).
+
+Net: the amended laws do prevent data loss AND silent resurrection for every
+path reachable without a server (the simulation found none), and the equal-tie
+determinism claim is sound; the four holes are future-seam residuals that must
+ride into any SyncAdapter brief, not defects in the frozen v1 contract.
+
+## 5. Seed integrity chain (malicious/accidental seed edit at T0 emit)
+
+Code-order trace of the emitter's abort paths as specified:
+
+1. **Byte-freeze pre-record** (§5.1 law 2): sha256 over the frozen set INCLUDING
+   `tracker-exclusions.seed.json`; pre/post diff aborts naming the file —
+   catches mid-run tampering even after the public write (AC-L1a/L5 tripwire
+   pattern).
+2. **Counts fail-fast** (law 3): emitted per-set counts reconcile against JSONL
+   censuses (26/4/23/17/14/8/6/24) BEFORE writing `sets.core.json` — protects
+   the id universe; orthogonal to seed content.
+3. **Verbatim copy** (law 5): `_meta.exclusion_ledger` values are copied from
+   the seed's `classes[].count` — the emit itself invents nothing.
+4. **`notes` re-derivation abort** (law 5 + seed `_meta.derivation_check`):
+   the emitter independently counts `note-` prefixed ids in frozen
+   `world_documents.jsonl` (I re-derived: exactly 160 = seed) and aborts
+   non-zero NAMING THE CLASS on any mismatch ⇒ ANY edit to
+   `notes.count` is caught automatically at T0 emit.
+5. **`wiki_only_minigames` / `cut_family_dumps`: NOT auto-caught — by ruled
+   design.** Tier-4 policy means the 4 have no row anywhere to count, and the
+   48 exists only inside an evidence locator string (verified verbatim this
+   pass); the arbiter explicitly REJECTED freeze-widening/string-parsing here.
+   An edit to those two counts flows verbatim into the manifest; detection is
+   the freeze-manifest sha256 delta recorded in `emit-ledger.jsonl` plus normal
+   review of the curated file (same trust boundary as `missingdata.md` itself),
+   which the seed's own `why_a_seed` documents honestly.
+
+Verdict: the chain is exactly as strong as A-TR4 ruled it — derivable axis
+auto-aborts; curated axes ride the freeze tripwire + curation review. No gate
+couples to prose files; tier-4 no-row policy intact.
+
+## 6. Findings (this pass)
+
+All LOW / backlog; none gates v1 buildability, any AC, or any measured claim:
+
+- **V-B1 — LOW** — `won`-axis equal-ts tiebreak unstated (HOLE-2): add the
+  symmetric clause to L4 + TR-A6 whenever next touched.
+- **V-B2 — LOW** — tombstone-vs-live merge order undefined (HOLE-3): must be
+  ruled before any SyncAdapter implementation; schema unaffected.
+- **V-B3 — LOW** — reset-without-tombstones × future sync = whole-set
+  resurrection path (HOLE-4): future adapter brief owns it.
+- **V-B4 — LOW** — stale prose: §13 calls `/tools/trackers` "the FIRST REAL
+  OCCUPANT of the tools StubSectionContent slot", but `(pivot)/tools/page.tsx`
+  already renders `ToolsSectionContent` with the explorer card (explorer hub
+  landed first) — trackers will be an addition, not the first occupant;
+  cosmetic wording only.
+- **OBS (info)** — LWW on raw wall clocks is deterministic, not causally
+  correct under skew (HOLE-1); suggest one scoping sentence in L4 so
+  "sync-ready" is not over-read.
+
+## 7. Prior reviewers' LOW tier — confirmed non-gating and recorded
+
+R-TR3's three LOW findings are fully accounted for: recorded in
+[tr3-review.mdx](tr3-review.mdx) (F6/F7/F8, sev LOW, NEEDS_REVISION — 8 items),
+ruled ACCEPT per-finding in [tr4-arbiter.mdx](tr4-arbiter.mdx), and APPLIED
+here as FIX-8 / FIX-7 / FIX-9 respectively (verified against disk in §2:
+redirect targets named; per-marker 70/49/tetris×20 + href pin true on
+`routes.ts`; import stamping + skew note). No LOW remains open; nothing was
+silently dropped.
+
+## Verdict summary
+
+9/9 fix-order items APPLIED (incl. the routed-out FIX-3 sibling, verified).
+Every measured census, slug rule, marker arithmetic, and seed basis string
+re-proven from disk this pass. Structural laws hold (acyclic graph, hard gate
+stated twice, concrete TR-A proofs). Sync-readiness simulation finds no
+v1-reachable loss/resurrection path; four future-seam residuals + one stale
+prose nit recorded above, all LOW/backlog.
+
+VERDICT: APPROVE
