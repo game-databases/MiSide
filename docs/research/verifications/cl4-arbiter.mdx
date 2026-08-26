@@ -1,0 +1,267 @@
+# A-CL4 — Arbiter ruling on R-CL3 (changelog-viewer spec round)
+
+Arbiter pass 2026-08-26. Inputs read in full: [cl3-review](cl3-review.mdx),
+[docs/specs/changelog-viewer.mdx](../../specs/changelog-viewer.mdx) (601 ln);
+evidence re-measured independently this pass:
+[pipeline/stages/logic_layer.py](../../../pipeline/stages/logic_layer.py),
+[pipeline/stages/__init__.py](../../../pipeline/stages/__init__.py) STAGES
+registry, [pipeline-run_all §2 stage table](../../specs/pipeline-run_all.mdx)
+(S1–S8, stops at census), repo-wide `\bS9\b` grep (80+ hits triaged),
+[fingerprints.json](../../../contracts/registry/fingerprints.json) parsed
+programmatically (84 = 55 data + 29 relink; logic family 4 entries;
+distinct build_ids {19029065} exactly), EXTRACTION-LOG.md l.7,
+TOOLCHAIN.md l.59, content-pipeline §7.2 (l.441–445), game-research §D1
+(l.52–60), localization-architecture.md heading map (§1–§6, no §5.5),
+entities.json entity_types (no `save_point` materialized), spec.md l.132
+(`save_point` attrs declared), COMP J9. Every finding ruled below was
+re-verified against disk before ruling; none accepted on the review's say-so.
+
+## Rulings
+
+### HIGH-1 — Stage-ID collision + wrong ordering anchor: ACCEPT (renumber to S10, anchor after logic-layer, arbitrate the pre-existing dual booking)
+
+Measured confirmation of all three prongs:
+
+1. **S9 is shipped code**: logic_layer.py l.1 docstring `"""S9
+   logic-layer — LG1-LG4 dataset emitters"""`; the STAGES registry lists
+   nine stages ending `("logic-layer", …)` registered last — positionally
+   the 9th. Canon reserves **PIPE S9 = scene-transform** in ~15 documents
+   across six specs (site-scaffold l.512, missingdata XC-3 l.22 +
+   SCN-2 l.117, data-contracts l.256/496, map-viewer l.73/86/187/191/198/
+   309/504, dataset-scenes l.447/484/560, trackers-tool l.114/365,
+   build-log l.548). The canonical pipeline spec's own table numbers only
+   S1–S8. Three referents collide inside one spec: PIPE-S9-scene-transform
+   (canon), S9-logic-layer (shipped docstring), and the spec's proposed
+   S9-changelog — plus scaffold AC S9 (site-scaffold l.567) as a fourth,
+   unrelated namespace the spec cites correctly.
+2. **Ordering**: the spec anchors registration "after census S8"
+   (l.255), but logic-layer registers AFTER census and emits
+   `extracted/data/logic/*.jsonl` — four fingerprinted families
+   (fingerprints.json re-parsed this pass: effect_calls, flag_instances,
+   minigame_tunables, predicate_records). M1 projects ALL 84 fingerprints
+   into `build_integrity.jsonl`; registering changelog before logic-layer
+   snapshots stale digests on a patch-day rerun → CL-2 red, and the diff
+   arm would compare mid-rerun pins. The reviewer's ordering argument
+   verified sound.
+3. **Sweep count**: 13 sites carry the changelog-stage referent (l.67,
+   88, 99, 255, 259, 263, 272, 304, 414, 511, 541, 547, 584); two sites
+   are scaffold-AC-S9 and MUST survive any sweep (l.247 "AC S9",
+   l.510 "S9-pattern grep").
+
+**Arbitration of the pre-existing dual booking** (flagged to me by the
+review): canon wins — **S9 stays RESERVED for scene-transform**. Rewriting
+fifteen canon references across map-viewer/dataset-scenes/trackers-tool/
+missingdata/data-contracts to renumber a reserved future stage is a large,
+risk-heavy sweep against a one-line docstring edit; reservation semantics
+also survive scene-transform landing mid-list (positional numbering will
+drift again when it inserts; name-based dependency edges do not).
+logic-layer's canonical identity is its registry NAME (`logic-layer`),
+un-numbered until canon's table extends past S8 with real rows. Its
+docstring loses the colliding prefix (F3 — comment-only rider, no
+behavior). Changelog takes **S10** (next free slot), registration anchored
+after logic-layer BY NAME, not by number, for the drift reason above.
+
+### HIGH-2 — CL-1 predicate unsatisfiable post-trigger: ACCEPT (prior-pin record design, option b)
+
+Measured confirmation: fingerprints.json holds exactly one generation —
+distinct build_ids `{19029065}` over all 84 rows, parsed this pass; the
+§0.1-quoted patch_day law is replacement ("a new buildId invalidates every
+fingerprint; rerun re-pins them"), not accumulation. Therefore on trigger
+day the committed corpus legitimately holds ONE distinct build_id PLUS
+valid changesets ⇒ "<2 distinct build_ids" fails every correct post-trigger
+build, and the only state satisfying the gate is the accidental mid-rerun
+mixed-id transient — noise keyed to commit timing. The gate red-flags its
+own success state. Confirmed exactly as reviewed.
+
+**Design decision: option (b), the written prior-pin record — with option
+(a)'s structural half retained unchanged.** Grounding in the fingerprint
+discipline:
+
+1. **Replacement semantics are the law the spec rides.** The gate keyed on
+   fingerprints.json id-count contradicts the very §0.1 quote the spec
+   calls load-bearing. The pressure escape — keeping stale rows in
+   fingerprints.json to hold ≥2 ids — would corrupt CL-2's recomputed-sha
+   == fingerprints.json equality and pollute stamp-class accounting. A
+   separate lane is the only clean home for pre-patch truth.
+2. **The pack's proof style is disk-verifiable offline.** Every CL proof
+   method in §11 is mechanical/sandbox-replayable. Option (a)'s "produced
+   by M2 in the same run" is ephemeral process state — unverifiable after
+   the run ends, so its proof decays; it is the one AC whose acceptance
+   could never be re-proven from the committed corpus.
+3. **Tree N−1 is deleted after diffing completes** (data-acquisition
+   keep-until-diffed law, ridden at §4.2 step 2). Without a written
+   witness, the from-side of every changeset rests on nothing durable —
+   unfalsifiable provenance, precisely what the anti-fake architecture
+   exists to forbid. The pin record IS that witness, hashed from tree N−1
+   directly under fingerprints conventions, immune to re-pin ordering.
+4. Option (a)'s structural authorship law survives as-is regardless: M1
+   still structurally cannot emit `evidence_class:"computed"` (§3.3) —
+   that half was never the broken part.
+
+Mechanics pinned in the fix order (F4/F5): schema
+`miside.changelog.prior_pin/1` at
+`extracted/data/changelog/_pins/<from>-to-<to>.json`, written by M2 at
+trigger time BEFORE tree N−1 is released, gate re-keyed to record-per-
+changeset coherence, proofs re-cut both arms (refusal pre-trigger,
+acceptance post-trigger) reusing CL-10's two-tree fixture.
+
+### LOW-1 — `localization-architecture §5.5 "option A"` does not exist: ACCEPT
+
+Heading map re-measured: §1–§6 only; the never-mix law is §1 bullet 2
+(l.14), omit-at-gap is §5 item 5 (l.73), and no "option A" label exists
+anywhere upstream. Two sites to repair (§8.5 l.459, See-also l.600). The
+law itself is faithfully restated in the spec, so this is citation repair,
+not doctrine change.
+
+### LOW-2 — §0.1 over-attributes engine pins to EXTRACTION-LOG: ACCEPT
+
+Re-measured: EXTRACTION-LOG.md l.7 carries `"unity": "2021.3.35f1"` and no
+v29 anywhere in the file; the IL2CPP metadata v29 pin lives at
+TOOLCHAIN.md l.59 ("Metadata v29 is inside its supported…"). Fact true,
+source cell imprecise — split the attribution.
+
+### LOW-3 — Third documented rename unseeded: ACCEPT, ruled as SEED IT (with variant note)
+
+New measurement beyond the review: entities.json materializes NO
+`save_point` type at all (`entity_types` has 29 kinds, none save_point;
+the entity is spec-declared only — spec.md l.132 attrs `[name-per-build,
+chapter-segment, rename-lineage]`, source LEVELS checkpoint configs not
+yet extracted). So "save_point lacks a resolvable id for the third" CANNOT
+be the exclusion reason — all three renames stand on identical footing
+(same patch-note evidence, same provisional entity-id join, same future
+registry). game-research D1 l.58–59 documents all three together as
+official v0.921 load-point renames. **Ruling: seed the third row** —
+`Out of the Core → Leave The Core`, patch_slug v0-921, evidence_class
+documented-note — with one recorded caveat: D1 carries a spelling variant
+between its chapter table (`"Leave the Core!"`, l.55) and its rename line
+(`Leave The Core`, l.59); `to_value` pins VERBATIM to the rename line
+(that line IS the patch-note-derived evidence CL-3 resolves against) and
+§3.3 notes the chapter-table variant so the join law is testable for it.
+No silent unseeded gap remains either way.
+
+### LOW-4 — Feed-exclusion authority miscited: ACCEPT
+
+content-pipeline §7.2 (l.441–445) re-read: repo-only tokens live "in
+frontmatter machine-plane fields **and the JSON-LD/feed layer** only" —
+it explicitly ADMITS machine-plane into the feed layer, so it cannot be
+the ground for keeping `source_ref`s out of the channel. The exclusion is
+right and stricter; its true ground is AGENTS rule 3 / D2 (repo-only
+banned from every served pixel — RSS readers render channel items as user
+text). Re-attribute, keep the rule.
+
+## Review quality note
+
+All six findings verified accurate on independent re-measurement — no
+over-reach, no misses spotted in the reviewed surfaces beyond those the
+review itself already carries in its GOOD list (headline numbers, token
+law, seam facts, trigger chain, AC coherence, OQ posture: all confirmed
+sound and untouched by this round's fixes except where the fix order says
+so).
+
+## THE FIX ORDER — F-CL1 (one fixer lands these; numbered, self-contained)
+
+All edits target `docs/specs/changelog-viewer.mdx` unless the item names
+another file. Line numbers refer to the current 601-ln file; after each
+edit that shifts lines, re-anchor before the next. Suggested landing
+order = the numbering below (F1/F2 are mechanical and independent of
+F4/F5; F3 rides the same commit).
+
+1. **[HIGH-1] Renumber changelog stage S9 → S10 — exactly 13 sites.**
+   l.67 (`run_all` S9); l.88 module-table cell (`run_all` stage **S9
+   `changelog`**); l.99 dependency edge (see item 2 for its new text);
+   l.255 §4.1 opening; l.259 ("Today's tree: S10 runs M1…"); l.263 ("S10
+   is its last consumer"); l.272 (trigger step 4); l.304 §4.4; l.414
+   §8.1; l.511 CL-8 proof ("suite runs S10 against the single-build
+   sandbox"); l.541 OQ-1 ("activates mechanically at build #2 via S10");
+   l.547 OQ-2; l.584 Risk 4. **Protected sites — do NOT touch**: l.247
+   ("the same both-directions grep family as AC S9") and l.510 ("CL-7 …
+   S9-pattern grep") cite scaffold acceptance-criterion S9
+   (site-scaffold.mdx l.567), a different namespace. Exit check: after
+   this item, `\bS9\b` in the file matches ONLY those two protected
+   sites.
+2. **[HIGH-1] Re-anchor registration after logic-layer, by name, with the
+   rationale.** §4.1 l.255 becomes "S10 registers in `run_all` LAST,
+   after `logic-layer`" (drop "after census S8"). Dependency edge l.99
+   becomes: `run_all env…logic-layer ──► S10(M1 emit; M2 diff arm)` with
+   the parenthetical "(S10 registered last; dormant exits 0)". Add one
+   sentence after the §4.1 dormancy contract: M1 projects all 84
+   fingerprints — including the four `extracted/data/logic/**` entries
+   logic-layer rewrites on a patch-day rerun — so registering before
+   logic-layer would snapshot stale digests (CL-2 red) and let the diff
+   arm compare mid-rerun pins; anchoring is BY NAME because positional
+   numbers drift when scene-transform (reserved S9) eventually inserts.
+3. **[HIGH-1 rider] Fix the colliding docstring in shipped code — one
+   comment line, no behavior.** `pipeline/stages/logic_layer.py` l.1:
+   `"""S9 logic-layer — LG1-LG4 dataset emitters"""` → `"""logic-layer —
+   LG1-LG4 dataset emitters"""`. Arbitration behind it (see ruling HIGH-1):
+   canon keeps PIPE S9 reserved for scene-transform; logic-layer is
+   identified by registry NAME until canon's stage table extends past S8.
+   This is the fix batch's only non-doc line; orchestrator informed via
+   this file.
+4. **[HIGH-2] Add the prior-pin record law to §4 and re-key CL-1.**
+   (a) In §4.3, add an "**Outputs — prior-pin witness (first)**" bullet:
+   at trigger time, BEFORE tree N−1 is released and before any changeset
+   is written, M2 hashes tree N−1's fingerprinted artifact set under
+   fingerprints conventions and writes
+   `extracted/data/changelog/_pins/<from>-to-<to>.json`, schema
+   `miside.changelog.prior_pin/1`, fields: `from_build_id`,
+   `from_version_label`, `to_build_id`, `to_version_label`,
+   `artifacts[]{path, sha256}` (the from-side digest map), `row_count`;
+   ids must parse from the directory name. Pre-trigger the stage emits
+   zero bytes including zero `_pins/` files (dormancy law unchanged).
+   (b) Rewrite CL-1 (l.504) to: build FAILS if any changeset/renames
+   artifact exists without its matching `_pins/<from>-to-<to>.json`
+   prior-pin record whose ids are coherent with the directory and whose
+   from-side artifact map covers every path the changeset reports
+   changed/removed — plus the unchanged structural arm (M1 cannot emit
+   `evidence_class:"computed"`). State explicitly in the criterion:
+   fingerprints.json always holds EXACTLY ONE generation of pins per the
+   patch_day replacement law; stale rows are never accumulated to satisfy
+   any count. (c) §2 M2 row outputs list gains `_pins/`; §10 artifacts
+   table gains a row `changelog/_pins/<from>-to-<to>.json | M2
+   (trigger-time capture) | CL-1 gate, CI layer-scope checks`.
+5. **[HIGH-2] Re-cut CL-1's proof method both arms.** Replace the current
+   proof cell with: pre-trigger refusal — single-build sandbox asserts
+   emitter refusal + empty output globs; mutation = inject a fixture
+   changeset WITHOUT a pin record → nonzero exit naming the file AND the
+   missing `_pins/` path; post-trigger acceptance — reuse CL-10's
+   two-tree sandbox WITH a coherent pin record → green; mutation =
+   corrupt one digest inside the pin record → red. Cross-reference the
+   CL-10 fixture so the two suites share the tree-pair harness.
+6. **[LOW-3] Seed the third rename + record the spelling variant.** §3.3
+   seed rows become three: add `{entity_kind:"save_point",
+   entity_id:"out-of-the-core", attribute:"display_name",
+   from_value:"Out of the Core", to_value:"Leave The Core",
+   patch_slug:"v0-921", evidence_class:"documented-note"}` — `to_value`
+   verbatim from the D1 rename line (game-research l.59), which is the
+   patch-note-derived evidence CL-3 resolves against; add one sentence
+   noting D1's chapter-table variant (`"Leave the Core!"`, l.55) and that
+   the rename-line form governs. entity_ids remain provisional joins to
+   the spec-declared `save_point` entity (spec.md l.132) until LEVELS
+   checkpoint configs land.
+7. **[LOW-1] Repair the two localization-law citations.** §8.5 l.459 and
+   See-also l.600: replace "`localization-architecture §5.5 option A —
+   omit, never mix`" with citations to the real anchors —
+   `_foundation/localization-architecture.md` §1 bullet 2 (never-mix law)
+   and §5 item 5 (omit-or-declared-filler policy, per-pack declared; this
+   pack rules OMIT) — describing the posture inline rather than pointing
+   at nonexistent labels. Same drift in content-pipeline and the scout is
+   OUT of F-CL1 scope; noted for their next revision rounds.
+8. **[LOW-2] Split the engine-pin attribution in §0.1.** The
+   EXTRACTION-LOG audit-row cell (l.38) keeps `Unity 2021.3.35f1`
+   attributed to [EXTRACTION-LOG.md] l.7 and moves `IL2CPP metadata v29`
+   to its own attribution: TOOLCHAIN.md l.59.
+9. **[LOW-4] Re-attribute the feed exclusion in §7.4.** l.400–401: keep
+   machine-plane `source_ref`s out of the RSS channel, but ground it in
+   AGENTS rule 3 / D2 (repo-only banned from every served pixel; feed
+   readers render channel items as user text), replacing the
+   content-pipeline §7.2 citation — which admits machine-plane into
+   JSON-LD/feed layers and therefore cannot authorize this stricter rule.
+
+**Not in scope for F-CL1** (carried): content-pipeline/scout carry the
+same §5.5 drift (their rounds); pipeline-run_all.mdx gains its S10 stage
+table row when M2 lands, per the spec's own "same commit" clause — not at
+spec-fix time; scene-transform remains canonically reserved S9 everywhere
+else.
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES
