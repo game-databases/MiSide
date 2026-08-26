@@ -1,0 +1,165 @@
+# contracts-build-vB — Verifier B: adversarial pass on the contracts registries (2026-08-26)
+
+Target: [b16bb7b] `contracts/check_contracts.py` + `contracts/registry/{entities,joins,fingerprints,availability,stub-markers}.json`,
+against the ACCEPTED spec [data-contracts.mdx](../../specs/data-contracts.mdx) and the corpus.
+Independent of vA (not read). Constraints honored: no agents spawned; git never executed (HEAD read
+textually: `main` @ `fdd645459…`, b16bb7b is its ancestor per reflog); read-only except this file;
+checker executed in verify / self-test / report only — generate never run.
+
+**Identity of the verified bytes.** All five registry mtimes were 08:58:50–52 and check_contracts.py
+08:57:44 when this session opened, i.e. the lane-A generate burst that b16bb7b committed (~09:20).
+My first `verify` on that state was green (`83 gates green … 0 failures`, exit 0). At **09:28:44 a
+concurrent lane rewrote entities.json on the shared tree** (see F6); everything below attributed to
+"b16bb7b bytes" is pinned by that pre-09:28 green gate plus determinism: regeneration from the
+unchanged checker (sha256 97f1c6c5…) over the unchanged corpus (C5 still recomputes clean over all
+78 fingerprints) reproduces exactly what b16bb7b shipped. Fresh-rebuild sha256 `0e69599f3d3ac036…`
+= the b16bb7b entities.json; the current on-disk file (`be3046a5…`) is the concurrent lane's draft.
+
+## Method
+
+1. Full reads: AGENTS.md chain (decision-register, extraction-doctrine, extraction-host), pack
+   spec.md / README / data-acquisition, data-contracts.mdx (all 545 lines), check_contracts.py (all
+   2,009 lines), all five registry JSONs expanded from minified form.
+2. Checker modes: verify, self-test, report ×2. Determinism diffed via process substitution — no
+   scratch files written anywhere.
+3. Independent throwaway python (hashlib/json/Counter), never importing the checker's measurement
+   code for truth claims: join sums, anchor census, pooled enum/field inventories, fingerprint
+   recompute, availability census, ledger scan.
+
+## What verified clean
+
+1. **Cross-registry sums.** joins.json per-family `edge_count_measured` = expected for all 25
+   families, independently recounted from disk: Σ = **1,159** = `entities.relink_edge.row_count` =
+   `anchor_census.total_edges` = spec §4.1 table. Anchor census reproduces spec §4.2 exactly:
+   1,142 endpoint edges / 2,259 string endpoints / 25 JSON nulls / 17 anchor-less (34 absent slots);
+   all 21 anchor forms match the spec's census including `target:`+`controller:` = 380 and bare =
+   96 slugs + 76 scene-class-family@ = 172.
+2. **Fingerprints.** Seeded sample of 8/78 recomputed with hashlib: 8/8 clean; then the full sweep:
+   **78/78 sha256 clean**, row_counts and build stamps consistent (`header-stamp` 32,
+   `document-stamp` 22, `pipeline-defaults` 21, `row-stamp` 3; zero non-19029065 stamps).
+3. **Schema-shape, 4 blocks across all header classes** (A personage, B world_document, C
+   achievement, S speaker_theme): independent field inventories — field set, type string,
+   nullability flag, absent_or_null_rows — **0 deltas vs registry** in all four blocks. Enum
+   spot-checks sum to row counts everywhere (dialogue_node kind 2710/70/24/13/11/11 = 2,839; poi
+   source inline 298 / pptr-unresolved 76 / none 612; space 668/56/262; cartridge status 21+2=23),
+   matching the spec §3 numbers digit-for-digit.
+4. **entities enums ↔ stub-markers coverage map:** no contradictions. cartridge_item.status
+   unresolved ×2, icon pending-export ×26, unlock unverified-behavior ×15, dead-reference ×3,
+   text_mechanism unresolved ×166, speaker statuses 5+9=14 — registry enum counts equal stub-marker
+   measured counts equal disk. Ledger map: 83 entries, composition XC12 CH9 ACH7 END6 DLG10 CAR9
+   DOC8 SCN11 DOCX3 MA8 — equals my independent scan of missingdata.md line-for-line; every core
+   vocabulary id referenced; coverage evidence paths exist (checker-enforced).
+5. **Availability.** Independent recount of locale_availability.jsonl matches availability.json
+   exactly: 2,686 cells = 680/1,734/272; dispositions 2,108 present / 297 filler / 9 contentless;
+   34 locales; 50 distinct categories. C6 disposition matrix + C9 next_resolved discrimination
+   (572/94/2161) unit-green.
+6. **Consumes-never-derives (emphasis 2): clean.** No registry embeds a computed join or inferred
+   relation as primary data. availability.json carries measured cells + DECLARED rules (aliases,
+   fallback chain) exactly as §5 pins them; stub-markers.json carries typed markers with consumer
+   obligations, not conclusions; joins.json ships edges + grammars, and its consumption_law forbids
+   frontend-side derivation; dialogue_graph is explicitly labelled a derived projection ("consumers
+   join through nodes/edges, not graphs"). Notes are descriptions with citations, not payloads.
+7. **Deferred scope (emphasis 5): confirmed.** `marker` block has `fields:{}`, `enums:{}`,
+   row_count 0, note "ROW SCHEMA DELIBERATELY UNPINNED — Q5 RULED DEFERRED to XC-5"; no marker
+   row-schema key exists anywhere under contracts/registry/; markers.jsonl remains `_meta`-only on
+   disk. Q5's deferral is recorded in both spec §9-Q5 and the registry citation.
+8. **No vacuous paths of the mechanical kind:** REPO is anchored to the checker's own location (no
+   env-var corpus-root fallback); missing files raise; class-A/B header mismatches raise;
+   meta-only families are asserted == {cartridge--scene-placement, minigame--choice-condition,
+   ending--branch-edge} at 0 edges rather than accepted silently; empty-input successes do not
+   exist outside the declared meta-only/markers-v0 cases.
+
+## Findings
+
+**F1 — MAJOR: `relink_edge` registry block misstates corpus-wide measurements (last-artifact-wins
+merge).** In `build_entities` (check_contracts.py ~lines 989–1007) `fields.update(measure_fields(rows))`
+and `enums.update(measure_enums(rows, …))` execute inside the per-artifact loop, so for multi-artifact
+entity types each field/enum entry reflects only the LAST artifact that contains it, not the union.
+Only two decls are multi-artifact: dialogue_graph (fields empty by design — unaffected) and
+relink_edge (25 files — fully affected). Measured against pooled disk truth over all 1,159 rows:
+
+- `enums.direction` = `{forward:3, inverse:3}` (= character--dialogue-speaker's split, the last
+  direction-bearing file processed); pooled truth is `{forward:196, inverse:154}`.
+- `enums.kind` = `{forward:6, inverse:6}` (= document--minigame's kind-encoded direction); pooled
+  truth is `{forward:396, inverse:396}`.
+- **107 field-attribute misstatements**, e.g. `from.nullable=false` (truth: nullable, 31
+  absent/null rows — 17 anchor-less + 14 nulls), `to.nullable=false` (28), `direction.nullable=false`
+  (809), `kind.nullable=false` (367), `status.nullable=false` (17), `mechanism.nullable=false` (1),
+  plus dozens of wrong `absent_or_null_rows` (`award_site` registry 14 vs pooled 1153).
+
+This contradicts the registry's own `_meta.notation` ("enums are MEASURED value→count sets over all
+data rows") and spec C2's "every enum lists only measured values" as a *distribution* claim. The 83
+green gates cannot see it because regeneration repeats the same merge deterministically — C1 compares
+identical wrongness. Note the notes-prose counts ({hard ×1024, logic ×104, inferred ×20 …},
+status modeled ×1043 / partial ×73) ARE correct; only the machine-readable enums/fields blocks lie.
+Fix shape: accumulate Counters/inventories across artifacts inside the loop, serialize once after it;
+regenerate entities.json. Blast radius otherwise zero (single-artifact types unaffected — verified).
+
+**F2 — MODERATE: `gate_never_null` cannot fail.** Its body (lines ~1576–1591) computes `bad` and
+emits `rep.ok(...)` embedding the count — there is no `rep.fail` and no raise anywhere in the
+function (verified by inspection + execution: 63 oks, fails impossible to produce). It contributes
+~63 of the "83 gates green" headline while verifying nothing. Nullability drift does get caught
+transitively by C1 byte-compare, so the *property* is covered, but the gate is a tautology wearing a
+verification label. Fix: either compare against declared never-null expectations or delete the gate.
+
+**F3 — MODERATE: `gate_anchor_lint` (C4) is self-referential and cannot fail on corpus drift.**
+mode_verify passes it the freshly-built joins dict whose `anchor_grammar` was derived FROM THE SAME
+ROWS in the same run — any novel anchor form auto-admits itself to the grammar before linting.
+Demonstrated in memory: injecting `from:"cartridge:mta"` into minigame--scene-carrier leaves lint
+green ("all 2259 string endpoints parse") while the grammar silently grows `cartridge:`. AC-C4's
+mutation claim ("inject a `cartridge:` anchor → exit ≠ 0") does hold end-to-end, but through C1's
+byte-diff of joins.json (`$.anchor_census.forms.cartridge:: added`), not through C4 — the lint adds
+zero independent protection. Fix: derive the grammar from the COMMITTED joins.json (real lint), and
+keep the fresh build only for the C1 comparison.
+
+Non-blocking minors:
+
+- **F4:** the self-test "mutation probes" (C5 tamper = hash of two different byte strings differs;
+  C1 probe = incremented int serializes differently) are tautologies by construction; harmless
+  demos, but they should not be counted as mutation evidence — the real bite lives in C1/C5 vs
+  committed bytes (proven: an in-memory one-row drop regenerates entities.json with 9 deltas →
+  exit ≠ 0 path real).
+- **F5:** joins.json records `directions:{"None":0}` on the 9 families whose rows legitimately lack
+  `direction` (document-* and reverse-index families) — the `dirs[None] += 0` Counter seeding creates
+  a confusing zero-count entry; omit when absent. Also `classify_change` labels removal of whole
+  entity types as "VALUE DRIFT" (seen in F6's failure output) — diagnostic-quality nit.
+- **Observation, accepted:** `gate_fingerprints` warns (not fails) on cross-buildId stamps; defensible
+  since any content change trips the sha256 half first.
+
+**F6 — PROCESS HAZARD (not a defect of b16bb7b, action required by someone):** at 09:28:44 today a
+concurrent lane rewrote `contracts/registry/entities.json` on this shared worktree into a 29-entity-type
+shape adding four logic-layer blocks (`effect_call`, `flag_instance`, `minigame_tunable`,
+`predicate_record` → `extracted/data/logic/*.jsonl`, citing a "(pending)" data-contracts.mdx and
+docs/specs/logic-layer.mdx) in the raw declaration shape (no fields/row_count/header_class). The
+checked-in checker generates 25 types, so `verify` on the tree is NOW RED: `82 gates green, 2
+failures` — `C1 entities.json: regenerated differs from committed ($
+.entity_types.effect_call: removed)` + C8, exit 1. The rewrite also still carries the F1 pooling
+defect verbatim. Whatever lane owns the logic-layer extension must ship checker ENTITY_DECLS +
+regenerated registries in ONE commit per §6.3, or revert; until then the shared tree fails verify
+for everyone.
+
+## Mutation honesty (AC-by-AC)
+
+| Claimed mutation | Bites? | Via |
+|---|---|---|
+| C1 mutate one row_count | YES | regenerated-vs-committed byte diff (demonstrated in memory) |
+| C2 inject unknown field/value | YES | same path (inventory changes → C1) — not via any dedicated live gate |
+| C4 inject foreign anchor | YES, but transitively | C1 joins.json grammar/forms diff; C4 itself passes (F3) |
+| C5 flip one byte | YES | sha256 recompute mismatch (real gate, not the self-test demo) |
+| C8 field-set change without bump | PARTIAL | detected as drift, but classifier says "VALUE DRIFT" (F5) |
+
+## Determinism
+
+report mode twice: **byte-identical**. verify twice under frozen input: byte-identical. The only
+output change observed during the session was caused by F6's concurrent file rewrite, not by
+nondeterminism. Regeneration is a fixed point (same checker+corpus → same bytes), which is also what
+pins my b16bb7b attribution above.
+
+## Verdict
+
+Cross-registry coherence, fingerprints, schema-shape, availability, stub map, deferred scope and
+consumes-never-derives all pass adversarial recomputation; but F1 puts false measured distributions
+into a shipped consumer-facing registry block, and F2/F3 are gates that claim verification they
+cannot perform. Small, precisely-scoped fixes; nothing structural.
+
+VERDICT: NEEDS_REVISION — 3 items
