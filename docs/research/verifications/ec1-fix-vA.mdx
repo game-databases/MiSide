@@ -1,0 +1,211 @@
+# V-EC1a — post-fix verification of [R-EC1](ec1-review.mdx) / F-EC1 on `docs/specs/explorer-tool.mdx`
+
+Verifier A pass over [explorer-tool.mdx](../../specs/explorer-tool.mdx) at 610 ln
+(post-fix head 9871db6; pre-fix base 84077f3 = the 565 ln copy R-EC1 reviewed),
+2026-08-26. Read in full this pass: [explorer-tool.mdx](../../specs/explorer-tool.mdx),
+[ec1-review.mdx](ec1-review.mdx), [ec1-arbiter.mdx](ec1-arbiter.mdx), root
+`AGENTS.md`, `_foundation/decision-register.md`; [ll2-arbiter.mdx](ll2-arbiter.mdx)
+§5 (Ruling D) read for the binding-law sweep. No git; no subagents; read-only
+except this file.
+
+Corpus numbers below were **re-measured independently this pass** (python over
+`extracted/data/endings/{branch_edges,choice_nodes,endings}.jsonl`,
+`extracted/data/logic/{flag_instances,effect_calls}.jsonl`,
+`extracted/relinks/{choice--consequence,flag--gates}.jsonl`) — not copied from
+R-EC1 or A-EC1. First-pass measurement included `_meta` header lines in two logic
+files; corrected to data-row counts before any ruling was made.
+
+## Fix-order rulings (F-EC1 items 1–11)
+
+All eleven items verified against the 610-ln disk text. **11 × APPLIED, 0
+PARTIAL / MISSING / DEVIATED.** No residual defect text survives anywhere in the
+spec (greps for `seven consumed`, `ACHI_none`, `linked to its call popover`,
+`(+`_meta`)` outside header-class-A rows, unprefixed
+`scripts/check-chrome-parity`, `parent_name is null by measurement`, and
+"four `endings/*.jsonl`" all come back clean).
+
+1. **APPLIED — §7 item 3 (M-1).** The pane block carries the pinned wording:
+   "`feeds_ending` is ×0 by measurement (MA-8, END-5)" → renders the
+   `conditions-met` `award_chain[]` entries "(level6, `Events_Data_#6042.txt`,
+   status `proven-hard`)" as CHAIN ROWS with call popovers, "not graph edges";
+   names the tree's single award EDGE as the separate `branch_edges` row
+   `level14:ObjectInteractive:call4` → `AchievementGet("ACHI_achi")`, "already
+   inside the 728 render arithmetic"; ends with "No join between the two
+   artifacts may be invented; each links to its own source row id." Both
+   artifacts measured real this pass (below).
+2. **APPLIED — §5.3 carrier + §5.1 rule 4a + §6 chip sentence (M-2).**
+   `"wiring_steps"` entry sits directly after `"edges"` in the JSON sketch with
+   the LOCATOR-ONLY comment naming exactly `{edge_ref, from_node, container,
+   call_index}` and banning effect_class/status/polarity/citations. §5.1 gains
+   rule **4a** ("Wiring-step carrier") pinning EMIT-time enumeration over
+   shipped rows only + machine-voice rendering with NO condition language.
+   §6's chip now "expands to the bundle's `wiring_steps[]` entries (keyed by
+   `edge_ref`, §5.3)".
+3. **APPLIED — E10 proof + E13 note (M-2).** E10's proof method reads "payload
+   scan scopes to `nodes[]`+`edges[]`+`flags[]` (zero-hit law unchanged) PLUS
+   an assertion that every `wiring_steps[]` entry carries EXACTLY
+   `{edge_ref, from_node, container, call_index}` + ledger sum check vs
+   `effect_calls._meta` + tree-edge census". E13 states "the ≤200 kB core
+   budget absorbs `wiring_steps`".
+4. **APPLIED — §5.3 label law (M-3).** Now cites `prompt_loc` null on 358/371
+   nodes (measured), states `choice_nodes` has no `parent_name` column at all,
+   points the column to `flag_instances` where it is null ×384, and forbids
+   reading it on nodes.
+5. **APPLIED — §3 table + E2 (L1).** branch_edges Rows cell reads "**1,555**
+   (no `_meta` header — flat; first key is `edge_id`, like `choice_nodes`)".
+   E2 appends "tree-scope edge-class counts recompute from flat rows directly —
+   no `_meta` census to be additive against for the three `endings/*.jsonl`
+   files".
+6. **APPLIED — E1 + §5.1 items 1–2 (arbiter-added).** E1 names "the eight §3
+   artifacts (three `logic/*.jsonl`, three `endings/*.jsonl` =
+   choice_nodes/branch_edges/endings, two relinks)". §5.1 item 1 says "the
+   eight §3 artifacts"; item 2 lists the frozen set file-by-file and adds the
+   exclusion parenthetical: `flag_tables.jsonl`, `emit-ledger.jsonl`,
+   `relink-ending-branch-edge.jsonl` NOT consumed, out of the freeze manifest.
+   All three excluded files exist in the endings dir as named.
+7. **APPLIED — §5.1 item 1 closed op list (L2).** Reads "…ONLY projection,
+   filtering, prefix normalization (§5.2), label joins, AND path enumeration
+   over already-shipped rows (§8.2 `paths[]`)".
+8. **APPLIED — §8.1 disjointness + OQ closure (L3/OQ-E1).** Below the verdict
+   table: "The four verdicts are pairwise disjoint: `proven-reachable` requires
+   a path with ZERO named gates; `gated-by-known-condition` requires ≥1 named
+   gate; every evaluated path matches exactly one." All five §16 questions end
+   with "**RULED A-EC1 — CONFIRMED**" plus inline restatement, under an intro
+   paragraph linking [A-EC1](ec1-arbiter.mdx).
+9. **APPLIED — E3 scoping (L4).** "DOM scan scoped to flag-card label TEXT
+   NODES for `/\d{4,6}/`; `[data-slot="lcd-terminal"]` id/locator surfaces are
+   allowlisted."
+10. **APPLIED — §13 path (L5).** Cites `site/scripts/check-chrome-parity.mjs`;
+    the script exists at exactly that path on disk.
+11. **APPLIED — §4 hygiene (L6/M-4).** Blocked-by filled: M0′ "—", M1–M5
+    "M0′", M6 "M0′ + M2–M5 string freeze". Under-table note: `explorerState.ts`
+    has exactly one owner (M2); M6 imports it and MUST NOT modify state
+    semantics; URL-law changes are M2 changes reviewed under AC-E8. M6 Owns
+    cell drops `explorerState.ts`; Depends-on gains "consumes M2's
+    `explorerState.ts`".
+
+## Load-bearing number re-measurement (independent, this pass)
+
+Every number the fix round leans on reproduces exactly:
+
+- **branch_edges.jsonl**: 1,555 data rows, no `_meta` line (raw lines = data
+  rows), first key `edge_id`. Class census: scene-flow 709 · cosmetic 468 ·
+  audiovisual 356 · flag-set 10 · flag-query 8 · dead-reference 3 · **award 1**.
+  `feeds_ending:true` ×**0** (in fact `feeds_ending` is null on all 1,555
+  rows). The single award row measured in full: `edge_id`
+  `level14:ObjectInteractive:call4`, target
+  `{type:"Achievement_function", method:"AchievementGet", object_path_id:5139}`,
+  `args.string:"ACHI_achi"`, `status:"proven-hard"` — matches F-EC1 item 1's
+  pinned citation byte-for-byte.
+- **endings.jsonl**: 4 rows; `conditions-met` carries top-level `award_chain`
+  (list of 1): level6 / `Events_Data_#6042.txt` / host_object_path_id 6042,
+  `award_chain_status:"proven-hard"`, `achievement_id:"ACHI_none"`, chain's
+  last call `AchievementGet("ACHI_none")` — the ending-row artifact of item 1
+  is real and distinct from the graph edge.
+- **effect_calls.jsonl**: 20,485 data rows (+`_meta`); tiers A 117 / B 20,368;
+  class census 13/63/18/5,655/11,582/2,782/372 identical to
+  `_meta.census_accounting.per_effect_class` (`additive:true`). The cited row
+  `logic:call:level6:Events_Data_#6042.txt:6042:_event[0]:8` exists
+  (`AchievementGet`, args.string `ACHI_none`, class award).
+- **choice_nodes.jsonl**: 371 rows, flat; columns exactly {active,
+  branch_if_ints, call_count, container, event_field, evidence, go_path_id,
+  int_memory_default, kind, node_id, object_path_id, options, prompt_loc} —
+  **no `parent_name`**; `prompt_loc` null ×**358/371**; kinds 353/13/5 across
+  **42** containers; numeric tails **315/371**; stripping tails collides
+  **45** base ids (OQ-E4 ground truth stands).
+- **flag_instances.jsonl**: 384 data rows (+`_meta`); identity census
+  resolved 332 / bare-name 3 / unresolved 49; `parent_name` null ×**384/384**;
+  `_meta.join_law` present.
+- **predicate_records** 93 · **relinks** choice--consequence 1,555 /
+  flag--gates 40 (forward 20 / inverse 20); the §5.2 example pair
+  `choice-node:level10:DialogueChanger` →
+  `effect-call:logic:call:level10:DialogueChanger.txt:x:buttons[1].eventClick:0`
+  exists verbatim in the relink rows.
+- **Endings dir**: six jsonl present (`branch_edges`, `choice_nodes`,
+  `emit-ledger`, `endings`, `flag_tables`, `relink-ending-branch-edge`);
+  the three consumed ones are all flat (no `_meta` first line).
+
+## Binding-law sweep (A-LL2 Ruling D post-edit)
+
+All six obligations survive the edit round intact, each still mapped to a
+runnable enforcement point:
+
+| Obligation | Spec encoding | Enforcement | Post-edit state |
+|---|---|---|---|
+| D1 precomputed joins only | §2 table + §5.1 item 1 | AC-E6 grep ban list | intact; wiring_steps is EMIT-time projection over shipped rows — derivation-free |
+| D2 no raw int as fact | §2 table + UnnamedFlagChip law | AC-E3, AC-E4 | intact |
+| D3 absence-of-binding fail-closed | §8.3 wells + §10 table | AC-E4 golden populations | intact |
+| D4 evidence class rides every predicate | §11 badges | AC-E5 coverage + hooks | intact |
+| D5 canonical-string URL space | §12 integer-probe rule | AC-E8 property test | intact; wiring_steps keys live in the machine-plane bundle, not URL params |
+| D6 explicit prefix map | §5.2 BINDING table | AC-E7 single-table grep | intact |
+
+No fix touched §2 or weakened any enforcement point.
+
+- **E4 flip-mutant design intact**: golden populations enumerating the exact
+  fail-closed sets + banned-word grep + "MUTANT: flipping one row's
+  `evidence_class` to `static-proven` … makes the suite FAIL" all unchanged by
+  the fix round — the gate still cannot pass vacuously.
+- **E10 amended proof coherent**: the zero-hit scan scope (`nodes[]+edges[]+
+  flags[]`) excludes `wiring_steps` by construction, so the locator carrier
+  cannot trip the ban it was created to satisfy; the EXACTLY-four-keys
+  assertion closes the carrier against smuggled banned keys (the exact
+  arbiter M-2 design); ledger-sum and tree-census legs retained. Consistent
+  with D1/D6 since `edge_ref` normalizes through §5.2.
+- Observation (not a defect): L3's shipped sentence pins the named-gate
+  boundary for `proven-reachable` vs `gated-by-known-condition`; disjointness
+  of the other two verdicts follows from their table definitions. This matches
+  A-EC1's L3 ruling scope ("Boundary = named-gate count … One sentence").
+
+## Interpretation calls
+
+**(a) §10 parent_name correction carried to match M-3 — SOUND.** F-EC1 item 4
+named only §5.3, but §10's node-display-names row carried the same invented
+conflation verbatim. Fixing §5.3 while leaving §10 would preserve the exact
+CodeWriter hazard M-3 exists to kill (a reader of §10 reaching for
+`node.parent_name`). Carrying the correction keeps both rows consistent with
+measured disk truth (`prompt_loc` 358/371; no such column on nodes).
+
+**(b) Eight-file pin extended to §5.1 item 1 — SOUND, within item 6's intent.**
+Item 6's stated purpose is that E1's manifest construction not be "ambiguous at
+implementation time". §5.1 item 1 is the emission law itself; leaving a
+seven-family count there beside an eight-file list in item 2/E1 would have
+re-created the internal contradiction the precision item removes. The pin is
+applied consistently at every site that states the consumed set (E1, §5.1
+item 1, §5.1 item 2).
+
+**(c) OQ phrasing updated to RULED — SOUND.** Item 8 ordered exactly this
+marking for §16 items 1–5. The chosen form (questions retained, each closed
+with an inline "**RULED A-EC1 — CONFIRMED**" restatement + intro link)
+preserves the provenance chain and keeps every internal anchor that points at
+§16 (D5/OQ-E4 references) resolving.
+
+## Structure
+
+- **Module graph acyclic**: M0′ consumes ACCEPTED artifacts only (Blocked-by
+  "—"); M1←M0′; M2/M3/M4←{M0′, M1}; M5←M0′; M6←{M2–M5 string freeze},
+  consuming M2-owned `explorerState.ts`. No cycles; the M-4 dual ownership is
+  gone; the hard gate sentence ("no M1+ module may merge before M0′'s ACs
+  (E1–E2, E10) pass") is intact below the table.
+- **14 ACs keep proof methods**: E1–E14 all present, each with a concrete
+  method; the five amended cells (E1 wording, E2 flat clause, E3 scan scoping,
+  E10 scope + key-whitelist assertion, E13 budget parenthetical) are additive —
+  none dropped or weakened.
+- **Blocked-by column filled** on every row per item 11.
+- **Cross-refs resolve**: all external targets exist on disk (`tools-plan.md`,
+  `docs/specs/logic-layer.mdx`, `map-viewer.mdx`, `site-scaffold.mdx`,
+  `extracted/data/missingdata.md`, `contracts/registry/entities.json`,
+  `ll2-arbiter.mdx`, `ec1-arbiter.mdx`); ll2 anchor
+  `#5-ruling-d--explorer-encoding-obligations` matches its heading; internal
+  anchors spot-checked against heading slugs incl. the non-trivial
+  `#5-m0--explorer-bundle-emitter-data-side-gating-module`,
+  `#81-verdict-vocabulary-closed-set`, `#52-prefix-normalization-table-binding`.
+
+## Observations (outside F-EC1)
+
+- Upstream `logic-layer.mdx` line 3 still reads "Status: DRAFT for arbiter
+  review" — the one-line header fix A-EC1 parked to the orchestrator lane is
+  still unactioned. Not part of this verdict.
+- Line count 610 = 565 base + 45 net added lines, consistent with eleven
+  scoped edits of this size; no unrelated sections were rewritten.
+
+VERDICT: APPROVE
