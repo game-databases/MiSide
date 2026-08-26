@@ -1,0 +1,176 @@
+# V-W1 — combined delta verification of the F-CT4 + F-CT5 micro-fix rounds
+
+Verifier V-W1, 2026-08-26, tree state at `e2c1b17`. Combined delta pass over
+[ct3-review.mdx](ct3-review.mdx) findings HIGH-1/HIGH-2/MED-1/MED-2
+(fix round F-CT4) and [logic-guards-vD.mdx](logic-guards-vD.mdx)
+residuals F-1/F-2 (fix round F-CT5). No next build (disk gate): tsc +
+`npm test` + node/python probes only. Read-only except this file; no git;
+no agents.
+
+Inputs read in full: `site/scripts/build-content.mjs`,
+`site/src/data/articles.ts`, `site/src/components/routes/{articlePages,ArticleRoute}.tsx`,
+the charref/embed/swap/ledger describe blocks of
+`site/tests/contentPipeline.test.mjs`, and the flag_instance/effect_call
+note blocks of `contracts/check_contracts.py`; targeted reads of
+`docs/specs/content-pipeline.mdx` (§2 amendment, §3.2, §5, §8.1),
+`extracted/data/missingdata.md`, `contracts/registry/*.json`.
+
+## DELTA A — F-CT4 (content security / embeds / ledger gate / atomic swap)
+
+**A1 · Charref decoding inside the shared choke point — VERIFIED.**
+`decodeAttrCharRefs` (build-content.mjs:303) runs INSIDE
+`assertDestination` (:338); exactly two callers exist — the lexer gate
+`assertEscapeFirst` (:275) and the emitted re-parse `reparseFailures`
+(:443) — so both C14 legs judge the decoded form through one function,
+no second normalization anywhere. Live probes against the shipped
+exports:
+
+| destination | verdict | message names decoded scheme |
+|---|---|---|
+| `javascript&colon;alert(1)` | BLOCK | yes — `protocol "javascript:" … (browser-decoded: "javascript:alert(1)")` |
+| `javascript&#58;alert(1)` | BLOCK | yes |
+| `JavaScript&#X3A;alert(1)` | BLOCK | yes (`JavaScript:`) |
+| `jav\tascript:` literal tab | BLOCK | yes |
+| `jav&#9;ascript:` (named Tab ref) | BLOCK | yes |
+| `java\nscript:` newline | BLOCK | yes |
+| ` javascript:` leading space | BLOCK | yes |
+| `//protocol.relative` | BLOCK | protocol-relative law intact |
+| `https://`, `http://`, `mailto:`, `/rel#frag`, `#frag`, bare rel | PASS | — |
+
+Probe-nuance, ruled no-defect: `javascript&colonalert(1)` (named ref
+WITHOUT semicolon) passes — correctly. Browsers do not decode
+semicolon-less non-legacy named refs inside attribute values, and the
+decoder mirrors that (whole-key match against `NAMED_CHARREFS`;
+`colonalert` is not a key), so the served attribute stays a relative
+path — inert on both sides of the emitter/browser pair. The decoder's
+aggressive side (`&Tab`/`&NewLine` decoded without semicolon where a
+browser would leave them literal) can only over-block, never under-block:
+fail-closed direction. Numeric refs decode with AND without the
+semicolon, matching browser numeric-ref semantics; NUL/surrogate → U+FFFD
+matches. Suite bite: lexer mutations ×4 + re-parse leg + pin block incl.
+`&#106;avascript&colon;` full-decode (contentPipeline.test.mjs:178–248).
+Spec §2 dated amendment EXISTS: "Amendment 2026-08-26 (fix round F-CT4,
+R-CT3 HIGH-1)" at content-pipeline.mdx:135–140.
+
+**A2 · Per-cell embeds + serve-side consumption — VERIFIED; deviation
+ruled ACCEPT.** Emitter writes `embeds` into EVERY locale cell
+(build-content.mjs:883, `[]` when undeclared) beside the unchanged
+pivot-only top-level copy (:921); emitted registry on disk carries RU
+anchors + RU props (`как-работают-профильные-фото`,
+`какие-секреты-вообще-маршрутизируются`) whose ids match the RU body's
+actual `<h2 id=…>` set byte-for-byte, while EN cells keep the EN anchors —
+HIGH-2 restoration confirmed from artifact bytes, not claims.
+articlePages.tsx:263 consumes `prepareEmbeds(cell.embeds ?? row.embeds, …)`
+and ArticleRoute.interleave matches anchors against THIS locale's html.
+
+Deviation ruling — `cell.embeds ?? row.embeds` fallback: **ACCEPT.** On
+post-fix artifacts the left side is always present (even `[]`, which is
+not nullish), so the fallback is unreachable from current emit; it fires
+only on pre-fix registries, where it preserves EN rendering (pivot
+anchors DO match the EN body) and degrades translations to the exact
+pre-fix state rather than wrong-language or everywhere-lost content.
+Shape addition follows the ruled L3 precedent (per-locale
+toc/body_ref/stale) and mirrors `articleBody()`'s body_ref fallback
+shape. Residual (backlog, not charged): degradation on stale artifacts is
+silent; a schema-pin or a throw on `cell.embeds === undefined &&
+row.embeds.length > 0 && code !== pivot` would close it, and the §3.1
+exemplar still omits the per-cell embeds line L3 already asked for.
+
+**A3 · Ledger as runtime admission gate — VERIFIED.** `loadArticles()`
+(articles.ts:171–238) throws on half-a-pair, on any registry-only cell,
+on any ledger-only cell, then REBUILDS each row's `locales` FROM
+`article_locales.jsonl` — the mirror never admits by itself. Every reader
+flows through it (`publishedArticles` ← `articlesMetaAndRows`), and all
+gate sites consume those readers: admission
+(articlePages.tsx resolveArticleCell :144–146), sitemap
+(sitemapPartitions.ts:78 → admittedArticlePaths), hreflang
+(Object.keys(row.locales) :165), static params (articleParamsPivot /
+articleParamsByLocale :277–301). No src consumer opens the JSONLs
+directly. Tests prove refusal on a registry-only cell and throw-on-
+divergence naming the cells (:479–530).
+
+**A4 · Atomic body swap — VERIFIED.** Compile+validate everything into
+`.bodies.staging` first (build-content.mjs:756–925); only after ALL cells
+pass does old→`.bodies.previous`→staged→`bodies` run, with restore-on-fail
+putting the old set back if the second rename throws (:927–961), plus
+self-heal of an interrupted swap at :761–766. Failure paths return the
+familiar `{ok:false}` shape via `failCompile`. Test bites: failed emit
+leaves the prior body byte-identical with zero staging debris; successful
+rerun swaps in and leaves no staging dir (contentPipeline.test.mjs:387–414).
+
+**A5 · Suite + types — GREEN.** `npm test`: **152/152 pass, 0 fail, 11
+suites** (~1.5 s, temp content roots, real emit function, real tree
+untouched — verified post-run). `npx tsc --noEmit`: exit 0, no output.
+
+## DELTA B — F-CT5 (contracts notes/fingerprints)
+
+**B6 · Ruled law wording in checker + generated registries — VERIFIED.**
+check_contracts.py flag_instance notes now carry `id_spaces` =
+"mostly-disjoint -- non-zero numeric coincidence treated as collision
+(A-LL2 ruling C; measured 15.23% corpus-wide, Events_* 21.5%) … PPtr
+references resolve exclusively via serialized space under unique pairing;
+dual-space hits are ledgered, never resolved" and `writers/readers` =
+"…resolve ONLY through the SERIALIZED space … suffix ids never adjudicate
+a reference (A-LL2 ruling A; either-id-space fallback deleted, F-LL4)".
+Generated output agrees byte-for-byte with the source strings
+(registry/entities.json flag_instance.notes). Case-insensitive scan of
+ALL five generated registries: bare `DISJOINT` = 0, `either id space`
+(spaced, live description) = 0; the hyphenated "either-id-space fallback
+deleted" mention is a deletion RECORD citing ruling A + F-LL4, not
+documentation of current behavior — compliant.
+
+**B7 · Fingerprints vs live bytes — RECOMPUTED, MATCH.** Independent
+sha256 over raw file bytes: flag_instances.jsonl
+`d38cd1cdde0e1fbbd7682d0cc7ce129bbb7ab5d2d655d85240ccd45ef4d11424`,
+effect_calls.jsonl
+`8eb956a798486d53362758e063c44f937682c79fafebf31e55e5759a8f29267d` —
+both equal the pins in registry/fingerprints.json (row_counts 384 / 20485
+also match). Collateral untouched: predicate_records `f54e065a…`,
+minigame_tunables `fde26a7e…` still equal the values vD recorded
+pre-refresh.
+
+**B8 · missingdata.md LAW-1 — PRESENT, DATED, OUTSIDE THE STUB FAMILIES.**
+Row LAW-1 sits in "Mechanics rulings (binding law, not a gap)" with the
+full two-id-space statement (suffix handles display-only; serialized PPtr
+resolve exclusively; 15.23% corpus-wide / Events_* 21.5%; dual-space
+coincidence ledgered as collision, 0 on this build; binds true-space-only;
+ambiguity never silently resolved), Source cell "A-LL2 rulings A/C +
+F-LL4 guards (2026-08-26)". The checker's ledger-ID regex
+`(XC|CH|ACH|END|DLG|CAR|DOC|SCN|DOCX|MA)-\d+` structurally excludes
+`LAW-*`, LEDGER_COVERAGE remains exactly **83** entries, stub-markers.json
+reports ledger.entries 83 with no LAW-1 id and no disjoint/either-id-space
+strings — unperturbed, exactly as claimed.
+
+**B9 · Checker verify ×2 — GREEN, REPORTS BYTE-IDENTICAL.**
+`python contracts/check_contracts.py verify` twice: exit 0 both runs, 22
+gates green, 0 failures, stdout cmp-identical across runs (verify builds
+in memory and gates only — mode_generate is the sole writer, so the runs
+were read-only as ordered). The single WARN (C10 fields named only by the
+umbrella spec) is the pre-existing informational class, explicitly "legal
+if each carries its bump record", warning-level, exit 0.
+
+## Findings
+
+None at MAJOR or above. Recorded residuals, none counted:
+
+- N1 · `cell.embeds ?? row.embeds` silent degradation exists only against
+  pre-fix artifacts (see A2 ruling — ACCEPT with backlog hardening note).
+- N2 · §3.1 exemplar still lacks the per-cell `embeds` shape line
+  (carried since ct3-review L3; cosmetic drift risk only).
+- N3 · Decoder decodes semicolon-less `&Tab`/`&NewLine` more aggressively
+  than browsers — over-block direction only, fail-closed, no defect.
+
+## Verdict
+
+Both fix rounds landed complete and measure clean end-to-end: the charref
+hole is closed at a single shared choke point with browser-faithful
+semantics, translated pages render their own-language anchored embeds,
+the admission ledger is enforced at runtime across all four gate sites, a
+failed emit can no longer destroy compiled bodies, the contract registry
+teaches the ruled serialized-space-only law behind live-byte-matching
+fingerprints, and the mechanics row is ledgered outside the stub families
+without perturbing the 83-entry coverage map.
+
+DELTA-A VERDICT: APPROVE
+
+DELTA-B VERDICT: APPROVE
