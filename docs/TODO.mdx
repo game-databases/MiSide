@@ -77,8 +77,8 @@ other lane is mid-edit in `site/`.
 
 ## Phase 2 — data contracts
 
-- [~] Entity schemas spec `docs/specs/data-contracts.mdx`: F-DC2 LANDED `0e9468c`; **V-DC2a APPROVE** (11/11 applied; all sums reproduce; flag: 545 ln vs ≤500 cap = honest expansion, nothing dropped) → V-DC2b in flight → on APPROVE: **contracts builder** [⛓ unblocks tools/tracker/changelog/UGC]
-- [ ] Contracts builder: emit machine-readable `contracts/` artifacts from approved spec (frontend consumes, never derives)
+- [x] Entity schemas spec `docs/specs/data-contracts.mdx` — ACCEPTED: D-C1 → R-D-C1(6) → F-DC1 → V-DC1a/b + A-DC1 → F-DC2 → **V-DC2a+V-DC2b both APPROVE** (`0e9468c`, 545 ln; every census digit-reproduced by two independent verifiers). Residual: §6.1 stamp-prose true only for 3 families/16 rows (fix text in dc1-final-vB, fold at next doc pass)
+- [~] Contracts builder B-CT1: emitting machine-readable `contracts/` artifacts + entities.json seed + check_contracts.py from the accepted spec — in flight [⛓ unblocks tools/tracker/changelog/UGC]
 - [ ] Derived artifacts re-pinned on contracts: search index, map markers, relation cards
 - [x] `missingdata.md` ledger — 83 entries classified
 - [x] Pack infra: standalone repo `game-databases/MiSide` created + pushed; superproject gitlink `e64f2d00`
