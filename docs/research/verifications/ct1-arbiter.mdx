@@ -1,0 +1,310 @@
+# A-CT1 — Arbitration of R-CT1 over `docs/specs/content-pipeline.mdx` (PrepareTask step 4)
+
+Arbiter pass 2026-08-26. Inputs read in full:
+[R-CT1](ct1-review.mdx) (NEEDS_REVISION 11 · 0 HIGH / 6 MEDIUM / 5 LOW),
+[content-pipeline.mdx](../../specs/content-pipeline.mdx) (544 ln on disk),
+[content-scout.mdx](../content-scout.mdx). Every load-bearing review claim
+re-grounded against disk this pass, not trusted from the reviewer:
+
+| Review claim | Re-measured result |
+|---|---|
+| scenes `_meta.row_count`=24 | **confirmed** — first line parses to `"row_count": 24`, schema `miside.scenes.registry/1` |
+| `../promptForDB.md` has no numbered notes | **confirmed** — zero hits for `Note#`; headings are only PrepareTask/Agent-pipeline steps; zero mentions of translation/locales/"34" anywhere in the file |
+| `site/package.json` pins no markdown dep | **confirmed** — no `marked`/`markdown`/`remark`/`unified`/MDX entry |
+| `ENTITY_KINDS.lore` filter excludes notes | **confirmed** — [contracts.ts:396–402](../../../site/src/data/contracts.ts) filters `["paper_part","novella_surface"]`; ten routed keys, none reaches `family:"note"` |
+| world_documents = 160 notes unreachable | **confirmed** — census: header 1 / `note` 160 / `paper_part` 5 / `novella_surface` 1 |
+| mita-usual ↔ mita-true share a name | **confirmed** — both rows carry `name_loc {Menu, 83}` and `name_is_shared: true` |
+| cartridges ship no display name | **confirmed** — 23/23 rows have `name_loc: null` (CAR-5, missingdata.md) |
+| data-contracts §2.2 header classes | **confirmed** — three classes: A `_meta` wrapper, B bare descriptor (documents family), C headerless |
+| site-scaffold AC-S1 "pins exactly the §1.1 table" | **confirmed** verbatim; §1.1 table has no markdown row |
+| TODO.mdx Phase-3 mandate line | **confirmed** verbatim incl. `[promptForDB Note#7]`; board progress line records "455 ln" vs 544 actual |
+| localization-architecture MT non-goal scope | **confirmed** — line 82: "Machine translation of missing locales is not part of this standard" (scoped to game locales ⇒ article-MT genuinely open) |
+
+Sections: [Rulings](#rulings) · [OQ-1 owner briefing](#oq-1-owner-briefing-assessment--recommendation) ·
+[Fix order](#fix-order-for-f-ct1) · [Verdict](#verdict)
+
+## Rulings
+
+Severity discipline unchanged: MEDIUM fixes land before CodeWriter starts;
+LOW items are consistency edits riding the same landing unless noted.
+
+### M-1 scene count — ACCEPT
+
+Evidence: `_meta.row_count=24` re-parsed first-hand; data-contracts pins
+scene=24 independently. Fix exactly as reviewed: "24 rows (+1 `_meta`
+header = 25 lines)". Same rows-vs-lines class the spec itself polices for
+POIs — it cannot stand in a table that claims first-hand measurement.
+
+### M-2 "[promptForDB Note#7]" citation — ACCEPT, with honest re-citation design
+
+Verified: `../promptForDB.md` contains no numbered notes and no
+translation/locale text at all; the numbered-note reference belongs to the
+owner's recurring tasking prompt, which is off-repo and not producible from
+the repo. The in-repo reality is: **the mandate's citable source IS the
+board line** ([docs/TODO.mdx](../../TODO.mdx) Phase 3: "Localized content
+layer: blog posts/articles translated to all 34 corpus locales") whose
+trailing annotation points off-repo. Rule:
+
+- §8.2 cites the TODO Phase-3 line as the mandate source, quoted verbatim.
+- The `[promptForDB Note#7]` annotation is recorded as an owner-side
+  annotation whose text is NOT reproducible in-repo (`promptForDB.md`
+  verified to carry no numbered notes — stated plainly in the spec).
+- The OQ-1 register entry MUST quote the note's actual text (owner supplies
+  it at ruling time), so the authority chain becomes self-contained from
+  that moment forward. Until then the spec treats the board line alone as
+  the demand and does not lean on the note number for any argument.
+
+This keeps the owner gate honest without inventing authority the repo can't
+show.
+
+### M-3 renderer security law — ACCEPT, binding the escape-first pipeline
+
+Reviewer is right on both counts: stock `marked` passes raw block/inline
+HTML through by default, its `sanitize` option was removed in v5+, and C9's
+grep cannot catch arbitrary injected HTML (`<img onerror=…>` passes every
+listed pattern). Since `site/package.json` pins no markdown dep today, M2
+gets exactly what the spec says — so the spec must state the law the
+toolchain will actually hold. Ruled law (escape-first, no sanitizer dep):
+
+- **M2 validates before rendering, on the lexer AST it already walks** for
+  TOC/word-counts: any token of type `html` at ANY depth (block or inline)
+  fails the build, naming file + offending snippet. No raw HTML ever
+  enters an article body; consequently `marked.parse()` output contains
+  only markup generated from markdown syntax itself.
+- **Href protocol allowlist in the same walk**: link destinations are
+  restricted to `http:`/`https:`/`mailto:`/relative/`#…`. This closes the
+  `[x](javascript:…)` hole the reviewer did not name — same validator,
+  same failure mode.
+- JSX needs no separate rule: without an MDX runtime, JSX in `.mdx` is
+  inert text, and any tag-shaped text is caught by the html-token deny.
+- §5's claim is rewritten from the false property ("escape-by-default
+  rendering keeps HTML inert") to the enforced mechanism above.
+- **New enforcing AC (C14)** with seeded-violation proof — see F4. C9's
+  source-grep extension stays as belt-and-braces but is no longer the
+  enforcement of record.
+
+No sanitize-class dependency is added; one pinned dep (`marked`) survives,
+which also keeps the L-2 amendment minimal.
+
+### M-4 V3 deterministic linking — ACCEPT, tie-break semantics ruled
+
+All three edges confirmed on disk (shared Menu-83 pointer ×2;
+23/23 cartridge rows `name_loc:null`; per-locale holes precedented by
+MA-2/CAR-9). V3 becomes mechanical only after these rules land in §4:
+
+1. **Shared display names never auto-link.** If two entities listed in one
+   article resolve to byte-identical display strings in a locale, NONE of
+   the colliding names links in that locale. First-listed-wins was
+   rejected: it silently attaches the wrong entity's link, which is worse
+   than no link. Reverse-link modules and `entity-cards` embeds are
+   unaffected — the collision suppresses body-text linking only. Authors
+   who need the link use frontmatter `link_terms[]` (below) to pin an
+   unambiguous string.
+2. **Nameless rows link zero occurrences by default**, matching CAR-5's
+   measured-absence posture. Escape hatch stays inside the declared-set
+   principle: optional per-entity frontmatter field
+   `link_terms: ["Exact String"]` — exact case-insensitive whole-token
+   match, first occurrence per term, reviewable in diff like everything
+   else V3 does. Community aliases are NOT auto-scavenged (fuzzy matching
+   stays banned); they may be declared explicitly via `link_terms`.
+3. **Per-locale resolution, omit on empty.** Names resolve through THAT
+   locale's loc pointers; an absent/contentless name cell yields no link
+   in that locale — never an EN-string fallback (omit-never-mix, §8.1).
+   The "identical across locales by construction" guarantee is honestly
+   weakened to: link positions are identical wherever names resolve;
+   locales with hole-y names omit those links.
+
+### M-5 secrets-compilation seed guide — MODIFY (document limitation + board work item, no vocabulary change here)
+
+Confirmed: `kindIds("lore")` yields exactly the 6 non-note rows; no routed
+kind reaches the 160 notes. Ruling among the three options offered:
+
+- Extending `ENTITY_KINDS` (new `notes` kind or widened lore filter) is a
+  landed-contracts change with route/sitemap/search blast radius — it
+  belongs to a contracts piece under AGENTS rule 8, not smuggled into the
+  content pipeline. Rejected here.
+- Retargeting the seed guide away from "secrets compilation" throws away
+  the strongest measured demand item (scout §1.4). Rejected.
+- **Ruled:** keep the seed guide; §6.4 explicitly scopes its initial link
+  set to currently-routed kinds (lore paper_part/novella_surface,
+  profiles, books, plus whatever else it lists); guide copy obeys the DOC-1
+  fence (placement + event wiring only, never invented prose). Record
+  "notes-routed kind" as a dataminer/contracts work item on the board so
+  note-level linking arrives by a governed contract change later. The
+  limitation is stated in the spec, not discovered by a builder.
+
+### M-6 staleness covers translations too — ACCEPT, per-locale hash column
+
+The gap is real and lands exactly when OQ-1 multiplies files ×34. Ruled:
+add `body_sha16` (hash of the admitted `.mdx` source at admission time) to
+every locale cell of `article_locales.jsonl` (the admission gate —
+authoritative) and mirror it in the registry's per-locale map. At every
+emit M2 recomputes; when a pivot EN hash moves, every sibling locale still
+carrying its old hash prints
+`TRANSLATION-STALE: <article_id>@<locale> <- pivot moved` and flags the
+cell stale — machine-plane only, same discipline as §3.3 (never
+user-facing). An accepted-staleness ledger (explicit ack list) was
+considered and rejected: extra workflow state for little gain at this
+scale; the editor already works from build output. One column, one
+comparison, closes the blind spot.
+
+### L-1 header-class phrasing — ACCEPT
+
+Worse than the reviewer stated: documents family is class B (bare
+descriptor WITHOUT `_meta` key) while the proposed header line carries an
+actual `_meta` key — i.e. class-A shape mislabeled with class-B's name.
+Fix: reword §3.1 to "class-A `_meta` wrapper (data-contracts §2.2 class
+A)". Emit artifact may freely choose class A; `readJsonl()` handles both.
+
+### L-2 stack-pin drift across specs — ACCEPT
+
+AC-S1 reads "pins exactly the §1.1 table" verbatim; landing `marked`
+without amending that table fails the scaffold verifier by its own proof
+method. Amend `site-scaffold.mdx` §1.1 (marked row + why-cell citing
+content-pipeline §2) in the SAME commit as the manifest change. Justified
+pin itself stands (zero-dep, lexer AST serves TOC/word counts, heavier
+alternatives rightly avoided given §5 bans JSX bodies).
+
+### L-3 option-A cost cell + wave shape — ACCEPT (folded into OQ-1 briefing)
+
+Option A's cell contradicts the RU paragraph four lines later; fix the
+cell to say RU is first-wave launch content under EVERY option. Wave/tier
+shaping is added to the decision table as option D and sub-question OQ-1b
+— see [OQ-1 briefing](#oq-1-owner-briefing-assessment--recommendation).
+
+### L-4 llms.txt + static JSON API disposition — ACCEPT, articles JOIN both
+
+S11's law is "derivable from the page URL and fact-identical to the page";
+articles will be pages, and exempting them would need its own justification.
+One sentence in the §3.2 consumer table: `/api/v1/guides/{slug}.json` +
+`/api/v1/news/{slug}.json` derive from the registry (fact-identical per
+S11), published articles list in `/llms.txt`.
+
+### L-5 board length bookkeeping — ACCEPT as orchestrator-side note
+
+Not a spec defect: `wc -l` confirms 544; docs/TODO.mdx progress line says
+455 ln. Corrected by the orchestrator on the board (F12); no spec edit.
+
+## OQ-1 owner briefing — assessment & recommendation
+
+**Are A/B/C costed fairly?** Substantively yes after the L-3 wording fix,
+with two corrections the briefing should carry:
+
+- Option B's cost is understated: reusing client-shipped terminology via
+  `resolveLoc` pointers requires emit-side term-resolution support in M2 —
+  real tooling B has and A doesn't. Fair cell: slowest-to-moderate pace,
+  highest fidelity where readers notice (game terms), moderate new
+  tooling, highest editorial overhead per article.
+- Option C's true bottleneck is reviewer capacity, not generation: finding
+  named human reviewers for all 34 (incl. ar-EG, pl, tr…) is the schedule
+  term; MT drafting is nearly free. Also carries the register-entry
+  override requirement against localization-architecture line 82, whose
+  non-goal is scoped to missing GAME locales — so the override is a
+  legitimate ask, not a rule-break.
+
+**Should per-locale tiering become option D?** Yes, but labeled honestly:
+tiering is wave-shaping, not translation authority — it composes with any
+of A/B/C. Presented as a fourth row it gives the owner a concrete "start
+now" choice instead of an all-or-nothing matrix:
+
+> **D. Staged rollout (wave-shaping hybrid)** — chrome+UI stay fully
+> localized ×34 immediately (already shipped and parity-enforced — this
+> plane is unconditional and NOT gated by OQ-1). Long-form articles launch
+> pivot EN + RU (RU human-authored: co-primary audience per scout §3.3,
+> small volume, community-translatable); remaining locales follow behind
+> whichever authority wins. Cost: near-term cheapest honest path, zero MT
+> pressure at launch; consequence: non-RU non-EN guides arrive late
+> (omit-fallback keeps honesty throughout).
+
+**Recommendation to the owner:** D as the rollout frame + B's terminology
+reuse where pointer plumbing exists; escalate to C only via an explicit
+register entry quoting the Note#7 text and naming per-locale reviewers;
+A remains available if the owner wants zero tooling. Whatever is chosen,
+the register entry quotes the tasking-prompt note (M-2) and states the RU
+first-wave commitment (L-3). The pipeline builds identically under all
+four — nothing downstream blocks on this except mass non-pivot authoring,
+which stays frozen until the ruling.
+
+## Fix order for F-CT1
+
+Numbered, self-contained; one fixer lands F1–F11 (F12 is orchestrator-side
+bookkeeping, outside the spec). Each item: file → section → precise change.
+
+1. **F1** `docs/specs/content-pipeline.mdx` §0.1 audit table, Scenes row →
+   replace "25 rows" with "**24** rows (+1 `_meta` header = 25 lines)"
+   (M-1).
+2. **F2** same file §8.2 opening paragraph + OQ-1 bullet → re-cite the
+   mandate: quote docs/TODO.mdx Phase-3 line verbatim as the source;
+   replace "[promptForDB Note#7]" argumentation with the recorded fact
+   that the note lives off-repo (tasking prompt; promptForDB.md carries no
+   numbered notes — verified 2026-08-26); add requirement that the OQ-1
+   register entry QUOTES the note text (M-2).
+3. **F3** same file §2 stack-pin paragraph + §5 last sentence → bind the
+   escape-first law: M2 rejects any lexer `html` token at any depth
+   (build fail, file+snippet named) and enforces the href allowlist
+   http/https/mailto/relative/#fragment; no sanitizer dep added; rewrite
+   §5's "escape-by-default … keeps first-party authored HTML inert" claim
+   to describe this enforced mechanism (M-3).
+4. **F4** same file §11 AC table → add C14: seeded-violation proof —
+   fixture bodies carrying `<img onerror=…>`, `<script>`, inline `<b>`,
+   and `[x](javascript:…)` each produce nonzero exit naming file+token;
+   clean tree exits 0; emitted body HTML greps clean of raw-HTML
+   signatures markdown generation cannot produce (`<script`, `<iframe`,
+   `<img`, `onerror=`). Keep C9's grep extension as secondary (M-3).
+5. **F5** same file §4 V3 → append the three ruled tie-breaks: (i)
+   display-name collision among listed entities in a locale ⇒ colliding
+   names never auto-link there (cards/reverse-links unaffected); (ii)
+   nameless entities link zero occurrences, with optional per-entity
+   frontmatter `link_terms[]` (exact case-insensitive whole-token match,
+   first occurrence, diff-reviewable); (iii) names resolve per locale via
+   loc pointers, empty/absent cell ⇒ no link in that locale, never EN
+   fallback; weaken the cross-locale-identical claim to
+   identical-where-names-resolve (M-4).
+6. **F6** same file §6.4 seed map → for "secrets compilation (world
+   documents)": state the initial link set is limited to currently-routed
+   kinds (paper_part/novella_surface, profiles, books, …); record
+   notes-routed-kind as a contracts/dataminer work item for the board
+   (AGENTS rule 8); carry the DOC-1 fence reminder (placement + event
+   wiring only) (M-5).
+7. **F7** same file §3.1 registry example, §3.3 staleness model, §8.1
+   ledger cell description → add `body_sha16` per admitted locale cell
+   (ledger authoritative, mirrored in registry locales map); emit
+   recomputes and prints `TRANSLATION-STALE: <article_id>@<locale> <- pivot
+   moved` when a sibling's stored hash predates a moved pivot hash;
+   machine-plane only (M-6).
+8. **F8** same file §3.1 first paragraph → reword "(BARE shape, matching
+   the documents-family convention …)" to "class-A `_meta` wrapper
+   (data-contracts §2.2 class A)" (L-1).
+9. **F9** `docs/specs/site-scaffold.mdx` §1.1 stack table → add `marked`
+   row (pin decided at implementation, zero-dep; why-cell: content-pipeline
+   §2 renderer, lexer AST for TOC/word counts) — same commit as the
+   package.json change so AC-S1 stays green (L-2).
+10. **F10** `docs/specs/content-pipeline.mdx` §8.2 → fix option-A cost
+    cell ("RU is first-wave launch content under every option"); add
+    option D row (staged rollout: chrome+UI ×34 unconditional now, long-form
+    EN+RU launch, rest behind the won authority) and split out OQ-1b
+    (wave/tier shape composes with A/B/C) using the arbiter briefing text
+    above (L-3 + OQ-1 presentation).
+11. **F11** same file §3.2 consumer table → add row: static JSON API +
+    llms.txt — `/api/v1/guides/{slug}.json`, `/api/v1/news/{slug}.json`
+    derived from the registry fact-identically (S11 law extends to article
+    pages); published articles listed in `/llms.txt` (L-4).
+12. **F12** ORCHESTRATOR-SIDE (not the fixer, not the spec):
+    docs/TODO.mdx progress line "455 ln" → "544 ln"; attach the
+    notes-routed-kind work item row from F6; carry the OQ-1 briefing
+    (incl. option D + recommendation) to the owner (L-5).
+
+Sequencing note: F3+F4 are the security core (land together); F5–F7 are
+the design-law amendments CodeWriter implements against; F1/F2/F8–F11 are
+mechanical consistency edits. No item requires module-design rework — the
+reviewer's own verdict stands.
+
+## Verdict
+
+All 11 findings accepted or accepted-with-design (10 modify the spec /
+site-scaffold, 1 is orchestrator bookkeeping); no rejections. Fixes are
+bounded spec edits ahead of CodeWriter; the module design, registry
+hand-off, embed closure, omit-fallback i18n, and honesty fences survive
+arbitration intact.
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES
