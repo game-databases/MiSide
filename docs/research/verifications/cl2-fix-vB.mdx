@@ -1,0 +1,187 @@
+# V-CL2b — Independent verification of the post-fix changelog spec (F-CL1)
+
+Verifier B pass, 2026-08-26. Target:
+[docs/specs/changelog-viewer.mdx](../../specs/changelog-viewer.mdx) as landed
+for F-CL1 (`66f4252`; working tree — git not run per verifier constraints,
+639 ln measured on disk). Fix order input:
+[cl4-arbiter](cl4-arbiter.mdx) read in full. Verifier A's deliverable NOT
+read. Every number below re-measured from disk this pass; nothing accepted
+from the arbiter's or anyone's say-so. Emphasis per brief: adversarial
+implementer walk of BOTH safety designs (prior-pin witness gate, S10
+anchoring), independent re-measurement of every headline figure, terse
+ruling on each of the 9 fix-order items.
+
+## 1. Independent re-measurement (all confirmed)
+
+| Claim | Disk truth this pass |
+|---|---|
+| fingerprints.json = **84** = 55 data + 29 relink | parsed programmatically: dict of 84 artifact rows; path-prefix split 55 `extracted/data/**` + 29 `extracted/relinks/**` |
+| data-plane families 2/3/2/30/3/5/**4**/6 | achievements 2 · cartridges 3 · characters 2 · dialogue 30 · documents 3 · endings 5 · **logic 4** (`effect_calls`, `flag_instances`, `minigame_tunables`, `predicate_records`) · scenes 6 = 55 |
+| stamp classes 38 / 22 / 21 / 3 | build_id_source histogram: header-stamp 38 · document-stamp 22 · pipeline-defaults 21 · row-stamp 3 (=84) |
+| distinct build_ids **{19029065}** | set() over all 84 rows = exactly `{'19029065'}`; `pipeline_pin {build_id: "19029065", version_label: "0.93L"}`; summed `row_count` = **37,264** |
+| §0.1 patch_day quote verbatim | `_meta.patch_day` string matches the spec's block quote word-for-word incl. "(spec section 6.4)" |
+| §3.2 example row real | `achievements.jsonl` disk row: sha256 `f4220fcc…89be`, row_count 26, build_id_source row-stamp — byte-identical to the spec's JSON example |
+| STAGES registry state | [pipeline/stages/\_\_init\_\_.py](../../../pipeline/stages/__init__.py): 9 stages ending `logic-layer` registered last; deps declared BY NAME (`_BY_NAME` map) — no `changelog` stage yet, correct until M2 lands |
+| D1 §7 timeline fidelity | [game-research §7](../research/game-research.mdx) holds 12 rows; the spec seeds exactly the 8 build-axis rows — dates (2023-07, 2023-08-18, 2024-12-10, 2024-12-24, 2024-12-29, 2025-02-05, 2025-02-14, 2025-06-13), labels, and source_kind mappings (appdetails→keyless-api, Fandom→wiki-table, Steam news→steam-news-item) all faithful; the 4 excluded rows (collab / Kickstarter / Steam Awards / anniversary post) are precisely the non-build-axis events §3.1's event_class correction routes to the game stream |
+| Third rename verbatim | game-research l.55 chapter table prints `"Leave the Core!"`; l.59 rename line prints `` `Out of the Core`→`Leave The Core` `` — the spec's `to_value: "Leave The Core"` pins verbatim to l.59 and the caveat records the l.55 variant exactly as claimed |
+| Engine-pin split (F8) | EXTRACTION-LOG l.7 = `"unity": "2021.3.35f1"` (exact line); TOOLCHAIN l.59 = "Metadata v29 is inside its supported" (exact line); no misattributed v29 claim remains in §0.1 |
+| Localization anchors (F7) | heading map §1–§6 only, no §5.5, no "option A" anywhere upstream; §1 bullet 2 (l.14) is the never-mix law; §5 item 5 is the omit-or-declared-filler policy with per-pack declaration — the spec's inline restatements are faithful |
+| Feed-exclusion ground (F9) | content-pipeline §7.2 (l.441–445) re-read: repo-only tokens live "in frontmatter machine-plane fields and the JSON-LD/feed layer only" — it does admit machine-plane into the feed layer, so the spec's explicit disclaimer of it as authority is CORRECT, and AGENTS rule 3 / D2 is the right ground |
+| Token citations (§8.3) | tokens.css: `--ms-danger #fc0f43` ✓, `--ms-signal #08cb05` ✓, `--ms-glitch-split-a/b #08cb05/#ff009c` ✓, `--ms-font-lcd` ✓, `--ms-glow-glitch` ✓, `.ms-vhs-drift` class ✓ — every hex byte-true |
+| Cross-refs | articles.ts l.59 `ArticleType` includes `"patch"` ✓; `feeds/patch.xml/route.ts` + `(pivot)/news/[news_slug]/page.tsx` exist ✓; spec.md section-map row 15 is the Changelog/version-diff differentiator row ✓; COMP J9 documents the rename lineage ✓; questions #2 demo DROPPED 2026-08-24 ✓; data-acquisition carries "keep the previous build until diffing completes" ✓; data-contracts §2.2 + §4.4 KEEP-PINNED headings exist and the deep-anchor slug resolves ✓; ui-style-scout §4 items 1 and 4 are the VHS/chromatic motif and the CRT-green machine-truth register, so "T2 §4.1"/"T2 §4.4" resolve as section.item (not a LOW-1-style phantom) |
+
+## 2. Safety design 1 — prior-pin witness, BOTH branches walked
+
+Patch day simulated step-by-step against §4.2 + §4.3 as landed:
+
+**Correct sequence (must ACCEPT).** Tree N−1 on disk; appmanifest buildid
+≠ 19029065; DepotDownloader pulls tree N keeping N−1 (keep-until-diffed);
+`run_all` rerun reaches S10 last; M2 hashes N−1's fingerprinted artifact set
+under fingerprints conventions and writes
+`_pins/<19029065>-to-<new>.json` FIRST (before any changeset, before
+N−1 release); emit-stage commit re-pins fingerprints.json to N-only
+(one generation); diff arm compares N−1 vs N and emits changesets.
+Walking CL-1's clauses over this end state: (a) every
+`changesets/<from>-to-<to>/` directory has its name-matched
+`_pins/<from>-to-<to>.json` — yes, M2 wrote it from the same pair;
+(b) ids coherent with the directory — yes, parsed from the same buildids;
+(c) from-side artifact map covers every path the changeset reports
+changed/removed — yes, the changed/removed set is derived FROM the N−1 map,
+so coverage holds by construction (superset check); (d) fingerprints.json
+holds exactly one generation — yes, replacement law. **CL-1 ACCEPTS.** The
+original defect (gate keyed on ≥2 distinct build_ids inside
+fingerprints.json, which flagged the correct post-trigger state) is gone:
+the only remaining "distinct … trees" keying is the dormancy condition
+(§4.1), correctly keyed on trees on disk, not pin generations.
+
+**Fabrication branches (must REJECT).**
+1. Changeset injected, NO pin record → clause (a) fails outright; proof
+   method asserts nonzero exit naming the changeset file AND the missing
+   `_pins/` path. REJECTED.
+2. Pin present, ids incoherent with directory (e.g. wrong `<to>` in the
+   filename) → clause (b) fails. REJECTED.
+3. Pin present, from-side map missing a path the changeset reports removed
+   or changed → clause (c) fails (coverage is per-path, not count-based).
+   REJECTED.
+4. Corrupted digest INSIDE an otherwise coherent pin record → CL-1 alone
+   catches it when the mutated path is one the changeset reports (pin
+   digest ≠ changeset from-side value); for a mutated unchanged-path digest
+   the red comes from CL-10, whose "fingerprint delta between two re-pins"
+   can only be computed as pin-record ↔ current-fingerprints symmetric
+   difference under the one-generation law — a corrupted entry manufactures
+   a false delta that appears in no changeset → red. So the promised
+   "corrupt one digest → red" holds through the CL-1+CL-10 combination.
+   Minor: that delta-source identity is derivable but never stated (Obs-2).
+5. Residual honesty envelope (not a defect): a fully self-consistent
+   fabricated pair (changeset + coherent pin whose to-side digests match
+   real fingerprints.json) is unfalsifiable from the committed corpus once
+   tree N−1 is deleted — inherent to any post-delete witness scheme, and
+   outside this spec's threat model (mechanical drift, not forgery); the
+   structural arm (M1 cannot emit `evidence_class:"computed"`), the
+   code-plane digest coverage (CL-10), and the traceability gates are the
+   fences the design actually promises.
+
+Dormancy interplay clean: pre-trigger there are zero changesets and zero
+`_pins/` bytes, so CL-1 passes vacuously and the zero-bytes law (§4.1, §4.3
+final sentence, dependency edge, CL-8) stays intact everywhere — no
+contradiction between "witness written first" and "zero bytes pre-trigger"
+because the witness is trigger-time-only.
+
+## 3. Safety design 2 — S10 anchoring robustness
+
+Landed text: §4.1 "S10 registers in `run_all` LAST, after `logic-layer`" +
+the two measured reasons (stale-digest snapshot → CL-2 red; positional
+drift when scene-transform inserts), dependency edge l.99 carrying "(S10
+registered last, AFTER logic-layer; dormant exits 0)".
+
+Adversarial futures walked:
+
+- **Stage inserted BETWEEN logic-layer and S10**: anchor still holds
+  (relative order preserved). If the insert rewrites fingerprinted
+  artifacts before S10 runs, M1 projects fresh digests — fine. No silent
+  path.
+- **Stage registered AFTER S10** (breaks "LAST"): if it mutates
+  fingerprinted artifacts post-S10, final-tree digests drift from the
+  projected build_integrity rows → CL-2's 1:1 equality fails in-suite AND
+  the site rebuild's recompute-per-conventions law fails again downstream —
+  loud twice. If it merely emits new fingerprinted families, the 84-row
+  projection goes stale against a longer fingerprints.json → same CL-2 red.
+  Nothing breaks silently; the fingerprint conventions ("recompute on every
+  site build and pipeline emit; mismatch = defect") are the backstop that
+  makes ordering violations detectable regardless of direction.
+- **Changelog moved BEFORE logic-layer** (the exact regression the rationale
+  guards): M1 snapshots pre-logic-layer digests for the four
+  `extracted/data/logic/**` entries; logic-layer then rewrites them;
+  build_integrity ≠ fingerprints for those rows → CL-2 red, exactly as the
+  spec predicts. Loud, named, testable.
+- **Operational checkability**: the law is one registry inspection
+  (`stage_names()` order) plus, when M2 lands, the run_all stage-table row
+  the spec already binds to the same commit. There is no dedicated AC
+  asserting position (Obs-3) — acceptable at spec altitude because every
+  violation mode above surfaces through existing named gates.
+
+## 4. Fix-order rulings (9/9)
+
+| Item | Status | Evidence |
+|---|---|---|
+| F1 renumber S9→S10 ×13 | **APPLIED** | 13 S10-bearing lines match the arbiter's 13-site list one-to-one (l.67, 88, 99, 264, 268, 279, 288, 334, 447, 548, 578, 584, 621); both protected scaffold-AC-S9 sites survive untouched (l.256, l.547); zero residual changelog-stage S9 referents (see Obs-1 for the literal-third-hit nuance) |
+| F2 anchor after logic-layer BY NAME + rationale | **APPLIED** | §4.1 l.264–275 + edge l.99, both required sentences landed incl. the four-logic-entries staleness argument and the scene-transform drift argument |
+| F3 docstring rider (shipped code, comment-only) | **APPLIED** | logic_layer.py l.1 now `"""logic-layer — LG1-LG4 dataset emitters …"""` — colliding prefix gone, no behavior change |
+| F4 prior-pin law + CL-1 re-key + table rows | **APPLIED** | §4.3 witness bullet with full field list + first-before-release ordering + pre-trigger zero-bytes carve-out; CL-1 rewritten to record-coherence + structural arm + exactly-one-generation sentence; §2 M2 row lists `_pins/` "(prior-pin witness, written first)"; §10 gains the `_pins/` row with writer "M2 (trigger-time capture)" and readers "CL-1 gate, CI layer-scope checks" |
+| F5 CL-1 proof method both arms | **APPLIED** | pre-trigger refusal + no-pin mutation naming file AND missing `_pins/` path; post-trigger acceptance via CL-10's two-tree sandbox with coherent pin; corrupt-digest mutation; explicit "Both suites share the CL-10 tree-pair harness" |
+| F6 third rename + spelling variant | **APPLIED** | §3.3 seeds three v0.921 rows incl. `out-of-the-core`; caveat sentence names both D1 forms with l.55/l.59 semantics; provisional-join note retained; verbatim check passed (§1 table above) |
+| F7 localization citations ×2 | **APPLIED** | §8.5 cites §1 bullet 2 + §5 item 5 with faithful inline restatement ("this pack rules OMIT"); See-also carries the same anchors; no §5.5/"option A" remnant anywhere in the file |
+| F8 engine-pin attribution split | **APPLIED** | §0.1 keeps Unity on EXTRACTION-LOG l.7 (exact-line hit) and gives metadata v29 its own TOOLCHAIN l.59 attribution (exact-line hit) |
+| F9 feed-exclusion re-attribution | **APPLIED** | §7.4 grounds the channel exclusion in AGENTS rule 3 / D2 and explicitly disclaims content-pipeline §7.2 — disclaimer verified correct against source |
+
+## 5. Structural laws
+
+- **Dependency graph acyclic**: fingerprints→M1→M3→M4→M5 chain; M2 feeds
+  changesets/digests/re-pin; content-pipeline-M2→M4 is an external input
+  edge; no cycles.
+- **Proof methods**: all twelve criteria CL-1…CL-12 carry concrete,
+  mechanical/sandbox-replayable proofs; CL-1's arms reuse CL-10's harness
+  instead of duplicating a fixture — good economy.
+- **Cross-refs resolve**: every cited file, section, line-number, token,
+  class, and sample provenance checked (§1 table); the MDX anchor
+  `#13-open-questions-carried-for-the-arbiter` matches its heading.
+- **Dormancy zero-bytes law intact** at every mention (§2 edge, §4.1, §4.3,
+  CL-8) with the new `_pins/` carve-out correctly scoped to trigger time
+  only.
+- **Scope discipline held**: pipeline-run_all.mdx stage-table row and the
+  content-pipeline/scout §5.5 drift stay OUT of this batch, exactly as the
+  fix order's carried-items note requires.
+
+## 6. Observations (non-blocking)
+
+1. **The arbiter's item-1 exit check is unsatisfiable as worded — by its
+   own item 2.** `\bS9\b` in the landed spec matches THREE sites: the two
+   protected scaffold-AC ones (l.256, l.547) plus l.275, which is F2's
+   mandated rationale text itself ("scene-transform (canonically reserved
+   S9)"). The third hit refers to canon's reserved PIPE-S9 namespace, is
+   semantically correct, and was introduced BY the fix order's own required
+   sentence — the defect is in the exit check's wording, not the spec.
+   Zero residual changelog-stage S9 referents stands.
+2. **CL-10's delta source is implicit.** "Every fingerprint delta between
+   two re-pins" is only computable under the one-generation law as
+   prior-pin record ↔ current fingerprints.json. Stating it in one clause
+   would make CL-10's corrupt-pin mutation self-contained rather than
+   riding the combined gate.
+3. **No named AC asserts registry position** (LAST / after `logic-layer`
+   by name). Operationally checkable by inspection, and every violation
+   mode surfaces loudly through CL-2 — noted so a future TestWriter adds
+   the one-line assertion when M2 lands.
+4. Cosmetic: §3.1's v0-921 `summary_facts` names two renames while §3.3
+   seeds three rows for v0.921; no law requires the fact list to enumerate
+   them all.
+
+## 7. Verdict
+
+Both safety designs hold under adversarial walking: the correct patch-day
+sequence is ACCEPTED by CL-1 (original defect gone), all fabrication
+branches are REJECTED with named-file diagnostics, and the S10 anchor
+degrades loudly, never silently, under future insertions. All nine
+fix-order items APPLIED with zero regressions found; every re-measured
+figure exact.
+
+VERDICT: APPROVE
