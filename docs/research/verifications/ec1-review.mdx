@@ -1,0 +1,211 @@
+# R-EC1 — fresh review of `docs/specs/explorer-tool.mdx` (D-EC1)
+
+Reviewer pass over the Ending Condition Explorer piece spec at 565 ln
+(commit 84077f3), 2026-08-26. Read in full this pass: [explorer-tool.mdx](../../specs/explorer-tool.mdx),
+[logic-layer.mdx](../../specs/logic-layer.mdx) (426 ln),
+[ll2-arbiter.mdx](ll2-arbiter.mdx) (RULED, in full — §5/Ruling D is the binding
+obligation set), root `AGENTS.md`, [missingdata.md](../../../extracted/data/missingdata.md);
+`contracts/registry/entities.json` grepped for the four `miside.logic.*` entries +
+the `choice_node`/`branch_edge`/`ending`/`flag_instance`/`effect_call` shapes;
+sibling citations spot-read ([tools-plan.md](../../../tools-plan.md) §1–§3.2,
+[map-viewer.mdx](../../specs/map-viewer.mdx) §0/§2/§6,
+[site-scaffold.mdx](../../specs/site-scaffold.mdx) §3/§6 rulings).
+
+Every number below was re-measured from disk THIS PASS with independent python
+over `extracted/data/logic/{predicate_records,flag_instances,effect_calls}.jsonl`,
+`extracted/data/endings/{endings,choice_nodes,branch_edges}.jsonl`,
+`extracted/relinks/{choice--consequence,flag--gates}.jsonl`. Nothing accepted on
+faith; no git; read-only except this file.
+
+## Verdict summary
+
+The spec is unusually well-grounded: all six A-LL2 Ruling-D obligations are
+restated as acceptance-testable law with named enforcement points, and every
+census claim I re-measured reproduces exactly (93 / 384 / 20,485 / 371 / 1,555 /
+40 / 4; polarity accounting closes to the row; OQ-E4's 315/371 + 45 collisions
+reproduced independently). Four MEDIUM defects must be fixed before a CodeWriter
+reads it: one misattributed game fact (award-edge artifact confusion), one
+internal contradiction between the E10 exclusion law and the promised
+wiring-step expansion UX, one invented field citation (`parent_name` on choice
+nodes — column does not exist), and one dual file ownership in the module graph.
+No HIGH finding: nothing blocks M0′ from being built today.
+
+## Findings
+
+### MEDIUM
+
+**M1. §7 item 3 attributes the wrong artifact to "the one proven award edge".**
+> "the level6 award-site call (`ACHI_none` grant) renders as the one proven award edge, linked to its call popover"
+
+Measured: the single award-class edge in tree scope is
+`branch_edges.jsonl` `level14:ObjectInteractive:call4` →
+`Achievement_function.AchievementGet("ACHI_achi")`. The level6 `ACHI_none`
+grant lives in `endings.jsonl.conditions-met.award_chain[]` (`Events_Data_#6042.txt`,
+`award_chain_status:"proven-hard"`) — which is **not a graph edge**
+(`feeds_ending:true` ×0, MA-8, and §7 item 3 itself says trigger context rides
+native bodies three sentences earlier; §3's own render-set arithmetic counts
+award ×1 = the level14 row inside the 728). As written, a CodeWriter binds the
+pane block to the wrong row id or invents a join to make the sentence true —
+E2's hop-traceability sampling would then fail or mis-link player-facing copy.
+Fix: name the two artifacts separately (pane renders the `award_chain` calls as
+chain entries with call popovers; the graph's award ×1 edge stays the level14
+row).
+
+**M2. E10 exclusion law contradicts the promised `+N wiring steps` expansion.**
+§5.1 item 4: internal_only/cosmetic/audiovisual/dead-reference rows "never enter
+the graph payload; they enter ONLY the `_meta.exclusion_ledger` counts" (AC-E10:
+payload scan, zero hits). But §5.3's edges comment says "728 rendered +
+traversal-through markers for the 824-pool", and §6 promises the chip "expands
+to a neutral list of call targets". A list of call targets is row data from
+exactly the classes E10 bans from the payload. No carrier shape is defined for
+the expanded content. Fix before CodeWriter: either declare a dedicated compact
+`pool[]`/`wiring_steps[]` bundle section (canonical id + container/file only)
+explicitly outside E10's row scan, or downgrade the expansion to counts +
+machine-voice locator text carried in `_meta.exclusion_ledger`.
+
+**M3. §5.3 label-sourcing law cites a field that does not exist on choice nodes.**
+> "node labels are class-preserving (`desluggedLabel` pattern) because `parent_name` is null by measurement"
+
+Measured: `choice_nodes.jsonl` has **no `parent_name` column at all** (0 hits in
+all 371 rows; registry `choice_node` field list confirms — `parent_name` exists
+on `flag_instances`, where it is absent/null ×384). The justification survives
+on `prompt_loc` alone (null ×358/371, measured ✓), but this is precisely the
+invented-field class this review hunts: a CodeWriter implementing label fallback
+will reach for `node.parent_name`. Fix: cite `prompt_loc` only (and optionally
+note the conflation).
+
+**M4. `explorerState.ts` is owned by two modules with no landing order.**
+§4 table: M2 "interactions & state … `explorerState.ts` URL law" and M6 "routes,
+deep-links, i18n ×34 … `explorerState.ts`". The file carrying the D5 URL law
+(integer-probe rule, history split, slug encoding) has no single owner and no
+stated merge order between M2 and M6 — the exact drift surface E8 tests. Map-viewer's
+precedent assigns `mapState.ts` to exactly one module (M2) with the routes module
+consuming it. Fix: name the owning module and the other's consumption posture.
+
+### LOW
+
+**L1. §3 table marks `branch_edges.jsonl` "(+`_meta`)" — the file is flat.**
+First-line check: `choice_nodes`, `branch_edges`, and `endings` have **no**
+leading `_meta` line (header class C per registry); only the three logic files
+and both relinks lead with `_meta`. Spec states this correctly for
+`choice_nodes` ("no `_meta` header — flat") but wrongly for `branch_edges`.
+No AC depends on it, but E2 says "counts additive against `_meta` censuses" —
+state that tree-scope edge-class counts recompute from rows directly.
+
+**L2. §8.2 adds an emitter operation that §5.1 item 1's closed list omits.**
+"paths[] … computed at EMIT time" vs §5.1's "performs ONLY projection,
+filtering, prefix normalization (§5.2), and label joins". Path enumeration over
+shipped rows *is* projection (D1 intact), but the closed operation list should
+name it so E7-style "no second ad-hoc mapping" greps have a complete allowlist.
+
+**L3. Verdict set lacks stated disjointness between `proven-reachable` and
+`gated-by-known-condition`.** Both mean "path exists"; the boundary (zero named
+gates vs ≥1 named gate) is implied, not stated. A closed enum whose members can
+both match one path lets the renderer pick silently. One sentence fixes it.
+
+**L4. AC-E3's DOM scan `/\d{4,6}/` "adjacent to flag-label slots" will fight
+legitimate digits.** Canonical call ids and locators legitimately render numeric
+tails (`…ObjectInteractive:3695`) in LCD machine voice. Scope the scan to flag-card
+label text nodes specifically, with an allowlist for `[data-slot="lcd-terminal"]`
+id surfaces, or it false-positives into being disabled.
+
+**L5. §13 cites `scripts/check-chrome-parity.mjs`; the script lives at
+`site/scripts/check-chrome-parity.mjs`** (verified on disk).
+
+**L6. §4 table hygiene:** the "Blocked by" column is "—" on every row while real
+gates live in "Depends on" (M6 ← "M2–M5 string freeze"); harmless but makes the
+hard gate look weaker than map-viewer's equivalent table.
+
+### Observations (not defects of this spec)
+
+- `logic-layer.mdx` line 3 still reads "Status: DRAFT for arbiter review" while
+  both A-LL2 and this spec (correctly, per ruling chain) treat it as ACCEPTED.
+  Stale upstream header — fix there, not here.
+- OQ-E2's premise verified on disk: the safe-window row carries row-level
+  `sense_source:"community"`, `status:"community"`, 2 citations; HellVamp is
+  `value:null` + `inferred` + 2 citations; all `inferred` rows have citations.
+
+## Dimension verdicts
+
+1. **Binding obligations encoded — PASS.** D1–D6 restated in §2 verbatim in
+   substance from A-LL2 §5, each with an enforcement point that maps to a
+   runnable AC (D1→E6 grep ban list, D2→E3/E4, D3→§10 wells + E4 golden sets,
+   D4→E5 badge coverage + class hooks, D5→E8 integer-probe rule, D6→E7
+   single-table grep). OQ-E4's numbers re-measured and correct (below).
+2. **Polarity/topology fail-closed proofs — PASS.** E4's flip-mutant genuinely
+   detects: flipping a fixture row's `evidence_class` breaks both the golden
+   population enumeration and any derived state word, so the gate cannot pass
+   vacuously. No spec path renders a fail-closed predicate as directional
+   advice: §6 forbids direction-unknown forks flipping verdicts; §8.1's closed
+   set contains no harm-direction verdict and `"negative"` is measured ×0 on
+   disk; the lone directional `inferred` row is fenced by OQ-E2/OQ-3's single
+   tightening switch.
+3. **Invented fields/joins — PASS with M3.** Census re-measurement:
+   predicates 93 (kinds 26/23/4/17/3/19/1; polarity 34 positive-static + 1
+   directional-inferred + 36 access-null-static + 21 fail-closed + 1
+   HellVamp-inferred-null = 93 exactly); flags 384 (332/3/49,
+   `ambiguous_pairings:49`, `join_law` present, writers/readers = 20 entries on
+   3 instances); calls 20,485 (tier A 117 / B 20,368; all seven effect classes
+   match `_meta.census_accounting.additive:true`); choice_nodes 371 flat across
+   42 containers; branch_edges 1,555 with classes 709/468/356/10/8/3/1 and
+   `feeds_ending` true ×0; endings 4 with `mode_unlocked.state:"locked-stub"`
+   ×2 and `[community] ch4@17%, ch18@98%, ch19-empty` verbatim; relinks
+   1,555 + 40 (forward 20 / inverse 20). Quoted examples exist byte-for-byte
+   (`logic:call:level9:Trigger_Event_#11187.txt:11187:eventEnter:6`,
+   `choice-node:level10:DialogueChanger`,
+   `effect-call:logic:call:…:buttons[1].eventClick:0`). Render-set arithmetic
+   728 + 824 + 3 = 1,555 closes. Only defect: M3 (+L1).
+4. **Module graph — PASS with M4.** M0′→{M1,M5}; M1→{M2,M3,M4}; M6 last over
+   M2–M5: acyclic, complete, every consumer gated behind M0′. The hard gate
+   ("no M1+ merge before M0′ ACs E1/E2/E10") mirrors map-viewer §2's ruled
+   precedent almost verbatim — coherent.
+5. **UX law — PASS.** Question-first cards use the real recorded questions
+   (`question_en` for `achi_slaphead` is verbatim *"What unlocks \"Pat on the
+   head!\"?"* on disk); missability is framed through evidence classes rather
+   than fear words; the verdict vocabulary never claims what the corpus cannot
+   (see 2). L3 nit only.
+6. **Upstream corrections — PASS.** tools-plan §3.1's chapter-timeline sketch is
+   correctly downgraded to scene-container navigation with XC-2 named
+   (missingdata cross-cutting: level↔chapter map, SPEC gap #1); community
+   chapter strings appear only as attributed inline text. tools-plan's famous
+   negative conditions ("avoid the vent", "refrain from the oven") are honestly
+   refused as advice via the zero-negative measurement — the flagship
+   differentiator becomes "every connection, labeled by provability", which the
+   corpus actually supports. Reachability claims are bounded by the §8.1
+   vocabulary throughout.
+7. **ACs E1–E14 — PASS.** Each names data + method an orchestrator can run:
+   hash manifests (E1/E14), count recomputation + join sampling (E2),
+   build-time display-field assertion + scoped grep + DOM scan (E3, see L4),
+   golden populations + banned-word grep + mutation gate (E4), contract walk +
+   `data-evidence-class` assertions (E5), ESLint/grep ban list (E6),
+   disk-sampled unit tests over both conventions (E7), property round-trip +
+   integration probe + history spy (E8), existing parity script + attribute
+   test + namespace grep (E9), payload scan + ledger reconciliation (E10),
+   id-keyed stub assertions (E11), L4 deny-list rerun (E12), CI size budgets +
+   Lighthouse (E13), double-run diff (E14). Budgets plausible against measured
+   payload sizes (371 nodes ∪ 93 subjects, 728 edges, 384-row projection).
+
+## GOOD list
+
+- Every census claim in §3 reproduced exactly under independent measurement —
+  including the awkward ones (ambiguous_pairings 49, writers/readers 20, tier
+  split 117/20,368, 42 containers, feeds_ending ×0).
+- OQ-E4 is precise and re-measurable: 315/371 node ids carry `:<digits>` tails;
+  stripping them collides exactly 45 base ids, and all 45 groups are bare+suffixed
+  twins — the parenthetical is literally true.
+- Both relink conventions confirmed on disk, and `flag--gates` row-level
+  `method` really does say "inventory-resolved SERIALIZED-space id … no
+  suffix-space fallback" — the spec quotes the disk truthfully.
+- D3's topology extension is mechanically enforced, not prose: absence-of-binding
+  wells get equal-height VoidWell grammar and their own golden population inside
+  E4's mutant gate.
+- The i18n law keeps game names in the labels overlay out of chrome keys ×34
+  (all 34 files incl. ar/ar-EG/fa and ru-x-prerev verified present), and never
+  hand-translates `question_en`.
+- Design tokens cited (--ms-accent-gradient, --ms-glow-glitch, ms-vhs-drift,
+  --ms-font-lcd, ms-scan-breathe, lcd-terminal) all exist in tokens.css; VoidWell
+  is established house grammar.
+- Non-goals fence LG4 tunables out of the surface entirely (false-statement
+  engine posture preserved from logic-layer §7).
+
+VERDICT: NEEDS_REVISION — 4 items
