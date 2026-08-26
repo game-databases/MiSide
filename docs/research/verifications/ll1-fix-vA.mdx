@@ -1,0 +1,141 @@
+# V-LL1a — post-fix verification of [`docs/specs/logic-layer.mdx`](../../specs/logic-layer.mdx) @ 76b96c2 (D-LL1 fix round)
+
+Verifier A (V-LL1a). Date 2026-08-26. Subject: post-fix spec (426 ln on disk — line count matches the
+brief's pin; pre-fix base d919dcc was 353 ln per [ll1-review.mdx](ll1-review.mdx)). Inputs read **in
+full** this pass: [ll1-arbiter.mdx](ll1-arbiter.mdx) (11-item FIX ORDER),
+[ll1-review.mdx](ll1-review.mdx), the post-fix spec itself. No git invoked; no subagents; every
+number below re-measured by read-only python/find over `extracted/data/**`, `extracted/relinks/*`,
+and the relocated corpus `D:\unpacked_game_data\MiSide\{harvest,il2cpp}` — nothing accepted on faith,
+including the fixer's own collision citations.
+
+## Part 1 — FIX ORDER rulings (arbiter items 1–11)
+
+| # | Target | Ruling | Disk basis |
+|---|---|---|---|
+| 1 | §4 LG2 two-tier sweep | **APPLIED** | Tier A nine whitelisted families verbatim (spec:216–225) with floors ≥11 award / ≥2 cloth / 18 flag edges and the emit-ledger miss clause; Tier B same-sweep remainder, DS-2 seven-class semantics, `"internal_only":true`, dead-ref unfiltered-sweep rationale (spec:228–234); orthogonality stated with the `level14:ObjectInteractive:3695:call4` measured proof (spec:236–238); `_meta` per-class totals + `tier_a_count`/`tier_b_count` named as the honesty mechanism, "no numeric promise beyond the floors and the reconciled 1,555" carried verbatim (spec:239–243) |
+| 2 | §5 effect_calls fields | **APPLIED** | `event_field`/`option_index:int|null`/`call_index:int` in the record + defining comment naming them AC-L1b's discriminators (spec:285, 291–296); schema id stays `miside.logic.effect_calls/1` |
+| 3 | §8 L1 split | **APPLIED** | L1a byte-freeze wording unchanged; L1b 1,555/1,555 under `K=(node.container,node.event_field,node.object_path_id,edge.from_option,edge.call_index,target.type,target.method,target.object_path_id,args-tuple)` with host via `choice_nodes[from_node]`, 371/371 unique, 0 unresolved; measured collision citations present; L1c additive census accounting (spec:365–367) |
+| 4 | §3 polarity-value table (+L3, §6 row 3) | **APPLIED** | Five-row derivation table matches the binding rule row-for-row (spec:139–145); save-literals demoted to access points `value:null`; "`negative` is reserved: zero occurrences this build" (spec:147–149); L3 proof recomputes BOTH `evidence_class` and `value` against the table + zero-negative clause (spec:369); §6 row 3 carries the only-`inferred`-family-with-directional-value note (spec:334) |
+| 5 | Census refresh | **APPLIED** | LG3 "**23** cartridges" + "4 endings incl. the Peaceful locked-stub (it rides `endings.jsonl`'s four rows)" (spec:248–249); §6 "21 resolved / 2 unresolved (`mtad-2`,`mtacore`) explicit `pickup_ref:null` stubs" (spec:335); L3 "+**21** pickup gates" (spec:369). Zero hits remain for "24 cartridges", "22 resolved", "+22", "(+ Peaceful stub" |
+| 6 | §8 L6 staged contracts | **APPLIED** | Builder-owned insert at emit creating `contracts/registry/entities.json` if D-C1 unlanded, migration ledgered; `check_contracts.py` activates on arrival; interim CI-diff = run_all hashing `entities.json`; "LL1 never blocks on the contracts chain" (spec:372). Premise still true: `contracts/` = seven `dataset-*.mdx` only, no registry dir, no `check_contracts.py` anywhere |
+| 7 | §2.3 correction 3 | **APPLIED** | Suffix convention made explicit, bare-vs-suffixed keys distinct, "the shipped artifact is **not** ambiguously keyed", real gap = bare-name resolution via harvest inventory (spec:109–115); one stale phrase survives in LG1 — residual R-1 below |
+| 8 | target_path_id 18198 | **APPLIED** (placement corrected — see call (a)) | Single `18198` in the §5 effect_calls fixture (spec:286); zero `9330` anywhere in the spec; disk measures level9 `Dialogue_3DText_#12820.txt` → `target_path_id:18198`, `ACHI_slaphead` in the canonical relink |
+| 9 | status enum + internal_only pairing | **APPLIED** | Five closed values pinned (spec:166–169); pairing rule tied to §7's user-question list, never derived from `status` alone (spec:176–179) |
+| 10 | §8 L4 + typed evidence | **APPLIED** | Deny-list pattern family `win\|threshold\|score\|percent\|progress >=` over field names and numeric assertions, citation-string fields excluded by name (spec:370); §3 site-vs-citation namespace discriminator (`harvest/mb-dump/` \| `il2cpp/dump.cs`) (spec:171–174) |
+| 11 | §10 handoff sentence | **APPLIED** | Render contract named an input obligation of the `ending-condition-explorer` spec (target exists, tools-plan.md rank 1) with OQ-3's renderer flip as the single switch (spec:414–419) |
+
+**11/11 applied; none DEVIATED beyond the two flagged placements adjudicated in Part 3.**
+
+## Part 2 — independent re-measurement (all reproduced exactly unless noted)
+
+Corpus joins and collision tests (read-only python over the JSONL):
+
+- `branch_edges.jsonl` **1,555** rows; classes scene-flow 709 · cosmetic 468 · audiovisual 356 ·
+  flag-set 10 · flag-query 8 · dead-reference 3 · award 1 (sums 1,555); `feeds_ending:true` ×**0**.
+- `choice_nodes.jsonl` **371** rows, all ids unique, kinds object-interactive 353 / dialogue-changer
+  13 / event-memory 5; **0** edges with unresolved `from_node`.
+- **Join key K: 1,555 distinct groups, 0 collisions, max multiplicity 1** — AC-L1b satisfiable as
+  specified.
+- Drop-one tests: −`from_option` → **7 colliding groups** (max ×4); −`call_index` → **1 colliding
+  group** (×2); −`event_field` → **0 colliding groups** (see call (b)).
+- Reviewer tuple (edge_id-prefix container + target triple + args) **with** `call_index`: **47
+  colliding groups, max ×13**; without: **59 groups, ×15** — matches the spec's anti-simplification
+  citation digit-for-digit.
+- Nine-family whitelist cross-tab: **20 IN / 1,535 OUT** (scene-flow 709 OUT, cosmetic 467 OUT +
+  1 IN — the very row the orthogonality proof names — audiovisual 356 OUT, dead-reference 3 OUT,
+  flag-set 10 IN, flag-query 8 IN, award 1 IN); **133** distinct `(target.type,target.method)`
+  pairs led by SetActive ×265, AnimationPlay ×160, AudioSource.Play ×131, Animator.SetTrigger ×104.
+- Tier-A floor arithmetic: award sites 11 (`unlock.predicate_class:"serialized-site"` ×11 =
+  canonical relink's 11 data rows), cloth sites 2 (outfit relink = 2 hard forward+inverse mirrors +
+  HellVamp partial pair, 4 data rows), flag edges inside ending contexts 10+8 = **18**.
+- `cartridges.jsonl` **24 lines = `_meta` + 23 data rows**; `pickup_ref` null on exactly
+  **`mtad-2`, `mtacore`** ⇒ 21 resolved — the spec's 23/21+2 are disk-true.
+- `achievements.jsonl` 26 data rows (no `_meta` line): serialized-site 11 / code-body 12 /
+  aggregate 3; proven-hard 11 / unverified-behavior 15.
+- `endings.jsonl` **4** rows including `peaceful`; `mode_unlocked:{state:"locked-stub"}` rides
+  `peaceful` **and** `conditions-met` (arbiter's observation confirmed).
+- `minigames.jsonl` 17 data rows, `scoring_derivable:false` ×17; save-vocabulary 19 rows + `_meta`;
+  `flag_tables.jsonl` bare `level4:Events_IntMemory` (`object_path_id:null`) beside
+  `level4:Events_IntMemory:3327` (`object_path_id:3327`).
+- Native corpus: harvest `mb-dump` = **51** containers; `Events_IntMemory*.txt` = **5**;
+  `Events_Data*.txt` = **379** (universe 384); `il2cpp/dump.cs:106767` = `public class Scene_Load :
+  MonoBehaviour // TypeDefIndex: 1691` byte-exact.
+- Arithmetic reconciliation: 709+468+356+10+8+3+1=1,555; 20+1,535=1,555; 353+13+5=371; 11+12+3=26;
+  11+15=26; 21+2=23; 468+356≈~824 presentation calls; 5+379=384; 366 `eventClick` + 5 `_memory`
+  nodes = 371.
+
+## Part 3 — the fixer's three interpretation calls
+
+**(a) tpid 9330 lived in the §5 effect_calls fixture, not predicate_records — CORRECT.**
+Three independent traces: (i) the review's own F-6 quotes the stale value inside *"Spec §5
+effect_calls example"*; (ii) its source is the scout's WinFIght award-site fixture
+([logic-layer-scout.mdx](../logic-layer-scout.mdx) line ~132, `target_path_id:9330`); (iii) the
+`predicate_records` record shape carries **no `target_path_id` field at all** (its `condition.call`
+block has only type/method/args_string), so the arbiter's item-8 pointer could not have been
+literal. The correction landed where the value actually lived: exactly one `18198` in the spec,
+matching disk measurement of that site; zero `9330` residue.
+
+**(b) Measured-only collision citation — SOUND, and stricter than the arbiter's wording.** The
+arbiter claimed "dropping any one of `event_field`, `from_option`, `call_index` reintroduces
+collisions (7–59 groups)". Re-measured, the `event_field` drop yields **0 colliding groups** on this
+build's rows — node-level `event_field` is functionally determined today (`eventClick` ×366,
+`_memory` ×5), so that drop is empirically redundant edge-side. The arbiter's universal claim is
+therefore false as stated, and the fixer's text — asserting only the four numbers it measured
+(`from_option`: 7, `call_index`: 1, replaced tuple 47×13 / 59×15, all reproduced digit-for-digit
+here) — is the honest citation. Keeping `event_field` inside K remains correct by design (multi-field
+hosts like `buttons[2].eventClick` make it a real discriminator on the effect_calls side even while
+redundant on today's edges). Non-blocking nit N-2: the lead-in "dropping discriminators
+reintroduces collisions" could be over-read to cover `event_field`; a future word like "dropping
+either edge-side discriminator" would close it.
+
+**(c) Per-row `"tier":"A"` in the §5 fixture — SOUND.** Fix-order item 1's binding design mandates
+"the emitter must therefore record BOTH axes per row"; item 2 enumerated only the three *join*
+discriminators and explicitly kept the schema id at `/1` because "nothing emitted yet", so adding
+`tier` to the shape costs no version bump. The fixture row is internally coherent under the new
+rules: `effect_class:"award"` + `tier:"A"` exercises the orthogonality doctrine, and
+`internal_only:false` matches the F-7 pairing rule (an award row answers a user question).
+
+## Part 4 — structural laws
+
+- **Module graph acyclic**: LG1 ∥ LG2 ∥ LG4 → LG3, LG2 → two relink projections, and the
+  `branch_edges ◄──projection-check── LG2` arrow is read-only reconciliation — no cycle. Observation
+  N-3: LG2's tier-A `subject_ids` ("flag id via LG1") implies an undeclared soft LG1→LG2 dependency
+  beside the "mutually independent, can build in parallel" sentence — pre-fix inherited text, not a
+  cycle, untouched by the fix order; note only.
+- **Every AC keeps a proof method**: L1a sha256 before/after; L1b checker walks the same dumps then
+  verifies the mapping empirically; L1c additive sum checks with neither-output-nor-ledger failing;
+  L2 independent `find` re-run with identity-ledger absorption banned; L3 dual recomputation via the
+  typed site/citation discriminator; L4 pinned deny-list + hash compare + per-row
+  `rule_status:"not-a-threshold"`; L5 fail-fast hash gate exiting non-zero with the mismatch named;
+  L6 emission-commit registry insert + staged enforcement + interim run_all hashing. ✓
+- **Census sums reconcile**: all sums in Part 2 close; every count the spec states was re-derived
+  from the files, including the two numbers the fix round changed (23 cartridges = 21+2; +21 pickup
+  gates).
+- **Cross-references resolve**: heading anchors (#2.1/#2.3/#3/#6/#7/#9/LG1) are well-formed slugs;
+  linked files exist ([tools-plan.md](../../tools-plan.md) rank-1 ending-condition-explorer,
+  [data-contracts.mdx](../../specs/data-contracts.mdx),
+  [missingdata.md](../../../extracted/data/missingdata.md),
+  [logic-layer-scout.mdx](../logic-layer-scout.mdx)); ledger ids ([XC-*], [CAR-*], [END-*], …)
+  resolve as row keys in missingdata.md. Nit N-4: missingdata.md spells `mtad2`/`mtacore` while
+  cartridges.jsonl and the spec spell `mtad-2` — the data file wins; pre-existing, out of fix scope.
+- **Fail-closed polarity LAW intact everywhere edited**: Law 2 (§1) unchanged; the new §3 table
+  routes everything unlisted to `value:null`/`fail-closed-unknown`; `"negative"` reserved with an
+  AC-L3-enforced zero-row gate; §6 preamble render bar kept ("No renderer may turn any row below
+  into directional advice"); §7 internal-only taxonomy unchanged; §10 makes the render contract an
+  explicit explorer input obligation. Grep confirms "negative" appears only in enum/reservation/
+  enforcement contexts — no edited sentence weakens the bar on unknown values in user-facing
+  renders. ✓
+
+## Minor residuals (non-blocking)
+
+- **R-1** — spec:206 (LG1 identity rule) still opens "(new, fixes the ambiguity in §2.3-3)" while
+  §2.3-3 now rules the shipped artifact *not* ambiguously keyed; item 7's own fix created the
+  contrast. One-word touch-up ("…the identity gap described in §2.3-3") suffices.
+- **N-2** — see call (b): scope the "dropping discriminators" clause to the two measured drops or
+  add the `event_field` drop = 0 datum.
+- **N-3/N-4** — undeclared soft LG1→LG2 dependency; missingdata.md id spelling. Pre-existing.
+
+None of R-1/N-* changes a requirement, a gate, a number, or the LAW; all 11 fix-order items are
+applied and every load-bearing number reproduces.
+
+VERDICT: APPROVE
