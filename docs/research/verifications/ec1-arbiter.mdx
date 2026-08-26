@@ -1,0 +1,175 @@
+# A-EC1 — arbiter ruling on R-EC1 (`docs/specs/explorer-tool.mdx`)
+
+Arbitration pass over [R-EC1](ec1-review.mdx) (NEEDS_REVISION, 4 items: 0 HIGH /
+4 MEDIUM / 6 LOW), 2026-08-26. Read in full this pass: [explorer-tool.mdx](../../specs/explorer-tool.mdx)
+(565 ln), [ec1-review.mdx](ec1-review.mdx), root `AGENTS.md`. Corpus spot-checks
+re-run independently this pass (python over `extracted/data/endings/{branch_edges,
+choice_nodes,endings}.jsonl`, `extracted/data/logic/{flag_instances,effect_calls}.jsonl`);
+every load-bearing number below was re-measured here, not copied from R-EC1.
+No git; read-only except this file.
+
+## Verdict summary
+
+All ten findings stand: **4 × MODIFY** (each accepted in substance, with the
+carrier/ownership design the reviewer left open pinned here) and **6 × ACCEPT**.
+No finding rejected; no new HIGH surfaced. One additional precision defect found
+by this pass (E1 says "seven consumed artifact families" against §3's eight-row
+table; folded into fix item 6). All five spec Open Questions are RULED below so
+one fixer lands the whole round. Fixes are mechanical text/schema edits against
+a verified-grounded spec — no re-arbitration needed if F-EC1 is followed verbatim.
+
+## Finding rulings
+
+### MEDIUM
+
+**M-1 award-edge misattribution — MODIFY (accepted, wording pinned).**
+Measured here: `branch_edges.jsonl` has exactly **1** award-class edge,
+`level14:ObjectInteractive:call4` → `Achievement_function.AchievementGet("ACHI_achi")`,
+`feeds_ending:null`; `feeds_ending:true` ×0 across all 1,555 rows. The level6
+grant rides `endings.jsonl` row `conditions-met` **top-level** `award_chain`
+(`level6` / `Events_Data_#6042.txt` / `host_object_path_id:6042`,
+`award_chain_status:"proven-hard"`); its `ACHI_none` call exists as effect_calls
+row `logic:call:level6:Events_Data_#6042.txt:6042:_event[0]:8`. Spec §7 item 3
+must name BOTH artifacts separately — pane block renders the `award_chain`
+entries (chain rows with call popovers, NOT graph edges); the graph's award ×1
+stays the level14 branch_edge inside the 728. Fix order item 1 carries exact text.
+
+**M-2 exclusion law vs "+N wiring steps" expansion — MODIFY (carrier defined).**
+The contradiction is real: §5.3's edges comment and §6's chip promise content
+drawn from exactly the classes E10 bans. Ruling: **keep the promise, define the
+carrier.** Add a dedicated top-level bundle section `wiring_steps[]`, outside
+E10's row scan, with a CLOSED key whitelist `{edge_ref, from_node, container,
+call_index}` (all locator/machine-voice; zero `effect_class`/`status`/
+`polarity`/`citations`/`internal_only`). Emit-time enumeration covers ONLY pool
+edges that bridge two rendered nodes on ≥1 precomputed path (the chips' actual
+contents — bounded, deterministic, E13-safe), never all 824. E10 gains a
+key-whitelist assertion; D1/D6 hold because `edge_ref` normalizes through §5.2.
+Downgrade-to-counts alternative REJECTED: it makes the chip expand into nothing
+and strands the already-declared `explorer.wiringSteps` key. Fix item 2.
+
+**M-3 invented field citation — ACCEPT.**
+Measured here: `choice_nodes.jsonl` columns are exactly `{active, branch_if_ints,
+call_count, container, event_field, evidence, go_path_id, int_memory_default,
+kind, node_id, object_path_id, options, prompt_loc}` — **no `parent_name`**;
+`prompt_loc` null ×358/371 ✓. Cite `prompt_loc` only; note the conflation source
+(`parent_name` belongs to `flag_instances`, where it is null ×384 — also measured
+here) so the next writer doesn't reach for it again. Fix item 3.
+
+**M-4 dual-owned `explorerState.ts` — MODIFY (ownership pinned to precedent).**
+map-viewer assigns URL state to exactly one module (its M2 owns `mapState.ts`;
+verified at map-viewer.mdx §4 line 155 and §law rows). Same pattern here: M2 owns
+`explorerState.ts` (URL law author); M6 **consumes** it — routes/deep-links/i18n
+only, may not edit state semantics; any URL-law change is an M2 change. Landing
+order stays M2 < M6 via the existing "Depends on: M2–M5 string freeze" gate, now
+made explicit. Fix item 4.
+
+### LOW
+
+**L1 `branch_edges` "(+_meta)" — ACCEPT.** Measured: first key is `edge_id` —
+flat, like `choice_nodes`/`endings`; the five `_meta`-leading files are the three
+logic jsonl + two relinks (re-measured). Fix item 5 (+E2 flat-count clause).
+**L2 §5.1 operation list omits path enumeration — ACCEPT.** Projection in
+substance; name it so E7 greps have a complete allowlist. Fix item 7.
+**L3 verdict disjointness — ACCEPT.** Boundary = named-gate count: zero named
+gates ⇒ `proven-reachable`; ≥1 ⇒ `gated-by-known-condition`; a path matches
+exactly one. One sentence, folded into fix item 8 (which also closes OQ-E1).
+**L4 E3 digit scan will fight LCD ids — ACCEPT.** Scope to flag-card label text
+nodes with `[data-slot="lcd-terminal"]` allowlisted, or the gate gets disabled.
+Fix item 9.
+**L5 parity-script path — ACCEPT.** Verified on disk: `site/scripts/check-chrome-parity.mjs`.
+Fix item 10.
+**L6 §4 "Blocked by" all "—" — ACCEPT.** Fill it: M0′ gates M1–M5; M0′ +
+"M2–M5 string freeze" gates M6 — makes the hard sequencing rule visible where
+reviewers look. Fix item 11.
+
+## Open questions — RULED
+
+- **OQ-E1 CONFIRMED.** Verdict set pinned to the four §8.1 states; no
+  `impossible`/`missed-forever` while `"negative"` measures ×0; future [XC-1]
+  negatives EXTEND the enum. L3's disjointness sentence ships with it.
+- **OQ-E2 CONFIRMED.** Safe-window directional `inferred` renders as attributed-parameter
+  community chip, never advice phrasing; OQ-3's flip is the single tightening switch.
+- **OQ-E3 CONFIRMED.** `[community]` chapter attributions are inline row text only;
+  scene containers are the navigation spine (XC-2 ledgered).
+- **OQ-E4 CONFIRMED.** Numeric tails ride INSIDE slugified canonical ids as opaque
+  handle tokens — never standalone params, never parsed. Grounded: stripping tails
+  collides 45 base ids (re-measured census 315/371 tailed stands).
+- **OQ-E5 CONFIRMED (reserve).** `entity_kind`/`entity_slug` nullable columns land
+  NOW; zero migration cost; map-viewer ADAPT-LATER precedent.
+
+## Arbiter-added precision item (not from R-EC1)
+
+E1 says "**all seven** consumed artifact families" while §3's table lists **eight**
+(3 logic + 3 endings/\*.jsonl + 2 relinks), and §5.1 item 2 says "the **four**
+`endings/*.jsonl`" when the dir holds six jsonl files (`branch_edges`,
+`choice_nodes`, `emit-ledger`, `endings`, `flag_tables`,
+`relink-ending-branch-edge`) of which only three are consumed. Pin the frozen set
+to the explicit eight-file §3 list; exclude `flag_tables.jsonl`, `emit-ledger.jsonl`,
+`relink-ending-branch-edge.jsonl` (not consumed by this tool). Otherwise E1's
+manifest construction is ambiguous at implementation time. Fix item 6.
+
+## THE FIX ORDER — F-EC1 (single fixer, `docs/specs/explorer-tool.mdx` only)
+
+1. **§7 item 3 (award misattribution, M-1).** Replace the sentences from "…the pane
+   says trigger context rides native bodies…" through "…linked to its call popover"
+   with: "*Award chain block* — `feeds_ending` is ×0 by measurement (MA-8, END-5);
+   trigger context rides native bodies. This pane renders the `conditions-met`
+   `award_chain[]` entries (level6, `Events_Data_#6042.txt`, status `proven-hard`)
+   as CHAIN ROWS with call popovers — they are ending-row data, not graph edges.
+   The tree's single proven award EDGE is the separate `branch_edges` row
+   `level14:ObjectInteractive:call4` → `AchievementGet("ACHI_achi")`, already inside
+   the 728 render arithmetic (§3)." No join between the two artifacts may be
+   invented; each links to its own source row id.
+2. **§5.3 bundle shape (wiring-steps carrier, M-2).** After the `"edges"` entry in
+   the JSON sketch add: `"wiring_steps": [ // pool edges bridging two rendered
+   nodes on ≥1 precomputed path — LOCATOR-ONLY: {"edge_ref","from_node",
+   "container","call_index"} exactly; no effect_class/status/polarity/citations ]`.
+   Add to §5.1 a rule 4a: "Wiring-step enumeration happens at EMIT time over the
+   shipped rows only; entries carry exactly the four whitelisted keys; rendering
+   is machine-voice locator text with NO condition language." Amend §6's chip
+   sentence: the expanded list is the `wiring_steps[]` entries, keyed by `edge_ref`.
+3. **E10 (carrier enforcement, M-2).** Append to E10's proof method: "payload scan
+   scopes to `nodes[]`+`edges[]`+`flags[]` (zero-hit law unchanged) PLUS an
+   assertion that every `wiring_steps[]` entry carries EXACTLY
+   {edge_ref, from_node, container, call_index}". Note in E13 that the ≤200 kB core
+   budget absorbs `wiring_steps`.
+4. **§5.3 label-sourcing law (invented field, M-3).** Delete "because `parent_name`
+   is null by measurement"; replace with: "because `prompt_loc` is null on 358/371
+   nodes (measured) — `choice_nodes` has no `parent_name` column at all (that column
+   belongs to `flag_instances`, where it is null ×384; never read it on nodes)."
+5. **§3 table + E2 (flat file, L1).** Change the `branch_edges` Rows cell from
+   "(+`_meta`)" to "(no `_meta` header — flat)". In E2 append: "tree-scope edge-class
+   counts recompute from flat rows directly — no `_meta` census to be additive
+   against for the three `endings/*.jsonl` files."
+6. **E1 + §5.1 item 2 (consumed-set pin, arbiter-added).** In E1 replace "all seven
+   consumed artifact families" with "the eight §3 artifacts (three `logic/*.jsonl`,
+   three `endings/*.jsonl` = choice_nodes/branch_edges/endings, two relinks)". In
+   §5.1 item 2 replace "The four `endings/*.jsonl` and the three `logic/*.jsonl`
+   consumed sets" with the same explicit list; add "( `flag_tables.jsonl`,
+   `emit-ledger.jsonl`, `relink-ending-branch-edge.jsonl` are NOT consumed by this
+   tool and stay out of the freeze manifest )".
+7. **§5.1 item 1 (closed op list, L2).** Extend to "…performs ONLY projection,
+   filtering, prefix normalization (§5.2), label joins, AND path enumeration over
+   already-shipped rows (§8.2 `paths[]`)".
+8. **§8.1 (disjointness + OQ closure, L3/OQ-E1).** Below the table add: "The four
+   verdicts are pairwise disjoint: `proven-reachable` requires a path with ZERO
+   named gates; `gated-by-known-condition` requires ≥1 named gate; every evaluated
+   path matches exactly one." Mark §16 items 1–5 "RULED A-EC1 — confirmed" with
+   one-line pointers to this file.
+9. **E3 (digit-scan scope, L4).** Amend the proof method: "DOM scan scoped to
+   flag-card label TEXT NODES for `/\d{4,6}/`; `[data-slot="lcd-terminal"]`
+   id/locator surfaces are allowlisted."
+10. **§13 (script path, L5).** "`scripts/check-chrome-parity.mjs`" →
+    "`site/scripts/check-chrome-parity.mjs`".
+11. **§4 table hygiene (L6).** Fill "Blocked by": `M0′` on M1–M5 rows; `M0′ + M2–M5
+    string freeze` on M6. Under the table add: "`explorerState.ts` has exactly one
+    owner (M2). M6 imports it for route wiring and deep-links and MUST NOT modify
+    its state semantics; any URL-law change is an M2 change reviewed under AC-E8."
+    Adjust M6's Owns cell accordingly (drop `explorerState.ts` from Owned, add to
+    Depends-on posture "consumes M2's `explorerState.ts`").
+
+Upstream (orchestrator lane, NOT part of F-EC1): `logic-layer.mdx` line 3 still
+reads "Status: DRAFT for arbiter review" though it is ACCEPTED — one-line header
+fix there.
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES
