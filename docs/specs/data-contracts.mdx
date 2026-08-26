@@ -17,7 +17,7 @@ Reads (in full, this pass): [spec.md](../../spec.md) ·
 [missingdata.md](../../extracted/data/missingdata.md) (83 entries counted: 12 XC + 9 CH + 7 ACH +
 6 END + 10 DLG + 9 CAR + 8 DOC + 11 SCN + 3 DOCX + 8 MA) · `extracted/data/*/README.md` ·
 [contracts/dataset-characters.mdx](../../contracts/dataset-characters.mdx) (+6 sibling dataset
-contracts) · all 30 `extracted/relinks/*.jsonl` files parsed.
+contracts) · all 27 `extracted/relinks/*.jsonl` files parsed.
 
 ---
 
@@ -98,9 +98,10 @@ per-dataset contracts; entries below are the COMPLETE field inventory with types
 allowed (9 players) · `save_key` string·"" allowed (2 rows: `mita-usual`,`mita-true` — CH-8) ·
 `name_loc`,`description_loc` loc-pointer `{category,line_index}`·N (resolution §5) ·
 `palette_color1/2` float[4] RGBA 0–1, serialized r,g,b,a order·N — hex = per-channel `round(f×255)`
-clamp (token-layer input; `mita-usual` c1 → `#cc73a2`) · `gallery_icon` PPtr|null when pathID 0
-(honest-missing, CH-2) · `case_back`,`button_menu` PPtr|null · `preview_prefab_key` string|null
-(`[unverified]` inferred concat, CH-3) · `name_is_shared` bool·N (anti-merge: `mita-usual`↔`mita-true`
+clamp (token-layer input; `mita-usual` c1 → `#cc73a2`) · `gallery_icon` PPtr|null ×15 unserialized
+(9 populated share pointer level2/file_id 2/path_id 276; no pathID-0 case — CH-2) ·
+`case_back`,`button_menu` PPtr|null · `preview_prefab_key` string|null ×15 — verbatim `Personages/<Name>`
+strings (CH-3) · `name_is_shared` bool·N (anti-merge: `mita-usual`↔`mita-true`
 share Menu 83) · `gallery_order` int·N · `name_en` string·N (EN convenience copy — search/API glue,
 never rendered as non-pivot prose) · `build_id` string·N, `version_label` string·N.
 PPtr = `{container, file_id, path_id}`; `file_id≠0` ⇒ external-dependency pointer, target unresolved
@@ -152,8 +153,9 @@ ACH-1 PENDING; named explicit-missing state until art re-export (open question Q
 `{serialized_get_bool, get_bool_trusted:false ×26}` — **permanent quarantine**: no renderer may read
 the get bool (ACH-5, R-E1-2 editor pollution at indices {0,3}) · `joins`
 `{ending_id,minigame_id,collectible_set,outfit_id,chapter_attribution}` all nullable (chapter null
-×26 = XC-2) · `steam` `{appid, global_percent float 0–100, captured_at ISO-8601Z}` — ephemeral
-capture, machine-plane instant ([DR-2026-08-22-numbers-stand-alone]: never user-facing freshness) ·
+×26 = XC-2) · `steam` `{appid, global_percent float 0–100, captured_at ISO-8601Z,
+captured_at_machine_plane bool true ×26}` — ephemeral capture, machine-plane instant
+([DR-2026-08-22-numbers-stand-alone]: never user-facing freshness) ·
 `build_id` **int** here (see C9 canonical-comparison rule) · `type_tag` enum{story ×11, minigame
 ×8, ending ×3, collectible ×2, missable, meta}·N.
 
@@ -166,7 +168,8 @@ instances[], status:"unverified-behavior"}` (END-2 owner-call) · `conditions[]`
 enum{component-tracked,aggregate,password-compare}, subject, methods?, instances?, literal?,
 attribution?, status proven-structure|unverified-behavior, note?}` · `award_chain[]` ordered
 UnityEvent calls `{target_type,assembly,method,target_object_path_id,args{string,int,bool,object_path_id}}`
-· `award_chain_status` proven-hard|unverified-behavior|null (END-3) · `evidence[]`.
+· `award_chain_status` proven-hard|unverified-behavior|null (END-3) · `notes_community` null ×4 ·
+`evidence[]`.
 `choice_node` (371): `kind` enum{object-interactive ×353, dialogue-changer ×13, event-memory ×5}·N ·
 `prompt_loc` pointer|null · `options[]`, `branch_if_ints[]`, `int_memory_default`, `call_count`,
 `container/go_path_id/object_path_id`, `event_field`, `active` null ×371, `evidence[]`.
@@ -185,16 +188,21 @@ edges stay `effect_class:"dead-reference"`, never resolved away.
 ×70, pet_dialogue ×24, quest_box ×13, branch_group ×11, grouped_scene_dialogue ×11}·N · `text_ref`
 `{category,game_index,line_index}`·N — resolve 0-based, `line_index = game_index − 1` applied AT EMIT
 (resolveLoc arithmetic-free, scaffold AC S13) · `speaker` `{theme, display{en},
-entity{kind,slug,status}}|null` ×129 — nulls are exactly the speaker-less kinds
-choice_case/quest_box/pet_dialogue (DLG-3 structural ceiling; 100% coverage within kinds that have a
-mechanism) · `emotion{start,finish}`·N · `next_resolved` enum{'resolved' ×2161, 'null' ×572,
-'unresolved-in-level' ×12, null ×94} — STRING `'null'` means resolved-to-explicit-null; real null =
-terminal · `condition_hints[]`, `events_with_calls[]`, `style`|null,
-`source{class,container,gameobject_path_id,path_id}`·N · `location` category name·N · `chapter` null
-×2839 (DLG-5/XC-2 — open question Q3) · `build` int. Per-level graphs `graphs/level*.json` ×19.
+entity{kind,slug,status}}|null` — null ×129 = EXACTLY the five non-ambient kinds: choice_case ×70,
+pet_dialogue ×24, quest_box ×13, branch_group ×11, grouped_scene_dialogue ×11 ·
+`level` `level<N>`·N (19 distinct, no level18 = SCN-10) · `voice_present` null ×2839 ·
+kind-payload on exactly its kind's rows — choice_case{case_index,flags,icon_button_ptr,label_ref,
+parent_node} quest_box{case_ids,file_quest} pet_dialogue{copy_person_ptr,dialogue_file_declared,name_string_declared,
+pet_lines} branch_group{entries[],forks[],groups[],main_ptr} · `emotion{start,finish}`·N · `next_resolved`
+{'resolved' ×2161,'null' ×572,'unresolved-in-level' ×12} on 2,745 rows, KEY ABSENT ×94 = terminal ('null'
+string = resolved-to-explicit-null) · `condition_hints[]`, `events_with_calls[]`, `style`|null ×13 quest_box,
+`source{class,container,gameobject_path_id,path_id}`·N · `location` category name·N · `chapter` null ×2839
+(DLG-5/XC-2 — open question Q3) · `build` int. Per-level graphs `graphs/level*.json` ×19.
 `dialogue_edge`: `src`,`dst`|null,`kind` enum{next ×2161, on_finish_action ×1535, choice ×70,
-branch_left ×5, branch_right ×5},`slot`,`label_ref` pointer|null,`resolution`
-enum{text-keyed-no-node-carrier ×10,null ×3766},`ptr`. Ledgered residue: 12 dangling nextText
+branch_left ×5, branch_right ×5},`slot`,`label_ref` pointer|null ×80,`resolution` {text-keyed-no-node-carrier
+×10, absent ×3766}, on_finish legs: `call_index` int ×3776 ·
+`call`{target_type,method,target_ptr,args,mode,call_state} ×1535 · `resolved_to` ×1535 ·
+`anchor_entry` ×142 — NO `ptr` field exists. Ledgered residue: 12 dangling nextText
 (DLG-6), 8 unattached condition hints (DLG-7), 10 fork slots (DLG-8) — explicit ledger rows, never
 dropped. `speakers.json`: `curated_mapping[]` ×14 `{theme,enum_index,names_anchor,carrier,display_en,
 entity{kind,slug,status}}` — 9 `provisional-pending-ds1` + 5 `pending-curation` (DLG-1/DLG-2; open
@@ -204,17 +212,18 @@ per-locale FFFD marking.
 
 ### 3.8 documents — `profile_document` (14) / `world_document` (166) / `book` (8) · keys `document_id` / `book_id`
 
-`profile_document`: `subject_character_id`·N (DS-1 join) · `flash_save_key`·N · `name_loc`,`lore_loc`
-pointers·N (14×34=100%, DS-5 AC-3) · `name_en`,`name_is_shared` convenience copies · `placement`
-`{carrier_class,component_path_id,container}`·N (authority DS-4 by reference) · `placement_mechanism`
-enum{placed ×11, script_granted ×2, story_granted ×1}·N · `achievement_sets[]`·N ·
-`registry_ref`,`evidence[]` · `chapter` null ×14 (XC-2) · stamps·N.
+`profile_document`: `subject_character_id`·N (DS-1 join) · `flash_save_key` string|null ×1 null ·
+`name_loc`,`lore_loc` pointers·N (14×34=100%, DS-5 AC-3) · `name_en`,`name_is_shared` convenience copies ·
+`placement` `{carrier_class,component_path_id,container}`|null ×3 null (mita-2-d/core/true profiles; authority
+DS-4 by reference) · `placement_mechanism` enum{placed ×11, script_granted ×2, story_granted ×1}·N ·
+`achievement_sets[]`·N · `registry_ref`,`evidence[]` · `chapter` null ×14 (XC-2) · stamps·N.
 `world_document`: `family` enum{note ×160, paper_part ×5, novella_surface}·N · `carrier`
 `{container,dump_file,mb_class,path_id,serialized_container}`·N ·
 `scene_ref{container,gameobject_path_id}`·N · `text_mechanism` enum{unresolved ×166}·N with
 `text_loc` null ×166 (DOC-1 — negative findings re-proven; notes render as placed interactables +
-wiring, never invented prose) · `sprite_ptr`|null (DOC-2/XC-4) · `event_wiring[]`, `actor_refs[]`,
-`puzzle_index`|null.
+wiring, never invented prose) · `sprite_ptr`|null ×18 populated (DOC-2/XC-4) · `scr_main` PPtr
+`{file_id,path_id}` ×5 (paperpart-level13-*, shared path_id 19195) · `audio_source_refs` int[] ×1 ·
+`event_wiring[]`, `actor_refs[]`, `puzzle_index`|null ×5 populated.
 `book`: `texture_rel`·N · `art_per_locale` map locale→bool·N (272 cells, 264 true — 97.1%;
 zh-Hans/Hant lack 4 Location19 pages each, DOC-8) · `art_per_locale_available_count`,
 `locales_missing[]` · `consumer_scene` subtree-level ref (DOC-3) · `dressing_only` bool ×8.
@@ -224,35 +233,41 @@ zh-Hans/Hant lack 4 Location19 pages each, DOC-8) · `art_per_locale_available_c
 `scene` · key `scene_id` `level<N>`: `role` enum{story ×20, boot, title, menu, unbound}·N (level23
 unbound — SCN-11) · `location_id`|null · `display_name_loc`,`chapter_name_loc/en` null v1
 (SCN-8/XC-2) · `objective_hints[]` pointers + `objective_hints_text_en[]` convenience copies +
-`objective_hints_source_locale` · `quest_text_categories[]` · `spawn` World.positionSpawn|null ·
+`objective_hints_source_locale` · `quest_text_categories[]` · `spawn` World.positionSpawn|null (populated
+×20 all inline∧world-assumed — the ONLY projection-proven cells: SCENE-level, never POI; null ×4) ·
 `hint_screens[]`, `sub_scenes_{loaded,unloaded,continued}[]` · `provenance`|null.
-`poi` · key `poi_id`: `class` = 23 dump-class values · `kind` enum{interactable ×344, other ×277,
+`poi` · key `poi_id`: `level`·N (23 containers) · `location_id`|null ×30 · `class` = 23 dump-class values ·
+`kind` enum{interactable ×344, other ×277,
 move_point ×102, monster ×96, minigame_access ×70, travel_gate ×46, cartridge ×25, spawn_event ×24,
 safe ×2} — rulings incl. per-class `marker_eligible` in `poi-kinds.json` · **`position` =
 `{source, space, x, y, z}` or `{source, space, points[]}` with `points[]{x,y,z,rx,ry,rz}`**: `source`
-enum{inline ×298, pptr-unresolved ×76, none ×612}·N; `space` enum{world-assumed, unknown,
-parent-local, object-local-offset}. Units/frame honesty: values are serialized Unity transform
-components; the ONLY projection-proven cell today is `inline ∧ world-assumed` (World.positionSpawn) —
-every other cell is pending-placement and NEVER plotted (scaffold §7 axis; calibration rides
-XC-3/S9 — open question Q2). ObjectItem hand offsets are never projected (contract-explicit).
-`joins{is_scene,world_object_path_id,…}`.
-`spawn_table`: `event_day` int + `event_day_label` (DEC enum order — data, not prose) ·
-`destroy_after_create` bool · `entries[]{parent_target,prefab_refs[]{file_id,path_id}}` —
-`file_id>0` cross-container refs `status:"unresolved-target"` (SCN-7/XC-3). `scene_link`:
-`from_level`,`to_sub_scene`,`via_component`,`path_id`,`edge_kind` enum{loads ×19, continues ×15,
-chapter_name ×15, unloads ×7, ledger ×1},`mechanism:"hard"`,`resolves` bool (the level18 row IS the
-lattice's measured-absence ledger row, SCN-10). `marker`: `_meta` only v0 — no-orphan rule absolute;
-row schema deliberately UNPINNED until owners land (open question Q5); the module renders ZERO
-markers honestly meanwhile.
+enum{inline ×298, pptr-unresolved ×76, none ×612}·N; `space` enum{unknown ×668, parent-local ×56,
+object-local-offset ×262} — NO fourth value exists on POI rows (`world-assumed` never occurs there).
+Serialized Unity transform components; EVERY POI cell pending-placement, NEVER plotted; calibration rides
+XC-3/S9 (open question Q2); ObjectItem hand offsets never projected. `joins{is_scene,world_object_path_id,…}`.
+`spawn_table`: `spawn_table_id` `<level>:<Event_*Name>[suffix]`·N · `level`·N ·
+`status:"unresolved-target"` ×24 (mirrors the cross-container prefab refs) · census ints
+`destroy_objects_count`/`materials_count`/`meshes_count`/`textures_count`·N · `event_day` int +
+`event_day_label` (DEC enum order — data, not prose) · `destroy_after_create` bool ·
+`entries[]{parent_target,prefab_refs[]{file_id,path_id}}` — `file_id>0` cross-container refs
+(SCN-7/XC-3). `scene_link`: `from_level`,`to_sub_scene`,`via_component`,`path_id`,`edge_kind`
+enum{loads ×19, continues ×15, chapter_name ×15, unloads ×7, ledger ×1},`mechanism:"hard"`,
+`resolves` bool,`chapter_name_loc` ×15 + `note` ×16 (chapter_name rows: client Menu ordering vs wiki
+divergence) (the level18 row IS the lattice's measured-absence ledger row, SCN-10). `marker`:
+`_meta` only v0 — no-orphan rule absolute; row schema deliberately UNPINNED until owners land (open
+question Q5); the module renders ZERO markers honestly meanwhile.
 
 ### 3.10 relink edge row (shared shape)
 
 `from`/`to` typed anchors (grammar §4.2)|null · `direction` forward|inverse — present in the
-character-/minigame-/scene- families (measured splits below); document-family rows encode direction
-as `kind`; reverse-index families (achievement--award-site, achievement--ending, cloth-site--outfit,
-dialogue-node--encoding-residue) carry neither — their orientation is the file name · `mechanism`
-hard|logic|inferred · `method` recorded derivation·N · `status` modeled|partial (+`missing_fields`
-when partial) · family-specific keys (instance censuses, member keys, transform locators).
+character-/minigame-/scene- families (measured splits below); document-family rows encode direction as `kind`;
+reverse-index families (achievement--award-site, achievement--ending, cloth-site--outfit,
+dialogue-node--encoding-residue) carry neither — their orientation is the file name · `mechanism` FREE TEXT
+{hard ×1024, logic ×104, inferred ×20, `"scrMain PPtr (hard)"` ×10 document--minigame; absent ×1 residue} ·
+`method` recorded derivation·N · `status` FREE TEXT, not a closed enum: {modeled ×1043, partial ×73
+(+`missing_fields`), provisional-pending-ds1 ×9 + pending-curation ×5 (dialogue-speaker-theme--character),
+`"scrMain PPtr (hard)"` ×10 + inferred ×2 document--minigame; ABSENT ×17 reverse-index/residue} ·
+family-specific keys (instance censuses, member keys, transform locators).
 
 ## 4. Join-key registry
 
@@ -293,16 +308,22 @@ consolidated into ONE file; the DS-6 restatement is excluded from the canonical 
 
 ### 4.2 Anchor grammar + cardinality
 
-Every `from`/`to` parses as `<kind>:<id>` over the measured vocabulary:
-`character:<character_id>` · `cartridge:<save_key>` (C13 anchors) · `flashes:<save_key>` ·
-`minigame:<minigame_id>` · `achievement:<steam_api_name>` · `profile_document:<document_id>` ·
-`document:<document_id>` · `outfit:<file_save>` · `cloth-site:<key>` · `speaker-theme:<Theme>` ·
-`scene:<container>` · `scene-class:<Class>` · `scene-class-family@<container>` ·
-`loc:<Category>[<line>]` · `encoding-residue:<incident:locale/category>`. Cardinality law: a forward
-edge's mirror inverse edge exists in the same file (direction-bearing families; measured splits
-above); reverse-index families are single-direction by construction; `partial` status always carries
-`missing_fields` naming the concrete unblock. Consumers link ONLY through these edges — an entity
-page never computes a relation the tree does not ship.
+Anchors are `<kind>:<id>` strings whose vocabulary is FAMILY-SPECIFIC — `joins.json` derives each family's grammar
+from disk and C4 lints against those grammars. Census over every endpoint (1,159 edges = 2,259 string endpoints +
+59 deliberate nulls), form → endpoints: `note:` ×686 · `target:`+`controller:` `<container>#<pathID>:<Class>`
+×380 · `container:<levelN>` ×354 · BARE no-colon endpoints ×172 = `<character_id>` slugs ×96 (identity
+families) + `scene-class-family@<container>` ×76 · `scene:` ×134 · `loc:<Category>[<line>]` ×113 · `achievement:` ×92 ·
+`minigame:` ×88 · `profile_document:<slug>-profile` ×78 · `flashes:<save_key>` ×44 · `character:` ×37 ·
+`paper_part:` ×20 · `save_point:` ×19 · `speaker-theme:` ×14 · `outfit:` ×8 · `novella_surface:`/
+`dialogue-carriers:`/`scene-class:` ×6/×6/×4 · `choice_flag:`/`prop_family:` ×2/×2 (free-text qualifiers occur).
+Four DECLARED forms never occur as anchors (`cartridge:`, `document:`, `cloth-site:`, `encoding-residue:`) —
+those families key rows by id columns (`pickup_ref`, `node_id`, …) or ship meta-only. Nulls ×59 legal ONLY on
+reverse-index/curation-partial families whose orientation IS the filename (award-site 22, minigame--achievement 12,
+ending 6, speaker-theme 5, outfit/cloth/membership/residue 14). Cardinality law: mirror inverse rows ship in-file
+for every split-bearing family (§4.1 splits; scene--objective-hints skews 19/18); character--outfit,
+scene--save-vocabulary and dialogue-speaker-theme--character are forward-only; others never mirror; `partial`
+always carries `missing_fields`. Consumers link ONLY through these edges — an entity page never computes a
+relation the tree does not ship.
 
 ### 4.3 Reference-by-reference rule (B-4/B-5 precedent)
 
@@ -355,10 +376,11 @@ wall times, host names — same *data*, not same clock). Build pins come from `E
 `pipeline-defaults` (buildId 19029065, versionLabel 0.93L) — the stale-log defense already aborts
 runs on pin disagreement.
 
-1. **Per-record stamps:** every data row carries `build_id` + `version_label` (staleness model
-   per-record, spec automation block). Type inconsistency is REAL and pinned: string form in
-   characters/cartridges/documents/scenes/endings; numeric in achievements (`19029065`) and dialogue
-   (`build`). Compare canonically as strings (C9) — never raw JSON-type diffs.
+1. **Per-record stamps:** three MEASURED shapes — `build_id`+`version_label` strings (personages,
+   cartridges, minigames, cartridge-candidates, scenes, documents, books); bare `build_id` (achievements
+   int, endings, poi, spawn-tables, relation rows); bare `build` int (dialogue nodes); several class-C
+   artifacts stamp NOTHING per-row (edges, choice/branch/flag files, scene-links, candidates, residue) —
+   staleness rides the fingerprint (§6.2). Compare canonically as strings (C9), never raw JSON-type diffs.
 2. **Fingerprints:** `contracts/registry/fingerprints.json` records
    `{artifact_path → sha256, row_count, build_id}` for EVERY consumed artifact (all §3 files + all 25
    relation files + `speakers.json`, `poi-kinds.json`, the 19 graph files, `availability.csv`,
@@ -393,7 +415,7 @@ marker IN THE DATA. The vocabulary, measured:
 | `effect_class:"dead-reference"` | branch_edges ×3 (END-4) | ledgered residue; never silently omitted, never resolved |
 | `text_mechanism:"unresolved"` | world_documents ×166 (DOC-1) | interactable+wiring surfaces only; zero invented prose |
 | `entity.status:"pending-curation"` / `"provisional-pending-ds1"` | speakers.json 5 + 9 themes (DLG-1/DLG-2) | entity links withheld until slugs are ruled |
-| `[inferred]` / `[community]` / `[unverified]` bracket labels | `container_location_binding`, `windows.chapter_attribution`, `preview_prefab_key`, … | the label renders with the value or the value does not render |
+| `[inferred]` / `[community]` bracket labels | `container_location_binding` ×21, `windows.chapter_attribution` (END-2) — the only two measured carriers; `preview_prefab_key` carries NO label (plain `Personages/<Name>` strings) | the label renders with the value or the value does not render |
 | `_meta.unverified_columns` / header notes | class-A/B headers | consumers inherit the caveat; checkers enforce |
 
 Rules: (1) a stub marker MUST cite its missingdata.md ID where one exists — `check_contracts.py`
@@ -428,10 +450,9 @@ OMITTED per [DR-2026-08-22-copy-earns-its-place], which governs rendering, not d
    art re-export lands, which pinned CDN path shape do icons take under `/cdn/v<buildId>/…`
    (FRAMEWORK §2.5)? The registry needs the final field (`icon.asset_ref` → exported path) declared
    BEFORE pages render icons, or they ship explicit-missing at launch.
-2. **POI coordinate-frame calibration** — `space:"world-assumed"` is proven only for
-   `World.positionSpawn`; Unity unit scale and euler convention ride the XC-3/S9 transform stage.
-   Confirm calibration lands as `space` value upgrades (no schema change) so map projection widens
-   WITHOUT a contract bump.
+2. **POI coordinate-frame calibration** — `space:"world-assumed"` occurs ONLY on scene-level `spawn` (×20),
+   never a POI cell, proven only for `World.positionSpawn`; unit scale and euler convention ride XC-3/S9.
+   Confirm calibration lands as `space` value upgrades, so projection widens without a schema bump.
 3. **Chapter fill cadence** — chapter columns are null across profiles (14), dialogue nodes (2,839),
    achievements (`joins.chapter_attribution` ×26), scenes (SCN-8) until XC-2. When the level↔chapter
    stage lands, does the additive nullable fill ride the §6.3 schema-id bump, or a lighter
@@ -459,7 +480,7 @@ OMITTED per [DR-2026-08-22-copy-earns-its-place], which governs rendering, not d
 | **C1** | `check_contracts.py --verify` exits 0 on the current tree: `entities.json` regenerated is byte-identical to the committed file; every §3 entity type present with row_count equal to a full-file recount (no sampling) | run checker + mutate one row_count → exit ≠ 0 |
 | **C2** | No invented fields: every field name in `entities.json` occurs in ≥1 data row of its artifact; every "never null" claim holds over ALL rows (full scan); every enum lists only measured values | checker full-corpus scan + negative test (inject unknown field/value → exit ≠ 0) |
 | **C3** | `joins.json` enumerates exactly the 25 canonical files; per-family edge counts equal full-file data-row recounts summing to 1,159; the three meta-only families carry the measured-absence status; `_assembly-provenance.jsonl` consolidation sources reconcile | checker recount + diff vs PROOF §5.2 table |
-| **C4** | Anchor lint: every `from`/`to` (and document-family `kind`-encoded direction) across all 1,159 edges parses against §4.2 grammar; unknown anchor form → exit ≠ 0 | checker over full edge set + mutation test |
+| **C4** | Anchor lint: every `from`/`to` across all 1,159 edges parses against its OWN family's grammar as recorded in `joins.json` (derived from disk per §4.2: prefixed `<kind>:<id>`, bare character slug, or `scene-class-family@<container>`); an unknown form or a form foreign to that family → exit ≠ 0 | checker over full edge set + mutation test (inject a `cartridge:` anchor → fail) |
 | **C5** | Fingerprints: recomputed sha256 + row_count match `fingerprints.json` for every listed artifact on CI; flipping one byte in any consumed artifact fails BOTH `check_contracts.py` and `npm run build` | tamper test on a scratch copy |
 | **C6** | Availability dispositions are TOTAL: unit tests cover every `(kind, classification)` cell incl. `book_page.present:false` and the string-`'null'`/`contentless` traps; `contentless` renders filler; a locale with zero strings for an entity omits the page AND its hreflang/sitemap entries | unit matrix + fixtures from the MA-2/SCN-9 cells |
 | **C7** | Stub sweep, both directions: every §7 marker occurrence cites a missingdata.md ID (or carries `missing_fields`/`evidence`), and every ledger row maps to ≥1 typed marker; `get_bool_trusted:false` quarantine proven by renderer test; `present_but_unreachable`/`locked-stub` render visible-locked states | scripted grep both ways + component tests |
