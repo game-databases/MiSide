@@ -1,0 +1,329 @@
+# A-MV1 — Arbiter rulings on R-MV1 (map-viewer spec round)
+
+Arbiter: fresh Arbiter subagent (PrepareTask step 4). Arbitrates
+[R-MV1](mv1-review.mdx) (NEEDS_REVISION, 8 items) against
+[map-viewer.mdx](../../specs/map-viewer.mdx) @ aedbc76 so fixer **F-MV1**
+can land one final revision before CodeWriter+TestWriter.
+
+Inputs read in full: mv1-review.mdx; the spec (646 ln);
+[map-viewer-scout](../map-viewer-scout.mdx). Spot-checks re-run
+independently this pass (Python recounts + greps, buildId 19029065 /
+0.93L confirmed current): poi-kinds eligibility partition (709 eligible /
+277 ineligible, per-kind totals match the review), travel_gate class split
+(`Scene_Load` 19 · `Trigger_Teleport` 14 · `Player_Teleport` 13),
+cartridge split (`FlashTaker` 21 + tamagotchi 4), minigame_access
+(70 `MinigamesController` rows, levels 1–23, joins = `{is_scene,
+world_object_path_id}` only), carrier edges (38 forward = 38 distinct
+(minigame, container) pairs over 22 containers, levels 2–23 only, all
+`mechanism:"hard"`; 9 containers host >1 minigame, level9 hosts 4 over 3
+controller rows), character--scene-membership (12 rows = 8 hard / 4
+inferred, 8 modeled / 4 partial), document--scene-membership (354, all
+hard/modeled), DS-4 (23 data rows, pickup_ref ×21), DS-5 (14 data rows +
+flat header, placement ×11, null ×3 with declared `placement_mechanism`),
+missingdata.md cited rows, tokens.css tier-1 hue rows, chrome locales
+(34 files incl. `ar`/`ar-EG`/`fa`), `ENTITY_KINDS`. Constraints honored:
+no git, no agents, no servers; this file is the only write.
+
+---
+
+## 1. Finding rulings
+
+### F-1 (MEDIUM) — AC MV-0.4 arithmetic unsatisfiable at kind granularity — **ACCEPT**
+
+Evidence: measured exactly as claimed — `travel_gate` 46 = 19
+`Scene_Load` + 14 `Trigger_Teleport` + 13 `Player_Teleport`; `cartridge`
+25 = 21 emittable + 4 pets; the 11 DS-5 profile markers have no `poi.jsonl`
+row at all. Kind-keyed families cannot partition 709.
+
+**Binding corrected gate (replaces §3.2(c) last bullet + AC MV-0.4's
+identity):** the ledger becomes two lists, and families key finer than
+kind.
+
+1. `pending_families[]` entries key a `(kind, class_axis)` pair and name a
+   closed class list: `{family_id, poi_kinds[], poi_classes[], poi_rows,
+   disposition, emitted_markers?, reason_code?, unblock_owner?}` where
+   `disposition ∈ {"emitted", "deferred"}`. No entry may key a bare kind.
+2. Partition identity: **Σ `poi_rows` over `pending_families` = the
+   eligible-row recount (=709 today)**, with class lists pairwise disjoint
+   and jointly covering every `marker_eligible:true` class. Counts are
+   recomputed at emit time from `poi-kinds.json` + `poi.jsonl`, never
+   inherited from v0 `_meta`.
+3. Placement-sourced markers (DS-5 profiles; minigame carriers per OQ-7)
+   report under a sibling `placement_families[]` with the same fields minus
+   `poi_rows`/`poi_classes` plus `source_dataset` — their source rows live
+   outside the poi pool, which is why they must not be forced into the 709.
+   Total marker rows = Σ `emitted_markers` over **both** lists.
+4. The required partition (axes fixed here; counts asserted at emit):
+
+| family_id | classes | rows | disposition |
+|---|---|---|---|
+| `cartridge_item/flash-taker` | FlashTaker | 21 | emitted |
+| `cartridge_item/tamagotchi` | TamagotchiGame_Cartridge, TamagotchiGame_Cartridge_Cartridge | 4 | deferred — `owner-ruling-pending` (OQ-8; DS-4 curator) |
+| `travel_gate/save-point` | Scene_Load | 19 | deferred — `no-entity-dataset` (SCN-1/XC-5) |
+| `travel_gate/unowned-teleports` | Trigger_Teleport, Player_Teleport | 27 | deferred — `no-entity-dataset` (SCN-6 tier-2 / scenes J8) |
+| `minigame_access/carrier-covered` | MinigamesController @ containers with ≥1 carrier edge | 67 | emitted (scene-granular, OQ-7) |
+| `minigame_access/no-carrier-edge` | MinigamesController @ level1 | 3 | deferred — `no-carrier-edge` (joins carry `is_scene:false`; DS-4 J7 follow-up) |
+| `move_point` | MitaAIMovePoint | 102 | deferred — `no-entity-dataset` (XC-5) |
+| `spawn_event` | Event_CreateResource carrier classes | 24 | deferred — `unresolved-target-until-xc3` |
+| `safe` | Basement_Safe | 2 | deferred — `no-entity-dataset` |
+| `interactable` | remaining eligible interactable classes | 344 | deferred — `scn6-tier-2` |
+| `monster_anomaly` | monster classes | 96 | deferred — `no-entity-dataset` (XC-5) |
+
+AC MV-0.4's unit test then asserts: (a) Σ = eligible recount; (b) the
+class sets partition; (c) Σ `emitted_markers` (both lists) = data-row
+count of `markers.jsonl`; (d) every deferred entry carries `reason_code` +
+`unblock_owner`.
+
+### F-2 (MEDIUM) — OQ-7 has no legal marker shape — **ACCEPT**
+
+Evidence: confirmed and worse than stated — all 70 `minigame_access` rows
+are `MinigamesController` whose only joins are `{is_scene,
+world_object_path_id}`; the carrier edges bind `(minigame, container)` via
+**CarSpace_\*-class grep co-presence**, not controller instances; level9
+hosts 4 minigames over 3 controller rows and 9 containers host >1
+minigame, so a per-instance `poi_id` anchor is not merely inconvenient,
+any assignment would be fabricated. Edges span level2–level23; level1's
+3 rows sit outside every edge.
+
+**Binding corrected shape:** generalize §3.2(b)'s DS-5 escape hatch into
+one **placement-sourced marker** shape and use it for both sources:
+
+- Rows keyed by `placement_source` (`"DS-5"` | `"minigame--scene-carrier"`)
+  + owning id (`document_id` | `minigame_id`); `poi_id: null` mandatory;
+  `position.status: "scene-granular"` always — never `"projected"`.
+- `container` must be emitted as its own scalar field, split emitter-side
+  out of `to:"scene-class-family@levelN"`; downstream string-splitting of
+  the compound id is a forbidden derivation (§4 list).
+- Edge provenance rides verbatim (`mechanism`, `status`, `method`) into
+  `placement`.
+- `instance_census` required whenever a container hosts >1 controller
+  instance or >1 minigame (measured: 22 covered containers, 9 multi-
+  minigame) so a count shown to a user is never silently one-of-N.
+- Forbidden: mapping specific `MinigamesController` poi rows to specific
+  minigames; rendering a scene-granular marker as a plotted pin.
+
+Yield accounting for the ledger: ≤38 scene-granular rows covering 67 of
+the 70 poi rows (level1's 3 defer under `no-carrier-edge`).
+
+### F-3 (LOW) — "123 marker-capable rows" overstates — **ACCEPT**
+
+Measured: level13 = 123 total poi rows, **102** eligible (and it is the
+largest scene either way; next is level17 at 77). Fix wording to
+"123 rows (102 marker-capable)" in §6. Threshold argument unaffected.
+
+### F-4 (LOW) — AC MV-4 does not test everything M4 builds — **ACCEPT**
+
+The §7 table ships modules for `books`/`lore` (sourced from
+document--scene-membership, 354 rows) and `locations`, but AC MV-4's
+static-grep list names only cartridge/profile/minigame/mita. Rule: **add
+`books` and `lore` pages to the MV-4 grep set** (their focus anchors come
+from the same producer code path). `locations` stays out of MV-4 — it is
+an M3 embed surface, not a focus-anchor producer; say so in one clause so
+the exclusion is explicit rather than accidental.
+
+### F-5 (LOW) — §2 diagram contradicts the table — **ACCEPT**
+
+The ASCII arrowheads read M4→M2 while the table (correct, acyclic,
+verified complete) says M4 depends on M0+M2. Rule: **delete the diagram**;
+keep the table authoritative; add the sentence "dependency edges are
+exactly the table above." Do not redraw — a second hand-drawn graph is a
+second divergence risk.
+
+### F-6 (LOW) — registry v2 should be declared additive — **ACCEPT**
+
+§5's clamped pan/zoom reads `registry.zoom` (verified present in today's
+emitted registry). Add the clause to §3.2(d): "v2 extends the v1 registry
+object; no v1 field is removed — `bounds`, `coordinate-transform`,
+`imagery`, `zoom` survive unchanged."
+
+### F-7 (MEDIUM) — M4 renders inferred joins without disclosure — **MODIFY**
+
+Accept the fix (provenance must ride through); correct the evidence: the
+12 character--scene-membership rows are **not** uniformly inferred —
+measured 8 `hard` / 4 `inferred`, 8 `modeled` / 4 `partial`. Disclosure
+bites today only for `mita-black` (T1/T2, inferred/modeled, fwd+inv);
+`mita-core` and the document/minigame relinks are hard/modeled. The law is
+still mandatory so a future relink edit cannot silently flip rendering.
+
+**Binding corrected law (one paragraph in §7, echoed in §5 PinPopover):**
+
+- Every M4 module carries `mechanism`/`status` from its source relink and
+  renders them whenever `mechanism !== "hard"` OR `status !== "modeled"`
+  — same vocabulary and treatment as the popover provenance cell.
+- The four `from: null` scene-class census rows in
+  character--scene-membership (`MitaPerson` 93/45, `MitaKiller`,
+  `MitaFreak Enter`, `Mob_ChibiMita` — partial) have no registry slug:
+  they are **excluded from per-entity modules entirely** (nothing to
+  anchor) and may surface only as counted rows on location pages.
+  Rendering a container census as a per-entity fact is prohibited.
+
+### F-8 (LOW) — no RTL leg on new controls — **ACCEPT**
+
+`ar.json`, `ar-EG.json`, `fa.json` ship (34 chrome files verified). Rule:
+extend **AC MV-7** with an RTL leg rather than deferring — the i18n house
+law ships RTL locales, and Leaflet pan-zoom direction is a real trap. One
+scripted trace under locale `ar`: `/[locale]/map` cold load at 375 px,
+assert no horizontal overflow, controls reachable, switcher/popover
+render, popover `<a>` href well-formed. Full mirroring QA is not required
+by this gate; silent absence of any RTL assertion is what failed review.
+
+---
+
+## 2. Open-question rulings
+
+Implementation-owner legend: **spec-fix** = F-MV1 text only; **M0** =
+data-side emitter work inside this piece; **frontend** = viewer/module
+implementation; **data-side later** = a different piece owns the unblock.
+
+- **OQ-1 instance identity — RULED: corpus-verbatim `poi_id`, opaque to
+  the frontend; bare-first-instance form preserved; no normalization
+  without an owner ruling.** Rationale: ids are corpus keys, 790/986
+  already suffixed; normalizing invents a second vocabulary for zero
+  reader value. Owner: spec-fix (already correctly written in §3.2(b));
+  binds M0.
+- **OQ-2 artwork — RULED: progressive ship; SVG schematic per scene at
+  `public/map/<scene_id>/base.svg` (+ optional `meta.json` overlay
+  anchors); grid fallback is the honest awaiting-artwork state.** One
+  added constraint from the i18n law: authored SVG carries **no baked
+  text** — all labels come from the loc/data layer as overlay anchors.
+  Fully-owned art holds; `check-no-third-party-maps.mjs` stays a launch
+  gate. Owner: artwork piece produces files; this spec fixes only the
+  contract (spec-fix); frontend consumes progressively.
+- **OQ-3 monster/save_point — RULED: wait (strict no-orphan).** Scene POI
+  listing on `/locations/[scene_id]` provides counted coverage; CH-6 bars
+  attributing unnamed instances; minting unslugged chips would create the
+  first orphan vocabulary. Owner: data-side later (owning entity datasets
+  are the unblock, XC-5/SCN-1); this piece only ledgers them (F-1 table).
+- **OQ-4 focus-kind namespace — RULED: contract edit confirmed, with a
+  supersession note.** The emitter writes routed `ENTITY_KINDS` keys +
+  id columns into `links.*` and updates
+  `markers.jsonl._meta.focus_url_contract` (`cartridge_item` →
+  `cartridges`). Because dataset-scenes §3.5 pins the old vocabulary in
+  its frozen example, F-MV1 must add a dated one-line note there marking
+  the example's `entity_kind`/`links.*` values superseded by map-viewer
+  §4.1 — the example itself is not rewritten (freeze discipline). Owner:
+  spec-fix (both files) + M0 writes the new contract.
+- **OQ-5 history API — RULED: `replaceState` for filter toggles, focus
+  changes, focus clear, and `?kinds=` edits (typing-law);
+  `pushState` on scene change so Back walks the scene trail.** Cold load
+  restores whatever the URL carries. Owner: frontend (M2 `mapState.ts`);
+  spec-fix pins it in §5/AC MV-3.
+- **OQ-6 bounds timing — RULED: confirmed.** Viewer accepts
+  `bounds:null` indefinitely; raw-coords plotting on CRS.Simple with the
+  deterministic mean-center fallback (presentation math over consumed
+  rows — allowed); fit-to-bounds activates only when the registry carries
+  bounds. Null remains the honest value; never a bounding guess.
+  Owner: frontend (M1); spec already states it — no edit beyond the OQ
+  disposition note.
+- **OQ-7 minigame_access — RULED: INCLUDE, but only under the F-2
+  placement-sourced shape** (scene-granular, `poi_id:null`, emitter-split
+  `container`, `instance_census`, edge provenance verbatim, level1's 3
+  rows deferred `no-carrier-edge`). Per-instance anchoring is prohibited —
+  the edges prove class×container co-presence, and level9's 4-minigames-
+  over-3-controllers fact makes any finer claim fabrication. Owner: M0
+  (emission) + spec-fix (shape + ledger entries).
+- **OQ-8 pet cartridges — RULED: defer with reason until an owner
+  ruling.** Both classes ledgered under `cartridge_item/tamagotchi`,
+  reason `owner-ruling-pending`, unblock owner = DS-4 curator (extend
+  DS-4, re-rule the kind, or confirm orphanhood). When they eventually
+  ship they take the CAR-8 compromised treatment. Owner: data-side later;
+  spec-fix writes the ledger row.
+- **OQ-9 unplaced confirmed entities — RULED: exclusion confirmed.** No
+  container inference from `container_location_binding [inferred]` — an
+  `[inferred]` mechanism on a spatial claim is a faked spot (§3.1 law).
+  Hygiene correction folded in: §0.1/§7/§8 must stop saying "3
+  script-granted profiles" uniformly — DS-5 declares
+  `placement_mechanism: script_granted` on `mita-2-d-profile` and
+  `mita-core-profile` but **`story_granted` on `mita-true-profile`**, and
+  DOC-5 covers the mtad2/mtacore cartridge grants, not these rows. Cite
+  the DS-5 column as the authority; reference DOC-5 only as the
+  analogous undumped-grant ledger row. Owner: spec-fix (wording); M0
+  carries the declared vocabulary into `_meta.unplaced` reason codes.
+- **OQ-10 kind-chip color axis — RULED: derived-axis palette confirmed,
+  resolved INTO the token system.** The four axes §9 names already exist
+  as tier-1 rows in `tokens.css` — `--ms-accent` (identity/actions only,
+  never a per-kind hue), `--ms-signal`, `--ms-warm`, `--ms-danger` — and
+  chips derive tints via `color-mix` from those rows over the
+  `--ms-bg-*` stack. No commission needed. If a future axis lacks a
+  source row, the change lands in `tokens.css` **first** (a tier-1 row),
+  never as inline hex under `src/components` (AC-S8 defect class).
+  Owner: frontend (M2 KindFilter) within §9 law; spec-fix names the four
+  rows explicitly.
+
+---
+
+## 3. Fix order — F-MV1 work list
+
+Self-contained; each item names file + section + precise change. Items 1–5
+are the MEDIUM gates; apply in order, then LOWs, then dispositions.
+
+1. `docs/specs/map-viewer.mdx` §3.2(c) — replace the "Make the `_meta`
+   family ledger total" bullet with the two-list ledger law of F-1:
+   `(kind, class_axis)` families with closed `poi_classes[]`, the 11-row
+   required partition table, the `placement_families[]` sibling, and the
+   partition identity Σ `poi_rows` = eligible recount (709 today).
+2. Same file §12.1 **AC MV-0.4** — rewrite the criterion + proof to the
+   four assertions of F-1 (partition sum, class-set coverage/disjointness,
+   Σ `emitted_markers` over both lists = data-row count, deferred ⇒
+   `reason_code` + `unblock_owner`).
+3. Same file §3.2(b) — generalize the profile-placement escape hatch into
+   the **placement-sourced marker** shape (F-2): `placement_source` ∈
+   {`DS-5`, `minigame--scene-carrier`} + owning id; `poi_id:null`;
+   `status:"scene-granular"`; emitter-split scalar `container`;
+   `instance_census` rule; verbatim `mechanism`/`status`/`method`;
+   prohibition on per-instance minigame anchoring and on downstream
+   string-splitting of compound ids.
+4. Same file §3.2(c) — make the minigame bullet unconditional (OQ-7
+   ruled include): yield ≤38 scene-granular rows covering 67/70 poi rows;
+   level1's 3 rows deferred `no-carrier-edge`; add
+   `minigame_access/carrier-covered` + `minigame_access/no-carrier-edge`
+   to the §3.2(c)/F-1 partition table.
+5. Same file §12.1 **AC MV-0.1** — extend the join audit to
+   placement-sourced rows: every minigame marker resolves to exactly one
+   `minigames.jsonl` key (17), every profile marker slug resolves 1:1 to
+   `document_id`; fabricated-id injection still fails loudly.
+6. Same file §0.1 correction 2 + §7 module table + §8 stub table —
+   replace "script-granted" claims for the 3 placement-less profiles with
+   the DS-5-declared vocabulary (`script_granted` ×2, `story_granted`
+   ×1); demote the DOC-5 citation to "analogous cartridge-side row"
+   (OQ-9 hygiene).
+7. Same file §6 — "largest scene holds 123 rows (102 marker-capable)"
+   (F-3).
+8. Same file §12.2 **AC MV-4** — add `books` and `lore` pages to the
+   static-grep set; add one clause excluding `locations` as an M3 embed
+   surface, not a focus-anchor producer (F-4).
+9. Same file §2 — delete the ASCII dependency diagram; add "dependency
+   edges are exactly the table above; M4 depends on M0+M2" (F-5).
+10. Same file §3.2(d) — additivity clause: v2 extends the v1 registry
+    object; `bounds`, `coordinate-transform`, `imagery`, `zoom` survive
+    unchanged (F-6).
+11. Same file §7 (module table area) + §5 PinPopover — provenance-carry
+    law: modules carry `mechanism`/`status` through and render them when
+    `mechanism !== "hard"` or `status !== "modeled"`; the four
+    `from:null` scene-class census rows of character--scene-membership
+    are excluded from per-entity modules and may appear only as counted
+    rows on location pages (F-7 as modified).
+12. Same file §12.2 **AC MV-7** — append the RTL leg: scripted trace
+    under locale `ar` (375 px) asserting no horizontal overflow, controls
+    reachable, switcher/popover render, popover `<a>` well-formed (F-8).
+13. Same file §9 — name the four tier-1 hue sources for the chip axis
+    (`--ms-accent`, `--ms-signal`, `--ms-warm`, `--ms-danger`) and the
+    tokens-first rule for any new axis (OQ-10).
+14. Same file §5/§6 — pin the OQ-5 history law next to `mapState.ts` v2
+    (replaceState for filter/focus/kinds/focus-clear; pushState on scene
+    change) so AC MV-3 has a stated rule to test.
+15. Same file §14 — convert OQ-1…OQ-10 from open questions to carried
+    rulings with a pointer to this file; keep the original recommendation
+    text struck or annotated, not deleted.
+16. `docs/specs/dataset-scenes.mdx` §3.5 — dated one-line supersession
+    note under the marker example: `entity_kind`/`links.*` values are
+    superseded by map-viewer §4.1 routed vocabulary; example left intact
+    (OQ-4 freeze discipline).
+
+Items 1–16 constitute the entire permitted delta for F-MV1. Any change
+beyond them (new schema fields, ledger reshapes, scope moves) returns to
+arbiter. With these applied the piece is ready for CodeWriter+TestWriter
+without a further reviewer round: no measured claim in the spec was
+false, and every defect here is contract-identity repair, not data repair.
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES
