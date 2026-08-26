@@ -1,0 +1,153 @@
+# V-LL1b — independent verification of post-fix [`docs/specs/logic-layer.mdx`](../../specs/logic-layer.mdx)
+
+Verifier B (V-LL1b), 2026-08-26. Did **not** read [`ll1-fix-vA.mdx`](ll1-fix-vA.mdx). Inputs read in
+full this pass: the post-fix spec, [`ll1-arbiter.mdx`](ll1-arbiter.mdx) (fix order + binding designs),
+root AGENTS.md. All measurements below are fresh read-only python/find/grep over
+`extracted/data/{endings,cartridges,achievements,scenes}`, `extracted/relinks/`, and
+`D:\unpacked_game_data\MiSide\{harvest,il2cpp,decompiled}` — none copied from the spec, the scout,
+the review, the arbiter, or the fixer. Method notes: GitHub-style slug simulation for anchor checks;
+collision group := key-group with ≥2 rows.
+
+## 1. Join-key K — independent reproduction (emphasis 1)
+
+Rebuilt K over all 1,555 `branch_edges.jsonl` rows with host resolved through `choice_nodes`
+(`node = choice_nodes[node_id == edge.from_node]`):
+
+```
+K = ( node.container, node.event_field, node.object_path_id,
+      edge.from_option, edge.call_index,
+      target.type, target.method, target.object_path_id, args(string,int,float,bool,object_path_id) )
+```
+
+| Measurement | Spec claims | This pass | Match |
+|---|---|---|---|
+| nodes / unique node_ids | 371 / 371 | 371 / 371 unique | ✅ |
+| unresolved edges | 0 | 0 | ✅ |
+| FULL K collisions | 0 groups | **0 groups** (max mult 1) | ✅ |
+| drop `from_option` | 7 colliding groups | **7** (max mult 4, 20 rows) | ✅ |
+| drop `call_index` | 1 colliding group | **1** (max mult 2) | ✅ |
+| old tuple + call_index tiebreaker | 47 ×13 | **47 groups, max mult 13** | ✅ |
+| old tuple without tiebreaker | 59 ×15 | **59 groups, max mult 15** | ✅ |
+| nine-family whitelist | 20 IN / 1,535 OUT | **20 / 1,535** | ✅ |
+| distinct `(target.type,target.method)` pairs | 133 | **133** | ✅ |
+
+The two cited drop-collisions are real and are the only ones the spec cites; both reproduce exactly,
+as do both legacy-tuple counts. Single-drop sweep for completeness: `node.container`→20 groups,
+`node.object_path_id`→41, `target.object_path_id`→4, `args`→2, and **`node.event_field`→0 groups**
+on current data. Observation O-1: the spec never claims an `event_field`-drop collision (only the
+arbiter's "(7–59)" parenthetical implied one), so the spec text is accurate; keeping `event_field`
+in K is still right (computational discriminator on the LG2 side; guards future data shapes).
+Orthogonality proof row `level14:ObjectInteractive:3695:call4`: exists in `branch_edges`, target
+`Scene_Load.StartLoad` (whitelist-admitted, dump file `level14/ObjectInteractive_#3695.txt` present),
+DS-2 class `cosmetic`, call_index 4 — both axes real. Top pairs reproduce (SetActive 265,
+AnimationPlay 160, AudioSource.Play 131, Animator.SetTrigger 104, ParticleSystem Play+Stop 167).
+
+## 2. Two-tier sweep honesty — census closes (emphasis 2)
+
+- Class distribution recomputed: scene-flow 709 · cosmetic 468 · audiovisual 356 · flag-set 10 ·
+  flag-query 8 · dead-reference 3 · award 1 → **sum 1,555 exactly**; `feeds_ending:true` × **0**.
+  Tier split 20 + 1,535 = 1,555. Presentation pool 468 + 356 = **824** = §7 item 2's "~824".
+  Tier-B disposition enum matches DS-2's seven classes 1:1 — no row unaccounted.
+- Harvest census re-run with `find` over all **51 containers** (list matches §2.1 verbatim):
+  `Events_IntMemory*` = **5** (level13, level5, level9, level4 bare + `_#3327`) · `Events_Data*` =
+  **379** · total **384**. Also `ObjectInteractive*` 449 · `DialogueChanger*` 13 · `FlashTaker*` 21.
+- Floors trace to disk: award 11 = achievements `serialized-site` ×11; flag edges 18 =
+  flag-set 10 + flag-query 8; cloth 2 = the two dumped `ClothCompleted` sites (see V-B1 for where
+  each ships). All nine whitelist families verified real in `dump.cs` with exact names, including
+  `SetIgnory/AddIgnory/RemoveIgnory`; `Scene_Load.StartLoad/SilentSave`,
+  `World.SaveStoryMita/SaveStoryCartridge`, `Events_Data.EV(int)` all present.
+- Scoping observation O-2: "20 of 1,555"/"133 pairs" are branch_edges-scoped (the sentence's own
+  prefix says so); emitted corpus-wide totals will exceed both once FlashTaker/minigame carriers
+  enter the sweep — consistent with the explicit no-numeric-promise clause. No change needed.
+
+## 3. Polarity-law adversarial sweep (emphasis 3)
+
+Swept every edited sentence for a path that puts a directional value behind `fail-closed-unknown`,
+or any unknown/advice-styled render:
+
+- Pairing law rejects `value` + `fail-closed-unknown`; L3 re-checks it; zero-`negative` reservation
+  restated in L3; crosswalk pins fail-closed to "no directional language whatsoever"; `inferred`
+  pinned "never styled as advice"; §6 header bans directional advice outright; §7 keeps internal-only
+  rows off the frontend; §10 handoff binds the explorer to the fail-closed render. Access-point row
+  (`null`/any) is the no-direction carve-out and renders as located fact, not advice. **No leak
+  found.**
+- V-B3 (LOW): LG3's precedence sentence ("serialized site in evidence → `static-proven`") conflicts
+  with derivation-table row 3 for safe-window rows, whose evidence measurably carries BOTH
+  `Basement_Safe` mb-dump instance paths and the `[community]` citation (verified on
+  `endings.jsonl` `safe-of-life`). AC-L3 recomputes both fields against the table, so the gate fails
+  safe (emission blocked, not corrupted) — textual ambiguity only. One ordering clause fixes it.
+- V-B2 (LOW): §6 row 6 (HellVamp, `inferred` + wiki citation) has no legal `(value, evidence_class)`
+  pairing under §3 read strictly — `null` demands `fail-closed-unknown`/no-direction, non-null
+  demands an enumerated positive shape (HellVamp is neither). AC-L3 polices only non-null values and
+  `fail-closed` pairs, so `null`+`inferred` passes unexamined either way. No harmful render is
+  reachable (value stays null); it is a schema-legality wrinkle worth one clarifying clause.
+
+## 4. Census truthing (emphasis 4)
+
+| Claim | Spec | Disk | Match |
+|---|---|---|---|
+| `cartridges.jsonl` | 24 lines = `_meta` + 23 data | 24 raw, `_meta` first, 23 data | ✅ |
+| `pickup_ref` nulls | exactly `mtad-2`, `mtacore` (21 resolved) | exactly those two | ✅ |
+| `endings.jsonl` | 4 rows incl. Peaceful locked-stub | `conditions-met, safe-of-life, is-this-the-end, peaceful`; `mode_unlocked.state:"locked-stub"` on peaceful AND conditions-met | ✅ |
+| `dump.cs` anchors | 288,102 ln; Scene_Load :106767 | 288,102 ln; `:106767 public class Scene_Load … TypeDefIndex: 1691` | ✅ |
+| other anchors | :100303/:101847/:101861/:111689/:114391/:125374/:128181 | all seven exact | ✅ |
+| achievements | 26 = site 11 / code-body 12 / aggregate 3; hard 11 / unverified 15 | exact | ✅ |
+| award-site relink | 11 data + `_meta`; #12820 → target_path_id **18198** | 11 data + `_meta`; `ACHI_slaphead @ level9 Dialogue_3DText_#12820.txt target_path_id 18198` | ✅ |
+| save vocabulary | 19 literals | 19 data + `_meta`, every row Scene_Load/fileSave/nameLevelSaves | ✅ |
+| minigames fence | 17 rows, `scoring_derivable:false` ×17 | exact | ✅ |
+| flag_tables | 5 rows; level4 twins distinct keys | bare (`object_path_id:null`) + `:3327` (`3327`) | ✅ |
+| `[Range(0,6)] int enemyComplexity` on Location4Fight | claimed | dump.cs :121910–121911 verbatim | ✅ |
+| LG4 carrier classes | CarSpace_*/MakeManeken_*/PCSnaker/PumpkinClicker/Tamagotchi_* | all present | ✅ |
+| poi-kinds fences | three quotes verbatim | all three byte-verbatim | ✅ |
+| decompiled planes | 57 dirs / 700 `.cs` / 6,155-type catalog vs 6,281 tokens / broken `_structure` pointer | all four exact (README cites `does-not-work/decompiler-method-bodies.md`; dir absent) | ✅ |
+| Location4Condition stub | 9 lines base fields, PathID 53, `m_Name=""` | exact | ✅ |
+| contracts tooling absent (F-4 basis) | only 7 `dataset-*.mdx` | no `entities.json`, no `check_contracts.py`, no `extracted/data/logic/` yet | ✅ |
+| data-contracts §3.3 | `cartridge_item (23)` | `### 3.3 … (23: 13 character + 10 player)` | ✅ |
+| tools-plan consumer | rank 1 explorer | `| 1 | Ending Condition Explorer … HIGH` | ✅ |
+| missingdata ledger ids cited by §6 | exist | CAR-1/3/4/8, END-1/2/4/5/6, DLG-3/7, SCN-4/6/7, ACH-2/3, DOC-1/5/6, XC-1/10/12, MA-8 all present | ✅ |
+| spec hygiene | anchors + links resolve | 19/19 internal slugs resolve; 4/4 relative targets exist; §1/§2.2/§3 refs live | ✅ |
+
+## 5. Arbiter fix-order ruling (11 items)
+
+| # | Item | Ruling |
+|---|---|---|
+| 1 | §4 LG2 two-tier design | **APPLIED** — tiers A/B, floors kept as minimums, orthogonality fixture, dead-ref unfiltered rationale, `_meta` class/tier census accounting |
+| 2 | §5 effect_calls discriminators | **APPLIED** — `event_field`/`option_index`/`call_index` + defining comment naming them AC-L1b's join keys; schema id unchanged `/1` |
+| 3 | §8 L1 → L1a/L1b/L1c | **APPLIED** — K spelled out, 371/371 + 0 unresolved, collision citations (7 / 1 / 47×13 / 59×15), don't-simplify warning |
+| 4 | §3 derivation table + negative reserve | **APPLIED** — table, reservation, L3 value-recomputation, §6 row 3 only-family note |
+| 5 | Census refresh | **APPLIED** — 23 cartridges; "4 endings incl. the Peaceful locked-stub"; §6 21+2; L3 "+21 pickup gates" |
+| 6 | §8 L6 staged tooling | **APPLIED** — builder-owned insert, staged `check_contracts.py`, interim run_all hash of `entities.json` |
+| 7 | §2.3 correction 3 | **APPLIED** — suffix convention explicit, bare-name resolution via harvest inventory, ambiguity characterization dropped |
+| 8 | Fixture 9330 → 18198 | **APPLIED** (placement shifted) — 18198 now on the effect_calls example (the record that carries `target_path_id`); `9330` absent from the spec; disk-confirmed |
+| 9 | status enum + internal_only pairing | **APPLIED** — five closed values; pairing tied to §7's list, never status-derived |
+| 10 | L4 deny-list + typed evidence | **APPLIED** — grep family named with citation-field exclusion; site-vs-citation namespace rule in §3 |
+| 11 | §10 handoff obligation | **APPLIED** — explorer named as consumer, OQ-3 flip as the single switch |
+
+Structural laws hold: dependency graph acyclic (LG1/LG2/LG4 ∥ → LG3 → explorer; projections pure;
+branch_edges reconciliation read-only); every AC carries a runnable proof method; all sums close
+(384, 23, 26×2 ways, 1,555×3 ways, 824); all anchors resolve.
+
+## 6. Findings
+
+- **V-B1 (LOW-MED) — outfit-chain file misattribution, carried content, both prior passes missed
+  it.** §2.1 states `relinks/minigame--outfit-unlock.jsonl` = 4 rows = **2 hard sites**
+  (…level6→`Chirfns`…; level5→`FIIdClSchool`). Measured: the canonical 4 rows are Chirfns
+  forward+inverse (**one** distinct hard site) + HellVamp logic forward+inverse; the second hard
+  site — `FIIdClSchool @ level5 Dialogue_3DText_#8339.txt, target_path_id 11330,
+  Achievement_cloth.ClothCompleted` — ships only in `extracted/relinks/cloth-site--outfit.jsonl`,
+  a file the spec never names, and which is therefore also absent from LG3's source-by-id list.
+  Bounded impact: the tier-A corpus-wide sweep rediscovers both `ClothCompleted` sites straight from
+  mb-dump (floors stay minimums with the ledger escape; no render risk; the ≥2-cloth floor remains
+  achievable), so no acceptance criterion breaks — but a measured-corpus claim in a spec whose
+  header promises "nothing copied on faith" is factually wrong, and LG3 under-cites an input.
+  Fix: two lines — correct §2.1's attribution and add `cloth-site--outfit.jsonl` to LG3's sources
+  (or state outfit subjects take site locators from the LG2 sweep).
+- **V-B2 (LOW)** — see §3: no legal polarity pairing for §6 row 6 under §3 read strictly.
+- **V-B3 (LOW)** — see §3: LG3 precedence sentence vs derivation-table row 3 on window rows; gate
+  arbitrates fail-safe.
+- Observations (no action required): O-1 `event_field` drop yields 0 collision groups today (spec
+  never claims otherwise; keep it in K). O-2 "20/1,555"/"133 pairs" are branch_edges-scoped by the
+  sentence's own prefix. O-3 all three numeric floors trace to disk (11 = serialized-site count,
+  18 = flag-set+flag-query, 2 = the two dumped cloth sites).
+
+VERDICT: APPROVE
