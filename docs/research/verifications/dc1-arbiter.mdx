@@ -1,0 +1,186 @@
+# A-DC1 — Arbiter round 2: rulings on `docs/specs/data-contracts.mdx` (post-F-DC1)
+
+Arbiter of the D-C1 round-2 cycle. Reviewed [data-contracts.mdx](../../specs/data-contracts.mdx)
+@ HEAD (500 lines, post-F-DC1) against [dc1-fix-vA.mdx](dc1-fix-vA.mdx) (NEEDS_REVISION — 4) and
+[dc1-fix-vB.mdx](dc1-fix-vB.mdx) (NEEDS_REVISION — 3). [dc1-review.mdx](dc1-review.mdx) read for
+context only: its disputes are settled — D-1/D-3/D-4 for the fixer, D-2 at 2,259 string endpoints +
+25 JSON nulls + 34 absent-key slots (both verifiers measured this identically; treated as fact, not
+re-litigated).
+
+Method: every quantity I rule on below is MY OWN re-measurement over `extracted/data/` +
+`extracted/relinks/` (stdlib-json Python, full scans, `_meta`/descriptor headers excluded per §2.2;
+class-C files parsed from line 1). Same tree, buildId 19029065 / VERSION 0.93L. Spot-reproduced
+before ruling: anchored edges 1,142 · string endpoints 2,259 · JSON nulls 25 · no-anchor-key edges
+17 · partial ×73 split 44/29 · direction-bearing families 13 · status/mechanism censuses ·
+scenes/profile/world-doc/availability shapes. Both verifiers' arithmetic reproduces everywhere they
+agree; the divergences are resolved in §1.
+
+## 1. The A/B divergence — measured, ruled definitively
+
+**Does §3.7 cover `dialogue_node.source.embedded_index`?** Measured over all 2,839 nodes: the
+`source` object carries keys `{class, container, gameobject_path_id, path_id, embedded_index}` on
+all **70 choice_case rows** (and `embedded_index` on no other kind); §3.7 lists
+`source{class,container,gameobject_path_id,path_id}` — the nested member is missing.
+
+- Verifier A's finding **STANDS**: the post-fix node block is incomplete at NESTED-key granularity,
+  and §3's "COMPLETE field inventory" preamble claims otherwise.
+- Verifier B's D-4 row-24 claim ("all 30 emitted keys covered") is TRUE but NARROWER than stated:
+  it counted TOP-LEVEL keys. Top-level coverage is complete; nested coverage is not. B's "one
+  residual misassignment" (V-B-1) was separately correct.
+
+Ruling: A wins this point; the fix is one clause (F-DC2 item 3). No round 3 needed — B's sweep is
+not invalidated, its granularity was coarser.
+
+## 2. Verifier-item rulings (7-item union)
+
+| # | Item | Ruling | One-line evidence (my measurement) |
+|---|---|---|---|
+| VA-1 | §4.2 null accounting: "59 deliberate nulls" conflates 25 JSON nulls with 34 absent-key slots; null law names award-site 22 / ending 6 as nulls | **ACCEPT** | Anchored edges 1,142 (2,259 strings + 25 nulls: minigame--achievement from 6/to 6, speaker-theme to 5, character--outfit from 4, membership from 4); 17 edges carry NO `from`/`to` (award-site 11, ach-ending 3, cloth-site 2, residue 1) = 34 absent slots. award-site/ach-ending have ZERO null rows |
+| VA-2 | "partial always carries missing_fields" false | **ACCEPT** | partial ×73 = 44 forward rows with non-empty `missing_fields` (len 1 each) + 29 inverse-mirror rows key-absent (char--achievement inv 22, char--dialogue-speaker inv 3, char--scene-membership inv 4) — exactly A's figures |
+| VA-3 | Completeness residuals: `profile_document.family` ×14 + `node.source.embedded_index` ×70 | **ACCEPT (both halves)** | `family="profile"` on all 14 profile rows, absent from §3.8; embedded_index divergence resolved in §1 above, for A |
+| VA-4 | §3.10 direction-family omission + §6.1 class-C label on class-A files | **ACCEPT** | Direction measured in 13 families incl. dialogue-speaker-theme--character (forward ×14, fwd-only) — omitted from §3.10's list; scene-links.jsonl and characters.candidates.jsonl both open `{"_meta"` (class A per §2.2's own table) while §6.1 calls them "class-C artifacts". Remedy is RELABELING inside §6.1, not reclassification — §2.2 is correct |
+| VB-1 | `groups[]` misassigned to branch_group; grouped_scene_dialogue payload unlisted | **ACCEPT** | branch_group ×11 keys = `{entries,forks,main_ptr}` (no `groups`, no `next_resolved`); `groups` occurs ONLY on the 11 grouped_scene_dialogue rows (which also carry `next_resolved` ×11). Would propagate a wrong per-kind payload map into entities.json against C2/C10 intent |
+| VB-2 | §3.9 scene `chapter_name_loc/en` not "null v1" | **ACCEPT** | scenes.jsonl: `display_name_loc` null ×24 (null-v1 correct); `chapter_name_loc` set ×15 / null ×9; `chapter_name_en` set ×15 / null ×9. SCN-8 itself states the 15-of-20-story-levels figure — the spec contradicted its own citation |
+| VB-3 | §5 "Row shapes" attributes five numeric fields to BOTH bucket and presence rows | **ACCEPT** | dialogue_bucket (680): `classification` + `line_count`/`pivot_line_count`/`tail_delta`/`file_bytes`, NO `record_count`; category_presence (1,734): `classification` + `record_count` only; book_page (272): boolean `present`. A parser built to the spec sentence KeyErrors on both kinds |
+
+No verifier item is REJECTED. All seven are accepted; none needed numeric modification — where A
+and B overlapped (D-2 arithmetic, family splits) both reproduce exactly. The two verifiers'
+disagreement is fully accounted for by the §1 granularity difference plus non-overlapping sweeps.
+
+Non-blocking residuals flagged by one or both verifiers (n4/N-1, n5, n6/N-2, n7, N-4) are folded
+into the fix order below — this is the last round before the builder consumes the frozen spec, and
+each is a one-line edit verified twice.
+
+## 3. Open-question rulings (spec §9, Q1–Q7) — binding on builder + frontend
+
+Each ruling: disposition → rationale → implementation owner. F-DC2 transcribes these into §9
+(item 10 below); after that the questions are CLOSED and the builder consumes them as law.
+
+**Q1 achievement icon artifact path — RULED: DEFER the URL decision; PIN the field contract now.**
+`icon.asset_ref` stays `null` while `status:"pending-export"` ×26; when ACH-1's targeted re-export
+lands, `asset_ref` takes the exported artifact path under `/cdn/v<buildId>/…` with the prefix owned
+by site-scaffold/tools-plan — NOT pinned here (§8 forbids inventing paths in this spec). Pages ship
+the explicit-missing icon state at launch; no page blocks on this question. Owners: path shape =
+site-scaffold owner; field semantics = this spec (already on disk); rendering = frontend.
+
+**Q2 POI coordinate-frame calibration — RULED: YES as `space` value upgrades on the EXISTING
+fields (no new field, no entity migration), BUT every new enum value rides the §6.3 bump.** The
+question's "without a schema bump" wish is DENIED: §6.3 explicitly lists enum-value changes as
+bump-triggering, and one cadence law beats a special class. Owner: XC-3/S9 emitter executes;
+frontend readers regenerate from entities.json automatically.
+
+**Q3 chapter fill cadence — RULED: §6.3 stands unchanged — additive nullable fills ride the
+schema-id bump; NO lighter "fill-only" class exists.** Rationale: one loud cadence for every field
+change keeps generated readers honest; a silent-fill class would reintroduce exactly the drift §6
+exists to kill. Owner: XC-2 emitter executes the fill+bump; nothing else to build.
+
+**Q4 speaker slug rulings — RULED: INTENTIONALLY OPEN, owned by research/owner (DLG-1's five
+`pending-curation` rulings + DLG-2's nine `provisional-pending-ds1` alignments).** Consumers MUST
+keep entity links withheld for both statuses exactly per §7's marker row; the builder consumes the
+statuses verbatim; frontend withholds links until the owner lands each ruling. No spec change; the
+builder must not treat openness here as a defect.
+
+**Q5 marker row schema v1 — RULED: DEFER to the XC-5 projection rerun.** Pinning a schema over 0
+rows would violate §8-1 (no invented fields) and C2 (every listed field occurs in ≥1 data row);
+v0 `_meta`-only is the honest state and renders zero markers. No second contract round-trip is
+incurred: §3.9 reserves the slot and `entities.json` carries marker as header_class A / row_count 0.
+Owner: XC-5 emitter pins marker v1 when monster/save-point owners land.
+
+**Q6 note-content landing shape — RULED: FILL-IN-PLACE on `world_document`; NOT a separate
+dataset.** Grounded in disk: the slots already exist typed on all 166 rows (`text_loc` null ×166,
+`text_mechanism:"unresolved"` ×166 — measured this pass), so resolution is additive fill riding
+§6.3. `/lore/[document_id]` routes gain pages with ZERO registry migration; documents own their text
+(reference-by-reference, §4.3). Owner: XC-4→XC-3→XC-1 chain fills; frontend routes unlock
+mechanically.
+
+**Q7 localized achievement descriptions — RULED: EN-only until XC-11's owner call; the
+embedded-string deviation does NOT extend to descriptions.** `display` cells stay name-only
+(`{category,line_index,name}` measured ×26 locales-cells; no description cell exists anywhere); the
+Steam official-feed embedding remains sanctioned ONLY for the 26×34 name cells (pivot EN range
+authority). If localized description text ever materializes IN THE CLIENT CORPUS it ships
+POINTER-style into its text category — never more embedded captures; cadence either way = §6.3
+bump. Owner: IF = owner call (XC-11); HOW = pinned by this ruling; frontend renders EN-only meanwhile.
+
+## 4. Fix order for F-DC2 (the single fixer consumes ONLY this list)
+
+All items are localized text edits to `docs/specs/data-contracts.mdx`. Order given by spec section;
+every item is self-contained (no item depends on another's wording). Numbers are MY measurements —
+transcribe without re-deriving.
+
+1. **§2.2 (nit batch 1).** In the schema-id sentence, insert `miside.cartridges.candidates/1`
+   immediately after `miside.characters.candidates/1` (measured: `_meta.schema` of
+   `cartridges/cartridges-minigames.candidates.jsonl`, row_count 2). Add one footnote line after
+   the class table: "`locale_availability.jsonl` and `_assembly-provenance.jsonl` are headerless
+   (class C) sidecars consumed directly."
+2. **§3.5 (carries Q1/Q7 body clauses).** After the `icon` block add "(asset_ref stays null until
+   ACH-1 lands; pages ship explicit-missing icons at launch — §9-Q1)". After "the one documented
+   deviation from pointer-only text" add "; the deviation is scoped to NAME cells only — never
+   extended to descriptions (§9-Q7)".
+3. **§3.7 (VA-3b + VB-1).** Change `source{class,container,gameobject_path_id,path_id}`·N to
+   `source{class,container,gameobject_path_id,path_id,embedded_index?}`·N — `embedded_index`
+   present ×70 choice_case rows only. In the kind-payload list change
+   `branch_group{entries[],forks[],groups[],main_ptr}` to
+   `branch_group{entries[],forks[],main_ptr}` followed by `grouped_scene_dialogue{groups[]}`
+   (payloads ride exactly their kind's rows).
+4. **§3.8 (VA-3a).** Add to the `profile_document` block, after `subject_character_id`:
+   "`family`=`profile` ×14 ·N (family discrimination vs world_document rides the file, not this
+   field)".
+5. **§3.9 (VB-2 + N-4).** Replace "`display_name_loc`,`chapter_name_loc/en` null v1 (SCN-8/XC-2)"
+   with "`display_name_loc` null v1 ×24; `chapter_name_loc`/`chapter_name_en` populated ×15 / null
+   ×9 (SCN-8/XC-2)". Change scene_link "`resolves` bool" to "`resolves` bool|null (key-absent ×16:
+   the 15 chapter_name rows + ledger)".
+6. **§3.10 (VA-4a + VA-2 note).** Direction sentence: "present in the character-/minigame-/scene-
+   families" → "present in the character-/minigame-/scene- families AND
+   dialogue-speaker-theme--character (forward ×14, forward-only)". Status line: change
+   "partial ×73 (+`missing_fields`)" to "partial ×73 (forward rows carry non-empty
+   `missing_fields`; 29 inverse-mirror partials omit the key)".
+7. **§4.2 (VA-1 core + VA-2 law + N-3).** Replace the census opener
+   "Census over every endpoint (1,159 edges = 2,259 string endpoints + 59 deliberate nulls)" with:
+   "Census over every endpoint — 1,142 of 1,159 edges carry `from`/`to` (2,284 slots = 2,259 string
+   endpoints + **25 JSON nulls**); the other 17 edges carry NO anchor keys (= 34 absent slots) and
+   key their rows by id columns". Replace the null-law sentence ("Nulls ×59 legal ONLY on …
+   award-site 22 … ending 6 …") with: "Two distinct empty states, never conflated: **JSON-null
+   anchors ×25** occur ONLY on minigame--achievement (`from` ×6 + `to` ×6),
+   dialogue-speaker-theme--character (`to` ×5), character--outfit (`from` ×4),
+   character--scene-membership (`from` ×4); **anchor-less edges ×17** (achievement--award-site 11,
+   achievement--ending 3, cloth-site--outfit 2, dialogue-node--encoding-residue 1 = 34 absent
+   slots) have no `from`/`to` members at all — those rows key by `achievement_id`/`ending_id`/
+   `cloth_id`/`node_id` columns; `joins.json` records them `anchor_mode:"id-columns"` and C4 skips
+   endpoint parsing on them." Replace the law tail "`partial` always carries `missing_fields`"
+   with "`partial` carries `missing_fields` on its 44 forward-side rows; its 29 inverse mirrors
+   omit the key".
+8. **§5 (VB-3 + n6/N-2).** Replace the Row-shapes bullet with: "**Row shapes:** `dialogue_bucket`
+   rows carry `classification` + `line_count`/`pivot_line_count`/`tail_delta`/`file_bytes` (no
+   `record_count`); `category_presence` rows carry `classification` + `record_count` (no line
+   fields); `book_page` rows carry boolean `present` instead (all three handled; C6)." Label the
+   totals: "Totals over the classification-keyed cells: present 2,108 / filler 297 / contentless 9;
+   the 272 boolean book_page cells (264 true / 8 false) are excluded from these totals."
+9. **§6.1 (VA-4b).** Replace "several class-C artifacts stamp NOTHING per-row (edges,
+   choice/branch/flag files, scene-links, candidates, residue)" with "several artifacts stamp
+   NOTHING per-row — class-C files (dialogue edges, choice/branch/flag files, residue) and two
+   class-A files whose data rows carry no stamps (scene-links, characters.candidates)".
+10. **§9 (all seven OQ rulings).** Retitle "Open questions for the reviewer" → "Open questions —
+    round-2 arbiter dispositions", add preamble "Each question was ruled by the A-DC1 arbiter
+    (2026-08-26); the ruling binds the contracts builder and frontend; the named owner executes the
+    unblock", then append each Q's RULED paragraph verbatim-faithful from §3 above (disposition +
+    owner per Q1–Q7). Keep each existing question text so the rationale chain stays readable.
+11. **ACs (n7).** C6: drop "the string-`'null'`/" from the trap list (availability tests cover
+    `contentless` and `book_page.present:false` only). Extend C9's unit-test scope: "…despite the
+    measured int/string split, including dialogue `next_resolved` string-'null' ×572 vs JSON null
+    ×94 discrimination".
+
+**Budget discipline:** the file sits at the 500-line cap. Items 1–9+11 net ≈ +12 lines; item 10 is
+the large one. If the D-C1 brief's cap is hard, compress inside §9's question texts and §3 prose to
+absorb item 10 — NO fix item may be dropped or merged away to save lines. If compression cannot
+fit, exceed the cap by at most ~30 lines and flag it in the fixer report rather than silently
+degrading any item.
+
+## 5. Scope freeze
+
+Everything not in §4's list is FROZEN as-is: the architecture (consumes-never-derives gate, three
+header classes, registry/joins/fingerprints layout), the §4.1 25-family table (reproduces digit-for-
+digit), §5 availability semantics and fallback chain, §6 version discipline, §7 stub vocabulary,
+§8 non-goals, ACs C1–C5/C7/C8/C10, and both verifiers' agreed numeric fabric. The builder starts
+from the post-F-DC2 tree and consumes nothing else.
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES
