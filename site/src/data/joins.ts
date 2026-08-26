@@ -126,9 +126,10 @@ export interface RelationEndpoint {
 /**
  * One normalized relink row. Direction reads BOTH corpus spellings
  * (`direction` on relink-schema files, `kind` on the documents-family files —
- * measured 2026-08-26). mechanism/status ride verbatim (carry law). Every
- * other column lands in `scalars` untouched — the reader never drops a
- * shipped field nor invents one.
+ * measured 2026-08-26). mechanism/status/method ride verbatim (carry law;
+ * `method` is the spec §3.10 "recorded derivation" string). Every other
+ * column lands in `scalars` untouched — the reader never drops a shipped
+ * field nor invents one.
  */
 export interface RelationEdge {
   family: string;
@@ -138,6 +139,7 @@ export interface RelationEdge {
   to: RelationEndpoint | null;
   mechanism: string | null;
   status: string | null;
+  method: string | null;
   missing_fields: string[];
   scalars: Record<string, unknown>;
 }
@@ -227,6 +229,7 @@ export function familyEdges(family: string): RelationEdge[] {
         : parseAnchor(r.to as string | null | undefined, grammarForms),
       mechanism: typeof r.mechanism === "string" ? r.mechanism : null,
       status: typeof r.status === "string" ? r.status : null,
+      method: typeof r.method === "string" ? r.method : null,
       missing_fields: missing,
       scalars,
     };

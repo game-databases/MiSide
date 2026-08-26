@@ -198,6 +198,17 @@ export function assertSearchCensus(allRows: Map<string, SearchRow[]>): void {
     set.add(r.id);
     countByKind.set(r.kind, set);
   }
+  // Kind-growth gate (rp1-vA F2): count reconciliation can never see a NEW
+  // kind — an index carrying a kind entities.json pins no searchable census
+  // for must fail the emit HERE, by name, not sail through silently.
+  const registeredKinds = new Set(Object.keys(expected));
+  for (const kind of countByKind.keys()) {
+    if (!registeredKinds.has(kind)) {
+      throw new Error(
+        `search census (${pivotCode}): index carries unregistered kind "${kind}" — entities.json pins no searchable census for it`
+      );
+    }
+  }
   for (const [kind, want] of Object.entries(expected)) {
     const got = countByKind.get(kind)?.size ?? 0;
     if (want.exact !== undefined && got !== want.exact) {

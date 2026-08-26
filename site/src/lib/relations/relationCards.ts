@@ -183,6 +183,11 @@ function resolveAnchor(e: RelationEndpoint): ResolvedPeer | null {
   switch (e.form) {
     case "achievement:":
       return { routeKind: "achievements", routeId: e.id };
+    case "ending:":
+      // same id-columns pair as achievement--ending, other direction — the
+      // /endings/<id> routes exist, so the paired ending links like any peer
+      // (rp1-vA F4; no-orphan findRow check still applies downstream)
+      return { routeKind: "endings", routeId: e.id };
     case "scene:":
     case "container:":
       return { routeKind: "locations", routeId: e.id };
@@ -378,19 +383,26 @@ export function relationCardsFor(
     for (const edge of edges) {
       if (route.side === "achievement" || route.side === "ending") {
         if (route.family === "achievement--award-site") {
-          // id-columns provenance family: echo the serialized grant site
+          // id-columns provenance family: the grant site ships FLAT on the row
+          // (level/file/method/pathIDs — the entities.json relink_edge field
+          // inventory). A NESTED award_site object exists only in OTHER
+          // families (minigame--achievement, cloth sites); reading one here
+          // manufactured an absence no shipped row of THIS family has
+          // (rp1-vA F1). Absent keys still degrade to a typed named state.
           if (edge.scalars.achievement_id !== id) continue;
-          const site = edge.scalars.award_site as
-            | { file?: unknown; level?: unknown; method?: unknown }
-            | undefined;
+          const level =
+            typeof edge.scalars.level === "string" ? edge.scalars.level : null;
+          const file =
+            typeof edge.scalars.file === "string" ? edge.scalars.file : null;
           const label =
-            site &&
-            typeof site.file === "string" &&
-            typeof site.level === "string"
-              ? `${site.level} · ${site.file}${
-                  typeof site.method === "string" ? ` · ${site.method}` : ""
-                }`
-              : "award_site: <absent>";
+            level && file
+              ? `${level} · ${file}${edge.method ? ` · ${edge.method}` : ""}`
+              : `award_site: <missing ${[
+                  level ? null : "level",
+                  file ? null : "file",
+                ]
+                  .filter((m): m is string => m !== null)
+                  .join("/")}>`;
           record(`site:${label}`, edge, "from", null);
           continue;
         }

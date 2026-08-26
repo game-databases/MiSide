@@ -10,6 +10,9 @@
  *   • no-orphan law: peers link only when the owning dataset confirms them;
  *   • density honesty: dense unlinked tokens collapse into counted rows;
  *   • consume-time census gate: disk drift from joins.json fails loud.
+ * B-RP2 fix round adds: flat grant-site payload rendering on award-site cards,
+ * method as carried provenance, ending peers linking through /endings, and the
+ * search-census unknown-kind gate.
  * Env vars are set BEFORE any reader call (readers cache per process; node
  * --test gives this file its own process).
  */
@@ -28,6 +31,7 @@ for (const d of [
   "data/minigames",
   "data/documents",
   "data/scenes",
+  "data/endings",
   "relinks",
   "localization/English",
 ]) {
@@ -122,6 +126,17 @@ const JOINS = {
       edge_count_expected: 2, edge_count_measured: 2,
       mechanisms: { hard: 2 }, statuses: {},
     },
+    // id-columns provenance family: grant sites ship FLAT (level/file/method
+    // + pathIDs) — exactly the corpus shape; row 1 is byte-equal to the real
+    // extracted/relinks/achievement--award-site.jsonl ACHI_WinFIght row.
+    "achievement--award-site": {
+      binds: "achievement -> serialized grant sites",
+      file: "extracted/relinks/achievement--award-site.jsonl",
+      schema_id: "miside.relink.achievement-award-site/1", anchor_mode: "id-columns",
+      direction_handling: "reverse-index",
+      edge_count_expected: 2, edge_count_measured: 2,
+      mechanisms: { hard: 2 }, statuses: {},
+    },
     // provisional speaker themes: machine-plane peer w/ pending-curation status
     "dialogue-speaker-theme--character": {
       binds: "speaker theme -> character",
@@ -181,6 +196,23 @@ writeFileSync(
 writeFileSync(
   join(extracted, "relinks", "dialogue-speaker-theme--character.jsonl"),
   [JSON.stringify({ direction: "forward", from: "speaker-theme:Mita", to: "character:mita-usual", mechanism: "inferred", status: "provisional-pending-ds1" })].join("\n") + "\n"
+);
+writeFileSync(
+  join(extracted, "relinks", "achievement--award-site.jsonl"),
+  [
+    JSON.stringify({ index_pair: "achievement->award_site", achievement_id: "ACHI_WinFIght", level: "level6", file: "Dialogue_3DText_#7081.txt", host_object_path_id: 7081, target_type: "Achievement_function", target_path_id: 9330, method: "AchievementGet", args_string: "ACHI_WinFIght", mechanism: "hard", build_id: 19029065 }),
+    // a row with NO grant-site payload keys — the typed named-absence path
+    JSON.stringify({ index_pair: "achievement->award_site", achievement_id: "ACHI_bare", host_object_path_id: null, target_type: "Achievement_function", target_path_id: 42, method: "AchievementGet", args_string: "ACHI_bare", mechanism: "hard", build_id: 19029065 }),
+  ].join("\n") + "\n"
+);
+emitJsonl("data/endings/endings.jsonl", [
+  { ending_id: "conditions-met", kind: "ending", build_id: 19029065 },
+]);
+/* empty census registry: the search-census leg below pins the GUARD, not
+   today's corpus numbers (the live corpus acceptance lives in the search lane) */
+writeFileSync(
+  join(registry, "entities.json"),
+  JSON.stringify({ _meta: { note: "relationCards fixture leg: no census pins" }, entity_types: {} })
 );
 
 const { relationCardsFor, edgesAnchoringPage, provenanceBites, DENSE_TOKEN_LIMIT } = await import(
@@ -327,6 +359,87 @@ test("[B-RP1] carry-law bite condition is stated once and bites exactly off hard
   assert.equal(provenanceBites("hard", "partial"), true);
   assert.equal(provenanceBites(undefined, undefined), false);
   assert.ok(DENSE_TOKEN_LIMIT >= 1);
+});
+
+/* ---------------- B-RP2 fix round (rp1-vA findings F1–F4) ---------------- */
+
+test("[B-RP2] award-site cards consume the FLAT grant-site payload of a REAL shipped row", () => {
+  const cards = relationCardsFor("achievements", "ACHI_WinFIght", "en", "");
+  const card = cards.find((c) => c.family === "achievement--award-site");
+  assert.ok(card, "the grant-site card must exist on an achievement page");
+  assert.equal(card.edgeCount, 2, "card carries the REGISTRY-measured family census");
+  const real = card.items.find((i) => i.label.includes("Dialogue_3DText_#7081.txt"));
+  assert.ok(real, "the flat level/file/method payload renders");
+  assert.equal(
+    real.label,
+    "site:level6 · Dialogue_3DText_#7081.txt · AchievementGet",
+    "label built from scalars.level/file + edge.method — the shape the corpus ships"
+  );
+  assert.equal(real.state, "text");
+  assert.equal(real.mechanism, "hard");
+  assert.ok(
+    card.items.every((i) => !i.label.includes("<absent>")),
+    "no manufactured absence may remain (rp1-vA F1)"
+  );
+});
+
+test("[B-RP2] award-site fail-closed: a payload-less row names its missing keys", () => {
+  const cards = relationCardsFor("achievements", "ACHI_bare", "en", "");
+  const card = cards.find((c) => c.family === "achievement--award-site");
+  assert.ok(card);
+  assert.deepEqual(
+    card.items.map((i) => i.label),
+    ["site:award_site: <missing level/file>"],
+    "absence stays typed and names the absent keys (spec §7 rule 2)"
+  );
+});
+
+test("[B-RP2] method rides RelationEdge like mechanism/status (joins carry law)", async () => {
+  const joins = await import("../src/data/joins.ts");
+  const [withMethod] = joins.familyEdges("achievement--award-site");
+  assert.equal(withMethod.method, "AchievementGet", "recorded derivation carried verbatim");
+  assert.equal("method" in withMethod.scalars, false, "method stays provenance, not a scalar");
+  const others = joins.familyEdges("character--scene-membership");
+  assert.ok(others.length > 0);
+  assert.ok(others.every((e) => e.method === null), "families without the column read null");
+});
+
+test("[B-RP2] paired endings link through the routed /endings tree (resolveAnchor ending:)", () => {
+  const cards = relationCardsFor("achievements", "ACHI_real", "en", "");
+  const card = cards.find((c) => c.family === "achievement--ending");
+  assert.ok(card, "scalar-keyed pair routes on the achievements page");
+  assert.equal(card.items.length, 1);
+  const ending = card.items[0];
+  assert.equal(ending.label, "Conditions Met", "owning-row name, never raw machine text");
+  assert.equal(ending.href, "/endings/conditions-met");
+  assert.equal(ending.state, "linked", "no-orphan confirmed via the endings dataset row");
+});
+
+test("[B-RP2] census kind-growth gate: an UNREGISTERED index kind fails loud, named", async () => {
+  const { assertSearchCensus } = await import("../src/lib/search/searchSource.ts");
+  const { LOCALES } = await import("../src/i18n/locales.ts");
+  const pivot = LOCALES[0].code;
+  const base = [
+    { id: "level13", kind: "locations", title: "Level 13", text: "", url: "/locations/level13" },
+  ];
+  assert.doesNotThrow(
+    () => assertSearchCensus(new Map([[pivot, base]])),
+    "registered kinds alone still pass the gate"
+  );
+  const grown = new Map([
+    [
+      pivot,
+      [
+        ...base,
+        { id: "widget-1", kind: "widgets", title: "Widget", text: "", url: "/widgets/widget-1" },
+      ],
+    ],
+  ]);
+  assert.throws(
+    () => assertSearchCensus(grown),
+    /unregistered kind "widgets"/,
+    "a NEW routed entity kind must fail the emit by name, not drift through silently"
+  );
 });
 
 /* ---------------- static greps: one consumption path per law ---------------- */
