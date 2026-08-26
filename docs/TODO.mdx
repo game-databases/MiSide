@@ -17,6 +17,33 @@ Pack repo: `github.com/game-databases/MiSide` (child `49ab4e9`, superproject
 gitlink `e64f2d00`) — commit in the CHILD from inside `MiSide/`; super-repo
 only bumps the pin.
 
+## Parallel lanes — what launches together
+
+This section IS the wave plan: each tick, pick the next unit from one lane,
+plus verifiers for whatever just landed. Concurrency caps learned from the
+429 storms: steady-state ≤4 concurrent subagents (probe with a pair first
+after any cap/storm window); storm-time ≤2 with the critical path serialized.
+Never two writers on the same tree — site/ waves serialize against each
+other; data-layer work runs alongside site/ freely.
+
+- **LANE-A · contracts chain (critical path)**: F-DC1 fix → verifier pair →
+  arbiter → contracts builder → derived re-pin. ⛓ Gates: tools trio,
+  trackers, changelog viewer, UGC, relation cards.
+- **LANE-B · scene maps**: viewer scout → spec loop → viewer build +
+  interactions → entity-page map modules. Independent of LANE-A.
+- **LANE-C · content**: guides section + news section + localized content
+  layer — one content pipeline; scaffold together, translate together.
+- **LANE-D · site hardening batch**: SEO/AEO completion, OG images, media
+  perf, a11y, PWA — independent fixes; batch as ONE fixer wave + ONE
+  reviewer pair, not five separate loops.
+- **LANE-E · data tails**: logic-layer extraction, icons/UI export — zero
+  overlap with site trees; unblock ⛓ tools later.
+
+Wave pattern: one lane leader + one other lane's next unit in flight;
+a verifier pair rides along per landed leader. UGC waits for LANE-C
+(needs guides/news surfaces to comment on); LANE-D batch waits until no
+other lane is mid-edit in `site/`.
+
 ## Phase 0 — bootstrap & research (closed)
 
 - [x] Canon read in full: AGENTS, FRAMEWORK §1–§10, doctrines, promptForDB
