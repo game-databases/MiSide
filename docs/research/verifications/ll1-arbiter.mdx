@@ -1,0 +1,243 @@
+# A-LL1-arbiter — arbitration of [`docs/specs/logic-layer.mdx`](../../specs/logic-layer.mdx) (D-LL1)
+
+Arbiter: fresh Arbiter subagent (A-LL1, PrepareTask step 4). Date 2026-08-26. Inputs read **in full**
+this pass: [ll1-review.mdx](ll1-review.mdx), [logic-layer.mdx](../../specs/logic-layer.mdx),
+[logic-layer-scout.mdx](../logic-layer-scout.mdx), root AGENTS.md,
+[`_foundation/decision-register.md`](../../../_foundation/decision-register.md).
+
+**Independent reproduction this pass** (read-only python over the corpus, commands analogous to the
+review's appendix): `branch_edges.jsonl` = 1,555 rows, keys `{args, branch_if_int, call_index,
+edge_id, effect_class, feeds_ending, from_node, from_option, status, target}` — **no `file`, no
+top-level `container`**; class distribution 709/468/356/10/8/3/1; nine-family whitelist cross-tab =
+**20 IN / 1,535 OUT**, 133 distinct `(target.type,target.method)` pairs (SetActive ×265,
+AnimationPlay ×160, AudioSource.Play ×131, Animator.SetTrigger ×104, ParticleSystem Play+Stop ×167);
+`cartridges.jsonl` = 24 lines = `_meta` + **23 data rows**, `pickup_ref` null ×2 (`mtad-2`,
+`mtacore`) ⇒ **21 resolved**; `flag_tables.jsonl` node_ids distinct incl. bare
+`level4:Events_IntMemory` (`object_path_id:null`) beside suffixed `level4:Events_IntMemory:3327`
+(`object_path_id:3327`); `achievement--award-site.jsonl` measures level9 `Dialogue_3DText_#12820.txt`
+at `target_path_id:**18198**`; `endings.jsonl` = 4 rows **including `peaceful`**, whose
+`mode_unlocked:{state:"locked-stub"}` rides the rows (`conditions-met` carries it too); MiSide
+`contracts/` holds only the seven `dataset-*.mdx` files — `contracts/registry/entities.json` and
+`check_contracts.py` exist **nowhere** in the working tree. Every load-bearing number in R-LL1
+reproduced exactly. One measurement the review did not make is load-bearing below (join-collision
+test, [F-1](#f-1--high--accept-with-binding-two-tier-design-modifying-the-reviewers-proposed-join)).
+
+## Ruling summary
+
+| Finding | Sev | Ruling | One-line basis |
+|---|---|---|---|
+| F-1 | HIGH | **ACCEPT** (binding design; reviewer's join key MODIFIED — measured insufficient) | 20/1,535 cross-tab + missing `file`/`container` keys reproduced verbatim |
+| F-2 | MED | **MODIFY** | hole real; allowlist accepted but save-literals are access points (no direction), and `"negative"` is reserved outright |
+| F-3 | MED | **ACCEPT** | disk says 23 data rows / 21 resolved; spec's 24/22 counted `_meta` |
+| F-4 | MED | **MODIFY** | tooling absent confirmed; do not gate LL1 on D-C1 — make the registry insert builder-owned at emit |
+| F-5 | LOW | **ACCEPT** | `:3327` suffix + null `object_path_id` measured; "ambiguous key" characterization wrong |
+| F-6 | LOW | **ACCEPT** | canonical relink measures 18198 for that exact site |
+| F-7 | LOW | **MODIFY** | pin five values (scout's four + `locked-stub`); state the `internal_only` pairing |
+| F-8 | LOW | **ACCEPT** | both proofs need pinned inputs to be runnable; namespaces named below |
+| F-9 | LOW | **ACCEPT** | render half otherwise lost between pieces |
+
+---
+
+## F-1 — HIGH — ACCEPT, with binding two-tier design (reviewer's proposed join key modified)
+
+Finding verified: the nine-family whitelist admits exactly **20 of 1,555** `branch_edges` rows while
+AC-L1 demands 1,555/1,555 and §7 expects ~824 cosmetic/audiovisual calls *inside* `effect_calls`;
+the specified join tuple names `container`/`file` fields the edge rows do not carry. Built as
+written, AC-L1 fails at 20/1,555 or the CodeWriter silently widens the sweep and the spec lies.
+Both defects stand.
+
+### Binding design — LG2 becomes a two-tier sweep (replace §4 LG2's sweep paragraph)
+
+**Tier A — semantic whitelist (full extraction).** Corpus-wide persistent-call sweep over all 51
+containers extracting every call whose target method is one of the nine whitelisted families
+(`Achievement_function.AchievementGet/AchievementComplete(int)` · `Achievement_cloth.ClothCompleted`
+· `Events_IntMemory.{Set,Add,Remove,CheckEvent,CheckEventIndex}` + `*Ignory` variants ·
+`Events_Data.EV` · `Scene_Load.StartLoad/SilentSave` · `World.SaveStoryMita/SaveStoryCartridge`).
+Tier-A rows carry `subject_ids` (achievement id from `args.string`, cloth id, flag id via LG1),
+feed every floor (≥11 award sites, ≥2 cloth sites, ≥18 flag edges inside ending contexts), and feed
+LG3/projections. Floors are minimums: the corpus-wide sweep must find at least them or explain every
+miss in the emit ledger (existing sentence stays).
+
+**Tier B — disposition sweep (census accounting, no silent drops).** Every remaining persistent
+call found by the same sweep is also emitted to `effect_calls.jsonl`, classified with DS-2's
+type/method semantics (`scene-flow | cosmetic | audiovisual | dead-reference`) so §7 item 2's ~824
+presentation calls exist as graph fuel. Tier-B rows are stamped `"internal_only":true`,
+`subject_ids:[]`, and never surface through LG3. Tier B is necessarily unfiltered — the
+dead-reference class can only be discovered by sweeping without a whitelist (`m_Target=0` residue,
+[END-4]). Tier assignment (A/B) is **orthogonal** to `effect_class`: measured proof —
+`level14:ObjectInteractive:3695:call4` is whitelist-admitted (`Scene_Load.StartLoad`) yet DS-2
+classified it `cosmetic`. The emitter must therefore record BOTH axes per row.
+
+**Census accounting (what makes AC-L1 honest).** `effect_calls._meta` carries per-`effect_class`
+totals over ALL persistent calls found corpus-wide plus `tier_a_count`/`tier_b_count`; any
+persistent call the sweep declines to emit is impossible by construction — a call exists in the
+output or in the ledgered counts, never in neither. No numeric promise beyond the floors and the
+reconciled 1,555 is made (tier-B magnitude is discovered, not asserted).
+
+### Binding design — AC-L1 restated (replace the §8 L1 row)
+
+The reviewer's proposed join — edge_id-derived container + `(target.type, target.method,
+object_path_id, args)` + `call_index` tiebreaker — was **collision-tested this pass and fails**:
+47 colliding groups, max multiplicity 13 (container prefix alone: 59 groups, ×15). The container is
+not the discriminator; the host component is. The working key resolves each edge's host through the
+*node* table first:
+
+```
+K(edge) = ( node.container, node.event_field, node.object_path_id,
+            edge.from_option, edge.call_index,
+            target.type, target.method, target.object_path_id, args-tuple )
+where node = choice_nodes[row with node_id == edge.from_node]   # 371/371 unique ids, 0 unresolved edges
+```
+
+Measured this pass over all 1,555 rows: **1,555 groups, 0 collisions** — dropping any one of
+`event_field`, `from_option`, `call_index` reintroduces collisions (7–59 groups). Therefore:
+
+- **L1a (byte-freeze, unchanged):** sha256 of the four `endings/*.jsonl` identical before/after
+  emission.
+- **L1b (row resolution):** every `branch_edges.jsonl` row resolves to **exactly one**
+  `effect_calls` row under `K` — 1,555/1,555. To make `K` computable from the LG2 side,
+  `effect_calls` gains three fields (fix-order item 2): `event_field` (the serialized UnityEvent
+  field path the call lives in, e.g. `eventClick` or `buttons[2].eventClick`),
+  `option_index:int|null` (null when the carrier has no option structure; edge-side `from_option`
+  maps onto it), and `call_index:int` = position within that field's PersistentCallGroup. LG2
+  computes these walking the same dumps DS-2 walked; the checker verifies the mapping empirically
+  rather than trusting it.
+- **L1c (census accounting):** `_meta` class/tier totals present and additive; zero unclassified
+  persistent calls.
+
+This keeps AC-L1 satisfiable honestly: no widening beyond spec, no force-fitting, and the gate gets
+*stronger* than the original wording because it pins the discriminator the original tuple lacked.
+
+---
+
+## F-2 (M-1) — polarity `value` derivation — MODIFY
+
+The hole is real and load-bearing: §3's pairing law + LG3's evidence_class rule prove *existence* of
+a site, never *sense*; as written, `{value:"positive", evidence_class:"static-proven"}` passes AC-L3
+on an unproven gate, exactly the harmful row Law 2 exists to prevent. The reviewer's verb→direction
+allowlist is the right mechanism but needs two corrections: (a) **save-literals are not positives**
+— a `Scene_Load.fileSave`/`nameLevelSaves` literal is a pure access point ("you can save here"), no
+direction; it takes `value:null` under the spec's own no-direction clause, not `positive`; (b)
+**`"negative"` must be reserved outright** — zero rows in this build may carry it, because no static
+or cited evidence of a *hurts* direction exists anywhere in the corpus; leaving it assignable
+invites the first wrong render.
+
+**Binding rule (one paragraph into §3):** `polarity.value != null` is legal only per this table,
+checked mechanically at emit AND re-checked by AC-L3:
+
+| condition shape | value | evidence_class |
+|---|---|---|
+| call method ∈ {`Achievement_function.AchievementGet`, `Achievement_function.AchievementComplete`, `Achievement_cloth.ClothCompleted`} with site evidence | `"positive"` | `static-proven` |
+| pickup-gate rows (`expression_class:"access-chain"` via `cartridges.pickup_ref`, serialized `FlashTaker.save` carrier) | `"positive"` | `static-proven` |
+| safe-window attribution family (§6 row 3), while the OQ-3 posture stands | attributed parameter, flagged `sense_source:"community"` — directional `value` permitted only here | `inferred` + mandatory `citation[]` |
+| pure access points (save-literals, minigame access chains) | `null` (no direction exists) | any |
+| everything else — flag gates, toggles, windows-as-advice, spawn semantics | `null` | `fail-closed-unknown` until [XC-1] |
+
+**`"negative"` is reserved: zero occurrences this build.** AC-L3's proof column gains "recomputes
+`value` against the §3 table" alongside the existing `evidence_class` recomputation — a wrong
+positive now fails the gate instead of passing it. Schema unchanged; OQ-3 tightening still costs one
+renderer line.
+
+## F-3 (M-2) — cartridge census stale — ACCEPT
+
+Reproduced: 24 raw lines = `_meta` + **23 data rows** (`mta…plr-1099`); `pickup_ref` non-null on
+**21**, null on exactly `mtad-2` + `mtacore` ([CAR-1]). The scout counted `_meta`. The spec's header
+claims re-measurement, so the stale pair is also a self-consistency defect. Fix everywhere the pair
+appears: §4 LG3 "24 cartridges" → **23**; §6 "the 22 resolved … 2 unresolved stubs" → **21 + 2**;
+§8 L3 initial population "+22 pickup gates" → **+21 pickup gates**. While there, LG3's "4 endings
+(+ Peaceful stub)" double-counts: measured, `peaceful` is one of the four `endings.jsonl` rows and
+its locked-stub rides the rows (XC-12 posture) → reword to "4 endings incl. the Peaceful
+locked-stub". data-contracts §3.3's "cartridge_item (23)" already agrees with disk — no contract
+change needed.
+
+## F-4 (M-3) — AC-L6 depends on unlanded D-C1 tooling — MODIFY
+
+Confirmed absent: MiSide `contracts/` holds only the seven `dataset-*.mdx`; no
+`contracts/registry/entities.json`, no `check_contracts.py` anywhere in the tree. Neither of the
+reviewer's two options is right alone: a bare dependency note leaves rule-8 contract-pinning
+unsatisfied at emit time, and folding L6 into XC-6 stage registration makes LL1 block on the whole
+D-C1 chain. Ruling: **the registry insert is builder-owned at emit; the checker activation is
+staged.** Concretely, §8 L6 gains:
+
+> "The four schema ids are inserted into `contracts/registry/entities.json` by the LG emission
+> commit itself (creating the file with its first entries if D-C1 has not landed yet — format per
+> the D-C1 draft, migration ledgered if the final shape differs). `check_contracts.py`
+> enforcement activates automatically when that tool lands from D-C1; until then CI-diffing is
+> satisfied by the run_all stage hashing `entities.json` alongside the artifacts."
+
+LL1 stays unblocked; D-C1 inherits a seeded registry instead of a blank one; nothing waits on
+anything.
+
+---
+
+## LOW findings
+
+- **F-5 — ACCEPT.** Measured: level4's twins get distinct keys (`level4:Events_IntMemory` with
+  `object_path_id:null`, `level4:Events_IntMemory:3327` with `object_path_id:3327`) — the shipped
+  artifact is not ambiguously keyed; only the "ambiguous node_id" characterization is wrong.
+  Apply the reviewer's rewording (suffix convention made explicit + LG1 resolves bare names via the
+  harvest inventory); the identity gap itself stays a real LG1 obligation.
+- **F-6 — ACCEPT.** Canonical relink measures `target_path_id:18198` for that exact site; `9330` is
+  level6's shared component carried over from the scout's WinFIght example. Examples become fixtures
+  — fix to 18198.
+- **F-7 — MODIFY.** Pin the enum to five closed values:
+  `status ∈ {"proven-hard","proven-structure","community","locked-stub","unknown-fail-closed"}`
+  (scout's four + the `locked-stub` §6 already uses); dataset-native labels like
+  `unverified-behavior` stay on imported rows and map to these at emit via the §3 crosswalk.
+  Pairing rule: `"internal_only":true` is required exactly when the row answers no user question per
+  §7's list (dead-ref, tier-B presentation calls, unjoined unnamed flags, LG4 envelopes) — never
+  derived from `status` alone.
+- **F-8 — ACCEPT.** (a) L4's audit pins to: every `minigame_tunables` row carries
+  `rule_status:"not-a-threshold"` (already specified — the strong half), plus a grep deny-list over
+  `extracted/data/logic/*.jsonl` for threshold-shaped keys/values
+  (`win|threshold|score|percent|progress >=` on field names and numeric assertions), citation-string
+  fields excluded by name. (b) L3's recomputation needs typed evidence: declare the discriminator in
+  §3 — an evidence entry whose path is under `harvest/mb-dump/` or `il2cpp/dump.cs` is a *site*
+  locator; anything else (`[community]` text, wiki URLs, loc strings) is a *citation*. Mechanical,
+  no schema change.
+- **F-9 — ACCEPT.** Add one sentence to §10: the fail-closed render contract ("unknown polarity
+  renders as unknown, never styled as advice") is an explicit input obligation of the
+  ending-condition-explorer spec, with OQ-3's renderer flip as the single switch that tightens it —
+  otherwise the obligation evaporates between this piece and a tool that does not exist yet.
+
+---
+
+## Fix order for F-LL1 (11 self-contained items, all local to `docs/specs/logic-layer.mdx`)
+
+1. **§4 LG2** — replace the sweep paragraph with the two-tier design above: tier A = nine whitelisted
+   families fully extracted (floors + `subject_ids` unchanged); tier B = all remaining persistent
+   calls emitted `internal_only:true`, classified with DS-2 semantics, dead-ref requiring the
+   unfiltered sweep; tier assignment stated orthogonal to `effect_class`; `_meta`
+   class/tier census accounting named as the honesty mechanism.
+2. **§5 effect_calls shape** — add `event_field:string`, `option_index:int|null`,
+   `call_index:int` to the record (and one line defining them as AC-L1's discriminators); schema id
+   stays `miside.logic.effect_calls/1` (nothing emitted yet).
+3. **§8 L1** — replace the row with L1a/L1b/L1c: sha-freeze (unchanged wording); resolution of
+   1,555/1,555 under key `K` with host resolved through `choice_nodes` (`from_node` →
+   `container`,`event_field`,`object_path_id`) + `from_option` + `call_index`; census accounting.
+   Cite the measured collision result so the fixer does not "simplify" back to the broken tuple.
+4. **§3 (+§8 L3, §6 row 3)** — insert the polarity-value derivation table; reserve `"negative"`
+   (zero rows this build); extend L3's proof to recompute `value` against the table; note §6's
+   window-attribution family as the only `inferred`+value case while OQ-3 stands.
+5. **Census refresh** — §4 LG3: "24 cartridges" → 23, "4 endings (+ Peaceful stub)" → "4 endings
+   incl. the Peaceful locked-stub"; §6 cartridge row: 22 → 21 resolved (+2 stubs); §8 L3 population:
+   "+22 pickup gates" → "+21 pickup gates".
+6. **§8 L6** — builder-owned registry insert at emit (creating `contracts/registry/entities.json`
+   with the four ids if D-C1 has not landed), `check_contracts.py` enforcement staged-on-arrival,
+   interim CI-diff = run_all hashing `entities.json`.
+7. **§2.3 correction 3** — apply F-5 rewording (suffix convention + bare-name resolution; drop
+   "ambiguous").
+8. **§5 predicate_records example** — `target_path_id` 9330 → 18198.
+9. **§3 crosswalk or §5 preamble** — pin the `predicate_records.status` five-value enum +
+   `internal_only` pairing rule (F-7 MODIFY).
+10. **§8 L4 (+§3)** — pin the threshold grep deny-list + typed-evidence path-namespace
+    discriminator (site vs citation).
+11. **§10** — add the render-contract handoff sentence naming the explorer spec as its consumer and
+    the OQ-3 flip as the single switch.
+
+Items 1–3 are the blocking arc (LG2 statement → schema fields → gate); 4–6 are pre-build correctness;
+7–11 are mechanical tightening a fixer can land in the same pass. No item disturbs the module graph,
+the artifact namespace (OQ-2 recommendation stands), or any other spec's frozen inputs.
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES
+
