@@ -2,6 +2,11 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/chrome/Breadcrumbs";
 import { EntityShell } from "@/components/entity/EntityShell";
+import {
+  LocationModule,
+  type LocationSceneRef,
+} from "@/components/entity/LocationModule";
+import { MapViewer } from "@/components/map/MapViewer";
 import { VoidWell } from "@/components/kit/VoidWell";
 import {
   displayName,
@@ -10,11 +15,23 @@ import {
   type EntityDetailData,
 } from "./entityView";
 import {
+  sceneMarkers,
+  sceneObjectiveHints,
+  scenePoiListing,
+  sceneLabel,
+  mapChromeStrings,
+} from "./mapView";
+import {
   kindRows,
   findRow,
   characterAchievementEdges,
   characterSceneEdges,
+  documentSceneEdges,
+  markerSceneId,
+  markers,
+  minigameCarrierEdges,
   minigamesInContainer,
+  type BookRow,
   type CartridgeRow,
   type ProfileDocumentRow,
   type AchievementRow,
@@ -115,6 +132,45 @@ function buildModules(
       {word} <span className="font-lcd">{n}</span>
     </>
   );
+
+  // M4 — the location module (map-viewer §7): scene-locked viewer embed on
+  // location pages, per-entity "found in" + focus anchors on placement-bearing
+  // kinds. Sources are consumed, never derived: markers.jsonl rows, shipped
+  // relink families, and the row's OWN pinned placement column.
+  if (data.kind === "locations") {
+    tabs.push({
+      id: "location",
+      label: chrome["map.sceneLocked"],
+      panel: (
+        <LocationsScenePanel
+          sceneId={data.id}
+          localeCode={localeCode}
+          localePrefix={localePrefix}
+          chrome={chrome}
+        />
+      ),
+    });
+  } else {
+    const refs = locationSceneRefs(data.kind, data.id, localePrefix, localeCode);
+    const unplacedWell =
+      refs.length === 0 &&
+      data.kind === "profiles" &&
+      (data.row as unknown as ProfileDocumentRow).placement_mechanism !== "placed";
+    if (refs.length > 0 || unplacedWell) {
+      tabs.push({
+        id: "location",
+        label: chrome["nav.locations"],
+        panel: (
+          <LocationModule
+            scenes={refs}
+            localePrefix={localePrefix}
+            openMapLabel={chrome["map.openMap"]}
+            unplacedLabel={chrome["map.unplaced"]}
+          />
+        ),
+      });
+    }
+  }
 
   if (data.kind === "mita" || data.kind === "players") {
     const cartridges = kindRows("cartridges").filter(
@@ -395,6 +451,285 @@ function AchievementModule({
         stats: a.steam.global_percent !== null ? [`${a.steam.global_percent}%`] : undefined,
       }))}
     />
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* M4 — entity↔map producers (map-viewer §7)                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Per-kind scene sources, consumed not derived:
+ *  • mita/players → character--scene-membership forward edges;
+ *  • minigames   → minigame--scene-carrier carrier edges;
+ *  • books/lore  → document--scene-membership (books ride their own pinned
+ *    `consumer_scene` column — a scene FAMILY name, never re-keyed to a
+ *    registry id);
+ *  • cartridges  → markers.jsonl rows (the emitter's join; no runtime DS-4
+ *    rejoin);
+ *  • profiles    → markers.jsonl rows, falling back to the row's OWN
+ *    `placement` column while M0 is pending; the placement-less three
+ *    render the honest unplaced well instead.
+ * The four from:null scene-class census rows have NO registry slug and are
+ * excluded entirely (rendering a container census as a per-entity fact is
+ * prohibited).
+ */
+function locationSceneRefs(
+  kind: string,
+  id: string,
+  localePrefix: string,
+  localeCode: string
+): LocationSceneRef[] {
+  const focusHref = (focusKind: string, sceneId?: string): string =>
+    `${localePrefix}/map?focus=${encodeURIComponent(focusKind)}:${encodeURIComponent(id)}${
+      sceneId ? `&scene=${encodeURIComponent(sceneId)}` : ""
+    }`;
+
+  if (kind === "mita" || kind === "players") {
+    const edges = characterSceneEdges().filter((e) => e.from === id);
+    return mergeByScene(
+      edges.map((e) => ({
+        ref: {
+          sceneId: e.scene_id,
+          sceneTitle: sceneLabel(e.scene_id, localeCode),
+          focusHref: focusHref(kind, e.scene_id),
+          mechanism: e.mechanism || undefined,
+          status: e.status || undefined,
+        },
+      }))
+    );
+  }
+
+  if (kind === "minigames") {
+    const edges = minigameCarrierEdges().filter((e) => e.minigame_id === id);
+    return mergeByScene(
+      edges.map((e) => ({
+        ref: {
+          sceneId: e.container,
+          sceneTitle: sceneLabel(e.container, localeCode),
+          focusHref: focusHref("minigames", e.container),
+          mechanism: e.mechanism || undefined,
+          status: e.status || undefined,
+        },
+      }))
+    );
+  }
+
+  if (kind === "lore") {
+    const edges = documentSceneEdges().filter(
+      (e) =>
+        (e.family === "paper_part" || e.family === "novella_surface") &&
+        e.document_id === id
+    );
+    return mergeByScene(
+      edges.map((e) => ({
+        ref: {
+          sceneId: e.container,
+          sceneTitle: sceneLabel(e.container, localeCode),
+          focusHref: focusHref("lore", e.container),
+          mechanism: e.mechanism || undefined,
+          status: e.status || undefined,
+        },
+      }))
+    );
+  }
+
+  if (kind === "books") {
+    // consumer_scene is a scene-family label ("Location House"), NOT a
+    // registry scene_id — so no /locations link and no scene param on the
+    // focus anchor; the value rides as text, verbatim.
+    const row = findRow("books", id) as unknown as BookRow | undefined;
+    if (!row?.consumer_scene) return [];
+    return [
+      {
+        sceneId: row.consumer_scene,
+        sceneTitle: desluggedLabel(row.consumer_scene) || row.consumer_scene,
+        focusHref: focusHref("books"),
+      },
+    ];
+  }
+
+  if (kind === "cartridges") {
+    const rows = markers().filter(
+      (m) => m.entity_kind === kind && m.entity_slug === id
+    );
+    return mergeByScene(
+      rows.flatMap((m) => {
+        const sid = markerSceneId(m);
+        if (!sid) return [];
+        return [
+          {
+            ref: {
+              sceneId: sid,
+              sceneTitle: sceneLabel(sid, localeCode),
+              focusHref: focusHref("cartridges", sid),
+              mechanism: m.placement?.mechanism,
+              status: undefined,
+              census: m.instance_census,
+            },
+          },
+        ];
+      })
+    );
+  }
+
+  if (kind === "profiles") {
+    const rows = markers().filter(
+      (m) => m.entity_kind === kind && m.entity_slug === id
+    );
+    if (rows.length === 0) {
+      // own-row fallback while M0 is pending: DS-5 pins the placement column
+      const p = findRow("profiles", id) as unknown as
+        | (ProfileDocumentRow & {
+            placement?: { container?: string };
+          })
+        | undefined;
+      if (p?.placement_mechanism !== "placed" || !p.placement?.container) {
+        return [];
+      }
+      const sid = p.placement.container;
+      return [
+        {
+          sceneId: sid,
+          sceneTitle: sceneLabel(sid, localeCode),
+          focusHref: focusHref("profiles", sid),
+          mechanism: p.placement_mechanism,
+        },
+      ];
+    }
+    return mergeByScene(
+      rows.map((m) => {
+        const sid = markerSceneId(m);
+        return {
+          ref: {
+            sceneId: sid ?? "",
+            sceneTitle: sid ? sceneLabel(sid, localeCode) : "",
+            focusHref: sid ? focusHref("profiles", sid) : null,
+            mechanism: m.placement?.mechanism,
+            status: undefined,
+            census: m.instance_census,
+          },
+        };
+      }).filter(({ ref }) => Boolean(ref.sceneId))
+    );
+  }
+
+  return [];
+}
+
+type RefInput = { ref: LocationSceneRef };
+
+/** Dedupe same-scene edges; provenance surfaces when ANY edge bites (F-7). */
+function mergeByScene(inputs: RefInput[]): LocationSceneRef[] {
+  const byScene = new Map<string, LocationSceneRef>();
+  for (const { ref } of inputs) {
+    const cur = byScene.get(ref.sceneId);
+    if (!cur) {
+      byScene.set(ref.sceneId, ref);
+      continue;
+    }
+    byScene.set(ref.sceneId, {
+      ...cur,
+      mechanism: bitingProvenance(cur.mechanism, ref.mechanism, "hard"),
+      status: bitingProvenance(cur.status, ref.status, "modeled"),
+    });
+  }
+  return [...byScene.values()];
+}
+
+/** Keep whichever value trips the carry law; ties keep the first. */
+function bitingProvenance(a: string | undefined, b: string | undefined, neutral: string): string | undefined {
+  if (a && a !== neutral) return a;
+  if (b && b !== neutral) return b;
+  return a ?? b;
+}
+
+/**
+ * /locations/[scene_id] panel (M3): the viewer in scene-locked mode above
+ * the objective-hint lines and the POI listing grouped by kind — eligible
+ * kinds render their classes with instance counts; ineligible classes
+ * surface as counted rows only.
+ */
+function LocationsScenePanel({
+  sceneId,
+  localeCode,
+  localePrefix,
+  chrome,
+}: {
+  sceneId: string;
+  localeCode: string;
+  localePrefix: string;
+  chrome: Chrome;
+}) {
+  const hints = sceneObjectiveHints(sceneId, localeCode);
+  const poiGroups = scenePoiListing(sceneId);
+  const eligibleGroups = poiGroups.filter((g) => g.eligible);
+  const ineligibleGroups = poiGroups.filter((g) => !g.eligible);
+  return (
+    <div className="flex flex-col gap-5">
+      <MapViewer
+        mode="locked"
+        groups={[]}
+        sceneIds={[sceneId]}
+        initialSceneId={sceneId}
+        markersByScene={{
+          [sceneId]: sceneMarkers(sceneId, localePrefix, localeCode),
+        }}
+        chromeStrings={mapChromeStrings(chrome)}
+      />
+
+      {hints.length > 0 && (
+        <ul className="flex flex-col gap-1">
+          {hints.map((h, i) => (
+            <li key={i} className="text-sm leading-relaxed">
+              {h}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* POI listing — list form over poi.jsonl (consumed, never derived) */}
+      {eligibleGroups.map((g) => (
+        <section key={`e:${g.kind}`} className="flex flex-col gap-1.5">
+          <span
+            className="w-fit rounded-full border px-3 py-1 font-lcd text-xs uppercase tracking-wide"
+            style={{ color: "var(--ms-text-2)" }}
+          >
+            {g.kind}
+          </span>
+          <ul className="flex flex-wrap gap-1.5">
+            {g.classes.map((c) => (
+              <li
+                key={c.cls}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-secondary px-3 text-xs font-bold text-secondary-foreground"
+              >
+                {c.label}
+                {c.count > 1 && (
+                  <span className="font-lcd text-[var(--ms-signal)]">×{c.count}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+
+      {/* ineligible classes surface as COUNTED rows — labels stay off */}
+      {ineligibleGroups.length > 0 && (
+        <section className="flex flex-wrap gap-1.5">
+          {ineligibleGroups.flatMap((g) =>
+            g.classes.map((c) => (
+              <span
+                key={`i:${g.kind}:${c.cls}`}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border px-3 font-lcd text-xs text-muted-foreground"
+              >
+                {g.kind}/{c.cls}
+                <span>×{c.count}</span>
+              </span>
+            ))
+          )}
+        </section>
+      )}
+    </div>
   );
 }
 

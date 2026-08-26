@@ -52,3 +52,46 @@ export function projectedCoordinates(
   if (typeof p.x !== "number" || typeof p.y !== "number") return null;
   return { x: p.x, y: p.y, z: p.z };
 }
+
+/*
+ * Marker-row v2 bridge (map-viewer §4.2). A marker plots iff its emitted
+ * `status:"projected"` AGREES with the conjunction above — the same gate,
+ * never a second one.
+ */
+
+export interface MarkerPositionInput {
+  status: string;
+  x?: number | null;
+  y?: number | null;
+  z?: number | null;
+}
+
+/** Coordinates for a marker row — null unless projected AND projecting. */
+export function markerCoordinates(
+  m: MarkerPositionInput
+): { x: number; y: number; z?: number } | null {
+  if (m.status !== "projected") return null;
+  return projectedCoordinates({
+    source: "inline",
+    space: "world-assumed",
+    x: m.x ?? undefined,
+    y: m.y ?? undefined,
+    z: m.z ?? undefined,
+  });
+}
+
+/**
+ * AC MV-2 agreement check: true when the emitted status and the projection
+ * conjunction DISAGREE in either direction (fixture-test hook).
+ */
+export function markerStatusDisagrees(m: MarkerPositionInput): boolean {
+  const coords = projectedCoordinates({
+    source: "inline",
+    space: "world-assumed",
+    x: m.x ?? undefined,
+    y: m.y ?? undefined,
+    z: m.z ?? undefined,
+  });
+  const claimsProjected = m.status === "projected";
+  return claimsProjected !== (coords !== null);
+}

@@ -209,7 +209,11 @@ export function MapSectionContent({ localeCode }: { localeCode: string }) {
       <h1 className="text-3xl font-bold uppercase tracking-wide">
         {chrome["nav.map"]}
       </h1>
-      <MapRoute chrome={chrome} localePrefix={def.prefix} />
+      <MapRoute
+        chrome={chrome}
+        localeCode={def.code}
+        localePrefix={def.prefix}
+      />
     </div>
   );
 }

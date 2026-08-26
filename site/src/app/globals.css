@@ -34,3 +34,16 @@ h2.section-header,
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+
+/* Leaflet island skin: transparent over the schematic grid (the awaiting-
+   artwork state shows through), site sans for any browser chrome text. No
+   tile-server styling exists anywhere — owned scenes only. */
+.leaflet-container {
+  background: transparent;
+  font-family: var(--ms-font-sans);
+}
+.leaflet-marker-icon:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 999px;
+}

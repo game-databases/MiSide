@@ -223,13 +223,121 @@ export interface PoiRow {
   build_id: string;
 }
 
+/*
+ * Marker row v2 (map-viewer spec §4.1): one shape, two sources.
+ *  • poi-anchored rows carry the corpus-verbatim `poi_id` instance anchor.
+ *  • placement-sourced rows (DS-5 profiles, minigame carriers) carry
+ *    `poi_id: null` and are scene-granular FOREVER until S9 resolves carrier
+ *    transforms — they never plot as pins.
+ * `position.status` is the honesty axis: "projected" rows must agree with
+ * projectedCoordinates() (AC MV-2); every other status renders designed
+ * non-pin states. The emitter writes final `links.*` segments so this module
+ * formats URLs, never maps vocabularies.
+ */
+export type MarkerPositionStatus =
+  | "projected"
+  | "awaiting-transform-stage"
+  | "scene-granular";
+
 export interface MarkerRow {
+  marker_id: string;
+  /** Instance anchor; null for placement-sourced rows. */
+  poi_id: string | null;
+  layer: string;
+  /** poi-kind vocabulary — the chip/filter axis. */
+  kind: string;
+  /** ROUTED ENTITY_KINDS key (cartridges/profiles/…), not the poi family. */
   entity_kind: string;
   entity_slug: string;
-  scene_id: string;
-  x: number;
-  y: number;
-  [k: string]: unknown;
+  icon: { source: string | null; fallback_state: string };
+  position: {
+    x: number | null;
+    y: number | null;
+    z: number | null;
+    status: MarkerPositionStatus;
+    target?: unknown;
+  };
+  /** Provenance carried verbatim for the PinPopover provenance cell. */
+  placement?: {
+    mechanism?: string;
+    source_join?: string;
+    scene_binding?: string;
+  };
+  /** Required when one container hosts >1 controller/minigame (never 1-of-N). */
+  instance_census?: Record<string, number>;
+  links: { page_url: string | null; focus_url?: string };
+}
+
+/**
+ * Normalized marker reader over data/scenes/markers.jsonl. Lenient on MISSING
+ * OPTIONAL fields only — a row without a projecting position stays
+ * non-projecting (fail-safe), it is never promoted. Zero data rows today
+ * (no-orphan rule); M0's rerun fills the file without a schema change here.
+ */
+export function markers(): MarkerRow[] {
+  return readJsonl<Partial<MarkerRow>>("data/scenes/markers.jsonl").rows.map(
+    (raw): MarkerRow => {
+      const pos = (raw.position ?? {}) as Record<string, unknown>;
+      const x = typeof pos.x === "number" ? pos.x : null;
+      const y = typeof pos.y === "number" ? pos.y : null;
+      const z = typeof pos.z === "number" ? pos.z : null;
+      const status =
+        pos.status === "projected" ||
+        pos.status === "awaiting-transform-stage" ||
+        pos.status === "scene-granular"
+          ? pos.status
+          : // unknown/absent status can never plot — the pending register is
+            // the honest ceiling for an unlabeled cell
+            ("awaiting-transform-stage" as MarkerPositionStatus);
+      const links = (raw.links ?? {}) as Record<string, unknown>;
+      return {
+        marker_id: String(raw.marker_id ?? raw.poi_id ?? raw.entity_slug ?? ""),
+        poi_id: typeof raw.poi_id === "string" ? raw.poi_id : null,
+        layer: String(raw.layer ?? ""),
+        kind: String(raw.kind ?? ""),
+        entity_kind: String(raw.entity_kind ?? ""),
+        entity_slug: String(raw.entity_slug ?? ""),
+        icon: {
+          source:
+            typeof (raw.icon as { source?: unknown })?.source === "string"
+              ? ((raw.icon as { source: string }).source)
+              : null,
+          fallback_state:
+            (raw.icon as { fallback_state?: string })?.fallback_state ??
+            "named-explicit-missing",
+        },
+        position: {
+          x,
+          y,
+          z,
+          status,
+          target: pos.target,
+        },
+        placement: (raw.placement ?? undefined) as MarkerRow["placement"],
+        instance_census: (raw.instance_census ?? undefined) as
+          | Record<string, number>
+          | undefined,
+        links: {
+          page_url: typeof links.page_url === "string" ? links.page_url : null,
+          focus_url:
+            typeof links.focus_url === "string" ? links.focus_url : undefined,
+        },
+      };
+    }
+  );
+}
+
+/** The scene id a marker binds to (placement.scene_binding scalar first). */
+export function markerSceneId(m: MarkerRow): string | null {
+  if (m.placement?.scene_binding) return m.placement.scene_binding;
+  if (!m.links.focus_url) return null;
+  try {
+    return new URLSearchParams(
+      m.links.focus_url.slice(m.links.focus_url.indexOf("?"))
+    ).get("scene");
+  } catch {
+    return null;
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -336,6 +444,26 @@ export function scenes(): SceneRow[] {
   return readJsonl<SceneRow>("data/scenes/scenes.jsonl", "scene_id").rows;
 }
 
+/** Curated class→kind rulings (poi-kinds.json — plain JSON, not JSONL). */
+export interface PoiKindRuling {
+  class: string;
+  kind: string;
+  marker_eligible: boolean;
+}
+
+let poiKindsCache: PoiKindRuling[] | null = null;
+export function poiKinds(): PoiKindRuling[] {
+  if (!poiKindsCache) {
+    const raw = readFileSync(
+      join(extractedRoot(), "data", "scenes", "poi-kinds.json"),
+      "utf8"
+    );
+    const doc = JSON.parse(raw) as { classes?: PoiKindRuling[] };
+    poiKindsCache = Array.isArray(doc.classes) ? doc.classes : [];
+  }
+  return poiKindsCache;
+}
+
 /* Shipped relink rows (extracted/relinks/) — modules join ONLY these; the
    site never derives an edge the corpus does not pin (AGENTS.md rule 8). */
 
@@ -377,6 +505,8 @@ export function characterAchievementEdges(): CharacterAchievementEdge[] {
 export interface CharacterSceneEdge {
   from: string;
   scene_id: string;
+  /** Provenance carry law (map-viewer §7): surfaced when !== "hard". */
+  mechanism: string;
   status: string;
 }
 
@@ -385,6 +515,7 @@ export function characterSceneEdges(): CharacterSceneEdge[] {
     direction?: string;
     from?: string | null;
     to?: string | null;
+    mechanism?: string;
     status?: string;
   }>("relinks/character--scene-membership.jsonl");
   return rows
@@ -398,8 +529,91 @@ export function characterSceneEdges(): CharacterSceneEdge[] {
     .map((r) => ({
       from: r.from as string,
       scene_id: (r.to as string).slice("scene:".length),
+      // provenance carry law (map-viewer §7 F-7): mechanism rides through to
+      // render — surfaced whenever it is not "hard"
+      mechanism: r.mechanism ?? "",
       status: r.status ?? "",
     }));
+}
+
+/**
+ * Forward document→container membership (relink family
+ * document--scene-membership): note/paper_part/novella_surface/
+ * profile_document rows keyed "<family>:<id>" → "container:<level>".
+ * The M4 books/lore scene source (map-viewer §7) — consumed, never derived.
+ */
+export interface DocumentSceneEdge {
+  family: string;
+  document_id: string;
+  container: string;
+  mechanism: string;
+  status: string;
+}
+
+export function documentSceneEdges(): DocumentSceneEdge[] {
+  const { rows } = readJsonl<{
+    kind?: string;
+    from?: string | null;
+    to?: string | null;
+    mechanism?: string;
+    status?: string;
+  }>("relinks/document--scene-membership.jsonl");
+  const out: DocumentSceneEdge[] = [];
+  for (const r of rows) {
+    if (r.kind !== "forward") continue;
+    if (typeof r.from !== "string" || typeof r.to !== "string") continue;
+    const sep = r.from.indexOf(":");
+    if (!r.to.startsWith("container:")) continue;
+    if (sep <= 0) continue;
+    out.push({
+      family: r.from.slice(0, sep),
+      document_id: r.from.slice(sep + 1),
+      container: r.to.slice("container:".length),
+      mechanism: r.mechanism ?? "",
+      status: r.status ?? "",
+    });
+  }
+  return out;
+}
+
+/**
+ * Forward minigame→carrier edges (relink family minigame--scene-carrier):
+ * "minigame:<id>" → "scene-class-family@<container>", emitter-split scalar
+ * container on the row. The M4 minigame scene source (map-viewer §7).
+ */
+export interface MinigameCarrierEdge {
+  minigame_id: string;
+  container: string;
+  mechanism: string;
+  status: string;
+}
+
+export function minigameCarrierEdges(): MinigameCarrierEdge[] {
+  const { rows } = readJsonl<{
+    direction?: string;
+    from?: string | null;
+    to?: string | null;
+    mechanism?: string;
+    status?: string;
+  }>("relinks/minigame--scene-carrier.jsonl");
+  const out: MinigameCarrierEdge[] = [];
+  for (const r of rows) {
+    if (
+      r.direction !== "forward" ||
+      typeof r.from !== "string" ||
+      typeof r.to !== "string" ||
+      !r.from.startsWith("minigame:") ||
+      !r.to.startsWith("scene-class-family@")
+    )
+      continue;
+    out.push({
+      minigame_id: r.from.slice("minigame:".length),
+      container: r.to.slice("scene-class-family@".length),
+      mechanism: r.mechanism ?? "",
+      status: r.status ?? "",
+    });
+  }
+  return out;
 }
 /** Minigame ids carried by one scene container (relink family
     minigame--scene-carrier, inverse direction): rows the corpus pins as
@@ -427,9 +641,6 @@ export function minigamesInContainer(container: string): string[] {
 
 export function poi(): PoiRow[] {
   return readJsonl<PoiRow>("data/scenes/poi.jsonl", "poi_id").rows;
-}
-export function markers(): MarkerRow[] {
-  return readJsonl<MarkerRow>("data/scenes/markers.jsonl", "entity_kind").rows;
 }
 export function dialogueLevels(): string[] {
   // graphs/<level>.json — 19 carrier levels (dialogue contract §Files).
