@@ -1,0 +1,246 @@
+# V-LL4 — delta verification of the F-LL4 binding-law guards
+
+Focused verifier pass over the A-LL2 guard round ([F-LL4], landed `31fa8f0`)
+against [A-LL2](ll2-arbiter.mdx) (VERDICT: RULED) and the V-LL2a/b evidence
+base ([logic-build-vA](logic-build-vA.mdx) §4,
+[logic-build-vB](logic-build-vB.mdx) OBS-2/OBS-3). Written 2026-08-26 against
+**buildId 19029065 / VERSION 0.93L**, artifacts emitted 13:01 same day
+(`emit_logic.py` 12:57, `selfcheck_logic.py` 12:59).
+
+Inputs read in full this pass: root [`AGENTS.md`](../../../../AGENTS.md),
+[`_foundation/decision-register.md`](../../../../_foundation/decision-register.md)
+(standing pack context), [ll2-arbiter.mdx](ll2-arbiter.mdx),
+[logic-fix-vC.mdx](logic-fix-vC.mdx) (accepted F-1 baseline record);
+on disk/corpus: `extracted/data/logic/build/{emit_logic,selfcheck_logic}.py`
+(both bind sites + both new gates read directly, full parser path), the six
+`extracted/data/logic/*.jsonl`, `extracted/relinks/{flag--gates,
+choice--consequence}.jsonl`, `contracts/registry/{entities,fingerprints}.json`,
+`contracts/check_contracts.py` (note-string source), and a fresh **independent
+raw-dump sweep** over `D:\unpacked_game_data\MiSide\harvest\{mb-dump,asset-list}`
+(own line parser + own XML pairing derivation, no emitter code reused).
+Selfcheck executed once, read-only. No git; nothing regenerated; scratch files
+removed after measurement.
+
+Sections:
+
+0. [Verdict summary](#0-verdict-summary)
+1. [Bind sites — suffix branch gone](#1-bind-sites--suffix-branch-gone)
+2. [Fail-closed routing — recounted independently](#2-fail-closed-routing--recounted-independently)
+3. [Binds recount — 0 shipped binds changed state](#3-binds-recount--0-shipped-binds-changed-state)
+4. [Selfcheck gates live + mutant liveness](#4-selfcheck-gates-live--mutant-liveness)
+5. [Label truthing](#5-label-truthing)
+6. [Collateral drift](#6-collateral-drift)
+7. [Findings](#7-findings)
+
+---
+
+## 0. Verdict summary
+
+Every guard the arbitration ordered into the logic layer landed and measures
+clean: both bind sites resolve through `flag_true_index` only, the fail-closed
+and dual-space ledger machinery routes correctly (this build's honest counts
+are 0/0, independently re-derived), all 40 shipped binds reproduce from raw
+dumps byte-for-byte in aggregate, the selfcheck is **24/24 exit 0** with both
+new gates live, and `predicate_records`/`minigame_tunables` plus the K join
+are untouched. Two residuals survive **outside the logic artifacts**, both on
+the contracts-registry/mechanics-notes plane that ruling E item 2 explicitly
+assigned to this round's emission: the registry still ships the falsified
+DISJOINT label *and* a writers/readers note describing the deleted
+either-id-space fallback as current behavior, with stale fingerprints behind
+it; and the `missingdata.md` two-id-space mechanics row never landed.
+
+VERDICT: NEEDS_REVISION — 2 items
+
+---
+
+## 1. Bind sites — suffix branch gone
+
+Read directly in `extracted/data/logic/build/emit_logic.py` (full path, not
+grep-sampled):
+
+- **Tier-A subject resolution** (~1027–1035): for `Events_IntMemory/Events_Data`
+  targets the only lookup is `flag_true_index.get((c, tpid))`; miss leaves
+  `subject_ids` empty and counts into `unresolved_subjects`. There is no other
+  assignment path into `subject_ids` for flag subjects (achievement/cloth
+  branches are separate string-keyed families).
+- **Writers/readers loop** (~1066–1101): binding happens exclusively under
+  `if true_tgt is not None` where `true_tgt = flag_true_index.get(key)`;
+  `kind` is derived from the method prefix (`Check*` → readers). The
+  `flag_suffix_index` lookups here produce only ledger records
+  (`bind_fail_closed`, `dual_space_hits`, `same_row_both_space`) — never a
+  bind.
+- **Index construction** (~919–966): the two indexes are built once;
+  `flag_true_index` is commented and used as "the ONLY bind-resolution
+  source"; `flag_suffix_index` has exactly three consumers: detection in the
+  writers/readers loop, the dual-space ledger row's `serialized_space_flag_id`
+  mirror, and the flag-tables projection reconciliation (~1429–1449) — the
+  latter is a **same-space row-location** (flag_tables keys are suffix-space
+  handles matched against `object_path_id`), which ruling A expressly permits
+  ("suffix ids identify and display rows"); it adjudicates no reference.
+- Downstream check: `flag--gates.jsonl` is projected purely from
+  `writers`+`readers` (1717–1752), so no second resolution path exists behind
+  the gates file.
+
+No residual fallback exists at either bind site.
+
+## 2. Fail-closed routing — recounted independently
+
+Counts taken from the regenerated files (identity-ledger `_meta.row_kinds` and
+row scan agree): **52 instance-identity · 0 bind-fail-closed ·
+0 dual-space-coincidence**. Zero is not suppression — it is the truthful
+count, proven by my own sweep:
+
+- Independent indexes rebuilt from directory census + `asset-list/*.xml`
+  (MonoBehaviour Name→PathID, unique same-class pairing): 384 `Events_*`
+  dumps over 51 containers, **49 ambiguous pairings** (matches the ledger's
+  two-id-space-pairing row exactly), exactly **3 uniquely-paired instances**:
+  `level5/Events_IntMemory.txt=11272`, `level9/…=18167`, `level13/…=17830`.
+- All 555 parsed persistent-call sites scanned; **81 target
+  `Events_*`** over 17 distinct target pids. Classification against BOTH
+  spaces: `true-only` 20 · `neither` 61 · **`suffix-only` 0 · `both-same-row`
+  0 · `both-different-rows` 0**.
+- My (container, target PPtr, method) multiset equals the shipped
+  `effect_calls` Events_\* population exactly.
+
+So the empty `bind-fail-closed`/`dual-space-coincidence` ledger is correct
+routing of an empty class, and the emit-ledger `two-id-space-pairing` row
+declares the same triple (`bound_writer_reader_calls` 20,
+`tier_a_flag_subject_binds` 20, `bind_fail_closed_targets` 0,
+`dual_space_coincidence_targets` 0, `same_row_both_space_targets` 0). The
+selfcheck tripwire gate independently recomputes the expected sets from the
+artifacts and asserts equality with the ledger (PASS, see §4).
+
+## 3. Binds recount — 0 shipped binds changed state
+
+Recomputed from raw dumps without emitter code, then diffed against the
+shipped artifacts:
+
+| flag | writers | readers | subject binds |
+|---|---|---|---|
+| `logic:flag:level5:Events_IntMemory` (true 11272) | 0 | 16 | 16 |
+| `logic:flag:level9:Events_IntMemory` (true 18167) | 1 | 1 | 2 |
+| `logic:flag:level13:Events_IntMemory` (true 17830) | 1 | 1 | 2 |
+
+Totals: **20 writer/reader entries + 20 tier-A subject binds**, bound-method
+census `CheckEventIndex ×16 · SetIgnory ×2 · CheckEvent ×2` — identical to the
+accepted pre-fix record ([logic-fix-vC](logic-fix-vC.mdx): same 3 instances,
+same inventory-resolved ids, same method census, `flag--gates` 40 rows over
+the same 20 calls). Every one of the 20 shipped bound edge_ids resolves to an
+`effect_calls` row whose (container, target PPtr) is true-space-resolved in my
+independent index; no edge appears twice; the 61 unresolved tier-A rows carry
+no subject and no writer/reader entry. **Zero binds changed state versus the
+pre-fix accepted build.**
+
+## 4. Selfcheck gates live + mutant liveness
+
+Executed once, read-only: **24 passed, 0 failed, exit 0** (was 22/22 at F-1;
+the two new gates account for the delta):
+
+- `A-LL2 bind provenance (serialized-space only)` — "all 20 writer/reader
+  binds + every tier-A flag subject reproduce from the SERIALIZED space alone
+  (81 targeting calls over 17 target pids); 0 suffix-space binds". The 81/17
+  figures match my independent sweep.
+- `A-LL2 both-match/suffix-only tripwire ledger` — recomputed 0 suffix-only +
+  0 dual-space target pids == ledger rows (0/0).
+
+**Mutant liveness, reasoned from the gate code** (mutant not executed —
+read-only pass): any reintroduction of suffix-first resolution at either bind
+site changes artifact bytes in a way the provenance gate detects. Suffix-only
+forgery (subject added, or writers/readers entry created, where
+`inventory_object_path_id` is null but a suffix id exists) trips
+`suffix_space_binds` → hard FAIL. Precedence-picking when both spaces match
+different rows emits the suffix-named flag where the gate derives the true-row
+flag → `subj_bad` FAIL. Suffix-routed writer/reader sets diverge from the
+gate's true-space expectation → `wr_bad` FAIL. In all three shapes the run
+exits non-zero, so F-LL4's "mutant killed" claim is consistent with the gate
+mechanics. One honest boundary noted: the gate takes both id spaces from the
+emitted `flag_instances` columns rather than re-deriving PathIDs from the
+asset-list XMLs, so a hypothetical mutant that *fabricated inventory ids*
+(rather than forging suffix binds) would not be caught by the selfcheck
+alone — that gap is closed for this build by this pass's independent XML
+pairing derivation (§2), and is a candidate hardening for the next selfcheck
+round, not a defect in what shipped.
+
+## 5. Label truthing
+
+Across all eight logic/relink surfaces (`flag_instances`, `effect_calls`,
+`predicate_records`, `minigame_tunables`, `identity-ledger`, `emit-ledger`,
+`flag--gates`, `choice--consequence`): **bare `DISJOINT` occurrences: 0**.
+Present and correctly worded:
+
+- `flag_instances._meta.two_id_spaces` and
+  `_meta.identity_namespace_check.verdict`: *"mostly-disjoint -- non-zero
+  numeric coincidence treated as collision"* (with the 6/40 sample, ~15%
+  corpus-wide citation of A-LL2, and the level4 4823/4918-vs-3327 evidence).
+- emit-ledger rows `identity-namespace-measurement` and
+  `two-id-space-pairing`: same mostly-disjoint verdict wording; the latter
+  carries the `bind_law` statement naming both bind sites.
+- `_meta.join_law` present on **both** `flag_instances` and `effect_calls`,
+  each stating the field-name trap (equal column `object_path_id`, opposite
+  spaces) and that reference-binds consume `inventory_object_path_id`
+  exclusively.
+- `flag--gates` forward-edge `method` now names the inventory-resolved
+  SERIALIZED-space basis and states "no suffix-space fallback" (V-LL2a F4
+  closed).
+
+Residual — see [§7](#7-findings) F-1: `contracts/registry/entities.json`
+still ships the old label on the `flag_instance` entity.
+
+## 6. Collateral drift
+
+- **`predicate_records.jsonl` sha256 `f54e065a…` and
+  `minigame_tunables.jsonl` sha256 `fde26a7e…` are byte-identical** to the
+  registry fingerprint pins captured before the final F-LL4 emission
+  (`contracts/registry/fingerprints.json`, mtime 11:01 vs artifacts 13:01)
+  and to the emission's own `input-manifest.json` outputs block. Code read
+  confirms F-LL4 touched neither LG3/LG4 meta construction nor inputs
+  (`pred_meta`/`tune_meta` carry no bind/join_law additions); fix-vC had
+  already proven both files reference neither `field_path` nor `edge_id`.
+  Row counts stand at 93 / 29, matching the registry entity decls.
+- **K join still 1,555/1,555**: `branch_edges.jsonl` 1,555 rows,
+  `choice--consequence.jsonl` 1,555 rows / 1,555 distinct targets / 371
+  distinct sources, emit-ledger `ac-l1b-row-resolution` PASS with
+  `unresolved_count 0, ambiguous_count 0`; selfcheck L1b AC gate green.
+- Frozen endings plane unchanged (L1a byte-freeze PASS; L5 drift tripwire PASS
+  over every pinned input).
+
+## 7. Findings
+
+- **F-1 (revision item) — contracts-registry plane contradicts the landed
+  law and the shipped bytes.** `contracts/check_contracts.py` (~625–626)
+  still generates `flag_instance.notes.id_spaces` = *"…measured **DISJOINT**
+  on this build…"* — the exact label ruling C falsified — and
+  `flag_instance.notes.writers_readers` = *"tier-A LG2 edge_ids whose target
+  PPtr resolves in **either id space**"* — which documents the deleted
+  fallback as current behavior and licenses the precise cross-space join
+  ruling B removed. Behind them,
+  `contracts/registry/fingerprints.json` pins stale sha256s for the two
+  meta-touched artifacts (`flag_instances` `226f9eea…` vs live `d38cd1cd…`;
+  `effect_calls` `023aca7c…` vs live `8eb956a7…`) — the registry refresh that
+  ruling E item 2 ordered "with the same emission" did not land (registry
+  mtime 11:01 precedes the 13:01 artifacts). Fix: correct the two note
+  strings in `check_contracts.py`, regenerate the registry against the
+  current artifacts. No logic-artifact re-emission required — data rows are
+  unaffected and byte-stable.
+- **F-2 (revision item) — missingdata mechanics row absent.**
+  `extracted/data/missingdata.md` (mtime Aug 25, pre-ruling) carries no
+  two-id-space row; ruling C/E assigned one mechanics row to "when the emitter
+  pass next runs", which this emission was. Fix: append the row (suffix
+  handles vs serialized PPtr space, ~15% coincidence, binds true-space-only,
+  ambiguity ledgered).
+- **OBS-V1 (not counted) — optional spec amendment not applied.**
+  `docs/specs/logic-layer.mdx` §4-LG1 does not yet carry the normative
+  binding-law paragraph. Ruling E marks it optional ("if the round reopens
+  that spec"), so it is recorded, not charged.
+- **OBS-V2 (not counted) — selfcheck independence boundary** described in §4
+  (serialized space consumed from emitted columns, not re-derived from XML);
+  candidate hardening, zero effect on this build's truth.
+
+---
+
+*Verification in one line: both bind sites speak serialized space only, the
+ledgers tell the truth about an empty ambiguity class, all 40 binds reproduce
+from raw dumps unchanged, the gates fire — but the contract registry still
+teaches the deleted law, so the round is two small fixes short of APPROVE.*
+
+VERDICT: NEEDS_REVISION — 2 items
