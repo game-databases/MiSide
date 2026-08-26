@@ -107,8 +107,12 @@ Basis per family: scout §3 table, spot-checked this pass — no verdict changed
    CLOSURE-1; [DOCX-3]). All LG evidence pointers use the canonical path.
 2. **`Scene_Load` dump.cs anchor is :106767**, not :106768 (one-line offset; TypeDefIndex 1691 confirmed).
 3. **AC-L2 census is now numeric**: 5 + 379 = **384** flag-memory instance dumps (the scout left it
-   as "measured by grep"); level4 carries two `Events_IntMemory` instances while `flag_tables.jsonl`
-   keys rows by ambiguous `node_id` (`level4:Events_IntMemory`) — LG1 fixes identity (§4 LG1).
+   as "measured by grep"); level4 carries two `Events_IntMemory` instances and `flag_tables.jsonl`
+   distinguishes them by an explicit suffix convention: bare `level4:Events_IntMemory` carries
+   `object_path_id:null`, suffixed `level4:Events_IntMemory:3327` carries `object_path_id:3327` —
+   distinct keys, so the shipped artifact is **not** ambiguously keyed. The real gap LG1 closes is
+   identity resolution for bare-named instances, done via the harvest instance inventory
+   ([§4 LG1](#lg1--flag-instance-registry--flag_instancesjsonl)).
 
 Everything else the scout asserted checked out verbatim, including all tree counts, edge-kind
 distributions, the scoring fence, the 19-literal parity claim, the broken `_structure` pointer, and
@@ -127,6 +131,23 @@ Every predicate row carries:
 has no direction, e.g. a pure access point). A row may not state a `value` without an evidence class;
 the checker rejects any `value` paired with `fail-closed-unknown` (AC-L3).
 
+**Polarity `value` derivation — binding rule ([A-LL1]/F-2).** The pairing law above proves
+*existence* of a site, never *sense*. A non-null `value` is therefore legal only per this table,
+checked mechanically at emit AND re-checked by AC-L3 (which recomputes `value` from the row's
+condition shape against it — a wrong positive fails the gate instead of passing it):
+
+| condition shape | `value` | `evidence_class` |
+|---|---|---|
+| call method ∈ {`Achievement_function.AchievementGet`, `Achievement_function.AchievementComplete`, `Achievement_cloth.ClothCompleted`} with site evidence | `"positive"` | `static-proven` |
+| pickup-gate rows (`expression_class:"access-chain"` via `cartridges.pickup_ref`, serialized `FlashTaker.save` carrier) | `"positive"` | `static-proven` |
+| safe-window attribution family ([§6](#6-not-static-families--stubdisposition-handling) row 3), while the OQ-3 posture stands — directional `value` permitted **only** here | attributed parameter, flagged `sense_source:"community"` | `inferred` + mandatory `citation[]` |
+| pure access points (save-literals like `Scene_Load.fileSave`/`nameLevelSaves`, minigame access chains) — a save literal means "you can save here", no direction exists | `null` | any |
+| everything else — flag gates, toggles, windows-as-advice, spawn semantics | `null` | `fail-closed-unknown` until [XC-1] |
+
+Save-literals are ACCESS POINTS, never positives. **`"negative"` is reserved: zero occurrences this
+build** — no static or cited evidence of a *hurts* direction exists anywhere in the corpus, so no row
+may carry it; the enum slot stays for schema stability only.
+
 Crosswalk to existing pack vocabulary (rows imported from other datasets keep their native fields;
 `evidence_class` is DERIVED at emit time by mechanical rule, never hand-assigned):
 
@@ -141,6 +162,21 @@ emitted data as `[community]` attributions; banning them machine-side would orph
 honest data. The guardrail (mandatory citation array + distinct render) is Q3's recommendation
 ([§9](#9-open-questions-for-the-arbiter-with-recommendations)); the schema is identical either way,
 so an owner tightening costs one renderer line, not a migration.
+
+**Status vocabulary ([A-LL1]/F-7).** `predicate_records.status` is pinned to five closed values:
+`proven-hard` · `proven-structure` · `community` · `locked-stub` · `unknown-fail-closed`.
+Dataset-native labels on imported rows (e.g. achievements' `unverified-behavior`) stay on those rows
+and map to these at emit via the crosswalk above.
+
+**Typed evidence entries ([A-LL1]/F-8b).** An evidence entry whose path is under `harvest/mb-dump/`
+or `il2cpp/dump.cs` is a **site** locator; anything else (`[community]` text, wiki URLs, loc strings)
+is a **citation**. This namespace discriminator is mechanical, needs no schema change, and is what
+AC-L3's recomputation consumes.
+
+**`internal_only` pairing rule ([A-LL1]/F-7).** `"internal_only":true` is required exactly when the
+row answers no user question per [§7](#7-internal-only-rows-never-emitted-to-the-frontend)'s list
+(dead-ref, tier-B presentation calls, unjoined unnamed flags, LG4 envelopes) — it is never derived
+from `status` alone.
 
 ## 4. Modules LG1–LG4
 
@@ -175,21 +211,42 @@ those, resolve identity from the harvest instance inventory; where that fails, e
 
 ### LG2 — effect-call registry → `effect_calls.jsonl`
 
-Corpus-wide persistent-call sweep (51 containers) with a method whitelist derived from dump.cs
-signatures: `Achievement_function.AchievementGet/AchievementComplete(int)` ·
-`Achievement_cloth.ClothCompleted` · `Events_IntMemory.{Set,Add,Remove,CheckEvent,CheckEventIndex}`
+Two-tier corpus-wide persistent-call sweep over all 51 containers ([A-LL1]/F-1 binding design):
+
+**Tier A — semantic whitelist (full extraction).** Every call whose target method is one of the nine
+whitelisted families (dump.cs-derived): `Achievement_function.AchievementGet/AchievementComplete(int)`
+· `Achievement_cloth.ClothCompleted` · `Events_IntMemory.{Set,Add,Remove,CheckEvent,CheckEventIndex}`
 (+ `*Ignory` variants) · `Events_Data.EV` · `Scene_Load.StartLoad/SilentSave` ·
-`World.SaveStoryMita/SaveStoryCartridge`. Each call classified
-`award | flag-set | flag-query | scene-flow | cosmetic | audiovisual | dead-reference` using the same
-semantics DS-2 used for `branch_edges.jsonl` (so AC-L1's projection holds). Known floors: ≥11 award
-sites, ≥2 cloth sites, 18 flag edges inside ending contexts — the sweep must find at least these or
-explain every miss in the emit ledger.
+`World.SaveStoryMita/SaveStoryCartridge`. Tier-A rows carry `subject_ids` (achievement id from
+`args.string`, cloth id, flag id via LG1), feed every floor and LG3/projections. Floors are minimums:
+≥11 award sites, ≥2 cloth sites, 18 flag edges inside ending contexts — the corpus-wide sweep must
+find at least these or explain every miss in the emit ledger. Measured on this build's
+`branch_edges.jsonl`: the whitelist admits **20 of 1,555** rows; **133** distinct
+`(target.type,target.method)` pairs exist corpus-wide.
+
+**Tier B — disposition sweep (census accounting, no silent drops).** Every remaining persistent call
+found by the *same* sweep is also emitted to `effect_calls.jsonl`, classified with DS-2's semantics —
+`award | flag-set | flag-query | scene-flow | cosmetic | audiovisual | dead-reference`, the same
+semantics DS-2 used for `branch_edges.jsonl`, so AC-L1's projection holds — making §7 item 2's ~824
+presentation calls exist as graph fuel. Tier-B rows are stamped `"internal_only":true`,
+`subject_ids:[]`, and never surface through LG3. Tier B is necessarily unfiltered: the
+dead-reference class can only be discovered by sweeping without a whitelist (`m_Target=0` residue,
+[END-4]).
+
+Tier assignment (A/B) is **orthogonal** to `effect_class` — measured proof:
+`level14:ObjectInteractive:3695:call4` is whitelist-admitted (`Scene_Load.StartLoad`) yet DS-2
+classified it `cosmetic`; the emitter records BOTH axes per row. Census accounting is what makes this
+honest: `effect_calls._meta` carries per-`effect_class` totals over ALL persistent calls found
+corpus-wide plus `tier_a_count`/`tier_b_count`; any persistent call the sweep declines to emit is
+impossible by construction — a call exists in the output or in the ledgered counts, never in neither.
+No numeric promise beyond the floors and the reconciled 1,555 is made (tier-B magnitude is
+discovered, not asserted).
 
 ### LG3 — predicate records → `predicate_records.jsonl`
 
 Joins LG1 + LG2 + existing datasets into one player-question-shaped record per unlockable subject:
-26 achievements, 4 endings (+ Peaceful stub), 24 cartridges, outfits, 17 minigame access points, 19
-save-point literals. Sources referenced BY ID: `achievements.jsonl` (predicate_class/status),
+26 achievements, 4 endings incl. the Peaceful locked-stub (it rides `endings.jsonl`'s four rows,
+XC-12 posture), 23 cartridges, outfits, 17 minigame access points, 19 save-point literals. Sources referenced BY ID: `achievements.jsonl` (predicate_class/status),
 `achievement--award-site.jsonl`, `minigame--outfit-unlock.jsonl`, `cartridges.jsonl` (`pickup_ref`),
 `minigames.jsonl` (access_medium/loader_ref/rule_evidence), `endings/*.jsonl` (conditions/windows),
 `scene--save-vocabulary.jsonl`, dialogue `nodes.jsonl.condition_hints[]` (provenance strings only —
@@ -225,10 +282,18 @@ mechanical, [XC-10]).
 // effect_calls.jsonl — miside.logic.effect_calls/1
 {"edge_id":"logic:call:level9:Dialogue_3DText_#12820.txt:12820:0",
  "container":"level9","file":"Dialogue_3DText_#12820.txt","host_object_path_id":12820,
- "target_type":"Achievement_function","target_path_id":9330,"method":"AchievementGet",
+ "event_field":"eventClick","option_index":null,"call_index":0,
+ "target_type":"Achievement_function","target_path_id":18198,"method":"AchievementGet",
  "args":{"string":"ACHI_slaphead","int":null,"float":null,"bool":null,"object_path_id":null},
- "effect_class":"award","subject_ids":["logic:achievement:achi_slaphead"],
+ "effect_class":"award","tier":"A","internal_only":false,
+ "subject_ids":["logic:achievement:achi_slaphead"],
  "build_id":19029065,"evidence":["extracted/relinks/achievement--award-site.jsonl#…"]}
+// event_field = serialized UnityEvent field path the call lives in (e.g. `eventClick` or
+// `buttons[2].eventClick`); option_index:int|null = null when the carrier has no option structure,
+// edge-side `from_option` maps onto it; call_index:int = position within that field's
+// PersistentCallGroup. These three are AC-L1b's join discriminators (LG2 computes them walking the
+// same dumps DS-2 walked; the checker verifies the mapping empirically). `tier` records the A/B
+// sweep assignment — orthogonal to `effect_class`, both axes recorded per row ([A-LL1]/F-1).
 
 // predicate_records.jsonl — miside.logic.predicate_records/1
 {"predicate_id":"logic:achievement:achi_slaphead",
@@ -266,8 +331,8 @@ never forks it.
 |---|---|---|---|
 | Code-body/aggregate achievement predicates (15) | NOT STATIC | [ACH-2], [ACH-3], [DOC-6], XC-1 | row emitted, `expression_class:"code-body"/"aggregate"`, polarity `fail-closed-unknown`; lists the structural surface only |
 | Chapter-4 ending polarity + evaluation order | NOT STATIC (structure STATIC) | [END-5], [END-6] | skeleton rows `proven-structure`; toggle directions absent — no `positive/negative` anywhere |
-| Safe-window percentages 17% / 98% / empty | NOT STATIC | [END-2], owner-call | windows carried as `inferred` WITH `[community]` citation, or `fail-closed-unknown` if OQ-3 tightens |
-| Cartridge grants `mtad2`/`mtacore` + tamagotchi lock state | NOT STATIC ×2 + reachability | [CAR-1], [CAR-8], [DOC-5], [SCN-4] | pickup-gate rows only for the 22 resolved; the 2 unresolved emit explicit `pickup_ref:null` stubs |
+| Safe-window percentages 17% / 98% / empty | NOT STATIC | [END-2], owner-call | windows carried as `inferred` WITH `[community]` citation, or `fail-closed-unknown` if OQ-3 tightens. While the OQ-3 posture stands, **this is the only family where a directional `value` may ride an `inferred` row** ([§3](#3-evidence-law--the-mandatory-polarity-field) table) |
+| Cartridge grants `mtad-2`/`mtacore` + tamagotchi lock state | NOT STATIC ×2 + reachability | [CAR-1], [CAR-8], [DOC-5], [SCN-4] | pickup-gate rows only for the 21 resolved; the 2 unresolved (`mtad-2`, `mtacore`) emit explicit `pickup_ref:null` stubs |
 | Minigame scoring/win thresholds | NOT STATIC; envelopes PARTIAL | [CAR-3], owner-call | fence holds: `minigames.jsonl.scoring_derivable:false` untouched; LG4 ships envelopes only |
 | Pumpkin-clicker → `HellVamp` outfit | wiki-only | [CAR-4] | `inferred` + wiki citation, mirroring `mechanism:"logic"` posture |
 | Quest/dialogue gating conditions | PARTIAL | [DLG-3] ceiling, [DLG-7] | hint strings ride as provenance; never become predicates |
@@ -297,12 +362,14 @@ Flag-query edges (×8) ride the graph as traversal structure; they are not separ
 
 | # | Criterion | Proof method |
 |---|---|---|
-| L1 | **Reconciliation**: every `branch_edges.jsonl` row resolves to exactly one `effect_calls` row — 1,555/1,555; DS-2 files byte-unchanged | checker joins on `(container,file,target_type,method,object_path_id,args)`; sha256 of the four `endings/*.jsonl` compared before/after emission |
-| L2 | **Census**: `flag_instances` rows == 384 (= 5 `Events_IntMemory` + 379 `Events_Data` instance dumps); the 5 `flag_tables.jsonl` rows reconcile as a projection | independent `find mb-dump -name 'Events_IntMemory*.txt'|wc -l` / `'Events_Data*'` re-run by the checker; any delta lands in the identity ledger, never absorbed |
-| L3 | **Polarity honesty**: rows with `polarity.value != null` all carry `evidence_class:"static-proven"`-grade evidence OR `inferred` with non-empty citation; zero `value` + `fail-closed-unknown` pairs | checker recomputes `evidence_class` from the evidence arrays and diffs; initial expected population: 11 award sites + 2 cloth sites + 22 pickup gates + community-attributed windows |
-| L4 | **Scoring fence**: zero rows corpus-wide assert a numeric win threshold; `minigames.jsonl` sha256 unchanged; every `minigame_tunables` row has `rule_status:"not-a-threshold"` | grep audit for threshold-shaped assertions over `data/logic/` + hash compare |
+| L1a | **Byte-freeze**: DS-2 files byte-unchanged across emission | sha256 of the four `endings/*.jsonl` compared before/after emission |
+| L1b | **Row resolution**: every `branch_edges.jsonl` row resolves to exactly one `effect_calls` row — 1,555/1,555 — under join key `K = (node.container, node.event_field, node.object_path_id, edge.from_option, edge.call_index, target.type, target.method, target.object_path_id, args-tuple)` where `node = choice_nodes[row with node_id == edge.from_node]` (371/371 unique node_ids, 0 unresolved edges). K measured collision-free on all 1,555 rows ([A-LL1] reproduction confirmed by fixer); dropping discriminators reintroduces collisions (`from_option`: 7 colliding groups, `call_index`: 1), and the container-prefix tuple this key replaces collided at 47 groups ×13 with a `call_index` tiebreaker, 59 groups ×15 without — do not simplify back to it | checker joins on `K`, computing LG2-side `event_field`/`option_index`/`call_index` by walking the same dumps DS-2 walked, then verifying the mapping empirically rather than trusting it |
+| L1c | **Census accounting**: `_meta` class/tier totals present and additive over ALL persistent calls found corpus-wide; zero unclassified persistent calls | sum checks over `effect_calls._meta` per-`effect_class` totals + `tier_a_count`/`tier_b_count`; any call in neither output nor ledgered counts fails |
+| L2 | **Census**: `flag_instances` rows == 384 (= 5 `Events_IntMemory` + 379 `Events_Data` instance dumps); the 5 `flag_tables.jsonl` rows reconcile as a projection | independent `find mb-dump -name 'Events_IntMemory*.txt'\|wc -l` / `'Events_Data*'` re-run by the checker; any delta lands in the identity ledger, never absorbed |
+| L3 | **Polarity honesty**: rows with `polarity.value != null` all carry `evidence_class:"static-proven"`-grade evidence OR `inferred` with non-empty citation; zero `value` + `fail-closed-unknown` pairs; **zero `"negative"` rows** ([§3](#3-evidence-law--the-mandatory-polarity-field) reservation) | checker recomputes BOTH `evidence_class` and `value` — `value` against the [§3](#3-evidence-law--the-mandatory-polarity-field) derivation table using the typed site/citation path-namespace discriminator — and diffs; a wrong positive now fails the gate. Initial expected population: 11 award sites + 2 cloth sites + **21 pickup gates** + community-attributed windows |
+| L4 | **Scoring fence**: zero rows corpus-wide assert a numeric win threshold; `minigames.jsonl` sha256 unchanged; every `minigame_tunables` row has `rule_status:"not-a-threshold"` | pinned deny-list audit over `extracted/data/logic/*.jsonl`: grep for threshold-shaped keys/values — pattern family `win\|threshold\|score\|percent\|progress >=` applied to field names and numeric assertions, citation-string fields excluded by name ([A-LL1]/F-8a) — plus hash compare |
 | L5 | **Drift tripwire**: emission refuses to run when input hashes (mb-dump census, `dump.cs`, build_id pin) differ from the recorded manifest | AC-A1 fail-fast pattern; stale-input run exits non-zero with the mismatching hash named |
-| L6 | **Consumer contract**: frontend reads `data/logic/*` + the two relinks read-only; derivation limited to projection/filtering; schemas registered | `contracts/registry/entities.json` gains the four schema ids via `check_contracts.py`, CI-diffed; site build consumes ids, never re-joins raw dumps |
+| L6 | **Consumer contract**: frontend reads `data/logic/*` + the two relinks read-only; derivation limited to projection/filtering; schemas registered | the four schema ids are inserted into `contracts/registry/entities.json` **by the LG emission commit itself** (creating the file with its first entries if D-C1 has not landed yet — format per the D-C1 draft, migration ledgered if the final shape differs); `check_contracts.py` enforcement activates automatically when that tool lands from D-C1, and until then CI-diffing is satisfied by the run_all stage hashing `entities.json` alongside the artifacts ([A-LL1]/F-4 — LL1 never blocks on the contracts chain); site build consumes ids, never re-joins raw dumps |
 
 ## 9. Open questions for the Arbiter, with recommendations
 
@@ -344,6 +411,12 @@ What turns NOT STATIC verdicts around, in leverage order (scout §3.2, carried):
    pending the OQ-4 scope ruling. Not scheduled by this spec.
 3. **Community cross-check continuation** — the standing DS-2 posture: keeps `[community]`
    attribution honest where structure proves existence but not sense. Zero cost, always available.
+
+Handoff obligation ([A-LL1]/F-9): the fail-closed render contract — unknown polarity renders as
+unknown, never styled as advice — is an explicit **input obligation of the
+[ending-condition-explorer](../../tools-plan.md) spec**, with OQ-3's renderer flip as the single
+switch that tightens it; stated here so the obligation survives between this piece and a tool that
+does not exist yet.
 
 ---
 
