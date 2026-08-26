@@ -1,0 +1,231 @@
+# V-LL2a — verification of the landed logic-layer build (`extracted/data/logic/`, B-LL2)
+
+Verifier A of the B-LL2 matrix. Target: the landed logic-layer extraction
+(`flag_instances` / `effect_calls` / `predicate_records` / `minigame_tunables`
++ identity-ledger + emit-ledger + input-manifest +
+[build/emit_logic.py](../../../extracted/data/logic/build/emit_logic.py) +
+[build/selfcheck_logic.py](../../../extracted/data/logic/build/selfcheck_logic.py)
++ relinks `flag--gates.jsonl` / `choice--consequence.jsonl`) against the
+accepted spec [docs/specs/logic-layer.mdx](../../specs/logic-layer.mdx) (426 ln,
+read in full this pass) and fresh disk truth re-measured independently.
+Method: read-only — the self-check ran once, unmodified (`python
+extracted/data/logic/build/selfcheck_logic.py`, exit 0); every number below was
+re-measured here with independent code (own parsers, own byte markers, own join
+keys) or quoted verbatim from tool output shown above. No git commands run;
+nothing regenerated or overwritten.
+
+Sections:
+
+1. [Self-check run (AC-by-AC)](#1-self-check-run-ac-by-ac)
+2. [Independent spot re-measurements](#2-independent-spot-re-measurements)
+3. [Fail-closed law audit](#3-fail-closed-law-audit)
+4. [Dual-space binding discovery](#4-dual-space-binding-discovery)
+5. [Deviation ruled: relink projections](#5-deviation-ruled-relink-projections)
+6. [Findings + verdict](#6-findings--verdict)
+
+---
+
+## 1. Self-check run (AC-by-AC)
+
+**22 passed, 0 failed, exit 0** (`extracted/data/logic/build/selfcheck_logic.py`,
+stdlib-only, read-only — verified first that importing `emit_logic` executes
+constants only, no module-level writes). What each proof actually exercised:
+
+| Check | What it really exercised |
+|---|---|
+| L5 drift tripwire | Re-hashed all 13 recorded manifest inputs (7 frozen datasets, 4 relinks, poi-kinds, `il2cpp/dump.cs`) against live disk + corpus-root equality. NB: it does *not* hash the raw mb-dump tree; raw-corpus drift is caught indirectly by L1c/L2's independent recounts instead. |
+| L1a byte-freeze | Ledger `ac-l1a-byte-freeze.sha256_after_emission` == live sha for all four `endings/*.jsonl`. Independently strengthened below (§2): live shas also equal the *pre*-emission hashes pinned in [input-manifest.json](../../../extracted/data/logic/input-manifest.json). |
+| L1b row resolution | All 1,555 edges resolve to **exactly one** effect_calls row under key K (9-tuple incl. args-tuple), 0 unmatched / 0 ambiguous; node lookup through choice_nodes (371/371 unique ids, re-counted). |
+| DS-2 classifier reproduction | Emitted `effect_class` equals the DS-2 annotation on every one of the 1,555 joined rows — i.e. the frozen 132-pair table + dead-reference override reproduces DS-2 under K. |
+| L1c census accounting | `_meta.census_accounting.per_effect_class` additive over emitted rows (audiovisual 2782 · award 13 · cosmetic 11582 · dead-reference 372 · flag-query 18 · flag-set 63 · scene-flow 5655 = 20,485), tiers A 117 + B 20368 = 20,485, row_count consistent. |
+| L1c sweep universe closes | Independent byte-level count of `PersistentCall data` over all 140,380 dump .txt files == 20,485 == emitted rows: a persistent call can be in neither output nor ledgered counts. |
+| internal_only pairing (F-7) | `internal_only==true` exactly on tier-B rows, bi-implication over all 20,485 rows. |
+| L2 flag census | Rows 384 == independent walk (5 `Events_IntMemory` + 379 `Events_Data`). |
+| L2 flag_tables projection | All 5 `endings/flag_tables.jsonl` rows reconcile as projections of flag_instances (branch triples + `int_memory_default`). |
+| L2 identity ledger absorption ban | identity-ledger rows (52) == every instance whose `identity_status != resolved`; 49 of them carry no resolvable id in either space. |
+| L3 pairing law | No row with non-null `value` rides `fail-closed-unknown`. |
+| L3 negative reservation | Zero `"negative"` polarity values. |
+| L3 value derivation table | Both `evidence_class` and `value` recomputed mechanically for all 93 rows against the §3 derivation table. |
+| L3 initial population | 11 award + 2 cloth + 21 pickup gates (static-proven positives) + ≥1 community window row. |
+| L4 scoring fence | Deny-list regex clean across all four artifacts (numeric keys everywhere; field names on the tunables plane); every tunable row `rule_status:"not-a-threshold"` + `kind:"envelope"`; `minigames.jsonl` sha unchanged; 2 candidate fields fenced out at emit. |
+| tier-A floors | award 11/11, cloth 2/2 distinct dumped sites corpus-wide. |
+| spot: slaphead | The spec's example row exists with target_path_id 18198, tier A, subject `logic:achievement:achi_slaphead`. |
+| spot: orthogonality | `level14:ObjectInteractive:3695` call4 `Scene_Load.StartLoad` = tier A **and** cosmetic — both axes real per row. |
+| spot: CoreSkip dead reference | END-4 residue kept as `dead-reference`/tier-B/internal-only, never resolved away. |
+| spot: level4 twins | bare (null, unresolved) + `_#3327` (3327, resolved) coexist as distinct keys. |
+| spot: level4 branch shape | `#3327` carries one branch (if_int 3) with 7 persistent calls — matches `flag_tables`. |
+
+## 2. Independent spot re-measurements
+
+Own code throughout (raw filename scan without the emitter's parser; a second
+byte marker; my own join-key construction).
+
+**LG1 — 384 confirmed, decomposition exact.** Raw scan of
+`D:\unpacked_game_data\MiSide\harvest\mb-dump`: 51 containers, 140,380 .txt,
+`Events_IntMemory*` = 5 (level4 bare + level4 `_#3327` twins, level5, level9,
+level13), `Events_Data*` = 379 → 384. Instances sit in 48 of the 51 containers
+(the sweep universe is 51; three containers hold no flag-memory instance).
+Identity statuses: 332 resolved / 3 bare-name / 49 unresolved. **Zero
+unresolved rows carry a non-null `object_path_id`** — nothing fabricated. The 3
+bare-name rows keep `object_path_id:null` and hold their true serialized-PPtr
+id only in the separate `inventory_object_path_id` column (level5→11272,
+level9→18167, level13→17830), resolved solely where the same-class
+dump↔inventory pairing was 1:1; the other 49 pairings are enumerated with both
+candidate sets in the emit-ledger `two-id-space-pairing` row.
+
+**LG2 — total closes twice.** 20,485 rows == count of `PersistentCall data`
+markers == count of `string m_MethodName =` markers (two independent byte
+markers, both 20,485). Tier partition is *exactly* the whitelist in both
+directions (0 tier-A rows outside the 18 whitelisted (type,method) pairs incl.
+`*Ignory`; 0 tier-B rows inside it). Tier-A families: StartLoad 19, EV 54,
+IntMemory.Add 7, CheckEventIndex 16, ClothCompleted 2, AchievementGet 11,
+SilentSave 4, CheckEvent 2, SetIgnory 2. Floors re-derived from rows:
+AchievementGet = 11 distinct (container,file) sites, ClothCompleted = 2. Class
+census additive (sum 20,485; zero unclassified — unmapped pairs fall through
+DS-2-consistent prefix rules to `cosmetic`, fallback visible in
+`classify_effect`). Whitelist admits **20 of 1,555** joined rows (spec claim
+confirmed); **133** distinct `(target.type,target.method)` pairs among the
+ending-context rows (spec claim confirmed on that universe — corpus-wide the
+figure is 882, see finding F6). Subject resolution: 84 of 117 tier-A rows carry
+empty `subject_ids`, matching `_meta.subject_resolution
+.unresolved_subject_tier_a_rows:84` — misses are visible, not absorbed.
+
+**LG3 — 93 rows, population matches the spec enumeration.**
+achievement 26 · ending 4 · cartridge 23 · outfit 3 · minigame 17 · save-point
+19 · safe-window 1 = 93. Polarity distribution: positive/static-proven 34
+(= 11 award + 2 cloth + 21 pickups exactly), positive/inferred 1 (the
+safe-window row carrying DS-2's attribution verbatim: `[community] ch4@17%,
+ch18@98%, ch19-empty` + `missingdata.md#END-2` citation + `sense_source:
+community`), null/inferred 1 (HellVamp wiki-attributed structure, cited CAR-4),
+null/fail-closed-unknown 21, null/static-proven 36 (access points). Stubs
+present: `mtad-2` / `mtacore` emit `pickup:null` access-chain stubs naming the
+R3 unblock; Peaceful ships `locked-stub` with `mode_unlocked.state:"locked"`;
+expression_class census in [entities.json](../../../contracts/registry/entities.json)
+matches my recount field-for-field.
+
+**LG4 — 29 envelopes, fence verified.** 29 rows over 10 carrier classes
+(CarSpace_Car 6, Location4Fight 2, Location4Fight_Person 6, MakeManeken_
+Interactive 3, Tamagotchi_* 12); all `kind:"envelope"`, all
+`rule_status:"not-a-threshold"`; the single `declared_range {0..6}` sits on
+`Location4Fight.enemyComplexity`, matching dump.cs `[Range(0,6)]`.
+`Location4Fight.win` (48 observed instances) and `Tamagotchi_Main.showInterface`
+(1) were fenced OUT of row space and ledgered in `_meta.l4_fence_exclusions`
+with names + instance counts only — no threshold-shaped key survives a raw grep
+of the file, and no field value was shipped for either.
+
+## 3. Fail-closed law audit
+
+- `"negative"` occurs **zero times as a value** in any data row of any artifact
+  (raw grep: the only hits are the `_meta` count keys `negative: 0` /
+  `negative_reservation` documenting the reservation).
+- Zero `(value ≠ null, evidence_class = fail-closed-unknown)` pairs (my
+  recomputation, independent of the checker's).
+- Every positive/static-proven row carries a site-prefixed evidence path; the
+  single positive/inferred row carries mandatory citations; the null/inferred
+  row (HellVamp) is cited and explicitly "kept logic, never hard".
+- Save-literals are access points: all 19 save-point rows have
+  `polarity.value:null`, `expression_class:"save-literal"`, mechanism naming
+  `Scene_Load.fileSave / nameLevelSaves[]`.
+- Advice-rendering scan over fail-closed rows' `question_en`: zero directional
+  phrasing (sole regex hit is the achievement *title* "Helluvah Win!" — benign).
+- The 49 fail-closed bare names never received a fabricated id (§2); the
+  identity-ledger header states the absorption ban ("any delta lands here, never
+  absorbed").
+
+## 4. Dual-space binding discovery
+
+Two id spaces exist in this corpus: **dump-filename suffix ids** (the pack-wide
+instance handle used by DS-2 node ids, poi ids, `flag_instances.object_path_id`)
+and **serialized PPtr path ids** (what UnityEvent `m_Target.m_PathID` carries,
+mirrored by the harvest asset-list inventory). The emitter probed the relation
+(`identity_namespace_check`: 40 suffixed ids sampled across 5 containers vs
+their container's inventory PathIDs → 6 hits, agreement false → verdict
+"namespaces DISJOINT -> bare-name resolution fails closed") and ledgered both
+the probe and all 49 ambiguous pairings. Binding then ran suffix-first with
+true-id fallback.
+
+Empirical outcome on the landed build (my recount over all Events_*-targeted
+calls, n=81): **20 true-only binds, 0 suffix-only binds, 0 conflicts (suffix and
+true match different rows), 0 class mismatches, 61 unresolved left with empty
+subjects/writers/readers.** So the risky suffix-space branch never fired; every
+binding that happened went through the inventory-resolved true-id bridge, and
+the level4 case in the brief is exactly right: Add() calls target PPtr 4823/4918
+while the container's IntMemory dumps are bare + `_#3327` — those calls are all
+honestly unresolved (`subject_ids:[]`), never force-joined.
+
+Assessment for the arbiter: **no silent misjoin exists in the landed artifacts**,
+and the duality is labeled honestly in at least four places (`_meta
+.identity_rule` + `.identity_namespace_check` on flag_instances, the
+`two-id-space-pairing` and `identity-namespace-measurement` emit-ledger rows,
+per-row `inventory_object_path_id`, and the identity-ledger reason strings).
+Residual latent risk, worth one arbiter glance: (a) the suffix-first ordering
+would silently misbind on a future corpus where a targeting PPtr numerically
+equals another instance's suffix id — the probe itself measured ~15% collision
+propensity among suffixed instances, so inverting precedence (true-id first) or
+adding a both-match→unresolved+ledger guard is a cheap hardening; (b) the field
+name `object_path_id` means suffix-space in flag_instances but PPtr-space inside
+effect_calls `target.*` — a naive cross-file join on equal field names would
+produce garbage; today only prose warns about it. Blast radius if it ever fires:
+writers/readers columns + `flag--gates.jsonl` (flags are not LG3 subjects, so no
+predicate row consumes a flag binding).
+
+## 5. Deviation ruled: relink projections
+
+The two relinks are new files outside the literal touch-list but are
+spec-mandated LG2 outputs ([logic-layer.mdx §4 diagram + §5](../../specs/logic-layer.mdx)).
+Verified against the spec shapes:
+
+- `flag--gates.jsonl`: 40 rows = 20 forward + 20 inverse mirrors;
+  forward `from` ∈ flag_ids, inverse `to` ∈ flag_ids, all counterpart refs are
+  real `effect_calls.edge_id`s — **0 dangling refs in either direction**, all
+  `mechanism:"hard"` / `status:"modeled"`.
+- `choice--consequence.jsonl`: exactly 1,555 rows, one per branch_edge, K-resolved;
+  every `from` resolves to a choice_node id, every `to` to an effect_call id —
+  0 dangling. Ids only, no new claims.
+- Both headers carry `_meta.authority_ruling` naming
+  `docs/specs/logic-layer.mdx section 5`, generator + build_id 19029065 +
+  version_label 0.93L. Ruled compliant.
+
+Other deviations observed, all coherent and documented in-artifact: the
+`edge_id` shape is a superset of the spec example (adds a field_path segment;
+`_meta.edge_id_shape` says so); LG4's carrier set adds `Location4Fight(_Person)?`
+beyond §4's glob list — justified because the spec's own flagship envelope
+example ([Range] enemyComplexity) lives on that class; LG4 rows omit
+`internal_only` (finding F1 below).
+
+## 6. Findings + verdict
+
+No MAJOR defects found. Law 1 holds (every consumed dataset's live sha equals
+its pre-emission manifest pin; endings files doubly confirmed), Law 2 holds
+mechanically and holistically. Minor items, none gate-blocking:
+
+- **F1 (minor)** — `minigame_tunables` rows carry no `internal_only:true`
+  although §7's preamble/§3 pairing rule name LG4 envelopes as internal-only
+  (§5's own shape omits the field too). The envelope label rides
+  `kind:"envelope"` + `rule_status:"not-a-threshold"` instead; the common
+  `if row.internal_only: skip` filter idiom treats absent as public. One-line
+  emit fix + registry note recommended.
+- **F2 (minor)** — 5 LG4 evidence globs match zero files: e.g.
+  `harvest/mb-dump/level3/Tamagotchi_Main_*.txt` — those carriers exist as
+  *bare-named* dumps (`Tamagotchi_Main.txt`), which the `_*` glob misses. Data
+  itself is real (fence exclusion counted showInterface from that very dump);
+  locator precision only.
+- **F3 (minor)** — `input-manifest.entities_json_sha256` (7801f04d…) ≠ live
+  [contracts/registry/entities.json](../../../contracts/registry/entities.json)
+  (e4c68aef…, mtime 10:15:45 vs outputs 10:08:53): concurrent contracts-chain
+  edits after emission, compounded by the emitter hashing the registry *before*
+  its own insert. Self-heals on the next pipeline pass (the run_all stage
+  report re-pins); all four `miside.logic.*` schema ids are present and
+  registered (AC-L6 satisfied).
+- **F4 (nit)** — `flag--gates` row `method` string says targets resolve to
+  "(container, object_path_id)" — stale wording vs the actual
+  suffix-or-inventory dual rule documented correctly elsewhere.
+- **F5 (nit)** — spec §6 obliges the emitter pass to append newly-discovered
+  gaps to `missingdata.md`; nothing was appended (the two-id-space facts live in
+  emit-ledger/identity-ledger instead). Defensible reading — they are mechanics,
+  not chase-prevention gaps — but the safer move would have been one row there.
+- **F6 (spec prose)** — §4-LG2's "133 distinct pairs exist corpus-wide" is the
+  ending-context figure (corpus-wide = 882). No artifact repeats the number, so
+  the shipped data is unaffected.
+
+VERDICT: APPROVE
