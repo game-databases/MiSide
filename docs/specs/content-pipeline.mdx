@@ -152,7 +152,12 @@ One row per published article:
   "locales": {"en": {"path": "/guides/all-cartridges-route",
                      "title": "...", "description": "...",
                      "word_count": 1240,
-                     "body_sha16": "<sha16 of admitted .mdx source>"}},
+                     "body_sha16": "<sha16 of this cell's OWN admitted .mdx>"},
+              "de": {"path": "/de/guides/all-cartridges-route",
+                     "title": "...", "description": "...",
+                     "word_count": 1301,
+                     "body_sha16": "<sha16 of the de .mdx>",
+                     "base_sha16": "<pivot EN body sha16 the de cell was ADMITTED AGAINST>"}},
   "entities": [{"kind": "cartridges", "id": "mta-arcade"}],
   "entity_row_hashes": {"cartridges:mta-arcade": "<sha16 of JSON row>"},
   "toc": [{"id": "step-3", "text": "...", "level": 2}],
@@ -168,7 +173,8 @@ One row per published article:
 
 Compiled HTML lands beside the registry
 (`site/content/emit/bodies/<file>`); the reader loads it lazily per page.
-Each locale cell mirrors `body_sha16` from the admission ledger (§8.1) —
+Each locale cell mirrors its hashes from the admission ledger (§8.1) —
+`body_sha16` on every cell, `base_sha16` additionally on non-pivot cells —
 the ledger copy is authoritative; the registry mirror exists so
 registry-only consumers never open the ledger. `_meta.row_count` pins the
 row count; the existing throw-on-mismatch in `readJsonl()` is the
@@ -200,17 +206,25 @@ from. A stale article still renders (its facts were true at
 about drift is the defect this kills, mirroring the row_count-pin lesson.
 
 Translation staleness rides the same recomputation. Every locale cell of
-`article_locales.jsonl` carries `body_sha16` — hash of the admitted
-`.mdx` source at admission time (ledger cell authoritative; mirrored into
-the registry's per-locale map, §3.1). At every emit M2 recomputes; when a
-pivot EN hash moves, every sibling locale still carrying its old hash
-prints `TRANSLATION-STALE: <article_id>@<locale> <- pivot moved` and
-flags the cell stale — machine-plane only, never user-facing, same
-discipline as the entity-drift flags above. An accepted-staleness ack
+`article_locales.jsonl` carries `body_sha16` — hash of THAT cell's own
+admitted `.mdx` at admission time — and every NON-PIVOT cell additionally
+carries `base_sha16`: the pivot EN body hash the translation was ADMITTED
+AGAINST, stamped at admission (ledger cells authoritative; both mirrored
+into the registry's per-locale map, §3.1). At every emit M2 recomputes
+the pivot's current sha16 and compares it against each sibling's stored
+`base_sha16`; mismatch means the pivot moved after that locale was
+translated: print `TRANSLATION-STALE: <article_id>@<locale> <- pivot
+moved` and flag the cell stale — machine-plane only, never user-facing,
+same discipline as the entity-drift flags above. Own-file hashes alone
+cannot express this comparison — a de-cell hash never equals an en-file
+hash, so either every sibling would flag forever or none ever would;
+`base_sha16` is the referent that makes "still carrying the old hash"
+decidable, and a translation re-admitted after the move stamps the new
+base and correctly goes quiet. An accepted-staleness ack
 ledger (explicit ack list) was considered and rejected: extra workflow
 state for little gain at this scale; the editor already works from build
-output. One column, one comparison — closes the blind spot that would
-otherwise open exactly when OQ-1 multiplies files ×34.
+output. One added column, one comparison — closes the blind spot that
+would otherwise open exactly when OQ-1 multiplies files ×34.
 
 ## 4. Entity-link law (mechanical)
 
@@ -260,8 +274,12 @@ Validation rules:
      A wrong-entity link is worse than no link — first-listed-wins is
      rejected. Reverse-link modules and `entity-cards` embeds are
      unaffected; the collision suppresses body-text linking only.
-  2. **Nameless rows link zero occurrences** (CAR-5 posture: 23/23
-     cartridge rows ship `name_loc: null`), unless frontmatter declares
+  2. **Nameless rows link zero occurrences** (CAR-5 posture; measured
+     disk truth: all 23 cartridge rows have the `name_loc` KEY ABSENT —
+     not JSON null — while minigames carry literal nulls ×15/17 plus real
+     pointers on `fight`/`pinguin`, so the corpus exhibits BOTH shapes:
+     treat absent key, explicit null, and empty resolution IDENTICALLY
+     as nameless), unless frontmatter declares
      per-entity `link_terms: ["Exact String"]` — exact case-insensitive
      whole-token match, first occurrence per term, diff-reviewable like
      everything else V3 does. Community aliases are NEVER auto-scavenged;
@@ -450,9 +468,12 @@ complicates the static pipeline; recorded here as deferred either way
   `site/content/emit/article_locales.jsonl`, cells
   `<article_id>@<locale>`): the single gate for route admission, sitemap
   partitions, hreflang clusters, and the cross-locale row. Each cell
-  carries `body_sha16` — hash of the admitted `.mdx` source at admission
-  time, authoritative here and mirrored into the registry locales map
-  (§3.1) — which pivot-move staleness reads at emit (§3.3). Kept SEPARATE
+  carries `body_sha16` — hash of that cell's OWN admitted `.mdx` source
+  at admission time — and each non-pivot cell additionally carries
+  `base_sha16`, the pivot EN body hash the translation was admitted
+  against; both are authoritative here, mirrored into the registry
+  locales map (§3.1), and it is `base_sha16` that pivot-move staleness
+  compares at emit (§3.3). Kept SEPARATE
   from `locale_availability.jsonl` so game-content provenance stays
   clean (OQ-5 recommendation; corpus ledger keeps its three row kinds
   untouched).
@@ -570,7 +591,8 @@ visual, never captioned absence.
 | C11 | New chrome keys present ×34 with identical key sets | `node scripts/check-chrome-parity.mjs` exit 0; injected drift → ≠0 |
 | C12 | ar/ar-EG article pages serve `dir="rtl"`; any horizontal stepper component has a mirrored RTL test | curl attr assert + component test run |
 | C13 | Spoiler control (if OQ-6 ruled in) keeps selected state in the URL; uncollapsed text or honest summary visible to non-JS crawlers | curl without JS shows summary/uncollapsed text; toggle updates URL param |
-| C14 | Escape-first renderer law holds end-to-end: zero lexer `html` tokens at any depth survive M2 validation, and emitted hrefs are restricted to http/https/mailto/relative/#fragment | seeded-violation proof: fixture bodies carrying `<img onerror=…>`, `<script>`, inline `<b>`, and `[x](javascript:…)` each produce a nonzero exit naming file+token; clean tree exits 0; emitted body HTML greps clean of raw-HTML signatures markdown generation cannot produce (`<script`, `<iframe`, `<img`, `onerror=`); C9's source grep stays as secondary belt-and-braces, not enforcement of record |
+| C14 | Escape-first renderer law holds end-to-end: zero lexer `html` tokens at any depth survive M2 validation, and every emitted body RE-PARSES clean against three decidable invariants — element set ⊆ the closed markdown-generated allowlist (`p h1–h6 ul ol li a img code pre blockquote table em strong del br hr span`), zero event-handler attributes (checked as PARSED attribute names matching `on*`, never substrings), and every emitted href/src destination ∈ http/https/mailto/relative/#fragment | seeded-violation proof: fixture bodies carrying `<img onerror=…>`, `<script>`, inline `<b>`, and `[x](javascript:…)` each produce a nonzero exit naming file+token (all four die at the §2 lexer gate, before rendering); clean tree exits 0 AND passes the emitted re-parse; the earlier substring-signature formulation (`<script`/`<iframe`/`<img`/`onerror=` greps) is retired as unsound — `![alt](src)` legitimately emits `<img`, so its clean-tree leg failed the first guide carrying a local screenshot, while parsed-name checking keeps handler-shaped alt text (`![onerror=](x)` → `alt="onerror="`) from false-positive; the re-parse checker is proven live on synthetic emitted fragments (`<img onclick=…>`, `<embed>`, `href="javascript:…"`) → nonzero exit naming file + offending element/attribute; C9's source grep stays as secondary belt-and-braces, not enforcement of record |
+| C15 | Pivot-move staleness fires end-to-end off base-hash semantics: any non-pivot cell whose `base_sha16` ≠ sha16 of the CURRENT pivot `.mdx` prints `TRANSLATION-STALE: <article_id>@<locale> <- pivot moved` and flips that cell stale; a translation re-admitted AFTER the move stamps the new base and goes quiet | mutation proof: admit a fixture guide + one translation → emit records both cells' hashes; mutate ONLY the pivot `.mdx` → next emit prints `TRANSLATION-STALE:` naming article + locale (assert the exact token and the locale segment); re-admit the translation against the moved pivot → second emit prints nothing; negative control: mutate only the sibling `.mdx` → no TRANSLATION-STALE (own-file edit is not a pivot move) |
 
 ## 12. Non-goals
 
