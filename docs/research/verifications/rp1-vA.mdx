@@ -1,0 +1,111 @@
+# rp1-vA — Verifier A: B-RP1 derived-artifacts re-pin `1da9127`, independent verification (2026-08-26)
+
+Method: read the whole changed surface fresh (`src/data/joins.ts`, `src/lib/relations/relationCards.ts`,
+`src/lib/search/searchSource.ts`, `src/components/entity/RelationCards.tsx` + ProvenanceChip,
+`EntityDetailRoute.tsx`, `entityDisplay.ts`/`entityView.tsx`, `emit-artifacts.mjs`, `build-content.mjs`,
+all four new test files, both registries) against the ACCEPTED law
+([data-contracts.mdx](../../specs/data-contracts.mdx) §1/§4/§7); greped `site/src` independently for
+residual derivations; executed live-corpus probes (relation cards + link sweep over every routed
+page, census mutation tests) and the full suite. No builder tooling reused.
+
+**Conversion claims — all six confirmed.** (1) `emit-artifacts.mjs` no longer holds a private KINDS
+table/deslug/per-locale row assembly: it imports `src/data/contracts.ts` +
+`entityDisplay.ts` + `searchSource.ts` and calls `assertSearchCensus(searchByLocale)` before writing
+any index (static grep tests additionally forbid a second `new MiniSearch` / `const KINDS = [` /
+`function deslug`; `build-content.mjs` rides the same shared readers). (2–5) The mita/players
+cartridges tab, profiles tab, minigames achievements tab and endings achievement tab all consume
+their registered families through `edgesAnchoringPage()` over `familyEdges()`; the ad-hoc
+`depicts_character_id === data.id` / `subject_character_id` filters are gone (grep-clean +
+forbidden by static greps). Player-side coverage is real: `character--cartridge` keys are exactly
+the 12 `depicts_character_id` + 10 `contains_player_id` slugs of cartridges.jsonl (verified
+set-equal), so `player`…`player-10` now resolve cartridges (`plr-1-a`…) that the old depicts-filter
+never showed, while `mita-usual`/`mita-true` legitimately have none (no anchor on either side) —
+conversion is lossless, not narrowing. (6) SearchField builds its browser index through
+`createSearchIndex(rows)` only.
+
+**1. Derivation sweep — clean beyond the sanctioned list.** Every relink read in `site/src` funnels
+through `joins.familyEdges()` (contracts.ts's four typed readers are thin filters over it; no other
+module reads `extracted/relinks/*`). Remaining cross-entity touches all ride owning-row pinned
+columns or the sanctioned set: cartridge subject tab / art / search text use
+`depicts_character_id`+`contains_player_id` (§3.3 C13 anchors, owner = cartridges row);
+ending art uses the ending's own `achievement_id` column (§3.6); `pickup_ref.container`→scene title
+and books `consumer_scene` (rendered as verbatim text, deliberately unlinked) are the documented
+sanctions; scene loc joins (chapter names) unchanged. No hardcoded id filters found (id-literal
+grep hits only art-selection tables `art.ts`/`books-art.json` — authored assets, not relations).
+
+**2. Census teeth — loud on count drift, one-directional on kind growth.** Mutation-proven: with a
+registry copy pinning `cartridge_item.row_count=22` over the live corpus, `assertSearchCensus`
+throws `search census (en): cartridges holds 23 rows but entities.json pins 22` — dataset growth
+without a registry bump fails the emit, exactly as claimed. The pivot census reproduces the
+claimed digits from entities.json (mita 14 / players 10 / cartridges 23 / minigames 17 /
+achievements 26 / endings 4 / profiles 14 / books 8 / lore 6 = paper_part 5 + novella_surface 1;
+locations ≤24 pinned again by an independent reader-side equality against chapter-named scenes).
+Gap: the check never asserts the converse — feeding it a fully-reconciling index plus one extra
+`widgets` kind does NOT throw (probe-verified), so a NEW routed entity type drifts silently through
+the emit gate; it is caught only in the test lane (`SEARCH_KINDS` deepEqual + facet-presence), not
+at build. Minor corollary gaps: `lore`'s exact check self-disarms if both routed families ever hit
+0, and dialogue is bounded `max` only (locations got the stronger double-entry equality).
+
+**3. Relation-card traces — direction grammar, mirror-collapse and fail-closed verified live; one
+false-absence defect found.** (a) *document--character* on `/lore/profiles/mita-usual-profile`
+(side `from`): forward row `profile_document:mita-usual-profile → character:mita-usual` matches,
+peer resolves via personage kind to the mita tree, arrow `→` (page sat on from), hard/moded chip
+correctly silent; inverse rows excluded by side — correct per family binds. (b)
+*minigame--outfit-unlock* on `/minigames/pinguin`: fwd+inverse mirror rows collapse into ONE item
+arrow `↔` with directions {forward,inverse}, missing_fields of BOTH rows unioned, `logic/partial`
+chip bites; outfit peers echo verbatim as `text` with the Clothes pointer resolved as side chip —
+matches the file's own grammar. Mirror-collapse merges only same-peer pairs seen from both sides
+(merge key = peer raw anchor; ↔ requires pageAsFrom ∧ pageAsTo), which in mirror-shipping families
+is exactly the shipped inverse pair — sound. (c) *character--scene-membership* on location pages:
+4 mirrored level13/mita-black rows merge to one linked item; the CH-6 census rows (`from:null` +
+`scene-class:` tokens) match no page and never become per-entity items (test-pinned). Fail-closed
+fires live: ACHI_tetro renders explicit `<null anchor>` unresolved (J3 null-target partial),
+missing_fields lines render verbatim, hard+absent status stays chipless per F-7. **DEFECT F1**: on
+every achievement page, the `achievement--award-site` card item renders label
+`award_site: <absent>` ×11/11 — but the shipped rows carry the grant site FLAT
+(`level`, `file`, `method`, `args_string`, host/target pathIDs, e.g. `level6 ·
+Dialogue_3DText_#7081.txt · AchievementGet`), not nested under an `award_site` object as
+`relationCards.ts` assumes (`edge.scalars.award_site`). The card states a measured absence the
+corpus does not have (spec §7 honesty bar) and hides the family's entire payload; fix is to read
+the top-level scalars. Related **F3**: `joins.ts` routes `method` into PROVENANCE_KEYS but exposes
+no `method` field and drops it from `scalars` — every family's recorded-derivation string is
+silently discarded, contradicting that module's own "never drops a shipped field" header (and it is
+part of why F1's label cannot be built).
+
+**4. No-orphan — holds over the full corpus.** Executed `relationCardsFor` for ALL routed kinds ×
+ids at the pivot locale and checked every `linked` href against the route census
+(`KIND_SEGMENT` trees ∩ contract id columns): 111 cards, 132 linked / 149 text / 6 unresolved
+items, **zero bad targets** — links only ever render after `findRow` confirms the owning row, so
+by construction they coincide with `generateStaticParams`. Arrows across the corpus: ↔ 236, → 48,
+← 1 (the forward-only speaker-theme edge seen from the to-side — correct), · 2 (collapsed counted
+rows). Under-link noted (**F4**, minor): `resolveAnchor` has no `"ending:"` case, so the paired
+ending renders as machine text `ending:safe-of-life` on achievement pages even though
+`/endings/<id>` routes exist and the reverse direction (endings tab) links fine — asymmetric
+handling of the same id-columns pair.
+
+**5. Test bite — yes; removing the laws flips named tests red.** Mirror-collapse removal breaks
+"mirrored character edges collapse into one ↔ linked item" (arrow/deepEqual assertions); census-gate
+removal breaks the `?drifted=1` throw test; dropping `assertSearchCensus` from the emitter breaks
+the static-grep test AND "accepts the built indexes"; reverting tabs to dataset filters breaks two
+`doesNotMatch` greps; a second MiniSearch config breaks "exactly ONE index construction";
+availability bypass breaks the isolated gate fixture; hardcoded search lists break the add/remove-row
+derivation fixture; orphan linking breaks ghost-mita; density-collapse removal breaks the 14-note
+test; `provenanceBites` retuning has its own truth-table test. Caveat: several pins are source-text
+greps rather than behavior (effective anti-revert fences, brittle to refactors). Count check: 12
+(relationCards) + 8 (searchSource) + 1 + 1 (gate/fixture legs) = **22 new B-RP1 tests** as claimed.
+Note the suite independently re-derives the census from entities.json, so the emit gate is not the
+only tripwire.
+
+**6. Suite + types:** `npm test` → **tests 133 / pass 133 / fail 0** (one run, exit 0);
+`npx tsc --noEmit --incremental false` → clean.
+
+## Findings
+
+| # | Severity | Where | Statement |
+|---|---|---|---|
+| F1 | MAJOR | `site/src/lib/relations/relationCards.ts` (achievement--award-site branch) | Card reads a nested `award_site` object that no shipped row has; all 11 grant-site items render the false absence `award_site: <absent>` instead of the flat `level/file/method/pathID` payload the corpus ships. Fail-closed in form, false in fact (§7 bar). Fix: build the label from `scalars.level/file` + `edge.method`. |
+| F2 | MINOR | `site/src/lib/search/searchSource.ts` `assertSearchCensus` | One-directional census: reconciles registered kinds' counts (mutation-proven loud) but never rejects an UNREGISTERED kind present in the pivot rows — a newly routed entity type sails through the emit gate silently (probe-proven NO THROW); caught only by unit-test deepEqual in the CI lane. Add an unknown-kind rejection. |
+| F3 | MINOR | `site/src/data/joins.ts` | `method` is consumed into PROVENANCE_KEYS but exposed nowhere (`RelationEdge.method` absent, dropped from `scalars`) — recorded-derivation strings are unreadable through the one sanctioned consumption path, contradicting the module's "never drops a shipped field" law. |
+| F4 | MINOR | `relationCards.ts` `resolveAnchor` | No `"ending:"` case: achievement pages render their paired ending as raw machine text though the route exists and resolves (asymmetric with the endings-page direction, which links). Under-link, no wrong link. |
+
+VERDICT: NEEDS_REVISION — 4 items
