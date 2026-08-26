@@ -1,0 +1,280 @@
+# R-CT3 — fresh code review of the landed content pipeline (machinery + seeds)
+
+Reviewer: R-CT3, 2026-08-26. Static review only (no servers/builds run);
+pure-function probes were executed against the installed `marked@18.0.11`
+and the exported gate functions of
+`site/scripts/build-content.mjs` to decide security-law claims.
+Reviewed against the frozen spec
+[docs/specs/content-pipeline.mdx](../../specs/content-pipeline.mdx)
+(read in full, 660 ln) over commit `1da9127` + current tree state.
+
+Scope covered: emitter `site/scripts/build-content.mjs`,
+schema `site/content/_schema/frontmatter.ts`, readers
+`site/src/data/articles.ts` / `joins.ts`, factories
+`ArticleIndexRoute.tsx` / `ArticleRoute.tsx` / `articlePages.tsx`,
+route trees `(pivot)+[locale] × {guides,news}`, feeds
+`news.xml|patch.xml`, `sitemapPartitions.ts`, `hreflang.ts`,
+`emit-artifacts.mjs` integration, `EntityDetailRoute` reverse-links,
+seeds `site/content/{guides,news}/*.mdx`, emitted artifacts under
+`site/content/emit/`, chrome ×34, tests/contentPipeline.test.mjs.
+
+---
+
+## Findings
+
+### HIGH-1 · Character-reference hrefs bypass BOTH C14 gates (`&colon;`, `&#58;`, `&#x3a;`) — executable `javascript:` URL survives emit
+
+Evidence (live probe against marked 18.0.11 + the shipped gates):
+
+- Input body `[click](javascript&colon;alert(1))`.
+  Lexer gate (`assertEscapeFirst`, build-content.mjs:260–277): **PASSED**
+  — `assertDestination` (build-content.mjs:280–292) matches
+  `/^([a-zA-Z][a-zA-Z0-9+.-]*):/` against the RAW string; `&colon;`
+  contains no literal `:` so the destination reads as relative.
+  Emitted: `href="javascript&colon;alert(1)"`.
+- Emitted re-parse (`reparseFailures`, build-content.mjs:315–392):
+  **CLEAN** — same raw-string check on the parsed attribute value.
+  Also CLEAN for `javascript&#58;…` and `javascript&#x3a;…`.
+- An HTML browser decodes character references inside attribute values,
+  so the served attribute value becomes `javascript:alert(1)` — the exact
+  hole §2/C14 exists to close ("closing the `[x](javascript:…)` hole").
+  Plain `javascript:` IS blocked (probe: BLOCKED at both gates), so this
+  is a decoding-semantics gap, not a missing check.
+
+Fix direction: decode (or reject charref-shaped) href/src values before
+the protocol allowlist — e.g. run attr values through an HTML-entity
+decode pass inside `reparseFailures`, and mirror the same normalization
+in `assertDestination`. Until fixed, C14's "every emitted href ∈
+http/https/mailto/relative/#fragment" does not hold end-to-end.
+
+### HIGH-2 · Translated pages silently lose every anchored embed — registry carries PIVOT-only anchors while translated bodies carry translated heading ids
+
+Evidence chain:
+
+- Registry rows carry only the pivot's embeds:
+  build-content.mjs:828 `embeds: Array.isArray(art.pivot.fm.embeds) ? … : []`
+  (confirmed in `content/emit/articles.jsonl`: embeds =
+  `photo-route-checklist:after=how-do-profile-photos-work`,
+  `entity-cards-all:after=which-secrets-are-actually-routed`).
+- The RU seed deliberately declares RU anchors
+  (`hidden-papers-compilation.ru.mdx:22,31`:
+  `after: как-работают-профильные-фото`,
+  `какие-секреты-вообще-маршрутизируются`) — and emit-side validation
+  passes because build-content.mjs:745–751 checks each cell's OWN
+  frontmatter against its OWN toc.
+- But serve time uses the REGISTRY (pivot) anchors:
+  articlePages.tsx:260 `prepareEmbeds(row.embeds, …)` →
+  ArticleRoute.interleave (ArticleRoute.tsx:74–108) regex-matches
+  `<h[1-6] id="how-do-profile-photos-work">` against the RU html, whose
+  headings are `id="как-работают-профильные-фото"` (verified in
+  `content/emit/bodies/guides/hidden-papers-compilation.ru.html`).
+  No match ⇒ loop breaks; `tail` holds only non-`after` embeds ⇒ BOTH
+  modules vanish from `/ru/guides/hidden-papers-compilation`.
+
+User-visible effect: the RU guide renders without its checklist (the
+flash-photo mechanic walkthrough) and its entity-cards grid, with no log,
+no banner, no honest-empty slot. Violates §5's spirit ("declared slots"
+render from a closed map) and §9 honesty. Fix direction: registry must
+carry per-locale embed anchor resolution (like `toc` already does), or
+anchors must be locale-neutral ids with per-locale display text.
+
+### MED-1 · Ledger written and pinned but NOT consumed at runtime — admission/sitemap/hreflang gate off registry mirrors; §8.1 "single gate" letter unmet
+
+Spec §8.1: the per-article ledger is "the single gate for route
+admission, sitemap partitions, hreflang clusters"; §3.2 row "Route
+admission … article_locales.jsonl". Implementation:
+
+- Route admission: articlePages.tsx:144–146 `row.locales[localeCode]`
+  (registry mirror). Sitemap: sitemapPartitions.ts:78 →
+  `admittedArticlePaths` (articles.ts:192–200, registry locales).
+  Hreflang: articlePages.tsx:165 `Object.keys(row.locales)`.
+- The ledger reader `articleLocaleCells()` (articles.ts:171–189) has ZERO
+  production callers — only contentPipeline.test.mjs consumes it.
+
+The invariant still holds today (both artifacts are written in one loop;
+C2's full-diff test fails CI on divergence — that satisfies C3's proof
+method), but the spec's normative wording makes the LEDGER authoritative;
+as shipped, deleting/corrupting `article_locales.jsonl` alone would not
+change a single served URL. Fix before critic round: consume the ledger
+in the three gate sites (or record a register/spec amendment saying the
+test-enforced registry mirror is the runtime gate).
+
+### MED-2 · Failed emit destroys previously compiled bodies while leaving the old registry in place
+
+build-content.mjs:686 `rmSync(bodiesDir, { recursive: true, force: true })`
+runs BEFORE any cell compiles; every failure path after it
+(build-content.mjs:725, 734, 741, 749) early-returns without writing
+artifacts. Result: `articles.jsonl` still references `body_ref` files
+that no longer exist; `articleBody()` (articles.ts:223–231) then returns
+null and every article page 404s (`notFound()`, articlePages.tsx:251)
+until the next green emit. Dev-plane only (CI fails loudly via
+emit-artifacts.mjs:51–54), but the working tree is left inconsistent and
+the next agent inherits a half-deleted emit dir. Fix: compile+validate
+all cells into a staging dir and swap, or delete per-file after
+validation succeeds.
+
+### LOW findings (notes)
+
+- **L1 · `pivotSha` hashes the whole pivot FILE, not the body**
+  (build-content.mjs:699). Spec §3.3 says "pivot EN BODY hash".
+  A frontmatter-only edit (title typo) flips every translation
+  TRANSLATION-STALE — false-positive direction only (never silent
+  drift); machine-plane noise ×locales once OQ-1 scales files.
+- **L2 · Deviation (a) ruled ACCEPT**: valid `DRAFT-SKIPPED:` logs +
+  exit 0 instead of C1's "three nonzero exits" letter. §4 V5 normative
+  text says drafts are "excluded from the registry entirely", and C1's
+  criterion sentence itself separates "build FAILS on refs" from
+  "drafts EXCLUDED" — the proof method's parenthetical contradicts V5.
+  The builder took the semantically correct side and codified it in
+  contentPipeline.test.mjs:285–303. Spec should be amended to match.
+- **L3 · Deviation (b) ruled ACCEPT**: additive per-locale `toc`,
+  `body_ref`, `stale` in registry locale cells + top-level
+  `steps`/`embeds` (build-content.mjs:783–793, 827–828). JSONL class-A
+  consumers ignore unknown keys; shapes otherwise exactly §3.1
+  (verified against the emitted files: `_meta` wrapper, base_sha16 on
+  non-pivot cells only, streams counters). Add a §3.1 shape line when
+  convenient so the exemplar doesn't drift from disk.
+- **L4 · Deviation (c) gen-routes regeneration quirk — risk LOW**:
+  gen-routes.mjs rewrites all route files unconditionally on rerun
+  (writeFileSync, no generated-banner, no sync check). Hazards are hand
+  edits being silently overwritten and template/disk drift going
+  unnoticed; output itself is deterministic and rerun-safe. Fine to
+  leave open; a `--check` mode later would close it.
+- **L5 · availability.ts was not extended** (spec §2 M5 row said
+  "extends src/data/availability.ts readers"); the article readers live
+  in a dedicated `src/data/articles.ts`. Cleaner separation, same
+  discipline (server-only, `_meta.row_count` pin-or-throw) — placement
+  deviation only.
+- **L6 · Empty guides grids ×33 prefixed locales**: `[locale]/guides`
+  generates for all 33 prefixes regardless of admissions
+  ([locale]/guides/page.tsx:24–26), rendering an empty grid div where
+  nothing is admitted. News hub omits itself correctly
+  (ArticleIndexRoute.tsx:87–88). Borderline against §7.4's spirit; no
+  captions or placeholder cards are shown, so noted, not charged.
+- **L7 · Attribute-name edge in re-parse**: destination checking keys on
+  exact `href`/`src` names (build-content.mjs:373–381), so a hypothetical
+  emitted `xlink:href` would skip the protocol check. Unreachable from
+  marked's markdown-generated emission (allowlist has no svg/a-variants),
+  theoretical only.
+
+---
+
+## Review-question rulings (task items 1–8)
+
+1. **Security law** — depth-insensitivity GENUINE: `walkTokens`
+   (build-content.mjs:237–253) recurses generic `.tokens`, list items and
+   table header/cell tokens; probe confirmed `<b>` inside a table cell
+   and an `<img onerror>` inside a list item are both denied. Allowlist
+   matches C14's final amended enumeration exactly
+   (build-content.mjs:296–305 vs C14 element list, input task-list scope
+   enforced structurally: leading li child + {type,disabled,checked}
+   triple + type=checkbox required, build-content.mjs:356–371). on\* deny
+   operates on PARSED attribute NAMES (/^on/i, build-content.mjs:351–355)
+   — alt-text false positives impossible (`alt` is a VALUE; and no raw
+   html token survives the first gate anyway). BUT see HIGH-1: fail-closed
+   holds for syntactic schemes, not for browser-decoded character
+   references.
+2. **Staleness ledger** — lifecycle code-trace CORRECT end-to-end:
+   admit stamps both hashes quiet (readmitted=true path,
+   build-content.mjs:757–767); pivot move fires the exact spec token
+   `TRANSLATION-STALE: <article_id>@<locale> <- pivot moved` naming
+   article+locale and flips cell stale (ledger + registry mirror);
+   re-admit restamps base and quiets; sibling-only edit silent. Proven
+   by test including the negative control (see item 8). L1 nuance above.
+3. **Entity-link law V1–V5** — collisions never auto-link: candidateTerms
+   groups by lowercased term and keeps sole-owner terms only
+   (build-content.mjs:405–423); link_terms escape hatch validated as
+   non-empty strings (build-content.mjs:986–991); per-locale resolution
+   with omit-on-empty via displayName per siteCode (no EN fallback);
+   drafts isolated pre-registry. Verified against EMITTED bodies: the
+   mita-usual/mita-true collision pair (name_loc {Menu,83}, verified on
+   disk; resolves to "Mita"/«Мита» EN/RU) links ZERO occurrences in both
+   locales, while Short-haired Mita/«Мита коротковолосая» ({Menu,84})
+   links once per locale with correct prefixes. V1/V2/V4 fail loud
+   (nonzero CLI exit, build-content.mjs:1069–1072).
+4. **Registry/ledger integrity** — shapes match §3.1/§8.1 on disk
+   (`_meta` class-A wrapper, row_count pins enforced both writer-side
+   read-back and reader-side throw). All four detail routes declare
+   `dynamicParams = false` and source params exclusively from
+   `articleParamsPivot`/`articleParamsByLocale` (registry-only, never a
+   directory listing). No page opens `.mdx` — grep over site/src shows
+   only comment mentions; bodies load lazily from `content/emit/bodies`.
+   See MED-1 for the ledger-gating letter.
+5. **Seeds quality** — scoped exactly to routed kinds: 6 lore
+   (paperpart-level13-0..4 + novella-location18) + 3 profiles; the 160
+   notes appear ONLY as text mentions ("never as links" stated explicitly,
+   hidden-papers-compilation.mdx:56–59,129–133); books mentioned, not
+   entity-linked. Facts verified against the corpus, not trusted:
+   scenes.jsonl chapter_name_en matches all ten cited scenes exactly
+   (level12 null = "(unnamed)" ✓); RU strings resolve byte-exact from
+   extracted/localization/Russian («Она хочет спать», «Кепка»,
+   «Цикличная версия», «Читаем книги и разрушаем глюки», «Беги и
+   прячься!»…); document--scene-membership.jsonl carries the five hard
+   modeled edges → container:level13 and novella→container:level20
+   (the id-vs-relink contradiction the guide narrates is real);
+   profile FlashTaker edges = 11 placed / 3 unplaced of 14 ✓. News seed
+   numbers reproduce spec §0.1's measured table exactly (986/24,
+   298/76/612, 371/1,555/4, 26, 23, 166/14/8) and state dataset facts,
+   not self-narration. RU is real, idiomatic Russian throughout both
+   files (register-consistent, terminology-native), not MT slop.
+   Spoiler: guide=mild/news=none, no ending-route reveals — OQ-6 law
+   respected pending ruling.
+6. **i18n** — all 7 new keys (`article.toc/updated/related/featuredIn`,
+   `news.stream.game/database/patch`) present in all 34 chrome files,
+   identical key sets across the set (probe), real translations spot-
+   checked ar/fa/de/ru («ورد في», «ذکرشده در», «Erwähnt in», «Упомянуто
+   в» etc.). Omit-fallback: `resolveArticleCell` 404s any non-admitted
+   locale (articlePages.tsx:144–146) with zero exceptions; metadata uses
+   THAT locale's authored strings; canonical carries serving prefix;
+   x-default → bare pivot path (hreflang.ts:31–34).
+7. **Deviations** — (a) ACCEPT (L2), (b) ACCEPT additive (L3),
+   (c) LOW risk, fine open (L4). Plus two unplanned deviations worth
+   recording: MED-1 (gate surface) and L5 (reader placement).
+8. **Test bite** — all four C14 mutations die at the §2 lexer gate
+   BEFORE rendering (violations table contentPipeline.test.mjs:77–104;
+   assertions name file+token; the `img onerror` case simultaneously
+   proves the substring-grep false-positive class retired since a legit
+   `![alt](https://…)` rides in the same body). Clean-tree leg passes
+   AND the widened elements are pinned positively (thead/tbody/tr/th/td +
+   `<li><input disabled="" type="checkbox">` exact marked emission,
+   test:119–153); synthetic fragments prove both input-scope dimensions
+   and the leading-child rule (test:155–174). C15's negative control
+   EXISTS and runs FIRST (sibling-edit mutation before the pivot move,
+   test:216–221), then the exact-token assertion (test:228–231), then
+   re-admit-quiets with base==en.body_sha16 (test:235–243). Also
+   present: C1 V1/V2 mutations + V5 draft exclusion, C2 live-artifact
+   ledger⇔registry⇔partition full-diff, C5 feed shape/escaping, mjs⇔ts
+   validator verdict parity, unicode slugify pin covering the RU anchors.
+
+## GOOD list
+
+- Escape-first architecture is real: validate on the SAME AST walked for
+  TOC, deny-before-render, then re-parse the emitted bytes — two
+  independent gates, no sanitizer dependency added.
+- Registry is genuinely the only hand-off: feeds, sitemap, search rows,
+  static JSON API, llms.txt, reverse-link module all read emit artifacts;
+  search ids kind-namespaced `guides:/news:` with duplicate-id build
+  failure (emit-artifacts.mjs:127–134).
+- Reverse links crawlable both directions (EntityDetailRoute.tsx:442–471)
+  with cross-locale navigation that never mixes languages on-page.
+- Honest empties everywhere: zero-item streams omitted (hub + feeds stay
+  valid empty channels), comments slot reserved silently, VoidWell for
+  the ⛓ map-scene slot.
+- D2 provenance split respected: user-facing build stamp + dates on
+  articles; machine-plane identity confined to JSON-LD/feed layer.
+- RTL-safe TOC geometry via logical `paddingInlineStart`; danger red kept
+  semantic in checklist items (var(--ms-danger)).
+- Corpus-faithful seeds at an unusually high verification bar (every
+  number and both locales' client strings checked against extracted data
+  this pass — zero drift found).
+- Test lane runs against temp content roots; real tree never mutated;
+  fixtures exercise the REAL emit function rather than mocks.
+
+## Verdict
+
+Two HIGH defects (charref href bypass of C14; translated pages losing
+anchored embeds) plus two MEDIUM process-level gaps block a clean
+approve; machinery design, seeds, i18n and the test bite are otherwise
+strong.
+
+VERDICT: NEEDS_REVISION — 4 items
