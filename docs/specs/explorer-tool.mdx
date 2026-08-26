@@ -94,7 +94,7 @@ Each extends an existing law; none invents one.
 | D2 | **No raw integer is a game fact.** Flags render through canonical `logic:flag:*` strings; `object_path_id` / `inventory_object_path_id` stay machine columns. The 49 unresolved instances render an explicit **unnamed-flag state** — never a fabricated name, never a bare number styled as meaning. | A-LL2 §5.2 | render system; AC-E3, AC-E4 |
 | D3 | **Absence-of-binding is a first-class fail-closed state.** "Wiring unknown in this build" renders with the same visual grammar as unknown polarity — never an empty list, never an omitted condition. Topology joins the polarity law: value-space AND edge-space both fail closed. | A-LL2 §5.3, logic-layer §10 handoff | [§10](#10-honest-states--stub-policy); AC-E4 |
 | D4 | **Evidence class rides every rendered predicate** (`static-proven` / `inferred`+citation / `fail-closed-unknown`); community-attributed rows visually distinct, never styled as advice (OQ-3 guardrails). | A-LL2 §5.4, logic-layer §3 | [§11](#11-design-language-requirements); AC-E5 |
-| D5 | **URL/deep-link space uses canonical string ids only.** No raw integer appears as a standalone path segment or query parameter. Reading confirmed needed for handle tails: [OQ-E4](#16-open-questions-for-the-arbiter). | A-LL2 §5.5 | [§12](#12-deep-linking--url-state-law); AC-E8 |
+| D5 | **URL/deep-link space uses canonical string ids only.** No raw integer appears as a standalone path segment or query parameter. Handle-tail reading RULED CONFIRMED: [OQ-E4](#16-open-questions-for-the-arbiter) (opaque tokens inside slugs). | A-LL2 §5.5 | [§12](#12-deep-linking--url-state-law); AC-E8 |
 | D6 | **Explicit relink-prefix map.** `flag--gates` uses bare corpus ids (`logic:flag:*`, `logic:call:*`) while `choice--consequence` uses synthetic prefixes (`choice-node:`, `effect-call:`). Normalization goes through ONE documented table; string-similarity guessing is banned. | A-LL2 §5.6, V-LL2b OBS-3 | [§5.2](#52-prefix-normalization-table-binding); AC-E7 |
 
 Plus the two structural facts from rulings A/B that shape the bundle:
@@ -126,7 +126,7 @@ bundle emitter consumes them read-only and byte-freezes them (AC-E1).
 | `extracted/data/logic/flag_instances.jsonl` | **384** (+`_meta`) | identity_status: resolved **332** · bare-name **3** (level5/9/13 IntMemory, inventory-resolved 11272/18167/17830) · unresolved **49**. `ambiguous_pairings:49`; writers/readers bound on **20** calls total, serialized-space-only; `_meta.join_law` carries the field-name law verbatim |
 | `extracted/data/logic/effect_calls.jsonl` | **20,485** (+`_meta`) | tier_a **117** / tier_b **20,368**; classes: award 13 · flag-set 63 · flag-query 18 · scene-flow 5,655 · cosmetic 11,582 · audiovisual 2,782 · dead-reference 372 (`_meta.census_accounting` additive ✓) |
 | `extracted/data/endings/choice_nodes.jsonl` | **371** (no `_meta` header — flat) | kinds: object-interactive **353** · dialogue-changer **13** · event-memory **5**; across **42** containers; **315/371** node_ids carry a numeric tail segment; dropping tails would collide **45** base ids (bare+suffixed twins) |
-| `extracted/data/endings/branch_edges.jsonl` | **1,555** (+`_meta`) | scene-flow 709 · cosmetic 468 · audiovisual 356 · flag-set 10 · flag-query 8 · dead-reference 3 · award 1; `feeds_ending:true` ×**0** (MA-8) |
+| `extracted/data/endings/branch_edges.jsonl` | **1,555** (no `_meta` header — flat; first key is `edge_id`, like `choice_nodes`) | scene-flow 709 · cosmetic 468 · audiovisual 356 · flag-set 10 · flag-query 8 · dead-reference 3 · award 1; `feeds_ending:true` ×**0** (MA-8) |
 | `extracted/data/endings/endings.jsonl` | **4** | conditions-met · safe-of-life · is-this-the-end · peaceful (`mode_unlocked` locked-stub); safe-window attribution `[community] ch4@17%, ch18@98%, ch19-empty` rides verbatim |
 | `extracted/relinks/choice--consequence.jsonl` | **1,555** (+`_meta`) | forward-only K-projection; ids `choice-node:*` ↔ `effect-call:*` (synthetic prefixes) |
 | `extracted/relinks/flag--gates.jsonl` | **40** (+`_meta`) | forward + inverse mirrors; bare corpus ids; method string names the inventory-resolved SERIALIZED-space basis, "no suffix-space fallback" |
@@ -150,30 +150,40 @@ blocked by it.
 | Module | Owns | Depends on | Blocked by |
 |---|---|---|---|
 | **M0′** explorer-bundle emitter (data-side) | `extracted/data/logic/build/emit_explorer_bundle.py`; emits `site/public/tools/explorer/graph.core.json` + `site/public/tools/explorer/labels.<locale>.json` ×34 + `emit-ledger.jsonl` | ACCEPTED artifacts (§3 table) only — no new extraction | — |
-| **M1** graph model + tree shell | `ExplorerGraph.tsx`, collapsed-tree store, node/edge renderer, presentation-pool collapse chips | M0′ | — |
-| **M2** interactions & state | `ChoicePills.tsx` (toggle walker), evidence/edge-class filters, `explorerState.ts` URL law | M0′, M1 | — |
-| **M3** ending detail panes | ending pane (conditions, windows, mode_unlocked), subject cards (achievement/cartridge/minigame/outfit/save-point/safe-window), flag cards | M0′, M1 | — |
-| **M4** unlock-path calculator + reverse flows | `pathCalculator.ts` (pure function over the bundle), what-blocks-this panel, verdict pill | M0′, M1 | — |
-| **M5** evidence render system | `EvidenceBadge`, `UnknownState`, `UnnamedFlagChip`, `CorruptionHover`, citation popover — shared by M1–M4 | M0′ (classes ride rows) | — |
-| **M6** routes, deep-links, i18n ×34 | `/explorer` route pair, `explorerState.ts`, chrome keys ×34 + RTL leg | M2–M5 string freeze | — |
+| **M1** graph model + tree shell | `ExplorerGraph.tsx`, collapsed-tree store, node/edge renderer, presentation-pool collapse chips | M0′ | M0′ |
+| **M2** interactions & state | `ChoicePills.tsx` (toggle walker), evidence/edge-class filters, `explorerState.ts` URL law | M0′, M1 | M0′ |
+| **M3** ending detail panes | ending pane (conditions, windows, mode_unlocked), subject cards (achievement/cartridge/minigame/outfit/save-point/safe-window), flag cards | M0′, M1 | M0′ |
+| **M4** unlock-path calculator + reverse flows | `pathCalculator.ts` (pure function over the bundle), what-blocks-this panel, verdict pill | M0′, M1 | M0′ |
+| **M5** evidence render system | `EvidenceBadge`, `UnknownState`, `UnnamedFlagChip`, `CorruptionHover`, citation popover — shared by M1–M4 | M0′ (classes ride rows) | M0′ |
+| **M6** routes, deep-links, i18n ×34 | `/explorer` route pair, chrome keys ×34 + RTL leg | M2–M5 string freeze · consumes M2's `explorerState.ts` | M0′ + M2–M5 string freeze |
 
 Dependency edges are exactly the table above. Hard sequencing rule: **no M1+
 module may merge before M0′'s ACs (E1–E2, E10) pass** — a viewer merged onto a
 self-derived graph repeats the defect class A-LL2 ruling B exists to prevent.
+`explorerState.ts` has exactly one owner (M2). M6 imports it for route wiring
+and deep-links and MUST NOT modify its state semantics; any URL-law change is
+an M2 change reviewed under AC-E8.
 
 ## 5. M0′ — explorer-bundle emitter (data-side gating module)
 
 ### 5.1 Emission law
 
 1. **Consumes-never-derives, applied to resolution** (Law 1 + D1): the emitter
-   reads the seven artifact families in [§3](#3-disk-audit--consumed-artifacts-measured)
-   and performs ONLY projection, filtering, prefix normalization (§5.2), and
-   label joins. It resolves NO new id binding: if a flag↔call relationship is not
-   in `writers/readers` ∪ `flag--gates` ∪ `subject_ids`, the bundle records
-   absence-of-binding (D3) — never a guess.
+   reads the eight §3 artifacts (three `logic/*.jsonl`, three
+   `endings/*.jsonl`, two relinks) listed in
+   [§3](#3-disk-audit--consumed-artifacts-measured) and performs ONLY projection,
+   filtering, prefix normalization (§5.2), label joins, AND path enumeration over
+   already-shipped rows (§8.2 `paths[]`). It resolves NO new id binding: if a
+   flag↔call relationship is not in `writers/readers` ∪ `flag--gates` ∪
+   `subject_ids`, the bundle records absence-of-binding (D3) — never a guess.
 2. **Byte-freeze**: sha256 of every consumed file recorded before and after
    emission; mismatch aborts non-zero naming the file (AC-L5 tripwire pattern).
-   The four `endings/*.jsonl` and the three `logic/*.jsonl` consumed sets must be
+   The frozen set is exactly: three `logic/*.jsonl`
+   (`predicate_records`, `flag_instances`, `effect_calls`) + three
+   `endings/*.jsonl` (`choice_nodes`, `branch_edges`, `endings`) + two relinks
+   (`choice--consequence`, `flag--gates`). (`flag_tables.jsonl`,
+   `emit-ledger.jsonl`, `relink-ending-branch-edge.jsonl` are NOT consumed by
+   this tool and stay out of the freeze manifest.) All eight must be
    byte-identical after the run (AC-E1).
 3. **Verbatim law-carrying**: `polarity`, `status`, `evidence_class`,
    `citations[]`, `internal_only`, `sense_source`, `mode_unlocked.state` ride rows
@@ -184,6 +194,11 @@ self-derived graph repeats the defect class A-LL2 ruling B exists to prevent.
    enter ONLY the `_meta.exclusion_ledger` counts (AC-E10). Within tree scope that
    hides 824 presentation edges + 3 dead refs while keeping traversal connected
    ([§6](#6-tree-ui-m1m2)).
+4a. **Wiring-step carrier**: wiring-step enumeration happens at EMIT time over
+   the shipped rows only — entries carry EXACTLY the four whitelisted keys
+   `{edge_ref, from_node, container, call_index}`; rendering is machine-voice
+   locator text with NO condition language ([§6](#6-tree-ui-m1m2) chips,
+   AC-E10 key-whitelist assertion).
 5. **Determinism**: same inputs ⇒ byte-identical outputs (AC-S8 pattern); stable
    row ordering keyed on canonical ids.
 
@@ -208,8 +223,8 @@ filename" (matches `host_object_path_id:null`); **numeric tails inside a handle
 (`…:1786`, `…#11187.txt:11187:…`) are opaque row-handle tokens** — they ride the
 canonical string verbatim, are never split into standalone numeric params (D5),
 and are never parsed back into arithmetic joins. They survive in URLs only inside
-the slugified canonical id ([§12](#12-deep-linking--url-state-law); reading ruled
-pending in [OQ-E4](#16-open-questions-for-the-arbiter)).
+the slugified canonical id ([§12](#12-deep-linking--url-state-law); reading RULED
+CONFIRMED — [OQ-E4](#16-open-questions-for-the-arbiter), A-EC1).
 
 ### 5.3 Bundle shape
 
@@ -236,6 +251,7 @@ is stored once; only labels multiply):
    "effect_class": "award", "tier": "A", "subject_ids": ["logic:achievement:…"]},
   {"from": "logic:flag:level9:Events_IntMemory", "to": "logic:call:…",   // flag--gates
    "direction": "forward", "mechanism": "hard"} ],
+ "wiring_steps": [ // pool edges bridging two rendered nodes on ≥1 precomputed path — LOCATOR-ONLY: {"edge_ref","from_node","container","call_index"} exactly; no effect_class/status/polarity/citations ],
  "flags": [ /* 384-row projection: flag_id, identity_status, writers[], readers[],
                 memory_branches summary; NO object_path_id/inventory_* columns */ ]}
 
@@ -249,8 +265,10 @@ Label sourcing law: achievement names resolve from the ×34 embedded display cel
 (entities.json, 100% coverage); ending names from `display_name_loc` joins;
 minigame/cartridge rows follow CAR-5 (client ships no name table →
 `client_key` + CITED `community_alias`, filler chain otherwise); node labels are
-class-preserving (`desluggedLabel` pattern) because `parent_name` is null by
-measurement and `prompt_loc` is null on most nodes — never guessed (CH-6 posture).
+class-preserving (`desluggedLabel` pattern) because `prompt_loc` is null on
+358/371 nodes (measured) — `choice_nodes` has no `parent_name` column at all
+(that column belongs to `flag_instances`, where it is null ×384; never read it on
+nodes) — and are never guessed (CH-6 posture).
 `question_en` is EN data, not a translation source: other locales get localized
 question TEMPLATES (chrome keys) composed with loc-joined subject names
 ([§13](#13-chrome-i18n-x34-including-the-rtl-leg)).
@@ -267,7 +285,8 @@ Structure law:
 - **Connectivity without dishonesty.** Only the 728 condition-class edges render
   as connections. The 824 presentation edges stay traversal fuel: when the only
   path between rendered nodes runs through them, the walk shows a collapsed
-  machine-voice chip `+N wiring steps` (LCD register) that expands to a neutral
+  machine-voice chip `+N wiring steps` (LCD register) that expands to the
+  bundle's `wiring_steps[]` entries (keyed by `edge_ref`, §5.3) — a neutral
   list of call targets with NO condition language — they exist, they fire, they
   mean nothing advice-shaped.
 - **Option toggles compute nothing unprovable.** Toggling a choice pill recomputes
@@ -297,10 +316,15 @@ Each of the 4 endings opens a pane composed of verbatim accepted facts:
    chip + citation, styled distinct-from-advice (D4). The third window's missing
    `Basement_Safe` component (END-2) renders as a declared measured-absence line,
    not a gap.
-3. **Award chain block** — `feeds_ending` is ×0 by measurement (MA-8, END-5): the
-   pane says trigger context rides native bodies; the level6 award-site call
-   (`ACHI_none` grant) renders as the one proven award edge, linked to its call
-   popover.
+3. **Award chain block** — `feeds_ending` is ×0 by measurement (MA-8, END-5);
+   trigger context rides native bodies. This pane renders the `conditions-met`
+   `award_chain[]` entries (level6, `Events_Data_#6042.txt`, status `proven-hard`)
+   as CHAIN ROWS with call popovers — they are ending-row data, not graph edges.
+   The tree's single proven award EDGE is the separate `branch_edges` row
+   `level14:ObjectInteractive:call4` → `AchievementGet("ACHI_achi")`, already
+   inside the 728 render arithmetic ([§3](#3-disk-audit--consumed-artifacts-measured)).
+   No join between the two artifacts may be invented; each links to its own
+   source row id.
 4. **Mode unlock block** — peaceful renders `locked-stub` with its two evidence
    pointers (`Menu.jsonl#line_index=130`, `dump.cs:206984`) and the XC-12 patch-day
    posture sentence. Never styled as reachable or unreachable.
@@ -316,8 +340,8 @@ Each of the 4 endings opens a pane composed of verbatim accepted facts:
 ### 8.1 Verdict vocabulary (closed set)
 
 The calculator answers "how do I get X / what blocks X" over precomputed paths
-only. Its output vocabulary is CLOSED — proposed in
-[OQ-E1](#16-open-questions-for-the-arbiter), binding unless overruled:
+only. Its output vocabulary is CLOSED — pinned by
+[OQ-E1](#16-open-questions-for-the-arbiter), RULED CONFIRMED by A-EC1:
 
 | Verdict | Meaning | Render |
 |---|---|---|
@@ -328,7 +352,10 @@ only. Its output vocabulary is CLOSED — proposed in
 
 There is NO `impossible`/`missed-forever` verdict: `"negative"` polarity has ZERO
 occurrences this build (logic-layer §3 reservation), so the corpus authorizes no
-harm-direction claim anywhere.
+harm-direction claim anywhere. The four verdicts are pairwise disjoint:
+`proven-reachable` requires a path with ZERO named gates;
+`gated-by-known-condition` requires ≥1 named gate; every evaluated path matches
+exactly one.
 
 ### 8.2 Forward flow — "how do I get X"
 
@@ -392,7 +419,7 @@ over; every row below was verified on disk this pass.
 | HellVamp outfit | 1 | `inferred` + wiki citation, `value:null` — "chain attributed, no dumped site"; distinct community styling (CAR-4) |
 | Safe-window percentages | 1 row | `[community]` attribution verbatim + `sense_source` chip; third window's missing component = declared measured-absence line (END-2) |
 | Minigame rules | 17 | access chains only; fence sentence; tunables out of surface (CAR-3, §15) |
-| Node display names | most nodes (`parent_name:null`, `prompt_loc:null`) | class-preserving label via deslugged canonical id; no invented proper nouns (CH-6 posture) |
+| Node display names | most nodes (`prompt_loc` null ×358/371; `choice_nodes` has no `parent_name` column) | class-preserving label via deslugged canonical id; no invented proper nouns (CH-6 posture) |
 | Minigame/cartridge display names | CAR-5 | `client_key` + CITED `community_alias`; filler chain per localization-architecture §5; a locale page never leaks another locale's text |
 | Dead-reference residue | 3 | never rendered; counted in `_meta.exclusion_ledger` (END-4) |
 | Tree completeness | — | "371 serialized nodes is a floor; code-routed choices don't serialize" caption (END-6) |
@@ -458,7 +485,7 @@ Follows the scaffold tool-input ruling (site-scaffold §3/§6:
 ## 13. Chrome i18n ×34 including the RTL leg
 
 New keys extend `site/src/i18n/chrome/*.json` — **34 files, all ship, none staged**
-(site-scaffold §3.3); parity enforced by `scripts/check-chrome-parity.mjs`.
+(site-scaffold §3.3); parity enforced by `site/scripts/check-chrome-parity.mjs`.
 Additions (final wording at implementation): `explorer.open`, `explorer.lens.*` (3),
 `explorer.filter.evidence.*` (3), `explorer.filter.kinds`, `explorer.verdict.*` (4),
 `explorer.unknown.direction`, `explorer.unknown.wiring`, `explorer.unnamedFlag`,
@@ -489,19 +516,19 @@ Law carried from the data plane:
 
 | # | Criterion | Proof method |
 |---|---|---|
-| E1 | **Input byte-freeze**: all seven consumed artifact families byte-identical before/after M0′ emission; run refuses on hash drift naming the file | sha256 manifest in `emit-ledger.jsonl` diffed pre/post (AC-L1a/L5 pattern) |
-| E2 | **Census reconciliation + traceability**: bundle carries 371 nodes ∪ 93 subjects (dedup stated), 728 rendered edges, 40 flag-gate pairs, 384 flag projections; every payload row names its source artifact + source row id; counts additive against `_meta` censuses | checker recomputes each count from the frozen inputs and diffs; sampling join: every `paths[]` hop resolves to an existing shipped row id |
-| E3 | **Zero raw-int-as-fact renders**: no user-facing string/component renders `object_path_id`, `inventory_object_path_id`, or any bare flag integer as meaning | build-time check asserts every display field is canonical-string/loc-name/declared-state-word; negative grep over `src/components/explorer/**` for those column names in JSX/text paths; snapshot DOM scan for `/\d{4,6}/` adjacent to flag-label slots |
+| E1 | **Input byte-freeze**: the eight §3 artifacts (three `logic/*.jsonl`, three `endings/*.jsonl` = choice_nodes/branch_edges/endings, two relinks) byte-identical before/after M0′ emission; run refuses on hash drift naming the file | sha256 manifest in `emit-ledger.jsonl` diffed pre/post (AC-L1a/L5 pattern) |
+| E2 | **Census reconciliation + traceability**: bundle carries 371 nodes ∪ 93 subjects (dedup stated), 728 rendered edges, 40 flag-gate pairs, 384 flag projections; every payload row names its source artifact + source row id; counts additive against `_meta` censuses where present | checker recomputes each count from the frozen inputs and diffs; tree-scope edge-class counts recompute from flat rows directly — no `_meta` census to be additive against for the three `endings/*.jsonl` files; sampling join: every `paths[]` hop resolves to an existing shipped row id |
+| E3 | **Zero raw-int-as-fact renders**: no user-facing string/component renders `object_path_id`, `inventory_object_path_id`, or any bare flag integer as meaning | build-time check asserts every display field is canonical-string/loc-name/declared-state-word; negative grep over `src/components/explorer/**` for those column names in JSX/text paths; DOM scan scoped to flag-card label TEXT NODES for `/\d{4,6}/`; `[data-slot="lcd-terminal"]` id/locator surfaces are allowlisted |
 | E4 | **Fail-closed render proofs (mandatory)**: all 21 fail-closed predicate rows, all 49 unnamed instances, and every absence-of-binding well render their declared unknown state with zero directional language | golden snapshots enumerating those exact populations; banned-word grep over their rendered copy (`avoid/refrain/don't/must/helps/hurts/will make/breaks/required for` …) returns zero hits; MUTANT: flipping one row's `evidence_class` to `static-proven` in a fixture makes the suite FAIL (the gate detects, not passes) |
 | E5 | **Evidence-class coverage**: every rendered predicate carries its badge; `inferred` rows always expose citations; community rows visually distinct from advice styling | contract test walking bundle rows → rendered card map (100% badge coverage); class-hook presence assertions (`data-evidence-class` on every card) |
 | E6 | **Precomputed joins only**: frontend contains no cross-file integer-id matching and no id-resolution logic | ESLint/no-restricted-imports + grep ban list over `src/` (`parseInt(`/`Number(` on id fields, `object_path_id ===` comparisons, asset-list/inventory references); emitter ships join provenance so the frontend needs none |
 | E7 | **Prefix-map single-source**: one table module drives emitter + frontend; both conventions normalize correctly | unit tests over disk-sampled ids from BOTH relink conventions (table §5.2 rows); repo grep proves no second ad-hoc mapping and no fuzzy-match dependency |
 | E8 | **URL law**: canonical string ids only; round-trip holds; bare-integer probes refuse; history discipline correct | property test `parse(serialize(state)) == state` across sampled states × locales incl. RTL; integration probe `?flag=11272` → canonical-form help state (no resolve); history-API spy asserting push/replace split per §12 |
 | E9 | **i18n ×34 + RTL**: chrome parity green across all 34 files; RTL legs set `dir="rtl"` with mirrored layout; no game-content string in chrome namespace | `check-chrome-parity.mjs` in CI; route-shell attribute test for ar/ar-EG/fa; grep proving chrome keys contain no achievement/cartridge names |
-| E10 | **Internal-only exclusion + honest counts**: zero `internal_only:true` / `cosmetic` / `audiovisual` / `dead-reference` rows in the graph payload; exclusion ledger reconciles (824 + 3 in tree scope) | payload scan (zero hits) + ledger sum check vs `effect_calls._meta` + tree-edge census |
+| E10 | **Internal-only exclusion + honest counts**: zero `internal_only:true` / `cosmetic` / `audiovisual` / `dead-reference` rows in the graph payload; exclusion ledger reconciles (824 + 3 in tree scope) | payload scan scopes to `nodes[]`+`edges[]`+`flags[]` (zero-hit law unchanged) PLUS an assertion that every `wiring_steps[]` entry carries EXACTLY `{edge_ref, from_node, container, call_index}` + ledger sum check vs `effect_calls._meta` + tree-edge census |
 | E11 | **Stub honesty**: every §10 row renders its declared state (peaceful `locked-stub`, `mtad-2`/`mtacore` pickup stubs, HellVamp community, unnamed chips, CAR-5 name fallbacks) | per-row assertion tests keyed on the exact predicate ids; fixture sweep asserting no invented proper nouns (names resolve only from overlay sources) |
 | E12 | **Scoring fence inheritance**: zero win-threshold/threshold-shaped assertions anywhere in the bundle | L4 deny-list audit rerun over `graph.core.json` + labels (citation/name fields excluded by name) |
-| E13 | **Perf/CWV budget**: core graph ≤ 200 kB gzip, largest labels overlay ≤ 40 kB gzip; route meets the scaffold CWV budget | build report sizes asserted in CI; Lighthouse run against the production build |
+| E13 | **Perf/CWV budget**: core graph ≤ 200 kB gzip (the ≤200 kB core budget absorbs `wiring_steps`), largest labels overlay ≤ 40 kB gzip; route meets the scaffold CWV budget | build report sizes asserted in CI; Lighthouse run against the production build |
 | E14 | **Regen determinism**: M0′ rerun over unchanged inputs is byte-identical | double-run diff (AC-S8 pattern) |
 
 ## 15. Non-goals
@@ -512,29 +539,42 @@ Law carried from the data plane:
 - No chapter timeline axis (XC-2); scene containers are the navigation spine.
 - No runtime-capture features, no save-file parsing, no personal-progress sync —
   a tracker/checklist SLOT is reserved in the schema (`entity_kind`/`entity_slug`
-  on tracker-facing cards) pending [OQ-E5](#16-open-questions-for-the-arbiter).
+  on tracker-facing cards), RULED reserve-now by
+  [OQ-E5](#16-open-questions-for-the-arbiter).
 - No raw-dump browser, no editor, no community editing, no heuristic polarity
   guesses, no AI-summarized guidance: the tool speaks only the accepted rows.
 - No `/search` route participation beyond search-in-place (site-scaffold §6).
 
 ## 16. Open questions for the Arbiter
 
+All five questions were RULED 2026-08-26 by the arbitration pass
+[A-EC1](../research/verifications/ec1-arbiter.mdx) — every recommendation below
+was confirmed; the ruling is restated inline per question.
+
 1. **OQ-E1 — Verdict vocabulary closure.** May the calculator's verdict set be
    pinned to the four states of §8.1 (no `impossible`/`missed` verdicts)? 
    *Recommendation: yes* — `"negative"` polarity has zero occurrences this build,
    so no harm-direction claim is authorized; a future [XC-1] tranche that proves
    negatives can EXTEND the enum without re-shaping shipped verdicts.
+   **RULED A-EC1 — CONFIRMED**: verdict set pinned to the four §8.1 states; no
+   `impossible`/`missed-forever` while `"negative"` measures ×0; future [XC-1]
+   negatives EXTEND the enum (disjointness sentence shipped at §8.1).
 2. **OQ-E2 — Directional `inferred` chip styling.** Under the standing OQ-3
    posture, the one directional inferred row (safe window) renders as an
    attributed-parameter chip (community-styled, never advice-phrasing).
    *Recommendation: confirm* — identical to logic-layer's one-line tightening
    switch; if OQ-3 tightens, this becomes `fail-closed-unknown` with zero schema
    change.
+   **RULED A-EC1 — CONFIRMED**: safe-window directional `inferred` renders as an
+   attributed-parameter community chip, never advice phrasing; the OQ-3 flip is
+   the single tightening switch.
 3. **OQ-E3 — Community chapter labels.** With XC-2 open, may `[community]`
    chapter attributions appear ONLY as inline attributed text on the rows that
    carry them (never as navigation axes)? *Recommendation: yes* — navigation by
    scene containers; a chapter axis built on community numbers would fabricate
    structure the corpus does not own.
+   **RULED A-EC1 — CONFIRMED**: `[community]` chapter attributions are inline
+   row text only; scene containers are the navigation spine (XC-2 ledgered).
 4. **OQ-E4 — Opaque numeric tails in URLs.** Ruling D.5 bans raw integers in
    paths/params. 315/371 node ids carry a suffix-space numeric tail INSIDE their
    canonical string, and dropping tails collides 45 base ids (measured §3).
@@ -542,10 +582,15 @@ Law carried from the data plane:
    handle tokens (never standalone params, never parsed, never displayed as
    numbers). *Recommendation: confirm* — the alternative (stripping tails)
    reintroduces collisions A-LL2 ruling B exists to prevent.
+   **RULED A-EC1 — CONFIRMED**: numeric tails ride INSIDE slugified canonical ids
+   as opaque handle tokens — never standalone params, never parsed; grounded by
+   the measured collision (45 base ids stripped; census 315/371 tailed stands).
 5. **OQ-E5 — Tracker slot reservation.** Reserve `entity_kind`/`entity_slug`
    fields on tracker-facing cards NOW (feature later), or omit until a tracker
    piece exists? *Recommendation: reserve* — two nullable columns, zero
    migration cost, matches the map-viewer checklist ADAPT-LATER precedent.
+   **RULED A-EC1 — CONFIRMED (reserve)**: `entity_kind`/`entity_slug` nullable
+   columns land NOW; zero migration cost; map-viewer ADAPT-LATER precedent.
 
 ---
 
