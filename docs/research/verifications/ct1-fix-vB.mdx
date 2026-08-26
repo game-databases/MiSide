@@ -1,0 +1,249 @@
+# V-CTF1b — Implementer's adversarial pass over the post-fix content-pipeline spec
+
+Verifier B, 2026-08-26. Target: [content-pipeline.mdx](../../specs/content-pipeline.mdx)
+(638 ln, board-recorded commit `3c64fc4`) + the site-scaffold §1.1 amendment.
+Inputs read in full this pass: the spec, [site-scaffold.mdx](../../specs/site-scaffold.mdx),
+[A-CT1](ct1-arbiter.mdx) (fix order F1–F12). Per constraint, verifier A's
+deliverable (`ct1-fix-vA.mdx`) was **not** opened. Every number below was
+re-measured first-hand against disk this pass (`python -c` parses, `wc -l`,
+grep over `site/src/`); nothing was trusted from the arbiter table or the
+spec's own §0.1.
+
+Method note: this pass reviews as the CodeWriter who must implement §2/M2,
+§4/V3, and §11/C14 tomorrow morning — the question asked of every new law is
+"can I code this exactly as written, and does it then behave as claimed?"
+
+Sections: [Re-measurement](#1-independent-re-measurement) ·
+[Fix-order audit](#2-fix-order-audit-f1f11) ·
+[Adversarial findings](#3-adversarial-findings) ·
+[V3 walks](#4-v3-law-walked-through-three-corpus-entities) ·
+[Staleness simulation](#5-staleness-simulation-pivot-edit) ·
+[Coherence](#6-coherence-sweep) · [Verdict](#verdict)
+
+## 1. Independent re-measurement
+
+| Claim (spec line) | Re-measured | Result |
+|---|---|---|
+| Scenes 24 rows (+1 `_meta` = 25 lines), schema `miside.scenes.registry/1` (L36) | `extracted/data/scenes/scenes.jsonl` | **confirmed** — 25 lines, `_meta.row_count=24`, schema verbatim |
+| POIs 986 (+1 meta = 987 lines) (L35) | `extracted/data/scenes/poi.jsonl` | **confirmed** — 987 lines |
+| Cartridges 24 lines (23+meta) (L39) | `extracted/data/cartridges/cartridges.jsonl` | **confirmed** — 24 lines, `_meta.row_count=23`, 23 data rows |
+| Minigames 18 lines (L39) | `minigames.jsonl` | **confirmed** — 18 lines / 17 data rows |
+| Personages 25 lines (L40) | `personages.jsonl` | **confirmed** — 25 lines / 24 data rows (14 mita + 10 player) |
+| Achievements 26 (L37) | `achievements.jsonl` | **confirmed** — 26 data rows |
+| Endings 4 / choice nodes 371 / branch edges 1,555 / flag tables 5 (L38) | `extracted/data/endings/*.jsonl` | **confirmed** — exact on all four |
+| Documents 14 / 166 / 8; relinks 28·28·354·370·12 (L41) | `documents/*.jsonl` + `README.md` | **confirmed** — profile 14 data, world 166 data (= 160 `note` + 5 `paper_part` + 1 `novella_surface`; line 1 is the class-B bare descriptor, no `_meta` key), books 8 data; README relink table matches digit-for-digit |
+| mita-usual ↔ mita-true shared name (L258–259) | `personages.jsonl` parse | **confirmed** — both carry `name_loc {Menu, 83}` + `name_is_shared: true`; this is the ONLY duplicated name pointer among all 24 personage rows |
+| Cartridges ship `name_loc: null` ×23 (L264) | cartridge row key census | **refuted on representation** — 23/23 rows have NO `name_loc` KEY (absent, not null); see finding F-B3 |
+| Lore filter excludes notes (L380) | `site/src/data/contracts.ts:396–402` | **confirmed** — filter keeps `["paper_part","novella_surface"]` only; `ENTITY_KINDS` has exactly 10 routed kinds (mita, players, cartridges, minigames, achievements, endings, profiles, lore, books, locations) |
+| `readJsonl()` handles both header shapes (L140) | `contracts.ts:27–38,46–65` | **confirmed** — WRAPPED + BARE detection implemented; documents family reads today through the BARE leg |
+| Chrome `nav.guides`/`nav.news` ×34 basis (L466) | `src/i18n/chrome/en.json` | **confirmed** — both keys present (parity script owns the ×34 leg) |
+| `HtmlShell lang dir` at `[locale]/layout.tsx:37` (L48) | read lines 35–39 | **confirmed** at line 37 |
+| Sitemap placeholder ternary `sitemapPartitions.ts:39–46` (L181) | read lines 37–47 | **confirmed** — `"achievements"` fallback sits exactly there |
+| Availability ledger ships (L58) | `extracted/relinks/locale_availability.jsonl` | **confirmed** — 2,686 lines |
+| Scaffold pins no markdown dep until the same-commit landing (L116–122) | `site/package.json` | **confirmed** — zero markdown/marked entries today |
+
+## 2. Fix-order audit (F1–F11)
+
+Arbiter sequencing held: F3+F4 co-landed, F5–F7 present as design law, the
+mechanical edits all landed. Status per item:
+
+| Item | Status | Evidence (spec lines) |
+|---|---|---|
+| F1 scenes row | **APPLIED** | L36 wording matches the ruled string exactly; measurement independently confirmed |
+| F2 mandate re-citation | **APPLIED** | §8.2 L476–491: TODO Phase-3 line quoted verbatim (matches `docs/TODO.mdx:112` byte-for-byte), off-repo-note fact recorded, register entry MUST quote the note text |
+| F3 escape-first law | **APPLIED** | §2 L124–133 (html-token deny any depth + href allowlist + no sanitizer dep) and §5 L315–323 rewritten from the false property to the enforced mechanism; no "escape-by-default" residue remains |
+| F4 C14 | **APPLIED** | §11 L573 — four seeds + clean-tree-zero + emitted grep + C9 demoted to secondary. Quality defect in the grep signature list: finding F-B2 |
+| F5 V3 tie-breaks | **APPLIED** | §4 L255–273 — all three ruled laws present, cross-locale claim weakened to identical-where-names-resolve. Citation defect: finding F-B3 |
+| F6 §6.4 scope note | **APPLIED** | L374–386 — routed-kinds limitation, board work item per AGENTS rule 8, DOC-1 fence carried |
+| F7 body_sha16 | **APPLIED textually, defective semantically** | §3.1 L155/L171–175, §3.3 L202–213, §8.1 L455–458, §10 L554 all carry the column — but the field definition supports two divergent implementations, one of which never fires; finding F-B1 |
+| F8 class-A wording | **APPLIED** | L139–141 verbatim ruling language |
+| F9 scaffold marked row | **APPLIED** | `site-scaffold.mdx:52` — exactly ONE new row, pin "decided at implementation (zero-dep)", why-cell cites content-pipeline §2 + lexer AST reuse; package.json untouched pending the same-commit rule |
+| F10 option-A cell + D + OQ-1b | **APPLIED** | L496 (A-cell RU-first-wave clause), L499 (option D row), OQ-1b block L597–600; assessment paragraph L512–518 carries the recommendation |
+| F11 JSON API consumer row | **APPLIED** | §3.2 L186 — `/api/v1/guides|news/{slug}.json` + `/llms.txt`, S11 extension named |
+| F12 board bookkeeping | ORCHESTRATOR-SIDE | out of scope here; observed landed anyway (`docs/TODO.mdx:102` records `3c64fc4`, 638 ln) |
+
+## 3. Adversarial findings
+
+### F-B1 · MEDIUM — `body_sha16` as defined cannot detect pivot-move staleness; TRANSLATION-STALE can ship silently
+
+§8.1 L455–456 defines the cell field: "`body_sha16` — hash of the admitted
+`.mdx` source at admission time". Read literally, each locale cell hashes ITS
+OWN file (the de cell hashes `guides/<slug>.de.mdx`). §3.3 L205–208 then says:
+"when a pivot EN hash moves, every sibling locale **still carrying its old
+hash** prints TRANSLATION-STALE". Walk the edit:
+
+- t0: `en.mdx` admitted (hash H_E1); translator produces `de.mdx` against it;
+  under the literal definition the de cell stores hash(de.mdx) = H_D1.
+- t1: pivot edited → disk hash of `en.mdx` becomes H_E2; emit recomputes.
+- The comparison the spec needs is `stored(sibling) ≠ current(pivot)`. But
+  H_D1 is a hash of a DIFFERENT FILE than H_E2 — they are unequal by
+  construction, forever, for every sibling, regardless of when the sibling
+  was translated. The predicate "still carrying its old hash" has no referent:
+  no sibling ever carries a pivot hash, so either the implementation flags ALL
+  siblings on every pivot move (noise → ignored → silent) or NONE (vacuous).
+- Silent-ship path concretely: emit refreshes stored hashes to own-file
+  current values (the only self-consistent behavior under the literal
+  definition); a translator who re-admits `de.mdx` AFTER the pivot move is
+  then indistinguishable from one who worked pre-move — the stale translation
+  ships with zero output.
+
+The intended mechanism is recoverable in one sentence — non-pivot cells must
+store **the pivot body hash the translation was admitted against**
+(base-hash semantics), and emit compares `cell.base_sha16 ≠ sha(current
+pivot .mdx)` — but the spec's two sentences describe two different data
+models, and an implementer following the definition sentence ships the vacuous
+one. Aggravating: §11 has NO AC covering translation staleness — C8's proof
+(L567) mutates a contract ROW and asserts entity-drift `STALE:` only; nothing
+mutates a pivot `.mdx` and asserts `TRANSLATION-STALE:` on a sibling. The new
+law from M-6/F7 therefore lands unenforced. Fix: redefine the per-cell field
+semantics (pivot base hash for non-pivot cells, own hash for the pivot cell),
+state the comparison explicitly, and add the missing AC leg.
+
+### F-B2 · MEDIUM — C14's emitted-HTML grep lists `<img`, which markdown generation DOES produce
+
+C14 L573 final leg: "emitted body HTML greps clean of raw-HTML signatures
+markdown generation cannot produce (`<script`, `<iframe`, `<img`,
+`onerror=`)". The parenthetical claim is false for `<img`: standard markdown
+image syntax `![alt](/cdn/v19029065/x.png)` compiles to
+`<img src="…" alt="…">` — markup generated FROM markdown syntax itself,
+which is precisely what §2's law (L131–132) promises the output contains.
+Nothing in §5 bans body images (only REMOTE images are forbidden), so an
+honest guide with one local screenshot makes C14's clean-tree grep red.
+The implementer's two exits are both bad: keep the signature and the AC is
+unsatisfiable-as-written, or quietly drop `<img` and the tripwire is narrowed
+without a spec change (`onerror=` has the same edge contrivedly:
+`![onerror=](x)` → `alt="onerror="`). Note this does NOT open an injection
+path — the html-token deny remains enforcement of record and no raw HTML can
+reach the emitter — but the AC as written fails the soundness bar every other
+AC meets. Fix direction: assert the stronger, decidable invariant instead of
+a substring blocklist — re-parse the emitted HTML and allow only the
+markdown-generated element set (`p h1–h6 ul ol li a img code pre blockquote
+table em strong del br hr span`), or replace bare `<img` with a handler-
+attribute pattern markdown never emits (`<img[^>]+\son[a-z]+\s*=`).
+
+### F-B3 · LOW-MEDIUM — V3 cites cartridges as `name_loc: null`; disk truth is key-absent
+
+Spec L264 (and, upstream, the CAR-5 row in `extracted/data/missingdata.md:93`)
+states 23/23 cartridge rows "ship `name_loc: null`". Measured: the key is
+ABSENT on all 23 rows — and the landed typed contract agrees:
+`CartridgeRow` (`contracts.ts:109–121`) declares NO `name_loc` member at all,
+while `MinigameRow` (`contracts.ts:128`) declares `name_loc: LocPointer |
+null` and the minigames file really does carry literal JSON nulls (15/17;
+`fight`/`pinguin` have real `{TelevisionGames, 0|1}` pointers). The corpus
+genuinely exhibits BOTH shapes, and tie-break 2 cites the wrong one for its
+own precedent while tie-break 3 says "absent/contentless" without stating the
+words are interchangeable. Implementer hazard is concrete: `row.name_loc ===
+null` is false for an absent key in JS, so a validator written to the cited
+representation classifies every cartridge as named and attempts to link
+`undefined`. Fix: make namelessness state-agnostic in one clause — "absent
+key, explicit null, or empty resolution ⇒ nameless" — and correct the CAR-5
+citation (the ledger phrasing in missingdata.md is itself the drifted source;
+worth a one-line note there too, owner's call).
+
+### F-B4 · LOW — C14 seed set omits the autolink and reference-definition vectors
+
+`[x](javascript:…)` is seeded, but CommonMark also turns `<javascript:…>`
+angle autolinks into anchor elements and resolves `[x][ref]` +
+`[ref]: javascript:…` definitions — neither passes through an `html` token,
+so both survive the token deny and are caught ONLY if the href allowlist
+walks EVERY link/image destination regardless of token origin (autolinks,
+definitions, image tokens). The law's wording ("link destinations") permits
+that implementation but doesn't demand it; add both fixtures as seeds and say
+"every `link`/`image` token destination however produced".
+
+### F-B5 · LOW — `link_terms` "whole-token match" is undefined for unsegmented scripts
+
+Tie-break 2 pins "exact case-insensitive whole-token match". Word-boundary
+matching has no portable definition across the ×34 matrix for zh-Hans/
+zh-Hant/ja/ko/th (no whitespace segmentation) and degrades in ar. Since
+sibling files carry their own frontmatter, terms will be authored per locale
+— exactly where the matching rule is least defined. Fix: define the matcher
+(Unicode word-boundary where the locale segments, plain substring otherwise)
+or scope whole-token to space-delimited locales explicitly.
+
+### Nits (recorded, not gating)
+
+- §3.1 L156 / §4 L235 use example entity ids that do not exist
+  (`cartridges: mta-arcade`; `achievements: ACH_cartridges_all` — real id
+  spellings are `mtacap…`/`ACHI_WinFIght`). Harmless — V1/C1 fail loudly on
+  them — but examples in a spec policing exact-match resolution should
+  resolve; scaffold §5's `mta-cap` note shares the drift.
+- §0.1 source column mixes path conventions (POI row cites
+  `extracted/data/scenes/poi.jsonl`, scenes/cartridges rows cite
+  reader-relative `data/...` as in `contracts.ts`). Cosmetic.
+- Header section list (L14–24) omits §10 and §12 anchors.
+
+## 4. V3 law walked through three corpus entities
+
+1. **mita-usual ↔ mita-true collision.** Both listed in one article's
+   frontmatter; in any locale both resolve through `{Menu, 83}` to one byte-
+   identical string (verified unique duplication across all 24 personage
+   rows). Tie-break 1 ⇒ NEITHER links in ANY locale (shared pointer ⇒ shared
+   collision everywhere names resolve). Cards/reverse-links unaffected; an
+   author pins disambiguation via `link_terms`. No contradiction with V1/V2
+   (both ids resolve; suppression is post-resolution), V4, or V5. **Law
+   behaves as ruled.**
+2. **Nameless cartridge `mtacap`, no `link_terms`.** Row has no resolvable
+   display name (absent key — see F-B3) ⇒ zero body-text links by default;
+   composed `client_key`+`community_alias` page-display names (§9/CAR-5) do
+   NOT feed linking, which matches measured-absence posture; declaring
+   `link_terms: ["CAP"]` opts in, first occurrence, diff-reviewable. Cards
+   and reverse-link modules still render. **Consistent**, modulo the F-B3
+   representation trap an implementer must not fall into.
+3. **Per-locale hole-y name.** An entity whose `name_loc` category is absent
+   or contentless in locale X (precedent class: availability-ledger holes,
+   scaffold §3.2 contentless ≠ missing): names resolve through THAT locale's
+   pointers, empty cell ⇒ link omitted in X, never EN fallback — consistent
+   with §8.1 omit-never-mix and the weakened cross-locale claim. **No
+   contradiction between the V-amendments and §6.4's routed-kinds scope
+   note**: §6.4 limits the secrets guide's initial link SET to routed kinds
+   (paper_part/novella_surface/profiles/books — all present in
+   `ENTITY_KINDS`, notes unreachable via the lore filter verified above),
+   which V1 enforces anyway; DOC-1 fence and §9 agree.
+
+## 5. Staleness simulation (pivot edit)
+
+Full walk in F-B1; summary: entity-row drift (C8) is well-defined and
+implementable — hash the referenced contract row, compare at emit, flip
+`stale`, print `STALE:`. Pivot-move drift (M-6) is NOT implementable as
+written: the stored per-locale value that would make "still carrying its old
+hash" meaningful is undefined by the field's own definition sentence, and no
+AC exercises the printout. One silent-ship path exists (post-move re-admission
+indistinguishable from pre-move under own-hash refresh). This is the pass's
+substantive design defect.
+
+## 6. Coherence sweep
+
+- **AC proof methods:** C1–C13 each carry a concrete verifier procedure
+  (mutation/sweep/curl/XML-parse/diff/script); C14 carries the seeded proof
+  (defective signature list, F-B2) and C13's OQ-6 conditionality is honestly
+  flagged. All fourteen proof'd — after F-B1's fix the TRANSLATION-STALE leg
+  needs its own proof method added.
+- **OQ numbering:** OQ-1, OQ-1b, OQ-2…OQ-7 all present once, all
+  forward-references resolve (OQ-2→§6.4, OQ-3→§7.2, OQ-4→§7.1, OQ-5→§8.1,
+  OQ-6→§4 frontmatter + C13, OQ-7→§8.1 RTL).
+- **Module graph:** M1→M2→{M3,M4}; M2→M5→{M3,M4}; M2→{sitemap, search,
+  feeds, EntityDetailRoute}; lanes and OQ-1 enter as gated inputs. No cycle;
+  routes consume ONLY the registry (hard rule L109–114 restated consistently
+  in §3.2's closing line).
+- **Counts:** every number in §0.1 re-measured exact (§1 table); §6.4's
+  inline counts (23/26/371/1,555) and §9's (160 notes, 14 profiles chapter-
+  null) agree with disk; registry example's `_meta` fields match §3.1 prose;
+  §10 artifact table includes both flag classes post-F7.
+- **Cross-spec:** scaffold §1.1 marked row singular and why-cell anchored to
+  content-pipeline §2; scaffold §1.2 "Guides — SSG from MDX content
+  collection" vs pipeline §2 "JSX-free markdown inside `.mdx`" — compatible
+  (content-collection build reads sources at build time; the hard rule bars
+  REQUEST-time source reads only), worth one clarifying word someday, not a
+  defect.
+
+## Verdict
+
+Both MEDIUM findings are bounded single-clause edits (field-semantics
+sentence + AC leg; grep-signature reformulation) — the fix order's structure,
+all eleven landed items, and every measured claim otherwise hold. The
+staleness law as written would ship a detector that never fires, and C14's
+clean-tree leg is unsatisfiable the first time a guide embeds a local image;
+per the severity discipline those land before CodeWriter starts.
+
+VERDICT: NEEDS_REVISION — 2 items
