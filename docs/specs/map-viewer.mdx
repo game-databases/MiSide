@@ -1,0 +1,646 @@
+# Scene map viewer + entity-page map module — piece spec (D-MV1)
+
+Spec feeding the board items "Interactive scene maps per chapter/location
+(owned, no embeds) — markers v0 exists, needs viewer + interactions" and
+"Map module on location-bearing entity pages (two-way links)". Inputs:
+[map-viewer-scout](../research/map-viewer-scout.mdx) (PrepareTask step 1),
+brief [D-MV1](../briefs/D-MV1.md), governing contracts
+[dataset-scenes](dataset-scenes.mdx) and
+[site-scaffold §7](site-scaffold.mdx#7-map-module-contract).
+Survey date 2026-08-26, build **19029065** / 0.93L. Every number below was
+re-measured from disk for this spec; where it corrects the Scout or the B-6
+`_meta` accounting, the correction is called out inline.
+
+---
+
+## 0. Sequencing law — why a data-side module gates everything
+
+A viewer built on today's artifacts renders nothing: `markers.jsonl` ships
+**zero** marker rows (one `_meta` line, `row_count: 0`, four families
+deferred under the no-orphan rule) and **zero** of the 986 `poi.jsonl` rows
+project a coordinate — the census is inline 298 · pptr-unresolved 76 ·
+none 612, and every inline cell fails the projection conjunction except
+world-assumed, which exists only on the 20 story-scene `spawn` fields
+(`extracted/data/scenes/scenes.jsonl`). "Markers v0 exists" means the
+*schema and projection rule* exist; the data does not.
+
+Therefore this piece opens with **M0 — marker/position emission**, a
+data-side module with its own acceptance criteria ([§3](#3-m0--markerposition-emission-data-side-gating-module)).
+No viewer module ships behind it; dependency edges are explicit in
+[§2](#2-module-breakdown--dependency-edges). Frontend consumes emitted
+artifacts and never derives data ([AGENTS rule 8](
+../../../AGENTS.md)).
+
+### 0.1 Disk audit (verified 2026-08-26 for this spec)
+
+All files under `extracted/data/scenes/` unless noted. First line of each
+`.jsonl` is a meta header; counts below are data rows.
+
+| File | Rows | Verified content |
+|---|---|---|
+| `scenes.jsonl` | 24 | roles: 20 `story` (each with `location_id` Location1…Location20) + 1 each `boot`/`title`/`menu`/`unbound`. `spawn` present on exactly the 20 story rows, all `source:"inline"`, `space:"world-assumed"`. `chapter_name_loc` null on level3, level7, level12, level15, level18. `display_name_loc` null on all 24. |
+| `scene-links.jsonl` | 57 | `edge_kind`: loads 19 · unloads 7 · continues 15 · chapter_name 15 · ledger 1 (level18 `Scene_Load` absence). |
+| `poi.jsonl` | 986 | position census **inline 298 / pptr-unresolved 76 / none 612** (`_meta.position_truth_census`, independently recounted from rows — matches). Breakdown in [§0.2](#02-the-position-census-decomposed). |
+| `markers.jsonl` | **0** | `_meta` only. `pending_families`: cartridge_item (poi_rows 25) · profile_document (0) · monster_anomaly (96) · save_point (19, kinds `[travel_gate]` = the 19 `Scene_Load`). Pins `focus_url_contract` = `/map?focus=<entity_kind>:<entity_slug>&scene=<scene_id>`. |
+| `poi-kinds.json` | 25 rulings | 21 classes `marker_eligible:true` (709 rows) · 4 false (277 rows: `ObjectItem` 262 hand/face offsets, `LightRenderer_Fog` 15 fog-anomaly-candidate-unproven). |
+| `spawn-tables.jsonl` | 24 | `Event_CreateResource` tables; holiday-gated (halloween ×3, christmas ×21); prefab refs `unresolved-target` until XC-3 index. |
+| `relinks/*.jsonl` | 5 files | scene--chapter, scene--dialogue-pool, scene--objective-hints, scene--save-vocabulary, cartridge--character-placement (`matched_pairs: 20`). |
+
+Join partners that landed since B-6 (the M0 unblocks):
+
+| Dataset | Data rows | Placement field |
+|---|---|---|
+| `extracted/data/cartridges/cartridges.jsonl` (DS-4) | 23 (13 character + 10 player; header line is flat, no `_meta` key) | `pickup_ref.container` on 21 rows; `mtad2`/`mtacore` are `registered-unresolved-pickup` with `pickup_ref: null` |
+| `extracted/data/documents/profile_documents.jsonl` (DS-5) | 14 (same flat-header shape) | `placement: {carrier_class:"FlashTaker", component_path_id, container}` on **11** rows; null on 3 (`mita-2-d-profile`, `mita-core-profile`, `mita-true-profile` — script-granted, DOC-5) |
+| `extracted/data/cartridges/minigames.jsonl` (DS-4) | 17 | carrier edges live in `extracted/relinks/minigame--scene-carrier.jsonl` (76 direction rows) |
+
+Measured join reality (this spec's corrections to optimistic readings):
+
+1. **Cartridge family yield is 21, not 25.** The `_meta` family accounting
+   counts 25 `kind:cartridge` POI rows, but only the 21 `FlashTaker` rows
+   carry `joins.save_key`, and all 21 resolve against DS-4's 23 keys. The
+   other 4 rows (`TamagotchiGame_Cartridge` ×1, `TamagotchiGame_Cartridge_Cartridge`
+   ×3) join by `joins.cartridge_family` (`tamagotchi-game`,
+   `tamagotchi-pet-cartridge`) and **no DS-4 cartridge row exists for them**
+   — the no-orphan rule keeps them deferred pending an owner ruling
+   ([OQ-9](#14-open-questions-for-the-arbiter)).
+2. **Profile markers cannot inherit POI coordinates via path_id.**
+   DS-5 `placement.component_path_id` (e.g. `level17#13630` for
+   `mita-usual-profile`) names the *carrier component*; the POI row's
+   `joins.pickup_object_path_id` for level17 FlashTakers is `0` (mta) /
+   `2567` (mtakd) — different objects. Profile markers emit from
+   `placement.container` at scene granularity; pins become possible only
+   when PIPE S9 emits per-component transforms.
+3. **`poi.jsonl` is per-instance, not class-aggregated** — see
+   [§0.3](#03-correction-poi-rows-are-already-per-instance).
+
+### 0.2 The position census decomposed
+
+Recounted row-by-row (class attribution verified):
+
+| source | space | rows | classes | mappable? |
+|---|---|---|---|---|
+| inline | object-local-offset | 262 | ObjectItem | NO — ruling-excluded (`poi-kinds.json`: hand/face pose, never map-projected) |
+| inline | unknown | 26 | Transform_Position 13, Player_Teleport 13 | NO — frame unproven (IL-stub bodies) |
+| inline | parent-local | 10 | Transform_Position | NO — parent-relative |
+| pptr-unresolved | unknown | 76 | MitaAIMovePoint 25, FlashTaker 19, Trigger_DistanceCircle 18, Trigger_Teleport 14 | placement proven, transform pointer unresolved — **PIPE S9** flips to inline without schema change (XC-3/SCN-2) |
+| none | unknown | 566 | ObjectInteractive 312, MinigamesController 70, … | no coordinates serialized |
+| none | parent-local | 46 | Transform_Position | no coordinates serialized |
+
+The projection law (`site/src/components/map/projection.ts`) is total over
+this axis and projects only `inline ∧ world-assumed`; it does not change in
+this piece. Today that cell holds exactly 24 values — the 20 story spawns
+(measured extents x −27.75…11.25, y −3…12, z −108.5…5.5; level14/19 sit
+~100 m off-origin in z) plus nothing else.
+
+### 0.3 Correction: POI rows are ALREADY per-instance
+
+The Scout's §1.2 premise — "row identity is per class per level … 41
+ObjectInteractive instances in level13 share `level13:ObjectInteractive`" —
+is **wrong**, and so is the brief's framing of M0(b) as an aggregate→instance
+*expansion*. Measured:
+
+- All 986 `poi_id` values are unique; **790 of 986 carry a `_#<pathID>`
+  instance suffix** (`level9:Trigger_Teleport_#10938` — exactly the shape
+  dataset-scenes §3.3 planned). 196 `(level,class)` pairs exist; 116 pairs
+  have >1 row (level13 ObjectInteractive: **36 distinct rows**,
+  `level13:ObjectInteractive`, `level13:ObjectInteractive_#13009`, …).
+- A class-in-level's *first* instance keeps the bare `level:class` id —
+  which is what made every pair look aggregated on a uniqueness-only check.
+- Single-instance classes (`Scene_Load` ×19, `FlashTaker` per level,
+  `Basement_Safe` ×2) genuinely have one row because there is one dump.
+
+Consequence: **per-instance pins need no emitter expansion.** What M0(b)
+must do instead is pin down the instance-identity contract for markers
+([§3.2](#32-work-items)) and add the one genuinely missing schema piece:
+profile-document markers, whose placements live in DS-5 columns rather than
+in any `poi.jsonl` row, need a marker shape keyed by `placement`
+provenance instead of `poi_id`.
+
+---
+
+## 1. Scope
+
+In scope:
+
+1. **Data side (M0):** marker-projection rerun over the landed DS-4/DS-5
+   owners; S9 disposition accounting for the 76 pptr rows; per-instance +
+   profile-placement marker schema; registry v2 with honest bounds and loc
+   label pointers; `_meta` family ledger made total over eligible kinds.
+2. **Viewer (M1/M2):** `/map` becomes a real viewer — imagery slot with
+   schematic-grid fallback, scene switcher (24 scenes), kind filter chips
+   with counts, plotted pins for PROJECTED cells + designed states for
+   every other disposition, pin popovers, URL-carried state
+   (`?focus=` / `?scene=` / `?kinds=`), keyboard + touch access.
+3. **Entity-page map module (M4):** conditional "location" module on
+   placement-bearing entity pages rendering server-side, with two-way
+   links (entity → `/map?focus=…`; marker popover → entity page). Also
+   embeds the viewer in scene-locked mode on `/locations/[scene_id]`.
+4. **Chrome i18n + gates (M5):** new keys through the ×34 locale layer;
+   negative-map gate, CWV budget, parity checks keep passing.
+
+Out of scope: artwork production itself (separate commissioned piece — the
+viewer consumes `public/map/<scene_id>/` progressively), next-tier POI
+enumeration (SCN-6), UGC pins/notes/trackers, embed bundle, distance tools,
+tile layers, live tracking (Scout §3.2 avoid rulings all stand).
+
+---
+
+## 2. Module breakdown & dependency edges
+
+| Module | Owns | Depends on | Blocked by |
+|---|---|---|---|
+| **M0** marker/position emission (data-side) | `build/emit_scenes.py` marker projection rerun; `markers.jsonl` v2; `public/map/registry.json` v2 | DS-4 ✅ landed, DS-5 ✅ landed | PIPE S9 for *coordinates* only — emission itself is not S9-gated |
+| **M1** viewer shell & imagery | `site/src/components/map/SceneMap.tsx` v1, imagery layer + fallback, fit/clamp/reset | M0 (rows exist), artwork piece (progressive, non-blocking) | — |
+| **M2** interactions & state | `SceneSwitcher`, `KindFilter`, `PinPopover`, URL state (`mapState.ts` extension) | M0, M1 | — |
+| **M3** routes & placement | `/map` (pivot + `[locale]`), `/locations/[scene_id]` embed, chapter grouping via scene--chapter relink | M2 | — |
+| **M4** entity-page map module | `EntityShell` location tab + per-kind producers (server-side) | M0 (focus URLs resolvable), M2 (module reuse) | — |
+| **M5** chrome i18n + gates | new keys ×34, parity/negative-map/CWV gates | M2–M4 string freeze | — |
+
+```
+M0 ──► M1 ──► M2 ──► M3 ──► (ship)
+ │            ▲▲
+ │            ║╚── M4 ──► (ship)
+ └────────────╣╚═════════ (M4 consumes focus URLs + marker rows)
+              M5 ◄─ strings frozen from M2–M4
+artwork piece ──► M1 (progressive; grid fallback covers absence)
+```
+
+Hard sequencing rule: **no M1+ module may merge before M0's ACs
+([§12.1](#121-m0-acceptance-criteria)) pass.** A viewer merged onto a
+zero-row `markers.jsonl` repeats the v0 mistake this spec exists to close.
+
+---
+
+## 3. M0 — marker/position emission (data-side gating module)
+
+Owner: data-side builder (B-6 lineage), same-commit entrypoint discipline
+per [DR-2026-08-18-pipeline]. Regeneration stays byte-stable (AC S8
+pattern). PIPE stage registration of emitters is XC-6 — out of scope here
+but the rerun must be runnable through `run_all` once registered.
+
+### 3.1 Emission law (unchanged, restated as the fence)
+
+Markers exist ONLY for entities confirmed by their owning dataset's emitted
+file, and every *placed* confirmed entity carries ≥1 marker
+([site-scaffold §7](site-scaffold.mdx#7-map-module-contract)). A marker
+without coordinates renders as a visible-locked cell on the authored
+schematic — never at a faked spot (dataset-scenes §3.5, TOOLS §3.3
+checkerboard-void discipline).
+
+### 3.2 Work items
+
+**(a) Resolve-or-defer-with-reasons the 76 pptr-unresolved positions —
+PIPE S9 named.** Each of the 76 rows (MitaAIMovePoint 25, FlashTaker 19,
+Trigger_DistanceCircle 18, Trigger_Teleport 14) ends the rerun in exactly
+one of two states, recorded in `_meta.position_dispositions`:
+
+- `resolved-by-s9`: the S9 `scene-transform` UnityPy walk
+  (dataset-scenes §6; missingdata XC-3) resolved the row's `position.target`
+  PPtr → row re-emits `source:"inline"` with a calibrated `space`
+  (`world-assumed` or a newly ruled space), floats filled, `space`
+  provenance noted per class against `World.positionSpawn`;
+- `deferred:s9-not-run` / `deferred:<reason>`: unchanged row + reason code.
+
+No third state may exist. If S9 has not run when M0 lands, all 76 defer
+under `deferred:s9-not-run` and the viewer still ships — M0's coordinate
+yield is *not* its shipping gate; its honesty ledger *is*.
+
+**(b) Per-instance pin contract (verification, not expansion).**
+
+- Every marker row keys a distinct `poi_id` (opaque to the frontend;
+  corpus-verbatim, bare-first-instance form preserved — no normalization
+  without an owner ruling, [OQ-1](#14-open-questions-for-the-arbiter)).
+- Where identical-hash template dumps collapsed to one logical instance
+  (DS-4 §3.5/§8-R4 boilerplate rule, e.g. `MinigamesController` groups),
+  the marker row carries `instance_census` so a count shown to a user is
+  never silently one-of-N.
+- New schema piece — **profile-placement markers**: rows keyed by
+  `placement_source: "DS-5"` + `document_id`, carrying `placement`
+  verbatim (`carrier_class`, `component_path_id`, `container`) instead of
+  `poi_id`. They render at scene granularity (list-chip + scene-level
+  presence) until S9 resolves their carrier transforms into pins.
+- `PoiRow.position.points[]` stays in the site contract
+  (`site/src/data/contracts.ts`) for Transform_Position point sets; the
+  frontend never iterates it for plotting (parent-local/unknown spaces are
+  non-projecting).
+
+**(c) Marker-projection rerun over landed owners.**
+
+- `cartridge_item` family: join `poi.jsonl FlashTaker rows (21,
+  via joins.save_key)` ⇄ `cartridges.jsonl (23 rows)`. Yield: **21 marker
+  rows**. `mtad2`/`mtacore` (registered-unresolved-pickup, no proven
+  container) get **no** marker; they are accounted in `_meta.unplaced`
+  with reason codes ([OQ-9](#14-open-questions-for-the-arbiter)). The 4
+  pet-cartridge POI rows stay deferred (no owning row — [OQ-8](#14-open-questions-for-the-arbiter)).
+- `profile_document` family: emit from DS-5 `placement` — **≤11 rows**
+  (11 of 14 documents carry placement). Join audit: every emitted slug
+  resolves to exactly one `document_id`.
+- `monster_anomaly` (96 rows) and `save_point` (19 `Scene_Load` rows):
+  stay deferred — owning entity datasets still don't exist
+  (missingdata XC-5, SCN-1).
+- Optional in the same rerun if the Arbiter approves
+  ([OQ-7](#14-open-questions-for-the-arbiter)): `minigame_access` family —
+  both sides exist (`minigames.jsonl` 17 rows + `minigame--scene-carrier`
+  76 edges), so no-orphan is satisfiable today.
+- **Make the `_meta` family ledger total:** v0 lists 4 families but 709
+  eligible rows span kinds (`interactable`, `move_point`, `spawn_event`,
+  `safe`, `minigame_access`) that no family names. The rerun's
+  `pending_families` must enumerate every `marker_eligible:true` kind with
+  its deferral reason and unblock owner — counts pinned, never dropped
+  (SCN-6 pattern).
+
+**(d) Registry v2** (`emit-artifacts.mjs` §"map registry + markers" →
+`public/map/registry.json`): per scene keep `bounds: null` until S9/P5
+calibration writes real ones (null is the honest value; never a bounding
+guess from spawns), add `display_label_loc` (chapter pointer or explicit
+null), `role`, per-kind marker counts, and `status:
+"awaiting-artwork" | "ready"` driven by artwork presence.
+
+### 3.3 Non-goals of M0
+
+No new extraction passes beyond S9's declared read; no invented slugs
+(`flashes:mta` curation ruling SCN-3 still open — display facts ship, no
+slug invented); no bounds fabrication; no schema churn beyond §3.2(b)'s
+declared additions.
+
+---
+
+## 4. Data contract — the frontend CONSUMES, never derives
+
+Named files the site reads (all through `site/src/data/contracts.ts`
+readers or the emitted `public/map/*` artifacts):
+
+| Purpose | File |
+|---|---|
+| Markers (only legal pin source) | `extracted/data/scenes/markers.jsonl` → emitted copy at `public/map/markers.json` |
+| Scene registry / switcher | `extracted/data/scenes/scenes.jsonl` → `public/map/registry.json` v2 |
+| Scene POI listing (location page module, list form) | `extracted/data/scenes/poi.jsonl` |
+| Kind rulings (chip vocabulary, eligibility) | `extracted/data/scenes/poi-kinds.json` |
+| Chapter grouping | `extracted/data/scenes/relinks/scene--chapter.jsonl` (canonical mirror `extracted/relinks/scene--chapter.jsonl`) |
+| Entity→scene membership for M4 | `extracted/relinks/character--scene-membership.jsonl` (12 direction rows), `extracted/relinks/minigame--scene-carrier.jsonl` (76), `extracted/relinks/document--scene-membership.jsonl` (rows keyed `from:"note:<id>"` → `to:"container:levelN"`) |
+| Owning datasets (join audit + M4 anchors) | `extracted/data/cartridges/cartridges.jsonl`, `extracted/data/documents/profile_documents.jsonl` |
+
+Forbidden in the browser (each is a review-defect class, AGENTS rule 8):
+
+- deriving markers from `poi.jsonl` directly (projection belongs to the
+  emitter);
+- joining DS-4/DS-5 rows to POI rows at runtime to synthesize pins;
+- computing scene bounds/extents client-side (spawns are points, not
+  extents);
+- inventing display names for unnamed instances (CH-6 measured-absence) —
+  labels come from emitted fields + `desluggedLabel()` re-spacing only.
+
+### 4.1 Marker row v2 (emitted shape)
+
+```jsonc
+{
+  "marker_id": "level9:cartridge:mtacap",
+  "poi_id": "level9:Trigger_Teleport_#10938",   // instance anchor; null for profile-placement rows
+  "layer": "location-scenes/Location7",
+  "kind": "cartridge",                           // poi-kind vocabulary (chip/filter axis)
+  "entity_kind": "cartridges",                   // ROUTED segment == ENTITY_KINDS key
+  "entity_slug": "mtacap",                       // owning contract id-column value
+  "icon": { "source": null, "fallback_state": "named-explicit-missing" },
+  "position": {
+    "x": null, "y": null, "z": null,
+    "status": "awaiting-transform-stage",        // "projected" | "awaiting-transform-stage" | "scene-granular"
+    "target": { "kind": "GameObject", "path_id": 1208 }
+  },
+  "placement": {                                 // provenance, rendered in popover hover
+    "mechanism": "hard",                         // hard | logic | inferred (relink vocabulary)
+    "source_join": "save_key",                   // save_key | DS-5 placement
+    "scene_binding": "level9"
+  },
+  "links": {
+    "page_url": "/cartridges/mtacap",            // locale-prefix applied at render time
+    "focus_url": "/map?focus=cartridges:mtacap&scene=level9"
+  }
+}
+```
+
+The namespace split resolves Scout OQ-4: `kind` stays the marker/poi
+vocabulary; `entity_kind`/`entity_slug` switch to the routed registry
+(`ENTITY_KINDS` key + id column: `cartridges`/`cartridge_id`,
+`profiles`/`document_id`, …). The **emitter** writes final
+`page_url`/`focus_url` segments so the frontend formats, never maps,
+vocabularies. `markers.jsonl._meta.focus_url_contract` updates to match
+(`cartridge_item` → `cartridges`).
+
+### 4.2 Projection law (unchanged)
+
+`projectedCoordinates()` remains the only path from a placement row to
+plotted pixels; `position.status === "projected"` in a marker row must
+agree with it, and a disagreement fails the render test (AC MV-2). Plotted
+pins therefore appear the moment S9 lands coordinates even while
+`bounds` are still null: CRS.Simple plots raw world coords; fit-to-bounds
+activates only when the registry carries bounds, and until then the default
+view centers deterministically on the mean of the scene's plotted points
+(presentation math over consumed rows — allowed; it derives no data).
+
+---
+
+## 5. Viewer modules (M1 + M2)
+
+Component inventory under `site/src/components/map/` (island boundary
+preserved; Leaflet stays dynamically imported so no other route bundles
+it):
+
+| Component | Owns |
+|---|---|
+| `SceneMap.tsx` v1 | island host; imagery layer from `public/map/<scene_id>/` (format per [OQ-2](#14-open-questions-for-the-arbiter); SVG recommended) with the schematic-grid VoidWell as the awaiting-artwork state; clamped pan/zoom from registry zoom; reset control; plotted-pin layer; locked-cell layer for scene-granular markers |
+| `SceneSwitcher.tsx` | 24 scenes grouped story (by chapter pointer order) / boot / title / menu / unbound; labels from registry `display_label_loc` with the filler chain chapter name → re-spaced id (`desluggedLabel`); writes `?scene=` |
+| `KindFilter.tsx` | chip row over the poi-kind vocabulary restricted to kinds present in the active scene's markers; per-kind counts; Show All / Hide All; writes `?kinds=` |
+| `PinPopover.tsx` | entity card: loc-correct title, kind chip, placement provenance cell (`mechanism`/`source_join`), crawlable `<a>` to `/{locale}/{entity_kind}/{entity_slug}`; bidirectional highlight with the filter row (hover either side lights the join — design-standard §5.3) |
+| `LockedCell.tsx` | visible-locked treatment for scene-granular / awaiting-transform markers once imagery+bounds exist; checkerboard-void discipline, never a faked spot |
+| `mapState.ts` v2 | extends the focus grammar with `?kinds=` (ordered, deduped) and applies `?scene=` on load (v0 parses but ignores it — Scout gap #4) |
+
+Honest-state law continues v0's pattern: `chrome["map.pendingPlacement"]`
+chips and VoidWells — absence prose is a defect (design-standard §5.1,
+[DR-2026-08-22-copy-earns-its-place]).
+
+---
+
+## 6. Interaction list (v1)
+
+pan/drag (clamped to bounds when known) · wheel + button zoom (clamped,
+≥44 px targets) · scene switch · kind filter toggle with counts · Show All /
+Hide All · quicksearch box filtering pin labels in-place (corpus is
+hundreds of rows — no global search panel) · pin hover → highlight join ·
+pin click → popover (side sheet ≤640 px viewports) · popover entity link ·
+focus restore from URL on cold load · focus clear (dismiss chip) · reset
+view · keyboard access to every control (visible focus ring via `--ring`)
+· touch pinch/drag · deep-link from entity pages into scene-locked mode.
+
+Carried rulings (Scout §3.2): URL-carried selection/filters BORROW;
+category groups ADAPT (≈7 mappable kinds, not 70); rich detail pane BORROW;
+quicksearch ADAPT; checklist/tracker ADAPT-LATER (data slots
+`entity_kind`/`entity_slug` reserved); distance/radius tools, tile styles,
+live tracking, iframe embed, clustering all AVOID (largest scene holds 123
+marker-capable rows — clustering returns only if instance growth pushes a
+scene past ~300 pins).
+
+---
+
+## 7. Routes & placement (M3 + M4)
+
+- `/map` (pivot) + `/[locale]/map` — canonical full viewer; `?scene=`,
+  `?focus=`, `?kinds=` compose; template `map-shell` already carries a CWV
+  budget row (`site/cwv.budgets.json`).
+- `/locations/[scene_id]` (+ `[locale]` twin) — embeds the viewer in
+  scene-locked mode (switcher hidden, scene fixed) above the objective-hint
+  module; also renders the scene's POI listing from `poi.jsonl` as a
+  server-side table grouped by kind (eligible kinds only; ineligible
+  classes surface as counts, per the honesty ledger). Today this route
+  renders neither map nor POI data.
+- Chapter surfaces may reuse the module scoped by
+  `relinks/scene--chapter.jsonl` (15 hard `Menu[line_index]` pointers);
+  levels 3/7/12/15/18 have no chapter pointer and group as unlabeled —
+  never assigned a guessed chapter (SCN-8/XC-2 posture).
+- **Entity-page location module (M4):** `EntityShell` gains a conditional
+  tab (id `location`) rendered server-side for placement-bearing kinds —
+
+  | Kind | Scene source (consumed, not derived) |
+  |---|---|
+  | `cartridges` | marker rows / `pickup_ref.container` via markers.jsonl |
+  | `profiles` | marker rows / DS-5 `placement.container` (3 script-granted profiles render an honest unplaced well) |
+  | `minigames` | `minigame--scene-carrier.jsonl` carrier edges |
+  | `mita` | `character--scene-membership.jsonl` (12 rows) |
+  | `books` / `lore` | `document--scene-membership.jsonl` (`note:*` → `container:*`) |
+  | `locations` | own row (`spawn` + lattice) |
+
+  Module contents: mini schematic placeholder (VoidWell until artwork),
+  "found in" scene link(s) to `/locations/<scene_id>`, and the
+  `/map?focus=<kind>:<id>&scene=<container>` anchor. All entity↔map links
+  are plain `<a href>` in SSR HTML — the JS-only-link ban (seo-standard §2)
+  is what kills the v0 asymmetry where zero focus-link producers existed
+  (Scout gap #4/#7).
+
+---
+
+## 8. Honest states & stub policy (thin POI metadata)
+
+Per `extracted/data/missingdata.md` classes — stubs are declared, never
+papered over:
+
+| Situation | Policy |
+|---|---|
+| No artwork yet (all 24 scenes) | schematic-grid VoidWell panel; `status:"awaiting-artwork"`; ships progressive — artwork landing flips scenes to `"ready"` one at a time |
+| Marker with no coordinates yet (S9 pending) | scene-granular list-chip + (once imagery exists) LockedCell; never plotted at a faked spot; popover shows `awaiting-transform-stage` status word in machine voice (LCD register) |
+| Entity confirmed but unplaced (`mtad2`, `mtacore`, 3 script-granted profiles) | entity page renders an unplaced well of equal height to a placed module — no absence sentence; `_meta.unplaced` carries the reason codes |
+| Unnamed instances (CH-6) | class-preserving label via `desluggedLabel` of class/id; no invented proper nouns |
+| Scene display names null (SCN-8: `display_name_loc` null ×24; chapters missing on 5 story levels) | filler chain per localization-architecture §5: localized chapter name → re-spaced `scene_id`; locale page never leaks another locale's text |
+| Compromised/reachability-flagged entities (CAR-8 tamagotchi `present_but_unreachable`) | `CorruptionHover` + VHS-drift STATE treatment on the chip — horror register as state, matching `EntityShell compromised` semantics |
+| Deferred families (monsters 96, save_point 19, pets 4) | stay invisible as pins; enumerated in `_meta` with owners; scene POI listing still shows them as counted rows |
+
+---
+
+## 9. Design language requirements
+
+The viewer must feel like holding the game's spaces, not like atlas chrome
+(Scout §3.2 "adopt" ruling; design-standard §5):
+
+- Surfaces ride tier-1 tokens only (`site/src/styles/design/tokens.css`):
+  `--ms-bg-0/1/2` plum stack, pill/panel/cell radius family, border via
+  `color-mix` on `--ms-accent-soft`. **No uncited hex anywhere under
+  `src/components` (AC-S8 defect class)** — kind-chip color axes derive
+  from tier-1 rows via `color-mix` (accent / signal green / warm / danger)
+  and are otherwise monochrome; a rainbow category palette like MapGenie's
+  is off-soul anyway.
+- Hot pink `--ms-accent` stays reserved for identity + actions (focused
+  pin, active filter, primary popover link) — never a per-kind hue.
+- Machine-voice data (counts, `awaiting-transform-stage`, buildId stamp)
+  uses the LCD register (`--ms-font-lcd`, VT323 rung) on
+  `[data-slot="lcd-terminal"]` surfaces with `ms-scan-breathe`;
+  body labels use `--ms-font-sans` at ≥12 px (owner floor).
+- Motion is state, not decoration: focused pin gets `ms-glow-pulse`;
+  compromised-entity chips get `ms-vhs-drift` (CorruptionHover pairing);
+  everything honors `prefers-reduced-motion` (all three loops are already
+  gated in tokens.css).
+- Hover does work everywhere (design-standard §5.3): filter chip hover
+  highlights its pins; pin hover highlights its chip; popover fields carry
+  provenance hovers. Tint-only hover fails review.
+- Controls use the pill grammar (`GradientPill`/`PillButton` lineage);
+  empty wells are `VoidWell` checkerboard, never captions.
+
+---
+
+## 10. Chrome i18n (M5)
+
+New keys extend `site/src/i18n/chrome/*.json` (34 files, all ship — none
+staged, site-scaffold §3.3), parity enforced by
+`scripts/check-chrome-parity.mjs`. Existing: `nav.map`, `map.openMap`,
+`map.pendingPlacement`. Additions (final wording at implementation):
+`map.scenes`, `map.sceneLocked`, `map.showAll`, `map.hideAll`,
+`map.resetView`, `map.filterSearch`, `map.resultsCount`,
+`map.awaitingTransform`, `map.sceneGranular`, `map.unplaced`,
+`map.popover.openPage`, `map.chapterUnlabeled`. Game-content strings
+(chapter names, objective hints) come from loc joins in the data plane —
+never enter the chrome namespace (localization-architecture §4).
+
+## 11. Performance & launch gates
+
+- Island discipline: Leaflet loads only on map-bearing routes (bundle assert,
+  AC MV-8). Pin layers render from plain arrays; no runtime JSON fetching
+  beyond the emitted static artifacts.
+- Budgets: `map-shell` template row in `site/cwv.budgets.json` — LCP <
+  2500 ms, scripted-interaction latency < 200 ms, CLS < 0.1, mobile +
+  desktop; enforced by `scripts/check-cwv.mjs`. Responsive panel height
+  strategy must be CLS-neutral (reserved aspect box, no layout shift on
+  hydrate).
+- Gates that must keep passing: `scripts/check-no-third-party-maps.mjs`
+  (build fails on embed/tile-server strings — owned-art constraint),
+  `scripts/check-chrome-parity.mjs`, sitemap/llms.txt shapes unchanged
+  (markers become an sitemap-eligible link surface only via SSR `<a>`).
+
+---
+
+## 12. Acceptance criteria
+
+Proof methods are named per criterion; "scripted trace" = the
+check-cwv-style scripted browser runner; "static grep" = CI HTML assertion
+in the pattern of the negative-map gate.
+
+### 12.1 M0 acceptance criteria
+
+- **AC MV-0.1 — Rerun yields entity-backed markers.** `markers.jsonl`
+  ships >0 data rows; every row joins to exactly one owning-dataset row
+  (21 cartridge via `save_key`; ≤11 profile via DS-5 placement); a
+  fabricated slug injected into the join audit fails loudly. *Proof:*
+  emitter unit test + join-audit script diffing emitted rows against
+  `cartridges.jsonl` / `profile_documents.jsonl` id sets.
+- **AC MV-0.2 — Disposition axis total for the 76.** Each of the 76
+  pptr-unresolved rows ends `resolved-by-s9` or `deferred:<reason>`;
+  `_meta.position_dispositions` reconciles exactly with a row recount;
+  no third state. *Proof: recount script over `poi.jsonl` vs `_meta`.*
+- **AC MV-0.3 — Instance identity preserved.** Marker `poi_id`s are
+  unique and corpus-verbatim; template-collapsed carriers carry
+  `instance_census`; profile rows carry `placement` verbatim. *Proof:*
+  schema test asserting uniqueness + required-field matrix over the full
+  file (not sampled).
+- **AC MV-0.4 — Family ledger total.** `_meta.pending_families` names
+  every `marker_eligible:true` kind with deferral reason + unblock owner;
+  eligible-row arithmetic (709) reconciles against families + emitted
+  rows. *Proof: ledger-arithmetic unit test.*
+- **AC MV-0.5 — Byte-stable rerun.** Two consecutive emissions are
+  byte-identical (fixed ordering, single build stamp). *Proof:* double-run
+  hash compare (AC S8 pattern).
+
+### 12.2 Viewer acceptance criteria
+
+- **AC MV-1 — Rendered equals projected.** For every scene, plotted-pin +
+  locked-cell + list-chip counts equal the marker rows' disposition
+  counts; a PENDING-disposition row never plots. Extends the AC S7
+  projection tests over the full source×space axis. *Proof: component
+  test.*
+- **AC MV-2 — Status/projection agreement.** A marker row with
+  `status:"projected"` whose floats fail `projectedCoordinates()` (or the
+  inverse) fails the build-time fixture test. *Proof: fixture test.*
+- **AC MV-3 — Deep-link round trip.** Cold load of
+  `/map?focus=cartridges:mtal&scene=level10&kinds=cartridge` restores
+  scene, filter, and focus (v0 restored focus only); discrete clicks
+  update the URL without navigation; back/forward behaves per
+  [OQ-5](#14-open-questions-for-the-arbiter) ruling. *Proof: scripted
+  trace asserting DOM + history entries.*
+- **AC MV-4 — SSR link graph.** Every cartridge/profile/minigame/mita
+  page with placement data serves SSR HTML containing its
+  `/map?focus=…` anchor; every marker popover target is a crawlable
+  `<a href>` present in served HTML. *Proof: static grep in CI.*
+- **AC MV-5 — Switcher totality + i18n.** All 24 scenes listed with
+  non-null labels under the filler chain in every shipped locale; chrome
+  parity green. *Proof: chrome-parity run + registry-driven snapshot
+  test.*
+- **AC MV-6 — Zero external requests.** No network request leaves the
+  origin from any map interaction. *Proof: request-log assertion in the
+  scripted trace.*
+- **AC MV-7 — Mobile.** At 375 px: all controls reachable with ≥44 px
+  targets, pinch zooms, popover renders as side sheet, no horizontal
+  overflow. *Proof: scripted mobile trace + screenshot.*
+- **AC MV-8 — Budget/bundle gates.** CWV `map-shell` budgets green;
+  Leaflet absent from non-map route bundles; CLS < 0.1 across
+  awaiting-artwork → ready transition. *Proof: check-cwv.mjs + bundle
+  assert.*
+- **AC MV-9 — Negative gate intact.** `check-no-third-party-maps.mjs`
+  passes and its blocklist still trips on a canary string. *Proof: gate
+  self-test.*
+
+---
+
+## 13. Non-goals
+
+Artwork production (commissioned separately; this piece defines only the
+file contract and fallback) · next-tier POI enumeration (SCN-6: KeyHint
+×382, Trigger_Event ×334, Transform_Magnet ×191, …) · UGC pins, notes,
+progress trackers (later ADAPT; slots reserved) · `@gamedb/embed` iframe
+product · distance/radius tools, coordinate readouts, tile styles, live
+tracking (avoid rulings) · PIPE stage registration bookkeeping (XC-6) ·
+native decompile dependencies (XC-1) — none of these block or leak into
+this piece.
+
+---
+
+## 14. Open questions for the Arbiter
+
+Carried from the Scout with recommendations; new ones marked.
+
+- **OQ-1 (reframed by measurement) — instance identity.** The Scout's
+  expansion question is moot: `poi.jsonl` is already per-instance
+  (790/986 suffixed ids). Remaining call: may markers reference the
+  bare-id *first* instance form (`level13:ObjectInteractive`) or must the
+  emitter normalize all ids to suffixed form? **Recommend: keep
+  corpus-verbatim ids; treat `poi_id` as opaque at the frontend.**
+- **OQ-2 — scene artwork.** Author, format (recommend SVG schematics for
+  zoom weight + text-free labelling), file contract
+  `public/map/<scene_id>/base.svg` (+ optional `meta.json` overlay
+  anchors), and progressive ship vs block. **Recommend: progressive —
+  grid fallback is already honest; nothing blocks.**
+- **OQ-3 — monster/save_point families.** Wait for owning entity
+  datasets (strict no-orphan) or ship scene-presence chips labeled
+  unslugged? **Recommend: wait** — the scene POI listing on
+  `/locations/[scene_id]` gives counted coverage without minting orphan
+  slugs (CH-6 forbids attributing unnamed instances anyway).
+- **OQ-4 — focus-kind namespace.** Resolved in-spec ([§4.1](#41-marker-row-v2-emitted-shape)):
+  routed `ENTITY_KINDS` key + id column, written by the emitter into
+  `links.*`; `_meta.focus_url_contract` updated. **Confirm the contract
+  edit is acceptable within the scenes spec's freeze discipline.**
+- **OQ-5 — history API.** **Recommend: `replaceState` for filter toggles
+  and focus changes (typing-law), `pushState` on scene change so Back
+  walks the scene trail.** Needs one ruling since v0 used replaceState
+  for focus.
+- **OQ-6 — bounds timing.** Confirm spawn-only mode (raw-coords plotting,
+  mean-center fallback, fit-to-bounds when known) is acceptable for v1 if
+  S9/P5 calibration slips. **Recommend: yes; viewer accepts null bounds
+  indefinitely.**
+- **OQ-7 (new) — include `minigame_access` in the same rerun?** Both
+  owning sides exist (17 minigames; 76 carrier edges). **Recommend:
+  include** — cheapest coverage win, no-orphan satisfied; else it becomes
+  the first post-M0 delta.
+- **OQ-8 (new) — pet cartridges.** 4 POI rows (`TamagotchiGame_Cartridge`
+  family) have kind `cartridge` but no DS-4 row. Owner ruling needed:
+  extend DS-4 with tamagotchi rows, re-rule their kind, or ledger them
+  deferred. **Recommend: defer with reason until a ruling lands.**
+- **OQ-9 (new) — unplaced confirmed entities.** `mtad2`/`mtacore` +
+  3 script-granted profiles are confirmed-but-unplaced. Spec excludes
+  them from markers with `_meta.unplaced` accounting + honest wells.
+  **Confirm exclusion** (alternative: infer container from
+  `container_location_binding` — rejected here: `[inferred]` mechanism on
+  a spatial claim is a faked spot).
+- **OQ-10 (new) — kind-chip color axis.** Token law bans uncited hex;
+  chips derive hues via `color-mix` from tier-1 rows only. **Confirm the
+  derived-axis palette** (or commission a T2-sampled extension row set
+  before implementation).
+
+---
+
+## See also
+
+- [map-viewer-scout](../research/map-viewer-scout.mdx) — competitor
+  borrow/avoid evidence, asset inventory
+- [dataset-scenes](dataset-scenes.mdx) — §3.5 marker contract, §6
+  transform-stage unblock, §9 risks
+- [site-scaffold §7](site-scaffold.mdx#7-map-module-contract) — map module
+  contract this piece implements
+- [missingdata](../../extracted/data/missingdata.md) — XC-3/XC-5,
+  SCN-1…SCN-11, CH-6, CAR-1/CAR-8 ledger rows cited above
+- [scenes honesty ledger](../../extracted/data/scenes/README.md) — census
+  authority, curation rulings
