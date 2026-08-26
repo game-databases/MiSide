@@ -1,0 +1,37 @@
+{
+  "build_id": 19029065,
+  "corpus_root": "D:\\unpacked_game_data\\MiSide",
+  "entities_json_sha256": "7801f04db5674fa185abd9267c851237793ce06644feacf19e10402cece251f8",
+  "generator": "B-LL2 logic-layer emitter (LG1-LG4; spec docs/specs/logic-layer.mdx ACCEPTED)",
+  "inputs": {
+    "extracted/data/achievements/achievements.jsonl": "f4220fcc734deeb8a2c45f08341892332d858c654cac8bee205dd28786ea89be",
+    "extracted/data/cartridges/cartridges.jsonl": "6b68dcad0b606ee6f553ee45aca0ef494a4fd3b2cbb4ecec4d7a6ccb8d3d996e",
+    "extracted/data/cartridges/minigames.jsonl": "be0c0dd64eaf854d35c9c79b3ac4ad274a72d5b7a60d1777e2ff1b2f6478d07f",
+    "extracted/data/endings/branch_edges.jsonl": "6356bad511d168932fec7980d24bac89945551ae7113fe30d46ed03746eb60c0",
+    "extracted/data/endings/choice_nodes.jsonl": "00725ea47c64e64baa64e55a2ad0e5d63fc934ecab52cffda5504d320c86403c",
+    "extracted/data/endings/endings.jsonl": "2ad1528adfc7fca2065a14b71bb531d78ae380e4ba40f1662b01449e9f565902",
+    "extracted/data/endings/flag_tables.jsonl": "66af6cd28dac9a4bdd8aeab751bef73462c1a19d44fe1eb2b7bbe6a6ddb129b1",
+    "extracted/data/scenes/poi-kinds.json": "8026b677fbcccb7e8fa2c5d49b77ea21e566afe6b93ba7ec8376cc2173a8f01e",
+    "extracted/relinks/achievement--award-site.jsonl": "30f0b5ba9c8ee9130bcd170dee3400e041ad06b20816504076abb4b5ccf1d151",
+    "extracted/relinks/cloth-site--outfit.jsonl": "d07b7688a5ccdc99f573ffc2967327b3abebfe2365d26f2173e9446e944d1a51",
+    "extracted/relinks/minigame--outfit-unlock.jsonl": "6a86515beb77c75332fb251e466b4e25ec74b6d1b595c208574e5229a84049e7",
+    "extracted/relinks/scene--save-vocabulary.jsonl": "072751fee8da36455e26b53647aaca54fd0f7ce250479ad1e46fa3779fd1f6ab",
+    "il2cpp/dump.cs": "ef1a7d55350264ee9921e2b68f83f0eeebcf1c031f7597b791d646c7d887fddc"
+  },
+  "mb_dump_census": {
+    "containers": 51,
+    "events_data_instances": 379,
+    "events_int_memory_instances": 5,
+    "txt_files": 140380
+  },
+  "outputs": {
+    "extracted\\data\\logic\\effect_calls.jsonl": "023aca7cfcd9e50a5a941dc4ba2b33050dcb8cddf2f1861b915c5262f6341184",
+    "extracted\\data\\logic\\emit-ledger.jsonl": "78caab05315ba793ab87b6aa737acbf0ba565d8cb4f1d97bdc2d16e247120133",
+    "extracted\\data\\logic\\flag_instances.jsonl": "226f9eeab558771b5c0a828044a5435efcb6760905b9ba01672bb63cb5f25599",
+    "extracted\\data\\logic\\identity-ledger.jsonl": "28d41eaa950793ee0ea19ae6795a066b29113fedd26d73d42855d8b80c3b9672",
+    "extracted\\data\\logic\\minigame_tunables.jsonl": "fde26a7ebd069e6b729ac114283ccf700e7a04d84a96c782f36b1182835a824e",
+    "extracted\\data\\logic\\predicate_records.jsonl": "f54e065aa0eef1cd5a6f04089341de739e6dfd758c25fce157b3f08627a55f48"
+  },
+  "schema": "miside.logic.input-manifest/1",
+  "version_label": "0.93L"
+}
