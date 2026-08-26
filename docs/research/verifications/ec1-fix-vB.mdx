@@ -1,0 +1,165 @@
+# V-EC1b — verifier B on the F-EC1 fix round (`docs/specs/explorer-tool.mdx`)
+
+Independent post-fix verification pass, 2026-08-26. Inputs: the spec on disk
+(post-F-EC1 state; git banned this pass, so the 9871db6 pin is taken from the
+orchestrator brief, not re-derived), [ec1-arbiter.mdx](ec1-arbiter.mdx)
+(SPEC_FROZEN_PENDING_FIXES, 11-item fix order), and the corpus. Verifier A's
+deliverable was NOT read. Read-only except this file.
+
+## Method
+
+Adversarial implementer pass over the NEW text only, plus independent
+re-measurement of every load-bearing number the fix round touches (python over
+the jsonl lines; nothing copied on faith).
+
+## 1. Corpus re-measurement — all reproduce exactly
+
+| Claim in spec | Disk this pass |
+|---|---|
+| predicate_records 93 (+`_meta`); kinds achievement 26 / cartridge 23 / ending 4 / minigame 17 / outfit 3 / save-point 19 / safe-window 1 | 93 body rows; subject.kind split 26/23/4/17/3/19/1 ✓ |
+| polarity census 34 positive/static-proven · 1 inferred-directional · 21 value-null fail-closed · 36 access-null/static-proven · 1 HellVamp inferred/null · `"negative"` 0 | (value,evidence) pairs: (positive,static-proven)×34, (positive,inferred)×1, (None,fail-closed-unknown)×21, (None,static-proven)×36, (None,inferred)×1; negative ×0 ✓ (sums to 93) |
+| flag_instances 384; resolved 332 / bare-name 3 / unresolved 49; `ambiguous_pairings:49`; writers/readers bound on 20 calls; `parent_name` null ×384 | 384 body; 332/3/49 ✓; `_meta.ambiguous_pairings`=49 ✓; distinct non-"none" writer/reader call refs = 20 ✓; parent_name present ×384, null ×384 ✓ |
+| effect_calls 20,485; tier A/B 117/20,368; classes award 13 · flag-set 63 · flag-query 18 · scene-flow 5,655 · cosmetic 11,582 · audiovisual 2,782 · dead-reference 372, additive ✓ | 20,485 body; `_meta.census_accounting.per_effect_class` exactly those seven numbers, `additive:true`, tier counts match ✓ |
+| choice_nodes 371 flat; kinds 353/13/5; 42 containers; tails 315/371; stripping collides 45 base ids; **no `parent_name` column** (M-3); `prompt_loc` null ×358 | 371 flat rows, first key `node_id`; kinds ✓; containers ✓; digit-tails 315 ✓; strip-and-merge-with-bare simulation yields exactly **45** colliding bases (`level13:ObjectInteractive` bare + 35 twins …) ✓; columns are exactly `{active,branch_if_ints,call_count,container,event_field,evidence,go_path_id,int_memory_default,kind,node_id,object_path_id,options,prompt_loc}` ✓; prompt_loc null 358/371 ✓ |
+| branch_edges 1,555 flat, first key `edge_id`; 709/468/356/10/8/3/1; `feeds_ending:true` ×0 | all ✓; edge_ids unique ×1,555; award row is literally `edge_id:"level14:ObjectInteractive:call4"`, target Achievement_function.AchievementGet, args.string "ACHI_achi", status proven-hard — §7 item 3's citation is verbatim-disk |
+| endings 4; conditions-met top-level `award_chain` level6 / `Events_Data_#6042.txt` / proven-hard; safe-window attribution verbatim; peaceful locked-stub with both evidence pointers | all ✓ incl. `[community] ch4@17%, ch18@98%, ch19-empty` verbatim in citations AND condition.attribution, and `Menu.jsonl#line_index=130` + `dump.cs:206984` present in peaceful mode_unlocked.evidence |
+| relinks 1,555 / 40; flag--gates method string names inventory-resolved SERIALIZED-space basis, "no suffix-space fallback"; cc ids use synthetic prefixes | 1,556/41 incl `_meta` ✓; forward-row `method` string matches verbatim ✓; cc rows sample `choice-node:level10:DialogueChanger` → `effect-call:logic:call:…` ✓; (from,to) unique ×1,555 |
+| registry 4 entries `miside.logic.{predicate_records,flag_instances,effect_calls,minigame_tunables}/1` | exactly those four contract ids in entities.json ✓ |
+| E1 frozen set of eight exists; three excluded files real | predicate_records/flag_instances/effect_calls (logic/) + choice_nodes/branch_edges/endings (endings/) + choice--consequence/flag--gates (relinks/) all exist; endings/ also holds exactly the six jsonl the arbiter listed, so `flag_tables.jsonl`, `emit-ledger.jsonl`, `relink-ending-branch-edge.jsonl` are real and correctly excluded |
+| §5.2 example ids | `logic:flag:level9:Events_IntMemory`, `logic:call:level9:Trigger_Event_#11187.txt:11187:eventEnter:6`, `logic:call:level14:ObjectInteractive.txt:x:eventClick:4`, `logic:call:level6:Events_Data_#6042.txt:6042:_event[0]:8` all resolve on disk ✓ |
+| stub rows | `logic:cartridge:{mtad,mtad-2,mtacore}` pickup_ref null ✓; `logic:outfit:hellvamp` wiki-asserted pending dumped site ✓; `achi_slaphead.question_en` = "What unlocks \"Pat on the head!\"?" verbatim ✓ |
+
+Upstream orchestrator-lane item already closed on disk: `logic-layer.mdx`
+line 3 now reads Status: ACCEPTED.
+
+## 2. Emphasis 1 — `wiring_steps[]` as a CodeWriter receives it
+
+Feasibility first, then the defects.
+
+**The four-key set is projectable from shipped rows alone (D1-clean).**
+`branch_edges` carries `from_node` and `call_index` as literal columns;
+`container` is the node-id host segment; `edge_id` is unique ×1,555 so "keyed
+by `edge_ref`" (§6) is collision-safe; zero pool edges have a `from_node`
+outside `choice_nodes`, so "bridges two rendered nodes" is well-founded. A
+mutant that adds/drops/rename a key dies at E10's EXACTLY assertion — that
+part pins.
+
+**V-B1 (MEDIUM, implementability): `edge_ref`'s FORM is unpinned, and only
+one of the two candidate forms is legal under the spec's own laws.** On disk a
+pool edge offers two identities: the raw `branch_edges.edge_id`
+(e.g. `level15:DC4875:opt2:call1`) and the `effect-call:` canonical leg of its
+`choice--consequence` projection. No §5.2 family covers the raw edge_id form,
+and §5.2 declares the table exhaustive ("adding an id form not listed here is
+an AC-E7 failure") — so the raw reading violates D6/E7 by construction, while
+the arbiter's M-2 sentence ("`edge_ref` normalizes through §5.2") is true only
+under the effect-call reading. The effect-call reading is also the only one
+that can render §6's promised "neutral list of call targets": the bundle ships
+no effect_calls rows and E6 bans frontend joins, so locator text exists only if
+`edge_ref` embeds container/file/host/field/n. An implementer CAN infer all
+this, but the spec makes them infer it; E10 cannot catch the wrong guess (key
+set is identical). One clause fixes it — e.g. "`edge_ref` is the pool edge's
+`to` leg in `effect-call:` canonical form (§5.2)". Related note, folded here:
+`call_index` semantics resolve naturally once the disk schema is known
+(verbatim copy of the shipped `branch_edges.call_index` column), but saying so
+costs five words.
+
+**V-B2 (MEDIUM-low): the population bound has no proof hook.** M-2's whole
+point was a BOUNDED carrier ("ONLY pool edges bridging two rendered nodes on ≥1
+precomputed path"), and §5.1 rule 4a states that law — but no AC tests it: E2's
+reconciliation list covers nodes/edges/flags/pairs only, E10 checks keys plus
+exclusion-ledger sums, E13 absorbs the size without asserting boundedness. A
+mutant emitter that dumps all 824 pool edges into `wiring_steps[]` passes E1–E12
+and E14 outright and only stresses E13 probabilistically. One E2 clause
+("wiring_steps count reconciles against pool edges lying on ≥1 shipped
+`paths[]` entry") closes it.
+
+## 3. Emphasis 2 — award truth: ACHI_none vs ACHI_achi
+
+Walks clean, each from its own artifact, with measured ids end-to-end:
+
+- **ACHI_none**: `endings.jsonl` conditions-met top-level `award_chain[]`
+  (one entry: level6 / Events_Data_#6042.txt / proven-hard) renders ONLY in the
+  pane's Award chain block as chain rows with popovers. Its grant site exists
+  separately as effect_calls `logic:call:level6:Events_Data_#6042.txt:6042:_event[0]:8`
+  (tier A, subject_ids `[logic:achievement:achi_none]`) — the calculator's
+  forward flow may reach the subject through that D1-sanctioned source, which is
+  a third, distinctly cited artifact. No sentence equates any two of them.
+- **ACHI_achi**: the single proven award EDGE (`level14:ObjectInteractive:call4`
+  → AchievementGet("ACHI_achi"), feeds_ending null) lives inside the 728; its
+  effect_call twin `…ObjectInteractive.txt:x:eventClick:4` carries subject_ids
+  `[logic:achievement:achi_achi]`.
+- Conflation paths checked and closed: the calculator never reads
+  endings.jsonl (not a D1 binding source); §7 item 3 explicitly forbids joining
+  the artifacts and requires each link to carry its own source row id; the tree
+  shows exactly one award connection. PASS.
+
+## 4. Emphasis 4 — fail-closed / raw-int sweep over the NEW sentences
+
+No NEW sentence leaks direction into an unknown or promotes an integer to a
+game fact:
+
+- Rule 4a and §6's amended chip sentence harden neutrality ("NO condition
+  language", "mean nothing advice-shaped") rather than weakening it.
+- §7 item 3's integers/backtick tokens are corpus CITATIONS in spec prose, not
+  render laws; nothing instructs the UI to display them.
+- E3's narrowed DOM scan keeps the primary build-time canonical-string
+  assertion intact and the LCD allowlist is justified (L4's disable-the-gate
+  risk was real).
+- Nearest residual is V-B3 (LOW): §8.1's new disjointness sentence partitions
+  only proven-reachable vs gated-by-known-condition on gate count. A path that
+  passes a named gate AND contains a fail-closed-direction fork satisfies BOTH
+  `gated-by-known-condition` and `wiring-known-sense-unknown`, so "every
+  evaluated path matches exactly one" is not yet provable for it. §6's standing
+  law ("direction-unknown branches cannot flip a verdict; the pill stays in its
+  honest state") implies fail-closed dominance, but §8.1 never states it — an
+  implementer must guess the precedence. One clause fixes it. This is a UX
+  ambiguity, not a polarity leak: no input reaches the user as directional
+  advice under either reading.
+
+Minor bookkeeping gap, V-B4 (LOW): `paths[]` is declared as a shipped bundle
+member (§5.1 item 1, §8.2) but never appears in §5.3's sketch nor in E2's
+reconciliation list — the bundle shape section and its census gate lag one
+member behind the emission law.
+
+Observation, not a finding: intra-doc anchors assume ×→x slug transliteration
+(`#13-chrome-i18n-x34-including-the-rtl-leg` vs heading "Chrome i18n ×34…");
+internally consistent throughout and pre-existing text, so out of round scope.
+
+## 5. Fix-order rulings (F-EC1 items 1–11)
+
+| # | Item | Ruling |
+|---|---|---|
+| 1 | §7 award misattribution (M-1) | APPLIED — replacement text verbatim, both artifacts named, anti-join sentence present; ids verified against disk |
+| 2 | wiring-steps carrier (M-2) | APPLIED — §5.3 line, rule 4a, §6 chip amendment all present (see V-B1/V-B2 for residual precision) |
+| 3 | E10 scoping + E13 absorb | APPLIED — payload-scan scope + EXACT-keys assertion + budget note |
+| 4 | label-sourcing field (M-3) | APPLIED verbatim; both halves measured true (no column on nodes; null ×384 on flags) |
+| 5 | branch_edges flat (L1) + E2 clause | APPLIED verbatim; flatness re-measured |
+| 6 | consumed-set pin (arbiter-added) | APPLIED — E1 names the eight explicitly; §5.1 item 2 lists them and excludes the three non-consumed files by name |
+| 7 | closed op list (L2) | APPLIED — "AND path enumeration over already-shipped rows (§8.2 `paths[]`)" |
+| 8 | disjointness + OQ closure (L3/OQ-E1) | APPLIED — sentence below §8.1 table (see V-B3 for residual); all five §16 items marked RULED A-EC1 — CONFIRMED with pointers |
+| 9 | E3 digit-scan scope (L4) | APPLIED verbatim |
+| 10 | parity-script path (L5) | APPLIED — `site/scripts/check-chrome-parity.mjs` |
+| 11 | §4 hygiene (L6) | APPLIED — Blocked-by filled per row, ownership paragraph present, M6 Owns/Depends adjusted |
+
+Structural laws: acyclic-tree framing intact (collapsed roots, finite path
+enumeration, no cycle claim); every E1–E14 row carries a proof method; hygiene
+scan over the file found zero odd-backtick lines and zero braces exposed
+outside code spans/fences (MDX-safe); anchors consistent with the house ×→x
+convention.
+
+## 6. Findings + verdict
+
+All eleven ordered fixes are landed verbatim against a corpus whose every
+load-bearing number reproduced exactly. Residuals are precision items on the
+NEW carrier text, none of which can render a game fact the corpus does not own:
+
+- **V-B1 (MEDIUM)** — pin `edge_ref` to the `effect-call:` canonical form (§5.2);
+  the raw `edge_id` reading self-violates D6/E7 and cannot render §6's call targets.
+- **V-B2 (MED-low)** — give the wiring_steps population bound a proof hook (E2 clause).
+- **V-B3 (LOW)** — state fail-closed-fork precedence in §8.1 so "matches exactly one" holds.
+- **V-B4 (LOW)** — add `paths[]` to the §5.3 sketch and E2 reconciliation.
+
+Backlog candidates; none blocks implementation, and the worst failure mode
+(V-B1 misread) fails loudly at first render rather than shipping wrong advice.
+
+VERDICT: APPROVE
