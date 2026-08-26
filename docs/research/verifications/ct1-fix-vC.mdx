@@ -1,0 +1,190 @@
+# V-CTF1c — Focused verification of the three micro-fixes on content-pipeline
+
+Verifier C, 2026-08-26. Target: [content-pipeline.mdx](../../specs/content-pipeline.mdx)
+(660 ln, board-recorded commit `a0ddb63`). Design authority:
+[ct1-fix-vB.mdx](ct1-fix-vB.mdx) findings F-B1/F-B2/F-B3, implemented by
+F-CTF1. Scope: the three micro-fixes only — C14 redesign, base_sha16
+staleness semantics + new AC C15, name_loc key-absent truthing — plus a
+no-regression sweep against the pre-fix state vB describes.
+
+Method: every corpus number below was re-measured first-hand this pass
+(`python` jsonl census over `extracted/data/cartridges/*.jsonl`, reads of
+`site/src/data/contracts.ts` and `extracted/data/missingdata.md`); every
+law sentence was walked against its defect as an implementer would code
+it. Sections: [Fix 1 · C14](#fix-1--c14-redesign-vs-f-b2) ·
+[Fix 2 · base_sha16](#fix-2--base_sha16-staleness--c15-vs-f-b1) ·
+[Fix 3 · name_loc](#fix-3--name_loc-key-absent-truthing-vs-f-b3) ·
+[Sweep](#4-no-regression-sweep) · [Verdict](#verdict).
+
+## Fix 1 · C14 redesign vs F-B2
+
+**What the defect demanded:** kill the `![alt](src)` false-positive (bare
+`<img` grep reds the clean tree on any guide with a local screenshot);
+replace the substring blocklist with decidable invariants that carry no
+markdown-legit-content false positives AND leave no real injection path;
+record the retired leg's refutation; keep the four seeded violations dead;
+keep C9 secondary.
+
+**What landed:** §11 C14 (L594) now requires zero surviving lexer `html`
+tokens plus an EMITTED-body RE-PARSE against three invariants — element
+set ⊆ closed markdown-generated allowlist (`p h1–h6 ul ol li a img code
+pre blockquote table em strong del br hr span`), zero event-handler
+attributes checked as PARSED attribute names matching `on*`, and every
+emitted href/src destination ∈ http/https/mailto/relative/#fragment.
+§2 (L124–133) and §5 (L334–341) carry the matching enforcement law. The
+retired formulation is refuted inside the AC text with both failure modes
+named (`![alt](src)` → legit `<img`; `![onerror=](x)` → handler-shaped alt
+text that parsed-name checking correctly ignores); "C9's source grep stays
+as secondary belt-and-braces, not enforcement of record" closes the
+demotion.
+
+**Ruling on each sub-question:**
+
+- *False-positive eliminated?* Yes for the seeded one: `img` is IN the
+  allowlist, and `alt="onerror="` produces attribute names `src`/`alt`,
+  neither matching `on*`. The substring leg is gone from enforcement.
+- *Seeds still die?* Yes — `<img onerror=…>`, `<script>`, inline `<b>`
+  are `html` tokens killed by the §2 deny; `[x](javascript:…)` is a link
+  token killed by the same §2 walk's destination restriction (L128–131);
+  all four before rendering, each naming file+token. Clean tree exits 0
+  AND must pass the re-parse; the checker is additionally proven live on
+  synthetic emitted fragments (`<img onclick=…>`, `<embed>`,
+  `href="javascript:…"`) — good negative-space testing.
+- *Injection paths left?* None found. Angle autolinks and reference
+  definitions never see an `html` token, but C14 checks the EMITTED html,
+  so every `a`/`img` however produced hits the href/src protocol leg —
+  F-B4's structural demand is met by mechanism even though its two extra
+  fixtures were not added to the seed list (nit N-C3).
+- **UNSOUND residual (F-C1, MEDIUM): the closed element allowlist is
+  incomplete against the pinned renderer's actual output.** `marked` ships
+  GFM tables and task lists by default; a markdown table emits
+  `<table><thead><tbody><tr><th><td>` — the allowlist names `table` but
+  NONE of `thead tbody tr th td` — and a task-list item emits
+  `<li><input checked disabled type="checkbox">…</li>` with `input`
+  absent too. First guide carrying one comparison table (the §6.4 seed
+  demand map makes this likely: cartridge placements, achievement routes)
+  fails C14's clean-tree re-parse. That is precisely F-B2's failure mode —
+  an honest-content false positive making the AC unsatisfiable-as-written —
+  reintroduced through the replacement invariant. Over-strictness opens no
+  injection path, but it fails the fix's own soundness bar. Fix: widen the
+  closed set to the full marked-generated element set (add
+  `thead tbody tr th td`, plus `input` if body task lists are permitted),
+  or derive the list from the pinned renderer version instead of hand-
+  enumeration.
+
+## Fix 2 · base_sha16 staleness + C15 vs F-B1
+
+**What the defect demanded:** one data model (non-pivot cells store the
+pivot hash they were admitted against), the comparison stated explicitly,
+and an AC leg exercising TRANSLATION-STALE.
+
+**Landed text:** §3.1 example L152–160 shows the en cell with own-file
+`body_sha16` and the de cell with `body_sha16` + `base_sha16` ("<pivot EN
+body sha16 the de cell was ADMITTED AGAINST>"); L176–178 make the ledger
+authoritative with mirrors into the registry map. §3.3 L208–227 states the
+law (recompute pivot sha16 at emit, compare against each sibling's stored
+`base_sha16`, mismatch ⇒ `TRANSLATION-STALE: <article_id>@<locale> <- pivot
+moved` + cell stale, machine-plane only) AND records the refutation of the
+old semantics verbatim ("Own-file hashes alone cannot express this
+comparison — a de-cell hash never equals an en-file hash … either every
+sibling would flag forever or none ever would"). §8.1 L467–479 carries the
+same field pair on ledger cells and names `base_sha16` as what emit
+compares; §10 L575 lists both flag classes; C15 (L595) is the missing AC
+leg.
+
+**End-to-end walk of the pivot-edit scenario:**
+
+| Step | State | Emit behavior |
+|---|---|---|
+| t0 admit en H_E1 + translate de | de.base_sha16 = H_E1 stamped at admission, de.body_sha16 = H_D1 | pivot current H_E1 == base ⇒ quiet ✓ |
+| t1 mutate ONLY pivot .mdx | disk pivot becomes H_E2, stored base untouched | H_E2 ≠ H_E1 ⇒ fires, names article@de ✓ |
+| t2 re-admit de against moved pivot | admission stamps de.base_sha16 = H_E2 | equal ⇒ prints nothing ✓ |
+| t− control: mutate ONLY sibling .mdx | stored ledger values unchanged; pivot current unchanged | comparison unaffected ⇒ silent ✓ |
+
+The negative control is semantically correct under admission-stamped
+ledger values (a hand edit without re-admission moves neither side of the
+comparison), and the multi-sibling case decides per locale — a pre-move
+translation flags while a post-move one doesn't. Vacuous paths searched
+for and not found: pivot cell correctly carries no base (cannot be stale
+against itself); §8.1 guarantees a pivot exists for every article; revert
+of a pivot edit returning hash equality is inherent to content-addressed
+staleness and matches the ruled mechanism. C15 asserts the exact print
+token and the locale segment on the fire leg, silence on the quiet leg,
+and the sibling-only control — the three load-bearing observables. Nit
+N-C2: the criterion also promises a `stale` flag flip on the cell, which
+the proof method does not explicitly assert (registry-visible trivially
+alongside the printout; not gating).
+
+## Fix 3 · name_loc key-absent truthing vs F-B3
+
+**What the defect demanded:** cite KEY ABSENT ×23/23, state the
+namelessness rule state-agnostically in one clause, and cite the minigames
+contrast correctly (nulls ×15/17, real pointers on fight/pinguin).
+
+**Re-measured this pass** (`extracted/data/cartridges/cartridges.jsonl`,
+`extracted/data/cartridges/minigames.jsonl`): cartridges `_meta.row_count=23`,
+data rows 23 — `name_loc` key ABSENT on **23/23**, explicit-null 0,
+pointer 0. Minigames rows 17 — literal nulls **15/17**, real pointers ONLY
+on `fight` → `{TelevisionGames, 0}` and `pinguin` → `{TelevisionGames, 1}`.
+The landed typed contract agrees: `CartridgeRow`
+(`site/src/data/contracts.ts:109–121`) declares NO `name_loc` member;
+`MinigameRow` (`contracts.ts:128`) declares `name_loc: LocPointer | null`.
+
+Spec V3 tie-break 2 (L277–286) now reads "measured disk truth: all 23
+cartridge rows have the `name_loc` KEY ABSENT — not JSON null — while
+minigames carry literal nulls ×15/17 plus real pointers on
+`fight`/`pinguin`, so the corpus exhibits BOTH shapes: treat absent key,
+explicit null, and empty resolution IDENTICALLY as nameless". Every
+element of the demand is present and every number matches disk
+digit-for-digit; the state-agnostic clause kills the exact implementer
+hazard vB named (`row.name_loc === null` misclassifying absent keys).
+Tie-break 3's per-locale leg keeps its compatible "absent/contentless"
+wording. Upstream CAR-5 (`extracted/data/missingdata.md:93`) still says
+`name_loc:null` — vB routed that ledger correction to the owner's call,
+and the spec no longer repeats the drifted phrasing, so nothing here
+propagates it. **SOUND.**
+
+## 4. No-regression sweep
+
+- **Module graph (§2 L97–107):** M1→M2→{M3,M4}; M2→M5→{M3,M4};
+  M2→{sitemapPartitions, emit-artifacts, feeds, EntityDetailRoute};
+  LANE-A/LANE-B/OQ-1 enter as gated inputs only. No cycle; routes consume
+  only the registry (hard rule L109–114 unchanged).
+- **OQ numbering:** definitions at L614/620/624/627/630/633/636/641 =
+  OQ-1, OQ-1b, OQ-2…7 — each exactly once. Forward refs resolve:
+  OQ-1→§2/§3.3/§8.2/risks, OQ-2→§6.4 (L402), OQ-3→§7.2 (L437),
+  OQ-4→§7.1 (L424), OQ-5→§8.1 (L478), OQ-6→§4 frontmatter (L246)+C13
+  (L593), OQ-7→§8.1 RTL (L492).
+- **ACs:** C1–C15 = 15 rows, each with a concrete proof method; C13's
+  OQ-6 conditionality still flagged honestly.
+- **vB-confirmed items re-spotted intact:** F1 scenes row (L36), §8.2
+  verbatim board quote (L497–501), escape-first law (§2/§5), class-A
+  wording (L139–141), option D row + A-cell RU clause + OQ-1b block,
+  JSON-API consumer row (L192), C9 retained but demoted secondary inside
+  C14's text; scaffold `marked` row singular with why-cell anchored to
+  content-pipeline §2 (`site-scaffold.mdx:52`). File length 660 ln,
+  read through the last line.
+- **Pre-existing nits unchanged (not gating, not regressions):** header
+  section list omits §10/§12 anchors; example ids `mta-arcade` /
+  `ACH_cartridges_all` remain non-resolving spellings.
+
+## Verdict
+
+Fixes 2 and 3 are sound — base_sha16 makes the pivot-move comparison
+decidable end-to-end with a correct negative control and the missing AC
+leg present, and the name_loc citation now matches measured disk truth
+with a state-agnostic namelessness rule that closes the
+`=== null` trap. Fix 1 eliminates exactly the false positive it was
+commissioned to kill and retires the substring leg with the refutation
+recorded, but its replacement element allowlist omits the table
+scaffolding (thead/tbody/tr/th/td) and task-list input that the pinned
+renderer emits — reintroducing F-B2's unsatisfiable-as-written failure
+mode on ordinary guide content. Single bounded edit: widen the closed set
+to the renderer's full generated element list.
+
+Nits recorded, not gating: N-C1 (=F-C1's task-list half if tables are
+fixed but inputs forgotten); N-C2 C15 doesn't explicitly assert the
+registry `stale` flip; N-C3 F-B4's autolink/reference-definition fixtures
+absent from the seed list though the mechanism covers them.
+
+VERDICT: NEEDS_REVISION — 1 item
