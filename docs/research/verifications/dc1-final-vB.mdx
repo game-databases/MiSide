@@ -1,0 +1,248 @@
+# V-DC2b — Verifier B final verification of `docs/specs/data-contracts.mdx` @ 0e9468c (545 ln)
+
+Independent FINAL check before the contracts builder starts. Did NOT read
+[dc1-final-vA.mdx](dc1-final-vA.mdx). Inputs: the spec in full,
+[dc1-arbiter.mdx](dc1-arbiter.mdx) (fix order + scope freeze) in full,
+[AGENTS.md](../../../AGENTS.md) in full. Method: every number below is MY OWN
+re-measurement over `extracted/data/` + `extracted/relinks/` (stdlib-json Python,
+full scans, zero sampling; `_meta`/descriptor headers excluded per §2.2, class-C
+files parsed from line 1). Same tree, buildId 19029065 / VERSION 0.93L. No git,
+no subagents; repo untouched except this file.
+
+## 1. Independent re-measurement sweep — every closing sum
+
+### 1.1 Edge layer (`extracted/relinks/*.jsonl`, 25 relation files of 27)
+
+| Claim (spec) | My measurement | Verdict |
+|---|---|---|
+| Total edges 1,159 | **1,159** over 25 files | REPRODUCED |
+| Anchored 1,142 + anchor-less 17 | **1,142** carry ≥1 of `from`/`to`; **17** carry neither | REPRODUCED |
+| Endpoints 2,284 = 2,259 strings + 25 JSON nulls | **2,259** str + **25** null = **2,284** slots | REPRODUCED |
+| 17 anchor-less edges = 34 absent slots | 11 award-site + 3 ach-ending + 2 cloth-site + 1 residue = 17 edges ×2 = **34** | REPRODUCED |
+| Null anchors ONLY: mg--ach `from` 6/`to` 6, theme `to` 5, outfit `from` 4, membership `from` 4 | exactly those four family/side cells, summing **25**; zero nulls anywhere else | REPRODUCED |
+
+Family edge counts reproduce digit-for-digit against the §4.1 table: event-wiring
+370 · doc-membership 354 · mg-scene-carrier 76 · char-ach 44 · char-cart 44 ·
+doc-ach 28 · doc-char 28 · mg-ach 20 · dlg-pool 40 · obj-hints 37 · save-vocab 19 ·
+chapter 30 · theme-char 14 · char-membership 12 · doc-minigame 12 · award-site 11 ·
+char-speaker 6 · char-outfit 4 · mg-outfit-unlock 4 · ach-ending 3 · cloth-outfit 2 ·
+residue 1 · meta-only 0×3 (cartridge-placement, choice-condition, ending-branch-edge).
+
+Direction splits (measured): char-ach f22/i22 · char-cart f22/i22 · mg-ach f10/i10 ·
+dlg-pool f20/i20 · obj-hints f19/i18 · chapter f15/i15 · membership f8/i4 ·
+mg-outfit-unlock f2/i2 · mg-scene-carrier f38/i38 · forward-only: save-vocab 19,
+char-outfit 4, theme-char 14 → **13** direction-bearing families; document families
+encode orientation as `kind`; the four reverse-index/residue families carry no
+direction key. All as §3.10/§4.1 state.
+
+### 1.2 partial ×73 attribution (the fine split)
+
+Carriers (non-empty `missing_fields`, len 1 each) **44 = 37 forward + 7 inverse**:
+fwd = char-ach 22 + char-dialogue-speaker 3 + char-outfit 4 + mg-ach 6 +
+mg-outfit-unlock 1 + obj-hints 1 = 37; inv = mg-ach 6 + mg-outfit-unlock 1 = 7.
+Omissions (key absent) **29 = 25 inverse mirrors + 4 forward membership-census**:
+char-ach inv 22 + char-dialogue-speaker inv 3, plus character--scene-membership
+FORWARD 4 (rows carrying `containers_with_dumps_census` /
+`dump_files_incl_suffixed_census` / `instance_class` / `instance_count` /
+`per_container_instances`, no `missing_fields`). This is EXACTLY the attribution
+§3.10 and §4.2 print — including the fact (which the arbiter's own ordered wording
+got coarser) that the 4 census omissions are forward rows.
+
+### 1.3 Status/mechanism censuses (§3.10)
+
+status: modeled **1043** · partial **73** · `"scrMain PPtr (hard)"` **10** ·
+provisional-pending-ds1 **9** · pending-curation **5** · inferred **2** · ABSENT
+**17** (sum 1,159) — matches. mechanism: hard **1024** · logic **104** · inferred
+**20** · `"scrMain PPtr (hard)"` **10** · ABSENT **1** (sum 1,159) — matches.
+
+### 1.4 Anchor-form census (§4.2) — sums to exactly 2,259
+
+note: 686 · target:+controller: 370+10=380 · container: 354 · bare no-colon 172 =
+character slugs 96 (char-ach 44 + char-cart 44 + membership fwd 8) +
+scene-class-family@ 76 · scene: 134 · loc: 113 · achievement: 92 · minigame: 88 ·
+profile_document: 78 · flashes: 44 · character: 37 · paper_part: 20 · save_point: 19 ·
+speaker-theme: 14 · outfit: 8 · novella_surface:/dialogue-carriers:/scene-class:
+6/6/4 · choice_flag:/prop_family: 2/2. Total **2,259** — every form and count as
+printed. The four DECLARED-never forms (`cartridge:`, `document:`, `cloth-site:`,
+`encoding-residue:`) occur **0** times.
+
+### 1.5 Availability ledger (`locale_availability.jsonl`)
+
+kinds **680** dialogue_bucket + **1,734** category_presence + **272** book_page =
+**2,686**. Classification-keyed totals **present 2,108 / filler 297 / contentless 9**
+(book_page excluded; boolean cells **264 true / 8 false**). Row shapes exactly per
+the fixed §5 bullet: bucket rows carry `line_count`/`pivot_line_count`/`tail_delta`/
+`file_bytes` and NO `record_count`; presence rows carry `record_count` and no line
+fields; book_page carries boolean `present`. Locale domain **34 distinct client dir
+names**, incl. `Português-Brasil`, `Arabic (Egyptian)`, `Pre-revolutionaryRussian`.
+Buckets run 20 per locale uniformly; presence rows 51 per locale (50 distinct
+categories; `Menu` duplicated across two datasets). On-disk cross-check of the
+R-E1-3 claim: locale dirs hold **64–76** category `.jsonl` files each (twelve locales
+at 64, French 76) — the "skew 64–76 dirs" sentence is real.
+
+### 1.6 Dialogue (nodes 2,839 / edges 3,776)
+
+next_resolved: `'resolved'` **2161** · string-`'null'` **572** ·
+`'unresolved-in-level'` **12** (= 2,745 keyed rows); KEY ABSENT **94**
+(choice_case 70 + quest_box 13 + branch_group 11); **JSON null ×0**. speaker null
+**129 = exactly** the five non-ambient kinds. Levels **19** distinct, no level18.
+`voice_present` null ×2,839; `chapter` null ×2,839. `embedded_index` present **×70,
+choice_case-only**; `groups[]` present **×11, grouped_scene_dialogue-only**;
+branch_group payload keys are `{entries,forks,main_ptr}` (no groups).
+Edges: kinds next 2161 / on_finish_action 1535 / choice 70 / branch_left 5 /
+branch_right 5; `label_ref` non-null ×80; `resolution` KEY present ×10
+(`text-keyed-no-node-carrier`) + key-absent ×3,766; `call_index` ×3,776; `call`
+×1,535; `resolved_to` ×1,535; `anchor_entry` ×142; **no `ptr` field exists**.
+Ledgers: dangling-edges 12 (DLG-6), DLG-7 8 hints, DLG-8 10 fork slots per
+missingdata.md rows. speakers.json curated_mapping **14 = 9 provisional-pending-ds1
++ 5 pending-curation**, plus `pending_curation_enums`/`personage_carriers`/`policy`.
+residue-links ×1 joined onto `level14:Dialogue_3DText#5559` with 5 FFFD-marked locales.
+
+### 1.7 scene_link `resolves`
+
+Data rows **57** (header `_meta` row_count agrees). `edge_kind` loads 19 / continues
+15 / chapter_name 15 / unloads 7 / ledger 1. `resolves`: **true ×41 / KEY ABSENT
+×16 / JSON null ×0** (absents = 15 chapter_name rows + the ledger row);
+`chapter_name_loc` non-null ×15; `note` non-empty ×16; mechanism `hard` throughout.
+
+### 1.8 Six dataset spot-checks (all headline claims)
+
+personages 24 = 14 mita + 10 player; save_key "" ×2; gallery_icon null ×15 with the
+9 populated sharing path_id 276 (no pathID 0); resource_path "" ×9;
+preview_prefab_key populated ×15, all verbatim `Personages/<Name>`, zero bracket
+labels. candidates 26 = 22 mita_variant + 4 player_character; cartridge candidates
+2. cartridges 23 = 13 + 10; registered-pickup 21 + registered-unresolved-pickup 2;
+pickup_ref null = save_keys `mtad2`,`mtacore`; `[inferred]` bindings ×21. minigames
+17; access_medium 6/4/2/2/1/1/1 and key_source 8/4/2/2/1 censuses exact;
+scoring_derivable false ×17; present_but_unreachable true ×4; name_loc resolves on
+TV rows only (populated ×2). achievements 26: `display` = 34 locales × 26 rows =
+884 cells, EVERY cell `{name,category,line_index}`, no description cell anywhere
+(Q7's disk grounding holds); predicate_class 12/11/3; unlock.status 11/15;
+get_bool_trusted false ×26; icon pending-export ×26 with asset_ref null ×26;
+type_tag 11/8/3/2/1/1; joins.chapter_attribution null ×26;
+captured_at_machine_plane true ×26; build_id int ×26; description EN-only ×26.
+endings 4 = 3 ending + 1 mode-stub; notes_community null ×4; locked-stub cites
+Menu.jsonl line 130 + dump.cs:206984; windows `[community]`-labelled
+unverified-behavior. choice_nodes 371 = 353/13/5, active JSON-null ×371.
+branch_edges 1,555: effect_class 709/468/356/10/8/3/1; proven-hard ×1,555;
+feeds_ending null ×1,555. flag_tables 5. profile_documents 14, family="profile"
+×14, placement_mechanism 11/2/1, placement null ×3, chapter null ×14, flash_save_key
+null ×1, name_loc/lore_loc set ×14. world_documents 166: families 160/5/1;
+text_mechanism unresolved ×166; text_loc null ×166; sprite_ptr populated ×18;
+scr_main ×5; audio_source_refs ×1; puzzle_index non-null ×5 (161 null, one of the
+five being literal 0). books 8; art_per_locale 272 cells / 264 true;
+dressing_only false ×8. scenes 24: roles story 20 + boot/title/menu/unbound 1 each;
+display_name_loc null ×24; chapter_name_loc/en set ×15 / null ×9; spawn populated
+×20 ALL inline∧world-assumed, null ×4. poi 986: kind census 344/277/102/96/70/46/
+25/24/2 exact; position.source 298/76/612; space 668/56/262 with NO fourth value on
+POI rows; location_id null ×30; 23 containers. spawn-tables 24 unresolved-target
+×24. markers 0 data rows (v0 `_meta`-only). graphs 19 files, no level18.
+_assembly-provenance 30 records.
+
+### 1.9 Ledger, PROOF, and citation checks
+
+missingdata.md prefix maxima are gap-free 1..N and sum to **83**: XC 12 + CH 9 +
+ACH 7 + END 6 + DLG 10 + CAR 9 + DOC 8 + SCN 11 + DOCX 3 + MA 8 — the spec's
+parenthetical split is correct term-for-term. PROOF.md scoreboard figures quoted in
+§6.5 all match PROOF text: B-1 10/10 · B-2 Part A "7 PASS + 1 PENDING" · B-2 Part B
+"8/8" · B-3 "8 PASS · 1 PARTIAL · 0 FAIL" · B-4 10/10 · B-5 10/10 incl. the live
+consume-by-reference 11-pair multiset reconciliation · B-6 S1–S10. Schema-id list
+(§2.2) matches emitted headers, incl. `miside.cartridges.candidates/1` and
+`miside.scenes.poi-kinds/1`; header-class assignment verified per artifact (every
+listed class-A file opens `{"_meta"`, documents trio open bare descriptors carrying
+row_count, class-C eight parse from line 1, both sidecars headerless). Stamp-shape
+claims verified except one residual — see §5 F-B1. Cross-references: all 16
+distinct relative link targets exist on disk.
+
+## 2. Arbiter fix order — item-by-item ruling against disk
+
+| # | Item | Ruling | Evidence |
+|---|---|---|---|
+| 1 | §2.2 schema-id insert + headerless footnote | **APPLIED** | `miside.cartridges.candidates/1` sits directly after `miside.characters.candidates/1` and matches the `_meta.schema` of `cartridges-minigames.candidates.jsonl` (row_count 2); footnote line present after the class table; both files measured genuinely headerless |
+| 2 | §3.5 icon/name-scope clauses | **APPLIED** | "asset_ref stays null until ACH-1 lands … §9-Q1" after the icon block; "scoped to NAME cells only — never extended to descriptions (§9-Q7)" after the deviation sentence; disk: asset_ref null ×26, display cells name-only |
+| 3 | §3.7 embedded_index? + payload split | **APPLIED** | `source{class,container,gameobject_path_id,path_id,embedded_index?}` with "(present ×70 choice_case rows only)" — my scan: ×70 cc-only; `branch_group{entries[],forks[],main_ptr}` then `grouped_scene_dialogue{groups[]}` — matches keys on disk exactly |
+| 4 | §3.8 family=`profile` ×14 | **APPLIED** | Clause present verbatim; disk: family="profile" on all 14 rows, absent as a concept elsewhere |
+| 5 | §3.9 scene locs + resolves absents | **APPLIED** (justified wording deviation) | "display_name_loc null v1 ×24; chapter_name_loc/en populated ×15 / null ×9" — reproduced. Ordered text said "`resolves` bool|null"; spec prints "`resolves` bool (key-absent ×16…)". Deviation is truth-restoring: measured JSON null ×0, key-absent ×16 — `bool|null` would have been the wrong type law |
+| 6 | §3.10 direction sentence + partial wording | **APPLIED** (improved beyond order) | theme-char added to the direction sentence (13 families measured). Ordered tail called all 29 omissions "inverse-mirror"; spec instead attributes "25 inverse mirrors + the 4 unnamed-instance census rows" — MY measurement proves the spec's version correct (the 4 census omissions are FORWARD membership rows) |
+| 7 | §4.2 census opener + two-empty-states law + partial tail | **APPLIED** | Opener transcribed verbatim (1,142 / 2,284 / 25 / 17 / 34 — all reproduce); null-law names exactly the four family/side cells I measured; tail carries the same improved 44+29 attribution as item 6 |
+| 8 | §5 row shapes + labeled totals | **APPLIED** | Both sentences present effectively verbatim; every shape claim reproduces (§1.5) |
+| 9 | §6.1 stamp relabel | **APPLIED** | Replacement sentence present verbatim; its content verifies: dialogue edges, choice/branch/flag files and residue carry no stamps, scene-links (57 rows) and characters.candidates (26 rows) likewise stamp nothing while opening `{"_meta"` |
+| 10 | §9 retitle + preamble + seven RULED paragraphs | **APPLIED** | Retitled; preamble paraphrases the ordered sentence (substance intact); Q1–Q7 each carry disposition + rationale + owner (Q4's owner inline: "owned by research/owner"); question texts compressed INSIDE §9 — expressly permitted by the arbiter's budget clause |
+| 11 | C6 trap drop + C9 extension | **APPLIED** (one corrective deviation) | C6 no longer lists string-'null'. C9 extension present but reads "string-'null' ×572 vs KEY-ABSENT ×94" where the order wrote "JSON null ×94". Disk: JSON null ×0, key-absent ×94 — the deviation restores the truth |
+
+11/11 APPLIED, zero MISSING, zero PARTIAL. The three deviations from literal order
+text (items 5, 6-tail, 11) all move TOWARD my own measurements; none weakens an
+ordered remedy.
+
+## 3. Line-cap audit (545 vs ≤500)
+
+`wc -l` equivalent confirms **545 lines** (+45 over D-C1's ≤500 cap; above the
+arbiter's ~30 escape bound, so the overrun itself was anticipated and bounded by
+"flag it in the fixer report rather than silently degrading any item"). Honest-
+addition decomposition: §9 grew by ≈40 lines to hold seven RULED paragraphs plus
+retained question cruxes — the arbiter's own budget note predicted item 10 was
+"the large one"; §4.2's rewritten census/two-empty-states paragraph adds ≈+5 net;
+§5 totals label + row shapes ≈+2; §2.2 footnote +1; remainder connective. The ONLY
+compression found is inside §9's question texts, which the arbiter explicitly
+authorized ("compress inside §9's question texts and §3 prose"). Nothing dropped:
+the scope-freeze inventory survives complete and re-verifiable against disk — §4.1
+family table digit-for-digit, §5 semantics + fallback chain, 13-row §7 vocabulary
+table (every row re-measured in §1.8 here), ACs C1–C10, seven §8 non-goals,
+complete header-class table and schema-id list. Grep sweep for pre-fix phrasings
+("59 deliberate", "×59", "award-site 22", "groups[],main_ptr",
+"null v1 (SCN-8", "always carries missing_fields", old §9 title): all absent.
+
+## 4. Structural laws
+
+- **ACs C1–C10**: all ten present and mutually coherent; C2's invented-field ban is
+  consistent with Q5's marker deferral (0-row schema stays unpinned); C4's grammar
+  lint matches §4.2's derived-from-disk grammars incl. `anchor_mode:"id-columns"`
+  skip for the four anchor-less families I enumerated; C9's canonical-compare law
+  covers the measured int/string stamp split.
+- **§9**: seven questions, seven RULED paragraphs, each with disposition +
+  rationale + named owner; rulings bind builder/frontend with owners executing.
+- **consumes-never-derives**: intact everywhere — consumers read pre-emitted edges
+  (§4.2 tail), resolve pointers via pinned arithmetic-free rules applied at emit,
+  use only the declared availability chain, join to owner rows at build time
+  without restating placements (§4.3); no derivation obligation leaks into any
+  frontend-facing section.
+- **Citations**: missingdata.md 83-entry split exact; PROOF §5 scoreboards exact;
+  cross-references resolve (16 distinct targets, none broken).
+
+## 5. Findings
+
+**F-B1 (RESIDUAL, non-blocking) — §6.1 stamp-shape list overgeneralizes "relation
+rows".** Measured: bare `build_id` occurs on relation data rows ONLY in
+achievement--award-site (11), achievement--ending (3), cloth-site--outfit (2) = 16
+rows; the other 19 row-bearing relation families (1,143 of 1,159 relation rows)
+carry NO stamp key — their build pin rides the `_meta` header alone (verified raw:
+the only `build_id` occurrence outside those three files is the `_meta` line).
+The clause "bare `build_id` (achievements int, endings, poi, spawn-tables, relation
+rows)" should read "… spawn-tables, reverse-index relation rows
+(award-site/ach-ending/cloth-site)". Non-blocking because the sentence is
+descriptive, not load-bearing: entities.json/fingerprints are GENERATED from the
+emitted files (C1/C5 full recounts), so no consumed artifact can be wronged by it;
+pre-existing text outside the arbiter's frozen fix list; genre-matches doc-level
+findings that prior rounds recorded under APPROVE. Fold into the next docs-touching
+pass.
+
+**O-B2 (observation)** — §3.1 flips the polarity of "×15" mid-sentence:
+gallery_icon "PPtr|null ×15" counts NULLS while preview_prefab_key "string|null
+×15" counts POPULATED strings (null ×9). Each is disambiguated by its adjacent
+parenthetical and both reconcile to disk, but a later pass could add
+"populated"/"null" explicitly.
+
+**O-B3 (observation)** — §3.7 "`style`|null ×13 quest_box": the style key exists on
+all 2,839 node rows and is NON-null ×13 quest_box-only (null ×2,826 elsewhere).
+True only under the "populated ×13 on quest_box" reading; suggest "style non-null
+×13 quest_box rows" next pass. Same family as O-B2, cosmetic.
+
+**O-B4 (note)** — §4.1 minigame--achievement note "(3 hard + applesnake logic)"
+matches the FORWARD-side composition (fwd hard 3 / logic 7, mirrored inverse);
+unambiguous given the fwd/inv split stated two columns away.
+
+No fabricated numbers, no dropped frozen content, no unfaithful ruling
+transcription, no derivation obligations smuggled onto the frontend. The builder
+can start from this tree.
+
+VERDICT: APPROVE
