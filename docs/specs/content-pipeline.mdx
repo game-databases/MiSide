@@ -132,6 +132,15 @@ mode. No raw HTML ever enters an article body, so `marked.parse()` output
 contains only markup generated from markdown syntax itself (enforcing AC:
 C14).
 
+> Amendment 2026-08-26 (fix round F-CT4, R-CT3 HIGH-1): destination
+> checks judge the BROWSER-DECODED form — character references in
+> link/image destinations (`&colon;`, `&#58;`, `&#x3a;`, …) are decoded
+> and tab/newline stripped BEFORE the allowlist, at BOTH gates (lexer
+> walk and emitted re-parse); a decoded executable scheme fails the build
+> naming file + token. The law's intent is unchanged: browsers decode
+> character references inside attribute values before URL parsing, so
+> checking raw bytes never actually closed the hole.
+
 ## 3. Data contract — what M2 emits, who consumes
 
 ### 3.1 Registry shape (`site/content/emit/articles.jsonl`)

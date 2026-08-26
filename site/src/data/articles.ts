@@ -8,6 +8,11 @@
  * header whose row_count pin throws on drift. The registry is the ONLY
  * hand-off surface — adding a consumer means teaching it this shape, never
  * re-parsing article sources.
+ *
+ * §8.1 single-gate law enforced HERE at runtime (R-CT4, R-CT3 MED-1): every
+ * reader below flows through loadArticles(), which rebuilds each row's
+ * locale map FROM article_locales.jsonl and throws on any ledger⇄registry
+ * divergence — the mirror never admits by itself.
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -30,6 +35,18 @@ export interface ArticleLocaleCell {
   /** Non-pivot cells: pivot sha16 the translation was ADMITTED against. */
   base_sha16?: string;
   toc: Array<{ id: string; text: string; level: number }>;
+  /**
+   * THIS cell's own embed declarations (R-CT3 HIGH-2): anchors were resolved
+   * against this cell's headings at emit, props are this cell's authored
+   * strings. The row-level `embeds` stays pivot-only and must never be
+   * rendered against a translated body — pivot heading ids do not exist there.
+   */
+  embeds?: Array<{
+    id: string;
+    after?: string;
+    module: "map-scene" | "entity-cards" | "checklist";
+    props: Record<string, unknown>;
+  }>;
   body_ref: string;
   stale?: boolean;
 }
@@ -118,24 +135,112 @@ function readEmitJsonl<T>(relPath: string, idField?: string): JsonlFile<T> {
   return { meta, rows };
 }
 
-let cached: {
+interface LedgerCellRow {
+  cell: string;
+  article_id: string;
+  locale: string;
+  path: string;
+  stale?: boolean;
+}
+
+interface LoadedArticles {
   meta: ArticlesMeta | null;
+  /** Registry rows with `locales` rebuilt FROM the admission ledger. */
   rows: ArticleRegistryRow[];
-} | null = null;
+  /** Normalized ledger cells — the §8.1 authoritative admission set. */
+  ledgerCells: Array<{
+    cell: string;
+    article_id: string;
+    locale: string;
+    path: string;
+    stale: boolean;
+  }>;
+}
+
+// keyed by content root so test lanes can point MISIDE_CONTENT_ROOT at a
+// fixture tree without polluting the real tree's cache entry
+const cacheByRoot = new Map<string, LoadedArticles>();
+
+/**
+ * Load registry + ledger and enforce the §8.1 single-gate law at RUNTIME
+ * (R-CT3 MED-1): a locale cell is admitted IFF the ledger carries
+ * `<article_id>@<locale>`. The registry mirror still supplies payload
+ * columns (toc / body_ref / hashes) but never admits by itself — deleting
+ * or corrupting article_locales.jsonl now changes what serves, loudly.
+ */
+function loadArticles(): LoadedArticles {
+  const root = contentRoot();
+  const cached = cacheByRoot.get(root);
+  if (cached) return cached;
+
+  const registry = readEmitJsonl<ArticleRegistryRow>("emit/articles.jsonl", "article_id");
+  const ledger = readEmitJsonl<LedgerCellRow>("emit/article_locales.jsonl", "cell");
+  const ledgerCells = ledger.rows
+    .filter((r): r is LedgerCellRow => Boolean(r?.cell))
+    .map((r) => ({ ...r, stale: r.stale === true }));
+  const registryRows = registry.rows.filter((r) => Boolean(r?.article_id));
+
+  // the pair is written in one emit loop; half a pair is corruption
+  const registryPresent = registry.meta !== null;
+  const ledgerPresent = ledger.meta !== null;
+  if (registryPresent !== ledgerPresent) {
+    throw new Error(
+      `emit artifacts diverge: articles.jsonl ${registryPresent ? "present" : "MISSING"} while article_locales.jsonl ${ledgerPresent ? "present" : "MISSING"} — the ledger is the §8.1 admission gate; rerun scripts/build-content.mjs`
+    );
+  }
+
+  if (registryPresent) {
+    const cellsByArticle = new Map<string, string[]>();
+    for (const c of ledgerCells) {
+      const list = cellsByArticle.get(c.article_id) ?? [];
+      list.push(c.locale);
+      cellsByArticle.set(c.article_id, list);
+    }
+    const registryIds = new Set(registryRows.map((r) => r.article_id));
+    const problems: string[] = [];
+    for (const [articleId] of cellsByArticle) {
+      if (!registryIds.has(articleId)) problems.push(`${articleId} ledger-only`);
+    }
+    for (const row of registryRows) {
+      const admitted = new Set(cellsByArticle.get(row.article_id) ?? []);
+      const mirror = Object.keys(row.locales ?? {});
+      problems.push(
+        ...mirror.filter((code) => !admitted.has(code)).map((code) => `${row.article_id}@${code} registry-only`),
+        ...[...admitted].filter((code) => row.locales?.[code] === undefined).map((code) => `${row.article_id}@${code} ledger-only`)
+      );
+    }
+    if (problems.length > 0) {
+      throw new Error(
+        `emit/article_locales.jsonl ⇄ articles.jsonl locale-cell divergence (${problems.join("; ")}) — the ledger is authoritative for admission (§8.1); rerun scripts/build-content.mjs`
+      );
+    }
+  }
+
+  // rebuild each row's locales FROM the ledger cells (mirror supplies columns)
+  const gatedRows = registryRows.map((row) => {
+    const locales: Record<string, ArticleLocaleCell> = {};
+    for (const c of ledgerCells) {
+      if (c.article_id !== row.article_id) continue;
+      const mirrorCell = row.locales[c.locale];
+      if (!mirrorCell) continue; // unreachable post-check above
+      locales[c.locale] = mirrorCell;
+    }
+    return { ...row, locales };
+  });
+
+  const loaded: LoadedArticles = {
+    meta: (registry.meta as unknown as ArticlesMeta) ?? null,
+    rows: gatedRows,
+    ledgerCells,
+  };
+  cacheByRoot.set(root, loaded);
+  return loaded;
+}
 
 /** Full published-article registry (empty when nothing is published yet). */
 export function articlesMetaAndRows(): { meta: ArticlesMeta | null; rows: ArticleRegistryRow[] } {
-  if (!cached) {
-    const { meta, rows } = readEmitJsonl<ArticleRegistryRow>(
-      "emit/articles.jsonl",
-      "article_id"
-    );
-    cached = {
-      meta: (meta as unknown as ArticlesMeta) ?? null,
-      rows: rows.filter((r) => Boolean(r?.article_id)),
-    };
-  }
-  return cached;
+  const loaded = loadArticles();
+  return { meta: loaded.meta, rows: loaded.rows };
 }
 
 export function publishedArticles(): ArticleRegistryRow[] {
@@ -166,7 +271,9 @@ export function streamRows(type: ArticleType): ArticleRegistryRow[] {
 /**
  * The M5 admission ledger — the SINGLE gate for route admission, sitemap
  * partitions and hreflang clusters (§8.1). Cells mirror the registry's
- * per-locale hashes; the ledger copy is authoritative.
+ * per-locale hashes; the ledger copy is authoritative — and since R-CT4 it
+ * is enforced at RUNTIME too: `loadArticles()` rebuilds every row's locale
+ * map from these cells and refuses divergent artifacts outright.
  */
 export function articleLocaleCells(): Array<{
   cell: string;
@@ -177,15 +284,7 @@ export function articleLocaleCells(): Array<{
 }> {
   // normalize the optional emitted column to the declared boolean contract
   // (undefined → false); truthy semantics for consumers are unchanged
-  return readEmitJsonl<{
-    cell: string;
-    article_id: string;
-    locale: string;
-    path: string;
-    stale?: boolean;
-  }>("emit/article_locales.jsonl", "cell")
-    .rows.filter((r) => Boolean(r?.cell))
-    .map((r) => ({ ...r, stale: r.stale === true }));
+  return loadArticles().ledgerCells;
 }
 
 /** Admitted article paths for ONE section + locale (sitemap/partition gate). */

@@ -17,7 +17,11 @@
  *   §4 V5     drafts never reach the registry (logged DRAFT-SKIPPED);
  *   §2/§5/C14 ESCAPE-FIRST rendering: any lexer `html` token at ANY depth
  *             fails the build naming file + snippet; link/image destinations
- *             restricted to http/https/mailto/relative/#fragment; every
+ *             restricted to http/https/mailto/relative/#fragment — judged on
+ *             the BROWSER-DECODED form (character references decoded before
+ *             the allowlist, amendment 2026-08-26), so `javascript&colon;…`
+ *             and `&#58;…` cannot smuggle an executable scheme past either
+ *             gate; every
  *             emitted body RE-PARSES clean against the closed element
  *             allowlist (GFM table scaffolding included; `input` only in its
  *             task-list scope: leading child of an li, attributes drawn solely
@@ -36,7 +40,7 @@
  * Run: node scripts/build-content.mjs   (also exported for tests/prebuild)
  */
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { Marked } from "marked";
@@ -276,18 +280,80 @@ export function assertEscapeFirst(tokens, file) {
   }
 }
 
-/** http / https / mailto / relative / #fragment ONLY — closes javascript:. */
+/**
+ * HTML character-reference decode mirroring browser ATTRIBUTE-value
+ * semantics (single pass — browsers never re-decode): numeric refs with an
+ * optional semicolon (`&#58;`, `&#x3a;`, `&#58` …) plus the known named
+ * refs; unknown named refs stay literal exactly as a browser leaves them.
+ * Needed because `javascript&colon;alert(1)` carries no raw colon yet
+ * executes as `javascript:` once the browser decodes the attribute value.
+ */
+const NAMED_CHARREFS = new Map(
+  Object.entries({
+    amp: "&", AMP: "&", lt: "<", LT: "<", gt: ">", GT: ">",
+    quot: '"', QUOT: '"', apos: "'", colon: ":", semi: ";",
+    sol: "/", bsol: "\\", num: "#", percnt: "%", excl: "!", quest: "?",
+    commat: "@", equals: "=", plus: "+", lpar: "(", rpar: ")",
+    ast: "*", midast: "*", comma: ",", period: ".", lowbar: "_", grave: "`",
+    dollar: "$", verbar: "|", lbrace: "{", rbrace: "}", lsqb: "[", rsqb: "]",
+    Tab: "\t", NewLine: "\n", nbsp: "\u00a0",
+  })
+);
+
+export function decodeAttrCharRefs(value) {
+  const src = String(value);
+  if (!src.includes("&")) return src;
+  return src.replace(
+    /&(#[xX][0-9a-fA-F]+|#[0-9]+|[a-zA-Z][a-zA-Z0-9]*);?/g,
+    (whole, body) => {
+      if (body.startsWith("#")) {
+        const cp =
+          body[1] === "x" || body[1] === "X"
+            ? parseInt(body.slice(2), 16)
+            : parseInt(body.slice(1), 10);
+        // browser mapping: NUL, surrogates and out-of-range decode to U+FFFD
+        if (
+          !Number.isFinite(cp) || cp <= 0 || cp > 0x10ffff ||
+          (cp >= 0xd800 && cp <= 0xdfff)
+        ) {
+          return "\uFFFD";
+        }
+        return String.fromCodePoint(cp);
+      }
+      return NAMED_CHARREFS.get(body) ?? whole;
+    }
+  );
+}
+
+/**
+ * http / https / mailto / relative / #fragment ONLY — closes javascript:.
+ * C14 amendment (2026-08-26, R-CT3 HIGH-1): the check judges the DECODED,
+ * URL-normalized form. A browser decodes character references inside
+ * attribute values and strips tab/newline before URL parsing, so BOTH gates
+ * route every destination through this single choke point BEFORE the
+ * allowlist — an executable decoded scheme fails naming label + value.
+ */
 export function assertDestination(href, label) {
-  const scheme = /^([a-zA-Z][a-zA-Z0-9+.-]*):/.exec(href);
+  const raw = String(href);
+  const decoded = decodeAttrCharRefs(raw);
+  // URL parser strips tab/newline anywhere plus leading/trailing C0 + space
+  const url = decoded
+    .replace(/[\t\n\r]/g, "")
+    .replace(/^[\u0000-\u0020]+/, "")
+    .replace(/[\u0000-\u0020]+$/, "");
+  const scheme = /^([a-zA-Z][a-zA-Z0-9+.-]*):/.exec(url);
   if (scheme) {
     const s = scheme[1].toLowerCase();
     if (s !== "http" && s !== "https" && s !== "mailto") {
-      throw new Error(`${label}: protocol "${scheme[1]}:" outside the allowlist in "${href}"`);
+      const decodedNote = decoded === raw ? "" : ` (browser-decoded: "${url}")`;
+      throw new Error(
+        `${label}: protocol "${scheme[1]}:" outside the allowlist in "${raw}"${decodedNote}`
+      );
     }
     return;
   }
-  if (href.startsWith("//")) {
-    throw new Error(`${label}: protocol-relative URL not allowed: "${href}"`);
+  if (url.startsWith("//")) {
+    throw new Error(`${label}: protocol-relative URL not allowed: "${raw}"`);
   }
 }
 
@@ -310,7 +376,8 @@ const TASK_INPUT_ATTRS = new Set(["type", "disabled", "checked"]);
  * task-list checkbox marked itself emits — leading child of an li, attributes
  * ⊆ type/disabled/checked, type="checkbox" required); zero event-handler
  * attributes (parsed attribute NAMES matching on*, never substrings); every
- * href/src ∈ http/https/mailto/relative/#fragment. Returns failures ([]=clean).
+ * href/src ∈ http/https/mailto/relative/#fragment (browser-decoded form, see
+ * assertDestination). Returns failures ([]=clean).
  */
 export function reparseFailures(html, file) {
   const failures = [];
@@ -373,7 +440,7 @@ export function reparseFailures(html, file) {
     for (const dest of ["href", "src"]) {
       if (attrs.has(dest)) {
         try {
-          assertDestination(attrs.get(dest) || "", `${file}: ${dest} on <${tag}>`);
+          assertDestination(attrs.get(dest) || '', `${file}: ${dest} on <${tag}>`);
         } catch (err) {
           failures.push(String(err.message));
         }
@@ -682,8 +749,22 @@ export function emitContent(opts = {}) {
   }
 
   /* -- compile each admitted cell (escape-first, then render) -------------- */
+  // R-CT3 MED-2 ordering law: bodies compile into a STAGING dir that swaps in
+  // only after EVERY cell compiled and validated. A failed emit must leave the
+  // previously compiled bodies (and the registry/ledger that reference them)
+  // fully intact — half-deleted emit dirs are the defect this kills.
   const bodiesDir = join(emitDir, "bodies");
-  rmSync(bodiesDir, { recursive: true, force: true });
+  const stagingDir = join(emitDir, ".bodies.staging");
+  const previousDir = join(emitDir, ".bodies.previous");
+  mkdirSync(emitDir, { recursive: true });
+  rmSync(stagingDir, { recursive: true, force: true });
+  if (existsSync(previousDir)) {
+    // self-heal an interrupted swap: `.bodies.previous` holding the only copy
+    // of the bodies means the last run died mid-swap — put them back
+    if (!existsSync(bodiesDir)) renameSync(previousDir, bodiesDir);
+    else rmSync(previousDir, { recursive: true, force: true });
+  }
+  let stagedBodiesSwapped = false;
 
   const prevRows = new Map(readRegistry(emitDir).map((r) => [r.article_id, r]));
   const prevCells = new Map(readLedger(emitDir).map((r) => [r.cell, r]));
@@ -691,6 +772,13 @@ export function emitContent(opts = {}) {
   const registryRows = [];
   const ledgerRows = [];
 
+  /** Failure carrier so per-cell validation can abort the compile pass while
+   * the caller still returns the same {ok:false} shape it always did. */
+  const failCompile = (errors) => {
+    throw Object.assign(new Error(errors[0] ?? "content compile failed"), { errors });
+  };
+
+  const compileAndStage = () => {
   for (const art of published) {
     const articleId = `${art.dir === "guides" ? "guide" : art.type}:${art.slug}`;
     const localesOut = {};
@@ -722,7 +810,7 @@ export function emitContent(opts = {}) {
         assertEscapeFirst(tokens, cell.relFile);
       } catch (err) {
         console.error(`content ERROR: ${err.message}`);
-            return { ok: false, errors: [String(err.message)] };
+            failCompile([String(err.message)]);
       }
 
       const toc = [];
@@ -731,14 +819,14 @@ export function emitContent(opts = {}) {
         html = makeParser(toc).parse(linkedBody, { async: false });
       } catch (err) {
         console.error(`content ERROR: ${cell.relFile}: render failed (${err.message})`);
-            return { ok: false, errors: [String(err.message)] };
+            failCompile([String(err.message)]);
       }
 
       // C14 second half: the EMITTED html must re-parse clean
       const reparse = reparseFailures(html, cell.relFile);
       if (reparse.length > 0) {
         for (const f of reparse) console.error(`content ERROR: ${f}`);
-            return { ok: false, errors: reparse };
+            failCompile(reparse);
       }
 
       // embed anchors must resolve inside THIS cell's headings (loud, not silent)
@@ -746,13 +834,13 @@ export function emitContent(opts = {}) {
         if (emb.after !== undefined && !toc.some((h) => h.id === emb.after)) {
           const msg = `${cell.relFile}: embed "${emb.id}" after:"${emb.after}" matches no heading in this cell`;
           console.error(`content ERROR: ${msg}`);
-                return { ok: false, errors: [msg] };
+                failCompile([msg]);
         }
       }
 
       const wordCount = wordCountOf(html);
-      mkdirSync(join(bodiesDir, sectionSegment), { recursive: true });
-      writeFileSync(join(bodiesDir, sectionSegment, `${art.slug}.${code}.html`), html, "utf8");
+      mkdirSync(join(stagingDir, sectionSegment), { recursive: true });
+      writeFileSync(join(stagingDir, sectionSegment, `${art.slug}.${code}.html`), html, "utf8");
 
       // ledger admission: an own-file change stamps BOTH hashes fresh
       const ownSha = sha16(readFileSync(join(contentRoot, cell.relFile), "utf8"));
@@ -788,6 +876,11 @@ export function emitContent(opts = {}) {
         body_sha16: ownSha,
         ...(baseSha ? { base_sha16: baseSha } : {}),
         toc,
+        // R-CT3 HIGH-2: each locale cell carries its OWN embed declarations
+        // (anchors resolved against this cell's headings above, props in this
+        // cell's language) — pivot-only anchors never match a translated
+        // body, which is how /ru guides silently lost every anchored embed.
+        embeds: Array.isArray(cell.fm.embeds) ? cell.fm.embeds : [],
         body_ref: `${sectionSegment}/${art.slug}.${code}.html`,
         stale: transStale,
       };
@@ -828,6 +921,43 @@ export function emitContent(opts = {}) {
       embeds: Array.isArray(art.pivot.fm.embeds) ? art.pivot.fm.embeds : [],
       body_ref: localesOut[PIVOT]?.body_ref ?? "",
     });
+  }
+  }; // end compileAndStage
+
+  try {
+    compileAndStage();
+    // Every cell compiled + validated — only NOW do the old bodies move
+    // aside. The swap is old→previous, staged→bodies with restore-on-fail:
+    // a rename hiccup (Windows file lock) must never leave the tree without
+    // the bodies the current registry still references (R-CT3 MED-2).
+    rmSync(previousDir, { recursive: true, force: true });
+    let movedOld = false;
+    if (existsSync(bodiesDir)) {
+      renameSync(bodiesDir, previousDir);
+      movedOld = true;
+    }
+    try {
+      renameSync(stagingDir, bodiesDir);
+    } catch (swapErr) {
+      if (movedOld) renameSync(previousDir, bodiesDir); // put the old set back
+      throw swapErr;
+    }
+    rmSync(previousDir, { recursive: true, force: true });
+    stagedBodiesSwapped = true;
+  } catch (err) {
+    if (err && Array.isArray(err.errors)) {
+      return { ok: false, errors: err.errors };
+    }
+    throw err;
+  } finally {
+    if (!stagedBodiesSwapped) {
+      // no staging debris; `.bodies.previous` survives ONLY when it is still
+      // the sole copy of the old bodies (restore failed) — swept next run
+      rmSync(stagingDir, { recursive: true, force: true });
+      if (existsSync(bodiesDir)) {
+        rmSync(previousDir, { recursive: true, force: true });
+      }
+    }
   }
 
   /* -- write artifacts ------------------------------------------------------ */

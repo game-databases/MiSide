@@ -257,7 +257,10 @@ export function ArticleContent({
       cell={cell}
       html={html}
       relatedCards={relatedCardsFor(row.entities, def.code)}
-      embeds={prepareEmbeds(row.embeds, row.entities, def.code)}
+      // THIS cell's embeds (its own anchors + authored props) — pivot anchors
+      // never match a translated body's heading ids (R-CT3 HIGH-2); the
+      // fallback mirrors articleBody()'s body_ref fallback shape.
+      embeds={prepareEmbeds(cell.embeds ?? row.embeds, row.entities, def.code)}
       chrome={chrome}
       localeCode={def.code}
       localePrefix={def.prefix}

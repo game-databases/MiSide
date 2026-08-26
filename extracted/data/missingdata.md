@@ -145,3 +145,10 @@ it. Per AGENTS rule 8 every gap is a dataminer work item, never a frontend guess
 | MA-6 | Only 49 >60-char `m_Text` literals corpus-wide, all dev/UI strings; zero TextMeshPro | DS-5 negative finding 3 |
 | MA-7 | Second profile registry: none (MenuPersonage single instance; class/literal censuses close) | DS-5 R2 adjudication executed |
 | MA-8 | `feeds_ending` direct edges: 0 (trigger context rides native bodies) | endings emit-ledger feeds-ending-rule |
+
+## Mechanics rulings (binding law, not a gap — recorded here as the one ledger)
+
+| ID | Fact | Source |
+|---|---|---|
+| LAW-1 | The logic layer spans two id spaces: dump-filename suffix handles (`flag_instances.object_path_id`) identify and display rows and NEVER adjudicate a reference; serialized PPtr targets (`effect_calls.target.*`, `inventory_object_path_id`) resolve exclusively through the serialized space under unique same-class pairing. The spaces coincide numerically ~15% corpus-wide (15.23%; `Events_*` 21.5%) — every dual-space coincidence is ledgered as a collision (0 on this build), binds are true-space-only, ambiguity is never silently resolved | A-LL2 rulings A/C + F-LL4 guards (2026-08-26) |
+

@@ -621,9 +621,14 @@ ENTITY_DECLS = {
             "identity-ledger row (LG1) -- never fabricated",
             "memory_branches": "[{branch_ordinal,if_int,persistent calls}] -- superset of "
             "endings/flag_tables.jsonl, reconciling as a projection (AC-L2)",
-            "writers/readers": "tier-A LG2 edge_ids whose target PPtr resolves in either id space",
-            "id_spaces": "serialized component-path-id space vs filename-suffix handle space measured "
-            "DISJOINT on this build (identity ledger namespace check)",
+            "writers/readers": "tier-A LG2 edge_ids whose target PPtr resolves ONLY through the SERIALIZED "
+            "space (inventory_object_path_id, unique same-class pairing) -- suffix ids never adjudicate "
+            "a reference (A-LL2 ruling A; either-id-space fallback deleted, F-LL4)",
+            "id_spaces": "serialized component-path-id space vs filename-suffix handle space: "
+            "mostly-disjoint -- non-zero numeric coincidence treated as collision (A-LL2 ruling C; "
+            "measured 15.23% corpus-wide, Events_* 21.5%) -- suffix ids identify and display rows, "
+            "PPtr references resolve exclusively via serialized space under unique pairing; dual-space "
+            "hits are ledgered, never resolved",
         },
         cites=["docs/specs/logic-layer.mdx sections 4-LG1/5", "docs/specs/logic-layer.mdx AC-L2"],
     ),

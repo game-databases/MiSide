@@ -11,13 +11,14 @@ import "./registerAliasLoader.mjs";
 
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import {
   emitContent,
   reparseFailures,
+  assertDestination,
   validateCellShape,
   slugifyHeading,
 } from "../scripts/build-content.mjs";
@@ -171,6 +172,369 @@ describe("C14 emitted-body re-parse invariants", () => {
       reparseFailures('<ul>\n<li><input disabled="" type="checkbox"> ok</li>\n</ul>', "ok.html"),
       []
     );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* C14 amendment — character-reference destinations decode BEFORE the  */
+/* allowlist check (R-CT3 HIGH-1: &colon; / &#58; / &#x3a; hole)       */
+/* ------------------------------------------------------------------ */
+
+describe("C14 amendment: charref destinations decode before check at BOTH gates", () => {
+  const mutations = [
+    ["named &colon;", "[click me](javascript&colon;alert(1))\n"],
+    ["decimal &#58;", "[click me](javascript&#58;alert(1))\n"],
+    ["hex &#x3a;", "[click me](javascript&#x3a;alert(1))\n"],
+    ["tab smuggle &#9;", "[click me](jav&#9;ascript:alert(1))\n"],
+  ];
+  for (const [name, body] of mutations) {
+    test(`lexer gate fails naming file + decoded scheme: ${name}`, () => {
+      const root = freshRoot();
+      try {
+        writeGuide(root, "charref.en", { body });
+        const { result } = run(root);
+        assert.equal(result.ok, false, `${name}: must not emit`);
+        const err = (result.errors ?? []).join("\n");
+        assert.match(err, /guides\/charref\.en\.mdx/);
+        assert.match(err, /javascript:/, "message must name the DECODED scheme");
+        assert.match(err, /allowlist|protocol/i);
+      } finally {
+        rmSync(root, { recursive: true, force: true });
+      }
+    });
+  }
+
+  test("emitted re-parse gate catches the same shapes in attribute values", () => {
+    for (const href of [
+      "javascript&colon;alert(1)",
+      "javascript&#58;alert(1)",
+      "javascript&#x3a;alert(1)",
+      "jav&#9;ascript:alert(1)",
+    ]) {
+      const failures = reparseFailures(
+        `<p><a href="${href}">y</a></p>`,
+        "fixture.html"
+      );
+      assert.ok(failures.length > 0, `${href}: expected failures`);
+      assert.match(failures.join("\n"), /javascript:/);
+      assert.match(failures.join("\n"), /allowlist|protocol/i);
+    }
+  });
+
+  test("assertDestination pins: legit destinations pass, decoded schemes fail", () => {
+    const allowed = [
+      "https://example.com/page",
+      "http://example.com",
+      "mailto:someone@example.com",
+      "/relative/path#fragment",
+      "#fragment",
+      "guides/some-guide",
+      // authored entity stays a URL ampersand after decode — still https
+      "https://example.com/?a=1&amp;b=2",
+      "a&b.html",
+    ];
+    for (const dest of allowed) {
+      assert.doesNotThrow(() => assertDestination(dest, "pin"), dest);
+    }
+    for (const dest of [
+      "javascript&colon;alert(1)",
+      "javascript&#58;alert(1)",
+      "javascript&#x3a;alert(1)",
+      "&#106;avascript&colon;alert(1)",
+      "data&colon;text/html,x",
+      "//protocol.relative",
+    ]) {
+      assert.throws(() => assertDestination(dest, "pin"), undefined, dest);
+    }
+  });
+
+  test("clean tree with legit link flavors emits ok and re-parses clean", () => {
+    const root = freshRoot();
+    try {
+      const body = [
+        "See [docs](https://example.com/?a=1&amp;b=2), [mail](mailto:a@b.c),",
+        "[rel](/guides/x) and [frag](#head-two).",
+        "",
+        "## Head two",
+        "",
+        "More text.",
+        "",
+      ].join("\n");
+      writeGuide(root, "legit.en", { body });
+      const { result } = run(root);
+      assert.equal(result.ok, true);
+      const html = readFileSync(
+        join(root, "emit", "bodies", "guides", "legit.en.html"),
+        "utf8"
+      );
+      for (const needle of [
+        'href="https://example.com/?a=1&amp;b=2"',
+        'href="mailto:a@b.c"',
+        'href="/guides/x"',
+        'href="#head-two"',
+      ]) {
+        assert.ok(html.includes(needle), `emitted body must keep ${needle}`);
+      }
+      assert.deepEqual(reparseFailures(html, "legit.en.html"), []);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* R-CT3 HIGH-2 — registry locale cells carry their OWN embed anchors  */
+/* ------------------------------------------------------------------ */
+
+describe("per-locale embeds: translated pages resolve anchors from their OWN cell", () => {
+  function writeEmbedFixture(root) {
+    const fm = (lang, anchorA, anchorB) =>
+      [
+        "---",
+        "type: guide",
+        "slug: embed-fixture",
+        `title: "Embed ${lang}"`,
+        `description: "${lang} description."`,
+        "status: published",
+        "published_at: 2026-08-26",
+        'verified_build_id: "19029065"',
+        "spoiler: none",
+        "entities:",
+        "  - locations: level13",
+        "embeds:",
+        "  - id: photo-route-checklist",
+        `    after: ${anchorA}`,
+        "    module: checklist",
+        "    props:",
+        `      title: Checklist ${lang}`,
+        "      items:",
+        `        - text: Step ${lang}`,
+        "  - id: cards-grid",
+        `    after: ${anchorB}`,
+        "    module: entity-cards",
+        "    props:",
+        `      title: Cards ${lang}`,
+        "---",
+        "",
+      ].join("\n");
+    writeFileSync(
+      join(root, "guides", "embed-fixture.mdx"),
+      fm("EN", "en-heading-a", "en-heading-b") +
+        "Intro.\n\n## En heading a\n\nText.\n\n## En heading b\n\nText.\n",
+      "utf8"
+    );
+    writeFileSync(
+      join(root, "guides", "embed-fixture.ru.mdx"),
+      fm("RU", "ру-заголовок-а", "ру-заголовок-б") +
+        "Вводная.\n\n## Ру заголовок а\n\nТекст.\n\n## Ру заголовок б\n\nТекст.\n",
+      "utf8"
+    );
+  }
+
+  test("registry carries per-cell anchors and both bodies resolve them", () => {
+    const root = freshRoot();
+    try {
+      writeEmbedFixture(root);
+      const { result } = run(root);
+      assert.equal(result.ok, true);
+
+      const row = result.registryRows.find((r) => r.slug === "embed-fixture");
+      assert.ok(row);
+      // pivot top-level embeds unchanged…
+      assert.deepEqual(
+        row.embeds.map((e) => e.after),
+        ["en-heading-a", "en-heading-b"]
+      );
+      // …but EACH cell carries its own anchors + props
+      assert.deepEqual(row.locales.en.embeds.map((e) => e.after), ["en-heading-a", "en-heading-b"]);
+      assert.deepEqual(row.locales.ru.embeds.map((e) => e.after), ["ру-заголовок-а", "ру-заголовок-б"]);
+      assert.equal(row.locales.ru.embeds[0].props.title, "Checklist RU");
+
+      // serve-time resolution (ArticleRoute.interleave semantics): each
+      // anchored embed's regex must MATCH its own locale's compiled body
+      const interleaveRe = (anchor) =>
+        new RegExp(`<h[1-6] id="${anchor}"[^>]*>[\\s\\S]*?</h[1-6]>`, "i");
+      for (const code of ["en", "ru"]) {
+        const html = readFileSync(
+          join(root, "emit", "bodies", "guides", `embed-fixture.${code}.html`),
+          "utf8"
+        );
+        for (const emb of row.locales[code].embeds) {
+          if (emb.after === undefined) continue;
+          assert.match(html, interleaveRe(emb.after), `${code}: ${emb.id}`);
+        }
+      }
+      // the defect this replaces: PIVOT anchors do NOT exist in the RU body,
+      // which is exactly why registry pivot-only anchors lost the embeds
+      const ruHtml = readFileSync(
+        join(root, "emit", "bodies", "guides", "embed-fixture.ru.html"),
+        "utf8"
+      );
+      assert.doesNotMatch(ruHtml, /id="en-heading-a"/);
+      assert.doesNotMatch(ruHtml, interleaveRe("en-heading-a"));
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* R-CT3 MED-2 — failed emit must not destroy previously compiled      */
+/* bodies (validate first, swap atomically)                            */
+/* ------------------------------------------------------------------ */
+
+describe("failed emit preserves the previously emitted artifacts", () => {
+  test("bad second article leaves first article's body byte-identical", () => {
+    const root = freshRoot();
+    try {
+      writeGuide(root, "keep.en", {});
+      const first = run(root);
+      assert.equal(first.result.ok, true);
+      const bodyPath = join(root, "emit", "bodies", "guides", "keep.en.html");
+      const before = readFileSync(bodyPath, "utf8");
+
+      writeGuide(root, "broken.en", { body: "Run <b>bold</b> now.\n" });
+      const { result } = run(root);
+      assert.equal(result.ok, false);
+      // old bodies survive AND no staging debris is left behind
+      assert.equal(readFileSync(bodyPath, "utf8"), before);
+      assert.ok(!existsSync(join(root, "emit", ".bodies.staging")));
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  test("successful rerun swaps staged bodies in and leaves no staging dir", () => {
+    const root = freshRoot();
+    try {
+      writeGuide(root, "swap.en", {});
+      const { result } = run(root);
+      assert.equal(result.ok, true);
+      assert.ok(existsSync(join(root, "emit", "bodies", "guides", "swap.en.html")));
+      assert.ok(!existsSync(join(root, "emit", ".bodies.staging")));
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* R-CT3 MED-1 — the ledger is the RUNTIME admission gate (§8.1)       */
+/* ------------------------------------------------------------------ */
+
+describe("article_locales.jsonl gates admission at runtime", () => {
+  function writeEmitPair(root, { registryLocales, ledgerLocales, withLedger = true }) {
+    mkdirSync(join(root, "emit"), { recursive: true });
+    const locales = Object.fromEntries(
+      registryLocales.map((code) => [
+        code,
+        {
+          path: code === "en" ? "/guides/g" : `/${code}/guides/g`,
+          title: `T ${code}`,
+          description: `D ${code}`,
+          word_count: 10,
+          toc: [],
+          body_ref: `guides/g.${code}.html`,
+        },
+      ])
+    );
+    writeFileSync(
+      join(root, "emit", "articles.jsonl"),
+      [
+        JSON.stringify({ _meta: { schema: "miside.content.articles/1", row_count: 1 } }),
+        JSON.stringify({ article_id: "guide:g", type: "guide", slug: "g", title_en: "T en", locales }),
+      ].join("\n") + "\n",
+      "utf8"
+    );
+    if (withLedger) {
+      const lines = ledgerLocales.map((code) =>
+        JSON.stringify({
+          cell: `guide:g@${code}`,
+          article_id: "guide:g",
+          locale: code,
+          path: code === "en" ? "/guides/g" : `/${code}/guides/g`,
+          stale: false,
+        })
+      );
+      writeFileSync(
+        join(root, "emit", "article_locales.jsonl"),
+        JSON.stringify({ _meta: { schema: "miside.content.article_locales/1", row_count: lines.length } }) +
+          "\n" + lines.join("\n") + "\n",
+        "utf8"
+      );
+    }
+  }
+
+  async function withContentRoot(root, fn) {
+    const prev = process.env.MISIDE_CONTENT_ROOT;
+    process.env.MISIDE_CONTENT_ROOT = root;
+    try {
+      return await fn(await import("../src/data/articles.ts"));
+    } finally {
+      if (prev === undefined) delete process.env.MISIDE_CONTENT_ROOT;
+      else process.env.MISIDE_CONTENT_ROOT = prev;
+    }
+  }
+
+  test("agreeing pair serves EXACTLY the ledger membership", async () => {
+    const root = mkdtempSync(join(tmpdir(), "miside-ledger-"));
+    try {
+      await withContentRoot(root, async (articles) => {
+        writeEmitPair(root, { registryLocales: ["en", "ru"], ledgerLocales: ["en", "ru"] });
+        const rows = articles.publishedArticles();
+        assert.equal(rows.length, 1);
+        assert.deepEqual(Object.keys(rows[0].locales), ["en", "ru"]);
+        assert.deepEqual(
+          articles.articleLocaleCells().map((c) => c.cell),
+          ["guide:g@en", "guide:g@ru"]
+        );
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  test("a registry-only cell refuses to serve (mirror never admits)", async () => {
+    const root = mkdtempSync(join(tmpdir(), "miside-ledger-"));
+    try {
+      await withContentRoot(root, async (articles) => {
+        writeEmitPair(root, { registryLocales: ["en", "ru"], ledgerLocales: ["en"] });
+        assert.throws(() => articles.publishedArticles(), /guide:g@ru registry-only/);
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  test("divergent artifacts throw naming the cells; half a pair throws too", async () => {
+    const divergent = mkdtempSync(join(tmpdir(), "miside-ledger-"));
+    const halfPair = mkdtempSync(join(tmpdir(), "miside-ledger-"));
+    try {
+      await withContentRoot(divergent, async (articles) => {
+        writeEmitPair(divergent, { registryLocales: ["en", "ru"], ledgerLocales: ["de"] });
+        assert.throws(() => articles.publishedArticles(), /locale-cell divergence/);
+        assert.throws(() => articles.publishedArticles(), /guide:g@de ledger-only/);
+      });
+      await withContentRoot(halfPair, async (articles) => {
+        writeEmitPair(halfPair, { registryLocales: ["en"], ledgerLocales: [], withLedger: false });
+        assert.throws(() => articles.publishedArticles(), /articles\.jsonl present while article_locales\.jsonl MISSING/);
+      });
+    } finally {
+      rmSync(divergent, { recursive: true, force: true });
+      rmSync(halfPair, { recursive: true, force: true });
+    }
+  });
+
+  test("no artifacts at all stays green at zero (stub policy)", async () => {
+    const root = mkdtempSync(join(tmpdir(), "miside-ledger-"));
+    try {
+      await withContentRoot(root, async (articles) => {
+        assert.deepEqual(articles.publishedArticles(), []);
+        assert.deepEqual(articles.articleLocaleCells(), []);
+      });
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 
