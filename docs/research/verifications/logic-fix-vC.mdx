@@ -1,0 +1,193 @@
+# Logic-fix verification C (V-LL3) — focused delta pass over commit c6b4596
+
+Verifier: V-LL3 · Date 2026-08-26 · Scope: the single blocking finding F-1
+([logic-build-vB.mdx](logic-build-vB.mdx#f-1-blocking--effect_callsedge_id-is-not-unique-37-ids-across-209-rows))
+against the F-LL3 landing: `extracted/data/logic/**` +
+`extracted/relinks/{flag--gates,choice--consequence}.jsonl` at buildId 19029065.
+Inputs read in full: [AGENTS.md](../../../AGENTS.md),
+[_foundation/decision-register.md](../../../_foundation/decision-register.md),
+[_foundation/extraction-doctrine.md](../../../_foundation/extraction-doctrine.md),
+[_foundation/extraction-host.md](../../../_foundation/extraction-host.md),
+[spec.md](../../../spec.md), [README.md](../../../README.md),
+[data-acquisition.md](../../../data-acquisition.md),
+[logic-layer.mdx](../../specs/logic-layer.mdx) (426 ln), and
+[logic-build-vB.mdx](logic-build-vB.mdx) (the finding under test).
+
+Method note: adversarial delta pass — every number below re-derived by this
+verifier's own scripts against the raw harvest
+(`D:\unpacked_game_data\MiSide\harvest\mb-dump\`) or the emitted files
+themselves; no fixer claim accepted on faith. No pre-fix artifact copy exists
+on disk (checked `tmp/m0-backup`, `output/test-scratch`), so byte-preservation
+of payloads is proven **against raw dump ground truth** rather than by diffing
+a stale copy. Read-only except this file.
+
+## Checks
+
+(progress log — finalized per section as each lands)
+
+### C1 — duplicate edge_id recount (PASS)
+
+Full scan of `effect_calls.jsonl` (rows parsed independently of `_meta`):
+**20,485 data rows · 20,485 distinct `edge_id` values · 0 duplicate groups ·
+0 duplicate rows.** F-1's 37-id/209-row population is gone. Row census axes
+recomputed from the rows themselves match `_meta.census_accounting` exactly
+(`audiovisual 2,782 · award 13 · cosmetic 11,582 · dead-reference 372 ·
+flag-query 18 · flag-set 63 · scene-flow 5,655`; tier A **117** / B **20,368**
+— digit-identical to V-LL2b's pre-fix T1 measurement, i.e. no row was added,
+dropped, or reclassified by the fix).
+
+### C2 — spot-checks over previously-colliding hosts (PASS)
+
+Five hosts drawn from F-1's collision population (both affected families, the
+largest pre-fix reuse counts included), each **fully parsed from raw** by this
+verifier's own indentation-walker (independent element-index tracking, no
+shared code with the emitter) and compared call-by-call:
+
+| host | raw calls | distinct `eventAnim` groups | emitted rows | payload mismatches |
+|---|---|---|---|---|
+| `level5/Events_Animator_#7106.txt` (F-1's ×10 id) | 15 | 10 | 15 | **0** |
+| `level2/Events_Animator_#2830.txt` (F-1's ground truth) | 12 | **8** | 12 | **0** |
+| `level22/Events_Animator_#4177.txt` | 23 | 10 | 23 | **0** |
+| `level9/Events_Animator_#11320.txt` | 18 | 4 | 18 | **0** |
+| `level9/FunctionsGame_PlayerWhyWalk.txt` (F-1's ×2 family) | 3 | 3 | 3 | **0** |
+
+71 calls total, every payload field byte-compared: `target.type`,
+`target.assembly`, `target.object_path_id`, `method`, and all five `args`
+slots (`string/int/float/bool/object_path_id`) each equal the serialized dump
+value; the `evidence[]` locator string also resolves to
+`harvest/mb-dump/<container>/<file>#<field_path>:<call_index>` exactly.
+`#2830` reproduces V-LL2b's raw ground truth verbatim (**8 groups / 12
+calls**). Every previously-colliding group now carries its own
+`events[i].data.eventAnim`-style path — e.g. PlayerWhyWalk emits
+`eventFinish[0].data.eventFinish`, `eventFinish[1].data.eventStartReaction`,
+`eventFinish[1].data.eventFinish` where the fix collapsed `[0]`/`[1]` into one
+string. Discriminator coverage is corpus-wide on the affected shape:
+**418/418** `Events_Animator` rows and **3/3**
+`FunctionsGame_PlayerWhyWalk` rows carry an `[i]` marker (421 = the claimed
+affected-family population, re-pathed 1:1); no row of either family lacks it.
+
+### C3 — K join + DS-2 pair-table reproduction (PASS)
+
+Reproduced independently from `endings/{choice_nodes,branch_edges}.jsonl` +
+`effect_calls.jsonl` under the [spec L1b](../../specs/logic-layer.mdx#8-acceptance-criteria-l1l6)
+key K: **371/371 unique node_ids · 1,555/1,555 edges resolve to exactly one
+effect_call row · 0 ambiguous · 0 unmatched**, K collision-free over the edge
+basis (distinct keys 1,555, max multiplicity 1). Emitted `effect_class`
+equals each edge's own DS-2 annotation on **1,555/1,555** joined pairs
+(re-measured twice: my join and the suite's). Discriminator ablations
+reproduce the spec's pinned numbers exactly: drop `from_option` → **7**
+colliding groups; drop `call_index` → **1**. `PAIR_CLASS_FROZEN` holds **132**
+single-valued `(type,method)` entries, matching `_meta.classifier`'s recorded
+"fitted … 132 single-valued pairs after the dead-reference override", and the
+class census axes are digit-identical to V-LL2b's pre-fix measurement — the
+pair-table machinery is functionally untouched by the fix. The discriminator
+lives only in `effect_calls.field_path`/`edge_id`; K itself consumes the
+mapped leaf `event_field`, which is why the join needed nothing re-fitted.
+Corroboration that K semantics did not move: the OBS-1 corpus-wide
+K-basis twin population measures **65 groups / 175 rows** post-fix — the same
+numbers V-LL2b recorded pre-fix.
+
+### C4 — selfcheck + L1b tripwire audit (PASS)
+
+Single read-only run of `build/selfcheck_logic.py` (import side-effect-free —
+module level is constants only, `main()` guarded): **22 passed, 0 failed,
+exit 0**, including the new line `L1b uniqueness — 0 unmatched / 0 ambiguous
+under K; 0 duplicate edge_id values covering 0 rows`.
+
+The new audit exists in code
+([selfcheck_logic.py](../../../extracted/data/logic/build/selfcheck_logic.py) L154–167,
+comment citing this finding): it tallies `edge_id` occurrences over **all
+20,485 rows** — not just the K-joined subset — builds `ec_dups` = ids with
+count > 1, and gates `check("L1b uniqueness", not unmatched and not amb and
+not ec_dups, ...)`. Reasoning from the branch: any reintroduced collision
+anywhere in the corpus (including tier-B internal-only carriers, which is
+exactly F-1's population and exactly what K-injectivity cannot see) makes
+`ec_dups` non-empty → the check fails → `FAILURES` non-empty → `main()`
+returns exit 1 naming the duplicate-group and row counts. The tripwire bites.
+
+### C5 — `_meta` claims vs measured truth (PASS, one cross-chain residue routed)
+
+- **Uniqueness block**: `_meta.uniqueness` (`duplicate_edge_id_values:0`,
+  `duplicate_rows:0`, `status:"unique"`), the emit-ledger
+  `effect-call-edge-id-uniqueness` entry, and my own recount agree digit for
+  digit; the ledger note correctly attributes the closure to the parser fix
+  ("the `[i]` discriminator in field_path … not synthetic suffixes") — true,
+  since the ids embed the real serialized `[i]` markers (C2).
+- **`edge_id_shape`**: claimed shape
+  `logic:call:<container>:<file>:<host_path_id|x>:<field_path>:<call_index>`
+  verified segment-by-segment against row fields on **all 20,485** ids — 0
+  violations, `x` host convention exact, and bracket parity between the id's
+  `field_path` segment and the row holds on every row. All 20,485 `evidence[]`
+  locators resolve to the same `#<field_path>:<call_index>` form.
+- **Key declaration**: the emitter's `REGISTRY_ENTITY_DECLS["effect_call"]`
+  declares `key="edge_id"` (emit_logic.py L1876). Residue found and routed
+  below (OBS-C1).
+
+**OBS-C1 (non-blocking, needs routing): the landed
+[contracts/registry/entities.json](../../../contracts/registry/entities.json)
+still carries the pre-fix contract text** — `effect_call.key: null` plus an
+`edge_id` field note asserting duplicates were *"measured on disk"* and that
+edge_id is *"DELIBERATELY NOT a unique row key on this build … never edge_id
+uniqueness"*. Its enum counts match this build exactly, so it reads as
+current, and it now contradicts both measured reality (0 duplicates) and the
+emitter's own declaration. Context that keeps it out of revision scope here:
+the registry is owned by the accepted contracts chain (V-CT2 riders pin it
+byte-stable; the logic emitter deliberately never rewrites a diverged landed
+entry per the `_l6_registry_insert` write-scope docstring, and
+input-manifest `entities_json_sha256` pins today's file `e4c68aef…`), the
+note's operative instruction (join under AC-L1b key K) remains correct and
+conservative, and no consumer reads it yet. This is the same defect class
+V-LL2b ruled an observation in OBS-2 (an emitted label overstating measured
+truth). Unblock: a contracts-chain edit flipping `key` to `"edge_id"` and
+rewriting the note to the post-fix law, followed by that chain's re-pin.
+
+### C6 — collateral drift (PASS)
+
+- **Frozen DS plane physically untouched**: every dataset the fix could have
+  disturbed but must not — `endings/*` (L1a byte-freeze green),
+  `achievements/`, `cartridges/`, `poi-kinds.json`, the four pinned relinks —
+  has mtimes predating the fix window (Aug 25 05:40/10:33 vs fix writes
+  Aug 26 11:44), i.e. unwritten since before V-LL2b's pass, and all **13/13**
+  input-manifest pins byte-match the live tree.
+- **Logic outputs self-consistent**: all **6/6** `input-manifest.outputs`
+  hashes match the emitted files (`effect_calls` `5086cb59…`).
+- **Rows unchanged end-to-end**: independent full-corpus rescan of all
+  **140,380** dumps (two counters per file: `PersistentCall data` blocks and
+  `m_MethodName` lines — both land on 20,485) shows **zero per-file deltas**
+  vs the emitted per-(container,file) tallies; class/tier axes digit-identical
+  to the pre-fix measurement. Nothing was added, dropped, moved, or
+  reclassified.
+- **Payloads preserved**: proven against raw ground truth (C2) — 71/71
+  compared calls field-exact on the previously-colliding hosts; census closure
+  extends that protection corpus-wide.
+- **Relink projections byte-stable by construction and by measurement**:
+  `flag--gates.jsonl` = 40 rows (20 forward + 20 inverse, inverse the exact
+  mirror, ids-only field set `{from,to,direction,mechanism,method,status}`,
+  authority ruling present) binding the same 20 tier-A calls
+  (`CheckEventIndex` ×16 · `SetIgnory` ×2 · `CheckEvent` ×2);
+  `choice--consequence.jsonl` = 1,555 rows, 371/371 nodes as sources, 1,555
+  distinct targets, **0 dangling**, and the target set equals the current
+  K-resolved row ids exactly. Both projections' referenced-id universes are
+  **disjoint from the re-pathed 421-row population** (overlap 0/0), so the
+  11:44 rewrite reproduced pre-fix bytes. Recorded hashes:
+  `flag--gates` `48e39789…`, `choice--consequence` `706f4257…`.
+- **No hidden drift surface**: `predicate_records` / `flag_instances` /
+  `minigame_tunables` reference neither `field_path` nor `edge_id` anywhere,
+  so the re-pathing could not leak into them; their inputs are pinned-clean.
+
+## Verdict
+
+F-1 is closed on every axis the finding raised: 37 duplicate ids → **0**
+(measured independently), the root cause is fixed in the parser (real
+serialized `[i]` markers recovered, not papered over), the 421 affected-family
+rows carry discriminators 1:1 with byte-preserved payloads, rows stand at
+20,485 with zero per-file deltas across the whole 140k-file corpus, the K join
+and DS-2 reproduction are untouched (1,555/1,555, ablations 7/1), the selfcheck
+is 22/22 exit 0 with a new L1b audit that provably fires on reintroduced
+collisions, `_meta`'s uniqueness/shape claims match measured truth, and no
+collateral drift exists on the frozen plane or either projection. One residue
+outside this commit's claim set and write scope — the stale anti-uniqueness
+note in the contracts chain's `entities.json` — is recorded as OBS-C1 with a
+concrete unblock routed to the contracts re-pin lane.
+
+VERDICT: APPROVE
