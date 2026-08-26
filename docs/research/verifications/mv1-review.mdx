@@ -1,0 +1,197 @@
+# R-MV1 — verifier review of `docs/specs/map-viewer.mdx` (D-MV1)
+
+Reviewer: fresh Reviewer subagent (PrepareTask step 3). Review target:
+[map-viewer.mdx](../../specs/map-viewer.mdx) @ commit aedbc76 (646 lines).
+Inputs read in full: the spec; [map-viewer-scout](../map-viewer-scout.mdx);
+[dataset-scenes](../../specs/dataset-scenes.mdx) +
+[`contracts/dataset-scenes.mdx`](../../../contracts/dataset-scenes.mdx);
+[data-contracts §1](../../specs/data-contracts.mdx);
+[site-scaffold](../../specs/site-scaffold.mdx) heading map (§3.3, §7
+read in full); [missingdata.md](../../../extracted/data/missingdata.md)
+XC/SCN/CH/CAR/DOC rows; `design/tokens.css`.
+
+Method: **every numeric claim in the spec was independently re-measured
+from disk this pass** (Python recounts over the jsonl corpus + greps over
+`site/src`), because the defect class that killed the last spec
+(R-D-C1: six schema fictions) is invented data. Constraints honored:
+no git, no agents, no servers; this file is the only write.
+
+---
+
+## 1. Re-measurement results — the spec's claimed numbers
+
+All checked against the corpus (buildId 19029065 / 0.93L still current in
+every `_meta` header). **Result: every load-bearing number in the spec is
+true on disk.** Zero schema fictions found.
+
+| Spec claim (section) | Re-measured | Verdict |
+|---|---|---|
+| `scenes.jsonl` 24 rows; roles 20 story + boot/title/menu/unbound (§0.1) | 20/1/1/1/1 | ✅ |
+| `spawn` on exactly the 20 story rows, all `inline`+`world-assumed` (§0.1) | 20/20, conjunction holds | ✅ |
+| `chapter_name_loc` null on level3/7/12/15/18; `display_name_loc` null ×24 (§0.1) | exact set match | ✅ |
+| `scene-links.jsonl` 57 = loads 19 · unloads 7 · continues 15 · chapter_name 15 · ledger 1 (§0.1) | 19/7/15/15/1 | ✅ |
+| `poi.jsonl` 986 rows; census inline 298 / pptr 76 / none 612 (§0.1–0.2) | `_meta.position_truth_census` AND my independent recount agree; cell decomposition 262+10+26 / 76 / 566+46 exact | ✅ |
+| pptr class split MitaAIMovePoint 25 · FlashTaker 19 · Trigger_DistanceCircle 18 · Trigger_Teleport 14 (§0.2, §3.2a) | exact | ✅ |
+| 790/986 suffixed ids; 196 pairs; 116 pairs >1 row; level13 ObjectInteractive 36 rows (§0.3) | exact | ✅ |
+| `markers.jsonl` row_count 0; pending_families cartridge_item 25 / profile_document 0 / monster_anomaly 96 / save_point 19 kinds `[travel_gate]`; focus_url_contract verbatim (§0.1) | byte-matches | ✅ |
+| `poi-kinds.json` 25 rulings; 21 eligible = 709 rows; 4 false = 277 (ObjectItem 262 + LightRenderer_Fog 15) (§0.1) | 25 rulings, 709/277 exact (Interface_KeyHint_Key + MakeManeken_Interaction are the other two false rulings, 0 rows each — arithmetic holds) | ✅ |
+| Cartridge yield **21, not 25**; 4 pet rows (`tamagotchi-game` ×1, `tamagotchi-pet-cartridge` ×3) ownerless (§0.1 correction 1) | 21 FlashTaker rows all carry `joins.save_key`, all 21 resolve; exactly 4 tamagotchi rows family-keyed | ✅ |
+| DS-4: 23 rows = 13 character + 10 player; `pickup_ref.container` on 21; `mtad2`/`mtacore` `registered-unresolved-pickup` w/ `pickup_ref:null` (§0.1) | exact (`mtad-2`, `mtacore`) | ✅ |
+| DS-5: 14 rows, `placement` on 11, null on `mita-2-d-profile`/`mita-core-profile`/`mita-true-profile` (§0.1) | exact; all 11 `carrier_class:"FlashTaker"` | ✅ |
+| Profile markers cannot inherit POI coords via path_id — level17 mta=`0` / mtakd=`2567` vs DS-5 `13630` (§0.1 correction 2) | verified corpus-wide: **zero** of the 11 `(container, component_path_id)` pairs collide with any of the 21 FlashTaker `pickup_object_path_id`s | ✅ (stronger than claimed) |
+| Spawn extents x −27.75…11.25, y −3…12, z −108.5…5.5; level14/19 z=−108.5 (§0.2) | exact | ✅ |
+| `minigames.jsonl` 17; `minigame--scene-carrier.jsonl` 76 rows (§0.1, OQ-7) | 17; 76 = 38 fwd + 38 inv; all 17 distinct minigame keys resolve into DS-4 | ✅ |
+| `character--scene-membership.jsonl` 12 rows (§4) | 12 | ✅ |
+| `document--scene-membership.jsonl` keyed `note:<id>` → `container:levelN` (§4) | 354 rows; forward keys resolve 166→world_documents + 11→profile_documents (+23 inverse container-keyed rows) — **fully resolvable**, no dead keys | ✅ |
+| `cartridge--character-placement.jsonl` `matched_pairs: 20` (§0.1) | header field exact (48 data rows) | ✅ |
+| `scene--chapter` canonical mirror at `extracted/relinks/` (§4) | both files exist, identical 30 rows | ✅ |
+| Largest scene "123 marker-capable rows" (§6) | level13 = 123 **total** rows, **102 eligible** | ⚠️ wording, F-3 |
+| Registry `bounds:null`, `status:"awaiting-artwork"`, `zoom` (§3.2d, §5) | `emit-artifacts.mjs` emits exactly these incl. `zoom:[1,4]` | ✅ |
+| `cwv.budgets.json` `map-shell` row; LCP<2500/<200ms/CLS<0.1 (§11) | template row + budget values exact | ✅ |
+| Chrome keys existing `nav.map`/`map.openMap`/`map.pendingPlacement`; additions collision-free; 34 locale files all ship incl. `ar`/`ar-EG`/`fa` (§10) | exact; 34 files counted; no `map.*` addition already exists | ✅ |
+| `projection.ts` projects only `inline ∧ world-assumed` (§0, §4.2) | verbatim | ✅ |
+| `mapState.ts` parses but never applies `?scene=` (§5, Scout gap #4) | confirmed — `parseFocus` returns `scene`, no consumer | ✅ |
+| Tokens: `--ms-bg-0/1/2`, `--ms-accent(-soft)`, `--ms-font-lcd/sans`, `--ring`, `ms-glow-pulse`, `ms-vhs-drift`, `ms-scan-breathe`, `[data-slot="lcd-terminal"]`, reduced-motion gating (§9) | all present; loops inside `@media (prefers-reduced-motion: no-preference)` | ✅ |
+| Ledger citations XC-3/XC-5/XC-6, SCN-2/SCN-6/SCN-8, CH-6, CAR-8, DOC-5 (passim) | all rows exist in `missingdata.md` with the cited content (SCN-2 even pins the same 19/25/18/14 split) | ✅ |
+| `ENTITY_KINDS` covers every M4 kind; `locations.idField === "scene_id"`; routes `/cartridges/[id]`, `/lore/books/[book_id]` etc. exist (§4.1, §7) | exact; `books` routed at `/lore/books/`; EntityShell already takes conditional `{id,label,panel}` tabs — M4 is feasible as scoped | ✅ |
+
+The two corrections the spec claims to make against the Scout are both
+real and both favor the spec: Scout's "24 rulings" → 25 measured; Scout's
+aggregate-row premise (§1.2) is genuinely refuted by the 790 suffixed ids
+— §0.3's correction is correct, not wishful.
+
+## 2. Findings
+
+Severity: HIGH = blocks build · MEDIUM = fix before CodeWriter · LOW =
+note for the Arbiter. No HIGH findings.
+
+### F-1 · MEDIUM — AC MV-0.4's ledger arithmetic is unsatisfiable at kind granularity
+
+Spec §3.2(c): *"The rerun's `pending_families` must enumerate every
+`marker_eligible:true` kind with its deferral reason"*; AC MV-0.4:
+*"eligible-row arithmetic (709) reconciles against families + emitted
+rows."* Kind-level families cannot partition the 709:
+
+- `travel_gate` (46 rows, measured) splits into 19 `Scene_Load`
+  (save_point-owned) + 14 `Trigger_Teleport` + 13 `Player_Teleport`
+  (no owner) — one kind, two destinies;
+- `cartridge` (25) splits 21 emittable + 4 OQ-8 pets;
+- `profile_document` contributes 11 emitted rows that are **not** poi
+  rows at all, so they sit outside the 709 yet must appear in "families +
+  emitted rows".
+
+As written, the reconciliation identity is undefined (and under the
+natural reading, false). Fix is one paragraph: state that families may
+key finer than kind (class axis allowed, e.g. `save_point` ↔
+`Scene_Load`), and pin the arithmetic as Σ(family poi_rows) = 709 with
+emitted-marker counts carried per family (profile family sourced from
+DS-5, outside the poi pool). Without this the CodeWriter must invent the
+identity to pass MV-0.4 — exactly the R-D-C1 failure mode.
+
+### F-2 · MEDIUM — OQ-7 (`minigame_access`) has no marker shape it can legally use
+
+OQ-7's premise verifies (17/17 minigame keys resolve; 76 edges), but the
+carrier edge binds `(minigame, container)` by class co-presence —
+`to:"scene-class-family@level9"` — while the 70 `minigame_access` poi
+rows are `MinigamesController` instances, ~3 per level across 24 levels,
+and **level1's 3 rows are covered by no carrier edge** (edges span
+level2–level23 only; measured). Two consequences:
+
+1. A per-instance `poi_id` anchor (mandatory in the §4.1 shape for every
+   non-profile row) is not derivable — multiple controller rows per level
+   and the edge's carrier classes are not controller rows. Emission needs
+   the scene-granular escape hatch that §3.2(b) defines *only* for DS-5
+   placements (`placement_source`-keyed rows), or an `instance_census`
+   grouping — declare it before implementation.
+2. The container must be split out of `scene-class-family@levelN`
+   emitter-side; string-splitting a compound enum downstream is a
+   derivation the frontend-consumes law forbids.
+
+Also add level1's orphan rows to the ledger reasons so F-1's arithmetic
+stays total.
+
+### F-3 · LOW — "largest scene holds 123 marker-capable rows" overstates
+
+Measured: level13 holds 123 **total** poi rows, **102** eligible. The
+clustering-threshold argument (§6) is unaffected; the adjective is wrong.
+Say "123 rows (102 marker-capable)".
+
+### F-4 · LOW — AC MV-4 does not test everything M4 builds
+
+M4 (§7) renders location modules for `cartridges`, `profiles`,
+`minigames`, `mita`, `books`/`lore`, `locations`; AC MV-4 static-greps
+only cartridge/profile/minigame/mita pages. The books/lore half of the
+two-way link graph ships untested. Either extend MV-4's kind list or say
+why those pages are excluded.
+
+### F-5 · LOW — the §2 dependency diagram contradicts the table it illustrates
+
+The ASCII graph draws arrowheads **into M2 from the M4 lane**
+(`▲╚── M4`), reading as M4→M2, while the table (and the caption "M4
+consumes focus URLs + marker rows") say M4 depends on M0+M2. Table is
+acyclic and complete (checked: every module's inputs are emitted by a
+predecessor or already on disk; M5's string-freeze edge is stated). Keep
+the table authoritative; redraw or drop the diagram.
+
+### F-6 · LOW — registry v2 should be declared additive
+
+§3.2(d) lists what v2 *adds* (`display_label_loc`, per-kind counts,
+`role`, `status`) but never says existing `zoom:[1,4]`,
+`coordinate-transform`, `imagery` survive — and §5's clamped pan/zoom
+reads `registry.zoom` (verified present today). One clause: "v2 extends
+the v1 registry object; no v1 field is removed."
+
+### F-7 · MEDIUM — M4 modules render inferred joins with no mechanism disclosure
+
+The map popover shows `placement.mechanism` ("hard | logic | inferred",
+§4.1) — but the entity-page module table (§7) sources `mita` scenes from
+`character--scene-membership.jsonl`, whose 12 rows are measured
+`mechanism:"inferred", status:"modeled"`, and prescribes no provenance
+display. Rendering an inferred co-presence as flat "found in" fact is
+inconsistent with the spec's own popover law and the pack's
+honesty-vocabulary discipline (data-contracts §1; the mechanism column
+exists in the relink precisely to be surfaced). Cheapest fix: one line in
+§7 — modules carry `mechanism`/`status` through when ≠ hard, same as the
+popover.
+
+### F-8 · LOW — no RTL leg on the new controls
+
+Chrome ships `ar`, `ar-EG`, `fa` (verified in
+`site/src/i18n/chrome/`). MV-5 tests label parity, MV-7 tests 375 px —
+neither exercises the switcher/popover/side-sheet under RTL mirroring,
+and Leaflet pan-zoom direction is a known RTL trap. One scripted-trace
+assertion (or an explicit "RTL deferred, tracked" note) closes it.
+
+## 3. What is GOOD (for balance)
+
+- **Zero invented data.** ~40 numeric/schema claims re-measured; all
+  true. The spec even self-corrects the Scout (25 rulings, not 24) and
+  the B-6 accounting (yield 21, not 25) rather than inheriting optimism —
+  the exact opposite of the R-D-C1 failure mode.
+- **Join-key soundness is exceptional**: the path_id non-inheritance
+  claim (§0.1 correction 2) is not just true at the cited example, it
+  holds corpus-wide (0/11 collisions); the 21-save_key join resolves
+  uniquely (DS-4 save_keys are unique, 23/23 populated).
+- **Sequencing law is right**: M0 gates M1+ with named ACs; S9 is
+  correctly treated as a coordinate unblock, not an emission gate —
+  `deferred:s9-not-run` keeps shipping honest if S9 slips.
+- **Frontend-consumes-never-derives is enforced concretely** (§4
+  forbidden list), and the two places math appears client-side
+  (mean-center fallback) are correctly argued as presentation over
+  consumed rows.
+- **Token/i18n law clean**: no hex decided (OQ-10 defers the palette),
+  every cited token/animation exists and is reduced-motion-gated; game
+  content stays out of the chrome namespace.
+- **Stub policy maps 1:1 onto `missingdata.md`** classes (CAR-8, CH-6,
+  SCN-8 filler chain, DOC-5 script-grants) — nothing papered over.
+- **Scope discipline**: artwork, SCN-6 tier-2 enumeration, embed bundle,
+  XC-6 registration all fenced out with named owners.
+
+## 4. Verdict
+
+Two MEDIUM items (F-1, F-2) sit directly on M0's acceptance criteria and
+would force the CodeWriter to improvise contract identities; one MEDIUM
+(F-7) is a cheap honesty-law consistency fix. Nothing measured was
+false. Revise the four paragraphs, then build.
+
+VERDICT: NEEDS_REVISION — 8 items
