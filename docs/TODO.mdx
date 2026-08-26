@@ -72,14 +72,14 @@ other lane is mid-edit in `site/`.
 - [x] DS-6 scenes/map-layer ACCEPTED (B-6: 24 scenes · 57 links · 986 POIs · markers no-orphan)
 - [x] CLOSURE-1: relinks 25 files/1,159 edges + locale_availability 2,686 cells + PROOF §5 reconcile → PHASE-1 DATA LAYER CLOSED
 - [x] Logic layer SPEC — ACCEPTED: D-LL1 → R-LL1(9) → A-LL1(two-tier sweep, join key K) → F-LL1 `76b96c2` → **V-LL1a+V-LL1b both APPROVE** (426 ln, zero numeric divergences; residuals: cloth-site source omission LOW-MED, 3 LOWs recorded in verdicts)
-- [~] Logic-layer builder B-LL2 LANDED `299bba1` — LG1–LG4 complete (384 flags · 20,485 calls closing to byte-count · 93 predicates · 29 tunables), **22/22 AC proofs green**, dual-space id binding discovery flagged for arbiter glance → V-LL2a verifying, V-LL2b queued [LANE-E]
+- [~] Logic-layer builder B-LL2 LANDED `299bba1` (22/22 proofs green) → V-LL2a + **V-LL2b pair in flight** → on APPROVE: dual-space arbiter glance + Ending Condition Explorer spec chain unblocked [LANE-E]
 - [ ] Icons/UI 2D export completion + MEDIA-CATALOGUE audio/video rows finish
 - [ ] Demo→full diff pass (deferred until needed)
 
 ## Phase 2 — data contracts
 
 - [x] Entity schemas spec `docs/specs/data-contracts.mdx` — ACCEPTED: D-C1 → R-D-C1(6) → F-DC1 → V-DC1a/b + A-DC1 → F-DC2 → **V-DC2a+V-DC2b both APPROVE** (`0e9468c`, 545 ln; every census digit-reproduced by two independent verifiers). Residual: §6.1 stamp-prose true only for 3 families/16 rows (fix text in dc1-final-vB, fold at next doc pass)
-- [~] Contracts artifacts — **F-CT2 LANDED `23c9ef7`**: pooling law, honest 22-gate split (every green can fail), independent lint grammar; EXTEND reconciliation absorbed logic entities + marker-v1; byte-stable ×2 → V-CT2a re-verifying w/ registration recommendation for logic relink families → derived-artifacts re-pin [⛓ unblocks tools/tracker/changelog/UGC]
+- [~] Contracts artifacts — F-CT2 `23c9ef7`; **V-CT2a APPROVE** (F1/F2/F3 closed under independent probes; KEEP-PINNED for logic relinks + fingerprint rider) → V-CT2b surgery-audit in flight → on APPROVE: riders + derived-artifacts re-pin [⛓ unblocks tools/tracker/changelog/UGC]
 - [ ] Derived artifacts re-pinned on contracts: search index, map markers, relation cards
 - [x] `missingdata.md` ledger — 83 entries classified
 - [x] Pack infra: standalone repo `game-databases/MiSide` created + pushed; superproject gitlink `e64f2d00`
