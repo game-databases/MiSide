@@ -1,0 +1,189 @@
+# V-CT1a — verifier report: contracts build (commit b16bb7b)
+
+Verifier A of the MiSide DB orchestrator. Scope: `contracts/check_contracts.py` +
+`contracts/registry/{entities,joins,fingerprints,availability,stub-markers}.json`
+against the ACCEPTED spec [data-contracts.mdx](../../specs/data-contracts.mdx)
+(545 ln, read in full) and fresh disk truth. Read-only verification: the checker
+was run ONLY in its `verify` / `self-test` / `report` modes (never `generate`);
+no `git` commands were run, so commit-level identity of b16bb7b was taken as
+given — everything below verifies the working-tree content (registry mtimes
+2026-08-26 08:58, checker 08:57, consistent with one build burst).
+
+## 1. Checker runs (V-1)
+
+| Mode | Result |
+|---|---|
+| `verify` | **83 gates green, 1 warning, 0 failures**, exit 0 |
+| `self-test` | **6 green, 0 failures**, exit 0 |
+| `report` | exit 0 — pipeline pin buildId **19029065** / **0.93L**; 25 entity types; 25 join families / 1,159 edges (endpoint edges 1,142 · strings 2,259 · nulls 25 · anchor-less 17); 78 fingerprinted artifacts; 2,686 availability cells / 34 locales / dispositions `{present 2108, filler 297, contentless 9}`; 13 stub markers / 83 ledger entries covered |
+
+The single `verify` warning is C10's informational lane (~100 registry field
+names occur only under the umbrella spec §3.7/§3.9/§3.10 sidecars + relation
+metas, not in a `dataset-*.mdx` field table) — assessed in §8.
+
+## 2. Independent disk recounts (V-2) — all match
+
+Recounted straight from the read surface with standalone scripts (not through
+the checker's own functions):
+
+- **Row counts**: all 20 JSONL-backed entity types match `entities.json`
+  exactly (24 / 26 / 2 / 23 / 17 / 26 / 4 / 371 / 1555 / 5 / 2839 / 3776 / 1 /
+  14 / 166 / 8 / 24 / 986 / 24 / 57); sidecars too (speaker_theme 14,
+  poi_kind 25, dialogue_graph 19 files, markers 0 data rows behind its `_meta`).
+- **Joins**: 25 families, every `edge_count_measured` == fresh recount ==
+  `edge_count_expected`; total 1,159 == `relink_edge.row_count` == spec §4.1;
+  meta-only set is exactly `{cartridge--scene-placement, minigame--choice-condition,
+  ending--branch-edge}`.
+- **Anchor census**: reconciles to §4.2 number-for-number — forms sum to 2,259
+  strings (`note:` 686 · `target:`+`controller:` 370+10=380 · `container:` 354 ·
+  bare 172 = 96 slugs + 76 `scene-class-family@` · `scene:` 134 · `loc:` 113 ·
+  `achievement:` 92 · `minigame:` 88 · `profile_document:` 78 · `flashes:` 44 ·
+  `character:` 37 · `paper_part:` 20 · `save_point:` 19 · `speaker-theme:` 14 ·
+  `outfit:` 8 · 6/6/4 · 2/2), 25 null endpoints, 17 anchor-less edges / 34
+  absent slots, 1,142 endpoint edges.
+- **Availability**: `locale_availability.jsonl` recomputed → dialogue_bucket
+  680 (646/33/1), category_presence 1,734 (1,462/264/8), book_page 272
+  (264 true/8 false); totals 2,108/297/9 over 2,686 cells, 34 locales,
+  distinct categories match — identical to `availability.json`.
+- **Spec-cited enum censuses** all match measured value→count sets exactly:
+  poi.kind (344/277/102/96/70/46/25/24/2), choice_node.kind (353/13/5),
+  branch_edge.effect_class (709/468/356/10/8/3/1), dialogue_node.kind
+  (2710/70/24/13/11/11), scene.role (story 20 + boot/menu/title/unbound),
+  minigame.access_medium (6/4/2/2/1/1/1), cartridge_item.status (21/2),
+  world_document.family (160/5/1), scene_link.edge_kind (19/15/15/7/1),
+  achievement unlock.status (proven-hard 11 / unverified-behavior 15),
+  next_resolved ('resolved' 2161 / string-'null' 572 / 'unresolved-in-level'
+  12 / key-absent 94), speaker null ×129, position.source (inline 298 /
+  pptr-unresolved 76 / none 612) and space (unknown 668 / parent-local 56 /
+  object-local-offset 262 — no fourth value on POI rows), scene.spawn
+  populated ×20 world-assumed.
+- **Fingerprints**: 78 artifacts = 25 relation files + 19 graphs + every other
+  consumed artifact the spec §6.2 names (`availability.csv`,
+  `_assembly-provenance.jsonl`, all six `dialogue/_ledger/*` files — the
+  `_ledger` dir holds exactly those six, so `_ledger/*` is fully covered — plus
+  both emit-ledgers, `speakers.json`, `poi-kinds.json`, `markers.jsonl`). Fresh
+  sha256 recompute over all 78: **zero mismatches**. Row-count conventions hold
+  (`availability.csv` 681 lines → 680; `speakers.json` class S → 1;
+  `markers.jsonl` → 0).
+- **Ledger**: `missingdata.md` yields exactly **83** IDs; `stub-markers.json`
+  coverage has exactly those 83 keys — both directions clean (no uncovered
+  ledger row, no undefined referenced marker, zero unreferenced core vocab ids).
+
+## 3. Rule B-CT1 ambiguity rulings (V-3)
+
+1. **locked-stub ×2 vs spec ×1 — RULED CORRECT (measured-true).** Disk:
+   `peaceful` is the only `kind:"mode-stub"` row (×1) AND carries
+   `mode_unlocked.state:"locked-stub"`; `conditions-met` (`kind:"ending"`)
+   independently carries `mode_unlocked.state:"locked-stub"` citing the same
+   evidence family (`Menu.jsonl#line_index=130` + `dump.cs:206984`). So state
+   measures ×2 while kind measures ×1 — exactly the pinned split
+   `{ending.kind_mode_stub: 1, ending.mode_unlocked.state_locked_stub: 2}`,
+   with the split documented in the stub-marker's `where` text. The spec §7
+   table's "ending `peaceful`" phrasing names only the kind carrier; the
+   builder's resolution follows the disk, not the prose abbreviation.
+2. **Two registry files beyond the layout's three — RULED JUSTIFIED.**
+   Spec §2.1's layout block names `entities/joins/fingerprints.json`; the tree
+   adds `availability.json` (machine home for §5 semantics + the measured cell
+   matrix C6 asserts) and `stub-markers.json` (machine home for §7 vocabulary +
+   the C7 both-direction sweep: 13 markers × measured occurrences × 83-ID
+   coverage map). Both AGGREGATE the read surface rather than restating rows
+   (2,686 ledger cells collapse to per-kind dispositions; markers collapse to
+   occurrence counts), honoring §2.1's describe-never-restate law; both are
+   generated and byte-compared by the same tool (C1 covers all five). Non-
+   blocking nit: amend §2.1's layout block at the next spec touch so the two
+   files stop being layout-undocumented.
+3. **header_class "S" — REAL INSTANCES EXIST.** `dialogue/speakers.json`
+   (pretty-printed multi-line), `scenes/poi-kinds.json` (single-line), and the
+   19 `graphs/level*.json` each parse as ONE JSON document and do NOT parse as
+   per-line JSON objects — 21 genuine single-object sidecars. Without class S
+   the §2.2 dispatch table would misread all 21; the class earns its place.
+4. **relink_edge registration — CONFIRMED.** `entities.json` carries
+   `relink_edge` with `row_count` 1,159 == `joins.total_edges` == independent
+   recount across the 25 relation files; `key`/`schema_id` honestly null (the
+   per-family schema ids live in `joins.json`, including the four scene--*
+   families that ship no schema key on disk); enums limited to the measured
+   `direction`/`kind`.
+
+## 4. Deferred-scope guard: Q5 marker schema (V-4) — PASS
+
+`entities.json` marker entry is exactly the shape §9-Q5 ruled: `header_class
+"A"`, `row_count 0`, `fields {}`, `enums {}`, `key null`, notes carrying the
+Q5 DEFERRED-to-XC-5 ruling verbatim, citations naming §3.9 + Q5.
+`markers.jsonl` is fingerprinted at row_count 0; the extended marker
+`markers-meta-only-v0` (occurrences 1) asserts `_meta`-only + zero rows. A
+sweep of all five registries found NO marker row-schema leakage —
+`marker_eligible` appears only under `poi_kind`, where it is measured
+poi-kinds.json data. Nothing was emitted for the deferred schema.
+
+## 5. Field-inventory spot-checks (V-5) — exact
+
+Three inventories diffed against raw dataset rows (set equality BOTH
+directions): **achievement** 12/12 (with `build_id` int on disk and the
+registry note pinning the INTEGER + C9 canonical-string rule), **poi** 8/8,
+**world_document** 14/14. Deep-shape bonus check: `poi.position.target`
+occurs on 86 raw rows (10 inline + all 76 pptr-unresolved) and the registry
+measures it — the umbrella §3.9 prose omits it, but
+[dataset-scenes.mdx](../../contracts/dataset-scenes.mdx) line ~106 pins
+`target:{kind:"Transform"|...}` explicitly, so the delegated field-level
+authority agrees with the registry; the abbreviation is the spec prose's,
+not the build's.
+
+## 6. Mutation honesty (V-6) — one mutation reasoned from code
+
+Chosen: spec C4's named test, *inject a `cartridge:` anchor → exit ≠ 0*.
+Reading `build_joins` + `gate_anchor_lint`: the per-family `anchor_grammar`
+is DERIVED FROM the same disk rows the lint then checks, so on any static
+tree the C4 parse is tautological — injecting `cartridge:mta` into e.g.
+`minigame--scene-carrier.jsonl` would add `cartridge:` to that family's
+recorded grammar during rebuild and C4 itself would stay green. The run
+would still exit ≠ 0, but through the backstops: **C5** trips immediately
+(sha256 of the mutated relation file), and **C1** trips on the regenerated
+`joins.json` byte-compare (grammar/census changed; for id-columns families
+the `relink_edge` field inventory changes instead). Verdict: spec C4's
+observable criterion holds mechanically, but its teeth are borrowed from
+C1/C5 — C4 is a grammar-documentation check, not an independent drift
+detector. The self-test's "foreign anchor rejected" probe validates current
+grammar membership, which is honest but weaker than the spec's mutation-test
+phrasing implies. Recorded as a nuance, not a defect.
+
+## 7. Gate-by-gate assessment
+
+C1 byte-identity verified live (all five files regenerate identical);
+C2 full-corpus scans pass with measured enums/nullability (spot-verified
+independently); C3 recounts + provenance consolidation hold (`_assembly-
+provenance` = 30 records incl. the DS-6 exclusion adjudications; all 25
+families in the canonical set); C4 see §6; C5 recomputes clean over 78
+artifacts; C6 disposition matrix + MA-2/SCN-9 fixtures + omission law green
+and the measured half matches my independent recount; C7 both directions
+clean over 83 IDs; C9 int/string stamp canonicalization proven against the
+real corpus (achievements int stamps vs header strings; next_resolved
+string-'null' ×572 vs key-absent ×94 discriminated); C10 header-class table
+matches reality for every artifact and every typed field-table name in the
+seven dataset contracts occurs in the registries.
+
+## 8. Notes (non-blocking polish, none revision-gating)
+
+1. **C10 warn lane**: ~100 registry field names (relation-meta keys like
+   `src/dst/slot/resolution`; sidecar fields like `names_anchor`,
+   `marker_eligible`) occur in no `dataset-*.mdx` field table — correctly a
+   WARN, since those surfaces are owned by the umbrella spec §3.7/§3.9/§3.10,
+   not the seven dataset contracts. Fine as long as the lane stays
+   informational; if it grows, scope it to dataset-scoped entity types.
+2. **Nested-subfields shape wart**: in `entities.json`, depth-0 object fields
+   expose `subfields` as a direct map, while deeper object-typed entries wrap
+   it twice (`{"subfields": {"subfields": {...}}}`, e.g. `position.target`).
+   Deterministic and machine-parseable, but a generated reader must
+   special-case depth — worth normalizing at the next regeneration.
+3. **Spec §2.1 layout block** should gain `availability.json` +
+   `stub-markers.json` at its next touch (ruling V-3.2).
+4. Commit identity of `b16bb7b` unverified (git forbidden to this verifier);
+   content verified against fresh disk truth instead.
+
+## Verdict
+
+All six verification legs pass; every count I could recount independently
+matches the emitted registries and the ACCEPTED spec; the deferred marker
+schema was genuinely not emitted; all four B-CT1 ambiguity resolutions are
+measured-true or justified against disk.
+
+VERDICT: APPROVE
