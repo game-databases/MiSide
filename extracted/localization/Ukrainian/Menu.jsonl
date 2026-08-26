@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "нова гра"}
+{"category": "Menu", "line_index": 1, "text": "продовжити"}
+{"category": "Menu", "line_index": 2, "text": "головне меню"}
+{"category": "Menu", "line_index": 3, "text": "вихід"}
+{"category": "Menu", "line_index": 4, "text": "налаштування"}
+{"category": "Menu", "line_index": 5, "text": "досягнення"}
+{"category": "Menu", "line_index": 6, "text": "автори"}
+{"category": "Menu", "line_index": 7, "text": "назад"}
+{"category": "Menu", "line_index": 8, "text": "завантажити"}
+{"category": "Menu", "line_index": 9, "text": "мова"}
+{"category": "Menu", "line_index": 10, "text": "завантаження..."}
+{"category": "Menu", "line_index": 11, "text": "графіка"}
+{"category": "Menu", "line_index": 12, "text": "гучність"}
+{"category": "Menu", "line_index": 13, "text": "клавіатура та миша"}
+{"category": "Menu", "line_index": 14, "text": "геймпад"}
+{"category": "Menu", "line_index": 15, "text": "роздільна здатність екрану"}
+{"category": "Menu", "line_index": 16, "text": "режим вікна"}
+{"category": "Menu", "line_index": 17, "text": "графічні ефекти"}
+{"category": "Menu", "line_index": 18, "text": "колірні ефекти"}
+{"category": "Menu", "line_index": 19, "text": "м'які тіні"}
+{"category": "Menu", "line_index": 20, "text": "розмиття"}
+{"category": "Menu", "line_index": 21, "text": "відблиски"}
+{"category": "Menu", "line_index": 22, "text": "згладжування"}
+{"category": "Menu", "line_index": 23, "text": "тіні"}
+{"category": "Menu", "line_index": 24, "text": "якість світу"}
+{"category": "Menu", "line_index": 25, "text": "програмування"}
+{"category": "Menu", "line_index": 26, "text": "анімація"}
+{"category": "Menu", "line_index": 27, "text": "звуки"}
+{"category": "Menu", "line_index": 28, "text": "музика"}
+{"category": "Menu", "line_index": 29, "text": "частинки"}
+{"category": "Menu", "line_index": 30, "text": "текстури"}
+{"category": "Menu", "line_index": 31, "text": "3D моделі (98%)"}
+{"category": "Menu", "line_index": 32, "text": "сценарій"}
+{"category": "Menu", "line_index": 33, "text": "скинути"}
+{"category": "Menu", "line_index": 34, "text": "вперед"}
+{"category": "Menu", "line_index": 35, "text": "назад"}
+{"category": "Menu", "line_index": 36, "text": "ліворуч"}
+{"category": "Menu", "line_index": 37, "text": "праворуч"}
+{"category": "Menu", "line_index": 38, "text": "взаємодія"}
+{"category": "Menu", "line_index": 39, "text": "чутливість миші"}
+{"category": "Menu", "line_index": 40, "text": "вийти з гри?"}
+{"category": "Menu", "line_index": 41, "text": "так"}
+{"category": "Menu", "line_index": 42, "text": "ні"}
+{"category": "Menu", "line_index": 43, "text": "вийти у головне меню"}
+{"category": "Menu", "line_index": 44, "text": "плавні повороти"}
+{"category": "Menu", "line_index": 45, "text": "налаштування гри"}
+{"category": "Menu", "line_index": 46, "text": "стиль тіней"}
+{"category": "Menu", "line_index": 47, "text": "одяг"}
+{"category": "Menu", "line_index": 48, "text": "інтерфейс"}
+{"category": "Menu", "line_index": 49, "text": "3D моделі (2%)"}
+{"category": "Menu", "line_index": 50, "text": "гучність голосу"}
+{"category": "Menu", "line_index": 51, "text": "пауза"}
+{"category": "Menu", "line_index": 52, "text": "меню"}
+{"category": "Menu", "line_index": 53, "text": "вітаю, гра пройдена!"}
+{"category": "Menu", "line_index": 54, "text": "ваш час проходження:"}
+{"category": "Menu", "line_index": 55, "text": "субтитри"}
+{"category": "Menu", "line_index": 56, "text": "яскравість"}
+{"category": "Menu", "line_index": 57, "text": "вертикальна синхронізація"}
+{"category": "Menu", "line_index": 58, "text": "збережено"}
+{"category": "Menu", "line_index": 59, "text": "персонажі"}
+{"category": "Menu", "line_index": 60, "text": "персонажі - Міта"}
+{"category": "Menu", "line_index": 61, "text": "персонажі - Картриджі"}
+{"category": "Menu", "line_index": 62, "text": "картриджі"}
+{"category": "Menu", "line_index": 63, "text": "Міти"}
+{"category": "Menu", "line_index": 64, "text": "Почати з чистого аркуша"}
+{"category": "Menu", "line_index": 65, "text": "Ви впевнені, що хочете повністю видалити збереження і почати все з нуля?"}
+{"category": "Menu", "line_index": 66, "text": "Компілюю шейдери — це займе дві години, зачекайте, будь ласка"}
+{"category": "Menu", "line_index": 67, "text": "Компіляція? Це ми зробили за вас!"}
+{"category": "Menu", "line_index": 68, "text": "Створюю реалістичне трасування тіней — це займе 10 хвилин"}
+{"category": "Menu", "line_index": 69, "text": "Жартую, тут немає таких наворочених штук"}
+{"category": "Menu", "line_index": 70, "text": "Ем-м..."}
+{"category": "Menu", "line_index": 71, "text": "Ой, точно, завантажилися!"}
+{"category": "Menu", "line_index": 72, "text": "похитування камери під час ходьби"}
+{"category": "Menu", "line_index": 73, "text": "показувати підказки на екрані"}
+{"category": "Menu", "line_index": 74, "text": "голос гравця"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "додано опис персонажа"}
+{"category": "Menu", "line_index": 77, "text": "кут огляду"}
+{"category": "Menu", "line_index": 78, "text": "озвучка"}
+{"category": "Menu", "line_index": 79, "text": "Відключено"}
+{"category": "Menu", "line_index": 80, "text": "тягнути руку до дверей"}
+{"category": "Menu", "line_index": 81, "text": "анімація"}
+{"category": "Menu", "line_index": 82, "text": "ввімкнути голос гравця"}
+{"category": "Menu", "line_index": 83, "text": "Міта"}
+{"category": "Menu", "line_index": 84, "text": "Коротковолоса Міта"}
+{"category": "Menu", "line_index": 85, "text": "Добра Міта "}
+{"category": "Menu", "line_index": 86, "text": "Кепочка"}
+{"category": "Menu", "line_index": 87, "text": "Маленька Міта"}
+{"category": "Menu", "line_index": 88, "text": "Сонна Міта"}
+{"category": "Menu", "line_index": 89, "text": "2D-Міта"}
+{"category": "Menu", "line_index": 90, "text": "Міла"}
+{"category": "Menu", "line_index": 91, "text": "Моторошна Міта"}
+{"category": "Menu", "line_index": 92, "text": "Ядро Міта"}
+{"category": "Menu", "line_index": 93, "text": "Примарна Міта"}
+{"category": "Menu", "line_index": 94, "text": "Чібі Міта"}
+{"category": "Menu", "line_index": 95, "text": "Міта манекен"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "Я в грі?"}
+{"category": "Menu", "line_index": 101, "text": "Ми разом"}
+{"category": "Menu", "line_index": 102, "text": "Початок дивацтв"}
+{"category": "Menu", "line_index": 103, "text": "Підвал"}
+{"category": "Menu", "line_index": 104, "text": "За межами світу"}
+{"category": "Menu", "line_index": 105, "text": "Циклічна версія"}
+{"category": "Menu", "line_index": 106, "text": "Маленька Міта"}
+{"category": "Menu", "line_index": 107, "text": "Манекени і забуті пазли"}
+{"category": "Menu", "line_index": 108, "text": "Вона хоче спати"}
+{"category": "Menu", "line_index": 109, "text": "Новела"}
+{"category": "Menu", "line_index": 110, "text": "Читаємо книги та знищуємо глюки"}
+{"category": "Menu", "line_index": 111, "text": "Біжи і ховайся!"}
+{"category": "Menu", "line_index": 112, "text": "Стара версія"}
+{"category": "Menu", "line_index": 113, "text": "Відвертий діалог"}
+{"category": "Menu", "line_index": 114, "text": "Перезавантаження"}
+{"category": "Menu", "line_index": 115, "text": "Кепка"}
+{"category": "Menu", "line_index": 116, "text": "Примарна"}
+{"category": "Menu", "line_index": 117, "text": "Реальний світ?"}
+{"category": "Menu", "line_index": 118, "text": "Геть з ядра!"}
+{"category": "Menu", "line_index": 119, "text": "Гравець 1"}
+{"category": "Menu", "line_index": 120, "text": "Гравець 2"}
+{"category": "Menu", "line_index": 121, "text": "Гравець 3"}
+{"category": "Menu", "line_index": 122, "text": "Гравець 4"}
+{"category": "Menu", "line_index": 123, "text": "Гравець 5"}
+{"category": "Menu", "line_index": 124, "text": "Гравець 6"}
+{"category": "Menu", "line_index": 125, "text": "Гравець 7"}
+{"category": "Menu", "line_index": 126, "text": "Гравець 8"}
+{"category": "Menu", "line_index": 127, "text": "Гравець 9"}
+{"category": "Menu", "line_index": 128, "text": "Гравець 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Мирний режим"}
+{"category": "Menu", "line_index": 131, "text": "Цей режим перебуває у розробці. Режим виявився настільки великим, що розробники його ще не встигли зробити! Незабаром вони випустять його одним великим оновленням для гри. А ти – молодець! Постарався і відкрив доступ до нього, тепер залишається тільки почекати..."}
+{"category": "Menu", "line_index": 132, "text": "Що таке мирний режим? Ну, тобі з'явиться можливість знову повернутися до Міти! Вона буде дуже рада провести з тобою більше часу з ранку до ночі, який буде сповнений різноманітними розвагами. На тебе чекають розмови тет-а-тет, печиво, ігри та купа веселих моментів разом!"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "цензура"}
+{"category": "Menu", "line_index": 136, "text": "Також допомагали:"}
+{"category": "Menu", "line_index": 137, "text": "Значки досягнень: Icecloud"}
+{"category": "Menu", "line_index": 138, "text": "Картинки: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Перекладачі"}
+{"category": "Menu", "line_index": 140, "text": "Переклад гри іншою мовою."}
+{"category": "Menu", "line_index": 141, "text": "Партнер з видання"}
+{"category": "Menu", "line_index": 142, "text": "Маркетинг гри."}
+{"category": "Menu", "line_index": 143, "text": "Тестування"}
+{"category": "Menu", "line_index": 144, "text": "Грали та шукали помилки."}
+{"category": "Menu", "line_index": 145, "text": "Переклад цією мовою виконано ентузіастами з фан-спільноти і додано до гри на їхнє прохання."}
+{"category": "Menu", "line_index": 146, "text": "У грі присутні скрімери, що містять гучні звуки і спалахують візуальні ефекти. Деякі моменти в грі можуть бути небезпечними для осіб, які мають проблеми з серцем або страждають від епілептичних нападів. Просимо вас бути обережними."}
+{"category": "Menu", "line_index": 147, "text": "Відкрито доступ до мирного режиму!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Фоторежим"}
+{"category": "Menu", "line_index": 150, "text": "Фоторежим: Усі обмеження на політ знято, тому ви можете побачити те, чого не повинні."}
+{"category": "Menu", "line_index": 151, "text": "Вийти з фоторежиму"}
+{"category": "Menu", "line_index": 152, "text": "Приховати інтерфейс"}
+{"category": "Menu", "line_index": 153, "text": "Утримуйте для руху камери"}
+{"category": "Menu", "line_index": 154, "text": "Прискорити рух"}
+{"category": "Menu", "line_index": 155, "text": "Плавний рух"}
+{"category": "Menu", "line_index": 156, "text": "Швидкість"}
+{"category": "Menu", "line_index": 157, "text": "Ефекти"}
+{"category": "Menu", "line_index": 158, "text": "Керування часом"}
+{"category": "Menu", "line_index": 159, "text": "Яскравість"}
+{"category": "Menu", "line_index": 160, "text": "Контрастність"}
+{"category": "Menu", "line_index": 161, "text": "Віньєтка"}
+{"category": "Menu", "line_index": 162, "text": "Скріншот!"}
+{"category": "Menu", "line_index": 163, "text": "Відкрити папку зі скріншотами"}
+{"category": "Menu", "line_index": 164, "text": "Кут нахилу камери"}

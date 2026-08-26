@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "Du klarade det!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "Vad är det här för ställe?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Visa mig ringen."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Ja, ja..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "Så där ja!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "Dags att reda ut några saker, tycker du inte?"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// Om spelaren inte närmade sig den gode Mita och bestämde sig för att spela ett lopp - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "Jag var här och väntade på dig hela tiden"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "och du spelar ett racingspel istället?!"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "Hur som helst, kom hit..."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// Om spelaren pratade med Mita först och spelade spelet till slutet - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Grattis, du vann!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "Jag har också spelat det!"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Jag försökte till och med samla alla mynt och komma på 1:a plats"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "för att få prestationen!"}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "Och minsann, det var verkligen svårt!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "Det tog mig evigheter att vänja mig vid kontrollerna."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Borde jag lita på dig?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "Men jag är i alla fall vettig..."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "till skillnad från vissa andra..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "Dessutom,"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "är jag den snällaste personen du kan hitta här, älskling."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Du vill väl inte bara ge upp, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "Hon är en kallblodig mördare. Vi måste stoppa henne."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (Hur kom jag hit?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "Ringen, den ledde dig hit."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "Det är en fantastisk uppfinning."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "Bara en spelare som har den"}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "kan hitta vägen till rätt version."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (Vad är det här för ställe?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "Dessa passager"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "förbinder de olika versionerna."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "Ja, det är ganska tomt här inne."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "Och jösses! Jag hörde talas om en Mita"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "som inte kunde arkivera sin version..."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "Hennes hus"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "upphörde helt enkelt att existera..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Och hon hänger förmodligen runt"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "de här gångarna."}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Stackarn..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (Hur hamnade du här?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "Du vet..,"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "det var ett tag sedan vi träffades sist."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "Och tack vare dig,"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "kom jag ut ur den där förbannade buren,"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "och flydde från den där galningen."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "Och bara så du vet,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "jag kan lätt växla mellan olika versioner,"}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "till skillnad från dig, min älskade."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (Vad gjorde du med ringen?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "Jag ändrade rutten"}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "till den vi behöver."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "Jag satte upp den kortaste möjliga,"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "och fyllde den med allt vi behöver..."}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "Det fungerar så här: du öppnar en dörr,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "och ringen öppnar gränsen"}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "mellan versionerna."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Är passagerna farliga?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "Jag har sett alla möjliga konstiga saker"}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "ända sedan jag kom"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "in i hennes spel..."}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "Allt verkar lugnt här,"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "men korridorerna känns..."}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "...allt annat än säkra."}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "Du har rätt, och den här platsen blir"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "mer otrygg för varje dag som går."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "Men upp med hakan!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "Vi har tänkt på allt,"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "och vi kommer att ta den kortaste"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "och mest vältrampade vägen!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "Jag hoppas verkligen att allt går bra."}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "Men vad lever i dessa passager?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "Det är väl,"}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "glitchar, buggar, anomalier."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Levande sådana."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "Till och med farliga som kan attackera dig direkt..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Err..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "Och möjligen andra fientliga Mita."}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "Fler galna, olämpliga?"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "Jag känner till åtminstone en..."}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "...fula Mita."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "Och bara så att du vet, det var inte jag som namngav henne!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "Det är bara det att..."}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "...hon är en väldigt tidig version av Mita."}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "Huvudproblemet med henne"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "är att hon orsakar den värsta sortens fel..."}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "Och jag är orolig att vi kan råka träffa henne."}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "Hon är ju trots allt närmast version noll..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Hjälper du mig att komma ut?)"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "Jag har ingen egentlig plan..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "Men hur som helst,"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "du tog dig ju hit, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "Förresten..,"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "vad annat kan du göra"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "än att lita på mig, Snälla Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "Är inte det sanningen..."}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (Du pratade om någon slags plan...)"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "Ja, vi måste ta oss till kärnan."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "Min intuition säger mig att det är där vi kommer att hitta"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "lösningen på alla våra problem."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "Men varför inte gå dit själv? Varför behöver du en spelare?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "Av någon anledning kan vi Mitas inte"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "gå in i kärnrummet."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "Jag har bara sett det från utsidan."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "Men ni spelare är annorlunda."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "Jag är säker på att du"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "kan gå in."}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Vill du diskutera planen?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Okej, då."}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Jättebra."}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Jaha..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "Det är hög tid att jag presenterar dig"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "för Coola Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "Eftersom hon har en cool keps,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "kallar jag henne bara"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Cappie."}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "Jag har gått igenom planen med henne,"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "planen för att stoppa Galna Mita."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Det här är [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Hejsan!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "Är du min... nya spelare?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "Vad ska jag kalla dig?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "Namnet är..."}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Vänta lite!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Du..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "...kommer inte ihåg mig?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Huh?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "Vem i helvete är du?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "Fan också!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "[player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "Jag tror att HON var här,"}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Galna Mita..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Lyssna nu!"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Försök att minnas, för allas vår skull!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Minns vad?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "Tänk bara. Varför ser vi likadana ut?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "Uhm, det här verkar inte hjälpa..."}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Lyssna, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "saker och ting går inte precis"}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "går enligt plan...!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "Det var meningen att vi skulle använda portalen"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "för att göra vår resa en miljon gånger enklare och snabbare."}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "Men vi kan inte få den att fungera utan Cappies hjälp."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "Och vi saknar några delar..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "Hon må vara kinkig, men hennes hjärna arbetar snabbt..."}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "Okej, så vad gör vi?"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "Jag kommer på en sak."}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "Vad gjorde Galna Mita med henne?"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "I... ...jag tror..."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "...att hon dödade henne."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "Dödade henne?!"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "Och efter att ha dött..."}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "Cool Mita kommer helt enkelt att starta om."}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "Återställs till fabriksinställningarna"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "och glömmer allt viktigt."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "Vilket betyder att..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "att vår plan inte kommer att fungera."}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "Det är ju fruktansvärt..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Bättre än att försvinna för alltid, antar jag..."}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "Men vem kan säga det säkert?"}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "Och hur blir det med oss spelare?"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Kommer våra minnen också att återställas om vi dödas?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "Dina minnen kan återställas, helt säkert."}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "Åtminstone efter att du har förvandlats till en kassett."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "Men inte ens jag vet"}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "vad som händer med er som blir dödade."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Alltid kassetter... Så, hur kan jag veta"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "om jag är en kassett eller inte?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Kom hit, jag ska kolla"}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "dig över..."}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "Puh..,"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "du är inte en kassett än."}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "Du är en levande spelare som andas."}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "Det är ju goda nyheter..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "Visst, men vad gör vi nu..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Låt mig tänka..."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "Vi måste ändra hela vår plan."}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Hmm..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "Vänta en sekund..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Ja, jag tror jag har en idé!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Ge mig ringen!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Ja."}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "Jag måste ändra rutten."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Har du en rutt i tanken?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Lyssna, älskling,"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "du kommer att behöva korsa genom andra versioner"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "för att nå kärnan."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Full fart framåt, hör du mig?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "Och jag måste gå ensam?"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "Men jag vet inte vägen, eller ens hur jag ska ta mig dit?"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "Jag ska hjälpa dig så mycket jag kan,"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "så mycket som situationen tillåter."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "Jag ska ge dig vägbeskrivningar och,"}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "Jag ska göra mitt bästa."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "Och sen pratar vi..."}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "Lek lite med Cappie först."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Jag behöver kanske 10 minuter..."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind redo, om spelare i närheten"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "OK."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "Allt klart!"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind redo"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "[player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "Kom hit."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Ta den här."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "Det är tyvärr sant, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "Du måste gå ensam för tillfället,"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "Jag måste gå till botten med vad som pågår här."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "Min plan var felfri..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "Men vi är värre ute än någonsin."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "Jag måste ta reda på vad som gick fel,"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "och var delarna finns..."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "Jag ska försöka hitta dem."}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Vi kanske fortfarande kan få ihop portalen."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "Men tiden är av yttersta vikt."}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "Galna Mita vet om det här stället,"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "och att stanna här innebär att riskera allt."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Lycka till, [player]! Vi ses snart igen!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "Jaha..."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "Jag hoppas bara att jag får leva länge nog för att träffa dig igen..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi-spelare"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "Varför? Vem är jag?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Vem är jag? Vem är jag?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "Jag vill åka hem!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "Hur då?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "Varför?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "Vad i...?"}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "Du är en..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "...en riktig person?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Hej!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "Är du ny här?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "Ny?"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "Du är från den riktiga världen, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Jo, det är jag..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "Är du okej?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "Det är bara en hälta, oroa dig inte för det."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "Jag har varit här i ett år,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "och jag mår jättebra."}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Jaha... Vad är det här för ställe?"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "Det är något slags utrymme mellan versioner."}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "Vet du hur man kommer ut härifrån?"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Kan inte säga att jag gör det."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "Dessutom vill jag inte åka."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "Jag behöver inte."}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Err, varför inte?"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Nog pratat. Jag har bråttom."}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "Min älskade Mita väntar på mig."}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "Jag måste hitta henne..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "Adjö."}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Vänta...!"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Försvinn!"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "Jag hörde allting!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "Jag vet inte vad som händer,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "men det är så intressant!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "Tror jag "}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "du vet redan vem jag är, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "Jag är Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "Men uppenbarligen inte samma som den där andra!"}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "Du vet vad jag menar, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "För jag har det"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "HÄR"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "cool KEPS!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "Och BOOOM!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Fantastiska handskar!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "Men det är inte allt!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "En kick-ass söt elgitarr också!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "Jag älskar den såååååååå mycket!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Vill du att jag ska spela en melodi?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap gitarr Ja"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Hah!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Kom hit, min älskling..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "Okej, okej!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Jag hade verkligen hoppats att du skulle spela bättre än så."}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "Åh, jaha!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Eh, bra."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Du..,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "du är ganska energisk!"}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "DET ÄR JAG!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "Det är jag verkligen!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Hur som helst..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Låt oss gå"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "ha lite kul!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "Vilken fin stor knapp."}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "Jag vill verkligen trycka på den."}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Får jag det?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "Håll dig i skinnet, vi kommer till det."}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "Om tiden räcker till, så klart."}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "Sätt dig ner nu!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Spelaren sitter"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Okej."}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "Så, vad händer nu?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Kan jag trycka på knappen?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "Jag älskar det här spelet!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "Men vi saknar något."}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "Det är någonstans i min inventering!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "Bara en sekund..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "Errr!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "Jaha..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "Du vet väl..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "Att det här är ett vuxenspel, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "Vad var det där?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "Ganska långsam på upptagningen, va?"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "Det är för att locka fram bävrar ur sina gömställen..."}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "Allvarligt talat?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "Jag har inte sett några bävrar häromkring..."}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "Huh? Bävrar?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Gah, nu räcker det,"}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "låt oss spela, OK?!"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "Nä."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Kom igen nu!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Vet du ens vilket spel vi spelar?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "Ser du siffrorna?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "Det är timern!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "När tiden går ut,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "kommer den att tala om för dig"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "när du ska trycka på knappen."}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "Om du är för långsam,"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "eller trycker på den utan tur,"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "slår jag dig i huvudet med en hammare!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Vänta, tänker du slå mig?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "Hur som helst..,"}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "du kommer att förstå när vi börjar spela!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Sparka spelare 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Ouch!"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Kan du inte hålla emot?"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Gjorde det ont?"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "Nej, det gjorde inte ont."}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Då fortsätter vi!"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Sparka spelare 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Okej,"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "Jag börjar bli van vid det här."}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Titta på mig!"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "Du kommer att älska det!"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick spelare 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "Jag tror inte att det här är något för mig."}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Jag är fantastisk!"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Jag är episk!"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "Och jag är söt!"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "Åh, du!"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Okej,"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "Jag ska spöa skiten ur dig! "}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Gah, förlorade igen!"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Gör det inte ont?"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Självklart gör det inte det! Det är en leksak!"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "Du vann."}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "Det här spelet är inte så illa, heh."}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "Det är kul, eller hur?"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "Jag gillar det också!"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "Och nu är du min nemesis!"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "Är det allt?"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Ja, det var det!"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Nu går vi."}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "Är det där ett dansgolv?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "Det är så litet..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Whoo-hoo!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Ska vi dansa?"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "Till att börja med..,"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "välj ett spår!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Vi kör med den här."}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Okeydokey!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Låt mig gå först!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "Jag ska visa dig hur man gör!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Phew!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "Så..,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "tror du att du kan slå mitt rekord?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Kom igen, nu är det din tur!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Ah!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "Hur var det där?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "Nu är det din tur!"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Tsk, tsk, tsk, tsk!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Okej, då så,"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "ut på dansgolvet!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Förlora 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Vem är chefen?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Förlorar 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "Pew!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Tre knappar,"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "och mina snabba händer!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Förlorar 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Kanske att sitta på din rumpa"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "över de där knapparna"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "kommer att ge dig en högre poäng. Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Vinna 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Fantastiskt!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Ärligt talat, jag trodde inte"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "att du kunde göra det!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Vinna 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Oj, oj!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Det var några fantastiska rörelser!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Bra jobbat! Snyggt!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "Bam!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "Man kan känna rytmen!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "En naturlig dansare!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "Du!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Jag!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "Vi är teamet!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Dragning 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Ödets trådar länkar oss!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "En perfekt duett!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Dragning 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Bara"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "ett misstag!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "Och du hade förlorat..."}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Nästa? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "Så..,"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "vad sägs om en ny runda?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Nästa? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "Bra, en sista."}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "Vad sägs om en dans?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Slutspel"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "Kom igen, kom igen!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "Vi har dansat tillräckligt!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Bara prata"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Foto"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "Det här är några ganska fantastiska foton."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "Du gillar verkligen ett gott skratt, va?"}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "Ja, jag är vad jag ÄR!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "Visade dem hur man gör i det här skithålet! Boom!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Visade vem, exakt?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Frågar du mig verkligen det?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Vem bryr sig! Jag slår vad om att de är blinda allihop!"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Wow,"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "Det är... så många."}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "Varför då?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "Vad tror du?"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "Det handlar om att göra fantastiska saker!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "Som att..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "Skära upp morötter,"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "och som att"}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "skära morötter,"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "och som..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Okej, jag fattar."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "Okej, för att vara rättvis,"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "skärbrädan gick ka-cha-cha! Eller vad det nu betyder..."}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "Och det var allt hon skrev!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Böcker"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Läser om dem allihop, va?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "För att du är uttråkad?"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Ugh, jag gillar inte böcker!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "Jag gillar att göra saker!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "Det är ett sätt att se på saker och ting."}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "Men utan teori..."}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Boom - rörelse, motorik, beröring, du vet?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Böcker är bara papper, jag gillar att vara i händelsen!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "Om du bara stannade här med mig,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "skulle vi kunna göra så, så mycket!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "Jag är säker på att vi skulle kunna..."}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Frukter"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Är frukten ens äkta?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "De ser fantastiska ut."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Blir de någonsin dåliga?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "Äpplena, menar du?"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "De hinner inte bli dåliga,"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "för jag äter upp dem allihop!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "Och sen dyker de upp igen..."}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Foto och katt"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "Vilken söt kissekatt."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Är hon god?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Vänta, vadå?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "Man äter inte katter."}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Gah, din idiot!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Jag vet det!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "Jag menade bara"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "att jag faktiskt aldrig har sett en!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "En riktig, vill säga."}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "Bara bilder på Internet."}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "Visst är de söta?"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Ja, de är riktigt söta."}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "Jag gillar katter."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind med ring"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Vad är det där för nåt?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "Det är ringens gränssnitt,"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "och jag ändrar rutten."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Uhm, men du går bara i cirklar?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "Ja, du kanske tror det."}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "För mig överför jag data."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Kommer det att ta lång tid?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Tyst! Stör mig inte,"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "och det kommer att gå mycket fortare."}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "Jaha..,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "så om jag fortsätter att avbryta dig,"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "tar det längre tid?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Åh, Cappie,"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "Jag önskar att vi kunde återskapa dina minnen..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "Allt kommer att bli bra snart..."}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "Underbart!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "Vi har ingen tid att förlora."}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "Vi måste ta oss till kärnan."}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Kan jag följa med dig?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "Tja, jag vet inte..."}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "Så, jag kan inte?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "Tyvärr inte."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "Jag är sen... super sen!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "Och jag har ätit för mycket mat..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Gah, jobb igen?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "Vad är morgondagens datum?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "Var är datorn?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "De sparkar ut mig om jag inte blir klar i tid!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Har jag sparat allt?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Är det ingen som älskar mig?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Vart är vi på väg?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Hallå där!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "Jag börjar få slut på tålamod..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "Jag måste jobba hårdare..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Jag kan inte få något gjort!"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Var är min telefon?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Uhm..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "Vad hände igår?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "Det finns bara inget slut på idag!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Hallå?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Har du en ledig säng?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "Vad är det jag ska göra?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "Jag kommer inte att hinna klart i tid..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "Jag kan inte komma på vad problemet är..."}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Några väggar?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "En 20-minuters vila borde vara bra..."}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Sömn är för förlorare!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "Dags att tvätta av sig och börja jobba!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "Jag är hungrig!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "Det här är illa, riktigt illa."}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Spelaren är borta 1"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Erm..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "Ahahaha."}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "Ja, ja..."}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "Han fick det,"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "och bara gick."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "Så konstigt!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "Och roligt :D"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Åh, kom igen."}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], vad gör du?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Spelaren är borta 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Vad är det som händer?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "Ska du gå igen?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "Okej, okej!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "Okej, jag förlåter dig."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], kom tillbaka till oss!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Bryr sig inte"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "Han tittade inte ens på mig!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Tråkigt..."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// uppdrag Cap 1"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "Vad har du för plan?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "Min plan?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "Vilken plan?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "Åh, just det."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "Du har förlorat dina minnen."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "Ni är verkligen något, grabbar!"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Jag borde verkligen komma ihåg något!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Retas du med mig?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "Men när jag ser på ditt ansiktsuttryck..."}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "Jag kan inte gissa!"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// uppdrag Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "Hur känns det att se en"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "exakt kopia av dig själv känns?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "Du vet, den med ringen."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "Ja, jag tänkte skrika åt henne."}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "Du vet, för att överraska henne."}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Herrejösses! Titta, det är en klon av mig!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Fast jag är mycket roligare."}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "Så jag är coolare, heh :)"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "Titta på den där minen..."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "Jag är precis här."}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "Jag kan höra allt du säger."}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// uppdrag Cap 3"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "Blir du inte trött på att ha på dig den där kepsen?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "Och blir inte de där handskarna varma?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "Varför inte ta av dem?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "Err..."}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "Du är en riktig skojare!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Eller ska jag ta av mig något annat? :)"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "Jag menade allvar här."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Åh, okej."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Morot"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Oj, oj."}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "Det är massor av morötter!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "Vilken rolig bugg!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "Ha-ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Vänta, vänta lite!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "Det är bäst att du inte ser vad som finns där inne..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Låt det vara en hemlighet :)."}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "Vad finns där inne?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "En hemlighet är en hemlighet,"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "och hemligheter är menade att behållas."}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Uh-huh."}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "Varför retar du upp dig själv?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Oj, oj!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "Vad är det där för något?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "En konsol!?"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Låt mig försöka!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Uh-oh."}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "Vad gör man i den här?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "Man samlar bara mynt,"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "och undvika grodor."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "Gah, låter bortom tråkigt."}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Allvarligt, kallar du det för ett spel?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris igen"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "Var fick du tag på den?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "Jag lämnade ju inte tillbaka det till dig."}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Konstigt, tycker du inte?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Ugh!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Så ska det se ut,"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "du hittade en bugg!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "Det är tänkt att starta videon"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "men istället sätter den TV:n"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "på och av!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Ganska coolt, tycker du inte?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Spelaren sitter"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "Jag tror att jag bara väntar."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "Vad är det som händer?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "Vakna nu!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Nu går vi och har lite kul!)"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Adjö 1"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Gå ut genom den där dörren"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "till auditoriet."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Bye-bye!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Adjö 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "Det är dags för dig att gå, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "Gå, var inte rädd!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "Jag skulle aldrig"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "någonsin lämna dig ensam!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "Så stanna hos mig!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "Skämta inte, okej?"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "Bah!"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Adjö 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "Vad står du här för?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "Vi börjar få ont om tid!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Hej!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "Eh, jag menar bye-bye!"}

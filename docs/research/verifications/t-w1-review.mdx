@@ -1,0 +1,9 @@
+# T-W1 review — run_all AC test suite (2026-08-24)
+Run: default tier vs landed driver — **66 passed / 0 failed / 4 skipped (install)** in 304 s; matches COVERAGE.mdx's status block exactly, so no failure classification needed. All 16 ACs map to real executable checks; no phantom rows beyond the two count typos below. Spec-targeting clean: zero imports of `pipeline.*` internals across every test file — CLI/artifact/stub-side-channel language only, blind protocol held. Fixture purity held: builders+templates+stubs are fully synthetic; `A:\` appears only as a gated `is_dir()` stat (conftest.py:46,68) and inside the triple-gated install module. Gating correct (env flag AND root presence AND `-m install`; default skip is collection-cheap); integration also self-skips <10 GiB, mirroring AC-14. Checks would genuinely fail a wrong implementation for AC-1…5/7…11/13…16; weak spots:
+1. MED test_census_reconcile.py:88-95 — AC-12 residue needles substring-loose: `"gi"` matches "logic", `"get"` matches "budget"; a PROOF.md omitting the GI and unlock-state residue entries still passes.
+2. MED test_detect_stage.py:38-48 — digit-containment: tiny fixture counts (6 containers/3 streams/3 locales) match nearly any digit in detect.json; only the byte totals discriminate — assert structured fields or drop the small ones.
+3. LOW COVERAGE.mdx:35,:42 — phantom counts: `test_il2cpp_stage.py` has 4 tests not "×5"; `test_census_reconcile.py` has 7 not "×8".
+4. LOW test_install_smoke.py:56-69 — duplicate `real_run` fixture definition; the second silently shadows the first (dead code).
+5. LOW test_harvest_stage.py:101-103 — argv-sha assertion is vacuous via `or len(flat0) > 40`; require an actual sha-shaped key.
+6. LOW conftest.py:507-509 — idempotency path-token fallback wholly exempts any file whose relpath contains any volatile token; keep registry entries path-specific so this stays narrow.
+VERDICT: APPROVE

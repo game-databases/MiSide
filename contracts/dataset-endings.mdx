@@ -1,0 +1,135 @@
+# Contract — dataset: endings & choice trees
+
+| | |
+|---|---|
+| Piece | **B-2 build** (Dataset Builder brief, endings half) |
+| Spec authority | [dataset-achievements-endings.mdx](../docs/specs/dataset-achievements-endings.mdx) Part B (arbiter APPROVED, [ds123-arbiter](../docs/research/verifications/ds123-arbiter.mdx)) |
+| Artifacts | `extracted/data/endings/{endings,choice_nodes,branch_edges,flag_tables}.jsonl` + relink + ledger |
+| Build pin | buildId **19029065** (`VERSION 0.93L`) on every row |
+| Emit model | deterministic full rewrite; byte-identical across reruns (verified) |
+
+## Files
+
+| File | Rows | Content |
+|---|---:|---|
+| `endings.jsonl` | 4 | 3 ending anchors + `peaceful` mode-stub (COMP J11) |
+| `choice_nodes.jsonl` | 371 | 13 DialogueChanger + 353 pure wired ObjectInteractive + 5 Events_IntMemory |
+| `branch_edges.jsonl` | 1555 | every PersistentCall of those nodes — the graph the ending explorer renders |
+| `flag_tables.jsonl` | 5 | Events_IntMemory instances as data |
+| `relink-ending-branch-edge.jsonl` | 0 | launch-member index; empty this build (see feeds rule) |
+| `emit-ledger.jsonl` | 6 | MenuEnding disambiguation, choice exclusions, OI histogram, safe instances, feeds rule, dead references |
+
+## Censuses pinned at emit time (AC-B2 / AC-B7)
+
+- Pure `ObjectInteractive`: **353**, all wired (zero unwired exist). Call-count
+  histogram in the ledger.
+- Excluded siblings that compose the false **391**: `ObjectInteractive_CaseInfo`
+  ×58 (excluded on class identity), `ObjectInteractiveReqIK` ×26,
+  `ObjectInteractiveItemTake` ×11, `ObjectInteractiveGroup` ×1 (= 38).
+- `DialogueChanger` ×13 · `Events_IntMemory` ×5 · `Events_Data` ×379 (router
+  siblings are NOT choice nodes).
+- `MenuEnding`: exactly **1** real component (`level2/MenuEnding_#2903.txt`,
+  GameObject pathID 515, `textSafeDoor` →3492) vs **45** same-base-name
+  TimelineAssets excluded; full filename census 46. Type census over filename
+  census is mandatory — the name lies.
+
+## `endings.jsonl` row schema
+
+| Field | Type | Source | Null? | Notes |
+|---|---|---|---|---|
+| `ending_id` | string | curation slug = kebab-case EN loc title | never | `conditions-met`, `safe-of-life`, `is-this-the-end`; stub row keyed `"peaceful"` |
+| `kind` | enum | emit | never | `ending` \| `mode-stub` |
+| `display_name_loc` | {category, line_index} | loc cite grammar | never | endings share their achievement title; stub uses `Menu#line_index=130` |
+| `achievement_id` | string/null | Part A join | null only on stub | both directions with `joins.ending_id` |
+| `mode_unlocked` | {mode_id, state, evidence[]}/null | Menu loc + dump.cs statics | null except conditions-met + stub | `state:"locked-stub"` per COMP J11 |
+| `windows[]` | array | serialized Basement_Safe instances | `[]` allowed | percentages appear ONLY inside `chapter_attribution` marked `[community]`, `status:"unverified-behavior"` (AC-B6) |
+| `conditions[]` | array | decompiled structure + community attribution | `[]` allowed | kinds: `component-tracked` (proven-structure), `password-compare` (literal proven-structure, logic unverified-behavior), `aggregate` (community) |
+| `award_chain[]` | [{level, file, host_object_path_id, calls[]}] | ordered serialized PersistentCalls | `[]` when none serialized | calls carry target type/assembly/method/pathID + full ArgumentCache |
+| `award_chain_status` | enum/null | taxonomy | null only on stub | `proven-hard` \| `unverified-behavior` |
+| `evidence[]` | cite[] | three-grammar cites (B.3) | never empty | lint-verified on disk |
+| `notes_community` | null/string | wiki gloss | always null this pass | free text allowed ONLY here and in `attribution` fields |
+
+### Row placement ruling
+
+The spec's illustrative `conditions-met` row showed `windows[]` inline. This
+emit places the safe-access windows on **`safe-of-life`** instead: the windows
+are Basement_Safe gates and the spec itself states ACHI_safelife's award lives
+in the safe-chain native bodies. No AC pins window placement to a row
+(AC-B6 constrains only marking/status). Logged as a deliberate placement
+correction.
+
+## `choice_nodes.jsonl` row schema
+
+| Field | Type | Source | Null? | Notes |
+|---|---|---|---|---|
+| `node_id` | string | emit grammar `{container}:{Type}[:{own_pathID}]` | never | numeric part present iff the dump filename carries `_#N` (the component's own pathID); unsuffixed unique-per-container instances use bare `{container}:{Type}`; id set asserted unique and rerun-stable |
+| `kind` | enum | type-aware classification (m_Script pathID vote map per container, cross-checked against content signature) | never | `dialogue-changer` \| `object-interactive` \| `event-memory` |
+| `container` / `object_path_id` / `go_path_id` | string/int/int | dump | pathID nullable (unsuffixed dumps) | container is the scene key for levelN joins |
+| `prompt_loc` | {category, lines[]}/null | DC `fileQuest` + per-case `stringFile` | null for non-DC | category may be `""` (level16 serializes an empty fileQuest — kept as data) |
+| `options[]` | array/null | DC cases | non-null only for DC | `label_line` = case `stringFile`; modifiers incl. `isClose` (serialized in dumps, absent from the spec's illustrative shape) |
+| `event_field` | enum/null | class shape | never | `eventClick` \| `_memory` |
+| `call_count` / `active` / `int_memory_default` / `branch_if_ints` | mixed | dump | nullable by kind | `branch_if_ints` preserves duplicates in order (level5 has two `ifInt=0` branches — real serialized shape) |
+| `evidence[]` | cite[] | mb-dump paths | never | one resolvable dump cite each |
+
+## `branch_edges.jsonl` row schema
+
+| Field | Type | Source | Null? | Notes |
+|---|---|---|---|---|
+| `edge_id` | string | emit grammar | never, unique (asserted) | DC: `{level}:DC{pid}:opt{i}:call{j}` · IM: `{node}:b{ordinal}:if{v}:call{j}` (branch ordinal disambiguates duplicate `if_int`) · OI: `{node}:call{j}` |
+| `from_node` / `from_option` / `branch_if_int` / `call_index` | mixed | parent node + call position | option/if-int null outside DC/IM | |
+| `target.{type,method}` | string | PersistentCall | never | AC-B3: live Assembly-CSharp targets all resolve against `decompiled/main/**` classes |
+| `target.object_path_id` | int | m_Target PPtr | never | **0 = serialized-null (dead reference)** — 3 such rows corpus-wide, ledgered; includes `CoreSkip.StopWait`, whose type exists nowhere in il2cpp metadata (stale name on a destroyed-target call) |
+| `target.assembly` | string | assembly-qualified type name | never | `Assembly-CSharp` \| `UnityEngine` etc. |
+| `args` | {string,int,float,bool,object_path_id} | ArgumentCache | value-level null where unset | booleans emitted as JSON booleans |
+| `effect_class` | enum | deterministic annotation table (kept apart from the cite, B.3) | never | `flag-query`(8) · `flag-set`(10) · `scene-flow`(709) · `audiovisual`(356) · `cosmetic`(468) · `award`(1) · `dead-reference`(3). Rules: Achievement_* → award; IntMemory Check* → flag-query; IntMemory Set/Add/Remove*, Events_Data EV/NewEvent → flag-set; audio types + ParticleSystem → audiovisual; explicit scene-state pair list + Event_/Location*/IK_/Mob_ families → scene-flow; remainder cosmetic; zero-target rows dead-reference |
+| `feeds_ending` | string/null | direct-edge rule | mostly null | rule: set iff the edge's TARGET pathID equals an award-chain host component's own pathID in the same container. Measured answer this build: **0 edges** — nothing anywhere in level6/level18 (or elsewhere) targets #6042/#1041 via UnityEvent; their triggers ride native bodies (#6042 carries `onStartZeroIndex=True`) — trigger context therefore `unverified-behavior`. Index file stays as the launch member with its emptiness as data |
+| `status` | enum | taxonomy | never | `proven-hard` everywhere — edge truth IS the serialized PersistentCall |
+
+## `flag_tables.jsonl`
+
+Five Events_IntMemory rows: `node_id`, `int_memory_default`,
+`branches[{branch_ordinal, if_int, calls}]`, `evidence`. Level4 main instance =
+4 branches with call counts **2/2/2/4**; sibling `#3327` = 1 branch
+(`ifInt=3` → 7 calls) — matches AC-B5 exactly. Level5's twin zero-keys are
+preserved, not deduped.
+
+## Grounding rules enforced
+
+1. Loc rows cited only as `<file>.jsonl#line_index=<n>` — never bare-colon
+   (B.3 trap: `Menu.jsonl:130` binds record 129). Lint asserts.
+2. Numeric constants (17%/98%, password compare, condition ordering) remain
+   `unverified-behavior` unless a native pass proves them.
+3. Chapter numbers never enter data fields — `[community]` labels only.
+4. Free text confined to `attribution`/`*_community` fields; lore prose is
+   structurally impossible inside `evidence[]` (cite grammar).
+
+## Acceptance criteria scoreboard (this build)
+
+| AC | Result | Evidence |
+|---|---|---|
+| AC-B1 ending closure + peaceful stub | PASS | 3 anchored rows + stub citing `Menu.jsonl#line_index=130` + `dump.cs:206984` |
+| AC-B2 choice sweep 13/353/5 + exclusions + byte-stable id set | PASS | full 51-container sweep; reruns sha256-identical |
+| AC-B3 target resolution | PASS | all live Assembly-CSharp targets resolve; 3 dead refs ledgered |
+| AC-B4 cite-only evidence | PASS | 413/413 cites resolve on disk |
+| AC-B5 flag tables complete | PASS | level4 main 2/2/2/4 verified |
+| AC-B6 window honesty + `'4970'` cite | PASS | percentages only under `[community]` attribution; literal at `stringliteral.json:14923` |
+| AC-B7 MenuEnding disambiguation | PASS | 1 real vs 45 TimelineAssets excluded, counts pinned in ledger |
+| AC-B8 award-chain fidelity | PASS | conditions-met == ordered 9 calls ending `AchievementGet("ACHI_none")`; safelife empty chain + `unverified-behavior` |
+
+## Deviations from the illustrative spec shapes (deliberate)
+
+1. Output family `extracted/data/endings/` (orchestrator brief; arbiter
+   residue (a)).
+2. Choice-node emit follows AC-B2's pinned sweep (all 371 nodes), not B.7's
+   smaller stub sketch; award-chain hosts stay out of the node set (they are
+   not DC/OI/IM kinds) and live on `endings.award_chain`.
+3. `windows[]` moved to `safe-of-life` (placement ruling above).
+4. Edge-id grammar adds a branch ordinal (`b{n}`) because real data contains
+   duplicate `if_int` keys within one instance.
+5. `effect_class` enum gains `dead-reference` for serialized-null targets;
+   everything else maps into the spec's six labels via the documented
+   deterministic table.
+6. `is-this-the-end.award_chain` pins the award mid-chain (call index 4 of
+   13), not last — the ordered list is stored verbatim either way.
+
+<!-- END OF contracts/dataset-endings.mdx -->

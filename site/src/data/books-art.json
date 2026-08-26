@@ -1,0 +1,334 @@
+{
+ "Arabic": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Arabic (Egyptian)": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Belarusian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Bulgarian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "ChineseSimplified": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4"
+ ],
+ "ChineseTraditional": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4"
+ ],
+ "Croatian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Czech": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "English": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Filipino": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "French": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "German": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Hungarian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Indonesia": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Italian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Japanese": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Kazakh": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Korean": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Persian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Polish": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Portugues Portugal": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Português-Brasil": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Pre-revolutionaryRussian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Romanian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Russian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Serbian (Latin)": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Slovak": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Spanish (LatinAmerica)": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Spanish (Spain)": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Swedish": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Thai": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Turkish": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Ukrainian": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ],
+ "Vietnamese": [
+  "books-0",
+  "books-1",
+  "books-2",
+  "books-4",
+  "book-1",
+  "book-2",
+  "book-3",
+  "book-4"
+ ]
+}

@@ -1,0 +1,128 @@
+# P1 spec arbiter ruling — `pipeline-run_all.mdx` (brief A-P1)
+
+Arbitrated 2026-08-24. Case file read in full, in order: AGENTS.md,
+extraction-doctrine.md, spec under judgment (639 lines, read to end),
+p1-spec-review.mdx, F-P1.log, questions.md §4–§8. Ground-truth spot-checks
+beyond the brief: pack `.gitignore`, data-acquisition.md, README.md
+(pack `spec.md` does not exist yet — README confirms "draft pending").
+Every claimed fix was checked against the spec text itself, not the
+fixer's log.
+
+## Dispositions — the four majors
+
+- **F-1 (git-tracking reversal) — CONFIRMED, FIX VERIFIED.** The reviewer's
+  factual base checks out independently: pack `.gitignore` guards
+  `extracted/{harvest,decompiled,art,media}/` and `extracted/il2cpp/`
+  appears nowhere. Current AC-15 restates the [questions.md](../../../questions.md) §8
+  split verbatim (five local-only subtrees; LOG/PROOF/MEDIA-CATALOGUE/
+  census summaries/localization commit normally), §9.5 is now a RULED
+  conformance record, the `.gitignore` append is a manifest task, and the
+  ambiguous "census bulk rows" clause is gone. Conforms.
+- **F-2 (decompiler hedge) — CONFIRMED, FIX VERIFIED.** S7, the risk table,
+  §9.1, and the §8 verify item now pin ILSpy CLI (`ilspycmd`) everywhere;
+  dnSpyEx appears only as interactive-only spot-check tooling outside
+  `run_all`. The honest `[unverified]` marker on the exact invocation form
+  survives, correctly — that is reality-anchoring, not hedging.
+- **F-3 (texture-scope re-litigation) — CONFIRMED, FIX VERIFIED.** §9.3 is
+  gone; S6 encodes the staged mechanism (catalogue walk first → per-family
+  export scope derived per toolchain.md §5 → recorded in EXTRACTION-LOG.md,
+  no owner round-trip) and AC-10 checks the record exists. Matches §6
+  A→STAGED exactly.
+- **F-4 (unimplementable idempotency) — CONFIRMED, FIX PARTIALLY VERIFIED.**
+  The volatile-fields mechanism is real and well-placed (§3 defines
+  `census/volatile-fields.json`; AC-4/AC-5 compare modulo it; the AC-5
+  EXTRACTION-LOG dedupe clause is the minimal addition that makes option A
+  coherent). But the same defect class survives on an artifact this fix
+  round itself named — see N-1 below. Not the reviewer's error: their fix
+  menu resolved wall-times/run-metadata; the append-ledger tension predates
+  the round and became checkable once AC-5 got teeth.
+
+## Dispositions — minors F-5..F-14
+
+All ten CONFIRMED as filed and VERIFIED landed: F-5 both skew halves in
+AC-9 with JA-20/EN-26 spot-check · F-6 Voice Editor `*_Data` PROOF row in
+AC-12 · F-7 `census/sweep-attempts.jsonl` + `census/stage-reports/<stage>.json`
+named in tree/S4/S8/AC-8/AC-11/AC-12 · F-8 concrete ≥250k band with >5%
+warn-not-fail and every-present-locale AC-9 phrasing · F-9 guard re-fires
+pre-S4-sweep/S6/S7 + AC-14 · F-10 child cwd pinned to tool dir (S3 + notes
++ common.py) · F-11 `[unverified]` + §8 verify item + AC-8 accepts either
+mechanism · F-12 exit 2/4 + stale-log abort in AC-2/AC-3 and the unit-test
+list · F-13 hex-encoded bad bytes, parse continues, non-zero at stage end ·
+F-14 `.ps1` gone, two shims, AC-16 rewritten to match.
+
+**Reviewer hole-hunt result:** none of the 14 findings was wrong,
+overstated, or churn-inducing. Each traced to a binding source (§4–§8
+rulings, E1 evidence, doctrine) and each demanded change is present in the
+current text. No existing-text wins found.
+
+## Over-engineering check
+
+Nothing beyond the findings was added. The AC-5 record-dedupe clause is the
+one extension and it is load-bearing for F-4's chosen option. F-14's cut
+was taken as offered. Remaining cut candidates: **none**.
+
+## New findings
+
+### N-1 · MAJOR (blocker) — `sweep-attempts.jsonl` "append" contradicts AC-5
+
+**Evidence:** S4's failure policy says each attempt "**appends** to
+`extracted/census/sweep-attempts.jsonl`" (`pipeline-run_all.mdx:196-198`);
+AC-5 says running any stage twice consecutively changes **no byte** under
+`extracted/` beyond mtimes, volatile fields, and the deduped
+EXTRACTION-LOG (`:446-452`). Rerunning S4 appends ~51 duplicate rows — a
+byte change that is none of those. Volatile-field exemption cannot absorb
+it: timestamps/durations/host-names are *values*, and these are *whole new
+records*; a harness that dropped them would be doing exactly the silent
+narrowing F-4 outlawed. A TestWriter handed `test_idempotency.py` writes a
+test that can never pass. Secondary exposure: AC-12 reconciles
+attempted-vs-succeeded **from this ledger**, which double-counts under
+accumulation unless reconciliation is defined over latest-attempt-per-
+container. This is precisely the F-4 class on the artifact F-7 introduced;
+the two sections cannot both be implemented as written.
+
+**Fix (one decision, two sentences):** define the ledger write mode in S4 —
+either (a) upsert keyed by `(container, argv-sha)` keeping the latest
+attempt plus cumulative counters, or (b) deterministic full rewrite per
+stage invocation — and align AC-8/AC-12 wording to it. State in the same
+breath that ledger-style artifacts (`_ledger/locale-delta.jsonl`,
+stage reports) are likewise rewritten, never appended, so idempotency holds
+by construction. No other section moves.
+
+## Non-blocking notes (do NOT loop for these)
+
+- `--expect-drift` (S2) and `--keep-going` (S4/S7) exist in stage bodies but
+  not in §3's CLI sketch or the `run_all.py` manifest line; AC-2's "all
+  flags" help covers them implicitly. One-line polish at build time.
+- `census/volatile-fields.json` is not enumerated in AC-15's committed set
+  (its "census summaries" list names four paths). Cosmetic; either way is
+  harmless for a three-line file.
+- Recommendation: `volatile-fields.json` should carry concrete JSON key
+  paths (e.g. `detect.measuredAt`, `sweep-budget.*.wallSeconds`), not
+  category labels, so the modulo-comparison harness consumes
+  machine-readable selectors — keeps AC-4/AC-5 guess-free.
+- Deliberately **not** flagged: AC-6/AC-10 hard-code E1 totals while AC-9
+  got a drift clause. That asymmetry is coherent — the totals pin audited
+  buildId 19029065 for the gated Install-tier run, S2's `--expect-drift` is
+  the patch-day valve, and §8's stage-wins rule handles disagreement.
+
+## Doctrine conformance sweep
+
+[DR-2026-08-18-pipeline] boundaries all present (single entrypoint,
+`--list/--help`, isolated + idempotent stages, LOG-as-defaults with
+stale-pin defense, entrypoint inside the commit unit). [DR-2026-08-17-relink]
+correctly fenced to later pieces with identifier preservation (PPtr
+pathIDs, `lineTranslate`, `steamAchievement`) mandated now. Principle-two
+seeding complete: four sections, method-per-number, derive-don't-copy rule.
+Media carve-out honored — no audio/video bytes under `extracted/`, textures
+catalogue-first with staged flip. Install never mutated ([questions.md §5]):
+encoded in S6's offload boundary, AC-14, and the test tier that forbids
+writes to `A:`. Protocol placeholder honestly seeded per non-goals.
+
+## Build-readiness
+
+A CodeWriter can implement S1–S8 without guessing except the single N-1
+write-mode decision. A TestWriter can turn AC-1..AC-16 into executable
+checks except AC-5-vs-S4, which is currently unsatisfiable. Both resolve
+with N-1 alone.
+
+RULING: FIX_LOOP — N-1 (define `sweep-attempts.jsonl` write mode — upsert by `(container, argv-sha)` or deterministic rewrite — in S4, aligned with AC-8/AC-12, ledger-style artifacts rewritten never appended)

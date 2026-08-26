@@ -1,0 +1,8 @@
+# B-5 verification — verifier B (spec-conformance lens)
+
+1. Schema ✓ — 14/166/8 rows exact; row0 `mta`@level17#13630, split 11/2/1 at {6,9}/{13}, `chapter` null ×14; R1 stub clean corpus-wide (longest emitted string 32 chars — zero invented prose); zh book cells derive from disk and match the relocated D: tree byte-truth. Nit (non-blocking): header line is a flat object, not the `{"_meta": …}` wrapper the contract text and B-1/B-4 convention use.
+2. Fence ✓ — build-log handoff records the §1.2 consume-by-reference citation to DS-4 §1/AC-2 + §9 stage-ordering-after-DS-4, same-commit, verbatim; placement is by reference only (header names `ds4-emission:` authority; 11 pairs reconcile multiset-equal against `cartridges.jsonl` on disk).
+3. zh finding ✓ — shipped as data (`ChineseSimplified/Hant` false on the 4 Location19 pages) + README divergence 1; measured, never patched over.
+4. Contracts standalone ✓; exactly **792** relink edges, all `{from,to,mechanism,method,status,kind,call}`, every file fwd+inv closed; samples resolve both directions into personages slugs, `ACHI_mitastory`, scenes registry (0 targets outside), Assembly-CSharp `.cs` types, `level13#19195` BlackRoom, `Takemagnetfridge`; 952/952 loc-pointer cells resolve ×34 locales.
+
+VERDICT: PASS

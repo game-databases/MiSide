@@ -1,0 +1,106 @@
+{
+  "schema": "miside.sweep-budget/1",
+  "probe_container": "level1",
+  "probe_bytes": 32796,
+  "probe_status": "ok",
+  "objects_dumped": 1543,
+  "type_mix_top": [
+    {
+      "type": "BoneClothData_Tit",
+      "count": 12
+    },
+    {
+      "type": "BoneClothMeshData_Tit",
+      "count": 12
+    },
+    {
+      "type": "SelectionData_Tit",
+      "count": 6
+    },
+    {
+      "type": "BoneClothData_ClothWire",
+      "count": 5
+    },
+    {
+      "type": "BoneClothData_Tail",
+      "count": 5
+    },
+    {
+      "type": "BoneClothMeshData_ClothWire",
+      "count": 5
+    },
+    {
+      "type": "BoneClothMeshData_Tail",
+      "count": 5
+    },
+    {
+      "type": "SelectionData_ClothWire",
+      "count": 5
+    },
+    {
+      "type": "SelectionData_Tail",
+      "count": 5
+    },
+    {
+      "type": "BoneClothData_HairSide1",
+      "count": 4
+    }
+  ],
+  "probe_wall_time_s": 3.313,
+  "measured_at": "2026-08-24T21:30:43+00:00",
+  "asset_list_mechanism": "cli-combined",
+  "assetstudiomodcli_version": "0.19.0.1",
+  "sweep_order": [
+    "globalgamemanagers",
+    "globalgamemanagers.assets",
+    "resources.assets",
+    "sharedassets0.assets",
+    "sharedassets1.assets",
+    "sharedassets2.assets",
+    "sharedassets3.assets",
+    "sharedassets4.assets",
+    "sharedassets5.assets",
+    "sharedassets6.assets",
+    "sharedassets7.assets",
+    "sharedassets8.assets",
+    "sharedassets9.assets",
+    "sharedassets10.assets",
+    "sharedassets11.assets",
+    "sharedassets12.assets",
+    "sharedassets13.assets",
+    "sharedassets14.assets",
+    "sharedassets15.assets",
+    "sharedassets16.assets",
+    "sharedassets17.assets",
+    "sharedassets18.assets",
+    "sharedassets19.assets",
+    "sharedassets20.assets",
+    "sharedassets21.assets",
+    "sharedassets22.assets",
+    "sharedassets23.assets",
+    "level0",
+    "level1",
+    "level2",
+    "level3",
+    "level4",
+    "level5",
+    "level6",
+    "level7",
+    "level8",
+    "level9",
+    "level10",
+    "level11",
+    "level12",
+    "level13",
+    "level14",
+    "level15",
+    "level16",
+    "level17",
+    "level18",
+    "level19",
+    "level20",
+    "level21",
+    "level22",
+    "level23"
+  ]
+}

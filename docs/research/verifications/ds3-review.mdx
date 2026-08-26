@@ -1,0 +1,13 @@
+# DS-3 review — dataset-dialogue.mdx · verifier recount vs `extracted/` (2026-08-25)
+
+Reproduced exactly: 2,710 `Dialogue_3DText` (ASL + MB dumps); 2,162 next / 548 terminal / 662 eventFinish; all 14 theme counts (enum order = DEC `Dialogue_3DText.cs`); census 13 changers/70 cases, L14=11@level16, L18=11@level20, Mob=24, MitaEvent=16, Audio=58, UIText=1,780, Events_Data=279 (levels-scoped); 151,163 records; EN 4,446 + 328 comments + 29 `[player]`; Names=47; LD7 parity EN/RU/JA/FR/DE = 837 each; 647 JSONLs, FR-only LD16 0 B in LOC and RAW; 7 ledgered LD12 residue rows joinable by id.
+§2.4 supersession is documented and justified, not silent — E1's table says 14, v-e1b remeasured "24 raw / 16"; I reran all four §2.4 derivations: raw \*Dialogue\* txts EN 19 / FR 20 ✓, dialog-named decompiled files 23 (minus Steamworks) ✓, `class Dialogue*` in il2cpp/dump.cs = 7 ✓, non-Location EN categories = 13 ✓.
+§9.3 defers exactly the 5 ambiguous theme→slug rulings (MitaKnow/MitaFon/White/Creepy/MitaDream) with §6 curated-stub + D6 `null:"pending-curation"` — properly DEFERRED, not guessed. ACs D1–D9 are checkable and discriminating; D5 dangling-edge ledger present; D7 reconciles to the verified 328.
+
+Blocking findings:
+1. **[MED] §3.6 evidence misframed:** single-carrier max==count fails level3 (91<LD1 143), level16 (207<LD14 217), level20 (216<LD18 259), and levels 16/17/19/20 are absent from the list. Equality holds only as a UNION of carriers on those levels — verified: Tamagotchi_Mob→143, Location14_Dialogue indexFile→217, Location18_Dialogue index→259. The N−2 rule itself SURVIVES this harder test; restate the evidence as union-of-carriers and list all span levels.
+2. **[MED] Off-by-one unstated at the core join:** game `indexString` spans 1..N (min observed 2; max==N across 16+ levels; identity mapping drops live nodes onto `""` rows) while loc JSONL `line_index` spans 0..N−1 (LD3 idx0=""). State `line_index = indexString − 1` explicitly in §3.2/§3.6/D2, or every text_ref risks a systematic one-line shift with only boundary nodes tripping D2.
+
+Non-blocking [LOW]: §2.1 blanks measure 1,101, not ~2,017, and 4,446−328−2,017≠3,345 ("non-empty" holds only counting comments as non-blank). [LOW] cc@line_index-58 applies to 6/7 residue rows — Serbian (Latin)'s row has no cc segment (13-segment whole-file cp1250 recovery). [LOW] sharedassets add +1,575 UIText/+100 Events_Data outside the levels-scoped census; Events_Data is an edge-target kind, so note it lest D5 dangling rows get misread as data loss.
+
+VERDICT: NEEDS_REVISION — 2

@@ -1,0 +1,7 @@
+# DS-5 dataset-documents — Reviewer pass A (evidence lens), 2026-08-25
+
+1. **Profile recount** ✓ — 21 FlashTaker dumps measured; split exactly 11 Mita-side (`mta`,`mtashh`,`mtakd`,`mtacap`,`mtal`,`mtad`,`mla`,`mtac`,`mtachi`,`mtaghost`,`mtaman`) + 10 `plr*`, every (save_key, container) matching §3's table incl. two pickups in level13; `mb-dump/resources.assets/DataAchievements.txt` lines 111–123 pin `ACHI_cartridgeplayers`↔lineTranslate 12, `ACHI_mitastory`↔13; 11 placed + 2 script-granted = 13 = mitastory. Residual, already carried as [unverified-behavior] §2.2-3/J4: only 10 plr* exist vs 12 required; row-0 empty-key vs the placed bare-`mta`@level17 is acknowledged by §3 finding 1/R2, not contradicted.
+2. **BlackRoom paper parts** ✓ — 5 dumps in level13, `indexPuzle` = {0,1,2,3,4} complete, each with `scrMain → PPtr<Location11_BlackRoom>`.
+3. **Dedupe spot-check** ✓ — level5 owns 17; full per-level census matches §2.1 number-for-number (sum 160 across 23 levels, level0 = 0); the 98 non-level copies sit only in globalgamemanagers/resources.assets/sharedassets*, never in a level dir; 258 − 98 = 160 — the §7-R4 rule scales exactly.
+4. **Negative finding** ✓ — `localization/English/Translation.jsonl` holds exactly 1 record (`"-"`, line_index 0); 0 of 65 English category files match note/paper/profile/document.
+VERDICT: PASS

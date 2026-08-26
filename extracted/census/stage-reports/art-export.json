@@ -1,0 +1,45 @@
+{
+  "stage": "art-export",
+  "host": "Ne8k",
+  "measured_at": "2026-08-24T21:47:47+00:00",
+  "status": "ok",
+  "staged_scope": {
+    "languages-art": "export-webp",
+    "custom-images": "copy-verbatim",
+    "loose-images": "copy-verbatim",
+    "container-sprites-tex2d": "export",
+    "audio": "catalogue-in-place",
+    "video": "catalogue-in-place",
+    "gi-enlighten": "catalogue-in-place",
+    "psd-other": "catalogue-in-place",
+    "models-animations-loose": "catalogue-first"
+  },
+  "families": {
+    "audio": {
+      "count": 28727,
+      "bytes": 1441448548
+    },
+    "custom-images": {
+      "count": 17,
+      "bytes": 11186378
+    },
+    "gi-enlighten": {
+      "count": 62,
+      "bytes": 5988963
+    },
+    "languages-art": {
+      "count": 780,
+      "bytes": 366431750
+    }
+  },
+  "exported": {
+    "languages-art": 777,
+    "custom-images": 17,
+    "loose-images": 0,
+    "container-sprites-tex2d": 72115
+  },
+  "anomalies": [],
+  "offload_proposed_target_root": "D:\\game-database-media-offload",
+  "destructive_move_performed": false,
+  "duration_s": 348.819
+}

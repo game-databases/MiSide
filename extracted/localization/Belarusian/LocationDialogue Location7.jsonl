@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "Ты прыйшоў!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "Што гэта за месца?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Паказвай пярсцёнак"}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Ага..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "Ну вось!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "А цяпер праяснім сітуацыю"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "Увогуле, я цябе чакаю!"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "Але ты надумаў спачатку пагуляць у гоначкі?"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "Давай, хадзі да мяне"}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Віншую з перамогай!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "Я раней таксама гуляла"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Спрабавала сабраць усе манеты і быць першай,"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "Каб атрымаць дасягненне"}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "Халера! Было цяжка!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "Не адразу прызвычаілася да кіравання"}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// quest 1 (Мне трэба табе давяраць?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "Ну, я хаця б не вар'ятка,"}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "У адрозненне ад некаторых..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "Акрамя таго,"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "Дабрэй мяне тут табе не знайсці, міленькі"}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Ты ж не хочаш пакінуць усё як ёсць?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "Яна забойца. Нам трэба яе спыніць"}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// quest 2 (Як я трапіў сюды?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "Дзякуючы пярсцёнку"}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "Гэта асаблівая вынаходка"}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "Толькі той гулец, які яго мае"}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "Зможа знайсці шлях да правільнай версіі"}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// quest 3 (Што гэта за месца?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "Гэта праходы"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "Паміж версіямі"}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "Та-ак, тут пусценька..."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "Чорцікі! Я чула пра адну Міту,"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "у якой не архівававалася яе версія свету. "}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "Дом гэтай Міты"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "проста перастаў існаваць..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Цяпер яна нібы блукае"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "ў гэтых пераходах,"}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Нябога..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// quest 4 (Як ты з'явілася тут?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "Па-першае,"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "Мінула нямала часу, ведаеш"}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "А дзякуючы табе,"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "Я выйшла з-за гэтых дзіўных кратаў"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "І збегла ад той ляснутай. "}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "Ну а па-другое,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "Я без праблем магу пераходзіць паміж версіямі,"}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "У адрозненне ад такіх, як ты, дружок"}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// quest 5 (Што ты зрабіла з кальцом?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "Змяніла маршрут"}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "На той, што нам спатрэбіцца"}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "І ўсталявала найкарацейшы —"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "Праз які мы пройдзем"}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "Працуе так: ты адчыняеш дзверы,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "А пярсцёнак адчыняе межы"}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "паміж версіямі"}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// quest 6 (Праходы небяспечныя?) - Player"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "З таго моманту, як я трапіў сюды,"}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "У гульню,"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "Я паспеў убачыць шмат... дзіўнага"}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "І тут даволі ціха, "}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "Але, здаецца, праходы —"}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "Месцейкі яшчэ менш надзейныя"}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "Маеш рацыю: і гэта месца становіцца"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "Больш непрадказальным з кожным днём"}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "Але не вешаць нос!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "Мы ўсё прадумалі!"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "І пойдзем самай кароткай"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "Ходжанай сцежкай!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "Спадзяюся, што гэта так"}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "А што можа быць у гэтых праходах?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "Хм-м-м..."}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "Глюкі, памылкі, анамаліі..."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Жывыя глюкі, памылкі, анамаліі..."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "Пачакай... Яшчэ вельмі агрэсіўныя глюкі, памылкі..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Э-э..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "І яшчэ варожыя Міты. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "Яшчэ больш неадэкватных Міт?!// Player"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "Ведаю адно:"}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "Выродлівая Міта..."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "Не падумай, гэта не я яе так назвала!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "Чорцікі яе бяры"}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "Гэта вельмі дзіўная версія Міты"}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "Яе галоўная праблема ў тым,"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "Што яна параджае жудасныя глюкі"}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "Баюся, мы можам сутыкнуцца з ёй,"}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "Бо яна бліжэй усяго да нулявой версіі..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// quest 7 (Ты дапаможаш мне выбрацца?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "Канкрэтных ідэй у мяне няма..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "Але як бы то ні было,"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "Ёсць факт таго, што ты неяк сюды трапіў"}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "І яшчэ ёсць адное такое факцішча:"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "Табе нічога іншага не застаецца,"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "Акрамя як спадзявацца на Добрую Міту!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "І то праўда...// Player"}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// quest 8 (Ты казала пра нейкі план...) - MitaKind + Continue"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "Так, нам трэба дабрацца да ядра"}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "Штосьці мне падказвае, што мы там знойдзем..."}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "Развязанне ўсіх нашых праблем"}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": " // Player"}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "Але чаму табе для гэтага патрэбны гулец?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": " // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "Міты праз нейкую невядомую прычыну"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "Не могуць увайсці ў пакой з ядром"}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "Я бачыла яго толькі з боку"}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "Але ж гульцы гэта іншае, не Міты"}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "Я веру, што з табою, гульцом,"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "Гэта ўдасца зрабіць!"}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Абмяркуем план?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Добра.// Player"}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Аке-ей. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Та-ак..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "Зараз я пазнаёмлю цябе"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "З вельмі развязнай Мітай!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "У яе ёсць класная кепка,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "Таму я называю яе проста —"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Кепі!"}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "Мы прагаварылі з ёй план"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "Наконт Вар'яткі Міты"}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Што-ж, прашу, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Салют!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "Ты мой... новы гулец?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "Як цябе завуць?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "Мяне... // Player"}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Ану чакай!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Ты..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "Не памятаеш мяне?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Што?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "А ты яшчэ хто такая?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "Бяда!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "Выходзіць, [player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "Здаецца, тут была яна,"}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Вар'ятка Міта..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Паслухай! // for Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Пастарайся ўспомніць дзеля ўсіх нас!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Успомніць што?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "Яшчэ раз: чаму ты выглядаеш як я?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "Э-эх, поўная засада... // Look on player"}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Паслухай, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "Усё пайшло зусім..."}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "Нязгодна з планам!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "Часткай нашага плану быў яшчэ і партал,"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "Які меў палегчыць нашае падарожжа у сотні разоў!"}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "Але нам не сабраць яго без Кепі"}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "Дый дэталяў бракуе..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "Яна хоць і мітуслівая, але мазгаўня ў яе адпрацоўвае"}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "І што ж нам рабіць? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "Я... Што-небудзь прыдумаю. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "А што Вар'ятка Міта з ёй зрабіла? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "Так... Я такое бачыла"}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "Яна забіла яе"}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "Забіла?! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "І як ты зразумеў,"}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "Забітая Міта проста перазагрузіцца"}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "І ўсё важнае цалкам забудзе,"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "Яна скінецца да пачатковых налад"}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "Іначай кажучы..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "Капец нейкі..."}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "Жудасна..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Але гэта лепей, чым знікнуць назаўжды"}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "Хаця... хто яго знае"}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "А гульцоў"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Таксама можна забіць і тым самым сцерці памяць?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "Сцерці памяць магчыма,"}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "Але толькі калі ты ператворышся ў картрыдж"}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "А наконт забойства гульца..."}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "Я не ведаю, што будзе з ім"}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Зноў картрыджы... А як мне зразумець,"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "Картрыдж я ці не?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Давай праверым"}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "Хадзі да мяне"}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "Усё добра,"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "Ты не картрыдж,"}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "А \"жывы\" гулец!"}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "Фух, добра..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "Бяда-бяда і поўная засада..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Дай падумаць..."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "Бо цяпер трэба хутка змяняць план"}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Хм-м..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "Зараз..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Ну так, здаецца, ёсць ідэя!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Давай пярсцёнак!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Ага"}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "Мне трэба зноў змяніць маршрут"}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Ты штосьці прыдумала?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Паслухай, міленькі,"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "Табе трэба будзе прайсці праз іншыя версіі"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "Да ядра"}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Поўны наперад, разумееш?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "Цяпер мне прыйдзецца ісці аднаму"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "невядома куды і як, верна?"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "Я дапамагаю табе настолькі,"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "наколькі дазваляе цяперашняя сітуацыя"}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "Пакажу маршрут і..."}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "Зраблю ўсё, што змагу"}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "А потым пагутарым"}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "Займіся чым-небудзь з Кепі"}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Дай мне хвілінак гэтак з дзесяць..."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "Ну ўсё"}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "Я скончыла"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "Дык вось, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "Хадзі да мяне"}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Трымай"}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "Так, [player], на жаль,"}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "пакуль што табе прыйдзецца пайсці аднаму,"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "Бо мне патрэбны поўны агляд падзей"}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "План быў самы надзейны..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "Але цяпер сітуацыя жудасней жудасненькага"}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "Я павінна спраўдзіць усё і зразумець,"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "Куды зніклі нашыя падрыхтаваныя..."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "Я паспрабую іх знайсці"}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Магчыма, яшчэ ёсць шанец сабраць абсталяванне"}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "Але нельга губляць час,"}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "бо Вар'ятка Міта знае пра гэта месца"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "Заставацца тут — значыць рызыкаваць усім-усім"}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Шчасліва, [player]! Хутка ўбачымся."}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "Ну і ну..."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "Пастараюся дажыць да нашай наступнай сустрэчы..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi player - ChibiPlayer - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "Чаму?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Хто я?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "Хачу дадому!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "Як?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "Навошта?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "Што за..."}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson - Player"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "Ты..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "Сапраўдны чалавек?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": "// Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Вітаю!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "Ты новенькі?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "Новенькі? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "Ты ж з рэальнага свету? // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Так..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "Што з табою?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": "// Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "Не звяртай увагі на тое, што я кульгавы"}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "Я ўжо тут недзе год,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "І ў мяне ўсё цудоўна!"}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Хм... А што гэта за месца?// Player"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "Гэта штосьці тыпу перахода паміж версіямі. // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "Ты не ведаеш, як адсюль выбрацца? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": "// Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Не ведаю"}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "І я ніколі не хацеў выбірацца"}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "Мне гэта не трэба"}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Але чаму? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Няважна. Я спяшаюся! // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "Мяне чакае мая любімая Міта!"}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "Мне трэба ісці да яе..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "Бывай!"}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Пачакай! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Адчапіся! // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "Я ўсё чула!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "Не ведаю, што такое адбылося,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "Але ўсё гэта так цікава!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "Здаецца,"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "Ты ўжо ведаеш, хто я?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "Я Міта!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "Але відавочна не такая, як вунь тая"}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "Ну ты зразумеў!"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "У мяне ёсць"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "ВОСЬ!"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "Ладная кепка!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "І яшчэ — БУМ!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Цудоўныя пальчаткі!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "Гэта яшчэ не ўсё!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "Шалёна класная мілая электрагітарачка!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "Яна мне так падабаецца!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Хочаш, я пабрынчу на ёй?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Ха-хах!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Хадзі сюды, даражэнькая..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "Та-ак!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Ну-у-у, можна было штосьці і весялей"}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "Ну ды ладна!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Эх, ну ладна..."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Гэй,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "Ты вельмі жвавая, як я пагляджу"}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "ТАК!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "Я такая!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Ну..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Ідзем!"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "Як-небудзь пагарэзім!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER =============="}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "Класная вялікая кнопка!"}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "Так і хочацца націснуць"}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Ты ж не супраць?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "Зараз націснеш,"}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "Толькі калі паспееш..."}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "Сядай для пачатку!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player + sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Так,"}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "І што далей?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Можна на кнопку націснуць?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Ха-ха-ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "Мне гэта гульня страх як падабаецца!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "І нам трэба дадатковы прадмет"}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "Ён быў дзесь у мяне!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "Пачакай..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "Во-ой!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "Ну..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "Ты ж ведаў, што..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "Гульня 18+?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "А што гэта было?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "Ты не зразумеў?!"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "Гэта каб мышак з нор выцягваць!"}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "А калі сур'ёзна?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "Не думаю, што тут ёсць мышы"}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "А? Мышы?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Можна, я цябе праігнарую, "}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "І мы пачнём гульню?"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "Няможна"}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Дык вось!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Знаеш, наогул, што за гульня?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "Бачыш лічбы?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "Гэта таймер!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "Калі час скончыцца,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "Ты ўбачыш,"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "Націскаць кнопку ці не"}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "Калі ты не паспеў"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "Ці націснуў, калі не трэба,"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "Я цябе бахну малатком па галаве!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Біць мяне будзеш?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "Ну добра"}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "Падчас гульні раз-бя-рэш-ся! "}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Вой! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Чаго так моцна? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Табе балюча? // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "Не. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Тады працягваем! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Акей. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "Прызвычайваюся. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Глядзі ў мяне! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "А тое яшчэ спадабаецца! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "Здаецца, гэта не маё. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Ха-ха! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Я ўдалая! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Я эпічная! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "Ну і проста сімпатычная! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "Ах, ты! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Акей. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "Зараз я цябе... // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Зноў? // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Не баліць хоць? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Нічога! Гэта ж мяккая цацка! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "І ты пераможца. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "Здаецца, гэтая гульня мне падабаецца. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "А мне... // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "...таксама падабаецца. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "І цяпер ты мой галоўны канкурэнт! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "На гэтым усё? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Ага-ага! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Ідзем. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": "// Dance - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": "// GAME DANCE =============="}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "Гэта танцпляцоўка?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "Яна такая мініяцюрная..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Уху-у-у!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Патанцуем?"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "Спачатку"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "Выбяры трэк!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Давай гэты"}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Аке-ей!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Давай спачатку я!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "Паглядзіш, як трэба!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Фух!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "Ну што,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "Паб'еш мой рэкорд?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Давай смялей! Твая чарга!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Ах!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "Ну як?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "Цяпер ты?"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Тыц-тыц-тыц!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Акей,"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "Узарві танцпляцоўку!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Хто тут супер?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "Пфі-і!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Тры кнопкі,"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "а намаганняў, як у дзеда!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Можа, ты сядзеш,"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "І пачнеш дупай коўзацца"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "Па гэтых кнопках? Ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Файна!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Шчыра, я не думала,"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "Што ты зможаш!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Ачмурэць!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Вось гэта вытанцоўваеш!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Малайчына! Супер!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "Бам!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "Адчуваеш! Адчуваеш рытм!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "Вой, але майстар!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "Ты!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Я!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "Тыпу як адно цэлае!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Паміж намі ніць!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "Ідэальны дуэт!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Усяго б"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "Адна памылка!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "І ты б памыліўся"}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "Ну што?"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "Хочаш яшчэ?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "І апошняя"}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "Будзем дэнсіць?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "Ну што, ну што!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "Досыць з нас!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// ====================================== Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo - Player"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "Ну такія ўжо \"выбухныя\" фота"}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "А ты любіш шалець"}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "Так, я гэта Я!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "Ну дала ім року ў гэтай дзіры! Бум!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Эм... А каму?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Сапраўды, а каму?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Якая розніца? Я кажу табе, яны ўсе аслеплі!"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard - Player"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Ого!"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "Іх... шмат"}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "Чаму?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "А ты як думаеш?"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "Гэта для таго, каб рабіць цудоўныя рэчы!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "А менавіта..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "Рэзаць моркву!"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "А потым..."}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "Рэзаць моркву!"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "А потым..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Ды ясна-ясна"}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "Добра, калі шчыра,"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "Дошка ба-га-ну-лася! Што б гэта ні значыла"}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "І цяпер іх шмат!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Book - Player"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Перачытала ўсё, га?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "З нудоты"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Фу-у, не люблю кнігі!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "Я люблю практыку!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "Так таксама можна"}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "Але без тэорыі..."}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Бум — рух, маторыка, дотык! Шарыш?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Кнігі — дробязь, пакуль ёсць чым заняцца!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "Калі б ты застаўся са мной,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "Мы бы сто-олькі ўсяго зрабілі!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "Не сумняваюся. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits - Player"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Гэтая садавіна хоць сапраўдная?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "Выглядае выдатна"}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Яна ўвогуле псуецца?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "О-о-о, яблычкі!"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "Псавацца яны не паспяваюць,"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "Бо я іх з'ядаю!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "А потым яны зноў з'яўляюцца"}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat - Player"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "Мілая котачка"}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Яна смачная?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Што?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "Кошак не ядуць!"}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Ты дурнілка!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Знаю я!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "Я хацела намякнуць на тое,"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "Што я ніколі іх не бачыла!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "Ужывую"}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "Толькі ў інтэрнэце"}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "Яны ж класныя!"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Так, яны класныя"}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "Мне падабаюцца котачкі."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// MKind with ring - Player"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Што гэта?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "Гэта інтэрфейс пярсцёнка"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "І я змяняю маршрут"}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Ты проста кружкі рухаеш?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "Стоп, для цябе, можа, проста кружкі,"}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "Для мяне — даныя"}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Гэта дакладна ненадоўга?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Цыц! Калі не будзеш перашкаджаць,"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "То скончу хутчэй"}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "Так, значыць,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "Калі табе перашкаджаць зноў і зноў,"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "То вы застаняцеся тут надоўга?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Эх, Кепі,"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "Вось бы вярнуць табе памяць..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "Надоўга не атрымаецца"}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "А было б добра!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "Ніякіх \"застацца\"!"}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "Нам трэба дабрацца да ядра!"}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Мне з вамі можна?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "Адказ просты"}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "Нельга?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "Нельга"}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "Я спазняюся... Як жа я спазняюся!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "Я ем зашмат..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Зноў праца?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "Калі надыдзе заўтра?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "А дзе мой камп'ютар?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "Калі я не паспею скончыць, мяне выганяць!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Я дакладна захаваў усё?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Мяне што, ніхто не любіць?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Куды патэпаем?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Гэй!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "У мяне канчаюцца нервы..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "Трэба больш працаваць..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Якое ўсё вялікае"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Дзе мой тэлефон?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Эх-х..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "Што ж учора было?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "Гэты дзень цягнецца цэлую вечнасць!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Вітаю?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Тут ёсць ложак?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "Што я павінен зрабіць?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "Я не змагу скончыць своечасова..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "У чым праблема?"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Тут сцены?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "Нічога, калі я адпачну хвілінак 20."}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Сон для слабакоў!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "Трэба ўмыцца і за справу!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "Хачу есці!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "Напэўна, гэта дрэнна"}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Эм..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "А-ха-ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "Так"}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "Проста ўзяў"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "і пайшоў"}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "Гэта так дзіўна!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "І смешна!"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Ды ладна табе"}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], ты чаго?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Што за?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "Зноў пайшоў?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "Та-ак!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "Добра, нястрашна!"}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], вяртайся ў нашую атмасферу!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "Нават не звярнуў на мяне ўвагу!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Ну-у-удны..."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "А што за план у вас быў?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "План?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "Які план?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "А, дакладна"}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "Ты ж нічога не памятаеш"}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "Ну вы даяце!"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Я павінна штосьці памятаць!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Вы разыграць мяне надумалі?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "Але з вашых сур'ёзных твараў"}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "Так і не скажаш!"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "Якія пачуцці,"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "Калі бачыш дакладную копію сябе?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "Я пра тую, што з пярсцёнкам возіцца"}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "Хе-хе, я хацела зашыпець на яе..."}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "Ну, ад нечаканасці"}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Ну блін! Глядзі, гэта ж мой клон!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Але яна не такая вясёлая, як я"}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "А значыць, я лепшая!"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "Глядзі, якая панурая..."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "Гэй, я тут"}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "І ўсё чую"}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "У цябе галава ад кепкі не стамляецца?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "І рукі не пацеюць у пальчатках?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "Можа, знімеш іх?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "Га?"}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "Ну ты жартаўнік!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Можа, мне яшчэ што-небудзь зняць???"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "Я не жартаваў"}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Ну добра"}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Вой!"}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "Гэта ж куча морквы!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "А смешны глюк!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "А-ха-ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Стой-стой!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "Табе лепей не бачыць, што там..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Хай гэта будзе сакрэтам"}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "А што там?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "Сакрэт на тое і сакрэт, каб быць"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "Сак-рэ-там!"}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Э-э-эх-х"}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "А навошта заінтрыгавала?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Ух ты!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "Гэта што ў цябе?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "Кансолька?!"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Дай пагуляць!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Вой!"}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "А як гуляць у гэта?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "Там проста трэба збіраць манетачкі"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "І ухіляцца ад жаб"}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "Гучыць надзвычай нудна!"}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Ды кінь, і ты называеш гэта гульнёй?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "Адкуль ён у цябе?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "Я ж не вяртала табе яго"}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Дзіўна як, скажы, га?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Уу-уф!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Ну во-о-ось"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "Ты наткнуўся на памылку"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "Яна мае уключаць відэа,"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "Але чамусьці ўключае і выключае..."}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "Сам тэлевізар!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Прыкольна, га?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit - Player"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "Думаю, я проста пачакаю"}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "Ты чаго?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "А ну ўставай!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Хадзем бавіцца!"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Табе вось у тыя дзверы,"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "У бок залы"}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Бывай-бывай-бывай!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "Здаецца, табе пара, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "Ідзі, не бойся!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "Я бы ні за што"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "Не адправіла цябе самога!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "Так што заставайся тут!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Кепі!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "Давай без жартаў!"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "Га-ар-р-р!"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "Ну, чаго ты тут стаіш?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "Час ідзе!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Вітаю!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "Вой, то-бок, бывай-бывай!"}

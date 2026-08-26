@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "!ﺕﺪﻋ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "؟ﻥﺎﻜﻤﻟﺍ ﺍﺬﻫ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": ".ﻢﺗﺎﺨﻟﺍ ﻲﻧﺭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "...ﻢﻤﻫﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "!ﺍﺫ ﻦﺤﻧ ﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": ".ﺭﻮﻣﻷﺍ ﺾﻌﺑ ﺢﺿﻮﻨﻟ ،ﻥﻵﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "ﺖﻗﻮﻟﺍ ﻝﺍﻮﻃ ﻙﺭﺎﻈﺘﻧﺎﺑ ﺎﻨﻫ ﺖﻨﻛ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "؟ﻚﻟﺫ ﻦﻣ ًﻻﺪﺑ ﻕﺎﺒﺴﻟﺍ ﺔﺒﻌﻟ ﺐﻌﻠﺗ ﺖﻤﻗﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "...ﻲﻟﺇ ﻝﺎﻌﺗ ،ﻝﺎﺣ ﻞﻜﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "!ﻙﺯﻮﻓ ﻰﻠﻋ ﻙﻭﺮﺒﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": ".ﺎًﻀﻳﺃ ﺔﺒﻌﻠﻟﺍ ﻩﺬﻫ ﺐﻌﻟﺃ ﺖﻨﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "ﻝﻭﻷﺍ ﺰﻛﺮﻤﻟﺍ ﻰﻠﻋ ﻝﻮﺼﺤﻟﺍﻭ ﺔﻴﻧﺪﻌﻤﻟﺍ ﺕﻼﻤﻌﻟﺍ ﻞﻛ ﻊﻤﺟ ﻝﻭﺎﺣﺃ ﺖﻨﻛﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "!ﺯﺎﺠﻧﻹﺍ ﻖﻴﻘﺤﺘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "!ﺍﺪﺟ ﺐﻌﺻ ﻚﻟﺫ ,ﺎﻘﺣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": ".ﻢﻜﺤﺘﻟﺍ ﺭﺍﺭﺯﺃ ﻰﻠﻋ ﺩﺎﺘﻋﻷ ًﻼﻳﻮﻃ ﺎًﺘﻗﻭ ﺖﻌﺿﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Should I trust you?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": ".ﺔﻠﻗﺎﻋ ﺎﻧﺃ ﻞﻗﻷﺍ ﻰﻠﻋ ،ﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "...ﺾﻌﺒﻟﺍ ﺲﻜﻋ ﻰﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "،ﻚﻟﺬﻟ ﺔﻓﺎﺿﻹﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": ".ﺎﻨﻫ ﻩﺪﺠﺘﺳ ﻦﻣ ﻒﻄﻟﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "؟ﺎﻫ ،ﻡﻼﺴﺘﺳﻻﺍ ﺪﻳﺮﺗ ﻻ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": ".ﺎﻬﻓﺎﻘﻳﺇ ﺎﻨﻴﻠﻋ .ﺩﺭﺎﺑ ﻡﺪﺑ ﻞﺘﻘﺗ ﺎﻬﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (How did I get here?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": ".ﻢﺗﺎﺨﻟﺍ ﻞﻀﻔﺑ ﺍﺬﻫ ﻞﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": ".ﺰﻴﻤﻣ ﻉﺍﺮﺘﺧﺍ ﻪﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": ".ﻥﻮﺒﻋﻼﻟﺍ ﻪﻟ ﺝﺎﺘﺤﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": ".ﺔﺤﻴﺤﺼﻟﺍ ﺔﺨﺴﻨﻟﺍ ﻰﻟﺇ ﻝﻮﺻﻮﻟﺍ ﻢﻬﻨﻜﻤﻳ ﻻ ،ﻪﻧﻭﺪﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (What is this place?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "ﺕﺍﺮﻤﻤﻟﺍ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": ".ﺔﻔﻠﺘﺨﻤﻟﺍ ﺦﺴﻨﻟﺍ ﻦﻴﺑ ﻂﺑﺮﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": ".ﺎﻣ ﺎًﻋﻮﻧ ﺔﻏﺭﺎﻓ ﺕﺍﺮﻤﻤﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "ﺎﺘﻴﻣ ﻦﻋ ﺖﻌﻤﺳ !ﺎﻗﺪﺻﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "...ﺎﻬﺘﺨﺴﻧ ﺔﻔﺷﺭﺃ ﻊﻄﺘﺴﺗ ﻢﻟ ﻲﺘﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "ﺎﻬﻟﺰﻨﻣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "...ﺔﻃﺎﺴﺒﺑ ﺮﺨﺒﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "ﻡﻮﺤﺗ ﺎﻬﻧﺇ ﻝﺎﻘﻳﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": ".ﺕﺍﺮﻤﻤﻟﺍ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "...ﺔﻨﻴﻜﺴﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (How did you end up here?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "،ﻢﻠﻌﺗ ﺎﻤﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": ".ﺮﻴﺧﻻﺍ ﺎﻧﺀﺎﻘﻟ ﺬﻨﻣ ﻞﻳﻮﻃ ﺖﻗﻭ ﺮﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "،ﻚﻠﻀﻔﺑﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "،ﺔﻌﻴﻨﺸﻟﺍ ﺔﻧﺍﺰﻧﺰﻟﺍ ﻚﻠﺗ ﻦﻣ ﺕﺭﺮﺤﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": ".ﺔﻧﻮﻨﺠﻤﻟﺍ ﻚﻠﺗ ﻦﻣ ُﺖﺑﺮﻫﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "،ﻚﻤﻠﻌﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": ".ﺕﺍﺭﺍﺪﺻﻹﺍ ﻦﻴﺑ ﺔﻳﺮﺤﺑ ﻞﻘﻨﺘﻟﺍ ﻲﻨﻨﻜﻤﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": ".ﻚﺴﻜﻋ ﻰﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (What did you do with the ring?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "ﺎﻧﺭﺎﺴﻣ ﺕﺮّﻴﻏ"}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": ".ﻪﺟﺎﺘﺤﻧ ﻱﺬﻟﺍ ﺭﺎﺴﻤﻠﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "ﻦﻜﻤﻣ ﻖﻳﺮﻃ ﺮﺼﻗﺃ ﺕﺩﺪﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": ".ﺎﻧﺭﻮﺒﻌﻟ ﻪﺗﺰﻬﺟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "،ًﺎﺑﺎﺑ ﺢﺘﻔﺘﺳ :ﺮﻣﻻﺍ ﺍﺬﻜﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "ﻞﺧﺪﻤﻟﺍ ﺢﺘﻔﻴﺳ ﻢﺗﺎﺨﻟﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": ".ﺕﺍﺭﺍﺪﺻﻹﺍ ﻦﻴﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Are the passages dangerous?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "ﺔﺒﻳﺮﻐﻟﺍ ﺀﺎﻴﺷﻷﺍ ﻞﻛ ُﺖﻳﺃﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "ﻲﻟﻮﺻﻭ ﺬﻨﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "...ﺔﺒﻌﻠﻟﺍ ﻩﺬﻫ ﻰﻟﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": ".ﺎﻨﻫ ﺎًﺋﺩﺎﻫ ﻭﺪﺒﻳ ﺀﻲﺷ ﻞﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "...ﻭﺪﺒﺗ ﻩﺬﻫ ﺕﺍﺮﻤﻤﻟﺍ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": ".ﺔًﻨﻣﺁ ﻻﺍ ﺀﻲﺷ ﻞﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "ﺩﺍﺩﺰﻳ ﻥﺎﻜﻤﻟﺍ ﺍﺬﻫﻭ ،ﻖﺤﻣ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": ".ﻡﻮﻳ ﻞﻛ ﺎًﺒﻠﻘﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "!ﺞﻬﺘﺑﺍ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "،ﺀﻲﺷ ﻞﻜﺑ ﺎﻧﺮﻜﻓ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "ﻖﻳﺮﻃ ﺮﺼﻗﺃ ﻚﻠﺴﻨﺳﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "!ﻪﻛﻮﻠﺳ ﻦﻜﻤﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": ".ﺮﻣﺃ ﻞﻛ ﺮﻴﺴﻳ ﻥﺃ ﻞﻣﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "؟ﺕﺍﺮﻤﻤﻟﺍ ﻩﺬﻫ ﻡﻮﺤﻳ ﻦﻣ ﻦﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "،ﻢﻣﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "...ﻕﺭﺍﻮﺨﻟﺍﻭ ،ﺀﺎﻄﺧﻷﺍﻭ ،ﺕﺍﺮﻐﺜﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": ".ﺓﺎﻴﺣ ﺕﺍﺫ"}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "...ﻚﺘﻳﺅﺭ ﺭﻮﻓ ﻚﻤﺟﺎﻬﺗ ﻲﺘﻟﺍ ﺎﻬﻨﻣ ﺓﺮﻄﺨﻟﺍ ﻰﺘﺣ ﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "؟...ﻩﺍﺍﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": ".ﺕﺎﻴﻧﺍﻭﺪﻋ ﺎﺘﻴﻣ ...ﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "؟ﺓﺃﺮﺟﻭ ًﻻﺎﺒﺧ ﺮﺜﻛﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "...ﻞﻗﻷﺍ ﻰﻠﻋ ﺓﺪﺣﺍﻭ ﻑﺮﻋﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": ".ﺔﺤﻴﺒﻘﻟﺍ ﺎﺘﻴﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "!ﻢﺳﻻﺍ ﺍﺬﻫ ﺎﻧﺍ ﺎﻬﻴﻠﻋ ﻖﻠﻃﺃ ﻢﻟ ،ﻚﻤﻠﻌﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "...ﺎﻬﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": ".ﺎﺘﻴﻣ ﻦﻣ ﺍًﺪﺟ ﺔﻴﺋﺍﺪﺑ ﺔﺨﺴﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "ﺔﻴﺳﺎﺳﻻﺍ ﺎﻬﺘﻠﻜﺸﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "...ﺕﺍﺮﻐﺜﻟﺍ ﻉﺍﻮﻧﺃ ﺃﻮﺳﺃ ﺐﺒﺴﺗ ﺎﻬﻧﺃ ﻲﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": ".ﺎﻬﺘﻓﺍﺪﺼﻣ ﻰﺸﺧﺃﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "...ﻝﺎﺣ ﻱﺄﺑ ،ﺮﻔﺼﻠﻟ ﺔﺨﺴﻧ ﺏﺮﻗﺃ ﻲﻬﻓ"}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Will you help me get out?)"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "...ﺔﻴﻠﻌﻓ ﺔﻄﺧ ﻱﺪﻟ ﺲﻴﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "،ﻦﻴﺘﻟﺎﺤﻟﺍ ﺎﺘﻠﻛ ﻲﻓ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "؟ﻰﻠﺑ ,ﺎﻨﻫ ﺖﻧﺍ ﺖﻠﺻﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "...ﻚﻟﺬﻟ ﺔﻓﺎﺿﻹﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "ﻪﻠﻌﻓ ﻚﻨﻜﻤﻳ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "!ﺔﺒﻴﻄﻟﺍ ﺎﺘﻴﻣ ،ّﻲﻠﻋ ﺩﺎﻤﺘﻋﻻﺍ ﻯﻮﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "...ﺔﻘﻴﻘﺤﻟﺍ ﻲﻫ ﻚﻠﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (You were talking about some kind of plan...)"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": ".ﻢﻟﺎﻌﻟﺍ ﺓﺍﻮﻧ ﻰﻟﺇ ﻝﻮﺻﻮﻠﻟ ﺝﺎﺘﺤﻧ ،ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "ﻱﺬﻟﺍ ﻥﺎﻜﻤﻟﺍ ﻮﻫ ﻚﻟﺫ ّﻥﺄﺑ ﻲﻧﺮﺒﺨﻳ ﻲﺳﺪﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": ".ﺎﻨﻠﻛﺎﺸﻣ ﻞﻛ ّﻞﺣ ﻪﻴﻓ ﺪﺠﻨﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "؟ﺐﻋﻼﻟ ﻦﻴﺟﺎﺘﺤﺗ ﺍﺫﺎﻤﻟ ؟ِﻚﺴﻔﻨﺑ ﻙﺎﻨﻫ ﻰﻟﺇ ﻦﻴﺒﻫﺬﺗ ﻻ َﻢِﻟ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "ﺎﻨﻨﻜﻤﻳ ﻻ ﺎﺘﻴﻤﻟﺍ ﻦﺤﻧ ،ﺎﻣ ﺐﺒﺴﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": ".ﺓﺍﻮﻨﻟﺍ ﺔﻓﺮﻏ ﻝﻮﺧﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": ".ﻂﻘﻓ ﺝﺭﺎﺨﻟﺍ ﻦﻣ ﺎﻫﺎﻨﻳﺃﺭ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": ".ﻝﻮﺧﺪﻟﺍ ﻚﻨﻜﻤﻳ ،ﺎًﺒﻋﻻ ﺖﻨﻛ ﺍﺫﺇ ﻦﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "،ﻱﺩﺎﻘﺘﻋﺎﺑ ،ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": ".ﻚﻟﺫ ﻞﻌﻓ ﻊﻴﻄﺘﺴﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "؟ﺔﻄﺨﻟﺍ ﺔﺸﻗﺎﻨﻣ ﺪﻳﺮﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": ".ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": ".ﻊﺋﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "..ﻥﺫﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "ﻚﻣﺪﻗُﻷ ﺖﻗﻮﻟﺍ ﻥﺎﺣ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "!ﺔﻌﺋﺍﺮﻟﺍ ﺎﺘﻴﻣ ﻰﻟﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "،ﺔﻌﺋﺍﺭ ﺔﻌﺒﻗ ﻱﺪﺗﺮﺗ ﺎﻬﻧﺃ ﺎﻤﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "ـﺑ ﺎﻫﻮﻋﺩﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": ".ﺔﻌﺒﻘﻤﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "،ﺎﻬﻌﻣ ﺔﻄﺨﻟﺍ ﻊﺟﺍﺭﺃ ﺖﻨﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": ".ﺔﻧﻮﻨﺠﻤﻟﺍ ﺎﺘﻴﻣ ﻑﺎﻘﻳﻹ ﺔﻄﺧ"}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": ".[player] ﺎﻳ ﻚﺑ ﻑﺮﻋﺃ ﻲﻨﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "!ﻲﺗﺎﻴﺤﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "؟ﺪﻳﺪﺟ ﺐﻋﻻ َﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "؟ﻙﻮﻋﺩﺃ ﺍﺫﺎﻤﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "...ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "!ﺔﻈﺤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "...ِﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "؟ﻲﻨﻨﻳﺮﻛﺬﺘﺗ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "؟ﻩﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "؟ِﺖﻧﺃ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "!ﻩﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "...[player]"}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "،ﺎﻨﻫ ﺖﻧﺎﻛ ﺎﻬﻧﺃ ﺪﻘﺘﻋﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "...ﺔﻧﻮﻨﺠﻤﻟﺍ ﺎﺘﻴﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "!ﻲﻟﺇ ﻲﻌﻤﺘﺳﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "!ﺎًﻌﻴﻤﺟ ﺎﻨﻠﺟﺃ ﻦﻣ ،ﻱﺮﻛﺬﺘﺗ ﻥﺃ ﻲﻟﻭﺎﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "؟ﺍﺫﺎﻣ ﺮﻛﺬﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "؟ﻦﻴﻬﺑﺎﺸﺘﻣ ﻭﺪﺒﻧ ﺍﺫﺎﻤﻟ ،ﺔﻈﺤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "...ﺓﺪﺋﺎﻓ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "[player] ﻊﻤﺳﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "ﻻ ﺭﻮﻣﻷﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "!..ﺔﻄﺨﻟﺍ ﺐﺴﺣ ﺮﻴﺴﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "ﺔﺑﺍﻮﺒﻟﺍ ﻡﺪﺨﺘﺴﻧ ﻥﺃ ﺽﺮﺘﻔﻤﻟﺍ ﻦﻣ ﻥﺎﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": ".ﺓﺮﻣ ﻥﻮﻴﻠﻤﺑ ﻉﺮﺳﺃﻭ ﻞﻬﺳﺃ ﺎﻨﺘﻠﺣﺭ ﻞﻌﺠﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": ".ﺎﻬﺗﺪﻋﺎﺴﻣ ﻥﻭﺪﺑ ﺎﻬﻠﻴﻐﺸﺗ ﻊﻴﻄﺘﺴﻧ ﻻ ﺎﻨﻨﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "...ﺀﺍﺰﺟﻷﺍ ﺾﻌﺑ ﺪﻘﺘﻔﻧ ﻦﺤﻧﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "...ﺔﻋﺮﺴﺑ ﻂﻘﺘﻠﻳ ﺎﻬﻠﻘﻋ ﻦﻜﻟ ،ﺀﺎﺿﺭﻹﺍ ﺔﺒﻌﺻ ﻥﻮﻜﺗ ﺪﻗ"}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "؟ﻞﻤﻌﻟﺍ ﺎﻣ ,ﻥﺫﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": ".ﻞﺤﻟ ﻞﺻﻮﺗﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "؟ﺔﻧﻮﻨﺠﻤﻟﺍ ﺎﺘﻴﻣ ﺎﻬﺑ ﺖﻠﻌﻓ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "...ﺪﻘﺘﻋﺃ ...ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": ".ﺎﻬﺘﻠﺘﻗ ﺎﻬﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "!؟ﺎﻬﺘﻠﺘﻗ"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "...ﺎﻬﺗﻮﻣ ﺪﻌﺑﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": ".ﺔﻃﺎﺴﺒﺑ ﺍﺩﺪﺠﻣ ﺔﻌﺒﻘﻤﻟﺍ ﺾﻬﻨﺘﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "ﺮﻔﺼﻟﺍ ﺔﻄﻘﻨﻟ ﺎﻬﺗﺩﺍﺪﻋﺍ ﺩﺎﻌﺗﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": ".ﻢﻬﻣ ﺀﻲﺷ ﻞﻛ ﻰﺴﻨﺗﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "...ﻲﻨﻌﻳ ﺎﻤﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": ".ﺢﺠﻨﺗ ﻦﻟ ﺎﻨﺘﻄﺧ ﻥﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "...ﻉﻭﺮﻣ ﺮﻣﺃ ﺍﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "...ﺪﺑﻷﺍ ﻰﻟﺇ ﺀﺎﻔﺘﺧﻻﺍ ﻦﻣ ﻞﻀﻓﺃ ﻪﻧﺃ ,ﻦﻇﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "؟ﻚﻟﺬﺑ ﻡﺰﺠﻟﺍ ﻊﻴﻄﺘﺴﻳ ﻦﻣ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "؟ﻦﻴﺒﻋﻼﻟﺍ ﻦﺤﻧ ﺎﻨﻋ ﺍﺫﺎﻣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "؟ﺎًﻀﻳﺃ ﺎﻨﺗﺎﻳﺮﻛﺫ ﺢﺴﻤﻴﺳ ﺎﻨﻠﺘﻗ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": ".ﺪﻴﻛﺄﺘﻟﺎﺑ ﻚﺗﺎﻳﺮﻛﺫ ﺢﺴﻣ ﻦﻜﻤﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": ".ﺓﺮﻛﺍﺫ ﺔﻗﺎﻄﺑ ﻰﻟﺇ ﻝﻮﺤﺘﺗ ﻥﺃ ﺪﻌﺑ ﻞﻗﻷﺍ ﻰﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "؟ﻢﻜﻨﻣ ﻮﻠﺘﻗ ﻦﻳﺬﻠﻟ ﺙﺪﺤﻴﺳ ﺎﻣ ﻦﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": ".ﻱﺭﺩﺃ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "ﻑﺮﻋﺃ ﻒﻴﻛ ...ﺎﻣﻭﺩ ﺕﺍﺮﻛﺍﺬﻟﺍ ﺎﻬﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "؟ﻻ ﻡﺃ ﺓﺮﻛﺍﺫ ﺖﻨﻛ ﻥﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "،ﺎﻨﻫ ﻝﺎﻌﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": ".ﻚﻨﻣ ﻖﻘﺤﺗﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "،ﺎﻫﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": ".ﺪﻌﺑ ﺔﻗﺎﻄﺑ ﺖﺴﻟ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": ".ﺲﻔﻨﺘﻳ ﻲﺣ ﺐﻋﻻ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "...ﺓﺪﻴﺟ ﺭﺎﺒﺧﺃ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "...ﻥﻵﺍ ﻞﻌﻔﻨﺳ ﺍﺫﺎﻣﻭ ،ﺪﻴﻛﺄﺘﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "...ﺮﻜﻓﺃ ﻲﻨﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": ".ﻞﻣﺎﻜﻟﺎﺑ ﺎﻨﺘﻄﺧ ﺮﻴﻴﻐﺗ ﺎﻨﻴﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "...ﻢﻤﻤﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "...ﺔﻈﺤﻟ ﺮﻈﺘﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "!ﺓﺮﻜﻓ ﻱﺪﻟ ﻥﺃ ﺪﻘﺘﻋﺃ ،ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "!ﻢﺗﺎﺨﻟﺍ ﻲﻨﻄﻋﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": ".ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": ".ﺭﺎﺴﻤﻟﺍ ﺮﻴﻴﻐﺘﻟ ﺔﺟﺎﺤﺑ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "؟ﻚﺘﻄﺧ ﻲﻫ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "،ﻱﺰﻳﺰﻋ ﻊﻤﺘﺳﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "ﻯﺮﺧﺃ ﺕﺍﺭﺍﺪﺻﺇ ﺭﻮﺒﻋ ﻚﻴﻠﻋ ﻦﻴﻌﺘﻴﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": ".ﺓﺍﻮﻨﻟﺍ ﻰﻟﺇ ﻝﻮﺻﻮﻠﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "؟ﻡﻮﻬﻔﻣ ،ﻚﺗﻮﻗ ﻞﻜﺑ ﻖﻠﻄﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "؟ﻱﺪﺣﻮﻟ ﺏﺎﻫﺬﻟﺍ ﻲﻠﻋ ﺐﺠﻳﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "؟ﻙﺎﻨﻬﻟ ﻝﻮﺻﻮﻟﺍ ﺔﻴﻔﻴﻛ ﻰﺘﺣ ﻭﺃ ،ﻖﻳﺮﻄﻟﺍ ﻑﺮﻋﺃ ﻻ ﻲﻨﻨﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "،ﻊﻴﻄﺘﺳﺃ ﺎﻣ ﺭﺪﻘﺑ ﻙﺪﻋﺎﺳﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": ".ﻒﻗﻮﻤﻟﺍ ﻪﺑ ﺢﻤﺴﻳ ﺎﻣ ﺭﺪﻘﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "،ﺕﺎﻫﺎﺠﺗﻻﺍ ﻚﻴﻄﻋﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": ".ﻱﺪﻬﺟ ﻯﺭﺎﺼﻗ ﻝﺬﺑﺄﺳﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "...ﺙﺪﺤﺘﻨﺳ ﻚﻟﺫ ﺪﻌﺑﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": ".ًﻼﻴﻠﻗ ﺔﻌﺒﻘﻤﻟﺍ ﻊﻣ ﺐﻌﻟﺍ ،ًﻻﻭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "...ﻖﺋﺎﻗﺩ 10ـﻟ ﺎﻤﺑﺭ ﺝﺎﺘﺤﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, if player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": ".ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "!ﺎﻬﺗﺰﻬﺟ"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "[player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": ".ﺎﻨﻫ ﻝﺎﻌﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": ".ﺍﺬﻫ ﺬﺧ"}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": ",ﻒﺳﻼﻟ [player]."}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "،ﻥﻵﺍ ﻙﺩﺮﻔﻤﺑ ﺏﺎﻫﺬﻟﺍ ﻚﻴﻠﻋ ﻦﻴﻌﺘﻴﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": ".ﺎﻨﻫ ﺙﺪﺤﻳ ﺎﻣ ﺔﻘﻴﻘﺣ ﺔﻓﺮﻌﻣ ﻲﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "...ﺏﻮﻴﻋ ﻼﺑ ﻲﺘﻄﺧ ﺖﻧﺎﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": ".ﻥﻻﺍ ﺃﻮﺳﺃ ﻊﺿﻭ ﻲﻓ ﺎﻨﻨﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "،ﻯﺮﺟ ﺎﻣ ﺪﺟﺃ ﻥﺃ ﺐﺠﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "...ﺎﻨﺗﺍﺮﻴﻀﺤﺗ ﺖﻠﺸﻓ ﻒﻴﻛﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": ".ﻚﻟﺫ ﺔﻓﺮﻌﻣ ﻝﻭﺎﺣﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": ".ﺔﺑﺍﻮﺒﻟﺍ ﻦﻳﻮﻜﺗ ﺎﻨﻧﺎﻜﻣﺈﺑ ﻝﺍﺰﻳ ﻻ ﺎﻤﺑﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": ".ﻦﻴﻤﺛ ﺖﻗﻮﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "،ﻥﺎﻜﻤﻟﺍ ﺍﺬﻫ ﻑﺮﻌﺗ ﺔﻧﻮﻨﺠﻤﻟﺍ ﺎﺘﻴﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": ".ﺀﻲﺷ ﻞﻜﺑ ﺓﺮﻃﺎﺨﻤﻟﺍ ﻮﻫ ﺎﻨﻫ ﺀﺎﻘﺒﻟﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "ﺍًﺪﻴﻌﺳ ﺎًﻈﺣ, [player]! ﺎﺒﻳﺮﻗ ﻙﺍﺭﺍ!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "...ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "...ﻯﺮﺧﺃ ﺓﺮﻣ ﻚﺑ ﻲﻘﺘﻟﻷ ﻲﻔﻜﻳ ﺎﻤﺑ ًﻼﻳﻮﻃ ﺶﻴﻋﺃ ﻥﺃ ﻂﻘﻓ ﻰﻨﻤﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi players"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "؟ﺍﺫﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "؟ﺎﻧﺃ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "!ﻝﺰﻨﻤﻟﺍ ﻰﻟﺇ ﺓﺩﻮﻌﻟﺍ ﺪﻳﺭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "؟ﻒﻴﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "؟ﺍﺫﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "؟...ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "...ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "؟ﻲﻘﻴﻘﺣ ﺺﺨﺷ"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "!ﺎًﺒﺣﺮﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "؟ﺎﻨﻫ ﺪﻳﺪﺟ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "؟ﺪﻳﺪﺟ"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "؟ﻢﻌﻧ ،ﻲﻘﻴﻘﺤﻟﺍ ﻢﻟﺎﻌﻟﺍ ﻦﻣ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "...ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "؟ﺮﻴﺨﺑ ﺖﻧﺃﺃ ،ﻩﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": ".ﻪﺑ ﻲﻟﺎﺒﺗ ﻻ ،ﺝﺮﻋ ﺩﺮﺠﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "،ﻡﺎﻋ ﻲﻟﺍﻮﺣ ﺬﻨﻣ ﺎﻨﻫ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": ".ﺡﺎﺗﺮﻣ ﺎﻧﺃﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "؟ﻥﺎﻜﻤﻟﺍ ﺍﺬﻫ ﺎﻣ ،ﻢﻣﺍ ...ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": ".ﺕﺍﺭﺍﺪﺻﻹﺍ ﻦﻴﺑ ﻍﺍﺮﻔﻟﺍ ﻦﻣ ﻉﻮﻧ ﻪﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "؟ﺎﻨﻫ ﻦﻣ ﺝﺮﺨﺗ ﻒﻴﻛ ﻑﺮﻌﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": ".ﻑﺮﻋﺃ ﻲﻨﻧﺇ ﻝﻮﻘﻟﺍ ﻊﻴﻄﺘﺳﺃ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": ".ﺓﺭﺩﺎﻐﻤﻟﺍ ﺪﻳﺭﺃ ﻻ ،ﻚﻟﺫ ﻊﻣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": ".ﻚﻟﺬﻟ ﺝﺎﺘﺣﺃ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "؟ﻻ ﺎﻤﻟ ،ﻩﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": ".ﻞﺠﻌﺘﺴﻣ ﺎﻧﺃ .ﺔﺷﺩﺭﺩ ﻰﻔﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": ".ﻲﻧﺮﻈﺘﻨﺗ ﺎﺘﻴﻣ ﻲﺘﺒﻴﺒﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "...ﺎﻫﺪﺟﺃ ﻥﺃ ﺐﺠﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": ".ﺎًﻋﺍﺩﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "!...ﺮﻈﺘﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "!ﻲﻬﺟﻭ ﻦﻋ ﺏﺮﻏﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "!ﺀﻲﺷ ﻞﻛ ﺖﻌﻤﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "،ﺙﺪﺤﻳ ﺎﻣ ﻑﺮﻋﺃ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "!ﻡﺎﻤﺘﻫﻼﻟ ﺮﻴﺜﻣ ﺮﻣﻷﺍ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "ﺪﻘﺘﻋﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "؟ﻚﻟﺬﻛ ﺲﻴﻟﺃ ،ﻞﻌﻔﻟﺎﺑ ﺎﻧﺃ ﻦﻣ ﻑﺮﻌﺗ ﻚﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "!ﺎﺘﻴﻣ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "!ﻯﺮﺧﻵﺍ ﻚﻠﺗ ﻞﺜﻣ ﺖﺴﻟ ﻲﻨﻧﺃ ﺢﺿﺍﻮﻟﺍ ﻦﻣ ﻦﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "؟ﺎﻫ ،ﻪﻴﻨﻋﺃ ﺎﻣ ﻑﺮﻌﺗ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "ﺍﺬﻫ ﻱﺪﻨﻋ ﻲﻧﻷ"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "ﺎﻨﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "!ﺔﻴﻓﺍﺮﺧ ﺔﻌﺒﻗ"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "!ﻡﻮﺑ ﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "!ﺔﻠﻫﺬﻣ ﺕﺍﺯﺎﻔﻗﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "!ﺀﻲﺷ ﻞﻛ ﺲﻴﻟ ﺍﺬﻫﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "!ﺎًﻀﻳﺃ ﻊﺋﺍﺭ ﻲﺋﺎﺑﺮﻬﻛ ﺭﺎﺘﻴﺟ"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "!ﺍًﺮﻴﺜﻛ ﻪﺒﺣﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "؟ﺎًﻨﺤﻟ ﻑﺰﻋﺃ ﻥﺃ ﻲﻧﺪﻳﺮﺗ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "!ﻩﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "...ﻱﺰﻳﺰﻋ ﺎﻳ ﺎﻨﻫ ﻲﻟﺎﻌﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "!ﺎﻴﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": ".ﻞﻀﻓﺍ ﺀﻲﺷ ﻑﺰﻋ ﺎﻨﻜﻤﻣ ﻥﺎﻛ ،ﻢﻣﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "...ﻞﻛ ﻰﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": ".ﻢﻌﻧ ،ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "،ﺎًﺒﺣﺮﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "!ﺔﻳﺎﻐﻠﻟ ﻂﻴﺸﻧ ﺺﺨﺷ ﻚﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "!ﻰﻠﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "!ﻚﻟﺬﻛ ﺪﻴﻛﺄﺘﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "...ﻝﺎﺣ ﺔﻳﺃ ﻰﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "ﺐﻫﺬﻧ ﺎﻨﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "!ﻊﺘﻤﺘﺴﻨﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": ".ﻒﻴﻄﻟ ﺮﻴﺒﻛ ﺭﺯ"}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": ".ﻪﻴﻠﻋ ﻂﻐﻀﻟﺍ ﺪﻳﺭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "؟ﻊﻴﻄﺘﺳﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": ".ﺪﻌﺑ ﺎﻤﻴﻓ ,ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "!ﻪﻴﻟﺍ ﻲﻨﺘﻘﺒﺳ ﺍﺫﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "!ﺲﻠﺟﺍ ،ﻥﻵﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": ".ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "؟ﻥﻵﺍ ﺍﺫﺎﻣ ،ﻥﺫﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "؟ﺭﺰﻟﺍ ﻂﻐﺿ ﻲﻨﻨﻜﻤﻳ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "!ﻊﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "!ﺔﺒﻌﻠﻟﺍ ﻩﺬﻫ ﺐﺣﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": ".ﺎﻣ ﺎًﺌﻴﺷ ﺪﻘﺘﻔﻧ ﺎﻨﻨﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "!ﻲﺘﺒﻌﺟ ﻲﻓ ﻥﺎﻜﻣ ﻲﻓ ﺩﻮﺟﻮﻣ ﻪﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "...ﺔﻈﺤﻟ ﻲﻨﻠﻬﻣﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "!ﻪﻳﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "...ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "...ﻢﻠﻌﺗ ﺖﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "؟ﻚﻟﺬﻛ ﺲﻴﻟﺃ ،ﺭﺎﺒﻜﻠﻟ ﺔﺒﻌﻟ ﻩﺬﻫ ﻥﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "؟ﻙﺍﺫ ﻥﺎﻛ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "؟ﺎﻫ ،ﺖﻧﺍ ﻢﻬﻔﻟﺍ ﺀﻲﻄﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "...ﺎﻫﺭﻮﺤﺟ ﻦﻣ ﺝﻭﺮﺨﻠﻟ ﺱﺩﺎﻨﻘﻟﺍ ﺀﺍﺮﻏﻹ ﺎﻬﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "؟ﺎﻘﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "...ﺎﻨﻫ ﺱﺪﻨﻗ ﻱﺃ ﺭﺃ ﻢﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "؟ﺱﺩﺎﻨﻗ ؟ﻩﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "،ﻰﻔﻛ ،ﺍﺎﻋ [player]."}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "!؟ﺐﻌﻠﻧ ﺎﻨﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": ".ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "!ﺎﻴﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "؟ﺔﺒﻌﻟ ﺓﺮﻜﻓ ﻑﺮﻌﺗﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "؟ﻡﺎﻗﺭﻷﺍ ﻯﺮﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "!ﺖﻗﺆﻣ ﺍﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "،ﺖﻗﻮﻟﺍ ﺬﻔﻨﻳ ﺎﻣﺪﻨﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "ﻙﺮﺒﺨﻴﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": ".ﺭﺰﻟﺍ ﻂﻐﻀﺗ ﻰﺘﻤﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "،ﺎًﺌﻴﻄﺑ ﺖﻨﻛ ﻥﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "،ﺭﻭﺪﻟﺍ ﺝﺭﺎﺧ ﻪﺘﻄﻐﺿ ﻭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "!ﺔﻗﺮﻄﻤﺑ ﻚﺳﺃﺭ ﻰﻠﻋ ﻚﺑﺮﺿﺄﺴﻓ"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "؟ﻲﻨﻴﺑﺮﻀﺘﺳ ،ﺔﻈﺤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "،ﻝﺎﺣ ﻱﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "!ﺐﻌﻠﻧ ﻥﺃ ﺩﺮﺠﻤﺑ ﻢﻬﻔﺘﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "!ﺥﺃﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "؟ﺓﻮﺴﻘﻟﺍ ﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "؟ﻚﺘﻳﺫﺃ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": ".ﻼﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "!ﺮﻤﺘﺴﻨﻠﻓ ﻥﺫﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "،ًﺎﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": ".ﺖﻤﻠﻗﺄﺗ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "!ﻲﻨﺒﻗﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "!ﻢﻠﻗﺄﺘﺗ ﻥﺍ ﻙﺎﻳﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": ".ﻲﻨﺒﺳﺎﻨﻳ ﺍﺬﻫ ﻥﺃ ﺪﻘﺘﻋﺃ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "!ﻱﺎﻫﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "!ﺔﻌﺋﺍﺭ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "!ﺔﻴﻓﺍﺮﺧ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "!ﺔﻄﻴﺸﻧ ﺎﻧﺃﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "!ﺖﻧﺃ ،ﺥﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "،ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "!ﻚﺳﻭﺩﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "!ﺍﺩﺪﺠﻣ ﺕﺮﺴﺧ ،ﺥﺄﻬﻫﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "؟ﻚﻤﻟﺆﻳ ﻻﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "!ﺓﻮﺸﺤﻣ ﺔﻴﻣﺩ ﻥﺇ !ﻻ ﻊﺒﻄﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": ".ﺕﺰﻓ ﺖﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "؟ﺎﻫ ،ﺔﻳﺎﻐﻠﻟ ﺔﺌﻴﺳ ﺖﺴﻴﻟ ﺔﺒﻌﻠﻟﺍ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "؟ﻢﻌﻧ ،ﺔﻌﺘﻤﻣ ﺎﻬﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "!ﺎﻬﺒﺣﺃ ﺎًﻀﻳﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "!ﺩﻭﺪﻠﻟﺍ ﻱﺪﻧ ٍﺖﺤﺒﺻﺃ ﻥﻵﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "؟ﺀﻲﺷ ﻞﻛ ﺍﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "!ﺀﻲﺷ ﻞﻛ ﺍﺬﻫ ،ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": ".ﺎﻨﺑ ﺎﻴﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "؟ﺺﻗﺭ ﺔﺒﻠﺣ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "...ﺔﻳﺎﻐﻠﻟ ﺓﺮﻴﻐﺻ ﺎﻬﻧﺇ"}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "!ﻼﻫ ﻼﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "؟ﺺﻗﺮﻧ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "،ﺔﻳﺍﺪﺒﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "!ﺍًﺭﺎﺴﻣ ﺮﺘﺧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": ".ﺭﺎﺴﻤﻟﺍ ﺍﺬﻬﺑ ﺃﺪﺒﻨﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "!ﻚﻟﺬﻛ ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "!ًﻻﻭﺃ ﺃﺪﺑﺃ ﻲﻨﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "!ﻚﻟﺫ ﻢﺘﻳ ﻒﻴﻛ ﻚﻳﺭﺄﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "!ﻑﻭﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "،ﺍﺬﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "؟ﻲﺳﺎﻴﻘﻟﺍ ﻲﻤﻗﺭ ﻢﻴﻄﺤﺗ ﻚﻧﺎﻜﻣﺄﺑﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "!ﻙﺭﻭﺩ ﻥﺎﺣ ،ﺎﻴﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "!ﻩﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "؟ﻚﻟﺫ ﻒﻴﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "!ﻙﺭﻭﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "!ﺲﺳ ,ﺲﺳ ,ﺲﺳ ,ﺲﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "،ﻥﻻﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "!ﺺﻗﺮﻟﺍ ﺔﺒﻠﺤﻟ ﺰﻔﻗﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "!ﺎﻫﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "؟ﺪﻴﺴﻟﺍ ﻮﻫ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "!ﻮﻳﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "،ﺭﺍﺭﺯﺃ ﺔﺛﻼﺛ"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "!ﻚﻟﺫ ﻞﻤﺤﺘﺗ ﻢﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "ﺖﺴﻠﺟ ﻥﺍ ﺎﻤﺑﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "ﺭﺍﺭﺯﻷﺍ ﻚﻠﺗ ﻕﻮﻓ"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "!ﻊﻌﻌﻫ .ﻞﻀﻓﺃ ﺔﺠﻴﺘﻧ ﻚﺤﻨﻤﻴﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "!ﻊﺋﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "ﺪﻘﺘﻋﺃ ﻢﻟ ،ﺔﺣﺍﺮﺼﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "!ﻚﻟﺫ ﻚﻧﺎﻜﻣﺄﺑ ﻥﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "!ﻭﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "!ﺔﻌﺋﺍﺮﻟﺍ ﺕﺎﻛﺮﺤﻟﺍ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "!ﻒﻴﻄﻟ !ﺪﻴﺟ ﺪﻬﺟ"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "!ﻡﻮﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "!ﻉﺎﻘﻳﻹﺎﺑ ﺭﻮﻌﺸﻟﺍ ﻚﻨﻜﻤﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "!ﺓﺮﻄﻔﻟﺎﺑ ﺺﻗﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "!ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "!ﺎﻧﺃﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "!ﻖﻳﺮﻓ ﻦﺤﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "!ﺎﻨﻄﺑﺮﺗ ﺭﺪﻘﻟﺍ ﻁﻮﻴﺧ"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "!ﻲﻟﺎﺜﻣ ﻲﺋﺎﻨﺛ"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "ﻂﻘﻓ ﻮﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "!ﺪﺣﺍﻭ ﺄﻄﺧ"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "...ﺮﺴﺨﺘﺳ ﺖﻨﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "،ﺍﺫﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "؟ﻯﺮﺧﺃ ﺔﻟﻮﺟ ﻦﻋ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": ".ﺓﺮﻴﺧﺃ ﺔﻟﻮﺟ ،ﻊﺋﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "؟ﺺﻗﺮﻨﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "!ﺎﻴﻫ ،ﺎﻴﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "!ﺔﻳﺎﻔﻜﻟﺍ ﻪﻴﻓ ﺎﻤﺑ ﺎﻨﺼﻗﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": ".ﺔﻌﺋﺍﺮﻟﺍ ﺭﻮﺼﻟﺍ ﺾﻌﺑ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "؟ﺎﻫ ,ﺔﺣﺮﻣ ﺔﻘﻓﺭ ﻚﻧﺍ ﺪﻛﺆﻤﻟﺍ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "!ﻪﻴﻠﻋ ﺎﻧﺃ ﺎﻣ ﺎﻧﺃ !ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "!ﻡﻭﻭﻮﺑ !ﺭﺬﻘﻟﺍ ﻥﺎﻜﻤﻟﺍ ﺍﺬﻫ ﻲﻓ ﻖﻟﺄﺘﺗ ﻒﻴﻛ ﻢﻬﺘﻳﺭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "؟ﻂﺒﻀﻟﺎﺑ ﻦﻣ ﻲﺘﻳﺭﺃ ...ﻢﻣﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "؟ﻝﺍﺆﺴﻟﺍ ﺍﺬﻫ ﻲﻨﻟﺄﺴﺗﺃ ،؟ﺎًﻘﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "!ﻥﺎﻴﻤﻋ ﺎًﻌﻴﻤﺟ ﻢﻬﻧﺃ ﻦﻫﺍﺭﺃ !ﻢﺘﻬﻳ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "،ﻭﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": ".ﺮﻴﺜﻜﻟﺍ ...ﻢﻤﻣﺃ ،ﻙﺎﻨﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "؟ﺍﺫﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "؟ﺪﻘﺘﻌﺗ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "!ﺔﻠﻫﺬﻣ ﺀﺎﻴﺷﺄﺑ ﻡﺎﻴﻘﻟﺎﺑ ﻖﻠﻌﺘﻳ ﺮﻣﻷﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "...ﻞﺜﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": " ،ﺭﺰﺠﻟﺍ ﻊﻴﻄﻘﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "ﻞﺜﻣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "،ﺭﺰﺠﻟﺍ ﻊﻴﻄﻘﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "...ﻞﺜﻣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": ".ﺖﻤﻬﻓ ﺪﻘﻟ ،ﻡﺎﻤﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "،ﻦﻴﻔﺼﻨﻣ ﻥﻮﻜﻧ ﻲﻛ ،ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "ﺮﺧﺍ ﻰﻨﻌﻤﺑ ﻭﺍ ,ﻞــــ    ـــﻣ  ﺎـــ    ــﻛ ﻞﻜﺸﺑ ﺖﻠﺘﺧﺍ ﻊﻴﻄﻘﺗ ﺔﺣﻮﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "!ﺕﺎﺣﻮﻟ ﺓﺪﻋ ﻚﻟﺎﻨﻫ ﻥﻻﺍ ﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Books"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "؟ﺎﻫ ,ﻢﻬﻴﺗﺃﺮﻗ ﺓﺮﻣ ﻢﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "؟ﻞﻠﻤﻟﺍ ﺐﺒﺴﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "!ﺐﺘﻜﻟﺍ ﺐﺣﺃ ﻻ ﺎﻧﺃ ،ﻊﻴﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "!ﺏﺭﺪﺘﻟﺍ ﺐﺣﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "....ﺓﺮﻴﺜﻣ ﺮﻈﻧ ﺔﻬﺟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "...ﻞﺻﺃ ﻥﻭﺪﺑ ﻦﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "؟ﻲﻨﻤﻬﻔﺗﺃ ،ﺲﻤﻠﻟﺍﻭ ،ﻙﺮﺤﺗ ﺔﻗﺩ ﻭ ،ﺔﻛﺮﺤﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "!ﺔﻈﺤﻠﻟﺍ ﺶﻴﻋﺃ ﻥﺃ ﺐﺣﺃ ،ﻕﺭﻭ ﻰﻠﻋ ﺮﺒﺣ ﺐﺘﻜﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "،ﻲﻌﻣ ﺎﻨﻫ ﺖﻴﻘﺑ ﻮﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "!ﺮﻴﺜﻜﻟﺍ ،ﺮﻴﺜﻜﻟﺎﺑ ﻡﺎﻴﻘﻟﺍ ﻦﻣ ﺎﻨﻜﻤﺘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "...ﻊﻴﻄﺘﺴﻧ ﺪﻴﻛﺄﺘﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "؟ﺎًﻘﺣ ﺔﻴﻘﻴﻘﺣ ﺔﻬﻛﺎﻔﻟﺍ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": ".ﺔﻠﻫﺬﻣ ﻭﺪﺒﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "؟ﺍًﺪﺑﺃ ﺪﺴﻔﺗ ﻻﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "؟ﺡﺎﻔﺘﻟﺍ ﺪﺼﻘﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "،ﺪﺴﻔﺘﻟ ﺖﻗﻭ ﺎﻬﻟ ﺲﻴﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "!ﺎﻬﻠﻛ ﺎﻬﻠﻛﺁ ﻲﻨﻧﻷ"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "...ﻯﺮﺧﺃ ﺓﺮﻣ ﺮﻬﻈﺗ ﻢﺛ"}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": ".ﺔﻔﻴﻄﻟ ﺔﻄﻗ ﻦﻣ ﺎﻬﻟ ﺎﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "؟ﺓﺬﻳﺬﻟ ﻲﻫ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "؟ﺍﺫﺎﻣ ،ﻱﺮﻈﺘﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": ".ﻂﻄﻘﻟﺍ ﻦﻴﻠﻛﺄﺗ ﻻ ﻲﺘﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "!ﻖﻤﺣﺃ ﻦﻣ ﻪﻟ ﺎﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "!ﻚﻟﺫ ﻑﺮﻋﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "ﻂﻘﻓ ﺕﺪﺼﻗ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "!ﻂﻗ ﺔﻄﻗ ﻂﻗ ﺭﺃ ﻢﻟ ﻲﻨﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": ".ﻊﺒﻄﻟﺎﺑ ،ﺔﻴﻘﻴﻘﺣ ﺔﻄﻗ"}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": ".ﺖﻧﺮﺘﻧﻹﺍ ﻰﻠﻋ ﺭﻮﺻ ﻂﻘﻓ"}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "؟ﻚﻟﺬﻛ ﺲﻴﻟﺃ ،ﺔﻔﻴﻄﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": ".ﺎًﻘﺣ ﺔﻔﻴﻄﻟ ،ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": ".ﻂﻄﻘﻟﺍ ﺐﺣﺃ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind with ring"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "؟ﺍﺬﻫ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "،ﻢﺗﺎﺨﻟﺍ ﺔﻬﺟﺍﻭ ﻩﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": ".ﺭﺎﺴﻤﻟﺍ ﺮﻴﻏﺃ ﺎﻧﺃﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "؟ﻂﻘﻓ ﺮﺋﺍﻭﺪﻟﺍ ﻦﻴﻛﺮﺤﺗ ﺖﻧﺍ ,ﻢﻣﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": ".ﻚﻟﺫ ﻯﺮﺗ ﺎﻤﺑﺭ ،ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": ".ﺕﺎﻧﺎﻴﺒﻟﺍ ﻞﻘﻧﺃ ﺎﻧﺃ ،ﻲﻟ ﺔﺒﺴﻨﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "؟ًﻼﻳﻮﻃ ﺎًﺘﻗﻭ ﺮﻣﻷﺍ ﻕﺮﻐﺘﺴﻴﺳ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "،ﻲﻨﺠﻋﺰﺗ ﻻ !ﺵﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": ".ﺔﻋﺮﺴﺑ ﻲﻬﺘﻧﺃ ﻑﻮﺳﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "،ﺎًﻨﺴﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "،ﻚﺘﻌﻃﺎﻘﻣ ﺖﻠﺻﺍﻭ ﺍﺫﺇ ﺍﺬﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "؟ﻝﻮﻃﺃ ﺎًﺘﻗﻭ ﺮﻣﻷﺍ ﻕﺮﻐﺘﺴﻴﺴﻓ"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "،ﺔﻌﺒﻘﻤﻟﺎﻳ ،ﻑﻭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "...ﻚﺗﺎﻳﺮﻛﺫ ﻉﺎﺟﺭﺍ ﻊﻴﻄﺘﺴﻧ ﻥﺃ ﻰﻨﻤﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "...ًﺎﻨﻜﻤﻣ ﻚﻟﺫ ﻦﺿﺍ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "!ﺎﻌﺋﺍﺭ ﻥﺎﻜﻟ ﻞﺼﺣ ﻮﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": ".ﻪﻌﻴﻀﻨﻟ ﺖﻗﻭ ﺎﻨﻳﺪﻟ ﺲﻴﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": ".ﺓﺍﻮﻨﻟﺍ ﻰﻟﺇ ﻝﻮﺻﻮﻟﺍ ﺎﻨﻴﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "؟ﻚﻌﻣ ﻡﻭﺪﻘﻟﺍ ﻲﻨﻨﻜﻤﻳﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "...ﻞﻬﺳ ﺏﺍﻮﺠﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "؟ﻲﻨﻨﻜﻤﻳ ﻻ ،ﻥﺫﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": ".ﻻ ﻊﺒﻄﻟﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "!ﺍًﺮﻴﺜﻛ ﺕﺮﺧﺄﺗ ...ﺕﺮﺧﺄﺗ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "...ﻡﺎﻌﻄﻟﺍ ﻦﻣ ﺮﻴﺜﻜﻟﺍ ﺖﻟﻭﺎﻨﺗ ﺪﻗﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "؟ﻯﺮﺧﺃ ﺓﺮﻣ ﻞﻤﻋﻷ ﺩﻮﻋﺄﺳ ﻞﻫ ،ﻩﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "؟ﺪﻐﻟﺍ ﺦﻳﺭﺎﺗ ﻮﻫ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "؟ﺏﻮﺳﺎﺤﻟﺍ ﻦﻳﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "!ﺩﺪﺤﻤﻟﺍ ﺖﻗﻮﻟﺍ ﻲﻓ ﻲﻬﺘﻧﺃ ﻢﻟ ﺍﺫﺇ ﻲﻨﻧﻭﺩﺮﻄﻳ ﻑﻮﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "؟ﺀﻲﺷ ﻞﻛ ﻆﻔﺤﺑ ﺖﻤﻗ ﻞﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "؟ﺪﺣﺃ ﻲﻨﺒﺤﻳ ﻻﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "؟ﻥﻮﺒﻫﺍﺫ ﻦﻳﺃ ﻰﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "!ﻼﻬﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "... ﻱﺮﺒﺻ ﺪﻔﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "...ﺮﺜﻛﺃ ﻞﻤﻋﺃ ﻥﺃ ﻲﻠﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "!ﺀﻲﺷ ﺯﺎﺠﻧﺇ ﻲﻨﻨﻜﻤﻳ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "؟ﻲﻔﺗﺎﻫ ﻦﻳﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "...ﻢﻤﻣﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "؟ﺲﻣﻷﺎﺑ ﺙﺪﺣ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "!ﻡﻮﻴﻟﺍ ﺍﺬﻬﻟ ﺔﻳﺎﻬﻧ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "؟ﺎًﺒﺣﺮﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "؟ﻲﻧﺎﺠﻣ ﺮﻳﺮﺳ ﻚﻳﺪﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "؟ﻞﻌﻓﺃ ﻥﺃ ﻲﺑ ﺽﺮﺘﻔﻳ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "...ﺩﺪﺤﻤﻟﺍ ﺖﻗﻮﻟﺍ ﻲﻓ ﺀﺎﻬﺘﻧﻻﺍ ﻦﻣ ﻦﻜﻤﺗﺃ ﻦﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "؟ﺔﻠﻜﺸﻤﻟﺍ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "؟ﻥﺍﺭﺪﺟ ﻩﺬﻫﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "...ﺔﻴﻓﺎﻛ ﺔﻘﻴﻗﺩ 20 ﺓﺪﻤﻟ ﺔﺣﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "!ﺔﻠﺸﻔﻠﻟ ﻡﻮﻨﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "!ﻞﻤﻌﻟﺍ ﻰﻟﺇ ﺏﺎﻫﺬﻟﺍﻭ ﻝﺎﺴﺘﻏﻻﺍ ﺖﻗﻭ ﻥﺎﺣ"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "!ﻊﺋﺎﺟ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": ".ﺀﻲﺳ ﺐﻟﺎﻐﻟﺎﺑ ﺍﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "...ﻢﻣﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": ".ﻪﻬﻬﻬﻬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "...ﺮﻈﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "،ﺭﺩﺎﻏ ﺪﻘﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": ".ﺔﻃﺎﺴﺑ ﻞﻜﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "!ﺐﻳﺮﻏ"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "!ﻚﺤﻀﻣﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": ".ﺎﻴﻫ ،ﻑﻭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "ﺎﻳ [player], ﻞﻌﻔﺗ ﺍﺫﺎﻣ?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "؟ﺮﻣﻷﺍ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "؟ﻯﺮﺧﺃ ﺓﺮﻣ ﺭﺩﺎﻐﺘﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "!ﻡﺎﻤﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": ".ﻚﺤﻣﺎﺳﺄﺳ ،ﻡﺎﻤﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], ﺎﻨﻴﻟﺇ ﺪﻋ!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "!ﺔﻈﺤﻠﻟ ﻮﻟﻭ ّﻲﻟ ﺮﻈﻨﻳ ﻢﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "...ﻞﻤﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "؟ﻚﺘﻄﺧ ﻲﻫ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "؟ﻲﺘﻄﺧ"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "؟ﺔﻄﺨﻟﺍ ﻱﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": ".ﺢﻴﺤﺻ ،ﻩﻭﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": ".ﻚﺗﺎﻳﺮﻛﺫ ٍﺕﺪﻘﻓ"}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "!ﻕﺎﻓﺭ ﺎﻳ ،ﺔﻠﻜﺸﻣ ﻼﻌﻓ ﺎﻤﺘﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "!ﺮﻛﺬﺘﻟﺍ ﻲﻠﻋ ﻥﺍ ﻲﻧﺍﺮﺒﺨﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "؟ﻲﻠﻋ ﻥﺎﻜﺤﻀﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "...ﻚﻬﺟﻮﻟ ﺮﻈﻨﻟﺎﺑ ﻦﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "!ﺰﻴﻣﺃ ﻻ"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "ﻙﺭﻮﻌﺷ ﻒﻴﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "؟ﻚﻟ ﺔﻘﺑﺎﻄﻣ ﺔﺨﺴﻧ ﺔﻳﺅﺮﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": ".ﻢﺗﺎﺨﻟﺍ ﻚﻠﻤﺗ ﻲﺘﻟﺍ ﻚﻠﺗ ،ﺪﺼﻗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": ".ﺎﻬﻴﻠﻋ ﺥﺮﺻﺄﺳ ﺖﻨﻛ ،ﻢﻌﻧ"}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "؟ﻲﻨﻤﻬﻔﺗ ,ﺔﻣﺪﺻ ﺐﺒﺴﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "!ﻲﻨﻣ ﻞﺻﻷﺍ ﻖﺒﻃ ﺔﺨﺴﻧ ﺎﻬﻧﺇ ،ﺮﻈﻧﺍ !ﻲﻬﻟﺇ ﺎﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": ".ﺓﺰﻴﻤﻣ ﺖﺴﻴﻟ ﺎﻬﻨﻜﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "(: ﻞﻀﻓﺍ ﺎﻧﺍ ﺍﺬﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "...ﺔﺳﻮﺒﻌﻟﺍ ﻚﻠﺘﻟ ﺮﻈﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": ".ﺎﻨﻫ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "!ﻪﻧﻻﻮﻘﺗ ﺎﻣ ﻞﻛ ﻉﺎﻤﺳ ﻲﻨﻨﻜﻤﻳ"}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "؟ﺔﻌﺒﻘﻟﺍ ﻩﺬﻫ ﺀﺍﺪﺗﺭﺍ ﻦﻣ ﻦﻴﻠﻤﺗ ﻻﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "؟ﺕﺍﺯﺎﻔﻘﻟﺍ ﻩﺬﻫ ﻦﻣ ﻦﻴﻗﺮﻌﺗ ﻻﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "؟ﺎﻬﻴﻌﻠﺨﺗ ﻻ ﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "...ﺎﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "!ﻒﻳﺮﺿ ﺖﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "(: ؟ﺮﺧﺁ ﺎًﺌﻴﺷ ﻊﻠﺧﺃ ﻥﺃ ﻲﻧﺪﻳﺮﺗ ﻡﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": ".ﺩﺎﺟ ﺎﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": ".ﻡﺎﻤﺗ ,ﺎﻫﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": ".ﺍﺎﻋ"}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "!ﺭﺰﺠﻟﺍ ﻦﻣ ﻞﺋﺎﻬﻟﺍ ﺭﺪﻗ ﺍﺬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "!ﻚﺤﻀﻣ ﻞﻠﺧ"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "!ﻪﻬﻬﻬﻬﻬﻬﻬﻫ"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "!ﻒﻗﻮﺗ !ﺔﻈﺤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "...ﻪﻠﺧﺍﺩ ﻯﺮﺗ ﻻﺃ ﻞﻀﻓﻷﺍ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": ".(: ﺍًﺮﺳ ﻪﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "؟ﻞﺧﺍﺪﻟﺎﺑ ﺪﺟﻮﻳ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "،ﺮﺴﻟﺍ ﺮﺴﻟﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": ".ﺔﻇﻮﻔﺤﻣ ﻰﻘﺒﺗ ﺭﺍﺮﺳﻷﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": ".ﺎﻫﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "؟ﻚﻣﺩ ﻕﺮﺤﺗ ﺍﺫﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "!ﻭﺍﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "؟ﻩﺬﻫ ﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "؟!ﺔﺒﻌﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "!ﺏﺮﺟﺃ ﻲﻨﻋﺩ"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "...ﺎﺒﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "؟ﺔﺒﻌﻠﻟﺍ ﻩﺬﻬﺑ ﻪﻠﻌﻓﺃ ﻱﺬﻟﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "،ﺕﻼﻤﻌﻟﺍ ﻲﻌﻤﺟ"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": ".ﻉﺩﺎﻔﻀﻟﺍ ﻲﺒﻨﺠﺗﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": ".ﻞﻠﻤﻟﺍ ﻲﻓ ًﺔﻳﺎﻏ ﻭﺪﺒﺗ ،ﻑﻭﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "؟ﺔﺒﻌﻟ ﻩﺬﻫ ﻲﻤﺴﺗ ،ﺔﻳﺪﺠﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "؟ﺍﺬﻫ ﻰﻠﻋ ﺖﻠﺼﺣ ﻒﻴﻛ"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": ".ﻚﻴﻟﺇ ﻩﺪﻋﺃ ﻢﻟ ﻲﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "؟ﻲﻨﻘﻓﺍﻮﺗﺃ ،ﺐﻳﺮﻏ"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "!ﻩﺁ"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "!ﺮﻈﻧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "!ًﻼﻠﺧ ﺕﺪﺟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "ًﺎﻌﻄﻘﻣ ﺽﺮﻌﻳ ﻥﺃ ﺽﺮﺘﻔﻤﻟﺍ ﻦﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "!ﺯﺎﻔﻠﺘﻟﺍ ﻰﻔﺨﻳ ﻪﻨﻜﻟﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "!ﻪﻴﻔﺨﻳ ﻭ ﻪﺿﺮﻌﻳ ﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "؟ﺎﻫ ,ﻊﺋﺍﺭ"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": ".ﻂﻘﻓ ﺮﻈﺘﻧﺄﺳ ﻲﻨﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "؟ﻞﻌﻔﺗ ﺍﺫﺎﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "!ﻢﻗ ,ﻢﻗ"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "!ﺡﺮﻤﻧﻭ ﺐﻌﻠﻨﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "ﺏﺎﺒﻟﺍ ﺍﺬﻫ ﻦﻣ ﺝﺮﺧﺍ"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": ".ﺮﻤﻤﻠﻟ ﻪﺟﻮﺗ"}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "!ﺎًﻋﺍﺩﻭ"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "ﻚﺑﺎﻫﺫ ﺖﻗﻭ ﻥﺎﺣ , [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "!ﻒﺨﺗ ﻻ ،ﻖﻠﻄﻧﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": " ﻦﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "ًﺍﺪﺑﺍ ﻢﻛﺪﺣﻮﺑ ﻢﻜﻛﺮﺗﺃ"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "!ﻲﻌﻣ ﺍﻮﻘﺑﺍ ﺍﺬﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "!ﺔﻌﺒﻘﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "؟ﻡﺎﻤﺗ ,ﺡﺰﻣﺃ ﺖﺴﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "!ﻩﺎﺑ"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "؟ﻒﻘﺗ ﺍﺫﺎﻤﻟ"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "!ﺖﻗﻮﻟﺍ ﺬﻔﻨﻴﺳ"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "!ًﺎﺒﺣﺮﻣ"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "!ﺎﻋﺍﺩﻭ ﻲﻨﻋﺍ ,ﻉﺃﺃ"}

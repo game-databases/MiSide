@@ -1,0 +1,313 @@
+# MiSide DB — master TODO
+
+Orchestrator-maintained. One line per unit; state in the tag:
+`[ ]` todo · `[~]` in progress · `[x]` done · `[Q]` owner-gated · `[-]` dropped/deferred.
+Phases follow FRAMEWORK §7 + AGENTS rule 8 (data completeness gate before frontend).
+
+**Execution protocol** (promptForDB.md): every open line below is a PIECE and
+runs the full loop — PrepareTask (Scout→Documentator spec→Reviewer→Arbiter) →
+parallel CodeWriter+TestWriter → parallel fresh Code/Test Reviewers → Arbiter
+(fresh agents every round) → harsh side-by-side visual critic vs
+new-world.guide/wikily/enka for any user-facing surface. No piece skips it.
+All agents are headless terminal `claude --model ox-alpha`, launched detached;
+every initial output gets ≥2 independent verifiers before acceptance.
+
+## Phase 0 — bootstrap & research
+
+- [x] Read canon in full: AGENTS.md, decision-register, domain-doctrine, site-sections,
+      seo-standard, localization-architecture, design-standard, extraction-doctrine,
+      extraction-host, FRAMEWORK §1–§10, promptForDB.md
+- [x] Pin store facts: appid 2527500 (+demo 2527520, DLC 3404450), 31 store languages,
+      AIHASTO / IndieArk+Shochiku, released 2024-12-10
+- [-] Acquire demo client 2527520 — dropped: moot while full client installed (diff target later)
+- [x] Full client 2527500 acquired — INSTALLED on this host via logged-in Steam:
+      `A:\SteamLibrary\steamapps\common\MiSide\`, buildId 19029065
+- [x] Agent T1: Unity toolchain scout → `toolchain.md` + `data-acquisition.md`
+      (measured against the real install: Unity 2021.3.35f1, IL2CPP metadata v29)
+- [x] Agent S1: game+competitor research — `competitor-research.md` (5 sources incl
+      EN+RU Fandom, applied delta J1–J14) + `docs/research/game-research.mdx`
+      (20 chapters, version lattice, 3 endings w/ choice graph, 26 achievements)
+- [x] S1 verifiers v-s1a + v-s1b PASS → fixer F-S1 applied all 10 corrections
+      (headline: store = 31 languages not 30)
+- [x] Agent E1: hands-on toolchain probe — all 7 steps run for real
+      (`docs/research/explorer-e1-hands-on.mdx`; type trees NOT stripped · loc join
+      key `GlobalLanguage.GetString(category, lineIndex)` proven · census 51+69
+      containers = 2.277 GB · no custom containers)
+- [x] E1 verifiers v-e1a + v-e1b PASS → accepted (LOW nits carried into spec as
+      verify-during-build items)
+- [x] Agent T2: UI style scout DELIVERED on attempt 4 (thumbnail-safe method
+      after 3 API deaths) — `docs/research/ui-style-scout.mdx`: dual-soul
+      palette sampled (cozy candy-pink / horror plum+alarm-red, deep purple
+      constant), pill-chrome + VHS-corruption motifs, 12-row token table,
+      credits.jsonl 20→112 rows
+- [x] Verify T2 output: t2-vA + t2-vB double-PASS (32 hexes re-sampled via
+      PIL, motif + credits checks) → T2 ACCEPTED as token source
+- [x] PrepareTask P1: Documentator D1 drafted spec `docs/specs/pipeline-run_all.mdx`
+      (8 stages, 16 ACs, 3-tier tests)
+- [x] PrepareTask P1: Reviewer R-P1 → NEEDS_REVISION, 14 line-level findings
+      (4 majors: three contradicted rulings §4–§8, one unimplementable byte-identity AC)
+- [x] PrepareTask P1: Fixer F-P1 resolved all 14 (resolution map `docs/logs/F-P1.log`)
+- [x] PrepareTask P1: Arbiter A-P1 ruled FIX_LOOP — single survivor **N-1**
+      (S4 append vs AC-5 idempotency contradiction on sweep-attempts ledger);
+      everything else judged build-ready
+- [x] Fixer F-P2: resolved N-1 — chose **deterministic full rewrite** mode,
+      applied across S4/AC-5/AC-8/AC-12; verified in-scope by v-n1b PASS
+- [x] Verifier round 1 on F-P2: v-n1b PASS (hunk scope clean) + v-n1a FAIL
+      one finding (AC-5 "byte-identically" dropped S4's volatile-fields
+      qualifier — unsatisfiable for stage reports)
+- [x] Fixer F-P3: applied n1-vA's prescribed fix — AC-5 sentence now
+      "…byte-identically modulo the volatile fields."
+- [x] Verifier round 2 on F-P3: v-n2a PASS (referent unambiguous, §5 sweep
+      clean) + v-n2b PASS (4 fused hunks, all in scope, commands
+      byte-identical) → **pipeline spec FROZEN** at `836bef8`
+- [x] Freeze pack `spec.md` DONE — A-SD1 ruled **SPEC_FROZEN** (D3 owner gate
+      preserved; tools-plan.md sequenced before frozen-flag flip). Chain:
+      S-D1 → R-S-D1 APPROVE (3 minors+2 nits, fresh-evidence verified) →
+      F-SD1 all 5 applied (incl. DR register 30→31) → arbiter diff-verified
+- [x] Design-token source hunt: T2 accepted (double-PASS, 32 hexes
+      re-sampled); known gap carried to tokens.css piece: font-family
+      decision (identify game fonts during art-export)
+
+## Phase 1 — extraction (full client corpus; demo diff pass deferred)
+
+- [x] Detect Unity flavor, engine version, pin buildId (2021.3.35f1 · IL2CPP ·
+      metadata v29 · buildId 19029065)
+- [x] P1 build wave CLOSED — C-W1 delivered (11 modules + shims, smoke green)
+      → R-C-W1 NEEDS_REVISION(7) → F-CW1 all fixed → R-C-W2 verified+1 new
+      minor → F-CW2 fixed → R-C-W3 APPROVE → A-BUILD FIX_LOOP(2 survivors:
+      structure-graph leg guard, tautological residue needles) → F-CW3 both
+      landed → R-C-W4 APPROVE. Test chain parallel: T-W1 70 tests (66 green
+      black-box) → R-T-W1 APPROVE. Debt ledger recorded in build-arbiter.mdx.
+      4 review rounds total, fresh agents every round.
+- [x] Pipeline EXECUTION complete across 3 rounds (X-1 → X-3): round-1 S4
+      fatal (AssetStudioMod Cecil stack overflow) → investigator solved via
+      patched CLI 0.19.0.1 cycle guard, A-S4 ERRATA_APPROVED; round-2 S1–S6
+      green → S7/S5 questions adjudicated by A-S6 (strict recover-or-mark
+      codec; DOTNET_ROOT-in-code nuget pin); fixers F-CW4..8 + F-TW2..4 all
+      verified → **X-3 FINAL: ALL STAGES GREEN** — census 2,277,315,948 B ·
+      51/51 containers · 140,380 objects · 163/163 assemblies decompiled ·
+      34 locales / 180,148 records · art 12 GB reconciled; v-x3 PASS
+      (independent game-root walk reproduced AC-10/AC-14 exactly)
+- [x] Tools plan: T-P1 DELIVERED — `tools-plan.md` 7 ideas scored /25
+      (top: Ending Condition Explorer, Dev-Console Reference, Owned Scene
+      Map; 3 no-competitor ideas; readiness-based build order) → reviewer
+      R-T-P1 **APPROVE** (4 LOW findings: "modeled nowhere" phrasing,
+      readiness sort-key honesty, tracker stands on verified spine) —
+      carried as build-time guidance for the tools phase
+- [x] T-W1 test suite DELIVERED + ACCEPTED — 70 tests: 66 green black-box vs
+      real driver, 4 install-tier gated; stub tool exes enforce spec
+      invariants; R-T-W1 APPROVE (6 tightening items → debt per arbiter);
+      3 spec-level findings adjudicated by A-BUILD (1 follow-up, rest conform)
+- [x] Fresh Code+Test Reviewers → Arbiter → fix loops — DONE across 4 code
+      rounds + test round, all fresh agents, arbiter-adjudicated
+- [x] `run_all` green end-to-end on the real install — X-3 COMPLETE, all
+      stages green: 163/163 assemblies decompiled, PROOF.md byte-exact,
+      pins healed, AC scoreboard none red → v-x3 PASS (independent game-root
+      walk reproduced AC-10/AC-14 exactly). F7 (references.json parser
+      depth bug) → F-CW9 fixing; F8 pin-lag self-disclosed
+- [x] P2 dataset curation wave 1 — specs ALL_APPROVED (review→fix→verify→
+      arbiter): DS-1 characters · DS-2 achievements+endings · DS-3 dialogue;
+      builders B-1/B-2/B-3 built + accepted (details in entity lines below)
+- [x] Raw harvest: full asset dump DONE (principle zero) — art-export
+      11.4 GB / 72,909 files + harvest + decompiled + il2cpp now on
+      `D:\unpacked_game_data\MiSide\` (C:-disk emergency relocation,
+      MOVED-TO.txt stubs at old paths); audio/video catalogued in place
+- [x] Script decompile to `extracted/decompiled/` — 163/163 assemblies
+      (57 main + 106 Voice Editor) + `_structure/` graphs (F7 references.json
+      depth bug → F-CW9 fixing)
+- [x] All-locale string tables — 2,210/2,210 JSONLs emitted, **180,148
+      records**, recover-or-mark policy per A-S6 (75 cp1250 segments
+      recovered, 5 declared U+FFFD), byte-identical rerun verified
+- [x] Entity dataset: characters & Mitas ACCEPTED — B-1 built + v-b1a PASS
+      (7 ACs re-executed, zero mismatches vs independent dump parse) +
+      v-b1b PASS. Note: relinks parked at data/characters/relinks/ —
+      relocate to extracted/relinks/ at stage registration
+- [x] Entity dataset: cartridges & mini-games ACCEPTED — spec APPROVED
+      (A-DS456; fence: §1 restatement rides emit-stage registration); B-4
+      built (23+17 rows, 6 relink joins, 10/10 ACs; finds: all keys =
+      gallery buttons, hard pinguin→Chirfns edge) — v-b4a PASS
+      (own-scripts re-execution) + v-b4b PASS
+- [x] Entity dataset: documents & lore collectibles ACCEPTED — spec
+      APPROVED (A-DS456; F-DS5 AC-1 repair verified); B-5 built (14 profile
+      + 166 world docs + 8 books; 792 relink edges; placement reconciled
+      byte-equal by reference to B-4; finds: 73 components back 160 rows,
+      zh locales lack book pages) — v-b5a PASS (own UnityPy re-derivation)
+      + v-b5b PASS
+- [x] Wave-2 spec: scenes/map-layer DS-6 DELIVERED (~430 lines;
+      levelN↔Location(N−2) hard-corroborated via World.nameLocation; POI
+      position-truth labeled; bounded S9 scene-transform stage proposed as
+      unblock; wiki chapter-numbering disagreement recorded not hardcoded)
+      → reviewer next
+- [x] Entity dataset: achievements ACCEPTED — B-2 built + v-b2a/v-b2b both
+      PASS (fresh sweep; all 4 novel claims re-measured). Handoff minors:
+      endings ledger 7-vs-6 note row; DC edge-id unsuffixed form; reconcile
+      B-3 stringFile −1 vs B-2 prompt_loc before frontend renders prompts
+- [x] Entity dataset: endings + choice→ending trees ACCEPTED — same build +
+      verification chain as achievements line above
+- [x] Entity dataset: dialogue graphs ACCEPTED — B-3 built (2,839 nodes /
+      3,776 edges; D6 PARTIAL structural at 96.23%; byte-deterministic ×30)
+      → v-b3a caught real D7 defect (11 hints silently dropped) → F-B3
+      fixed (320+8=328 invariant) → v-b3-r2 PASS w/ independent recount.
+      New corpus findings ledgered: `_#N`≠PathID, 4 tail-delta locales,
+      L14 text-keyed forks
+- [x] Entity dataset: locations/scenes + spawn/placement ACCEPTED — B-6
+      built (24 scenes · 57 links · 986 POIs/23 classes · spawn tables ·
+      markers v0 no-orphan; 37/37 checks byte-identical; spec corrections
+      shipped as data: level7 unload, pointers=15, holiday-gating, LD18
+      shell) — v-b6a PASS (S1–S8 re-executed) + v-b6b PASS.
+→ ALL SIX DATASETS ACCEPTED —
+      v-b6a PASS (S1–S8 re-executed; 2 build-log drifts noted non-block).
+      ⚠ C: disk emergency escalated (questions.md §9)
+- [~] CLOSURE-1 DELIVERED — relinks 25 files/1,159 edges +
+      locale_availability 2,686 cells (sha-stable ×2 passes);
+      missingdata.md 83 entries; PROOF §5 reconciles all six scoreboards;
+      3 conflicts adjudicated per authority rulings → v-c1a+v-c1b
+      double-PASS (sha reproduced from disk) → **PHASE 1 DATA LAYER
+      CLOSED**; spec.md status flipped (frozen/pull/locales/verified)
+      per arbiter sanctions — **PHASE 3 GATE OPEN**
+- [ ] Remaining logic layer: unlock conditions/predicates, mini-game rules
+- [ ] Icons/UI art 2D export only; MEDIA-CATALOGUE.md rows for audio/video
+      (28,725 ogg catalogued in place per §5/§7 — install never mutated)
+- [x] Relink layer: canonical `extracted/relinks/` 25 files / 1,159 edges +
+      `locale_availability.jsonl` (2,686 cells) — CLOSURE-1, sha-stable
+- [x] PROOF.md coverage reconciliation + residue ledger — §5 dataset-era
+      appended, all six scoreboards reconciled
+- [ ] Demo→full diff pass deferred until needed; EXTRACTION-LOG.md maintained from
+      first harvest run
+
+## Phase 2 — data contracts
+
+- [~] Pin entity schemas in `contracts/` (frontend consumes, never derives):
+      D-C1 Documentator DELIVERED `docs/specs/data-contracts.mdx` (479 ln;
+      §1 consumes-gate · 3-class header taxonomy · 10 entity blocks · join
+      registry · availability semantics 2,686 cells · fingerprints · stub
+      vocabulary · 7 open questions · ACs C1–C10; counts re-measured vs
+      corpus) → reviewer R-D-C1 (harness subagent): **NEEDS_REVISION — 6**
+      (counts all exact ×10 families; but F-1 HIGH anchor grammar covers
+      ~33% of real endpoints + C4 unpassable; F-2..F-6 schema-fiction:
+      invented POI space enum / wrong speaker-null span / invented edge
+      field ptr / broken enums / falsified COMPLETE-inventory claim) →
+      **fixer F-DC1 RUNNING as harness subagent** (all 6 + nits, re-checks
+      each claim before applying); then verifier pair + arbiter. Launch
+      discipline switched to Agent tool per owner 2026-08-26 — D-C1 was
+      the final nested-CLI launch
+- [ ] Derived artifacts: search index, map markers, relation cards
+- [x] `missingdata.md` ledger — 83 entries classified
+      (12 cross-cutting / 60 per-dataset / 3 doc-defects / 8 absences)
+
+## Phase 3 — site build (Next.js default profile unless spec says astro)
+
+- [~] Tools plan: ≥5 scored ideas → `tools-plan.md` — see T-P1 line above
+- [ ] Design tokens extracted from game UI (`design/tokens.css`) — feeds the
+      shadcn/ui theme layer
+- [x] App scaffold: Next.js + **shadcn/ui kit UPGRADED per game soul**
+      — spec APPROVED (D-S1 → R-D-S1 N-R(3) → F-DS1B five fixes →
+      v-ds1b PASS → A-S1B SCAFFOLD_APPROVED) → **SB-1 BUILT**
+      (7,054 static pages green; chrome parity ×34; hex lint 0; RTL +
+      hreflang verified; OFL font subs Nunito+VT323 declared) →
+      R-SB1 NEEDS_REVISION(2 SEO blockers + 5 minors) → F-SB1 all fixed →
+      R-SB2 **APPROVE** (blockers re-verified by curl; regression sweep
+      clean). ⚠ process-safety + disk escalations in questions.md §9
+- [x] Visual critic loop rounds 1–4: VC-1 harsh side-by-side (enka/NWG/wikily)
+      DELIVERED — honest 2–6/10, 8 prioritized defects → **fixer F-VC1
+      DONE (attempt 3; two earlier runs killed by 429s)** — all 8 items
+      closed w/ live evidence; found+fixed real defect (browser search
+      was DEAD: MiniSearch crashed on 15 dup ids); art layer 305 files
+      incl. per-locale book covers (13 MB); own re-scores home 4→7 ·
+      search 3→8 · entity 2→6 · motion 3→6 · ru 5→8 · ar 6→8. Committed
+      78dc33a1 → **DUAL VERIFICATION DONE**: R-FVC1 ✅ APPROVE
+      (re-execution green; "mita"→53 live; joins exact) · VC-2 ✅ honest
+      adjudication — scores Home 7(+3) Entity 5(+3) Search 7(+4) RU 8
+      AR 8 Motion 5; most fixes held, but **FIXES_REQUIRED — 7 items**
+      (raw ids off-Mita "mta"/"Books0"; hover corruption dead code;
+      5 imageless section indexes; search cap hides 32/52 matches;
+      thin entity modules; static VHS-404/no SPACE keycap; no home
+      featured module). Round 2: fixer F-VC2 (attempt 1 died to 429
+      mid-refinement, work survived; attempt 2 audited tree, finished
+      gaps) → **F-VC2 DONE**: all 7 items + R-FVC1 minors closed w/
+      live proofs — zero raw ids; hover corruption CDP-proven alive;
+      "mita" → 54 rows / all 8 kinds pinned by 3 new tests; locations
+      art landed; VHS-404 animated + SPACE keycap; home transcript
+      rail. Suites: build 0 · tests 29/29 · parity ×34 · tsc 0.
+      Committed 665fe74d (+ a74b0f66 scratch-log hygiene) → **ROUND-2
+      DUAL VERIFICATION DONE**: R-FVC2 ✅ APPROVE (zero blocking;
+      5,168-row ×34 raw-id sweep clean; hover fix structurally dead;
+      search tests = real pins) · VC-3 ✅ adjudication — scores Home 8
+      Entity 6 Search 9 RU 9 AR 8 Motion 8; now LEADING competitors on
+      in-place search / state-driven horror interaction / locale URLs,
+      but **FIXES_REQUIRED — 5 items** (save-key chip "mtakd" leak;
+      bare cartridge detail pages despite pinned joins; card grids
+      artless players/minigames/locations; generic dialogue index
+      title; dead card-lift transform). Round 3: fixer F-VC3 (two 429
+      deaths → attempt-3 verify-only mandate worked) → **DONE**: all 5
+      live-proven (save-key chips→reader fields; cartridge modules from
+      pinned joins; grids arted where corpus has pointers — players/
+      locations honestly bare per rule 8, corpus-absence verified;
+      dialogue titles ×34; lift matrix-fires). Suites: 7088-page build
+      0 · tests 29/29 · parity ×34. Committed 1f651af3 → **ROUND-3 DUAL
+      VERIFICATION DONE**: R-FVC3 ✅ APPROVE (lift verified in minified
+      CSS; minors: debris logs + 2/15 art.ts provenance comments →
+      debt) ∥ VC-4 ✅ **CRITIC: CHROME_PASSES** — Home 8 · Entity 8(+2)
+      · Search 9 · RU 9 · AR 8 · Motion 9(+1); leads vs all three
+      competitors proven live; remaining gaps ruled "backlog, not
+      gates" (13 artless cartridge portraits; NWG-class modules with
+      tools/UGC phases). Committed 736b080f. **PHASE-3 CHROME LOOP
+      CLOSED** after 4 critic rounds (trajectory 2–6 → 8–9)
+- [ ] Chrome-loop debt (fold into next site fixer): untracked ✓; fix
+      2/15 art.ts provenance comments (DanceButton/GameMachine rows);
+      extend cartridge portrait join toward 13 artless rows when data
+      allows; placeholder-tile ruling deferred to owner taste
+- [Q] Machine disk hygiene: C: hit 0 GB twice (NOT this pack's churn —
+      escalated questions.md §9 with evidence); heavy outputs relocated
+      to D:; owner ruling pending
+      ([DR-2026-08-24-miside-pack] §3 — components rebuilt to MiSide's
+      interactions/animations/look&feel, not token-reskinned), locale
+      routing (pivot bare paths, `/xx/` prefixes), sitemap base
+- [x] Design tokens extracted from game UI (`design/tokens.css`) — 3-tier
+      token system over T2 sampled palette; hex-lint enforces token-only;
+      accent spine derives per-Mita colors from registry palettes
+- [x] Home page — VC-4: **8/10**, transcript rail w/ node counts, arted
+      category grids, de-narrated; competitor lead in interaction
+- [x] Database section: category list pages — five section indexes +
+      dialogue; banners + card art where corpus has pointers; RU-localized
+- [x] Global search: header field, results-in-place (54 rows / 8 kinds,
+      kind-balanced, Escape-restores; VC-4 **9/10** — beats NWG's
+      navigate-away and enka's none); [DR-2026-08-22 honored]
+- [x] Site chrome i18n ×34 locales ([DR-2026-08-20] pivot bare + /xx/;
+      parity ×34 green; RTL ar verified at 200)
+- [~] Entity pages: modular, conditional tabs, quotable block — Mita pages
+      VC-4 **8/10** (tabs+counts+quotable+accent spine); cartridge detail
+      now carries relink modules; REMAINING: NWG-class module density
+      (calculator/3D/comments → tools/UGC phases), 13 artless portraits
+- [x] Character/Mita pages — the soul surfaces: real names, registry
+      palettes, appearances/cartridges/lore/achievements modules,
+      CorruptionHover on compromised h1s
+- [ ] Interactive map: scene maps per chapter/location (owned map, no embeds ever)
+- [ ] Map module on every location-bearing entity page (two-way links)
+- [ ] Global search: header field, results-in-place ([DR-2026-08-22-search-is-not-a-page])
+- [ ] Guides section (entity-linked)
+- [ ] News section (game + database news)
+- [ ] Tool: ending-path explorer / choice-tree calculator
+- [ ] Tool: collectible & achievement trackers (checklist persistence)
+- [ ] Changelog / patch-diff viewer (CORE differentiator)
+- [ ] UGC: accounts, comments, corrections, screenshot uploads ([DR-2026-08-19-ugc-accounts])
+- [ ] Site chrome i18n: all verified locales ([DR-2026-08-20-locale-urls])
+- [ ] SEO layer: hreflang matrix, JSON-LD, OG cards, IndexNow
+- [ ] AEO layer: llms.txt + unauthenticated static JSON API
+- [ ] PWA/mobile polish
+
+## Phase 4 — quality loop (per promptForDB pipeline)
+
+- [ ] Visual critic loop × page type vs enka/NWG/wikily references; arbiter adjudicated
+- [ ] Fresh end-to-end smoother agent between major waves
+- [ ] CWV smoke: LCP<2.5s, interaction<200ms, CLS<0.1 per template × canonical locale
+- [ ] curl-grep cross-link + quotable-block verification on served HTML
+- [ ] Negative third-party-map grep in CI
+- [ ] Banned-token copy sweep (anti-slop register rulings)
+
+## Phase 5 — ship & after
+
+- [ ] Domain/placement decision recorded (owner gate Q3/D3; hub path until ruled)
+- [ ] Deploy origin; llms.txt + JSON API verified non-empty on production
+- [ ] Search Console + Bing WMT; answer-engine referral tracking
+- [ ] Post-launch bundle: embeds/Discord bot/mcp per D5 appetite

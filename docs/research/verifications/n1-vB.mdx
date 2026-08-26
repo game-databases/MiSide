@@ -1,0 +1,9 @@
+# n1-vB — F-P2's N-1 fix, drift lens (arbiter ruling p1-spec-arbiter.mdx read in full)
+
+- H1 `:194-205` S4 failure bullet: "appends"→"lands in" + new write-mode paragraph (deterministic full rewrite; `_ledger/locale-delta.jsonl` + stage reports rewritten, never appended). ALLOWED — near-verbatim the arbiter's N-1 prescription.
+- H2 `:458-461` AC-5: ledger-style artifacts obey the S4 write mode, rerun reproduces byte-identically. ALLOWED.
+- H3 `:478-481` AC-8: "appended to"→"recorded in", +"rewritten in full at stage end per the S4 write mode". ALLOWED.
+- H4 `:509-511` AC-12: "the latest S4 run's full rewrite, one row per container, never accumulated across runs". ALLOWED — closes N-1's secondary double-count exposure.
+Zero-touch, proven mechanically: heading+AC-ID sequence diff HEAD↔worktree EMPTY (stage numbering, anchors, §5 AC count/IDs intact); every fenced command block byte-identical; test plan untouched by any hunk; only 4 hunks exist.
+Sanity: chosen mode = offered option (b) "deterministic full rewrite per stage invocation"; AC-8/AC-12 aligned as directed; never-append makes idempotency hold by construction, exactly as ruled.
+VERDICT: PASS

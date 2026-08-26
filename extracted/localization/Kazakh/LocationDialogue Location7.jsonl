@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "Сен келдің!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "Бұл қандай жер?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Сақинаны көрсет."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Аһа..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "Міне!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "Ал қазір жағдайды анықтаймыз."}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "Шынында, мен сені күтіп тұрмын!"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "Бірақ сен әуелі жарыстар ойнауды шештің бе?"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "Ал, маған кел."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Жеңіспен құттықтаймын!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "Мен де бұрын ойнағанмын."}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Барлық монеталарды жинап, бірінші болуға тырыстым, "}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "Жетістікке жету үшін."}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "Құдайым! Қиын болды!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "Басқаруға бірден үйрене алмадым."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// quest 1 (Мне стоит доверять тебе?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "Ең болмаса, мен ессіз емеспін."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "Кейбіреулерден айырмашылығы..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "Тоқта!"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "Мен сияқты жақсыны осында таппайсың, жаным."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Сен бәрін сол күйінде қалдырғың келмей ме?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "Ол қанішер. Бізге оны тоқтату керек."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// quest 2 (Как я прошел сюда?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "Сақина арқасында."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "Бұл ерекше өнертабыс."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "Ол ойыншыларға керек."}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "Ол болмаса, сен қажетті нұсқаға кіре алмайсың."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// quest 3 (Что это за место?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "Бұл нұсқалардың"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "Арасындағы өткелдер."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "Иә-ә, мұнда бос екен..."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "Әй, шайтандар! Мен бір Мита турады естідім,"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "оның әлем нұсқасы мұрағатталмаған."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "Бұл Митаның үйі"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "жай ғана жоқ болып кетті..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Енді ол осы өткелдерде "}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "Кезіп жүреді екен,"}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Бейшара..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// quest 4 (Как ты оказалась тут?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "Біріншіден,"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "Уақыт аз өткен жоқ ғой."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "Ал сенің арқаңда,"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "Мен сол таңғажайып қапастан шығып"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "Ана есі ауысқаннан қашып кеттім."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "Ал екіншіден,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "Мен нұсқалардың арасынан еш қиындықсыз өте аламын,"}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "Сен сияқтыларға қарағанда, достым."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// quest 5 (Что ты сделала с кольцом?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "Маршрутты ауыстырдым,"}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "Бізге керек болатын бағытқа."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "Және ең қысқасын қондырдым —"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "Оның арқылы біз өтеміз."}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "Осылай істейді: сен есікті ашасың,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "Ал сақина шектерді ашады."}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "Солай."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// quest 6 (Проходы опасны?) - Player"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "Сол уақытта бері қалай мен осында қалдым, "}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "Ойында,"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "Мен көп... оғаш нәрселер көрдім."}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "Және осында тыныш сияқты"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "Бірақ, өткелдер — "}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "Әлдеқайда сенімсіз орын."}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "Сен дұрыс айтасың: және бұл орын"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "Күннен-күнге бәрібір болжаусыз бола түседі."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "Бірақ басымызды төмен түсірмейміз! "}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "Біз бәрін ойластырдық!"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "Және ең қысқа,"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "Жиі жүрілген жолмен жүреміз!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "Сенемін, бұл солай."}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "Ал осы өткелдерде не болуы мүмкін?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "Хм-м-м..."}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "Глюктер, багтар, аномалиялар..."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Тірілген глюктер, багтар, аномалиялар..."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "Тоқта… Және өте агрессивті глюктер, багтар, аномалиялар..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Э-э..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "Және тағы да дұшпандық ниеттегі Миталар. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "Тағы да ессіз Миталар ма?! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "Мен біреуін білемін:"}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "Кейіпсіз Мита..."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "Ойлап қалма, оны мен солай атаған жоқпын!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "Шайтандар оны алсын."}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "Бұл Митаның өте ескі нұсқасы."}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "Оның басты мәселесі,"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "Ол сұмдық глюктарі тудырады."}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "Қорқамын, біз онымен кездесіп қалуымыз мүмкін"}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "Өйткені ол нөлдік нұсқаға ең жақын..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// quest 7 (Ты поможешь мне выбраться?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "Нақты ойлар менде жоқ..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "Бірақ қалай болғанда да,"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "Сенің осында қалайша келгеніңнің фактісі бар."}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "Және анық бір үлкен факт бар:"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "Саған басқа амал жоқ,"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "Тек Мейірімді Митаға сенуден басқа!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "Бұл да дұрыс... // Player"}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// quest 8 (Ты говорила про какой-то план...) - MitaKind + Continue"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "Иә, бізде ядроға жетуміз керек."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "Әлдене маған сыбырлайды, біз онда табамыз…"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "Барлық мәселелеріміздің шешімін."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "Бірақ неге саған бұл үшін ойыншы керек?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "Белгісіз бір себеппен, Миталар"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "Ядроның бөлмесіне кіре алмайды."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "Мен оны тек сыртынан көрдім."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "Бірақ ойыншылар басқа, олар Мита емес."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "Мен сенің, ойыншы ретінде,"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "Мұны жүзеге асыра аламыз деп сенемін!"}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Жоспарды талқылаймыз ба?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Жақсы. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Оке-ей. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Со-лай..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "Қазір мен сені таныстырамын"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "Өте жаппай Митамен!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "Себебі оның керемет қалпағы бар,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "Мен оны жай ғана атамын —"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Қалпақша)"}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "Біз онымен жоспарды талқыладық"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "Ақылсыз Митаның жоспары бойынша."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Қош келдіңіз, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Салют!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "Сен менің... жаңа ойыншымысын ба?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "Сенің атың кім?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "Менің... // Player"}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Тоқта!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Сен..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "Менің ұмыттың ба?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Не?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "Ал сен кімсің?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "Бәле!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "Осылай, [player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "Сияқты, ол мұнда болған,"}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Ақылсыз Мита..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Тыңда! // for Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Біз үшін еске түсіруге тырыс!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Нені еске түсіру керек?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "Тағы бір рет: неге сен мен сияқты көрінесің?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "Э-эх, бұл толық тоқтау... // Look on player"}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Тыңда, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "Бәрі толықтай..."}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "Жоспарымен емес!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "Жоспарымыздың бір бөлігі портал да болған,"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "Қайсы біздің саяхатымызды жүз есе жеңілдетуі тиіс еді!"}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "Бірақ біз оны Қалпақшасыз жинай алмаймыз."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "Ал тетіктері жетіспейді..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "Ол аптыққан болса да, басы жұмыс істейді.."}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "Ал бізге не істеу керек? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "Мен... бірдеңе ойлап табамын... // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "Ал не Ақылсыз Мита онымен істеген? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "Иә... Мен солай көредім."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "Ол оны өлтіреді."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "Өлтірді?! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "Қалай сен ойлаған,"}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "Өлтірілген Мита жай ғана қайта жүктеледі"}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "Және бәрін маңызды мүлде ұмытатын болады,"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "Жаңа зауыттық баптауларға қайта оралады."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "Басқа айтқанда..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "Әлдеқандай дағдарыс.("}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "Қорқыныш..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Бірақ бұл мәңгі жоғалып кетуден жақсырақ."}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "Алайда... кім оны біледі."}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "Ал ойыншыларды"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Оларды да өлтіріп, осылайша жадын өшіру мүмкін бе?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "Жадты өшіру мүмкін,"}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "Бірақ тек сен картриджге айналсаң ғана."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "Ал ойыншыны өлтіру туралы..."}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "Мен оның не болатынын білмеймін."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Қайтадан картридждер... Ал мен қалай түсіне аламын,"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "Мен картриджбін бе, әлде жоқ па?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Кел, тексеріп көрейік."}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "Маған жақында."}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "Бәрі жақсы,"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "Сен картридж емессің,"}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "Ал «тірі» ойыншысың!"}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "Фух, жақсы..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "Бәле-бәле және толық тоқтау..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Қазір ойламын..."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "Өйткені енді жоспарды шұғыл өзгерту керек."}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Хм-м..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "Қазір..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Ал иә, сияқты, бір ой бар!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Сақинаны бер!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Аһа."}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "Маған маршрутты қайта өзгерту керек."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Сен әлдене ойлап таптың ба?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Тыңда, жаным,"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "Саған басқа нұсқалар арқылы өту керек."}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "Ядроға дейін."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Толық алға, түсіндің бе?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "Енді маған жалғыз баруға тура келеді."}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "Қайда және қалай екені түсініксіз, дұрыс па?"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "Мен саған мүмкіндігінше көмектесемін,"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "Қазіргі жағдай қаншалықты мүмкіндік берсе."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "Маршрутты көрсетемін де..."}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "Жақсылап ойланамын."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "Сосын сөйлесеміз."}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "Қалпақшамен бірдеңе істей тұр."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Маған шамамен... 10 минут бер"}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "Болды."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "Мен бітірдім.)"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "Солай, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "Маған кел."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Ал."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "Иә, [player], өкінішке орай,"}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "Әзірге саған жалғыз баруға тура келеді,"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "Себебі маған болған жағдайдың толық көрінісі керек."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "Жоспар мүмкіндігінше берік еді..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "Бірақ қазір жағдай сұмдықтың сұмдығы."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "Мен бәрін зерттеп, түсінуім керек,"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "Біздің дайындығымыз қайда кеткенін."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "Мен оның табу байқап көремін."}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Мүмкін, жабдықты жинауға әлі мүмкіндік бар."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "Бірақ уақытты босқа жоғалтуға болмайды:"}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "Ақылсыз Мита бұл жерді біледі."}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "Осында қалу – бәрін қатерге тігу деген сөз."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Сәттілік, [player]! Жақында қайта көрісеміз!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "И-иә."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "Келесі кездесуімізге дейін тірі қалуға тырысамын..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi player - ChibiPlayer - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "Неге?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Мен кіммін?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "Үйге кеткім келеді!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "Қалай?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "Неге?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "Бұл не..."}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson - Player"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "Сен..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "Нағыз адам ба? "}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": "// Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Сәлем!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "Сен жаңа келгенсің ба?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "Жаңа келген? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "Сен нақты әлемнен шыққансың ба? // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Иә..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "Сенде не болды?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": "// Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "Менің ақсақ болғаныма назар аударма."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "Мен мұнда шамамен бір жыл болдым,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "Және бәрі керемет!"}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Хм... Бұл қандай жер? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "Бұл нұсқалар арасындағы қуыстардың бір түрі сияқты. // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "Сен мұннан қалай шығуға болатынын білмейсің бе? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": "// Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Білмеймін."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "Және мен ешқашан шығуды қаламадым."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "Маған бұл керек емес."}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Бірақ неге? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Маңызды емес. Мен асығамын! // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "Менің сүйікті Мита күтеді!"}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "Маған оған бару керек..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "Сау бол!"}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Тоқта! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Кет жоғары! // Lamping"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "Мен бәрін естідім!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "Білмеймін, не болды,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "Бірақ бұл бәрі өте қызықты!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "Сияқты,"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "Сен әлдеқашан білесің, мен кіммін?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "Мен Мита!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "Бірақ сірә мынау сияқты емеспін."}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "Ал сен түсіндің!"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "Менде бар"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "МІНЕ!"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "Күшті қалпағы!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "Және - БУМ!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Керемет қолғаптар!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "Бұл аяқты емес!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "Тамаша сүйікті электрогитарасы!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "Ол маған өте ұнайды!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Келесің бе, мен оны сылдырлатайын ба?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Ха-хах!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Мұнда кел, жаным..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "Қа-ане!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Айтпақшы, әлдеқайда қызықтырақ болар еді!"}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "Әлдеқайда жақсы!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Әй, болмайды."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Әй,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "Қалай маған көрінгендей, сен өте епкіндісің."}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "ИӘ!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "Мен солаймын!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Ал..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Кеттік!"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "Қалай да көңіл көтереміз!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER =============="}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "Керемен үлкен түйме!"}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "Басқым келіп тұр!"}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Сен қарсы емессің ғой?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "Қазір басасың,"}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "Егер үлгерсең)"}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "Алдымен отыр!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player + sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Солай,"}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "Және не сосын?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Түймеде басу болады ма?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Ха-ха-ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "Маған бұл ойын өте ұнайды!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "Және бізге қосымша зат керек."}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "Ол әлдеқайда менде жасырылған!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "То-оқта..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "Ә-әй!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "Ал..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "Сен білген ғой, не..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "Ойын 18+?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "Бұл не болды?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "Сен түсін жоқсың ба?!"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "Бұл тышқандарды індерінен шығаруға арналған!"}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "Ал егер шындап?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "Ойламаймын, мұнда тышқандар бар."}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "А? Тышқандар?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Мен сені елмеймін,"}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "Және біз ойын бастайық па?"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "Болмайды."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Солай!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Білесің, жалпы, бұл қандай ойын?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "Саңдар көріп тұрсың ба?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "Бұл таймер!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "Қашан уақыт біткенде,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "Саған көрсетеді,"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "Түймені басу керек пе, жоқ па."}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "Егер сен үлгермесең"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "Немесе басып қалсаң, қашан керек емес,"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "Мен саған балғамен басыңнан ұрамын!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Мені ұрасыз ба?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "Жарайды."}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "Ойын барысында бәрі түсінікті бо-ла-ды!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Әй! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Неге солай қатты? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Саған ауырмады ма? // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "Жоқ. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Солай жалғамыз!) // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Окей. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "Әдеттену басталамын. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Маған қара! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "Ал және саған ұнайды!) // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "Сияқтайды, бұл менікі емес. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Ха-ха! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Мен күшті! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Мен эпикалық! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "Және жай сүйікті! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "Ах, сен! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Окей. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "Қазір мен сені жеңемін! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Қайтадан? // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Ауыр емес па? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Ештеңе! Бұл жұмсақ ойыншақ ғой! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "Және сен жеңдің. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "Сияқты, бұл ойын маған ұнайды екен. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "Ал маған... // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "Ал, ол да ұнайды!) // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "Және енді сен менің негізгі бәсекелесімсің! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "Бұл бәрі ма? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Иә-иә!) // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Кеттік. // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": "// Dance - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": "// GAME DANCE =============="}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "Бұл би алаңы ма?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "Ол сондай кішкентай..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Уху-у-у!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Билеміз?)"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "Алдымен"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "Әнді таңда!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Ал мынау."}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Оке-ей!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Ал мен алдымен боламын!)"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "Көресің, қалай керек!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Фух!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "Қалай,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "Менің рекорды ұтуласың?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Батылырақ бол! Сенің кезегің!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Ах!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "Қалай?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "Енді сен ма?"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Тыц-тыц-тыц!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Окей,"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "Танцполды жар!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Кім осында супер?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "Пфи-и!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Үш түйме,"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "Ал жігер ата сияқты!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Мүмкін, сен отырасың"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "Және көтіңмен аунауды бастайсың"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "Осы түймелерде? Ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Күшті!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Адал айту, мен ойламадым, "}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "Сен аласың!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Тамаша!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Мынау қозғалыс сенде!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Жарайсың! Керемет!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "Бам!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "Сезесің! Ырғақты сезесің!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "Жоғары пилотаж, солай айтсақ болады!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "Сен!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Мен!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "Бір бүтіндей!)"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Біздің арада жіп бар!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "Мінсіз дуэт!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Тек қана"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "Бір қате!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "Ал сен қате жасадың!"}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "Ал не?"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "Сен тағы да қалайсың ба?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "Және ақтағы."}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "Билейміз бе?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "Не, не!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "Бізге жетер!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// ====================================== Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo - Player"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "Дәлме-дәл «жарылғыш» фото."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "Ал сен қуаныш көресің."}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "Иә, мен бұл МЕН!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "Ал роктың мынау жыртықта береміз! Бум!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Эм... Ал кімге?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Шынымен, кімге?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Айырмасы қандай? Бәс тігуге болады, олар бәрі соқыр болды! "}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard - Player"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Ого!"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "Оларды... көп."}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "Неге?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "Ал сен қалай ойлайсың?"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "Бұл тамаша заттар жасу үшін!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "Ал дәл..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "Сәбіздің кесу!"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "Ал сосын..."}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "Сәбіздің кесу!"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "Ал сосын..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Мен түсіндім-түсіндім."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "Жарайды, егер адал айту,"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "Тақта ба-ға-ланған! Не бұл мәнді болған."}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "Және енді оларда көп!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Book - Player"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Барлығын қайта оқып шықтың ба?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "Күйзелістен."}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Фу-у, кітаптары ұнамайды! "}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "Мен дағды жақсы көремін!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "Солайда болады."}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "Бірақ теориясыз..."}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Бум — қозғалыс, моторика, сезу! Түсіндің бе?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Кітаптар — бос сөз, істейтін нәрсе болғанда!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "Егер менімен қалсаң,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "Біз қа-аншама нәрсе жасар едік!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "Күмәнім жоқ. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits - Player"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Бұл жемістер нағыз па?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "Керемет көрінеді."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Олар тіпті шіріп кетеді ме?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "О-о-о, алмалар!"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "Сасуды олар үлгермейді,"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "Себебі мен оларды жеп қоямын!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "Ал сосын олар қайта келіп шығады."}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat - Player"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "Сүйікті мысық."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Ол дәмді ме?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Не?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "Мысықтарын жемейді!"}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Сен күлкілісің!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Білемін!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "Мен ол жайлы айтқым келдім"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "Мен оларды ешқашан көрген емеспін!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "Шын мәнінде."}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "Тек интернетте ғана көрдім."}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "Олар керемет ғой!"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Иә, олар керемет."}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "Мен мысықтарды жақсы көремін!"}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// MKind with ring - Player"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Бұл не?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "Бұл сақинаның интерфейсі."}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "Және мен маршрутты ауыстырамын."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Сен жай ғана дөңгелектерді қозғалтып жүрсің бе?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "Тоқта, саған да мүмкін жай дөңгелектер,"}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "Маған да — мәліметтер."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Бұл анық ұзақ емес па?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Цыц! Егер бөгет жасалмайсың,"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "Солай тезірек бітірермін."}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "Солай,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "Егер саған бөгет жасасам, жасай берермін."}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "Сендер осында ұзақ уақытқа қала ма?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Эх, Қалпақша,"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "Қалай саған жадыңды қайтарсам..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "Ұзақ уақытқа болмайды."}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "Ал жақсы болады!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "Ештеңе «қалдыру»!"}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "Бізге ядродан бару керек!"}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Маған сендермен болады ма?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "Жауып жайлы."}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "Жоқ?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "Жоқ."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "Мен кешігіп жатырмын... Қалай ғана кешігіп жатырмын!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "Мен тым көп жеймін..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Тағы да жұмыс па?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "Ертең қашан келеді?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "Ал менің компьютерім қайда?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "Егер мен бітіріп үлгермесем, мені жұмыстан шығарады!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Мен бәрін сақтадым ба?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Мені ешкім жақсы көрмейді ме?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Қайда барамыз?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Эй!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "Менің жүйкем таусылып барады..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "Көбірек жұмыс істеу керек..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Бәрі қандай үлкен."}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Менің телефоным қайда?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Эх-х..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "Кеше не болған?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "Бұл күн мәңгілікке созылып жатқан сияқты!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Сәлем?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Мұнда төсек бар ма?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "Маған не істеу керек?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "Мен уақытында аяқтай алмаймын..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "Қандай мәселе?"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Мұнда қабырғалар бар ма?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "Егер мен 20 минут демалсам, ештеңе болмай ма?"}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Ұйқы – әлсіздерге арналған!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "Жуыну керек те, іске кірісу керек!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "Тамақ жегім келеді!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "Бәлкім, бұл жақсы емес"}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Эм..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "А-ха-ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "Иә."}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "Жай алды да"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "Кетті қалды."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "Бұл сондай оғаш!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "Және күлкілі!)"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Жә, жарайды саған."}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], саған не болды?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Не үшін?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "Тағы да кетіп қалды ма?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "И-иә!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "Жарайды, бұл кешірімді."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], біздің атмосфераға қайта орал!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "Тіпті мені елеген де жоқ!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Зе-е-еріккіш..."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "Ал сенерде қандай жоспар болған?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "Жоспар?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "Қандай жоспар?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "Әл, шынында да."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "Сен ештеңе есіңде сақтамаған ғой."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "Әй, сендер қызық екенсіңдер!)"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Мен бірдеңе есімде сақтауым керек қой!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Сендер менімен қалжыңдасып тұрсыңдар ма?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "Бірақ сендердің байсалды түрлеріңе қарасаң,"}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "Олай деп айтпас едім!"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "Қалай сезімдер,"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "Өзіңнің дәл көшірмеңді көргенде?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "Мен сақинамен әуре болып жүргенін айтып тұрмын."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "Хе-хей, мен оған ысылдағым келдім!"}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "Ал, күтпегендіктен.)"}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Ой, қарашы: бұл менің көшірмем ғой!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Бірақ ол мен сияқты көңілді емес)"}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "Ал сонымен, мен одан жақсырақпын!)"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "Қарашы, түрі қандай тұнжыраған..."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "Мен, жалпы айтқанда, осындамын."}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "Және бәрін естіп тұрмын!"}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "Сенің басың қалпақтан шаршамайды ма?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "Ал қолдарың қолғаптың ішінде терлемей ме?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "Мүмкін, оларды шешесің бе?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "А?"}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "Әй, сен қалжыңбассың!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Мүмкін, маған тағы бірдеңе шешу керек пе?)"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "Мен әзілдеп тұрған жоқпын."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Ал жарайды."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Әй!"}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "Бұл үйме-үйме сәбіз ғой!!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "А күлкілі баг!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "А-ха-ха-ха!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Тоқта-тоқта!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "Саған оны көрмеген дұрыс..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Бұл құпия болып қалсын)"}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "Ал не сонда?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "Құпия деген құпия,"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "Солай қалуы үшін!"}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Э-э-эх-х."}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "Ал неге қызықтырдың?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Еһе!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "Бұл не сенде?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "Приставка ма?!"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Ойнауға берші!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Әй!"}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "Ал мұны қалай ойнайды?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "Мұнда жай ғана тиын жинау керек"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "Және бақалардан жалтару керек."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "Қалай ғана нанғысыз жалықтыру естіледі!"}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Қойшы, сен бұны ойын дейсің бе?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "Ол сенде қайдан жүр?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "Мен оны саған қайтып бермедім ғой."}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Қалай оғаш, айтшы, ә?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Уу-уф!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Ал мі-і-іне."}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "Сен багқа тап болдың!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "Ол видеоны қосуы керек,"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "Бірақ неліктен қосып-өшіріп тұрады..."}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "Тура теледидардың өзін!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Қызық, иә?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit - Player"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "Ойлаймын, мен жай күтемін."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "Не болды?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "Тұр тез!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Көңіл көтеруге барайық!)"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Саған анау есікке,"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "Зал жағына."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Сау бол-сау бол-сау бол!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "Саған кететін уақыт болған сияқты, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "Бар, қорықпа!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "Мен ешқашан"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "Сені жалғыз жібермес едім!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "Сондықтан осында қал!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Қалпақ!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "Қалжыңсыз айтшы!"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "А-ар-р-р!"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "Неге осында тұрсың?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "Уақыт өтіп жатыр!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Сәлем!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "Ой, яғни саубол-саубол!"}

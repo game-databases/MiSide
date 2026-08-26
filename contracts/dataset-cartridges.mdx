@@ -1,0 +1,172 @@
+# Contract — dataset `cartridges` (cartridge items & mini-games)
+
+Status: **PINNED v1** (`miside.cartridges.cartridges/1` +
+`miside.minigames.minigames/1`) — built 2026-08-25 by builder B-4 against the
+approved spec
+[`docs/specs/dataset-cartridges.mdx`](../docs/specs/dataset-cartridges.mdx)
+([arbiter ruling](../docs/research/verifications/ds456-arbiter.mdx): DS-4
+APPROVED). The frontend consumes THIS document and the files below; it never
+re-derives fields, resolves pointers differently, or invents fallbacks.
+
+- Build stamps on every dataset row: `build_id` **19029065**, `version_label`
+  **0.93L** (read from `extracted/EXTRACTION-LOG.md` `pipeline-defaults`;
+  provenance rule 3 user-facing class).
+- Corpus paths are repo-relative under `extracted/`; raw-client paths stay on
+  this host.
+- Self-check: `python extracted/data/cartridges/build/selfcheck_cartridges.py`
+  executes all ten spec §9 ACs repo-side — **10/10 PASS** this build.
+
+## Files
+
+```
+extracted/data/cartridges/
+├── cartridges.jsonl                        # 23 owned rows + _meta
+├── minigames.jsonl                         # 17 owned rows + _meta
+├── cartridges-minigames.candidates.jsonl   # stub ladder tier 3 only
+├── README.md                               # honesty ledger + regen notes
+├── build/emit_cartridges.py                # deterministic emitter
+├── build/selfcheck_cartridges.py           # AC harness
+└── relinks/                                # parked; moves to extracted/relinks/ at stage registration
+    ├── cartridge--character.jsonl          # J1: 22 fwd + 22 inv (C13 mirrors)
+    ├── cartridge--scene-placement.jsonl    # J2: meta-only, parked until scenes dataset
+    ├── minigame--achievement.jsonl         # J3: 10 fwd + 10 inv
+    ├── minigame--scene-carrier.jsonl       # J4: carrier classes × containers
+    ├── minigame--outfit-unlock.jsonl       # J5: 2 fwd + 2 inv
+    └── minigame--choice-condition.jsonl    # J6: meta-only, measured absence
+```
+
+Every `.jsonl` file's FIRST line is a `{"_meta": …}` header: schema id,
+generator, source table, build pins, pins/notes, row count. Data rows follow,
+one JSON object per line, UTF-8, `\n`, no BOM.
+
+## Locale model (binding)
+
+Identical pointer discipline to
+[`dataset-characters.mdx`](dataset-characters.mdx): text resolves at render
+time through `{category, line_index}` into
+`extracted/localization/<locale>/<category>.jsonl`
+(`GlobalLanguage.GetString(category, index)`); no locale copies ride in rows.
+
+1. **TelevisionGames −1 offset pin (binding).** TV entry names resolve as
+   `GetString("TelevisionGames", indexStringNameGame − 1)`: Fight → line 0
+   `"Dairy Scandal"`, Pinguin → line 1 `"Penguin Piles"`. The identity offset
+   is rejected mechanically: it indexes Pinguin out of range in all 34 locale
+   dirs (category size = 2 everywhere) and lands Fight on the other game's
+   slot where it does resolve. Both computations recompute per locale (AC-4).
+2. Only the two TV rows carry `name_loc`. Prefab/carrier/tamagotchi rows have
+   **no client display-name table**: `name_loc: null` is honest-missing — page
+   titles compose from `client_key` + cited `community_alias`, never invented.
+3. Availability derives from the four categories' presence per locale dir
+   (34 dirs), reconciled against
+   `localization/_ledger/locale-delta.jsonl`; the sole content skew is
+   `MiniGame MakeManeken` = 34 lines in Arabic vs 35 elsewhere — render the
+   declared explicit-filler state there. Deleting a category file in a scratch
+   copy must flip that computed cell (AC-9).
+
+## `cartridges.jsonl` — record schema (23 rows)
+
+Emission order = C1 literal slot order (0–12 character family, 13–22 player
+family); consumers must not depend on it beyond determinism.
+
+| Field | Type | Source artifact | Join role | Nullability |
+|---|---|---|---|---|
+| `cartridge_id` | string slug | derived (rule below) | page key / URL slug | never null |
+| `family` | enum `character`\|`player` | C1 literal slot | entity router | never null |
+| `status` | enum `registered-pickup`\|`registered-unresolved-pickup` | §7 ladder | honesty filter | never null |
+| `save_key` | string verbatim | C1/C2/C3 | primary client identifier | never null |
+| `registry_literal_ref` | string | C1 | `il2cpp/stringliteral.json@0x13AD860[<slot>]` | never null |
+| `pickup_ref` | object\|null | C2 | `{container, file, field:"save", value}` world placement | null exactly for `mtad2`/`mtacore` — honest-missing, never backfilled |
+| `depicts_character_id` | string\|null | C13 mirror | DS-1 personage id for mita-family rows | null for players AND for `mta` (no C13 anchor exists — DS-1 registry `nameSave` empty for MitaUsual/MitaTrue; documented in `missing_fields`) |
+| `contains_player_id` | string\|null | C13 mirror | DS-1 player id | null for mita rows |
+| `collectible_set` | string\|null | C11 | `"player-cartridges"` on all 10 player rows | null otherwise |
+| `container_location_binding` | string\|null | C2 + DS-3 §3.6 | `level<N>→Location<M>` label, `[inferred]` | null when `pickup_ref` null |
+| `missing_fields` | string[] | §7 | mechanical missingdata.md driver | `[]` on full rows |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | staleness stamp | never null |
+
+**`cartridge_id` rule (pinned):** save_key lowercased with a hyphen inserted
+at every letter↔digit boundary (`mtacap → mta-cap`, `plr1099 → plr-1099`,
+`plr3vi → plr-3-vi`). Additive only — never replaces `save_key`. (The spec's
+illustrative `plr-3` shorthand would collide keys; the pinned rule matches its
+other example `mta-cap` verbatim and stays injective.)
+
+## `minigames.jsonl` — record schema (17 rows)
+
+Order: automate rows, TV rows, carrier-class rows, tamagotchi rows (spec
+§3.2's four registries), stable within groups.
+
+| Field | Type | Source artifact | Notes |
+|---|---|---|---|
+| `minigame_id` | slug | derived | `carspace`, `fight`, `location-7-game-dance`, … (spec examples) |
+| `client_key` | string verbatim | C5/C7/C10 | measured identifier (`Minigame CarSpace`, `Fight`, class name) |
+| `key_source` | enum | §3.2 | `automate_resource`\|`automate_scene`\|`tv_games_array`\|`scene_carrier_class`\|`tamagotchi_activity` |
+| `key_locator` | string | emit pass | grep-clean locator proving `client_key` (AC-5 traceability) — schema superset column added by this build |
+| `access_medium` | enum | derived | `resources-prefab`\|`dedicated-scene`\|`television`\|`scene-prop`\|`core-terminal`\|`tamagotchi-phone`\|`menu` |
+| `carrier_containers` | string[] | C10 greps | containers whose asset-lists evidence the class; prefab rows deduped (below) |
+| `carrier_note` | string\|null | R4 ruling | records any applied dedupe |
+| `loader_ref` | object\|null | C7 | automate dump `{container, file, field, value}`; null for non-automate rows |
+| `name_loc` | object\|null | C9 | TV rows only (`TelevisionGames`, lines 0/1 under the −1 pin) |
+| `community_alias` | object\|null | D1 §4 | `{alias, source}` wiki label with repo citation — never the key ("Hetoor"/"Spaceracer" grep zero hits in client) |
+| `ui_strings_loc` | object\|null | C9 | `{category, line_count}` pool reference |
+| `rule_evidence` | array | repo artifacts | `{path, locator, claim}` entries; every quoted fragment greps clean at its locator (AC-8); empty allowed, invention never |
+| `scoring_derivable` | bool | R1 fence | **false on all rows today**; flips only after a native-code decompile pass |
+| `achievement_ids` | string[] | J3 | ACHI ids bound to THIS row (subset of C11 ids; unresolved binds stay off-row, see J3) |
+| `unlocks_outfits` | string[] | J5 | cloth ids in B-1 vocabulary (`Chirfns`, `HellVamp`) |
+| `present_but_unreachable` | bool | COMP J11 | true on the four tamagotchi-phone activity rows |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | staleness stamp |
+
+**Prefab dedupe (R4):** `CarSpace_*` / `MakeManeken_*` prefabs list in 48 of
+51 asset-lists through AssetStudioMod dependency auto-load; their
+`carrier_containers` collapse to `resources.assets` (canonical home) + loader
+container (`level9` / `level12`).
+
+## Relink files — edge-row schemas
+
+First line `_meta` per file (family, pair, mechanism rules, pins,
+relocation note). Every forward named edge has its mirrored inverse (doctrine
+Principle one).
+
+- **J1 `cartridge--character`**: `direction` · `edge_type`
+  `depicts`\|`contains` · `from`/`to` over typed anchors
+  `cartridge:<cartridge_id>` ↔ DS-1 ids · `c13_anchor`
+  (`flashes:<save_key>`) reused **verbatim** from C13 · `member_character_id`
+  · `mechanism: hard` · `status: modeled`.
+- **J2 `cartridge--scene-placement`**: meta-only today (parked until the
+  scenes dataset owns transforms/chapters). Its `_meta.placement_census`
+  names this dataset's `pickup_ref` multiset as the single placement
+  authority; DS-5 consumes the **11-row mita-side overlap** by reference —
+  the 10 player-side pickups belong to this dataset alone (ds456-arbiter
+  agenda-1 fence).
+- **J3 `minigame--achievement`**: `from` `minigame:<id>`\|`null` · `to`
+  `achievement:<ACHI_*>` · `mechanism` `hard` (dumped `AchievementGet` award
+  site in `award_site{level,file,method,args_string,target_path_id,build_id}`)
+  or `logic` (type-tag-only) · `attribution_evidence[]` states the mechanical
+  tie when a target is named · `status` `modeled`\|`partial` with
+  `missing_fields` naming the unblock for the six unresolved binds (tetro,
+  racingfirst, logA, logB, hellwin, hellmegawin — zero dumped sites corpus-wide).
+- **J4 `minigame--scene-carrier`**: edges over `(class family × container)`
+  with `instance_census{bare,suffixed}` from the mb-dump filename census;
+  `_meta.boilerplate_dedupe.minigamescontroller_partition` records the
+  measured 48-dump → 19/16/12/1 hash partition (level2 group = 12 members).
+- **J5 `minigame--outfit-unlock`**: pinguin→`outfit:Chirfns` **hard**
+  (dual-grant site `level6/Dialogue_3DText_#7008.txt` also carries
+  `AchievementGet("ACHI_PinguinTusim")`); pumpkin-clicker→`outfit:HellVamp`
+  **logic/partial** (wiki-asserted, zero dumped `ClothCompleted` sites outside
+  levels 5/6).
+- **J6 `minigame--choice-condition`**: meta-only — measured absence (no
+  console-game choice condition exists in `endings/choice_nodes.jsonl`);
+  key space declared for DS-2 Part B consumers.
+
+## Candidates ledger (tier 3 only)
+
+`candidate_id` · `kind_class: "minigame"` · `display_name` · `status:
+"unregistered"` · `evidence[{path, locator}]` · `wiki_source_ref: null` ·
+`missing_fields[]` · `note` · stamps. Tier-4 wiki-only claims ship NO row and
+NO candidate (spec §7 item 4); they are noted in the pack README against the
+research citation.
+
+## Non-goals
+
+No invented placements or display names; no community names as keys; no
+chapter attribution (scenes dataset); no scoring thresholds without dumped
+evidence (R1 fence); no mutation of DS-1/DS-2 files by this stage; no
+per-locale text copies beside the pointers.

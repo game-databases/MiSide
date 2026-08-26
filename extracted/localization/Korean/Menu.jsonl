@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "새 게임"}
+{"category": "Menu", "line_index": 1, "text": "이어하기"}
+{"category": "Menu", "line_index": 2, "text": "메인 메뉴"}
+{"category": "Menu", "line_index": 3, "text": "종료"}
+{"category": "Menu", "line_index": 4, "text": "설정"}
+{"category": "Menu", "line_index": 5, "text": "업적"}
+{"category": "Menu", "line_index": 6, "text": "개발자"}
+{"category": "Menu", "line_index": 7, "text": "돌아가기"}
+{"category": "Menu", "line_index": 8, "text": "불러오기"}
+{"category": "Menu", "line_index": 9, "text": "언어"}
+{"category": "Menu", "line_index": 10, "text": "로딩 중…"}
+{"category": "Menu", "line_index": 11, "text": "그래픽"}
+{"category": "Menu", "line_index": 12, "text": "음량"}
+{"category": "Menu", "line_index": 13, "text": "키보드 & 마우스"}
+{"category": "Menu", "line_index": 14, "text": "조이스틱"}
+{"category": "Menu", "line_index": 15, "text": "해상도"}
+{"category": "Menu", "line_index": 16, "text": "창 모드"}
+{"category": "Menu", "line_index": 17, "text": "시각 효과"}
+{"category": "Menu", "line_index": 18, "text": "컬러 효과"}
+{"category": "Menu", "line_index": 19, "text": "그림자 조절"}
+{"category": "Menu", "line_index": 20, "text": "블러링"}
+{"category": "Menu", "line_index": 21, "text": "하이라이트"}
+{"category": "Menu", "line_index": 22, "text": "안티앨리어싱"}
+{"category": "Menu", "line_index": 23, "text": "그림자"}
+{"category": "Menu", "line_index": 24, "text": "디스플레이 품질"}
+{"category": "Menu", "line_index": 25, "text": "프로그래밍"}
+{"category": "Menu", "line_index": 26, "text": "애니메이션"}
+{"category": "Menu", "line_index": 27, "text": "효과음"}
+{"category": "Menu", "line_index": 28, "text": "배경음악"}
+{"category": "Menu", "line_index": 29, "text": "파티클"}
+{"category": "Menu", "line_index": 30, "text": "텍스처"}
+{"category": "Menu", "line_index": 31, "text": "3D 모델 (98%)"}
+{"category": "Menu", "line_index": 32, "text": "스크립트"}
+{"category": "Menu", "line_index": 33, "text": "초기화"}
+{"category": "Menu", "line_index": 34, "text": "전진"}
+{"category": "Menu", "line_index": 35, "text": "후퇴"}
+{"category": "Menu", "line_index": 36, "text": "왼쪽"}
+{"category": "Menu", "line_index": 37, "text": "오른쪽"}
+{"category": "Menu", "line_index": 38, "text": "상호작용"}
+{"category": "Menu", "line_index": 39, "text": "마우스 감도"}
+{"category": "Menu", "line_index": 40, "text": "게임을 종료하시겠습니까?"}
+{"category": "Menu", "line_index": 41, "text": "예"}
+{"category": "Menu", "line_index": 42, "text": "아니오"}
+{"category": "Menu", "line_index": 43, "text": "메인 메뉴로 돌아가기"}
+{"category": "Menu", "line_index": 44, "text": "부드러운 회전"}
+{"category": "Menu", "line_index": 45, "text": "게임 설정"}
+{"category": "Menu", "line_index": 46, "text": "그림자 스타일"}
+{"category": "Menu", "line_index": 47, "text": "의상"}
+{"category": "Menu", "line_index": 48, "text": "인터페이스"}
+{"category": "Menu", "line_index": 49, "text": "3D 모델 (2%)"}
+{"category": "Menu", "line_index": 50, "text": "음성 조절"}
+{"category": "Menu", "line_index": 51, "text": "일시 정지"}
+{"category": "Menu", "line_index": 52, "text": "메뉴"}
+{"category": "Menu", "line_index": 53, "text": "축하합니다! 게임을 클리어하셨습니다!"}
+{"category": "Menu", "line_index": 54, "text": "플레이 시간:"}
+{"category": "Menu", "line_index": 55, "text": "자막"}
+{"category": "Menu", "line_index": 56, "text": "밝기"}
+{"category": "Menu", "line_index": 57, "text": "수직 동기화"}
+{"category": "Menu", "line_index": 58, "text": "저장 완료"}
+{"category": "Menu", "line_index": 59, "text": "캐릭터"}
+{"category": "Menu", "line_index": 60, "text": "캐릭터 - 미타"}
+{"category": "Menu", "line_index": 61, "text": "캐릭터 - 카트리지"}
+{"category": "Menu", "line_index": 62, "text": "카트리지"}
+{"category": "Menu", "line_index": 63, "text": "미타…"}
+{"category": "Menu", "line_index": 64, "text": "다시 시작"}
+{"category": "Menu", "line_index": 65, "text": "모든 아카이브를 삭제하고 처음부터 시작하시겠습니까?"}
+{"category": "Menu", "line_index": 66, "text": "셰이더 컴파일 중입니다. 약 2시간이 소요될 예정이니 잠시만 기다려 주세요."}
+{"category": "Menu", "line_index": 67, "text": "뭐요? 컴파일링이요? 저희가 이미 다 해놨습니다!"}
+{"category": "Menu", "line_index": 68, "text": "극사실적인 레이트레이싱 생성 중… 약 10분 소요됩니다."}
+{"category": "Menu", "line_index": 69, "text": "히힛! 이 게임에는 그런 그래픽 효과가 없어요."}
+{"category": "Menu", "line_index": 70, "text": "음…"}
+{"category": "Menu", "line_index": 71, "text": "로딩 완료!"}
+{"category": "Menu", "line_index": 72, "text": "걷기 시 화면 흔들림"}
+{"category": "Menu", "line_index": 73, "text": "힌트 표시"}
+{"category": "Menu", "line_index": 74, "text": "플레이어 음성"}
+{"category": "Menu", "line_index": 75, "text": "디스코드"}
+{"category": "Menu", "line_index": 76, "text": "캐릭터 소개 해금"}
+{"category": "Menu", "line_index": 77, "text": "시야"}
+{"category": "Menu", "line_index": 78, "text": "더빙"}
+{"category": "Menu", "line_index": 79, "text": "더빙 없음"}
+{"category": "Menu", "line_index": 80, "text": "문 열기 핸드 모션"}
+{"category": "Menu", "line_index": 81, "text": "애니메이션"}
+{"category": "Menu", "line_index": 82, "text": "플레이어 더빙 활성화"}
+{"category": "Menu", "line_index": 83, "text": "미타…"}
+{"category": "Menu", "line_index": 84, "text": "단발 미타"}
+{"category": "Menu", "line_index": 85, "text": "착한 미타"}
+{"category": "Menu", "line_index": 86, "text": "캐피 미타"}
+{"category": "Menu", "line_index": 87, "text": "꼬마 미타"}
+{"category": "Menu", "line_index": 88, "text": "잠꾸러기 미타"}
+{"category": "Menu", "line_index": 89, "text": "2D 미타"}
+{"category": "Menu", "line_index": 90, "text": "밀라"}
+{"category": "Menu", "line_index": 91, "text": "괴물 미타"}
+{"category": "Menu", "line_index": 92, "text": "미타 코어"}
+{"category": "Menu", "line_index": 93, "text": "유령 미타"}
+{"category": "Menu", "line_index": 94, "text": "미니 미타"}
+{"category": "Menu", "line_index": 95, "text": "실패작"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "여긴… 게임 속?"}
+{"category": "Menu", "line_index": 101, "text": "둘만의 세계"}
+{"category": "Menu", "line_index": 102, "text": "서막"}
+{"category": "Menu", "line_index": 103, "text": "지하실"}
+{"category": "Menu", "line_index": 104, "text": "세계의 바깥"}
+{"category": "Menu", "line_index": 105, "text": "순환"}
+{"category": "Menu", "line_index": 106, "text": "리틀 미타"}
+{"category": "Menu", "line_index": 107, "text": "실패작과 잊혀진 퍼즐"}
+{"category": "Menu", "line_index": 108, "text": "잠꾸러기 그녀"}
+{"category": "Menu", "line_index": 109, "text": "단편 소설"}
+{"category": "Menu", "line_index": 110, "text": "책 보기, 버그 해결"}
+{"category": "Menu", "line_index": 111, "text": "꼭꼭 숨어라"}
+{"category": "Menu", "line_index": 112, "text": "구버전"}
+{"category": "Menu", "line_index": 113, "text": "진솔한 대화"}
+{"category": "Menu", "line_index": 114, "text": "다시 시작"}
+{"category": "Menu", "line_index": 115, "text": "캐피"}
+{"category": "Menu", "line_index": 116, "text": "유령 미타"}
+{"category": "Menu", "line_index": 117, "text": "현실은 어디에?"}
+{"category": "Menu", "line_index": 118, "text": "코어를 떠나세요!"}
+{"category": "Menu", "line_index": 119, "text": "플레이어 1"}
+{"category": "Menu", "line_index": 120, "text": "플레이어 2"}
+{"category": "Menu", "line_index": 121, "text": "플레이어 3"}
+{"category": "Menu", "line_index": 122, "text": "플레이어 4"}
+{"category": "Menu", "line_index": 123, "text": "플레이어 5"}
+{"category": "Menu", "line_index": 124, "text": "플레이어 6"}
+{"category": "Menu", "line_index": 125, "text": "플레이어 7"}
+{"category": "Menu", "line_index": 126, "text": "플레이어 8"}
+{"category": "Menu", "line_index": 127, "text": "플레이어 9"}
+{"category": "Menu", "line_index": 128, "text": "플레이어 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "평화 모드"}
+{"category": "Menu", "line_index": 131, "text": "해당 모드는 개발 중입니다! 예상보다 콘텐츠 규모가 커져서 완성까지 시간이 더 필요합니다. 대규모 업데이트를 통해 찾아뵐 예정이니 조금만 기다려주세요. 이 모드를 해금하기 위해 노력해 주신 여러분, 정말 감사합니다!"}
+{"category": "Menu", "line_index": 132, "text": "평화 모드란? 미타와 다시 만날 수 있는 특별한 공간이에요! 미타는 아침부터 저녁까지 당신과 함께 시간을 보내며 정말 행복해할 거예요. 둘만의 비밀스러운 대화, 요리, 게임 등 즐거운 이벤트들이 가득 준비되어 있답니다!"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "출혈 장면 보지 않기"}
+{"category": "Menu", "line_index": 136, "text": "Special Thanks:"}
+{"category": "Menu", "line_index": 137, "text": "Achievement Icon: Iceсloud"}
+{"category": "Menu", "line_index": 138, "text": "Photograph: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Translator"}
+{"category": "Menu", "line_index": 140, "text": "Converts the game's text into another language."}
+{"category": "Menu", "line_index": 141, "text": "Publishing Partner"}
+{"category": "Menu", "line_index": 142, "text": "Game marketing"}
+{"category": "Menu", "line_index": 143, "text": "Tester"}
+{"category": "Menu", "line_index": 144, "text": "Played and found all manner of bugs."}
+{"category": "Menu", "line_index": 145, "text": "이 언어 번역은 팬 커뮤니티의 열광적인 팬들에 의해 이루어졌으며 그들의 요청에 따라 게임에 추가되었습니다."}
+{"category": "Menu", "line_index": 146, "text": "※본 게임에는 오싹한 장면, 날카로운 음성, 플리커링 효과가 포함되어 있습니다. 간질 증세, 심장 질환 등 증세가 있는 분들께는 권장하지 않습니다."}
+{"category": "Menu", "line_index": 147, "text": "평화 모드가 업데이트되었습니다!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "촬영 모드"}
+{"category": "Menu", "line_index": 150, "text": "촬영 모드: 카메라 제한이 해제되어, 평소 볼 수 없는 것들을 볼 수 있게 됩니다."}
+{"category": "Menu", "line_index": 151, "text": "촬영 모드 종료"}
+{"category": "Menu", "line_index": 152, "text": "화면 숨기기"}
+{"category": "Menu", "line_index": 153, "text": "길게 눌러 카메라 이동"}
+{"category": "Menu", "line_index": 154, "text": "이동 속도 가속화"}
+{"category": "Menu", "line_index": 155, "text": "스무스한 카메라 이동"}
+{"category": "Menu", "line_index": 156, "text": "속도"}
+{"category": "Menu", "line_index": 157, "text": "이펙트"}
+{"category": "Menu", "line_index": 158, "text": "게임 내 시간 조절"}
+{"category": "Menu", "line_index": 159, "text": "밝기"}
+{"category": "Menu", "line_index": 160, "text": "콘트라스트"}
+{"category": "Menu", "line_index": 161, "text": "비네팅"}
+{"category": "Menu", "line_index": 162, "text": "스크린 샷!"}
+{"category": "Menu", "line_index": 163, "text": "스크린 샷이 포함된 폴더 열기"}
+{"category": "Menu", "line_index": 164, "text": "카메라 앵글"}

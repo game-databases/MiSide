@@ -1,0 +1,79 @@
+# I-S4 — Investigator: AssetStudioModCLI 0xC00000FD on MiSide containers
+
+| | |
+|---|---|
+| Brief | I-S4, executed 2026-08-24 on NE8K |
+| Incident | [x1-execution-report.mdx I-1](x1-execution-report.mdx) — S4 measure-first probe of `level1` died ×2 with `0xC00000FD` STATUS_STACK_OVERFLOW in Cecil type-tree recursion; prescribed `--keep-going` fallback structurally can't cover the probe ([mono_typed_dump.py:250-257](../../pipeline/stages/mono_typed_dump.py)) |
+| Sandbox | `D:\unpacked_game_data\MiSide\work\is4\` — all 51 SerializedFiles copied from `A:` (583,027,900 B = census-exact); game root untouched |
+| Tooling | stock AssetStudioModCLI 0.19.0.0 (`work\tools\…`) vs locally rebuilt 0.19.0.1 (patched, below) |
+
+## Reproduction matrix
+
+Base argv (spec §2 S4 pinned shape): `<exe> <container> -m dump -t monoBehaviour --assembly-folder <DummyDll> [--export-asset-list xml] -o <out>`. Each row changes ONE variable vs the row above.
+
+| # | Variable | Exit | Result |
+|---|---|---|---|
+| R0 | none (pinned argv verbatim, sandboxed `level1`) | **C00000FD** ×repro | died at `[146/1542]`, frames identical to X-1 (`ConvertToTypeTreeNodes ⇄ TypeRefToTypeTreeNodes ⇄ ProcessingFieldRef` via `MonoBehaviourConverter.ConvertToTypeTree → Exporter.ExportDumpFile`) |
+| R1 | drop `--assembly-folder` | 0 | 1542/1542 dumps in 0.37 s — **but every dump is header-only** (`Audio_Data.txt`: 9 lines, no custom fields) ⇒ REJECTED: AC-8 fails |
+| R2 | stock + `--max-export-tasks 1 --log-level verbose` | C00000FD | single-task doesn't save it, but verbose log names the last object before death: `ConsoleEditor` at `[751/1542]` |
+| R4 | **patched build 0.19.0.1**, pinned argv | 0 | 1542/1542 typed dumps + XML in 2.0 s; exactly one new log line: `Recursive serializable type "ConsoleEditor_HierarchyCase" detected; typetree expansion truncated at this node` |
+| S6/R7 | stock vs patched on `resources.assets` | 0 / 0 | 992 txt each; **content multiset identical** (958 unique bodies, 0 only-in-either) — patch changes nothing where no cycle exists |
+| sweep | patched, all 51 containers | **51/51 exit 0** | **140,329 dumps, 121 s total**, slowest container 3.95 s (`level9`); 47 containers carry recursion warnings — 45 exactly one each, `level15` and `level17` two each (all sharedassetsN except #0 + all levelN except #0 + `globalgamemanagers`); zero-dump: `globalgamemanagers.assets`; `level0`=25 dumps |
+
+Matrix r4 row caveat (v-s4b): `out\matrix.jsonl`'s per-run txt/xml columns
+for R4 record **txt:0/xml:0** because they are delta-counts of a pinned
+rerun into the already-populated `-o out\r4-patched` dir — the directory
+itself holds **1542 txt + 1 xml** (verified on disk).
+| — | ground truth check | — | patched `resources.assets/DataAchievements.txt` = E1's verbatim sample (26 entries, `ACHI_WinFIght`/icon 863/`lineTranslate` 0 … `ACHI_supermegapuperplayer`) |
+
+## Root cause
+
+1. **The poison is one self-referential serializable class** — [dump.cs:99328](../../extracted/il2cpp/dump.cs):
+   `public class ConsoleEditor_HierarchyCase { … public List<ConsoleEditor_HierarchyCase> casesMe; }`.
+   The dev-console component family (`ConsoleEditor`, TypeDefIndex 1429-1431) nests its own type.
+2. **AssetStudioMod's converter has no cycle guard**: `AssetStudioUtility/TypeDefinitionConverter.cs`, custom-class branch emits a node then unconditionally constructs a child converter and recurses — `List<T>` → element `T` → field `List<T>` → … unbounded, ~3 frames per hop, blows the 1 MB thread stack. Crash-point variance across runs (790/1187/146 objects) is parallel-export ordering, not flakiness.
+3. **Upstream has no fix to bump to**: v0.19.0 (2025-09-04) is the latest release of aelurum/AssetStudioMod, and that file is untouched since Perfare's 2022 (`git log` on path: last change 2022-11-17). This is why X-1's "tool version bump" remedy was a dead end.
+4. **E1 correction (changes a recorded fact):** MiSide MonoBehaviours DO have stripped typetrees — UnityPy census: `level1` 0/82, `resources.assets` 0/979 embedded trees. E1's "Type trees NOT stripped" was wrong; all typing ever came from the `--assembly-folder` DummyDll route. Consequence: dropping assemblies (R1) silently degrades every dump; `--keep-going`, filters, mode flags, and arg order are all irrelevant to the overflow.
+
+## Fix (built and proven on this run)
+
+Cycle guard in `TypeDefinitionConverter` (local source clone `work\is4\src\`, upstream commit `6b66ec7`, csproj Version bumped 0.19.0.0 → **0.19.0.1**):
+
+```csharp
+private readonly HashSet<string> InProgressTypes;          // shared down the recursion
+public List<TypeTreeNode> ConvertToTypeTreeNodes() {
+    if (!InProgressTypes.Add(TypeDef.FullName ?? …)) {     // re-entry = cycle
+        Logger.Warning($"Recursive serializable type \"{selfKey}\" detected; …");
+        return nodes;                                      // node already emitted by caller
+    }
+    try { ConvertFields(nodes); } finally { InProgressTypes.Remove(selfKey); }
+}
+```
+
+Build (natives staged from the stock release zip into `AssetStudioFBXNative|Texture2DDecoderNative/bin/x64/Release/`):
+`dotnet build src/AssetStudioCLI -c Release -f net8.0 -p:TargetFrameworks=net8.0 -p:RuntimeIdentifier=win-x64 "-p:SolutionDir=<src>\\"`.
+
+Evidence: R4 green on the exact poisoned probe; byte-parity multiset on `resources.assets`; 51/51 sweep; truncated node costs nothing observable (the one inspected `ConsoleEditor` instance has `casesRoot size = 0`; Unity itself caps inline serialization depth, so real assets are finite). Honest caveat for the residue ledger: inside affected objects the cyclic field's nested tail is not expanded — bounded loss confined to dev-console scaffolding fields.
+
+**RECOMMENDED fix = (a)+(b) combined:**
+
+- **(a) Corrected pin:** S4 runs the SAME pinned argv shape against AssetStudioModCLI **0.19.0.1** built from aelurum/AssetStudioMod `6b66ec7` + the cycle-guard patch above (source + binary live under `D:\unpacked_game_data\MiSide\work\is4\`; CodeWriter moves the patch into the repo tool tree and records versionSource "local rebuild, natives from stock 0.19.0.0 zip" in EXTRACTION-LOG.md).
+- **Spec errata:** §2 S4 tool line gains "0.19.0.1 (local rebuild: recursive-type guard); stock 0.19.0.0 crashes with STATUS_STACK_OVERFLOW on self-referential MonoBehaviour types (ConsoleEditor_HierarchyCase)". AC-8 unchanged otherwise — output format is byte-identical where no cycle exists. §7 table: R-E1-1 resolved by measurement (sweep = 121 s total, budget no longer unknown). F3 (probe ignores `--keep-going`) remains open as an independent hardening item but is no longer load-bearing.
+- **(b) Fallback design (only if the owner rejects a local fork):** per-container UnityPy typed dump requires a DummyDll→typetree generator with its own cycle detection — UnityPy's `TypeTreeGeneratorAPI` helper is not pip-installable (needs pythonnet + separate C# build), so this is strictly more work than the 20-line patch; not recommended.
+
+## I-2 diagnosis (detect Unity-version empty string)
+
+[pipeline/stages/detect.py:29-31](../../pipeline/stages/detect.py): `_read_unity_version` treats the first NUL-terminated run of `globalgamemanagers` as the version. Reality (byte-measured + UnityPy cross-check): the file is a SerializedFile **v22** whose head is binary header — leading 12 bytes are NUL, metadata_size 1668, data_offset 4096; ASCII `2021.3.35f1` begins at **offset 48** (length-prefixed). `raw.split(b"\x00")[0]` therefore returns `b""` for ANY such file → `""` warned, propagated into detect.json, stage report, and the EXTRACTION-LOG pin block.
+
+Corrected read (stdlib-only, header-layout-proof):
+
+```python
+m = re.search(rb"\d{4}\.\d+\.\d+[fpb]\d+", raw[:256])
+unity_version = m.group(0).decode("ascii") if m else ""
+```
+
+Spec errata: AC-6 wording "leading string of globalgamemanagers" → "Unity version string embedded in globalgamemanagers' SerializedFile header (offset 48 on buildId 19029065; never at offset 0)".
+
+Evidence artifacts retained under `D:\unpacked_game_data\MiSide\work\is4\`: `out\matrix.jsonl` (attempt ledger), `sweep\sweep-matrix.jsonl` (51-row sweep), `out\r4-patched\`, `out\s6-resources-stock\` vs `out\r7-resources-patched\`, patched source `src\` (diff vs upstream `6b66ec7`).
+
+INVESTIGATION: SOLVED — rebuild AssetStudioModCLI as 0.19.0.1 with a recursive-type guard in TypeDefinitionConverter (cycle = stop expanding, warn); pinned argv shape unchanged; 51/51 containers then dump 140,329 typed MBs in ~2 min with zero failures.

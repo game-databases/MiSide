@@ -1,0 +1,25 @@
+# VC-3 — Adjudication of F-VC2 (fresh critic, production build `IzKLu_9Z8iwX2psUy9Q7q`, own port 4871)
+
+Method: build freshness proven (BUILD_ID 19:24Z > newest source 19:21Z); all 7 fixer claims re-proven live — 143-route title/h1 sweep, rendered-DOM text walkers per kind, real-pointer CDP hovers, typed search + Escape, `getAnimations()`, RU/AR curls; competitor chrome re-shot same day (enka 21 imgs/entity-titled · NWG home 251, item page 56 · wikily home 60).
+
+1. **Raw ids — ONE LEAK LEFT.** h1/title/breadcrumb clean on all 134 entities + 9 indexes; search index 152 rows, zero id-labels; deslug is corpus-honest (books carry no title field — `texture_rel` basename only; cartridge `mta` has a documented DS-1 `missing_fields` gap). But Mita-page module rows render the save key as a visible chip: **"mtakd"** on `/mita/mita-kind`, from `stats: [c.save_key]` (`EntityDetailRoute.tsx:130`) and `flash_save_key` (:151) — machine-plane identity as UI text.
+2. **Hover corruption — YES.** Real pointer on a corrupted `/minigames` card fires CRT split `text-shadow: rgb(8,203,5) 1px 0 / rgb(255,0,156) −1px 0`; entity route wraps the h1 in `CorruptionHover active`, both overlays flip opacity 0→1 with glitch glow rgba(252,15,67,.45).
+3. **Section art — BANNER ONLY.** All five indexes now carry ≥1 art img (`locations.webp` landed), but card grids stay checkerboard: players 10/10, minigames 17/17, locations 24/24 artless; endings 3/4; cartridges 10/23. Home grid 17 real imgs.
+4. **Search "mita" — YES.** 54 visible rows across 8 kinds (Mitas 14, Lore 14, Cartridges 13, Players 8, Achievements 2, Locations 1, Dialogue 1, Minigames 1); content hidden-not-unmounted; Escape restores byte-identical main text.
+5. **Density/titles — SPLIT.** Mita pages: tab counts + % chips + quotable ✓; dialogue `<title>` entity-named («Together at Last») ✓; RU per-cartridge titles render («Мита 2D») ✓. But cartridge detail is our emptiest surface — title + locale chip + portrait, zero modules — despite cartridges-minigames/pickup joins existing in corpus.
+6. **Motion — YES.** VHS 404 animates (`ms-vhs-drift`, status 404); SPACE keycap live in the opened DialogueBand footer (`KeycapKbd`); dialogue page `ms-scan-breathe` ×2; home 3 animations.
+7. **Home featured — YES.** Order: hero(buildId) → category grids → counts → DIALOGUE transcript rail with node counts (nodes:63…) at y≈1730 → OPEN MAP. Rail is text-only.
+
+Grades (Δ vs VC-2): Home **8**(+1) · Entity detail **6**(+1) · Search-in-place **9**(+2) · RU **9**(+1) · AR **8**(+0, lang/dir re-verified) · Chrome/motion **8**(+3).
+
+Now leading: in-place search beats NWG's navigate-away results and enka's none; corruption-as-state + VHS drift is game-state interaction no competitor has; locale URLs incl. RTL ar at 200 beat enka's client-side-only switch. Still losing: NWG item page stacks Crafting/Calculator/3D under a 56-img object vs our bare cartridge page; wikily/NWG image density (60/251 on home) vs single-banner artless grids; `mtakd` chip would never survive that bar.
+
+Remaining fixes, highest impact first:
+
+1. Save-key chips off the UI: replace `stats: [c.save_key]`/`flash_save_key` (`EntityDetailRoute.tsx:130,151`) with reader-meaning data (collectible_set, version_label, global %) or drop the chip.
+2. Cartridge density: add a `buildModules` cartridges branch from pinned contains-minigames relink + pickup_ref container→location link (`extracted/data/cartridges/relinks/`).
+3. Per-card art for players/minigames/locations index grids via `indexArtFor` coverage (corpus art exists — tamagotchi family et al.); one banner per index is not an arted grid.
+4. Dialogue index `<title>` still generic "MiSide Database" while every other index is section-named (`sectionPages.tsx` metadata).
+5. Card lift is dead code: computed transform stays `none` while hovered (`hover:-translate-y-0.5`, `kit/CartridgeCard.tsx:52`) — split fires, lift doesn't.
+
+CRITIC: FIXES_REQUIRED — 5 items

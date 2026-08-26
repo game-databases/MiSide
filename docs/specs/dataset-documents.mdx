@@ -1,0 +1,433 @@
+# DS-5 — Dataset curation spec: Documents & lore collectibles
+
+| | |
+|---|---|
+| Piece | **DS-5** (Dataset Specifier brief; orchestrator wave 3) |
+| Type | dataset-spec (curation schemas + evidence contracts over the existing raw layer) |
+| Affected area | new `extracted/data/documents/` JSONL outputs + `extracted/relinks/document--*` indexes + a proposed `spec.md` entities amendment (§1.3); no pipeline-stage changes required to stub |
+| Verified reality base | measured directly on the extraction output on disk this pass (2026-08-25): `extracted/harvest/mb-dump/**` (typed MB dumps, 51 containers), `extracted/harvest/asset-list/*.xml`, `extracted/localization/<locale>/*.jsonl` (34 locale dirs), `extracted/art/{container-2d,localization-art}/`, `extracted/decompiled/main/Assembly-CSharp/*.cs`, `extracted/il2cpp/{dump.cs,stringliteral.json}` |
+| Client ground truth | buildId **19029065**, `VERSION 0.93L`, Unity 2021.3.35f1, IL2CPP metadata v29 ([EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md) `pipeline-defaults`; [census/detect.json](../../extracted/census/detect.json)) |
+| Binding doctrine | [extraction-doctrine.md](../../../_foundation/extraction-doctrine.md) Principle zero/one/two · AGENTS.md rule 8 · relink bars #1–#3 ([DR-2026-08-17-relink]) |
+| Upstream reads | [spec.md](../../spec.md) entities `profile_document` (+ `secret_easter_egg` boundary) · [game-research.mdx](../research/game-research.mdx) §3 items 3/5 · sibling specs [dataset-characters.mdx](dataset-characters.mdx) (registry owner), [dataset-dialogue.mdx](dataset-dialogue.mdx) (dialogue-loc owner), [dataset-achievements-endings.mdx](dataset-achievements-endings.mdx) (set-completion + choice-flag owner) |
+
+**Decompile-depth caveat (same classes as DS-2).** `decompiled/main/**` is
+ilspycmd-over-DummyDll output: signatures, field offsets and tokens are real;
+**method bodies are empty**. Every claim below is classed:
+
+- **[proven-hard]** — serialized in a dump we hold; byte-level evidence reproducible.
+- **[proven-structure]** — class/field/token pinned in `decompiled/` or `dump.cs`.
+- **[unverified-behavior]** — needs IL2CPP native bodies or a scene parse we do not hold yet.
+- **[community]** — wiki/guide context, labeled, never evidence.
+- **[negative-finding]** — a thing measurably ABSENT from the corpus (recorded because
+  Principle zero forbids silent drops in either direction).
+
+---
+
+## 1. Scope
+
+### 1.1 Owned rows
+
+1. **`profile_document`** — the SPEC entity kind (~12 `[unverified]`). This spec replaces
+   that estimate with a measured candidate set: **14 rows keyed 1:1 onto the character
+   registry's Mita entries** (§3), of which 11 have a placed pickup in the client, 2 are
+   script-granted, and 1 (`MitaTrue`, keyless) is story-granted.
+2. **`world_document`** — a NEW kind this spec proposes for `spec.md` §entities (same
+   move spec.md already made when it added `game_mode`): the readable paper/book
+   surfaces the client serializes but no existing kind owns. Measured members:
+   `note` (**160 instances across the 23 level scenes**, §2.1),
+   `paper_part` (5, §2.5), `novella_surface` (1, §2.4), `book` (8 titles ×34 locales, §2.3).
+
+### 1.2 Joined, not owned (boundary map)
+
+| Family | Owner | Key this dataset emits for the join |
+|---|---|---|
+| Character cartridges (pickup identity) | [DS-1](dataset-characters.mdx) §5-J5 | `flash_save_key` (verbatim `FlashTaker.save`) |
+| Dialogue/loc text of spoken lines | [DS-3](dataset-dialogue.mdx) | none — notes never claimed to own `LocationDialogue*` |
+| Ending choice flags incl. fridge magnets | [DS-2 Part B](dataset-achievements-endings.mdx) §B.1 (`Takemagnetfridge` et al.) | census edge only, §5-J6 |
+| Set-completion achievements | [DS-2 Part A](dataset-achievements-endings.mdx) §A.4 (`collectible_set`) | `ACHI_cartridgeplayers`, `ACHI_mitastory` pins (§5-J4) |
+| Scene transforms/coordinates | P5 probe (SPEC missing-data item 1, R-E1-1) | container + GameObject pathID now, transform later |
+
+### 1.3 Proven negative findings (so no later piece re-chases them)
+
+1. **`ComicBook` is not a readable comic.** The only `ComicBook` class is a
+   Colorful post-processing image effect
+   ([Colorful/ComicBook.cs](../../extracted/decompiled/main/Assembly-CSharp/Colorful/ComicBook.cs));
+   exactly one instance ships per level scene in 21 containers
+   (`ls extracted/harvest/mb-dump/level*/ComicBook.txt`). **[negative-finding]**
+2. **No loc category carries note/paper text.** The 34 locale dirs ship the same
+   64–76-category sets with **no `Notes`/`Documents`/`Profiles` category** (full English
+   listing: 65 files under `extracted/localization/English/`);
+   `Translation.jsonl` holds exactly **1 record, `"-"`** (line 0). **[negative-finding]**
+3. **In-scene `Text` payloads are not documents.** Corpus-wide, only **49**
+   `UnityEngine.UI.Text` components carry >60-char literal `m_Text`; all sampled values
+   are dev/UI strings (the Photo-mode warning duplicated per container, ch-0 scare
+   warning, level2 Peaceful-Mode explainer, level15 glitch filler, level23 duty note) —
+   no readable-paper prose. There are **zero** TextMeshPro components in any dump.
+   **[negative-finding]**
+
+## 2. Corpus reality (all measured 2026-08-25)
+
+### 2.1 Notes — `Unity_Note` (family `note`)
+
+- Class truth: [`Unity_Note.cs`](../../extracted/decompiled/main/Assembly-CSharp/Unity_Note.cs)
+  `[AddComponentMenu("Functions/Unity/Note")]`, Token `0x2000077`, **zero serialized
+  fields** beyond the MonoBehaviour base. Every one of its dumps confirms it:
+  `m_Name = ""` and nothing else
+  (e.g. [level5/Unity_Note_#20261.txt](../../extracted/harvest/mb-dump/level5/Unity_Note_#20261.txt)).
+  **[proven-hard]** — the component itself carries no payload.
+- Census: **258 instances** across the dumped containers, of which **160 sit in the
+  23 level scenes** (level0 has none): level5 17 · level14 13 · level8 12 · level16 10 ·
+  level12 9 · level4/6/7 8 each · level22 7 · level9/10 6 each · level13/17 6 each ·
+  level2/15/20 5 each · level3/11 5 each · level18/19/21/23 4 each · level1 3. The other
+  98 are the same shared prefabs re-listed under `sharedassets*/globalgamemanagers/
+  resources` by AssetStudioMod dependency auto-load (E1 deviation 6) — dedupe rule in §7-R4.
+  Filename-census method: `ls mb-dump/<container>/Unity_Note*.txt` (bare file = first,
+  unsuffixed instance); the non-level copies live in the shared-asset containers of the
+  51-container dump set, never in a level file. **[proven-hard]**
+- What a note GameObject carries (sampled exhaustively at level5, GO pathIDs
+  43–403/1615/1854/1855/2534/2883): `Image` (sprite PPtr), `Button`,
+  `Events_Data`/`Time_Events` persistent calls into `ObjectDoor.Lock`,
+  `ObjectDoor.LockSharply`, `World.HintLocationHide`, `ObjectInteractive.Activation`,
+  `Transform_Position.ResetParent`, `GameObject_Destroy`, plus `Light_Glass` on one.
+  Notes are **interactive trigger props with serialized event wiring** — the wiring is
+  joinable today (§5-J5); the *displayed* content is not serialized on the component
+  (§7-R1). **[proven-hard]** for the wiring; **[unverified-behavior]** for rendering.
+- Content carriers considered and their evidence: loc layer — ruled out (§1.3-2);
+  scene `Text` children — ruled out (§1.3-3); baked paper textures — plausible but
+  **unresolved**: the two distinct sprite pointers observed on level5 note Images
+  (pathID 49 ×2, 919 ×2, 0 ×1) cannot be named yet because no container-scoped
+  sprite-pathID→export-name index exists on disk (§7-R5).
+
+### 2.2 Profile documents — where the client actually keeps them
+
+The wiki models *cartridges* and *Mita Profiles* as two families
+([D1 §3](../research/game-research.mdx) items 1 and 3). Client evidence unifies them:
+
+1. **One pickup family.** All placed pickups are `FlashTaker` instances whose single
+   payload field is `string save`
+   ([FlashTaker.cs](../../extracted/decompiled/main/Assembly-CSharp/FlashTaker.cs), offset 0x18).
+   Corpus census: **21 placed pickups**; keys split exactly into 11 `mta*`/`mla`
+   (Mita-side) + 10 `plr*` (player-side) — full table in §3. Collection literal
+   `/Save/Flashes` ([stringliteral.json](../../extracted/il2cpp/stringliteral.json)). **[proven-hard]**
+2. **One text family.** The gallery registry binds each Mita row to its lore paragraph
+   by index: `MenuPersonage.resourceMita[i].indexDescriptionStringFile` →
+   `Personages.jsonl` lines 1–14 ([DS-1](dataset-characters.mdx) §3, S1/S6). Those
+   paragraphs ARE the profile prose the wiki tabulates. **[proven-hard]** for the pointer;
+   **[community]** for the textual identity with the wiki's Profiles page (diff pending, §7-R2).
+3. **One achievement pair over the two key prefixes.**
+   [DataAchievements.txt](../../extracted/harvest/mb-dump/resources.assets/DataAchievements.txt):
+   `lineTranslate = 12` ↔ `ACHI_cartridgeplayers`, `lineTranslate = 13` ↔ `ACHI_mitastory`;
+   `Achievements.jsonl#line_index=12` = "Caught Them All" (all `plr*`),
+   `#line_index=13` = "Hi, Mita" (all Mita-side). Same split already encoded in
+   [contracts/dataset-achievements.mdx](../../contracts/dataset-achievements.mdx)
+   (`collectible_set`: `player-cartridges` id 12, `mita-profiles` id 13). **[proven-hard]**
+   for the pairing; **[unverified-behavior]** for the counting predicate (code body empty).
+
+**Adjudication rule (pinned).** `profile_document` rows are emitted **keyed to the 14
+Mita registry entries** (subject + lore text + pickup placement), NOT as free-standing
+papers. Falsifier: if the P5 scene parse or a future native decompile surfaces a second
+serialized profile registry (a profile screen object, a second save-key family), the
+emit pass forks `profile_document` away from cartridge identity and ledger both shapes —
+never silently merge.
+
+### 2.3 Books (family `book`) — locale-dependent readable art
+
+- Per-locale localized art ships exactly **8 book textures in every one of the 34
+  locale dirs**: `Textures/Location House/Books{0,1,2,4}.webp` +
+  `Textures/Location19/Book {1,2,3,4}.webp`
+  (English set: [art/localization-art/English/Textures/](../../extracted/art/localization-art/English/Textures/)).
+  Loop-checked this pass: **book subset parity is total (8/8 ×34)** even though total
+  per-locale art skews 16–28 files (zh-Hans/Hant 16 minimum, Persian 28 maximum) —
+  a finer fact than the pack-level "ja 20 vs en/ru/fr 26" skew note in SPEC. **[proven-hard]**
+- Container-level exports carry the same names as sprites/tex2d
+  (e.g. `art/container-2d/level5/Book 1.png`, `Books.png`, `Books1.png`, `Books2.png`,
+  `Books4.png`, plus dressing sprites `Magazines.png`, `LivingRoomBookScaff.png`,
+  `Bedroom Books.png`). Book *props* (shelf dressing) stay ART-layer catalogue rows;
+  only the 8 localized readable pages become dataset rows. **[proven-hard]**
+- Which scenes consume which book texture is unresolved until the sprite-pathID index
+  exists (§7-R5); `book` rows therefore emit with `scene_ref: null` honestly.
+
+### 2.4 Novella surface (family `novella_surface`) — chapter-18 reading minigame UI
+
+[level20/Location18_Novella.txt](../../extracted/harvest/mb-dump/level20/Location18_Novella.txt)
+serializes the whole reading interface: `personages` size 4 (PPtrs to
+`Location18_Personage`), `personagesSpriteExample`, `textDialogueName`/`textDialogue`
+Text refs, dialogue-frame images, 7 AudioSources, pause UnityEvents. Its four actors
+carry presentation data only — `namePersonage` int + gradient colours
+([Location18_Personage_#1323.txt](../../extracted/harvest/mb-dump/level20/Location18_Personage_#1323.txt)),
+no prose. Spoken lines live in `LocationDialogue Location18` (259 records EN) — owned by
+[DS-3](dataset-dialogue.mdx); this dataset owns the **surface row + actor joins**, so the
+site can render "who appears in the novella" without stealing DS-3's graph.
+**[proven-hard]** for structure; text joins delegated. One surface only (level20);
+class [`Location18_Novella.cs`](../../extracted/decompiled/main/Assembly-CSharp/Location18_Novella.cs).
+
+### 2.5 Paper parts (family `paper_part`) — Black-Room puzzle props
+
+Five instances in `level13`, each `scrMain → Location11_BlackRoom` + `indexPuzle`
+serialized **0,1,2,3,4** — a complete five-part set
+([Location11_PaperPart_#14090.txt](../../extracted/harvest/mb-dump/level13/Location11_PaperPart_#14090.txt)
+et al.; class
+[Location11_PaperPart.cs](../../extracted/decompiled/main/Assembly-CSharp/Location11_PaperPart.cs):
+`put/mouse/holdMouse` state + `Put()/MouseEnter()/MouseExit()`). Puzzle props joined to
+their controller, never presented as lore text (they carry none). **[proven-hard]**
+
+### 2.6 Fridge magnets — boundary case, census only
+
+`Transform_Magnet` GameObjects ×191 across scenes + `Transform_MagnetFinish`,
+`Transform_Magnet_Event`, `VectorLineObjectMagnet(_Point)` classes; prop art
+`FridgeMagnetLetter.png`. The magnet task is an ending choice flag
+(`Takemagnetfridge` — DS-2 Part B §B.1), so magnets belong to the endings dataset;
+this spec emits only the census edge (§5-J6) so the relink matrix has the pair.
+**[proven-hard]** for counts; ownership ruling per §1.2.
+
+## 3. Anchor discovery — ground-truth profile-document table
+
+Registry columns are quoted from [DS-1 §3](dataset-characters.mdx#3-anchor-discovery--the-games-own-character-registry)
+(its authority, not re-derived); the `save_key (=flash)` / `placed in` / `mechanism`
+columns are measured this pass from the `FlashTaker` filename census
+(`grep 'string save =' mb-dump/*/FlashTaker*.txt`) — so row 0's flash key is the
+measured `mta`, not DS-1's empty registry `nameSave` (finding 2):
+
+| # | character_id | resource_path | save_key (=flash) | lore→Personages | name→Menu | placed in | mechanism |
+|---|---|---|---|---|---|---|---|
+| 0 | mita | MitaUsual | `mta` | 1 | 83 | level17 | FlashTaker placed |
+| 1 | mita-short-haired | MitaShortHairs | `mtashh` | 2 | 84 | level12 | FlashTaker placed |
+| 2 | mita-kind | MitaKind | `mtakd` | 3 | 85 | level17 | FlashTaker placed |
+| 3 | mita-cap | MitaCap | `mtacap` | 4 | 86 | level9 | FlashTaker placed |
+| 4 | mita-tiny | MitaLittle | `mtal` | 5 | 87 | level10 | FlashTaker placed |
+| 5 | mita-sleepy | MitaDreamer | `mtad` | 6 | 88 | level19 | FlashTaker placed |
+| 6 | mita-2d | Mita2D | `mtad2` | 7 | 89 | — | script-granted `[unverified-behavior]` |
+| 7 | mila | Mila | `mla` | 8 | 90 | level21 | FlashTaker placed |
+| 8 | mita-creepy | MitaCreepy | `mtac` | 9 | 91 | level14 | FlashTaker placed |
+| 9 | mita-core | MitaCore | `mtacore` | 10 | 92 | — | script-granted via Core computer — `CoreSoft.jsonl#line_index=37` "Get Flash Drive" |
+| 10 | mita-chibi | MitaChibi | `mtachi` | 11 | 94 | level11 | FlashTaker placed |
+| 11 | mita-ghostly | MitaBlack | `mtaghost` | 12 | 93 | level13 | FlashTaker placed |
+| 12 | mita-dummy | MitaManeken | `mtaman` | 13 | 95 | level13 | FlashTaker placed |
+| 13 | mita-true | MitaTrue | *(empty)* | 14 | 83 (reused) | — | story-granted; `name_is_shared` true |
+
+Player side (for the J4 set split, owned by DS-1/DS-2): all ten `plr*` flashes are
+placed — `plr2v`@level9, `plr3vi`@level8, `plr4asw`@level10, `plr5bz`@level12,
+`plr6vcx`@level17, `plr7vczn`@level21, `plr8qeqe`@level15, `plr9mpa`@level14,
+`plr1099`@level16, `plr1a`@level16. Sum check: 11 Mita-side placed + 2 script + 10
+player-side = 23 collectibles = D1 §3's 13+10 with the two exceptions located. **[proven-hard]**
+
+Findings this table pins:
+
+1. **Base-Mita flash is NOT at the start** — the community guide's "auto, start"
+   attribution ([D1 §3](../research/game-research.mdx)) contradicts the only placed
+   `mta` pickup sitting in **level17**. Chapter↔level mapping is unsettled (R-E1-1), so
+   the row records the container, marks the chapter column `[unverified-behavior]`, and
+   lets P5 settle it. **[community]** label stays off the row's evidence fields.
+2. **Registry-empty ≠ keyless.** DS-1's registry leaves `nameSave` empty for
+   `MitaUsual`/`MitaTrue` (that honesty entry stands), but the pickup namespace still
+   carries `mta` for base Mita — row 0's measured FlashTaker at level17; the two
+   namespaces are distinct per [DS-4](dataset-cartridges.mdx) §3.1 finding 2. Only
+   `MitaTrue` is keyless in both namespaces, so the completion predicate for "Hi, Mita"
+   spans 12 keyed + 1 keyless row and cannot be derived from registry keys alone (§7-R2).
+3. **level13 hosts two pickups** (`mtaghost`, `mtaman`) — placement density is real
+   data, so the schema keeps one row per (save_key, container) edge, not one per chapter.
+
+## 4. Schema
+
+### 4.1 Locale ruling — inherited unchanged from DS-1 §4.1
+
+Loc **pointers**, never per-locale copies: `{category, line_index}` objects resolved at
+render time through the proven `GlobalLanguage.GetString` authority (E1 step 7).
+Parity is measured per category before emit relies on it: `Personages` = 26 records in
+**all 34** locale dirs (loop-checked this pass), book art = 8 files ×34 (§2.3). Skew
+stays the job of `localization/_ledger/locale-delta.jsonl`. Citation grammar follows
+[contracts/dataset-endings.mdx](../../contracts/dataset-endings.mdx): loc rows are cited
+only as `<file>.jsonl#line_index=<n>`.
+
+### 4.2 `profile_documents.jsonl` (14 rows)
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `document_id` | slug | derived | `<character_id>-profile`; additive only, originals preserved |
+| `family` | enum | constant | `"profile"` |
+| `subject_character_id` | slug | DS-1 §3 | join key to `personages.jsonl` |
+| `registry_ref` | string | S1 | `level2#resourceMita[<i>]` — exact provenance |
+| `flash_save_key` | string \| null | `FlashTaker.save` | verbatim incl. `""`; null only where the registry key itself is empty AND no pickup exists |
+| `placement` | object \| null | MB census | `{container, component_path_id, carrier_class: "FlashTaker"}` or `null` when script-granted |
+| `placement_mechanism` | enum | §3 | `placed` \| `script_granted` \| `story_granted` |
+| `lore_loc` | object | registry→loc | `{"category": "Personages", "line_index": N}` |
+| `name_loc` | object | registry→loc | `{"category": "Menu", "line_index": M}`, plus `name_is_shared` for row 13 |
+| `name_en` | string | derived pivot | convenience copy, marked `derived` in `_meta` |
+| `chapter` | int \| null | **null everywhere at spec time** | fills only from the P5 level↔chapter map; never from wiki prose |
+| `achievement_sets` | string[] | §2.2-3 | `["mita-profiles"]`; player-side rows would carry `player-cartridges` in the DS-1-owned view |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | provenance rule 3 user-facing class |
+
+File header `_meta`: generator stage name, source table (§2/§3), schema version,
+derived-field list, dedupe rule applied (§7-R4).
+
+### 4.3 `world_documents.jsonl` (166 rows expected: 160 notes + 5 paper parts + 1 novella surface)
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `document_id` | slug | derived | `note-<container>-<pathID>` / `paperpart-level13-<index>` / `novella-location18` |
+| `family` | enum | §2 | `note` \| `paper_part` \| `novella_surface` |
+| `carrier` | object | MB dump | `{container, path_id, mb_class}` — e.g. `{"container": "level5", "path_id": 20261, "mb_class": "Unity_Note"}` |
+| `scene_ref` | object | MB dump | `{container, gameobject_path_id}` — the m_GameObject PPtr; **transform waits on P5** |
+| `text_mechanism` | enum | §2.1/§7-R1 | `loc_pointer` \| `scene_text` \| `baked_texture` \| `unresolved` — everything emits `unresolved` today; the enum makes resolution a diffable event, not a rewrite |
+| `text_loc` | object \| null | — | filled only when a carrier is proven; `null` is honest-missing, never backfilled |
+| `event_wiring` | array | Events_Data/Time_Events persistent calls | `{method, target_type, target_method}` rows — serialized, grep-clean (§5-J5) |
+| `sprite_ptr` | object \| null | note Image dumps | `{container, path_id}` verbatim; naming deferred to §7-R5 |
+| `puzzle_index` | int \| null | `indexPuzle` | paper parts only (0–4); null otherwise |
+| `actor_refs` | array | Novella personages | `{path_id, name_personage}` — novella surface only |
+| `build_id` / `version_label` | string | pins | as above |
+
+### 4.4 `books.jsonl` (8 rows)
+
+`book_id` (texture stem: `books-0`, `book-1`…), `consumer_scene` (from the texture's
+subtree name: `Location House` / `Location19`; scene binding `[unverified-behavior]` §7-R5),
+`art_per_locale` map derived by walking `art/localization-art/<locale>/Textures/…`
+(availability computed from the filesystem, never asserted), `dressing_only: false`
+(the shelf-prop sprites are excluded here and stay ART catalogue rows).
+
+### 4.5 Output tree
+
+```
+extracted/data/documents/
+├── profile_documents.jsonl     # §4.2
+├── world_documents.jsonl       # §4.3
+├── books.jsonl                 # §4.4
+└── README.md                   # contract card + honesty ledger feed
+extracted/relinks/
+├── document--character.jsonl        # §5-J2
+├── document--achievement.jsonl      # §5-J4
+├── document--scene-membership.jsonl # §5-J3
+├── document--event-wiring.jsonl     # §5-J5
+└── document--minigame.jsonl         # §5-J6 (paper parts → Location11_BlackRoom; magnet census edge)
+```
+
+Relinks land in `extracted/relinks/` per doctrine; if this build pass's write scope
+forces parking them inside the dataset subtree first, follow the DS-1 relocation
+precedent ([data/characters/README.md](../../extracted/data/characters/README.md)) and
+move them in the same commit as the emit-stage registration. Each edge row carries
+`{from, to, mechanism, method, status}` + inverted index (Principle one); the pairwise
+roll-up stays RELATIONS.md's job.
+
+## 5. Join plan
+
+| # | Pair | Key | Mechanism | Status |
+|---|---|---|---|---|
+| J1 | document ↔ its text | `lore_loc` / `text_loc` via `GetString` (E1 step 7) | **hard** for profiles (registry indices); **missing→ledgered** for notes (R1) | partial |
+| J2 | profile ↔ character | `subject_character_id` = DS-1 `character_id`; cross-check `flash_save_key` == registry `save_key` byte-for-byte | **hard** | modeled |
+| J3 | document ↔ scene/container | `carrier.container` + asset-list membership; coordinates P5-gated | **hard** at census level; **inferred** for prefab-shared duplicates until R4 dedupe proves provenance | modeled |
+| J4 | profile ↔ achievement | `ACHI_mitastory`(13)/`ACHI_cartridgeplayers`(12) ↔ `collectible_set` in [contracts/dataset-achievements.mdx](../../contracts/dataset-achievements.mdx) | **hard** pairing; predicate **unverified-behavior** | modeled |
+| J5 | note ↔ behaviour targets | serialized UnityEvent persistent calls (`ObjectDoor.Lock`, `World.HintLocationHide`, …) | **hard** (strings are in the dumps) — target classes resolve via `decompiled/main/Assembly-CSharp/` filenames | modeled |
+| J6 | document ↔ minigame / endings | paper parts → `Location11_BlackRoom` via `scrMain` PPtr (hard); magnets census edge → DS-2 Part B flags (inferred, ownership §1.2) | mixed | modeled |
+
+Bidirectional inverted indexes emit per pair (doctrine Principle one).
+
+## 6. Stub-first plan
+
+Same ladder as [DS-1 §6](dataset-characters.mdx#6-stub-first-plan-promptfordb-hooks):
+
+1. `registered` — profile rows 0–13 above: full record, nothing stubbed.
+2. `loc_only` — n/a today (every Personages line 1–14 is consumed by a registry row;
+   if a future registry bump leaves an orphan line, it lands here with
+   `status: "loc_only"` and empty identity fields).
+3. `unregistered candidate` — note/novella instances are ALL registered by census
+   (nothing is dropped), but any GameObject a future P5 parse shows to be a *label*
+   rather than a paper (e.g. dev leftovers like the `Speed = 0.1` Text) demotes to
+   `world_documents.jsonl` rows with `status: "candidate"` + locator, never deleted.
+4. Wiki-only claims (per-note transcriptions, profile locations that disagree with the
+   FlashTaker census) — **no row, no field**; they may appear only as
+   `evidence_class: "community"` context in the README, never in data rows
+   (SPEC non-goals: no fan-lore authoring in data rows).
+
+Every non-`registered` row carries `missing_fields: [...]` for mechanical
+missingdata.md generation.
+
+## 7. Completeness register
+
+| # | Risk | Consequence | Handling |
+|---|---|---|---|
+| R1 | **Note content carrier unresolved.** Component has zero fields; no loc category; no scene Text; texture hypothesis unproven because sprite pointers can't be named yet (R5). | note pages could ship with no readable text | `text_mechanism: "unresolved"` on every note row; unblock = R5 index + P5 hierarchy + native-decompile pass; until then notes render as placed interactables with event wiring, never with invented prose |
+| R2 | **Profile/cartridge unification is a pinned hypothesis**, and the "Hi, Mita" predicate spans 12 keyed + 1 keyless rows | wrong completion model if a second profile registry exists | adjudication rule §2.2 with named falsifier; AC-6 forces the emit pass to record the check result, whatever it is |
+| R3 | **Chapter attribution gated on P5** (levelN unparsed, R-E1-1); the community's cartridge chapters contradict placements (base-Mita at level17, §3 finding 1) | wrong chapter columns | `chapter: null` until the level↔chapter map lands; `[community]` attributions stay in README prose only |
+| R4 | **Dependency-load duplication** (E1 deviation 6) inflates cross-container counts: 258 note dumps vs 160 level-scene instances; identical 43-per-container `ConsoleTextLanguage` sets prove the pattern | double-counted documents, dirty diffs | dedupe rule pinned in `_meta`: level-scene ownership wins; non-level copies counted once per unique `(mb_class, field-signature)`; AC-2 verifies the arithmetic |
+| R5 | **No sprite-pathID→export-name index** exists (72,115 exported sprites, [census/stage-reports/art-export.json](../../extracted/census/stage-reports/art-export.json), but names only) | note/book art joins unverifiable | emit stage builds the index in the same commit (one UnityPy pass over the 51 containers); until then `sprite_ptr` stays raw pathIDs and `books.jsonl` scene bindings stay null |
+| R6 | **Post-0.93L drift unknown**; demo 2527520 (ends at the ch-3 wardrobe choice) is the natural diff boundary for early-chapter documents | stale rows after a patch | buildId stamping + rerun diff (SPEC automation block); demo diff remains a future target (DAQ) |
+| R7 | **Encoding residue** ([s5-legacy-encoding.mdx](../research/s5-legacy-encoding.mdx)): 7 residue rows exist in `LocationDialogue Location12`; `Personages`/`Menu`/`Clothes`/`Achievements` are clean today | mojibake in resolved profile text | AC-3 checks zero U+FFFD unless the row cites `localization/_ledger/encoding-residue.jsonl` |
+
+## 8. Acceptance criteria (verifier-checkable, repo artifacts only)
+
+1. **Profile census reconciles.** `profile_documents.jsonl` has exactly 14 data rows
+   (#0–13); the multiset of `(resource_path, lore_line, name_line)` equals
+   [DS-1 §3](dataset-characters.mdx)'s table byte-for-byte, and `flash_save_key` matches
+   its `save_key` on every row except the single measured namespace divergence — row 0
+   (`MitaUsual`: registry `nameSave` empty, flash `mta`, per
+   [DS-4](dataset-cartridges.mdx) §3.1 finding 2) — and is null exactly on row 13
+   (`MitaTrue`, keyless). `placement_mechanism` splits 11 `placed` / 2 `script_granted`
+   (rows 6, 9) / 1 `story_granted` (row 13) = 14; the 11 `placed` rows'
+   `(save_key, container)` multiset — including `("mta", "level17")` per
+   `level17/FlashTaker.txt:10` — reconciles by reference to
+   [DS-4](dataset-cartridges.mdx) AC-2's pickup census, the single placement authority
+   (its §1 shared-source ruling): DS-5 consumes the pairs from DS-4's emission instead
+   of re-measuring them, so no criterion here demands that this Mita-only file equal the
+   full 21-row corpus grep (the 10 player-side pickups are DS-4's alone). The other 3
+   rows carry `placement: null` + the `placement_mechanism` values above.
+2. **World-document census reconciles under the pinned dedupe rule.** `note` rows sum to
+   160 across the 23 level containers with per-container counts matching
+   `ls mb-dump/<container>/Unity_Note*.txt`; the 98 non-level dump files appear only in
+   the `_meta.dedupe` accounting, which records how they collapse into shared-prefab
+   groups (160 owned rows + group count stated explicitly). Paper-part
+   rows carry `puzzle_index` ∈ {0,1,2,3,4} covering all five values; exactly one
+   `novella_surface` row exists with 4 `actor_refs`.
+3. **Loc joins resolve ×34.** Every `lore_loc` resolves to non-empty text in all 34
+   locale dirs; `Personages.jsonl` = 26 records in each; zero U+FFFD unless the row
+   cites the encoding-residue ledger (R7).
+4. **Achievement set pins hold.** Row `achievement_sets` uses exactly the two contract
+   values; resolving `Achievements.jsonl#line_index=12/13` in every locale yields
+   "Caught Them All"/"Hi, Mita"-equivalent strings; the ids match
+   [contracts/dataset-achievements.mdx](../../contracts/dataset-achievements.mdx)'s
+   `collectible_set` rows 12/13.
+5. **Negative findings stay recorded.** The README states the ComicBook post-effect
+   classification with its citation, the absence of any notes/documents/profile loc
+   category, and the 49-long-Text measurement; grepping the emitted JSONL for invented
+   note prose returns nothing (every note row has `text_mechanism: "unresolved"`,
+   `text_loc: null`).
+6. **Unification check executed, not assumed.** The README records the R2 adjudication
+   run: what was searched for a second profile registry (which containers/classes),
+   and the outcome; the falsifier condition is restated verbatim from §2.2.
+7. **Stub policy enforced negatively.** No wiki-sourced chapter number or note
+   transcription appears in any data row; `evidence`-class fields contain only
+   locators in the `<file>.jsonl#line_index=<n>` / `container#pathID` grammar;
+   community labels live outside data rows.
+8. **Book availability derives, never asserts.** `books.jsonl` computes per-locale
+   presence by walking `art/localization-art/`; all 34 locales show 8/8 today; a
+   verifier deleting one file in a scratch copy flips that cell (filler policy is
+   demonstrably data-driven, DS-1 AC-9 pattern).
+9. **Determinism + stale-log refusal.** Two consecutive emits are byte-identical
+   (fixed key order, sorted edges, stable floats); the emitter refuses to run when
+   EXTRACTION-LOG `pipeline-defaults` disagree with `census/detect.json`
+   (PIPE §3 defense, DS-1 §9 pattern).
+10. **Honesty ledgers wired.** Every `text_mechanism != "loc_pointer"` row, both
+    script-granted profiles, the null `chapter` column, and R5's raw-pointer state
+    appear in the dataset README ledger feed; nothing invents a value its sources
+    don't prove (AGENTS.md rule 8 posture: gaps are dataminer-visible work items,
+    never frontend guesses).
+
+## 9. Implementation notes
+
+- Emission is a `run_all` emit stage ordered after `decompile` (PIPE §4 manifest gains
+  the module + test in the same commit; [DR-2026-08-18-pipeline]).
+- Reads only repo artifacts listed in §2; the R5 sprite index is built by the stage
+  itself (idempotent, cached under `extracted/census/`), keeping the single-entrypoint
+  contract intact.
+- `spec.md` amendment PROPOSED here for the orchestrator to apply on acceptance
+  (this brief's write scope covers this file only): `profile_document.est-scale` →
+  "14 candidate rows (11 placed, 2 script-granted, 1 story-granted keyless) — DS-5 §3"; new kind
+  `world_document` with the §1.1 scale line. Spec freeze itself stays the
+  orchestrator's FRAMEWORK §7 step 2 call.
+
+## See also
+
+- [dataset-characters.mdx](dataset-characters.mdx) — registry owner; §3/§4.1/§6 reused here by reference
+- [dataset-achievements-endings.mdx](dataset-achievements-endings.mdx) — set-completion + choice-flag owner (magnets boundary)
+- [dataset-dialogue.mdx](dataset-dialogue.mdx) — owns every `LocationDialogue*` category this spec refuses to touch
+- [pipeline-run_all.mdx](pipeline-run_all.mdx) — stage registry + stale-log defense the emitter joins
+- [../../competitor-research.md](../../competitor-research.md) J2/J4 — the placement and profile joins this dataset feeds
+- [../../_foundation/extraction-doctrine.md](../../_foundation/extraction-doctrine.md) — Principle one/two, relink bars

@@ -1,0 +1,78 @@
+# S1 verification — vA (citation re-fetch lens)
+
+Verifier: fresh subagent, citation re-fetch. Re-derived 20 load-bearing
+claims from BOTH deliverables against their cited sources via `curl`
+(plain UA throughout; no wall hit, no retry needed). Checked 2026-08-24.
+Deliverables: [game-research.mdx](../game-research.mdx),
+[competitor-research.md](../../../competitor-research.md).
+
+## Confirmed (spot-check ledger)
+
+| # | Claim | Cited source | Fetch result | Verdict |
+|---|---|---|---|---|
+| 1 | 26 achievements total | Steam global stats page + appdetails | Header prints `Total achievements: 26`; 26 `achieveRow`s; `"achievements":{"total":26` | MATCH |
+| 2 | Rarest "Pro Gamer" 10.5%; most common "Creak in the Dark" 86.4% | Steam stats page | Paired extraction: 86.4=Creak in the Dark, 10.5=Pro Gamer | MATCH |
+| 3 | Named %s: Is This the end? 64.1 / Conditions Met 42.3 / Safe of life 41.4 / Caught Them All 11.9 / Hi, Mita 13.8 / O Great Mita! 51.7 / Some Achievement? 56.2 / Dead juice 70.4 / Delicious Love 84.7 | Steam stats page | Every name↔percent pair exact | MATCH |
+| 4 | 20 chapters (0–19) + full name table | Fandom Campaign | Gallery lists Chapter 0–19 with identical names incl. quoted `"Leave the Core!"` | MATCH |
+| 5 | Three endings; safe code 4970; windows ch4@17%, ch18@98%, ch19 empty; six Conditions-Met prerequisites with chapter mapping; "Stay" ends ch3 | Fandom Campaign §Endings | All verbatim (wiki typo "Retrain" notwithstanding) | MATCH |
+| 6 | 12 main Mitas + minor + mention-only rosters | Fandom Mitas | Main section is exactly those 12 in three tables of 4; Minor/Mentioned bullets match item-for-item | MATCH |
+| 7 | Version 1.15 = IDX 809; 1.11 = IDX 805 | Fandom MiSide (Fictional) | Table rows `1.15<br>(IDX 809)` and `1.11 <small>(Possibly)</small><br>(IDX 805)`; doc's `≈1.11` preserves the wiki's hedge | MATCH |
+| 8 | v0.91 2024-12-24 · v0.921 2024-12-29 (renames Cap→Cappie, Open Dialogue→Be Candid, Out of the Core→Leave The Core) · v0.924 2025-02-05 (Persian+Serbian Latin, es-419 VO MURASAKI) · v0.93 2025-02-14 (`setfps`/`skipdialogue`/`triggershow`, cheats, Spacecar coin/nitro/boss/position notes, Turkish VO Odium) · Steam demo 2023-08-18 | Fandom MiSide/Versions | Every date, rename triple, command name, studio credit verbatim | MATCH |
+| 9 | News posts: v0.93L 2025-06-13; Mir Korable 2025-07-16; Steam Awards ~2025-11-25; second anniversary 2026-08-21; Kickstarter launch 2025-10-31 | Steam news post URLs | Titles confirm all five ids; dates 06-13 / 07-16 / 11-24+11-25 / 08-21 / `published_time 2025-10-30T19:04:19-07:00` (= 10-31 UTC); anniversary post titled "❤️ Happy 2nd Birthday ❤️" | MATCH (Kickstarter = UTC convention, same skew the doc documents elsewhere) |
+| 10 | Store release 10 Dec 2024; Wikipedia prints Dec 11; publishers IndieArk + Shochiku; dev AIHASTO | appdetails + Wikipedia | `"date":"10 Dec, 2024"`; Wikipedia contains only "11 December"; publishers exact | MATCH |
+| 11 | Credits: MakenCat (prog/anim), Umeerai (textures/models), DreamCast RU dub, Japanese VA Kana Hanaiwa | Wikipedia | All four strings present verbatim in the cited article | MATCH |
+| 12 | 30 store-listed languages | appdetails `supported_languages` | Exactly 30 entries (31st split-item was the trailing audio footnote); order matches brief's established list | MATCH |
+| 13 | Guide id 3391978782 "All Cartridges Guide": updated 2024-12-26; 13 character + 10 player cartridges; Cap-Wearing=kitchen TV ch6, Tiny=wardrobe ch7; Ghostly attributed ch9 with doc-flagged ch10 doubt | Steam guide page | "Last updated on 26.12.2024"; sections Characters-Mitas / Character-Cartridges exist; **23 preview images = 23 cartridges**; sample placement sentences verbatim; guide literally reads "Collectable in Chapter 9: Dummies and Forgotten Puzzles" for Ghostly | MATCH (doc's `[unverified]` flag honest) |
+| 14 | RU Fandom ~89 mainspace pages; Игрок 1–10 pages; Версия 0/0.5/1.0F/1.1/1.1F/1.5/1.75/1.9 standalone | RU Fandom allpages API | Exactly **89**; ten Игрок titles; the eight Версия titles exact | MATCH |
+| 15 | Internal pins: buildId 19029065; Unity 2021.3.35f1 IL2CPP metadata v29; 777 png + 3 psd | data-acquisition.md | Lines 19 / 22 / 120 contain each value as cited | MATCH |
+
+## Findings
+
+- **LOW — v0.91 language-addition count off by one.**
+  game-research §7 says "**v0.91** — … 10 language additions
+  (IT/PL/PT/pt-BR/es-ES/es-419/tr/vi/uk + voice settings)". The cited
+  Versions table lists **9** added languages (the parenthetical itself
+  enumerates the same 9 codes). Fix: say 9.
+- **LOW — RU cartridge-page count off by one.** Both deliverables say
+  "twelve «Флешка …» pages". allpages returns **13**: Флешка Миты,
+  Доброй, Кепки, Коротковолосой, Крипи, Маленькой, Манекена, Милы, 2D,
+  Призрачной, Сонной, Чиби Миты, Ядро. Fix: thirteen.
+- **LOW — EN Fandom size not reproducible.** competitor-research says
+  "~103 mainspace pages". Measured today: 140 raw ns0 titles, 99
+  non-redirects. Neither basis yields 103; likely drift or a redirect
+  filter difference. Reword to a basis-stated figure or drop the count.
+- **MEDIUM(−) — Steam guides corpus understated.** competitor-research
+  says "~29 trend-index titles". Measured: default browse renders 10
+  server-side rows; `?numperpage=100&browsefilter=trend` returns **100
+  unique filedetails ids** (page cap reached ⇒ ≥100 guides). The
+  qualitative verdict (linear prose, zero entity model) stands, but the
+  corpus-size figure is wrong and inflates false precision.
+- **NIT — dangling forward link.** game-research intro links
+  `../../spec.md`; no such file exists yet (author flags it "pending",
+  so cosmetic until the spec lands).
+- **NIT — version-range simplification.** §1 "versions 0.0 through 1.9,
+  each hosting its own Mita": the cited page frames known versions as
+  0.5–1.9 plus the 0.0 exception, and its board-only extras (1.09, 1.1F,
+  1.12, 1.13, 1.14) have no listed Mita. Defensible summary; tighten if
+  the model seeds from it.
+
+Brief-compliance: Deliverable 1 carries all 8 mandated sections with
+inline source URLs and correct `[unverified]` discipline; Deliverable 2
+covers three independent sources with per-source relationship models +
+weaknesses, and the mandatory APPLIED DELTA (14 joins, mechanism tags,
+mapped onto D1 §8 families). No legal/EULA commentary anywhere;
+`competitor-research.md` filename is rule-mandated `.md` (not an MDX
+violation).
+
+## Coverage
+
+20 load-bearing claims re-derived across both files; ~90% exact MATCH,
+6 findings (2 one-off count errors, 2 approximation/staleness items,
+2 nits). No fabricated counts, hex values, dates, or sources; every
+cited URL resolved to a real page supporting the surrounding text. The
+four numeric discrepancies are peripheral to extraction planning; the
+core counts the spec will consume (26 achievements, 20 chapters, 3
+endings, 12 main Mitas, 23 cartridges, 30 locales, patch skeleton) are
+all independently confirmed.
+
+VERDICT: PASS — fix the two off-by-one counts and the guides-corpus figure before harvest.

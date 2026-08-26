@@ -1,0 +1,24 @@
+{
+  "schema": "miside.volatile-fields/1",
+  "note": "Enumerated run-varying fields exempt from byte-identity comparison (idempotency = same data, not same clock). '<stage>.json' matches every census/stage-reports file.",
+  "fields": {
+    "census/detect.json": [
+      "measured_at"
+    ],
+    "census/sweep-budget.json": [
+      "measured_at",
+      "probe_wall_time_s",
+      "wall_time_s"
+    ],
+    "census/sweep-attempts.jsonl": [
+      "duration_s",
+      "measured_at"
+    ],
+    "census/stage-reports/<stage>.json": [
+      "measured_at",
+      "duration_s",
+      "host",
+      "free_space_bytes"
+    ]
+  }
+}

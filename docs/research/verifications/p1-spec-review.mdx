@@ -1,0 +1,229 @@
+# P1 spec review — `pipeline-run_all.mdx` (Reviewer brief R-P1)
+
+Reviewed 2026-08-24 against AGENTS.md, extraction-doctrine.md, toolchain.md,
+explorer-e1-hands-on.mdx, questions.md §4–§8 rulings, and decision-register
+[DR-2026-08-18-pipeline] / [DR-2026-08-17-relink]. All files read in full.
+Spec read in full (551 lines).
+
+**Overall shape is sound:** the 8-stage registry covers the doctrine chain
+this piece owes (raw harvest → decompile → census/PROOF seed), every tool
+invocation traces to an E1-proven command, and the non-goals fence keeps
+entity/relink/logic/contract work out. The failures are concentrated in
+**ruling conformance** (three places where the spec re-litigates or reverses
+questions.md §4–§8) and one **unimplementable idempotency AC**.
+
+## Findings
+
+### F-1 · MAJOR — AC-15 + §9.5 reverse the standing §8 git-tracking ruling
+
+**Evidence:** Spec AC-15 (`pipeline-run_all.mdx:450-452`) sets "default =
+ignore-all-of-`extracted/`" and §9.5 (`:540-543`) re-opens tracking as an
+open question. But [questions.md §8](../../questions.md) **is already
+ruled**: "harvest/, decompiled/, art/, media/ stay local-only (.gitignore
+already guards); datasets, relinks, logic, contracts,
+PROOF/VALIDATION/EXTRACTION-LOG artifacts commit normally." The pack's own
+`.gitignore` already encodes exactly that split — including a comment line
+saying curated datasets and PROOF artifacts ARE committed. AC-15 as written
+would leave `PROOF.md`, `EXTRACTION-LOG.md`, `MEDIA-CATALOGUE.*`,
+`census/detect.json`, and `localization/**` untracked, violating both the
+ruling and doctrine's maintained-entrypoint requirement ([DR-2026-08-18-pipeline]:
+the entrypoint and its log sit inside the commit-per-achievement unit).
+Secondary defect in the same AC: it asserts ".gitignore covers … `il2cpp/`"
+— verified false; `extracted/il2cpp/` appears nowhere in the pack
+`.gitignore`.
+
+**Fix:** Rewrite AC-15 to restate the ruling verbatim: ignore
+`il2cpp/`, `harvest/`, `decompiled/`, `art/`, `media/`; track
+EXTRACTION-LOG.md, PROOF.md, MEDIA-CATALOGUE.md/jsonl, census summaries,
+and localization JSONL. Delete open question §9.5 (nothing left to ask), add
+`extracted/il2cpp/` to `.gitignore` as a CodeWriter task, and drop AC-15's
+"census bulk rows" clause or define what a bulk row is.
+
+### F-2 · MAJOR — S7 hedges the decompiler pick that §4 already ruled
+
+**Evidence:** S7 (`pipeline-run_all.mdx:243-250`) says "with **ILSpy** … or
+**dnSpyEx** CLI"; risk table row (`:506`) plans "fallback swap ILSpy ⇄
+dnSpyEx"; §9.1 (`:522-525`) has CodeWriter probe ILSpy then fall back to
+dnSpyEx. [questions.md §4](../../questions.md) rules: "pipeline uses
+**ILSpy CLI** (`ilspycmd`, headless batch project export); dnSpyEx stays
+interactive-only for spot checks. Both are local; only one goes in
+`run_all`." Three places in the spec keep two candidates in play for the
+same slot the ruling filled.
+
+**Fix:** Pin ILSpy CLI as the S7 tool everywhere; move dnSpyEx out of
+run_all entirely (interactive-only). Keep the honest `[unverified]` marker
+on the exact `ilspycmd` invocation form and keep the §8 verify-during-build
+pinning step — those are compatible with the ruling. §9.1 shrinks to "pin
+`ilspycmd` version at build time", not a probe-or-fallback plan.
+
+### F-3 · MAJOR — §9.3 re-asks the texture-scope question §6 already answered
+
+**Evidence:** §9.3 (`pipeline-run_all.mdx:533-536`) asks "full PNG/WebP
+export inline vs catalogue-only first pass … Owner pick per doctrine."
+[questions.md §6](../../questions.md) is marked **A→STAGED**: scope "decided
+at art-export build time from the first catalogue row counts (per family,
+not global)." The mechanism exists; the spec just hasn't encoded it.
+
+**Fix:** Delete §9.3 as an open question and encode the staged mechanism in
+S6: run the catalogue/walk pass first, then derive per-family export scope
+from those rows per toolchain.md §5's sprite-vs-Texture2D rule, recording
+the decision in EXTRACTION-LOG.md. No owner round-trip is needed inside P1.
+
+### F-4 · MAJOR — AC-4/AC-5 byte-identity is unimplementable as written
+
+**Evidence:** AC-4 demands isolated-stage outputs "byte-identical to the
+same stage's outputs within a full run" and AC-5 demands a double-run change
+"no byte under `extracted/` beyond mtimes" exempting only EXTRACTION-LOG.md.
+But S4's `sweep-budget.json` (`pipeline-run_all.mdx:172-174`) stores **wall
+times**, which differ every run by definition; `detect.json` will carry a
+measurement timestamp; stage reports (AC-11) record run facts. A TestWriter
+handed AC-5 writes a test that can never pass, or silently narrows it.
+
+**Fix:** Define a documented volatile-fields list (timestamps, durations,
+host names) and restate both ACs as "byte-identical modulo the volatile
+fields enumerated in `extracted/census/volatile-fields.json`" — or move
+wall-times/run-metadata out of `extracted/` into workroot logs so the
+extracted tree really is byte-stable. Pick one; either satisfies the intent
+(idempotency = same data, not same clock).
+
+### F-5 · MINOR — Per-locale texture/font subset skew has no owning AC
+
+**Evidence:** R-E1-3 has two halves: category skew (64–76 dirs) and texture
+subset skew (JA 20 png vs EN/RU/FR 26). AC-9's ledger covers only category
+deltas (`:420-421`); AC-10 checks global art counts only (`:423-424`). S5's
+scope boundary says per-locale Textures/fonts are catalogued and handed to
+S6, but no AC verifies any per-locale art ledger row exists.
+
+**Fix:** Extend AC-9 (or AC-10) with: "`_ledger/` documents per-locale
+texture/font subset deltas, not only category deltas; JA=20/EN=26 known
+values spot-checkable."
+
+### F-6 · MINOR — Voice Editor source-inventory row is not AC-checkable
+
+**Evidence:** S8 prose lists "Voice Editor `*_Data` as a second source row"
+(`pipeline-run_all.mdx:278-279`), but AC-12's checkable list (`:431-435`)
+omits it. A TestWriter testing AC-12 does not have to prove the row exists.
+The brief's concern is confirmed.
+
+**Fix:** Add to AC-12: "source inventory contains a Voice Editor `*_Data`
+row with counts+bytes+method (P7)".
+
+### F-7 · MINOR — Attempt ledger and stage reports are required but unnamed
+
+**Evidence:** AC-8 requires "each attempt is recorded" per container
+(`:413-414`) and S8 reconciles "attempted vs succeeded" (`:440`); AC-11
+requires the bodies-caveat be "recorded in the stage report" (`:430-431`).
+No output-tree path or format exists for either artifact — the reconciliation
+S8 promises is unimplementable without one.
+
+**Fix:** Name them: e.g. `extracted/census/sweep-attempts.jsonl`
+(container, argv-sha, exit, objects-dumped) and
+`extracted/census/stage-reports/<stage>.json`. Add both to the §3 tree and
+reference from AC-8/AC-11/AC-12.
+
+### F-8 · MINOR — Numeric tolerances inconsistent / brittle
+
+**Evidence:** AC-7 allows "288,102 ±patch-drift lines" (`:407`) with no
+definition of drift — unmeasurable as written. AC-9 hard-requires "exactly
+the 34 present locales" (`:418`) while the same patch-day logic elsewhere
+(S2 `--expect-drift`) embraces drift. One patch adding a locale fails AC-9
+spuriously.
+
+**Fix:** AC-7 → concrete band (e.g. "≥250k lines; deviation >5% from pinned
+value warns and logs, never fails"). AC-9 → "across every present locale
+dir (34 on buildId 19029065)".
+
+### F-9 · MINOR — Free-space guard fires once, at S2
+
+**Evidence:** The ~10 GB guard lives only in S2 (`:109-111`, AC-14 `:446-447`).
+The big writers are later: S4's level sweep (R-E1-1 says orders larger than
+993 objects), S6 PNG/WebP export (unmeasured; `sharedassets20.assets.resS`
+alone is 368 MB), S7 decompiled trees (57 assemblies). A long-running S4/S6
+can exhaust the disk hours after S2 passed.
+
+**Fix:** Re-run the guard before every stage whose write estimate exceeds a
+threshold (helper already planned in `common.py`). One sentence in each of
+S4/S6/S7 + extend AC-14.
+
+### F-10 · MINOR — Il2CppDumper cwd sensitivity never isolated
+
+**Evidence:** E1 invoked the exe bare (`Il2CppDumper.exe …`), i.e. with cwd
+= the tool dir (`explorer-e1-hands-on.mdx:57-66`); cwd-independence was
+never tested. The spec claims list-argv retires "the MSYS-mangling class by
+construction" (`:369-373`) — true for *argument* mangling, but it does not
+prove the exe tolerates an arbitrary cwd, and toolchain.md §2 separately
+documents a cwd gotcha for this exact tool.
+
+**Fix:** Have the driver set child cwd to the tool dir (matches E1's proven
+shape, costs nothing), or add an explicit verify-during-build item proving
+cwd-independence before relying on it.
+
+### F-11 · MINOR — `-m dump` + `--export-asset-list xml` single-pass is unverified
+
+**Evidence:** S4 folds the asset-list XML into "the same pass" (`:157-161`),
+but E1 never exercised `--export-asset-list` — the flag combination with
+`-m dump` is plausible, not proven. This is exactly the class of silent
+re-derivation the reality-anchor bar forbids.
+
+**Fix:** Move it into §8 verify-during-build ("confirm dump mode also emits
+the asset list; if not, second pass or UnityPy-derived crosswalk") and let
+AC-8's XML assertion tolerate either mechanism.
+
+### F-12 · MINOR — Exit codes 2/4 and stale-log refusal lack AC coverage
+
+**Evidence:** §3 defines exit 4 (missing dependency outputs) and the
+EXTRACTION-LOG stale-pin refusal (`:340-341`); §6 unit tests mention exit
+codes and pin-validation, but no AC exercises exit 2, exit 4, or the
+stale-log defense. Untested contract surface.
+
+**Fix:** Fold into AC-2/AC-3 or add one AC: "invoking a stage whose deps are
+absent exits 4 naming the missing stage; a LOG pin disagreeing with
+requirements.txt aborts before S1."
+
+### F-13 · MINOR — S5 FAIL-FAST on one bad file halts the whole loc store
+
+**Evidence:** S5 failure policy stops the stage on the first
+non-UTF-8-decodable category file (`:209-210`) — one odd file among 2,210
+blocks the entire localization layer, contradicting the stage's own
+LEDGER-for-skew philosophy.
+
+**Fix:** LEDGER the file (record raw bytes hex-encoded), continue parsing
+the rest, and exit non-zero at stage end if any file was ledgered — honesty
+preserved, no full stop.
+
+### F-14 · MINOR (optional cut) — three shims, two do the same job
+
+**Evidence:** `run_all.cmd` and `run_all.ps1` are both native-Windows entry
+points to the same Python driver (`:349-351`). Doctrine needs one
+discoverable entrypoint; cmd runs everywhere Windows does, and Git Bash has
+its shim.
+
+**Cut:** keep `run_all.cmd` + `run_all`; drop `run_all.ps1`. Non-blocking —
+each shim is trivial — but it removes a redundant AC-16 leg and one file to
+keep in sync forever.
+
+## What checked out clean
+
+- **Doctrine coverage:** single entrypoint, `--list/--help`, isolated +
+  idempotent stages, EXTRACTION-LOG-as-defaults, commit-unit membership all
+  present and traceable to [DR-2026-08-18-pipeline]; S8 seeds all four
+  Principle-two sections with real E1 numbers and method-per-number (§8's
+  derive-don't-copy rule is exactly right).
+- **Reality anchoring:** venv pins (Python 3.14.7, 13-package freeze),
+  RequireAnyKey config delta, AssetStudioModCLI input-first argv order,
+  game-root `Data\Languages` anchor, split-based line counting, dependency
+  auto-load attribution caveat — all match E1 verbatim. No invented flags
+  beyond F-11.
+- **Non-goals fence holds:** no entity curation, relink internals, UI-link
+  map, contracts, or frontend concerns leak into stages/ACs. Protocol stays
+  a seeded placeholder, correctly.
+- **Holes largely closed:** inter-stage failure semantics defined up front
+  (`:72-75`), resumability via `--from/--to`, CRLF-stripping for ssh-based
+  test comparison, install kept read-only (AC-14).
+
+## Verdict
+
+Four majors (F-1..F-4), all conformance/testability fixes with concrete
+patches above; none require redesign. Revise, then arbiter.
+
+VERDICT: NEEDS_REVISION

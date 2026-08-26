@@ -1,0 +1,9 @@
+{"category": "LocationDialogue Location2", "line_index": 0, "text": "// Player start"}
+{"category": "LocationDialogue Location2", "line_index": 1, "text": "Neredeyim ben?"}
+{"category": "LocationDialogue Location2", "line_index": 2, "text": "Burası tanıdık geliyor."}
+{"category": "LocationDialogue Location2", "line_index": 3, "text": "Bekle... Ben oyunda mıyım?"}
+{"category": "LocationDialogue Location2", "line_index": 4, "text": "// Player try open the door"}
+{"category": "LocationDialogue Location2", "line_index": 5, "text": "Kilitli?"}
+{"category": "LocationDialogue Location2", "line_index": 6, "text": "// Player in dark"}
+{"category": "LocationDialogue Location2", "line_index": 7, "text": "Burası çok karanlık."}
+{"category": "LocationDialogue Location2", "line_index": 8, "text": "Hiçbir şey göremiyorum."}

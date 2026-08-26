@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "You made it!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "What is this place?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Show me the ring."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Mhmm..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "There we go!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "Time to clear some things up, don't you think?"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "I've been waiting for you, you know!"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "And you just go straight for the racing game?!"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "Come over here already..."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Congratulations!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "I used to play that game a lot!"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Tried to collect every coin and get first place,"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "for the achievement."}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "Damn, that one was difficult!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "It took me a while to get used to the controls."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Should I trust you?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "At the very least, I'm not insane."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "Unlike a certain somebody..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "Also!"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "You won't find anyone as kind as me around here, sweetheart."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Surely you'd prefer to work together, right?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "She's a cold-blooded murderer. We have to stop her."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (How did I get here?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "The ring led you here."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "It's a special invention."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "You're a player, so you're going to need it."}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "It's the only way for you to access the version we need."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (What is this place?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "These are the passageways"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "that connect the different versions."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "They do look kind of empty..."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "Oh! I heard about this one Mita"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "whose world failed to archive..."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "And her house"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "simply ceased to exist..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Now she's supposedly hanging around"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "in these passageways."}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Poor thing..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (How did you end up here?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "Well..."}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "it's been a while since we last met."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "Thanks to you,"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "I got out of that damned cage,"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "and escaped from that lunatic."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "And also,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "I don't need anything special to travel between versions."}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "Unlike you, my dear."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (What did you do with the ring?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "I changed the ring's path."}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "It was leading the wrong way."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "Now, I've set us on the shortest path"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "to where we need to go."}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "It works like this: when you open a door,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "the ring opens the boundary between versions."}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "That's about it."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Are the passages dangerous?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "Ever since I arrived here..."}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "Inside this game..."}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "I've seen all sorts of strange things..."}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "But, somehow,"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "these quiet passageways..."}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "Feel even less safe..."}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "You're right, and this place is getting"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "more and more unpredictable by the day."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "But cheer up!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "We've thought of everything,"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "and we'll take the shortest"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "and most well-trodden path!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "I certainly hope so..."}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "Wait, what's in these passageways anyway?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "Well..."}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "Glitches, bugs, anomalies..."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Living ones, sometimes..."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "Almost forgot! Very aggressive ones, too..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Umm..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "And, hostile Mitas."}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "More deranged Mitas?"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "I know of at least one..."}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "Ugly Mita."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "And just so you know, it wasn't me who named her!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "Damn her, though..."}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "She's a very early version of Mita."}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "The main issue with her"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "is that she causes world-breaking glitches..."}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "I'm afraid that we'll have to deal with her."}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "She's the closest to version zero, after all..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Will you help me get out?)"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "I'm not sure how to get out..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "But, one way or another..."}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "You did end up in the game somehow, that's a fact."}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "And, here's an even bigger fact:"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "You have no other option"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "but to rely on me, Kind Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "You're not wrong..."}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (You were talking about some kind of plan...)"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "We need to reach the Core."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "My intuition tells me that's where we'll find"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "the solution to all our problems."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "But why not just go there yourself?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "For some reason, we Mitas cannot"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "enter the Core Room."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "I've only seen it from the outside."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "But, players aren't Mitas."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "I think that you, player,"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "may be able to go inside."}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Shall we discuss the plan now?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Sure."}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Great."}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Right..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "It's high time I introduce you"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "to a very energetic friend of mine."}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "Seeing as she's got a cool cap,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "I just call her..."}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "I've been going over the plan with her."}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "We're going to stop Crazy Mita together."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Please come in, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Salutations!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "You're my... new player?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "What's your name?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "I'm..."}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Hold on!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Do you..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "remember me?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Huh?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "Who the hell are you?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "Damn it all!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "We have a problem, [player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "It seems SHE came here..."}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Crazy Mita..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Listen, Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Try to remember, for all our sakes!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Remember what?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "Tell me, why do you look just like me?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "Ah, we've totally hit a wall here..."}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Listen, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "This throws our plan"}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "completely off the rails!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "This portal was meant to be part of our plan."}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "It was going to make our journey a hundred times easier!"}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "But we can't get it to work without Cappie's help."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "And some parts seem to be missing, too..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "She may be fussy, but her mind works quickly..."}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "What do we do now?"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "I'll... I'll think of something..."}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "So what did Crazy Mita do to Cappie?"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "I... I've seen this before."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "She killed her."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "Killed her?!"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "And, as you might have guessed..."}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "After dying, Mitas simply reboot."}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "Cappie got reset to factory settings"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "and forgot everything important."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "In other words..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "we're completely screwed."}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "That sounds horrible..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Better than disappearing forever, I guess..."}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "Or maybe not..."}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "What about players?"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Will killing us wipe our memories, too?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "It is possible to wipe your memories,"}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "but only if you've been turned into a cartridge."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "As for a living player getting killed..."}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "I don't know what would happen."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Cartridges again, huh..."}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "So how can I tell if I'm a cartridge or not?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Come here,"}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "I'll check you over."}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "Phew, it's fine!"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "You're not a cartridge."}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "You're a living, breathing player!"}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "That's good news..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "So, we've hit a wall..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Let me think..."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "We need a new plan right away..."}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Hmm..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "What if we..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Yeah! I think I've got an idea!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Give me the ring!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Good."}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "I need to change the path again."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Did you figure something out?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Here's the plan, darling."}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "You'll have to make your way through other versions"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "to reach the Core."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Full steam ahead! You hear me?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "And I'm supposed to go all by myself?"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "With no idea where to go, and no idea what to do?"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "I'll help you as much as I can."}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "As much as the situation allows, at least."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "I'll set the ring's path, and..."}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "think about what to do next."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "We'll talk after that..."}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "In the meantime, you can play with Cappie."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Give me ten minutes or so..."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, if player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "All right."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "I'm done."}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "[player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "come over here."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Here."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "It's unfortunate, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "but you'll have to go alone for now."}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "I need to get the full picture of our situation."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "Our plan was supposed to be perfect..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "But right now, we're worse off than ever."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "I need to look at things and figure out"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "what happened to everything we prepared..."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "I'll try to work something out."}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Perhaps we can still get the portal working."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "But time's of the essence."}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "Crazy Mita knows about this place,"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "so you staying here means risking everything."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Good luck, [player]! See you soon!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "Right..."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "I just hope I'll live long enough to meet you again..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi players"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "But... why?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Who am I?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "I want to go home!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "How?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "Why?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "What the...?"}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "You're a..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "a real person?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Hi!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "You new here?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "New?"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "You're from the real world, right?"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Yeah..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "What happened to you?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "Don't mind the limp."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "I've been here for about a year,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "and I'm doing just fine."}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Hmm... So what is this place?"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "It's some sort of space between versions."}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "Do you know how to get out of here?"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Can't say that I do."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "I've never wanted to leave."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "I have to be here..."}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Why?"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Doesn't matter. I'm in a hurry."}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "My beloved Mita is waiting for me."}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "I have to find her..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "Goodbye."}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Wait...!"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Get lost!"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "I heard everything!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "I don't know what's going on,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "but it all sounds so interesting!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "I believe"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "you already know who I am, don't you?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "I'm Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "But obviously not the same as that other one!"}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "You know what I mean, don't you?"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "Cuz I've got this"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "HERE"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "cool CAP!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "And BOOOM!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Amazing gloves!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "But that's not all!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "A kick-ass cute electric guitar, too!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "I love it sooooooooooo much!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Want me to play a tune?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Hah!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Come here, my baby..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "All right!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Maybe I could have played something more cheerful..."}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "Oh, well!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Aw, all right."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Hey,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "you ARE quite the energetic one."}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "I AM!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "I certainly AM!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Now then..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Let's go"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "have some fun!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "What a nice big button."}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "I really want to press it."}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Can I?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "You can."}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "If you're fast enough, that is!"}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "But first, take a seat!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Right."}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "So, what now?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Can I press the button?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Hahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "I absolutely love this game!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "We just need one more thing..."}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "It's somewhere in my inventory!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "Just a sec..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "OOP!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "Well..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "You do know..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "That this is an adult game, no?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "What was that?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "What, you don't know?"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "It's to lure beavers out of hiding..."}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "Really now?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "I haven't seen any beavers around here..."}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "...Huh? Beavers?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Gah, let's just move on."}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "I want to start the game!"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "But..."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Now then!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Do you know how to play?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "See this number?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "That's the timer!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "When the time runs out,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "it'll show you"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "if you should press the button or not."}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "If you're too early or too late, "}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "or press when the icon is red..."}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "I'll smash your head with the hammer!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Wait, you're gonna hit me?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "Don't worry,"}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "you'll figure it out as we play!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Ow!"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Why so hard?"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Did it hurt?"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "No."}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Then let's continue!"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Okay,"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "I don't find it so bad anymore..."}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Don't you dare!"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "You better not start enjoying it!"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "I don't think this game is for me..."}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Oh yea! Cappie so stylish!"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Cappie so great!"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "Cappie just won, IN YOUR FACE!"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "Oh, you!"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Nahaha okay"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "I'm gonna kick your ass!"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Not again!"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Does it hurt?"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Of course it doesn't! It's an inflatable toy!"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "And, you did win."}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "I'm starting to like this game."}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "And I..."}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "I like it too!"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "And now you're my arch-nemesis!"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "Is that it?"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Yep, that's it!"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Let's go!"}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "Is that the dance floor?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "It's so tiny..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Whoo-hoo!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Shall we dance?"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "First,"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "choose a track!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Let's go with this one."}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Okey-dokey!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Lemme go first!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "I'll show you how it's done!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Phew!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "So,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "think you can break my record?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Come on, go ahead, do it!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Ah!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "How's that?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "Your turn!"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Dun, dun, dun, dun!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Okay,"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "hit the dance floor!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Who's the boss?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "Pfft!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Only three buttons,"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "but you couldn't even handle that!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Maybe sliding your butt"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "across those buttons"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "will get you a higher score. Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Hahaha awesome!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Honestly, I didn't think"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "you could do it!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Wow!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Those are some great moves!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Good job! Nice!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "Bam!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "You can feel the rhythm!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "A natural dancer!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "You!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Me!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "We the team!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Fate's thread links us!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "A perfect duet!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Just"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "one mistake!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "And you'd have made... one mistake!"}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "So,"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "how about another round?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "One song left."}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "Shall we finish off with it?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "Okey-dokey!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "We've done enough dancing!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "These are some stunning photos."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "You sure like to party, eh?"}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "That's who I AM!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "Yeah showed 'em how it's done in this shithole! Boom!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Um... showed who, exactly?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Who did I show...?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Who cares! I bet they went totally blind!"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Whoa,"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "There's, um... so many."}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "But why?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "Take a guess!"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "They're for doing amazing things!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "Like..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "Cutting up carrots,"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "and like"}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "cutting up carrots,"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "and like..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Ok, ok, I got it."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "Right, but actually..."}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "the chopping board went ka-cha-cha and totally bugged out! "}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "And now there are a bunch of them!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Books"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Bet you've read them all at this point."}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "Nothing else to do, right?"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Euagh, I HATE reading!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "I like doing things!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "That's one way to look at it."}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "But knowledge helps..."}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Boom - moving, creating, touching, you get me?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Books are just paper, I like to be in the moment!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "If you stay here with me,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "we could do so, so much!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "I'm sure we could..."}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Are these fruits even real?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "They look amazing."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Do they ever go bad?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "Oooh, yeah, the apples!"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "They don't have time to go bad,"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "cuz I eat them all!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "And then they reappear..."}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "What a cute kitty cat."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Doesn't she look tasty?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Wait, what?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "You don't eat cats."}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Hehehe you blockhead!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Nobody eats cats!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "I was just hinting"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "that I've never actually seen one!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "A real one, that is."}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "Only pics on the Internet."}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "They're cute, aren't they?"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Yeah, they're real cute."}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "I like cats."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind with ring"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Uh what's that?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "It's the ring's interface,"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "and I'm changing the path."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Just by moving circles around?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "Look. To you they're just circles."}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "To me, they're data."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Are you sure it won't take too long?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Hush! Don't disturb me,"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "and it'll go way faster."}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "So what you're saying is,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "if I keep on interrupting you,"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "you'll stay here for longer?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Oh, Cappie..."}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "If only you had your memories back..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "I don't think we can stay..."}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "But that would've been so wonderful!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "There won't be any \"staying\"."}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "We need to get to the Core!"}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Can I come with you?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "The answer is simple."}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "I can't?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "You can't."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "I'm late... super late!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "I am eating too much..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Gah, work again?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "When will tomorrow come?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "Where's my computer?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "They'll kick me out if I don't finish on time!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Have I saved everything?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Does nobody love me?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Where are we going?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Hey!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "I'm running out of patience..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "I need to do more work..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Everything's so big here."}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Where's my phone?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Sigh..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "What even happened yesterday?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "There's just no end to today!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Hello?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Any beds around here?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "What am I supposed to do?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "I won't be able to finish on time..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "What's the problem?"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Are these walls real?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "A 20-minute rest should be fine..."}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Sleeping is for losers!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "Time to wash up and get to work!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "I'm hungry!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "This doesn't look good."}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Erm..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "Ahahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "Yeah..."}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "He walked out."}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "Just like that."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "That's so odd!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "And funny!"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Come on now."}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], what's wrong?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Wait, what?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "He left again?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "Sure did!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "...What are you even doing now..."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], come back to us!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "You didn't so much as look at me!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Hmph boring.."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "What was your plan, anyway?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "Plan?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "What plan?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "Oh, right."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "You've lost your memories."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "You're really something, guys!"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Acting like I'm supposed to remember something!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Are you trying to prank me?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "Looking at your frowns, though..."}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "I can't quite tell!"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "How does it feel to"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "see an exact replica of yourself?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "You know, the one with the ring."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "You know, I was ready to hiss at her!"}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "That's how surprised I was..."}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Like, holy moly! Look, it's a clone of me!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Though, I'm way more fun."}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "Which means, I'm better, heh."}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "I mean look at that frown"}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "I'm right here, you know?"}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "I can hear everything you're saying!"}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "Don't you get tired wearing that cap all the time?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "And don't your hands get sweaty in those gloves?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "Why not take them off?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "Eh?"}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "You're such a joker!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Or, should I take something else off?"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "I wasn't joking."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Ah, whatever."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Woah!"}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "That's a ton of carrots!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "What a funny bug!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "Hahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Stop, stop!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "You're better off not seeing what's in there..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Let it be a secret."}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "What's in there?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "A secret is a secret,"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "and secrets are meant to be kept."}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Sigh..."}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "Why do you have to leave me hanging like that?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Wow!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "What's that?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "A console!?"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Lemme have a go!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Woah."}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "What do you do in this one?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "You just"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "collect coins and avoid frogs."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "Gah, sounds beyond boring."}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Seriously, you call that a game?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "Huh, where did you get that from?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "I don't remember you picking it up."}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Weird, don't you think?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Woah!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Way to go,"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "you found a bug!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "The remote is supposed to toggle the video,"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "but, for some reason,"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "it toggles the whole TV on and off!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Crazy, huh?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "I think I'll just wait here."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "What are you doing?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "Wakey-wakey!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Let's go have some fun!"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Head out through"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "the living room door."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Bye-bye!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "You should get going, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "It'll be okay. Don't be scared!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "If it was me,"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "I'd never ever send you all alone!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "So stay with me!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "No joking, OK?"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "Awh..."}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "What are you standing around for?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "The clock is ticking!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Hi!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "Ahh, I mean bye-bye!"}

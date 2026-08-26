@@ -1,0 +1,14 @@
+# R-C-W1-R2 — fresh review of F-CW1's fix round (`run_all`, all 7 round-1 findings)
+
+1. **FIXED** drift gate — `detect.py:114-121` raises only when `ctx.expect_drift` is false; accepted drift lands as old→new detail in `detect.json` + stage-report `warnings` (drift data preserved); flag wired `run_all.py:146` → `common.py:90`.
+2. **FIXED** abort ledgers — `mono_typed_dump.py:197-212` rewrites the partial rank-sorted ledger + `aborted` report on probe/crosswalk/sweep FAIL-FAST; `decompile.py:182-209` try/except does likewise; `census.py:116` hard-fails on attempts≠census, so a torn corpus can't reconcile clean.
+3. **FIXED** AC-5 — `common.py:41-42` enumerates `free_space_bytes` in the stage-report `VOLATILE_FIELDS` entry (assert-verified; detect emits it top-level at `detect.py:163`).
+4. **FIXED** psd order — `art_export.py:64-66` checks `Data\Languages` before the `.psd` bucket (:75); psd-source subset scan reachable (:365-372); families stay disjoint (audio under Languages still audio).
+5. **FIXED** row order — `flush_attempts` sorts by sweep rank; probe row lands at its family position, not first (assert-verified).
+6. **FIXED** substring — segmented lookaround match: `level1`⊄`level13`, `sharedassets2`⊄`sharedassets21`; `globalgamemanagers` lights on `ggm.assets` — correct token-boundary semantics, consistent with deviation-6 attribution.
+7. **FIXED** staged scope — 3 GiB byte bar removed; scope derives from S2 census rows vs 51/69 reference rows, `firstPassRows`/`referenceRows` recorded in EXTRACTION-LOG (`art_export.py:40-41,159-184`); satisfies questions.md §6 "first catalogue row counts".
+8. Regressions: none — diff confined to the 5 cited files; E1 argv shapes (cwd-pinned scratch config delta, AssetStudio input-first, `ilspycmd -p -o`) untouched; no writes toward `<game-root>`; `.gitignore` still guards `extracted/il2cpp/`.
+9. Smoke: py_compile ×11 OK · `--list` 8 stages exit 0 · `--help` exit 0 · four usage-error forms exit 2 · all behavior asserts green.
+10. **NEW MINOR** — abort ledgers fire on `StageFailure` only: `subprocess.TimeoutExpired` (`mono_typed_dump.py:225` 7200 s, `:123` 3600 s, `decompile.py:91` 1800 s) or an OSError mid-loop escapes unledgered, leaving the previous COMPLETE `sweep-attempts.jsonl` beside a half-wiped tree — the exact hazard finding 2 closed; also the post-wipe zero-levels raise (`mono_typed_dump.py:215-217`). Wrap loop bodies `except Exception → flush_aborted`.
+
+VERDICT: NEEDS_REVISION — 1 finding

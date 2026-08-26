@@ -1,0 +1,49 @@
+# R-FVC1 — Code review of F-VC1 (commit 78dc33a1, 335 files, all under `site/`)
+
+Method: re-execution, not claim-checking. Suite re-run in `site/`: **npm test
+26/26 pass · hex lint OK (token-only) · chrome parity OK ×34 identical key sets
+· `tsc --noEmit` exit 0** (+ no-third-party-maps OK). Live leg on my own
+`next start -p 4937` (killed by port-scoped PID 37384 after).
+
+- **Search namespacing** [highest risk] — VERIFIED. Emitter has two throw-guards
+  (raw-id per locale + kind-namespaced final write) and is wired as `prebuild`,
+  so any future dupe fails the build. All 34 idx files: 156 rows, 0 dupes.
+  Live `/search/en.idx.json` → `addAll` no longer crashes; "mita" → **53 hits**
+  (matches the builder's count exactly). Readers unaffected: `SearchField`
+  treats ids as opaque keys (links ride `url`), `hreflang.ts` imports the type
+  only and builds hrefs from raw contract ids, static JSON API keeps raw ids.
+- **Entity modules vs relinks** — VERIFIED, 2 spot checks. `mita-black` renders
+  exactly the corpus truth: cartridge `mtaghost` (dataset `depicts_character_id`),
+  `ACHI_cartridgeplayers` (`character--achievement.jsonl` forward edge),
+  `level13` (`character--scene-membership.jsonl`, doubled row deduped by
+  `new Set`), profile via `subject_character_id`; minigame `fight` →
+  `ACHI_WinFIght`. No invented joins; dialogue pool is honestly UNJOINED —
+  speakers render as text only, and the dataset itself marks entity slugs
+  `provisional-pending-ds1`, so there is no silent half-join.
+- **Art pipeline** — VERIFIED. Fixed curated tables + sorted listdir;
+  `books-art.json` manifest == disk tree for all 34 locales; `public/img` =
+  **13 MB** (<200 MB); every source path sits inside
+  `D:/unpacked_game_data/MiSide/art-export/`.
+- **Accents / books naming** — VERIFIED. `accentFor` derives hex from
+  personages `palette_color1/2` floats via round(f×255) (mita-usual →
+  rgb(204,115,162), as claimed); tokens.css tier discipline holds. "Book 1" is
+  the client texture basename per `books.jsonl` `texture_rel`
+  ("Textures/Location19/Book 1.webp") — honest de-slug.
+
+Findings (none blocking):
+
+- MINOR — 4/19 dialogue index rows leak raw titles (`level3/7/12/15`);
+  locations exclude nameless containers but dialogue rows don't apply the same
+  predicate, contradicting the emitter's own "never raw ids dressed as titles".
+- MINOR — double namespacing `dialogue:dialogue:<lvl>` (dialogue rows are
+  pre-prefixed, then namespaced again); cosmetic only, ids stay opaque.
+- NIT — glow-pulse keyframe restates two rgba literals of `--ms-glow-pink`
+  (line 57 == 255: no new colors) instead of deriving from the token.
+- NIT — `select-art.py` walk first-match would be order-sensitive if duplicate
+  matches ever appeared; measured 0 multi-matches across 34 locales today.
+
+Scope: every one of the 335 paths maps to a VC-1 item (art, search, entity
+object, motion/horror, RU wrap, LCD rung, `<html lang/dir>` — verified served
+on `/`, `/ru/`, `/ar/` — de-narration incl. map grammar line removal).
+
+VERDICT: APPROVE

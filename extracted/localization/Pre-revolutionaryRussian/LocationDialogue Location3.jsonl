@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "Привѣтъ, [player]!"}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "Вотъ мы и встрѣтились)"}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "Я такъ рада этому!"}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "Знаю, у тебя ​есть​ вопросы."}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "Ну, какъ видишь..."}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "Я сдѣлала это особенное устройство,"}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": "Чтобы ты поскорѣе попалъ сюда, ко мнѣ."}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "Но почему-то ты оказался въ другой версіи игры,"}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "Въ которой я..."}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "Ой, долго разсказывать!"}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "Въ общемъ, пріятно тебя видѣть!"}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": "Ну я)"}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "А ты [player]?"}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "Ты уже хочешь обратно?"}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "Ну... Думаю, это можно устроить. Но какъ же я?"}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "Давай побудемъ вмѣстѣ)"}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "Сейчасъ я тебѣ разскажу..."}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "И вотъ ты тутъ!"}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "Понялъ?"}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": "Я не понялъ. // Player"}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "Ну-у, ничего страшнаго. // Mita"}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": "Главное, мы теперь вмѣстѣ)"}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "Ты голоденъ?"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "Давай вмѣстѣ займемся готовкой?"}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "Вотъ."}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "Помоги мнѣ съ морковкой.)"}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "А откуда здѣсь овощи?"}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": "Вѣдь только что здѣсь ничего не было!"}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": "[player], ну мы же въ игрѣ)"}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": "Давай, по-мо-гай!"}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "Спасибо)"}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "А ты можешь принести ножницы?"}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": "​Онѣ​ въ ванной комнатѣ."}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": "Для начала присаживайся."}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "Будешь соусъ?"}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": "Эммъ... Нѣтъ."}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": "А жаль."}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "Съ нимъ ѣда ароматнѣе)"}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "Спасибо."}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "Ты уже всё скушалъ?"}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "А моя порція кажется"}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "Безконечной.)"}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "Что случилось?"}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": "Скажи, что видишь и чувствуешь."}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "​Сердце​ колитъ,"}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "Въ глазахъ шумитъ."}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "Такъ!"}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": "Я знаю, что съ тобой."}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "Можешь встать?"}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": "// Bathroom"}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "Что это?"}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": "Таблетки."}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": "Тебѣ станетъ почти сразу лучше."}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": "Вставай передъ зеркаломъ..."}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": "Принимай."}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": "Я жду."}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": "// Black room"}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "Ну какъ?"}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "Становится лучше?"}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "Да."}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "Такъ быстро подѣйствовало?"}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": "[player], мы въ игрѣ."}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": "И тутъ всё намного проще."}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "Ты прилагаешь ​малѣйшія​ усилія,"}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": "Однако результатъ обычно гораздо объемнѣе."}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": "Это игровое условіе:"}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": "Упрощенность."}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "Напримѣръ?"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": "Морковка:"}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "Ты рѣзалъ одну,"}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": "А будутъ готовы сразу три."}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": "Слушай, это всё такъ внезапно,"}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": "И меня очень пугаетъ эта ситуація..."}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "Что-то не такъ?"}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": "// player"}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": "Я нашелъ какіе-то картриджи въ вентиляціи."}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": "На нихъ были наклейки съ именами."}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "Что это?"}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "Картриджи?"}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "Какіе?"}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": "Давай узнаемъ это вмѣстѣ,"}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": "Но чуть позже."}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": "Сначала покушаемъ."}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": "Передай ножницы.)"}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// Addon ==========================="}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "Кольцо?"}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// Player - зеркало"}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "А почему зеркало безъ отраженія?"}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "Ахъ, точно,"}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "Я забыла включить отраженіе..."}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": "Ну вотъ,"}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "Теперь ​есть​ отраженіе)"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "Кстати,"}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": "Раньше я вообще не знала, что такое отраженіе."}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "Въ нашемъ ​мірѣ​ его не было"}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": "До какого-то обновленія.)"}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "Неужели въ вашемъ ​мірѣ такъ много"}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "Отраженій?"}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": "Ну-у, да."}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "Помнишь,"}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "Ты принесъ три вещицы"}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "На этотъ сканеръ?"}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "Такъ вотъ..."}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "​Этѣ​ вещи"}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": "Связаны съ этой версіей ​міра​."}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": "И теперь ты тутъ.)"}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// Player - мобильный телевизоръ"}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "Это же тотъ телевизоръ,"}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": "Который я купилъ."}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "Ага."}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "Ты сказала,"}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": "Что онъ сломался."}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "Ну, я хотѣла сдѣлать тебѣ"}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "Сюрпризъ!"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "Чтобы ты попалъ сюда)"}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": "Поэтому я немножечко утаила правду."}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "Теперь экранчикъ показываетъ информацію."}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "И, кстати, да,"}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "Я немного инженеръ!"}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// Player - школьная одежда"}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "Это что,"}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "Школьная форма?"}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "Къ чему она тебѣ?"}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "Развѣ ты можешь ходить въ школу?"}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "Въ школу?"}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": "Нѣтъ, мнѣ это не нужно."}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": "Но форма миленькая,"}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "И она позволитъ мнѣ"}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "Выглядѣть миленько)"}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// Player - компьютеръ"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "А этотъ компьютеръ работаетъ?"}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "Или онъ декоративный?"}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "Конечно."}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "Всё, что тутъ ​есть​,"}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": "Работаетъ какъ въ твоемъ ​мірѣ​."}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "Въ своемъ ​мірѣ​"}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "Я часто сижу за компьютеромъ..."}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": "Тружусь."}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": "Я знаю."}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "И изъ-за своей работы"}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "Ты такъ мало обращалъ"}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": "На меня вниманія."}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "Ну, жить на что-то нужно."}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "А откуда ты знаешь?"}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": "Камера телефона иногда включалась..."}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": "Прости,"}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": "Но я наблюдала"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": "Знаешь, это немного неправильно..."}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "Ну да ладно."}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// Player - зонтикъ"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "Сколько бы я ни игралъ,"}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": "Дождя ни разу не было."}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "Зачѣмъ тогда зонтъ?"}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": "Дождь очень рѣдкій — "}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": "Ты его еще не засталъ."}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": "Можетъ быть, однажды встрѣтишь его,"}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": "И зонтикъ тебѣ пригодится."}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "Потомъ узнаемъ)"}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// Player - Электрощитокъ"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "А почему электрощитокъ тутъ?"}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "И если мы въ игрѣ,"}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "То зачѣмъ онъ?"}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "Во-первыхъ,"}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": "Мы въ игрѣ,"}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": "Поэтому безсмысленно спрашивать"}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": "«Зачѣмъ?»."}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "Но щитокъ и вправду"}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": "Перезапускаетъ электричество."}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "Всё сдѣлано по подобію"}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": "Твоего ​міра​.)"}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// Player - дверь на выходъ"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "Мы можемъ выйти?"}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "Ой..."}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": "Пока что нѣтъ."}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": "Давай позже."}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": "Сначала побудемъ здѣсь,"}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": "Дома."}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// Player - книги"}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": "Тутъ столько книгъ."}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "Ты ихъ читаешь?"}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": "Я уже всё прочитала."}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "Когда я тутъ одна,"}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": "Мнѣ о-о-очень скучно"}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// Player - телевизоръ на кухнѣ"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "Зачѣмъ тебѣ второй телевизоръ,"}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "Да и еще старый?"}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "Тебѣ онъ не нравится?"}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "Могу убрать."}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "А такъ..."}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": "Онъ для красоты:"}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "Украшаетъ кухню."}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "А еще онъ рабочій!"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "Можно посмотрѣть"}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "​Старые​ мультики!"}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "// Player - телефонъ"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "Мой телефонъ."}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": "Онъ пропалъ у меня изъ кармана!"}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "Какъ онъ тутъ оказался?"}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": "Ну-у-у... Это не важно.)"}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "У меня ​есть​ идея."}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "Готовъ сдѣлать селфи?"}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "Смотри."}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "Отличная фотка!"}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": "На память)"}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": "У меня вопросъ:"}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "А если"}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "Я запущу на нёмъ игру,"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "Я увижу тебя?"}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": "Тамъ никого не будетъ."}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "// Player - телевизоръ"}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "А сколько каналовъ"}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "Здѣсь существуетъ?"}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": "Ну это же не антенна,"}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": "А интернетъ."}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "Такъ что тутъ доступно всё,"}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": "Что ты можешь смотрѣть въ интернетѣ."}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": "Подожди!"}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "Ой!"}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "Что это?"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "Какіе-то котята?"}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "О, смотри!"}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "А знаешь что..."}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "Сейчасъ!"}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "Хочешь сока?"}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "Странная реклама..."}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "Сокъ умеръ?"}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "Ага. И это соки..."}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": "Изъ сока)"}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "М-м, на вкусъ..."}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "Мнѣ нравится,"}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": "Но я не могу распробовать его."}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": "Непонятно."}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "Ну ладно."}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "// Mita shy"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "Ты чъ-чего?"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "Перестань!"}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "Ты смущаешь."}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "// Player - статуэтка Аниты"}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "Жуткая статуэтка."}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "Тебѣ"}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "Нравятся такіе вещи?"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "Жутенькая?"}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "Ага."}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "Похоже на что-то весьма себѣ проклятое..."}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": "Ну... Она точно не проклята."}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": "И не жуткая."}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "А очень даже милая!"}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "Можетъ быть, ты и права..."}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "Мита! // Player"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "Что происходитъ? // Player"}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "// Mita kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "Можемъ поговорить,"}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "Передъ ​тѣмъ​ какъ кушать."}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "// Start Eat - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "И тебѣ пріятнаго аппетита)"}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "// Quest 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "Еще бы."}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "Ты можешь остаться здѣсь."}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "Я не противъ."}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "И очень даже"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "ЗА!"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "// Quest 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "Тебя тянетъ назадъ?"}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "Но почему?"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "Здѣсь вѣдь такъ"}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": "Тепло, хорошо."}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "И тутъ ​есть​ я)"}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "Нѣтъ-нѣтъ,"}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": "Можно и остаться."}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "Но я волнуюсь:"}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "Вдругъ дома что-то забылъ... сдѣлать."}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "Я оказался здѣсь внезапно"}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "И совсѣмъ не готовъ"}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": "Къ этому."}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": "Прости, не подумала."}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "// Quest 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "Намѣреваешься убѣжать"}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "И забыть всё?"}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": "// player"}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": "Нѣтъ!"}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "Я просто подумалъ,"}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": "Что всё очень насыщенно и ненатурально."}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "Хотя..."}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": "Ты вполнѣ кажешься настоящей."}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": "// Mita "}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "Кажусь?)"}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "Но я и ​есть​ настоящая!"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "Дуракъ!"}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "// Quest 4 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "Это особенность"}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": "Этого ​міра​."}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "Тебѣ покажется непривычнымъ,"}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "Но ты не будешь видѣть вещи,"}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": "Что находятся вдалекѣ."}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": "Да вродѣ это даже и незамѣтно."}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": "Выглядитъ стильно."}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": "Ага)"}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": "Всё, чтобы не лагало."}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "«Не лагало»?"}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "Угумъ, ​есть​ баги."}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "Надѣюсь, ты ихъ не встрѣтишь."}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "// Quest 5 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "Ножницы и ножикъ?"}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": "Могу и ножомъ открыть соусъ."}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "Но я хотѣла,"}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": "Чтобы тутъ всё было готово,"}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": "Къ тому моменту, когда ты вернешься."}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "Люблю дѣлать сюрпризы."}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "Чтобы не было видно долгихъ приготовленій."}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "Вооооть)"}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "// Glasses - Player"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "Ты очки носишь?"}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": "Нѣтъ."}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": "Но могу ихъ надѣть."}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "Ну какъ, мнѣ идетъ?"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "// Mita Yes"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "Ну вотъ."}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": "Теперь буду въ нихъ ходить)"}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "// Mita No"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "Ну-у-у,"}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "Ладно..."}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "// Use the sauce - Player"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "Хорошо."}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "А что за соусъ такой?"}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "Это любовный соусъ!"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "Содержитъ ароматы любви"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "И контрастный взглядъ на ​міръ​.)"}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "Необычно звучитъ, да?"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "​Есть​ такое..."}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "Это у тебя приставка такая?"}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": "Прикольно. "}

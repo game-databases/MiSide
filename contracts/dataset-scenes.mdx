@@ -1,0 +1,150 @@
+# Contract — dataset `scenes` (locations, lattice & placement)
+
+Status: **PINNED v1** (`miside.scenes.registry/1`) — built 2026-08-25 by
+builder B-6 against the approved spec
+[`docs/specs/dataset-scenes.mdx`](../docs/specs/dataset-scenes.mdx)
+(post-F-DS6; [ds6-vA](../docs/research/verifications/ds6-vA.mdx) PASS).
+The frontend consumes THIS document and the files below; it never re-derives
+fields, resolves pointers differently, or invents fallbacks.
+
+- Build stamps on every record: `build_id` **19029065**, `version_label`
+  **0.93L** (read live from `extracted/EXTRACTION-LOG.md`
+  `pipeline-defaults`; provenance rule 3 user-facing class).
+- Corpus paths repo-relative under `extracted/`.
+
+## Files
+
+```
+extracted/data/scenes/
+├── scenes.jsonl            # _meta + 24 registry rows
+├── scene-links.jsonl       # _meta + 57 rows (41 lattice edges + 15 chapter pointers + 1 ledger)
+├── poi.jsonl               # _meta + 986 placement-bearing instances
+├── spawn-tables.jsonl      # _meta + 24 Event_CreateResource rows
+├── markers.jsonl           # _meta only in v0 — no-orphan rule; see below
+├── poi-kinds.json          # curated class→kind rulings (one per class)
+├── README.md               # honesty ledger: corrections, rulings, deferrals
+└── relinks/                # parked; moves to extracted/relinks/ at stage registration
+    ├── scene--chapter.jsonl
+    ├── scene--dialogue-pool.jsonl
+    ├── scene--objective-hints.jsonl
+    ├── cartridge--character-placement.jsonl
+    └── scene--save-vocabulary.jsonl
+```
+
+Every `.jsonl` file's FIRST line is a `{"_meta": …}` header: schema id,
+generator, source table, build pins, row count, derived-field list,
+position-truth census. Data rows follow, one JSON object per line, UTF-8,
+`\n`, no BOM. Regenerate with
+`python extracted/data/scenes/build/emit_scenes.py` — reruns are
+byte-identical (AC S8); self-checks:
+`python extracted/data/scenes/build/check_scenes.py` (37/37 green).
+
+## Locale model (binding)
+
+Identical to [dataset-characters](dataset-characters.md) §Locale model:
+text is stored as pointers `{category, line_index}` into
+`extracted/localization/<locale>/<category>.jsonl`
+(`GlobalLanguage.GetString(category, index)`). Resolution rules:
+
+1. Resolve `line_index` **0-based** against the locale's category array.
+2. Chapter names key on the client's own `Menu` line_index (100–118) —
+   NEVER wiki chapter numbers (client↔wiki orders diverge; spec §2.4). A
+   future curated crosswalk arrives as an added `inferred` column, never by
+   replacing this pointer.
+3. Category presence per locale drives availability; a category absent in a
+   locale renders declared filler. Contentless ≠ missing (DS-3 §4): e.g.
+   `LocationHint Location18` exists only as a French 0-byte shell — level20
+   carries NO hint pointers anywhere and that is data, not an outage.
+4. `*_text_en` / `chapter_name_en` fields are convenience copies of EN
+   resolutions for search/API; the pointer remains truth.
+
+## `scenes.jsonl` — registry rows
+
+Emission order fixed `level0…level23`. Fields:
+
+| Field | Type | Notes |
+|---|---|---|
+| `scene_id` | string | container name verbatim (`level3`…) |
+| `role` | enum `story\|boot\|title\|menu\|unbound` | story=3–22; level23 `unbound` (no World/Scene_Load binding) |
+| `location_id` | string\|null | `World.nameLocation` verbatim; null for role≠story |
+| `display_name_loc` | always null v1 | SPEC gap #1 open; honest-missing |
+| `objective_hints` | `{category,line_index}[]` | LocationHint pool of the scene's location |
+| `objective_hints_text_en` | string[] | parallel convenience copy |
+| `objective_hints_source_locale` | string\|null | non-null only when a non-EN locale carries the pool |
+| `quest_text_categories` | string[] | EN-present `Location N` quest pools |
+| `spawn` | `{x,y,z,rot_x,rot_y,source:"inline",space:"world-assumed"}\|null` | floats are byte-verbatim dump tokens; null without World |
+| `hint_screens` | `{x,y}[]` | `World.positionsHintScreen` (empty except level3 ×2) |
+| `sub_scenes_loaded/unloaded/continued` | string[] | verbatim `Scene_Load` strings |
+| `chapter_name_loc` | `{category:"Menu",line_index}\|null` | via `stringFileNamePart`; null when part=0 (never guessed) |
+| `chapter_name_en` | string\|null | convenience copy |
+| `provenance` | `{component:"World",container,path_id}\|null` | emit-side record anchor |
+| `build_id`,`version_label` | string | per-record staleness stamp |
+
+**Float fidelity:** all serialized coordinates preserve the MB dump's exact
+numeric token (`-6.172363`, not `-6.1723630`). Consumers must not re-format.
+
+## `scene-links.jsonl`
+
+Rows `{from_level, edge_kind, to_sub_scene, via_component:"Scene_Load",
+path_id, mechanism:"hard", resolves}`, `edge_kind ∈ loads|unloads|continues`;
+chapter rows use `edge_kind:"chapter_name"` with `chapter_name_loc` instead
+of `to_sub_scene`; one `edge_kind:"ledger"` row records level18's measured
+Scene_Load absence. Closure guarantee: every referenced sub-scene name
+exists among emitted `loads` targets (S3, zero dangling).
+
+## `poi.jsonl` — placement instances
+
+`{poi_id "container:dump-stem", class, kind, level, location_id, position,
+joins, build_id}`, ordered (container rank, class, poi_id).
+
+**Position truth axis (the honesty contract):**
+
+- `source:"inline"` — floats serialized in the dump. Scalar rows carry
+  finite `x,y,z`; point-set rows (`Transform_Position`) carry `points[]`
+  of `{x,y,z,rx,ry,rz}` instead.
+- `source:"pptr-unresolved"` — placement proven but unresolved until the
+  transform stage (PIPE S9): `target:{kind:"Transform"|"GameObject",
+  path_id[, file_id]}`.
+- `source:"none"` — no coordinates serialized (incl. empty positions arrays).
+- `space`: `world-assumed` ONLY on `World.positionSpawn` (scenes.jsonl);
+  `parent-local` where `myParent≠0`; `object-local-offset` on ObjectItem
+  hand/face offsets — **never map-project these**; `unknown` elsewhere
+  (Player_Teleport inline floats included — IL-stub bodies prove no frame).
+
+`kind` vocabulary = poi-kinds.json rulings:
+`cartridge|interactable|travel_gate|monster|spawn_event|minigame_access|
+move_point|safe|other`. Cartridge rows carry
+`joins.save_key` + `placement_authority` pointing at DS-4's
+`cartridges.jsonl` — **the scenes layer never re-derives cartridge
+placements**; it owns the carrier instances and their pickup-GO hooks.
+LightRenderer_Fog rows are `kind:"other"` with
+`fog-anomaly-candidate-unproven` — never rendered as monsters.
+
+## `spawn-tables.jsonl`
+
+One row per Event_CreateResource: `{spawn_table_id "levelN[:stem]",
+level, event_day:int, event_day_label, destroy_after_create,
+entries:[{parent_target, prefab_refs:[{file_id,path_id}], prefab_count}],
+meshes/materials/textures/destroy_objects counts, status:"unresolved-target"}`.
+`event_day_label` derives from the DEC enum order
+(halloween/christmas/none); measured corpus values are halloween ×3 /
+christmas ×21 only. Cross-container refs (`file_id>0`) stay verbatim until
+the global pathID index (§9-R4).
+
+## `markers.jsonl` — map projection (FRAMEWORK §2.6 gate)
+
+v0 ships `_meta` only. Binding rule: a marker row may exist **only** when
+its `(entity_kind, entity_slug)` resolves to exactly one row of the owning
+entity dataset (no orphans), and every placed entity of those datasets
+carries ≥1 marker (two-way integrity, AC S7). At build time DS-4/DS-5 were
+unpublished and monster/save-point owners don't exist, so all families sit
+in `_meta.pending_families` with unblocks. Rerun projection after they land;
+join keys already stored on POI rows. Focus URLs follow SPEC:
+`/map?focus=<entity_kind>:<entity_slug>&scene=<scene_id>`.
+
+## Non-goals
+
+No wiki numbering in any field; no cartridge/document identity rows (their
+datasets own them); no invented slugs for `mta`/`mtad2`/`mtacore` (curation
+rows carry status instead); no coordinates beyond labelled truth classes;
+no minigame rules (logic layer); no dialogue text (DS-3).

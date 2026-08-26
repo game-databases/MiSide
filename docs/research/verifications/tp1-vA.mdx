@@ -1,0 +1,8 @@
+# tp1-vA — F-TP1 tools-plan fixes verified
+
+Diffed `a31d692..2f45bbc -- MiSide/tools-plan.md` (F-TP1 landed via 2f45bbc) against `docs/logs/F-TP1.log`: six hunks, all inside the four prescribed areas (§7 sweep table + §3.3 re-scope incl. its X5 rationale line, §3.4 tracker-set readiness, §4 "modeled nowhere", §5 shipability sort) — no collateral edits.
+Fetch re-run from this host: `mapgenie.io/sitemap.xml` = HTTP 200, exactly **2,296** `<loc>` URLs, **zero** `miside` matches (bare curl UA gets an empty body; browser UA reproduces); `gaming.tools/miside` = **403** under all three UAs tried (Mozilla, OAI-SearchBot, Claude-User) — table matches reality on both probes.
+§3.3 no longer says "anywhere": the claim now anchors to §7, whose closing paragraph states the honest scope verbatim ("no incumbent found on any surface fetchable this pass", bot-walled surfaces "unverified, not confirmed absent", re-run owed next patch).
+Traffic cells are honest-empty by construction — no traffic column exists in the §7 table, the preamble records "none recorded — no basis existed this pass … rather than fabricated", and the soft-blocked Bing pulls are marked discarded, cited nowhere.
+
+VERDICT: PASS

@@ -1,0 +1,28 @@
+{
+ "build": 19029065,
+ "dangling_edge_rows": 0,
+ "edge_count": 3,
+ "entry_points_graph": [
+  "level4:Dialogue_3DText#5135",
+  "level4:Dialogue_3DText#5136",
+  "level4:Dialogue_3DText#5139",
+  "level4:Dialogue_3DText#5140"
+ ],
+ "entry_points_interaction": [],
+ "level": "level4",
+ "location_category": "LocationDialogue Location2",
+ "nodes": [
+  "level4:Dialogue_3DText#5135",
+  "level4:Dialogue_3DText#5136",
+  "level4:Dialogue_3DText#5137",
+  "level4:Dialogue_3DText#5138",
+  "level4:Dialogue_3DText#5139",
+  "level4:Dialogue_3DText#5140"
+ ],
+ "terminals_next_null": [
+  "level4:Dialogue_3DText#5135",
+  "level4:Dialogue_3DText#5136",
+  "level4:Dialogue_3DText#5138",
+  "level4:Dialogue_3DText#5140"
+ ]
+}

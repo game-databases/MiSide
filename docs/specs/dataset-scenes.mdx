@@ -1,0 +1,576 @@
+# DS-6 — Dataset spec: Scenes, locations & spawn/placement (the map feeder)
+
+Status: **SPEC (curation contract)** — drafted 2026-08-25 by brief DS-6 from
+the harvested corpus on disk. Every number below is **measured against the
+extracted corpus for buildId 19029065 / VERSION 0.93L** (pin per
+[EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md)), not estimated,
+unless marked `[projected]` or `[inferred]`. Verifier review required before
+the emitter stage treats this as contract.
+
+Citation shorthands: **SPEC** = [spec.md](../../spec.md) · **E1** =
+[../research/explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx) ·
+**D1** = [../research/game-research.mdx](../research/game-research.mdx) ·
+**DS1** = [dataset-characters.mdx](dataset-characters.mdx) · **DS3** =
+[dataset-dialogue.mdx](dataset-dialogue.mdx) · **PIPE** =
+[pipeline-run_all.mdx](pipeline-run_all.mdx) · **TOOLS** =
+[../../tools-plan.md](../../tools-plan.md) · `MB` =
+`extracted/harvest/mb-dump/<container>/` (typed MonoBehaviour dumps) · `ASL`
+= `extracted/harvest/asset-list/<container>.xml` · `LOC` =
+`extracted/localization/<locale>/` · `DEC` =
+`extracted/decompiled/main/Assembly-CSharp/`. Corpus paths repo-relative;
+raw-client paths absolute on NE8K. Every factual claim about game data names
+the file it was read from.
+
+---
+
+## 1. What this dataset is
+
+The **scene registry and placement layer**: which playable spaces exist, what
+each is called in-game and in every locale, how they chain into chapters, what
+spawns/appears where inside them — the dataset that FEEDS the owned map
+(SPEC §Section map row 2; FRAMEWORK §2.6). It owns:
+
+- the **scene registry** (level container → location naming → chapter
+  grouping → sub-scene lattice);
+- **points of interest** with whatever positions the client actually
+  serializes (§2.6 measures exactly which POI classes carry coordinates);
+- **spawn tables** (day-gated prefab creation) and **monster/anomaly
+  carrier** instances;
+- the **marker schema** for the owned map, with two-way entity↔map link
+  integrity as a shipped guarantee.
+
+It does **not** own dialogue text (DS3), character rows (DS1), achievement /
+ending logic (DS-2), or minigame rules — it fixes the *join keys* those
+datasets use to reach a place (§4). SPEC's `maps.coordinate-sources` cells
+marked `client` become concrete here; `secret_easter_egg: unknown-P0`
+stays `[unverified]`.
+
+Competitor frame (D1 §8, COMP J2/J13): guide prose disagrees with itself on
+cartridge chapters (Ghostly Mita ch 9 vs ch 10) and monster lore carries no
+placement at all. This dataset replaces both with per-buildId scene facts.
+
+## 2. Corpus inventory (all measured 2026-08-25)
+
+### 2.1 Container census
+
+The P1 raw layer holds **51 SerializedFile containers** (PROOF.md §1): 24
+`level0–23` scene files, `globalgamemanagers`, `resources.assets`, 25
+`sharedassetsN.assets`. The harvest layer dumped MonoBehaviours only —
+**140,380 typed dumps**, all `<Type id="114">MonoBehaviour</Type>` (counted
+across all 51 ASL XMLs; zero non-114 entries). Per-level dump masses range
+from 27 (level0) to 6,949 (level9).
+
+### 2.2 The scene registry is hard-serialized — `World.nameLocation`
+
+Every story level carries exactly one `World` component (MB
+`<level>/World.txt`, ×20 in levels 3–22) whose serialized fields
+(DEC `World.cs`) include the location binding **as a string**, the player
+spawn anchor as vectors, and the hint-system hooks:
+
+| level | `nameLocation` | `positionSpawn` (x,y,z) | `rotationSpawn` (x,y) |
+|---|---|---|---|
+| level3 | `Location1` | 0.56, 0, −0.38 | −136.73, 5 |
+| level4 | `Location2` | 3.41, 0, −1.66 | 270, 0 |
+| level5 | `Location3` | −5.58, 0, 2.42 | 180, 0 |
+| level6 | `Location4` | −5.79, 0, −0.17 | 180, 0 |
+| level7 | `Location5` | 11.25, 0, −7.07 | 180, 0 |
+| level8 | `Location6` | 11.2, 0, −9.5 | 180, 25 |
+| level9 | `Location7` | 11.25, 0, −7.8 | 0, 0 |
+| level10 | `Location8` | −22.23, 0, 2.3 | 180, 0 |
+| level11 | `Location9` | −9.31, 0.05, −15.34 | 180, 0 |
+| level12 | `Location10` | −7.3, 0, −23 | 180, 0 |
+| level13 | `Location11` | −7.3, 0, −55.55 | 180, 0 |
+| level14 | `Location12` | −22.6, 12, −108.5 | 270, 0 |
+| level15 | `Location13` | −27.7, 12, −74 | 0, 0 |
+| level16 | `Location14` | −27.75, 12, −75.75 | 180, 0 |
+| level17 | `Location15` | 10.347, −3, −10.126 | 118.593, 0 |
+| level18 | `Location16` | −1.79, 0, −3.24 | −139.31, 0 |
+| level19 | `Location17` | −23, 12, −108.5 | 270, 0 |
+| level20 | `Location18` | −5.58, 0, 1.29 | 180, 0 |
+| level21 | `Location19` | −6.172363, 0, −1.636787 | 150, 0 |
+| level22 | `Location20` | 0.525, 0, 5.5 | 0, 0 |
+
+(`rotationSpawn` measured per dump, MB `<level>/World.txt`, `Vector2`
+after `positionSpawn`: 17 of 20 rows are non-zero — mostly cardinal
+90° multiples with off-axis outliers at level3/17/18/21 — and only
+levels 9/15/22 are truly `0, 0`; the dumps stay the byte-level anchor.)
+
+Findings this table pins:
+
+1. **`levelN ↔ Location(N−2)` holds exactly for all 20 story levels — now as
+   hard serialized evidence.** DS3 §3.6 derived the same mapping
+   `[inferred]` from a union-of-carriers span argument; `World.nameLocation`
+   confirms it directly. DS3's emitter should cite this column; DS3's own
+   range-check stays the validator.
+2. **Every level ships a spawn anchor with inline floats** — `positionSpawn`
+   spans x ∈ [−27.75, 11.25], z ∈ [−108.5, 5.5], y ∈ {−3 … 12}: MiSide's
+   scenes measure in tens-of-metres with real elevation changes. These are
+   the only guaranteed-root-level coordinates in the corpus (§2.6).
+3. **Non-story levels are identified, not guessed:** level0 = boot/logo
+   (27 dumps; `SceneStart`, `LogoPresent`, `ComicBook`); level1 =
+   title/loading (`SceneLoading_Preloading`, `ChangeLanguageStart`,
+   `OptionsGame`); level2 = the meta-menu hub (`MenuPersonage` [DS1 §3],
+   `MenuLocation` ×16, `MenuNextLocation` ×52, `MenuChangeLoadLevel` ×1);
+   **level23 carries gameplay classes but no `World`, no `Scene_Load`, and
+   binds to no location** (`MitaKiller`, `Shooter_Enemy` ×4,
+   `Achievement_function`, win-animation tracks) — captured as an **unbound
+   level row** under Principle zero, identity unresolved (§9-R5).
+
+### 2.3 The additive sub-scene lattice — `Scene_Load`
+
+19 levels carry one `Scene_Load` (MB `<level>/Scene_Load.txt`; all levels
+3–17 and 19–22 — **level18 has none**) whose strings (DEC
+`Scene_Load.cs`) wire the runtime additive-scene graph:
+
+| level | `nameSceneLoad` | `nameSceneUnload` | `nameSceneContinue` | `stringFileNamePart` | `fileSave` | `nameLevelSaves[]` |
+|---|---|---|---|---|---|---|
+| level3 | Scene 2 - InGame | — | — | 0 | *(empty)* | [] |
+| level4 | Scene 3 - WeTogether | — | Scene 2 - InGame | 101 | SaveGame 2ingame | [] |
+| level5 | Scene 4 - StartSecret | — | Scene 3 - WeTogether | 102 | SaveGame wetogether | [] |
+| level6 | Scene 5 - StartHorror | Scene 4 - StartSecret | Scene 4 - StartSecret | 103 | SaveGame startsecret | [] |
+| level7 | Scene 6 - BasementFirst | Scene 5 - StartHorror | — | 0 | *(empty)* | [] |
+| level8 | Scene 7 - Backrooms | Scene 5 - StartHorror | Scene 6 - BasementFirst | 104 | SaveGame basesub | [] |
+| level9 | Scene 8 - ReRooms | Scene 6 - BasementFirst | Scene 7 - Backrooms | 105 | SaveGame backsaga | ['SaveGame capi'] |
+| level10 | Scene 9 - ChibiMita | Scene 7 - Backrooms | Scene 8 - ReRooms | 106 | SaveGame looprm | [] |
+| level11 | Scene 10 - ManekenWorld | Scene 8 - ReRooms | Scene 9 - ChibiMita | 107 | SaveGame chibi | [] |
+| level12 | Scene 11 - Backrooms | — | — | 0 | *(empty)* | [] |
+| level13 | Scene 17 - Dreamer | — | Scene 11 - Backrooms | 108 | SaveGame manekens | ['SaveGame ghosty'] |
+| level14 | Scene 13 - HelloCore | Scene 12 - Freak | Scene 12 - Freak | 113 | SaveGame frk | [] |
+| level15 | Scene 14 - MobilePlayer | — | — | 0 | *(empty)* | [] |
+| level16 | Scene 15 - BasementAndDeath | — | Scene 14 - MobilePlayer | 114 | SaveGame shorttalk | ['SaveGame realroom'] |
+| level17 | Scene 16 - TheEnd | — | Scene 15 - BasementAndDeath | 115 | SaveGame backbrain | ['SaveGame aftercore'] |
+| level19 | Scene 18 - 2D | — | Scene 17 - Dreamer | 109 | SaveGame dream | [] |
+| level20 | Scene 19 - Glasses | — | Scene 18 - 2D | 110 | SaveGame twode | [] |
+| level21 | Scene 20 - FightMita | — | Scene 19 - Glasses | 111 | SaveGame glass | [] |
+| level22 | Scene 12 - Freak | — | Scene 20 - FightMita | 112 | SaveGame run | [] |
+
+Findings:
+
+1. **The progression lattice is a graph, not a list.** Sub-scene numbers do
+   not track level numbers: level13 loads "Scene 17 - Dreamer" straight past
+   Scenes 12–16, and level22 loads "Scene 12 - Freak" continuing from
+   "Scene 20". Emission must preserve these edges verbatim; deriving an
+   ordered chapter list from level order would be invention.
+2. **`fileSave` values are the game's save-point identities.** The 19
+   `SaveGame *` strings match the 19 `SaveGame` literals in
+   `extracted/il2cpp/stringliteral.json` **as exact sets, both directions**
+   (verified programmatically) — a closed vocabulary, and the natural join
+   target for SPEC `save_point` + the changelog viewer (COMP J9 rename
+   lineage: `SaveGame capi` ↔ the 0.921 `Cap`→`Cappie` rename).
+   `nameLevelSaves[]` adds 4 secondary slots (`capi`, `ghosty`, `realroom`,
+   `aftercore` — mid-level saves): 15 primaries + 4 = 19.
+3. **`stringFileNamePart` is the chapter-name pointer** into the `Menu`
+   category (values 101–115 observed; 0 = unnamed segment) — see §2.4.
+
+### 2.4 Chapter names are loc pointers — `Menu` 99–118
+
+LOC `English/Menu.jsonl`: line 99 is the author comment `'// Name load
+location'`; lines 100–118 are 19 chapter display names (100 *"I'm Inside a
+Game?"*, 103 *"The Basement"*, 105 *"The Loop"*, 107 *"Dummies and Forgotten
+Puzzles"*, 113 *"Being Candid"*, 115 *"Cappie"*, 116 *"Ghost Mita"*, 118
+*'"Leave the Core!"'*). Cross-checks:
+
+- `stringFileNamePart = 105` (level9) → line 105 = *"The Loop"*; `104`
+  (level8) → *"Beyond the World"*; `113` (level14) → *"Being Candid"* — the
+  pointer resolves cleanly for every non-zero value.
+- **The client's canonical chapter sequence is the Menu order, and it
+  disagrees with the wiki numbering D1 §1 tabulates** (client puts Cappie at
+  position 15, Ghost Mita at 16; the wiki numbers them 6 and 10). The dataset
+  therefore keys chapters by `line_index`, never by wiki number — the same
+  identifier-preservation discipline DS1 applied to internal character names.
+  A curated `chapter_no` column may later align the two orders, marked
+  `inferred` with method `wiki-crosswalk`.
+- 19 named segments ≠ D1's 20 units: no Prologue name exists in this block
+  (level3, the tutorial/in-game segment, carries part 0 and empty `fileSave`).
+  Recorded as a measured gap, not papered over.
+
+### 2.5 Text pools for locations (LOC, English baseline)
+
+| Family | Files (EN) | Lines | Content (sampled) |
+|---|---|---|---|
+| `Location N` (quest/objective UI) | **14** — Locations 1–14, 19 (no 5, 15–18, 20) | 53 (L1) down to 2 (L11) | per-location UI text with `//` quest-name comments (`// Quest MitaCap`, `// Track names`); Location 1 = the tamagotchi phone-shop strings (Shop/Food/Furniture…) |
+| `LocationDialogue LocationN` | **19** (1–15, 17–20) | 143…605 | DS3 §2.1's pool — 151,163 records ×34 locales |
+| `LocationHint LocationN` | **19** (1–15, 17–20) | 2–8 each | **per-location objective lines** ("Find a way out.", "Chase the chibis to the exit.") — the objective layer for scene pages |
+| `LocationHintKey Location General` | 1 | 149 | shared interaction verbs (Press/Talk/Put ring on/Hold…) |
+
+Per-locale parity for these families rides the standard availability log
+(`extracted/relinks/locale_availability.jsonl`); the FR-only extras and LD16
+contentless case are DS3 §4 facts, reused not restated here.
+
+The `World` hint hooks (DEC `World.cs`: `showHint`, `indexHint`,
+`positionsHintScreen[]`) connect scenes to these pools. Measured: only
+**level3** ships non-empty `positionsHintScreen` (2 entries, `showHint=True`);
+all other levels carry size 0. The screen-position hint system is nearly
+unused — the *text* half (LocationHint*) is the valuable side.
+
+### 2.6 The measurement that names this spec: which POI classes serialize positions?
+
+The corpus holds **two classes of position evidence**, and conflating them
+would be the dataset's cardinal sin.
+
+**(a) Inline-serialized coordinates (usable today, MB fields):**
+
+| Carrier | Instances | Position fields | Caveat |
+|---|---|---|---|
+| `World` | 20 | `positionSpawn:Vector3`, `rotationSpawn:Vector2` | root-level controller ⇒ world-space `[assumed, §9-R2]` |
+| `Transform_Position` (DEC `Transform_Position.cs`) | 71 (levels 2–23) | `positions:TransformPoint[]` each `{position:Vector3, rotation:Vector3}` + `myParent:PPtr<Transform>` | **parent-relative** where `myParent ≠ 0` |
+| `ObjectItem` | 262 | `positionFace/rotationFace:Vector3`, `positionItemInHand:Vector3` + `Quaternion` | **object-local hand/face offsets, NOT world placement** — never map-project these |
+| `Transform_Magnet` | 191 | magnet attract points (`Vector3`) | local to the magnet's object |
+| `Transform_MovePointsStartFinish` | 7 (level4 ×6, level9 ×1) | start/finish point vectors | path endpoints |
+| `Rigidbody_StartVelocity` | 27 | initial velocity vectors | physics, not placement |
+
+**(b) Referenced-but-not-dumped coordinates (PPtr into `Transform` objects
+the harvest did not capture):** `Trigger_Teleport.targetTeleport` (14
+instances, **all in level9** — the portal chamber), `Player_Teleport` ×13,
+`MitaAIMovePoint.mitaa-target` ×31, `ObjectInteractive` ×312,
+`ObjectInteractiveItemTake` ×11, `Trigger_DistanceCircle` ×32,
+`Trigger_Event` ×334. Proof of absence: `Trigger_Teleport_#10938` targets
+`Transform` pathID **6192**; ASL `level9.xml` contains **zero** entries for
+pathID 6192 (grep) — the harvest captured type-id-114 assets only (§2.1).
+This is the concrete shape of SPEC gap #1's "transform work": a
+**scene-transform stage** (UnityPy walk of the level binaries emitting
+GameObject→Transform pairs) upgrades (b) to (a) without any schema change
+(§6).
+
+### 2.7 Placement-relevant carriers (census, per level)
+
+**Dedupe rule — level-scene ownership wins (DS-5 §7-R4 pattern).** The
+harvest's dependency loading copies prefab-attached MonoBehaviours into the
+dependency bundles *as well as* the scene that owns them, so a naive walk
+of `mb-dump/*` double-counts every POI family. Measured whole-corpus vs
+level-scene instances (filename grammar: first copy in a container is
+`Class.txt`, later ones `Class_#<pathID>.txt`; subclass stems such as
+`ObjectInteractiveItemTake`, `ObjectInteractiveReqIK`,
+`Transform_PositionCamera` counted separately):
+
+| Carrier | whole corpus (`mb-dump/*`) | level scenes (`mb-dump/level*/`) |
+|---|---|---|
+| `MitaKiller` | 31 | 15 |
+| `ObjectInteractive` | 353 | 312 |
+| `Trigger_Event` | 359 | 334 |
+| `Transform_Position` | 105 | 71 |
+| `Interface_KeyHint_Key` | 657 | 382 |
+
+Every extra copy lives in a non-level container (`sharedassetsN.assets`,
+`resources.assets`, `globalgamemanagers`): KeyHint ships exactly 11 copies
+in each of the 25 non-level containers it reaches (= 275 duplicates);
+MitaKiller's 15 strays sit one-per-container in `sharedassets8–17.assets`
+and `sharedassets19–23.assets` — no `sharedassets18`, mirroring level18's
+absent killer — plus one `globalgamemanagers` copy. **Pinned rule:** for
+every POI kind the instance inside `mb-dump/levelN/` is the authoritative
+placement row; emitter v0 walks level containers only, and non-level copies
+collapse into `_meta.dedupe` accounting counted once per unique
+`(mb_class, field-signature)` — never emitted as POIs. Every carrier count
+in §2.6 and the rest of §2.7 is a level-scene count under this rule.
+
+- **Cartridges:** `FlashTaker` ×21 across 12 levels (level8–17, 19, 21), each
+  serializing `save:string` — the DS1 §4 `save_key`. Measured pairs:
+  level8=`plr3vi`, level9=`plr2v`+`mtacap`, level10=`plr4asw`+`mtal`,
+  level11=`mtachi`, level12=`mtashh`+`plr5bz`, level13=`mtaman`+`mtaghost`,
+  level14=`mtac`+`plr9mpa`, level15=`plr8qeqe`, level16=`plr1099`+`plr1a`,
+  level17=`mta`+`mtakd`+`plr6vcx`, level19=`mtad`, level21=`plr7vczn`+
+  `mla`. Each instance also carries its pickup `GameObject` pathID (e.g.
+  level8 `FlashTaker.txt` → pathID 564-family GOs) — the hook the transform
+  stage will hang coordinates on.
+  **Registry deltas:** `mtad2` (2D Mita) and `mtacore` (Core Mita) ride no
+  `FlashTaker` — Core's cartridge is granted by console command (D1 §3,
+  "Get FlashDrive"), and `save="mta"` (level17) matches no gallery
+  `save_key` (DS1 rows 0/13 carry empty keys). Both facts are join-curation
+  rows, never silent drops (AC S5).
+  `TamagotchiGame_Cartridge` ×1 + `_Cartridge` ×3 live in level3's phone
+  space (in-fiction pet cartridges, distinct kind).
+- **Monster/anomaly carriers:** `MitaKiller` ×15 (levels 8–17 and 19–22,
+  one each, + level23; **absent from levels 3–7 and 18** — the chase system
+  switches on mid-game, it does not span every story level),
+  `MitaFreak Enter` ×8 (levels 14–17, 19–22),
+  `Mob_Maneken` ×20 (all level13), `Location10_MitaInShadow` ×28 (all
+  level12), `Mob_Cockroach` ×16 (level5 ×5, level17 ×11), `Mob_ChibiMita` ×3
+  (levels 3/6/11), `QuadLiner_Enemy` ×2 (levels 15/17), `Shooter_Enemy` ×4
+  (level23), `LightRenderer_Fog` ×15 (Fog anomaly candidate — levels 9/13/
+  21/22). COMP J13's "hard spawner refs" are these instances + their trigger
+  wiring, not a separate table.
+- **Interactable POIs:** `ObjectInteractive` ×312 (peak level13 = 36,
+  level21 = 27) with `eventClick` persistent-call groups (sample: level13
+  dump calls `ObjectAnimationPlayer.AnimationPlay` then `GameObject.SetActive`);
+  `MakeManeken_Interaction`-family dummies ×276; `Interface_KeyHint_Key` ×382
+  (keycap hints resolving into `LocationHintKey Location General`).
+- **Travel/portals:** `Trigger_Teleport` ×14 (level9), `Player_Teleport` ×13
+  (levels 5,7,8,10,13 ×4,14 ×2,16 ×2,22), `Scene_Load` lattice (§2.3),
+  level2's `MenuLocation` ×16 / `MenuNextLocation` ×52 (menu-side location
+  picker). SPEC `travel_gate`'s version↔version semantics (COMP J10) stay in
+  the logic layer; this dataset owns the physical carriers.
+- **Spawn tables:** `Event_CreateResource` ×24 (one per story level ± extra
+  in 4/16/17) — DEC `Event_CreateResource.cs`: `eventDay:int` (**day-gated
+  spawning**), `destroyObjectAfterCreate:bool`, `create[]:` each
+  `{parent:PPtr<Transform>, prefabCreate:GameObject[]}` (level3 sample: 22
+  prefabs, `m_FileID = 3` ⇒ cross-container refs into a sharedassets depot).
+- **Basement_Safe** ×2 (levels 8, 17): `buttons[11]`, `eventRight` calls —
+  the safe *exists* here as scene furniture; the 17%/98% window percentages
+  remain COMP J1 logic-layer facts.
+
+## 3. Schema set
+
+Five emitted files under `extracted/data/scenes/` (§7), first line of each a
+`{"_meta": ...}` header (schema id, generator stage, source table, build pins,
+row count) — the contracts/ convention already pinned by
+[`contracts/dataset-characters.mdx`](../../contracts/dataset-characters.mdx).
+
+### 3.1 `scenes.jsonl` — the registry (24 rows + meta)
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `scene_id` | string | container name | `level3` … verbatim, never renamed |
+| `role` | enum | §2.2 census | `story` \| `boot` \| `title` \| `menu` \| `unbound` (level23) |
+| `location_id` | string\|null | `World.nameLocation` | `"Location7"`; null for role≠story — null is honest-missing |
+| `display_name_loc` | object\|null | derived §3.2 ruling | pointer into `Menu` once the chapter join lands (SPEC gap #1); null until then |
+| `objective_hints` | array | LOC `LocationHint LocationN` | array of `{category, line_index}` pointers, pivot-resolved `text_en` convenience copy |
+| `quest_text_categories` | array | LOC presence scan | e.g. `["Location 7"]`; absent-category recorded, never fabricated |
+| `spawn` | object\|null | `World.positionSpawn/rotationSpawn` | `{x,y,z, rot_x, rot_y, source:"inline", space:"world-assumed"}`; null when no World |
+| `hint_screens` | array | `World.positionsHintScreen` | expected empty except level3 (2) |
+| `sub_scenes_loaded/unloaded/continued` | arrays | §2.3 strings | verbatim scene names |
+| `chapter_name_loc` | object\|null | `Menu` line via `stringFileNamePart` | null when part = 0 |
+| `build_id` / `version_label` | int/string | EXTRACTION-LOG pins | `19029065` / `0.93L` |
+
+### 3.2 `scene-links.jsonl` — the additive lattice + chapter grouping
+
+Rows `{from_level, edge_kind: loads|unloads|continues, to_sub_scene,
+via_component, path_id, mechanism:"hard"}` from §2.3, plus the derived
+level↔chapter rows `{level, chapter_name_loc:{category:"Menu",
+line_index:N}, mechanism:"hard", note}`. The wiki-numbering divergence
+(§2.4) rides the README, not the rows: rows carry only what the client
+serializes.
+
+### 3.3 `poi.jsonl` — every placement-bearing instance
+
+```jsonc
+{
+  "poi_id": "level9:Trigger_Teleport_#10938",   // container + dump filename — stable per buildId
+  "class": "Trigger_Teleport",                  // verbatim component class
+  "kind": "travel_gate",                        // curated enum: cartridge|interactable|travel_gate|
+                                                // monster|spawn_event|minigame_access|move_point|safe|other
+  "level": "level9", "location_id": "Location7",
+  "position": {
+    "source": "inline|pptr-unresolved|none",    // §2.6 truth classes — THE honesty axis
+    "space": "world-assumed|parent-local|object-local-offset|unknown",
+    "x": null, "y": null, "z": null,
+    "target": {"kind": "Transform", "path_id": 6192}  // when source=pptr-unresolved
+  },
+  "joins": {"save_key": "mtacap"},              // per-kind payload (FlashTaker.save, prefab ids…)
+  "build_id": 19029065
+}
+```
+
+Class→kind mapping ships as curated data (`poi-kinds.json`), one ruling per
+class, mirroring DS3's `speakers.json` pattern. `ObjectItem.positionFace`
+rows emit with `source:"inline"` but `space:"object-local-offset"` and are
+**excluded from marker projection** (§3.5) — the field names a hand pose,
+not a place.
+
+### 3.4 `spawn-tables.jsonl`
+
+One row per `Event_CreateResource`: `{spawn_table_id, level, event_day,
+destroy_after_create, entries:[{parent_target, prefab_refs:[{file_id,
+path_id}], prefab_count}]}`. Prefab identity resolves when the global
+cross-container pathID index exists (§9-R4); until then refs are stored
+verbatim and flagged `unresolved-target`.
+
+### 3.5 `markers.jsonl` — the map-marker projection (FRAMEWORK §2.6 contract)
+
+```jsonc
+{
+  "marker_id": "level9:cartridge:mtacap",
+  "layer": "location-scenes/Location7",        // SPEC maps.layers membership
+  "kind": "cartridge",                          // marker-kind vocabulary = poi kinds
+  "entity_kind": "cartridge_item", "entity_slug": "cartridge-cap-wearing-mita",
+  "icon": {"source": "ART sprite path", "fallback_state": "named-explicit-missing"},
+  "position": {"x": null, "y": null, "z": null, "status": "awaiting-transform-stage"},
+  "links": {"page_url": "/db/cartridge_item/cartridge-cap-wearing-mita",
+             "focus_url": "/map?focus=cartridge_item:cartridge-cap-wearing-mita&scene=level9"}
+}
+```
+
+Rules: markers exist **only** for rows whose entity dataset confirms the
+entity (no orphan markers); icon comes from the ART layer with the
+design-standard named-explicit-missing state (never stock art); positions
+carry their truth status — a marker without coordinates renders as a
+visible-locked cell on the authored schematic (TOOLS §3.3 checkerboard-void
+discipline), never at a faked spot. Imagery stays authored (SPEC
+`maps.imagery-path`); bounds/zoom/CRS declarations per scene land in
+`maps.json` when the transform stage calibrates them (SPEC
+`coordinate-transform: rect-per-map`).
+
+## 4. Join plan (this dataset ⇄ every other dataset)
+
+| # | Pair | Key | Mechanism | Status |
+|---|---|---|---|---|
+| J1 | scene ↔ chapter | `stringFileNamePart` → `Menu` line_index (§2.4) | **hard** | measured; emitter validates ×34 locales |
+| J2 | scene ↔ sub-scene lattice | `Scene_Load` strings (§2.3) | **hard** | measured |
+| J3 | scene ↔ dialogue pool | `World.nameLocation` → `LocationDialogue LocationN` (upgrades DS3 §3.6 to hard-corroborated; DS3 keeps its range-check) | **hard** | measured |
+| J4 | scene ↔ objectives/hints | `nameLocation` → `LocationHint LocationN` + `LocationHintKey` | **hard** | measured |
+| J5 | poi(cartridge) ↔ character (DS1) | `FlashTaker.save` ↔ DS1 `save_key` (DS1 §5-J5 becomes bidirectional: characters dataset consumes this file's placement side) | **hard** for the 20 key-matched rows; **inferred-curation** for `mta` / missing `mtad2`,`mtacore` (ruling required, §9-R3) | modeled |
+| J6 | poi(monster) ↔ monster_anomaly entities | carrier class + instance census (§2.7); entity slugs come from the characters/entities dataset | **hard** for instances; **logic** for anomaly identity (e.g. Fog ← `LightRenderer_Fog` is a name-coincidence until code analysis proves it) | partial |
+| J7 | scene ↔ minigames | `MinigamesController` ×70 + access props per level; `TelevisionGames` category names (DS3 §6) | **hard** for access location; **logic** for rules | partial |
+| J8 | poi(travel_gate) ↔ travel_gate entities | `Trigger_Teleport`/`Player_Teleport` targets; version semantics stay COMP J10 logic-layer | **hard** carriers / **logic** semantics | partial |
+| J9 | spawn-table ↔ items/prefabs | `Event_CreateResource.prefabCreate` PPtrs | **hard** refs, unresolved-target flagged until global index (§9-R4) | partial |
+| J10 | scene ↔ save_point entities | `fileSave` + `nameLevelSaves[]` ↔ SPEC `save_point` (+ COMP J9 rename lineage) | **hard** | measured |
+| J11 | marker ↔ entity pages | `markers.jsonl` ⇄ each entity dataset's slugs — **two-way integrity is AC S7** | **hard** (derived) | contract |
+
+Inverted indexes emit per pair under `extracted/relinks/` (doctrine Principle
+one); the pairwise roll-up stays RELATIONS.md's job.
+
+## 5. Scale estimate (measured floor, this build)
+
+- **Registry:** 24 scene rows (20 story + 4 special) · 19 sub-scene nodes ·
+  ~44 lattice edges (loads+unloads+continues) · 16 non-zero chapter pointers.
+- **POI floor:** 21 cartridge takers + 312 interactables + 46 teleport/scene
+  carriers (14 `Trigger_Teleport` + 13 `Player_Teleport` + 19 `Scene_Load`)
+  + 31 AI move points + 24 spawn events + 32 proximity triggers + ~110
+  monster-carrier instances (§2.7 sum) + 71 `Transform_Position` point sets
+  ⇒ **≥650 poi rows** at the v1 class set; grows past ~1,000 once
+  `Trigger_Event` (×334) and the remaining trigger/click families are fully
+  enumerated. `[projected]` markers after entity joins: ~500–800.
+- Behind it: 140,380 typed dumps already on disk — **no new extraction runs
+  are needed for stages 1–3** (§8); the transform stage (§6) is the only new
+  read of the raw client.
+
+## 6. Coordinate honesty & the transform-stage unblock
+
+Today's corpus answers "where things are" only partially: §2.6(a) rows carry
+real numbers; §2.6(b) rows prove placement exists but hold a pointer, not a
+point. The unblock is one bounded stage — **S9 `scene-transform`** (PIPE
+registry grows one line; same-commit entrypoint discipline per
+[DR-2026-08-18-pipeline]): UnityPy walk of `level0–23` binaries emitting
+`{container, game_object_path_id, transform_path_id, local_position,
+local_rotation, parent_path_id}` JSONL, from which every §2.6(b) PPtr
+resolves and per-scene bounds/calibration fall out mechanically. Until it
+lands: `position.source` labels every row truthfully, markers render
+visible-locked, and nothing on the map is guessed. Space semantics
+(`world-assumed` vs `parent-local`) get calibrated per class during that
+stage by comparing resolved child chains against `World.positionSpawn`.
+
+## 7. Output tree
+
+```
+extracted/data/scenes/
+├── scenes.jsonl            # §3.1 — 24 registry rows
+├── scene-links.jsonl       # §3.2 — lattice + chapter pointers
+├── poi.jsonl               # §3.3 — placement-bearing instances
+├── spawn-tables.jsonl      # §3.4
+├── markers.jsonl           # §3.5 — map projection
+├── poi-kinds.json          # curated class→kind rulings
+└── README.md               # honesty ledger (gaps, divergences, curation rulings)
+extracted/relinks/          # inverted indexes per §4 pair
+```
+
+Determinism: fixed ordering (container, pathID), no wall-clock fields, single
+build stamp per record — byte-stable reruns (AC S8).
+
+## 8. Stub-first build order
+
+1. **Emitter v0 (stub)** — parse MB/ASL only: `scenes.jsonl` + `scene-links`
+   + `poi.jsonl` for the measured classes (§2.6–2.7), positions labelled by
+   truth class. Validates ACs S1–S6/S8 immediately; inputs are on disk.
+2. Marker projection + `poi-kinds.json` curation → AC S7 against the datasets
+   that already have slugs (characters/achievements).
+3. Locale resolution of objective/hint/chapter text ×34 → completes S2/S4
+   locale legs.
+4. Transform stage S9 (§6) flips `pptr-unresolved` rows to inline and emits
+   `maps.json` calibration — schema untouched, rerun-only change.
+
+## 9. Completeness risks
+
+1. **Transforms are not in the corpus** (§2.6 proof) — every coordinate
+   promise beyond inline fields depends on stage S9; until then the map's
+   coordinate columns are honestly sparse. Mitigation is the labelling
+   contract, not optimism.
+2. **Space ambiguity of inline positions** — `Transform_Position` points are
+   parent-relative where `myParent ≠ 0`; treating them as world coordinates
+   would misplace markers silently. Mitigation: `space` field + S9
+   calibration; `world-assumed` restricted to `World.positionSpawn`.
+3. **Cartridge key curation:** `mta` (level17) matches no DS1 gallery
+   `save_key`; `mtad2`/`mtacore` have no `FlashTaker`. Needs one curation
+   ruling (owner/research confirmation) before slug assignment; display names
+   can ship regardless.
+4. **Cross-container PPtrs** (`m_FileID > 0`, e.g. `Event_CreateResource`
+   prefab arrays at `m_FileID = 3`) dangle until the global pathID index;
+   stored verbatim, flagged, never dropped (same posture as DS3 §9 item 2).
+5. **level23 identity unresolved** — Peaceful-Mode stub vs cut/test level
+   (COMP J11 interest). It emits as `role:"unbound"` with its full carrier
+   inventory; inventing a binding would be fabrication.
+6. **Chapter-order divergence client↔wiki** (§2.4) — if the site displays
+   wiki numbers anyway, the crosswalk must be marked `inferred` with method;
+   the data layer itself never stores them as game fact.
+7. **Post-0.93L drift** — silent rebuilds could move `fileSave` names or
+   spawn floats (SPEC gap #7); buildId stamps make it detectable, per-record.
+8. **Client-only locales** (ar, ar-EG, ru-x-prerev) get no store
+   corroboration for the Location*/Menu pools — parity rides the standard
+   shipping bar (SPEC §Locale strategy).
+
+## 10. Acceptance criteria (verifier-checkable)
+
+Each criterion runs against emitted files + repo artifacts only, no extraction
+rerun.
+
+- **S1 — registry reconciliation:** `scenes.jsonl` carries exactly 24 rows;
+  the 20 story rows match §2.2's table tuple-for-tuple (`nameLocation`,
+  spawn floats byte-equal to the MB dumps); each story level contributes
+  exactly one `World`/one `WorldPlayer` (ASL recount); level23 is present
+  with `role:"unbound"` and null `location_id`.
+- **S2 — chapter-pointer resolution ×34:** every non-zero
+  `stringFileNamePart` resolves to a non-empty string at `Menu` line_index
+  100–118 in **all 34 locale dirs**; zero-value parts emit `null` chapter,
+  never a guessed name; the resolved EN multiset equals the §2.4 readings.
+- **S3 — lattice closure:** every `nameSceneLoad` referenced by any
+  `continues`/`unloads` edge exists as some row's `nameSceneLoad` or lands
+  in a ledger row with the dangling name; level18's missing `Scene_Load` is
+  recorded, not synthesized.
+- **S4 — save-vocabulary parity:** the set of emitted `fileSave` ∪
+  `nameLevelSaves[]` values equals the 19-literal `SaveGame` set from
+  `extracted/il2cpp/stringliteral.json`, both directions, zero residue.
+- **S5 — cartridge joins reconcile:** all 21 `FlashTaker.save` values appear
+  in `poi.jsonl` joined rows; 20 match DS1 registry keys exactly; `mta`,
+  `mtad2`, `mtacore` each carry an explicit curation-status row (never
+  omitted, never auto-merged); `TamagotchiGame_Cartridge` rows are classified
+  as the distinct in-fiction kind.
+- **S6 — position-truth labelling:** 100% of poi rows carry
+  `position.source ∈ {inline, pptr-unresolved, none}`; every `inline` row has
+  three finite floats; every `pptr-unresolved` row names its target kind +
+  pathID; zero rows expose `ObjectItem` face offsets as map coordinates
+  (spot-check: no `markers.jsonl` row cites an `object-local-offset` poi);
+  `space:"world-assumed"` occurs only on `World.positionSpawn` rows.
+- **S7 — two-way entity↔map link integrity (the map gate):** (a) every
+  `markers.jsonl` row's `(entity_kind, entity_slug)` resolves to exactly one
+  row in the owning dataset's emitted files; (b) conversely, every entity in
+  those datasets that this corpus places (cartridges via §2.7, save points
+  via §2.3, monsters via §2.7 carriers…) has ≥1 marker row — both directions
+  computed mechanically, every violation a ledger row, zero silent drops.
+  Focus URLs match the SPEC §Section-map URL contract
+  (`?focus=kind:slug`).
+- **S8 — determinism + provenance:** two emitter runs over unchanged inputs
+  produce byte-identical files; every record carries `build_id` +
+  source container/pathID; user-facing provenance prints buildId only
+  (AGENTS.md rule 3).
+- **S9 — stub ladder enforced negatively:** no wiki-derived room names,
+  chapter numbers, or coordinates appear anywhere in `extracted/data/scenes/`;
+  unresolved identities live in README/candidates ledgers with locators
+  (level23 inventory, `mta` ruling, Fog-anomaly candidacy).
+- **S10 — objective layer wired:** every story scene row's
+  `objective_hints` pointers resolve in all locales that carry the category;
+  the FR-only/LD16-style contentless cases reuse DS3 §4's classification
+  (contentless ≠ missing) rather than alarming.
+
+## See also
+
+- [spec.md](../../spec.md) §maps — the block this dataset makes concrete;
+  §entities.location_scene/save_point/monster_anomaly scales replaced by §5.
+- [dataset-dialogue.mdx](dataset-dialogue.mdx) §3.6 — the binding rule this
+  spec hard-corroborates; §4 locale model reused.
+- [dataset-characters.mdx](dataset-characters.mdx) §5-J5 — the cartridge join
+  this dataset completes with placement.
+- [pipeline-run_all.mdx](pipeline-run_all.mdx) — stage registry the emitters
+  join; S9 proposal in §6.
+- [../../tools-plan.md](../../tools-plan.md) §3.3 — the owned-map tool this
+  dataset feeds; visible-locked marker discipline.
+- [../../_foundation/extraction-doctrine.md](../../_foundation/extraction-doctrine.md)
+  — Principle zero (level23 capture), Principle one (identifiers verbatim),
+  relink bars.

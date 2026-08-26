@@ -1,0 +1,409 @@
+# MiSide — Game Research (S1)
+
+Status: **verified public-knowledge research**, fetched 2026-08-24. Written for
+the extraction planner: what the community knows about MiSide's content
+universe, so the spec ([pending piece P-spec], to land under `docs/specs/`) can
+seed entity
+kinds and the relink matrix before the corpus lands. Every factual claim carries
+its source URL inline; claims we could not corroborate are marked
+`[unverified]`. Candidate data model (§8) is **our inference**, clearly marked.
+
+Companion artifact: [competitor-research.md](../../competitor-research.md) —
+the three-source relationship-model analysis (relink floor bar #3).
+
+Primary sources used:
+
+- Wikipedia: <https://en.wikipedia.org/wiki/MiSide> (MediaWiki extracts API)
+- EN Fandom wiki: <https://miside.fandom.com/> (MediaWiki API,
+  `api.php?action=parse&page=…&prop=wikitext`)
+- RU Fandom wiki (independent community): <https://miside.fandom.com/ru/>
+- Steam official: appdetails API
+  <https://store.steampowered.com/api/appdetails?appids=2527500>, achievements
+  page <https://steamcommunity.com/stats/2527500/achievements>, news feed
+  <https://store.steampowered.com/feeds/news/app/2527500/>
+- Top Steam community guide ("All Cartridges Guide"):
+  <https://steamcommunity.com/sharedfiles/filedetails/?id=3391978782>
+
+Internal measured facts cite [../../data-acquisition.md](../../data-acquisition.md).
+
+## 1. Game structure
+
+Single-player narrative horror built as a **metafictional loop**: the
+protagonist plays a mobile tamagotchi-style life-sim called *MiSide*, and on
+in-game day 37 gets pulled inside it. The game opens in a chibi 2.5D phone-game
+view, then shifts to first-person 3D inside the game world — an apartment that
+acts as the metaspace/hub the rest of the game travels out of and back into
+([Wikipedia](https://en.wikipedia.org/wiki/MiSide)).
+
+### Chapters — 20 units (0–19)
+
+The community documents **20 chapters**: a prologue plus 19 numbered chapters,
+each named like a save slot ([Fandom · Campaign](https://miside.fandom.com/wiki/Campaign),
+cross-checked against the load-point list in patch notes below):
+
+| # | Chapter | # | Chapter |
+|---|---|---|---|
+| 0 | Prologue | 10 | Ghost Mita |
+| 1 | I'm Inside a Game? | 11 | She Just Wants to Sleep |
+| 2 | Together at Last | 12 | Novels |
+| 3 | Things Get Weird | 13 | Reading Books, Destroying Glitches |
+| 4 | The Basement | 14 | Run and Hide! |
+| 5 | Beyond the World | 15 | Old Version |
+| 6 | Cappie | 16 | Being Candid |
+| 7 | The Loop | 17 | The Real World |
+| 8 | Chibi Mita | 18 | Reboot |
+| 9 | Dummies and Forgotten Puzzles | 19 | "Leave the Core!" |
+
+Save/load points are named per chapter segment; patch 0.921 renamed several of
+them officially — `Cap`→`Cappie`, `Open Dialogue`→`Be Candid`,
+`Out of the Core`→`Leave The Core`
+([Fandom · MiSide/Versions](https://miside.fandom.com/wiki/MiSide/Versions)).
+Those load-point names are a stable in-game vocabulary our extraction should
+preserve verbatim per build (they are diffable across patches).
+
+### The version metaspace
+
+Inside the fiction, the world is layered into **versions of the game itself**
+(known run 0.5–1.9 plus the 0.0 exception), each hosting its own Mita; travel
+between them happens through
+**Portals** (large machines requiring batteries plus objects that correlate the
+versions) and small **devices** (e.g. Player 1's ring)
+([Fandom · MiSide (Fictional)](https://miside.fandom.com/wiki/MiSide_(Fictional))).
+Some versions carry IDX identifiers spoken in dialogue — 1.15 is "IDX 809",
+1.11 is "IDX 805" (same source). These are exactly the internal identifiers the
+extraction doctrine says never to strip.
+
+### Peaceful Mode
+
+A second mode, unlocked behind the "Conditions Met" ending, is present in the
+menu but labeled not yet available. Developer statements collected by the wiki
+put it at planned-for-H1-2026 as of the February 2025 FAQ, with confirmed
+features: day-night cycle, phone shopping, cooking/pizza making, and new
+mini-games with costume unlocks, starring Crazy Mita, plus an exclusive ending
+([Fandom · Peaceful Mode](https://miside.fandom.com/wiki/Peaceful_Mode),
+[Fandom · MiSide FAQ](https://miside.fandom.com/wiki/MiSide_FAQ)). A
+Kickstarter campaign tied to the franchise launched 2025-10-31
+([Steam news](https://store.steampowered.com/news/app/2527500/view/814714767715336202)).
+**Extraction consequence:** the shipped client already contains Peaceful Mode
+stubs/locked state — under Principle zero this is mandatory capture
+(unused/cut content is competitively valuable).
+
+## 2. Characters
+
+### Mita variants — the core cast
+
+The wiki models 12 "main" Mitas plus minor and mention-only variants
+([Fandom · Mitas](https://miside.fandom.com/wiki/Mitas)). Each Mita is bound to
+a version of the fictional game
+([Fandom · MiSide (Fictional)](#the-version-metaspace)); killing a
+Mita reboots her with memories wiped except preprogrammed ones
+([Wikipedia](https://en.wikipedia.org/wiki/MiSide)).
+
+Main variants (one-line glosses paraphrase wiki descriptions):
+
+- **Crazy Mita** — the antagonist host of version 1.9; a rejected prototype
+  that traps players and converts them into cartridges
+  ([Fandom · Crazy Mita](https://miside.fandom.com/wiki/Crazy_Mita),
+  [Wikipedia](https://en.wikipedia.org/wiki/MiSide)).
+- **Kind Mita** — benevolent ally in version 1.9's basement; gives the player a
+  ring ([Wikipedia](https://en.wikipedia.org/wiki/MiSide)).
+- **Cap-Wearing Mita ("Cappie")** — version 1.75 host, namesake of chapter 6;
+  official rename from "Cap" in patch 0.921
+  ([Fandom · Mitas](https://miside.fandom.com/wiki/Mitas)).
+- **Tiny Mita** ("Broken Mita" in RU materials) — version 1.3B, chapter 7
+  ([Fandom](https://miside.fandom.com/wiki/Tiny_Mita)).
+- **Chibi Mita** — checkpoint-scale Mita; chapter 8
+  ([Fandom](https://miside.fandom.com/wiki/Chibi_Mita)).
+- **Short-haired Mita** — version 1.5, chapter 1
+  ([Fandom](https://miside.fandom.com/wiki/Short-haired_Mita)).
+- **Ghostly Mita** — version ≈1.11 (IDX 805), chapter 10
+  ([Fandom](https://miside.fandom.com/wiki/Ghostly_Mita)).
+- **Sleepy Mita** — version 1.1, chapter 11
+  ([Fandom](https://miside.fandom.com/wiki/Sleepy_Mita)).
+- **2D Mita** — paper-dimension Mita, chapter 12 Novels
+  ([Fandom](https://miside.fandom.com/wiki/2D_Mita)).
+- **Mila** — version 1.0F human-presenting resident, chapters 13–14
+  ([Fandom](https://miside.fandom.com/wiki/Mila)).
+- **Creepy Mita** — version 0.5, chapter 15 Old Version
+  ([Fandom](https://miside.fandom.com/wiki/Creepy_Mita)).
+- **Core Mita** — version 0.0 system-layer Mita
+  ([Fandom](https://miside.fandom.com/wiki/Core_Mita)).
+
+Minor / unofficial-name variants: Long-legged Mita, Prankster Mita (hosts the
+version-1.5 portal), Lower Half Mita, Giant Mita, Braided-Hair Mita, Railway
+Chibi Mita, Dummy Mita (mass-produced blanks; see the wiki's "Formation
+Process") ([Fandom · Mitas](https://miside.fandom.com/wiki/Mitas)).
+
+Mention-only: Cool Mita, Pretty Mita, "Mita who couldn't archive her version"
+(Wandering Mita), "a 'me' who just can't stop whining", "a 'me' who loves
+horsing around", Flower Mita, Ballerina Mita (same source). **Mitaphone** — a
+phone-speaker companion entity that also runs a funicular railway — is modeled
+as a page of its own ([Fandom · Mitaphone](https://miside.fandom.com/wiki/Mitaphone)).
+
+### Human players (NPCs)
+
+The wiki models prior players as individual entities
+([Fandom · Players](https://miside.fandom.com/wiki/Players)): **Player 1**
+(ring-bearer), the **Limping Person**, Tiny Mita's friend (a bug-monster form;
+confirmed by MakenCat in an interview the wiki cites), a red-shirted player seen
+on Crazy Mita's basement console, nine **Cartridge Players 2–10** each with an
+epithet (the distrusted one, the greedy one, the cosplayer, the tortured one,
+the obsessed one, the escapist, the writer, the core player, the engineer), and
+seven color-coded **Chibi Players** in Beyond the World. The protagonist
+([Fandom · Protagonist](https://miside.fandom.com/wiki/Protagonist)) is the
+player-surrogate entity.
+
+### Monsters & anomalies
+
+Modeled as their own family
+([Fandom · Monsters & Anomalies](https://miside.fandom.com/wiki/Monsters_%26_Anomalies)):
+Bug Monster, Flying Monsters, Giant Monster, Glitched Beast, Glitched Spiders,
+Mirror Monster, Mimic, Limping Person, Fog.
+
+### Real-world credits
+
+AIHASTO is a two-person Russian team — MakenCat (programming, animation) and
+Umeerai (textures, models); Russian voice acting by the DreamCast studio;
+Japanese Mita voice by Kana Hanaiwa
+([Wikipedia](https://en.wikipedia.org/wiki/MiSide)). Publishers IndieArk and
+Shochiku ([Steam appdetails](https://store.steampowered.com/api/appdetails?appids=2527500)).
+
+## 3. Items & collectibles
+
+Four collectible families the community tracks:
+
+1. **Character cartridges (13)** — flash-drive items depicting each Mita, one
+   hidden per region, with chapter-attributed placements catalogued by the
+   community guide ([Steam · All Cartridges Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3391978782)):
+   Mita (auto, start), Cap-Wearing Mita (on the kitchen TV, ch 6), Tiny Mita
+   (wardrobe, ch 7), Chibi Mita (cactus stool by the miniature house, ch 8),
+   Short-haired Mita (aggressive-mannequin model room, ch 8), Mannequin Mita
+   (mannequin's hand before the ladder, ch 9), Ghostly Mita (cubbies beside
+   Ghostly Mita's bedroom door — the guide attributes it to ch 9 `[unverified:
+   chapter attribution may be ch 10]`), Sleepy Mita (bathroom shelf above the
+   vent, ch 11), 2D Mita (kitchen side table, ch 12), Mila (living-room coffee
+   table, ch 13), Creepy Mita (near the fruit bowl, ch 15), Kind Mita (bedroom
+   desk, ch 18), Core Mita (via "Get FlashDrive" on the Core computer, ch 18).
+   The RU wiki goes further and gives every cartridge its own page keyed to its
+   owner-Mita — thirteen "Флешка …" pages
+   ([RU Fandom index](https://miside.fandom.com/ru/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:AllPages)).
+2. **Player cartridges (10)** — the nine converted Players 2–10 plus related
+   pickups scattered across chapters 4–18; collecting all grants "Caught Them
+   All" ([Fandom · Achievements](https://miside.fandom.com/wiki/Achievements),
+   [guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3391978782)).
+3. **Mita Profiles (documents)** — collectible character-profile documents
+   hidden through the campaign, each carrying a paragraph of canonical lore
+   about its subject Mita; full set grants "Hi, Mita"
+   ([Fandom · Profiles](https://miside.fandom.com/wiki/Profiles)). The wiki
+   tabulates Mita ⇄ Profile ⇄ Location ⇄ Chapter.
+4. **Outfits (clothes)** — Default, School (click the school uniform in Crazy
+   Mita's bedroom, ch 2), Vampire (complete the Pumpkins puzzle in Sleepy
+   Mita's kitchen, ch 11), Christmas (beat Crazy Mita at Penguin Piles, ch 3);
+   an equipped outfit is reflected on the title-screen Crazy Mita and on Kind
+   Mita, Cappie, and Short-haired Mita throughout the campaign
+   ([Fandom · Clothes](https://miside.fandom.com/wiki/Clothes)).
+
+Smaller tracked items: books/novels (chapter 12 hub
+([Fandom · Novels](https://miside.fandom.com/wiki/Novels))), refrigerator
+magnets (chapter 1 collectible that gates an ending — §6), the safe and its
+code 4970 (§6), Kind Mita's ring and other version-travel devices
+([Fandom · MiSide (Fictional)](https://miside.fandom.com/wiki/MiSide_(Fictional))),
+books as shelf dressing ([Fandom · Books](https://miside.fandom.com/wiki/Books)),
+and secrets/easter eggs as a tracked family
+([Fandom · Secrets and Easter Eggs](https://miside.fandom.com/wiki/Secrets_and_Easter_Eggs)).
+
+## 4. Mini-games
+
+The wiki tabulates sixteen mini-games with their access medium and chapter
+([Fandom · Minigames](https://miside.fandom.com/wiki/Minigames) — Tetris below
+appears only in patch notes, not on that page); score rules
+come from the achievement definitions on the same wiki and on Steam's
+achievements page ([Steam](https://steamcommunity.com/stats/2527500/achievements)):
+
+| Mini-game | Medium | Chapter | Score/win rule (as publicly described) |
+|---|---|---|---|
+| Fly Console | console | any | idle: don't move for 2 minutes; collect 25 coins |
+| Dairy Scandal | console | 3 | beat Mita 4 times out of 4 |
+| Penguin Piles | console | 3 | win two rounds against Mita |
+| Card Game | analog (card stack) | 3 | story card game; no achievement |
+| Spaceracer (SPACECAR) | arcade machine | 5 | finish race; "Going at Maximum Speed!" = first place with all coins; boss simplified in 0.93 |
+| DDR (dance) | console + dance pad | 6 | beat any of 3 songs with Cappie |
+| The Button | analog | 6 | beat Cappie 3 out of 3 |
+| Dummy Sort | arcade machine | 8 | sorting puzzle; no achievement |
+| Forgotten Panels | console | 9 | panel puzzle; no achievement |
+| Monster-Slap | analog | 9 | no achievement |
+| Hetoor | arcade machine | 9 | doom-like boss fight; extra award for no damage taken |
+| Kitchen Pumpkins | analog | 11 | pumpkin puzzle (also unlocks Vampire outfit) |
+| Tic-tac-toe | analog | 12 | vs 2D Mita; no achievement |
+| Destroying Glitches | analog | 13 | 4 phases |
+| Snake game | console | 17 | eat 25 apples |
+| Tetris | console | 17 (Real World) | patch notes mention mirror reflection + ESC exit |
+| Quadrangle | core terminal | 15, 18 | Phase 1 / Phase 2 log achievements |
+
+Mini-games are also where several collectibles/outfits unlock, so the
+mini-game⇄outfit⇄achievement triangle is dense. Patch 0.93's notes describe
+per-minigame tuning (coin visibility, nitro display, boss simplification,
+position display) — evidence that minigame balance data is client-side and will
+diff across patches
+([Fandom · MiSide/Versions](https://miside.fandom.com/wiki/MiSide/Versions)).
+
+## 5. Achievements — 26 total
+
+Official total: **26** — verified independently on Steam's global-achievements
+page ([Steam](https://steamcommunity.com/stats/2527500/achievements)), the
+appdetails payload (`achievements.total = 26`
+([appdetails](https://store.steampowered.com/api/appdetails?appids=2527500))),
+and the wiki ([Fandom · Achievements](https://miside.fandom.com/wiki/Achievements)).
+Steam publishes global unlock percentages for each — rarest is "Pro Gamer"
+(10.5%, awarded for earning every other achievement); most common is "Creak in
+the Dark" (86.4%, refusing to stay with Mita).
+
+Notable members and their type tags (wiki typology: Minigame / Story /
+Missable / Ending / Secret / Collectible):
+
+- "Is This the end?" (ending; 64.1%) — complete the campaign.
+- "Conditions Met" (ending; 42.3%) — stay with Mita (§6).
+- "Safe of life" (ending; 41.4%) — enter code 4970 in any safe-access chapter.
+- "Caught Them All" (collectible; 11.9%) — every player cartridge.
+- "Hi, Mita" (collectible; 13.8%) — every Mita Profile.
+- "O, Great Mita!" (secret; 51.7%) — secret-room keyboard interaction; wiki
+  trivia: auto-types "Praying for you; O great Mita" and grants access to the
+  AIHASTO Discord ([Fandom · Achievements](https://miside.fandom.com/wiki/Achievements)).
+- "Some Achievement?" (secret; 56.2%) — interact with the missing-assets door
+  (chapter 15) — the game winks at its own cut content.
+- "Dead juice" / "Delicious Love" (missable; 70.4% / 84.7%) — single-chapter
+  consumable choices.
+
+URL for the live list: <https://steamcommunity.com/stats/2527500/achievements>
+(also reachable per-app at
+<https://store.steampowered.com/api/appdetails?appids=2527500>). Steam's schema
+endpoint requires a key; the community stats page is the keyless source.
+
+## 6. Endings & choice structure
+
+Three documented endings
+([Fandom · Campaign §Endings](https://miside.fandom.com/wiki/Campaign)):
+
+1. **"Is This the end?"** — the default: investigate the wardrobe sounds,
+   play the full campaign, leave through the front door; Crazy Mita reveals the
+   player was being uploaded into a cartridge the whole time
+   ([Wikipedia](https://en.wikipedia.org/wiki/MiSide)).
+2. **"Safe of life"** — open the basement safe (code **4970**) and pull your
+   own cartridge while the console runs. The safe is reachable in chapter 4 at
+   upload-progress 17%, chapter 18 at 98%, and appears empty in chapter 19
+   ([Fandom · Campaign](https://miside.fandom.com/wiki/Campaign)).
+3. **"Conditions Met"** — refuse the wardrobe (choose "Stay" at the end of
+   chapter 3) with six prerequisites accumulated earlier:
+   - *Global condition:* complete the main story once;
+   - "Play a console game" in ch 3;
+   - "Give the sauce a try" in ch 2;
+   - "Avoid looking in the vent" in ch 2 (negative condition);
+   - "Collect the refrigerator magnets" in ch 1;
+   - "Refrain from looking in the oven" in ch 0 (negative condition).
+
+   Achieving it activates Peaceful Mode (§1). Same source.
+
+Documented branching points therefore include: the wardrobe/stay decision
+(ch 3, also the demo boundary — the demo ends at exactly this choice
+([Fandom · MiSide/Versions](https://miside.fandom.com/wiki/MiSide/Versions)));
+the safe-opening opportunity windows with numeric upload-progress gating; and
+six binary micro-choices flagged across chapters 0–3. The main-plot branch
+logic (which Mita helps/harms, reboot events) is linear per
+[Wikipedia](https://en.wikipedia.org/wiki/MiSide)'s plot summary.
+
+## 7. Patch/version history
+
+Release timeline (dates from Steam news feed and the wiki's version page):
+
+| Date | Version / event | Source |
+|---|---|---|
+| 2023-07 | itch.io demo | [Wikipedia](https://en.wikipedia.org/wiki/MiSide) |
+| 2023-08-18 | Steam demo (adds BGM + Russian VO) | [Wikipedia](https://en.wikipedia.org/wiki/MiSide), [Fandom · MiSide/Versions](https://miside.fandom.com/wiki/MiSide/Versions) |
+| 2024-12-10 | Full release (store date; Wikipedia prints Dec 11 — timezone skew) | [appdetails](https://store.steampowered.com/api/appdetails?appids=2527500) |
+| 2024-12-24 | **v0.91** — Photo Mode added; gore censor setting; 9 language additions (IT/PL/PT/pt-BR/es-ES/es-419/tr/vi/uk) + voice settings | [Fandom · MiSide/Versions](https://miside.fandom.com/wiki/MiSide/Versions) |
+| 2024-12-29 | **v0.921** — load-point renames; 6 more languages (id/th/hu/ro/sv + es-ES voice); New Year decorations | same |
+| 2025-02-05 | **v0.924** — Persian + Serbian (Latin); es-419 VO by MURASAKI AUDIOVISUAL | same |
+| 2025-02-14 | **v0.93** — large fix pass; Spacecar tuning; Turkish VO by Odium Studio; in-game console gains commands (`setfps`, `skipdialogue`, `triggershow`) + cheats | [Steam news](https://store.steampowered.com/news/app/2527500/view/545601318520094765), [Fandom](https://miside.fandom.com/wiki/MiSide/Versions) |
+| 2025-06-13 | **v0.93L** — latest public release-notes post found | [Steam news](https://store.steampowered.com/news/app/2527500/view/640187601178854279) |
+| 2025-07-16 | Mir Korable × MiSide collaboration announced | [Steam news](https://store.steampowered.com/news/app/2527500/view/542237386350788611) |
+| 2025-10-31 | Kickstarter campaign launch + price action | [Steam news](https://store.steampowered.com/news/app/2527500/view/814714767715336202) |
+| 2025-11-25 | Steam Awards "Outstanding Story-Rich Game" vote push | [Steam news](https://store.steampowered.com/news/app/2527500/view/633446704518006638) |
+| 2026-08-21 | Second anniversary post | [Steam news](https://store.steampowered.com/news/app/2527500/view/686388722607850382) |
+
+Current labels: the newest release-notes post found is **v0.93L (2025-06-13)**;
+whether later silent builds changed the in-game version string is
+`[unverified until first harvest]`. Our installed client is buildId
+**19029065**, Unity 2021.3.35f1 IL2CPP, measured 2026-08-24
+([data-acquisition.md §current state](../../data-acquisition.md#current-state-full-game-installed))
+— the buildId is the authoritative local pin; the wiki's version list is the
+public skeleton the changelog viewer hangs on.
+
+Language count moved across patches (see v0.91/v0.921 additions above) and now
+stands at 31 store-listed languages (live appdetails recount 2026-08-24,
+[s1-vB](verifications/s1-vB.mdx) — updates the 30 cited from the
+[pack README](../../README.md)); the client additionally ships
+per-locale localized art under `Data/Languages/<locale>/Textures/` (777 png +
+3 psd measured — [data-acquisition.md](../../data-acquisition.md)). Locale is a
+data dimension of nearly every entity here, not just text.
+
+## 8. Candidate data model — OUR INFERENCE
+
+> **This section is analysis, not sourced fact.** It proposes entity kinds and
+> relation families to seed the spec ([pending piece P-spec], `docs/specs/`)
+> and the relink matrix.
+> Mechanism tags follow extraction doctrine (`hard` / `logic` / `inferred`).
+
+### Entity kinds
+
+| Kind | Rationale / evidence | Est. scale |
+|---|---|---|
+| `mita_variant` | 12 main + ~7 minor + ~7 mention-only (§2) | ~20–30 |
+| `player_character` | protagonist + Players 1–10 + chibi players + limping person | ~20 |
+| `monster_anomaly` | §2 monsters family | ~10 |
+| `chapter` | 20 units (§1) | 20 |
+| `save_point` (load point) | named checkpoints, renamed across patches (§1) | tens `[unverified count]` |
+| `game_version` (fictional) | versions 0.0–1.9 + IDX ids 805/809… | ~15 |
+| `location_scene` | rooms per home + transit spaces (§ Locations table: ~19 top-level) | ~20–40 |
+| `cartridge_item` | 13 character + 10 player cartridges | ~23 |
+| `profile_document` | Mita Profiles | ~12 `[unverified count]` |
+| `outfit` | §3 clothes | 4+ (more teased for Peaceful Mode) |
+| `minigame` | §4 table | ~17 |
+| `achievement` | §5 | 26 |
+| `ending` | §6 | 3 (+1 exclusive to Peaceful Mode `[planned]`) |
+| `choice_node` | wardrobe decision + 6 ending prerequisites + safe windows | tens |
+| `dialogue_node` | script transcripts exist on the wiki in EN+RU only (hub's other five locale links are redlinks); client holds all 31 | thousands |
+| `travel_gate` (portal/device) | portals per version + ring/necklace devices | ~10 |
+| `secret_easter_egg` | wiki family | dozens `[unverified]` |
+| `debug_command` | console verbs from patch notes (`setfps`, `skipdialogue`, `triggershow`, cheats) | ~10 `[unverified]` |
+
+### Relation families (candidate ordered pairs)
+
+| Family | Competitor evidence | Expected mechanism in OUR corpus |
+|---|---|---|
+| mita_variant ↔ game_version | wiki's version⇄Mita⇄chapter blackboard table | `hard` (client holds the version registry; dialogue IDX values corroborate) |
+| mita_variant ↔ chapter (host/appearance) | Campaign gallery + Locations table | `hard` from scene membership |
+| chapter ↔ location_scene ↔ game_version | Locations table columns Name/Version/Chapters | `hard` from Unity scene graph |
+| cartridge_item ↔ mita_variant (depicts) | RU "Флешка" pages | `hard` (prefab/name refs) |
+| cartridge_item ↔ player_character (contains) | Players page bios | `hard`+`logic` (pickup scripts, dialogue reveals) |
+| cartridge_item ↔ location_scene ↔ chapter | guide placements (§3) | `hard` from pickup transforms/triggers |
+| profile_document ↔ mita_variant ↔ location ↔ chapter | Profiles table (§3) | `hard` placement + `hard` subject ref |
+| achievement ↔ chapter / minigame / ending / collectible-set | Achievements table columns Type/How/Chapter (§4–5) | `logic` from achievement-check code; `hard` from defs payload |
+| ending ↔ choice_node (incl. negative conditions) | six prerequisites incl. "avoid/refrain" (§6) | `logic` from condition flags in decompiled code — the flagship derived join |
+| outfit ↔ mita_variant (multi-target reflection incl. title screen) | Clothes page (§3) | `hard` from material/asset bindings |
+| outfit ↔ minigame / puzzle (unlock source) | Clothes page how-to-unlock column | `logic` |
+| minigame ↔ chapter ↔ access_medium | Minigames table (§4) | `hard` (scene props) + `logic` scoring rules |
+| dialogue_node ↔ speaker ↔ locale ↔ chapter | Dialogues/{EN,RU} transcriptions (hub's other five locale links are redlinks) | `hard` from loc tables — all 31 locales, node-keyed |
+| travel_gate ↔ source_version ↔ target_version | Portal/device lists | `logic` from teleporter configs |
+| monster_anomaly ↔ chapter/location | Monsters pages | `hard` spawner refs |
+| save_point ↔ chapter (+ rename history) | 0.921 rename table (§1) | `hard`; per-build diff feeds the changelog product |
+| secret ↔ location | Secrets pages | `logic`/`inferred` |
+| locale ↔ localized_art | `Data/Languages/<locale>/Textures/` measured | `hard` |
+
+### Gaps the corpus must settle (community cannot answer)
+
+Exact counts for profiles/secrets/save-points; minigame score formulas beyond
+threshold anecdotes; the full choice-flag list (only 6 of presumably many are
+documented); Peaceful Mode stub contents; version↔IDX registry completeness;
+whether cartridge placements shifted in 0.91–0.93L patches. All are
+data-answerable from the client (AGENTS.md rule 8) — they belong to the
+dataminer, not the frontend.

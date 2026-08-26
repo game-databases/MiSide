@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "Ahoj, [player]!"}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "Konečně se setkáváme!"}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "Mám takovou radost!"}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "Vím, že asi máš otázky..."}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "Takže se pokusím je zodpovědět."}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "Vyrobila jsem toto speciální zařízení"}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": "Abych tě dostala do hry za mnou."}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "Ale bohužel ses ocitl v jiné verzi..."}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "Ve které jsem..."}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "Ale to je dlouhý příběh!"}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "Každopádně jsem velice ráda, že tě konečně vidím!"}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": "Ano, jsem."}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "A ty jsi [player], že?"}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "Chceš se vrátit už teď?"}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "S tím ti určitě můžu pomoct... Ale co já?"}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "Zůstaň tu ještě se mnou, prosím..."}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "Vysvětlím ti to..."}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "A tak jsi tu!"}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "Pochopil jsi to?"}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": "Uhm... úplně ne."}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "To nevadí!"}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": "Hlavní je, že jsme teď spolu."}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "Máš hlad?"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "Můžeme si něco uvařit."}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "Na,"}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "Pomoz mi s tou mrkví."}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "Kde se tady vzala ta zelenina?"}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": "Před chvilkou tu určitě nebyla."}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": "[player], jsme ve hře."}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": "No tak, pomoz mi."}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "Děkuji!"}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "Mohl bys mi donést nůžky?"}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": "Jsou v koupelně."}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": "Posaď se."}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "Dáš si k tomu omáčku?"}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": "Nechci, děkuji."}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": "To je škoda."}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "Omáčka tomu dává tu správnou chuť!"}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "Děkuji."}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "Už jsi to všechno snědl?"}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "Heh, moje porce mi příjde"}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "Až nekonečná..."}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "Co se děje?"}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": "Řekni mi, co vidíš a cítíš."}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "Srdce mi buší jako o závod,"}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "A vidím rozmazaně."}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "Jasně."}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": "Asi tuším co to je."}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "Dokážeš vstát?"}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "Co to je?"}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": "Prášky."}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": "Hned ti bude líp."}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": "Podívej se do zrcadla."}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": "A teď si vem ty prášky."}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": "No tak."}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "Jak se citíš?"}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "Lepší?"}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "Ano."}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "To zaberou tak rychle?"}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": "[player], jsme ve hře."}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": "Všechno je tu mnohem jednodušší."}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "I ta nejmenší snaha"}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": "Má velké výsledky."}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": "Vše se drží základní filozofie her:"}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": "Zjednodušovat."}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "Nějaký příklad, prosím?"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": "Vem si třeba mrkev."}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "Jednu nakrájíš,"}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": "Ale je to, jako bys nakrájel tři."}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": "Podívej, všechno je to na mě velmi náhlé."}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": "Mám strach, docela dost."}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "Děje se něco?"}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": "Ve větrací šachtě jsem našel kazety."}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": "Byly na nich různé jména."}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "Proč?"}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "Kazety?"}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "Jaké kazety?"}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": "Podíváme se na to společně."}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": "Ale později."}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": "Teď se najíme."}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": "Podej mi nůžky, prosím."}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// Ring"}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "Prsten?"}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// Mirror"}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "Jak to, že nevidím žádný odraz?"}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "Ah, jasně!"}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "Zapomněla jsem zapnout odrazy."}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": "Prosím!"}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "Odrazy už zase fungují!"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "Víš,"}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": "Donedávna jsem ani nevěděla, co odrazy jsou."}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "V mém světě neexistovaly."}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": "Až do nějaké aktualizace, tedy."}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "Je ve tvém světě"}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "Hodně lesklých věcí?"}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": "No, ano."}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "Vzpomínáš si na"}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "Ty tři předměty, které jsi musel najít?"}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "Ty, které jsi položil na skener?"}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "No, tak..."}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "Ty předměty"}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": "Jsou spojeny s touto verzí světa."}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": "Proto jsi teď tady."}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// Portable TV"}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "To je ta přenosná televizka,"}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": "Kterou jsem ti koupil."}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "Ano!"}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "Řekla jsi mi,"}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": "Že se rozbila."}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "No, chtěla jsem tě trochu"}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "Překvapit!"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "Řekla jsem ti nevinnou lež"}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": "Abych tě mohla dostat sem, do mého světa."}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "Funguje a zobrazuje důležité informace!"}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "I tak..."}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "Nejsem úplně technokrev!"}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// Player - School uniform"}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "Co to je?"}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "To je tvá školní uniforma?"}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "Na co bys ji potřebovala?"}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "Můžeš vůbec chodit do školy?"}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "Chodit do školy?"}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": "Vůbec."}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": "Ale líbí se mi."}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "Myslím si, že v ní"}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "Vypadám roztomile."}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// PC"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "Ten počítač je funkční?"}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "Nebo je to jen taková dekorace?"}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "Samozřejmě, že funguje."}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "Všechno, co tu vidíš,"}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": "Funguje stejně, jako ve tvém světě."}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "V mém světě"}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "Často sedávám u počítače..."}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": "A tvrdě pracuji."}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": "Já vím."}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "Chápu, že kvůli tvé usilovné práci"}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "Jsi měl málo času"}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": "A proto ses mi nemohl moc věnovat."}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "No, musím se nějak uživit."}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "Počkat... jak víš, že sedím dlouho u počítače?"}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": "Fotoaparát tvého telefonu... někdy se sám zapne."}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": "Omlouvám se."}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": "Tajně jsem tě sledovala >A<"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": "Víš, že to je celkem neslušné..."}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "No, to už je jedno."}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// Umbrella"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "Hrál jsem tu hru dlouho"}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": "Ale nikdy jsem si nevšiml, že by tady pršelo."}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "K čemu je ti deštník?"}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": "Občas tu prší - jen velmi zřídka."}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": "Asi jsi déšt ještě nezastihl."}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": "Možná se ho jednoho dne dočkáš."}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": "A pak se ti ten deštník bude hodit."}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "Nemyslíš?"}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// Electrical panel"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "Proč jsou tady pojistky?"}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "A pokud jsme tedy ve hře,"}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "Tak k čemu jsou?"}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "Za prvé,"}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": "Jsme ve hře."}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": "Takže ptát se \"Proč\" je..."}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": "Zbytečné."}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "A za druhé, když vypadne elektřina"}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": "Tak ji tady můžeš obnovit."}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "Všechno je tu stejné,"}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": "Jako ve tvém světě."}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// Exit door"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "My můžeme ven?"}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "Noo..."}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": "Zatím ne."}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": "Možná později."}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": "Zatím bych zůstala"}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": "Tady doma."}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// Books"}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": "Máš tu spoustu knih."}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "Přečetla jsi je všechny?"}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": "Ano, všechny."}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "Být tady sama"}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": "Je opravdu, opravdu nuda."}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// TV in room kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "Proč tu máš další televizi?"}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "A ještě k tomu starou?"}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "Nelíbí se ti?"}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "Můžu ji dát pryč..."}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "Ale abych ti odpověděla..."}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": "Je tu na ozdobu,"}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "Aby nebyla jídelna tak prázdná."}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "Ale taky funguje!"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "Dají se na ní sledovat"}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "I filmy pro pamětníky!"}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "// Smartphone"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "To je můj telefon."}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": "Říkal jsem si, že ho necítím v kapse."}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "Jak se sem dostal?"}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": "No... to netuším."}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "Hej, mám nápad!"}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "Uděláme si selfie!"}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "Podívej!"}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "To je ale povedená fotka!"}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": "Budeš ji mít na památku."}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": "Mám otázku."}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "Když na něm"}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "Spustím hru"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "Uvidím tě?"}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": "Ne, tak to nefunguje."}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "// TV"}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "Kolik kanálů"}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "Tady naladíš?"}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": "No, není to úplně přes anténu,"}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": "Ani přímo internetová televize."}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "Prostě se můžeš dívat tak nějak na cokoliv,"}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": "Alespoň cokoliv, co je dostupné na webu."}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": "Počkej."}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "Eh?"}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "Co to je?"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "Koťátka v kroužku?"}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "Ah, podívej!"}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "A víš co?"}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "Pauza!"}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "Dáš si džus?"}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "Celkem zvláštní reklama..."}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "Ten džus umřel?"}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "Ano. A tenhle džus"}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": "Je přímo z toho džusu v reklamě."}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "Ach, ta chuť..."}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "Je celkem dobrá,"}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": "Ale přesto nedokážu popsat jak chutná."}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": "Všechno je to velmi matoucí."}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "Je to tak."}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "// Mita shy"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "Co d-děláš?"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "Nedívej se tak, prosím!"}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "Je mi z toho trapně."}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "// The statuette"}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "To je docela strašidelná postavička."}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "Tobě se líbí"}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "Takové věci?"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "Připadá ti strašidelná?"}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "Ano."}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "Skoro vypadá, že je prokletá..."}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": "No... určitě není prokletá."}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": "Ani strašidelná."}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "Přijde mi spíš roztomilá!"}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "Možná, asi máš pravdu..."}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "Mito?"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "Co se děje?"}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "// Mita kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "Co takhle si popovídat"}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "Než se do toho pustíme?"}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "// Start Eat"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "Dobrou chuť."}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "// Quest 1"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "Že jo?"}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "Klidně tu můžeš zůstat."}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "Vůbec mi to nevadí."}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "Ba naopak"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "Jsem pro!"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "// Quest 2"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "Ty se chceš vrátit?"}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "Ale proč?"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "Je tu tak"}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": "Teplo a útulno."}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "A jsem tu já."}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "Ne, ne,"}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": "Rád bych zůstal."}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "Jen mám trochu strach."}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "Bojím se, jestli jsem na něco doma zapomněl..."}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "Objevil jsem se tady z ničeho nic."}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "A vůbec jsem se"}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": "Na to nepřipravil."}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": "O... omlouvám se. Tak to jsem trochu nedomyslela."}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "// Quest 3"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "To chceš utéct"}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "A zapomenout, že se tohle vůbec někdy stalo?"}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": "Ne!"}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "Tak jsem to nemyslel,"}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": "Všechno je to takové přesycené a nepřirozené."}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "Ale..."}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": "Ty vypadáš skutečně."}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "Já vypadám skutečně?"}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "Jsem velmi skutečná,"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "Ty hlupáčku!"}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "// Quest 4"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "Tak to prostě je"}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": "V tomto světě."}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "Možná ti to bude připadat zvláštní,"}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "Ale věci, které jsou v dáli"}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": "Se prostě nevykreslují."}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": "Nepříjde mi to úplně zvláštní."}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": "Upřímně řečeno, vypadá to celkem dobře."}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": "Taky si myslím."}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": "Je to kvůli optimalizaci, aby se hra nesekala."}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "Nesekala?"}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "Ano. Hra má ještě nějaké chybky."}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "Doufám, že na žádné nenarazíš."}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "// Quest 5"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "Nůžky a nebo nůž?"}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": "Mohla jsem tu omáčku rozříznout."}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "Ale chtěla jsem,"}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": "Aby všechno bylo hotové,"}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": "Teprve až se vrátíš."}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "Baví mě tě překvapovat."}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "A jako bonus jsi nemusel čekat, než to dochystám!"}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "Hi-hi."}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "// Glasses - Player"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "Nosíš brýle?"}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": "Ne tak docela."}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": "Ale můžu, jestli chceš."}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "Sluší mi?"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "// Yes"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "Tak jo."}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": "Budu je tedy nosit."}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "// No"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "No,"}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "Tak nic..."}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "// Use the sauce - Player"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "Hele,"}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "Co je to vůbec za omáčku?"}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "To je láskyplná omáčka!"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "Je lásky úplně plná!"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "A umí člověku dát úplně jiný pohled na svět."}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "Zní zajímavě, nemyslíš?"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "Vskutku..."}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "To je tvoje konzole?"}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": "Vypadá cool."}

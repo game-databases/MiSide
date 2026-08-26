@@ -1,0 +1,200 @@
+{
+ "build": 19029065,
+ "contract": "docs/contracts/dataset-dialogue.mdx",
+ "curated_mapping": [
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "Mita",
+   "entity": {
+    "kind": "mita_variant",
+    "slug": "mita",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 0,
+   "names_anchor": 0,
+   "theme": "Mita"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaOld",
+   "entity": {
+    "kind": "mita_variant",
+    "slug": "mita-old",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 1,
+   "names_anchor": null,
+   "theme": "MitaOld"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaNew",
+   "entity": {
+    "kind": "mita_variant",
+    "slug": "mita-new",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 2,
+   "names_anchor": null,
+   "theme": "MitaNew"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "Player",
+   "entity": {
+    "kind": "player_character",
+    "slug": "player",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 3,
+   "names_anchor": 1,
+   "theme": "Player"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "ChibiMita",
+   "entity": {
+    "kind": "player_character",
+    "slug": "chibi-player",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 4,
+   "names_anchor": null,
+   "theme": "ChibiMita"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaKnow",
+   "entity": {
+    "kind": null,
+    "slug": null,
+    "status": "pending-curation"
+   },
+   "enum_index": 5,
+   "names_anchor": null,
+   "theme": "MitaKnow"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "Creepy",
+   "entity": {
+    "kind": null,
+    "slug": null,
+    "status": "pending-curation"
+   },
+   "enum_index": 6,
+   "names_anchor": null,
+   "theme": "Creepy"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "LittleMita",
+   "entity": {
+    "kind": "mita_variant",
+    "slug": "little-mita",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 7,
+   "names_anchor": null,
+   "theme": "LittleMita"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "White",
+   "entity": {
+    "kind": null,
+    "slug": null,
+    "status": "pending-curation"
+   },
+   "enum_index": 8,
+   "names_anchor": null,
+   "theme": "White"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "Limping",
+   "entity": {
+    "kind": "player_character",
+    "slug": "limping-person",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 9,
+   "names_anchor": null,
+   "theme": "Limping"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaDark",
+   "entity": {
+    "kind": "mita_variant",
+    "slug": "mita-dark",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 10,
+   "names_anchor": null,
+   "theme": "MitaDark"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaDream",
+   "entity": {
+    "kind": null,
+    "slug": null,
+    "status": "pending-curation"
+   },
+   "enum_index": 11,
+   "names_anchor": null,
+   "theme": "MitaDream"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaGlasses",
+   "entity": {
+    "kind": "mita_variant",
+    "slug": "mita-glasses",
+    "status": "provisional-pending-ds1"
+   },
+   "enum_index": 12,
+   "names_anchor": null,
+   "theme": "MitaGlasses"
+  },
+  {
+   "carrier": "Dialogue_3DText.themeDialogue (Dialogue3DTheme)",
+   "display_en": "MitaFon",
+   "entity": {
+    "kind": null,
+    "slug": null,
+    "status": "pending-curation"
+   },
+   "enum_index": 13,
+   "names_anchor": null,
+   "theme": "MitaFon"
+  }
+ ],
+ "pending_curation_enums": [
+  "Creepy",
+  "MitaDream",
+  "MitaFon",
+  "MitaKnow",
+  "White"
+ ],
+ "personage_carriers": [
+  {
+   "carrier": "Location14_Dialogue.Loc14WhioSpeak",
+   "entity_note": "player|mita spoken-side of branch groups",
+   "values": [
+    "player",
+    "mita"
+   ]
+  },
+  {
+   "carrier": "Location18_Personage PPtr",
+   "values": "per-group PPtr; personage entities land with DS-1 character curation; raw path_ids preserved on nodes"
+  },
+  {
+   "carrier": "Names category (47 EN lines)",
+   "pool": "extracted/localization/English/Names.jsonl"
+  }
+ ],
+ "policy": "the five ambiguous enums stay slug-null pending-curation (D6); display ships as the verbatim enum value"
+}

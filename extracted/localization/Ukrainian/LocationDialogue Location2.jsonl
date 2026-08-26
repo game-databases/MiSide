@@ -1,0 +1,9 @@
+{"category": "LocationDialogue Location2", "line_index": 0, "text": "// Player start"}
+{"category": "LocationDialogue Location2", "line_index": 1, "text": "Де я?"}
+{"category": "LocationDialogue Location2", "line_index": 2, "text": "Знайоме місце."}
+{"category": "LocationDialogue Location2", "line_index": 3, "text": "Я у цій грі?"}
+{"category": "LocationDialogue Location2", "line_index": 4, "text": "// Player try open the door"}
+{"category": "LocationDialogue Location2", "line_index": 5, "text": "Замкнено?"}
+{"category": "LocationDialogue Location2", "line_index": 6, "text": "// Player in dark"}
+{"category": "LocationDialogue Location2", "line_index": 7, "text": "Тут темно."}
+{"category": "LocationDialogue Location2", "line_index": 8, "text": "Я нічого не бачу."}

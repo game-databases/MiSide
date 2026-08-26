@@ -1,0 +1,148 @@
+# Contract — dataset `characters` (Mitas & Players)
+
+Status: **PINNED v1** (`miside.characters.personages/1`) — built 2026-08-25 by
+builder B-1 against the approved spec
+[`docs/specs/dataset-characters.mdx`](../docs/specs/dataset-characters.mdx)
+([arbiter ruling](../docs/research/verifications/ds123-arbiter.mdx): DS-1
+APPROVED). The frontend consumes THIS document and the files below; it never
+re-derives fields, resolves pointers differently, or invents fallbacks.
+
+- Build stamps on every record: `build_id` **19029065**, `version_label`
+  **0.93L** (read from `extracted/EXTRACTION-LOG.md` `pipeline-defaults`;
+  provenance rule 3 user-facing class).
+- Corpus paths are repo-relative under `extracted/`; raw-client paths are
+  absolute on this host (NE8K).
+
+## Files
+
+```
+extracted/data/characters/
+├── personages.jsonl              # 24 owned rows + _meta header line
+├── characters.candidates.jsonl   # stub-ladder tiers 3–4 only
+├── README.md                     # honesty ledger + regeneration notes
+└── relinks/                      # parked; moves to extracted/relinks/ at stage registration
+    ├── character--scene-membership.jsonl
+    ├── character--outfit.jsonl
+    ├── character--achievement.jsonl
+    ├── character--cartridge.jsonl
+    └── character--dialogue-speaker.jsonl
+```
+
+Every `.jsonl` file's FIRST line is a `{"_meta": …}` header: schema id,
+generator, source table, build pins, row count, derived-field list. Data rows
+follow, one JSON object per line, UTF-8, `\n`, no BOM.
+
+## Locale model (binding)
+
+Text is stored as **pointers** `{category, line_index}` into
+`extracted/localization/<locale>/<category>.jsonl` (the game's own join:
+`GlobalLanguage.GetString(category, index)`, decompiled authority
+`Assembly-CSharp-firstpass/GlobalLanguage.cs`). Resolution rules:
+
+1. Resolve `line_index` **0-based** against the locale's category array.
+2. All four character categories (`Menu`, `Personages`, `Names`, `Clothes`)
+   have identical record counts in all 34 locales (165/26/47/13, measured);
+   page-facing locale availability for these entities = the four categories'
+   presence in that locale dir (derive it; do not hardcode).
+3. If a future build breaks parity for a locale cell, render the declared
+   explicit-filler state driven by
+   `extracted/relinks/locale_availability.jsonl` once the P1 relink stage
+   emits it; until then absence of the category file = unavailable.
+4. `name_en` is a convenience copy of the EN resolution for search/API; the
+   pointer remains the truth. Never render stale copies after a patch rerun.
+
+## `personages.jsonl` — record schema
+
+24 rows: 14 × `kind:"mita"` (gallery_order 0–13), then 10 ×
+`kind:"player"` (gallery_order 0–9). Emission order is fixed; consumers must
+not depend on it beyond determinism.
+
+| Field | Type | Source artifact | Join role | Nullability |
+|---|---|---|---|---|
+| `character_id` | string slug | derived (rule below) | page key / URL slug | never null |
+| `kind` | enum `mita`\|`player` | S1 array membership | entity-kind router | never null |
+| `status` | enum `registered` | stub ladder §6 | honesty filter | never null |
+| `registry_ref` | string | S1 dump | exact provenance `<container>#<array>[<index>]` | never null |
+| `resource_path` | string verbatim | S1 `resourcePath` | scene-name joins (J2), prefab identity | `""` possible (9 player rows) |
+| `save_key` | string verbatim | S1 `nameSave` | cartridge/profile save identity (J5/J4) | `""` possible (2 mita rows) |
+| `name_loc` | `{category, line_index}` | S1→S5 | loc pointer → display name ×34 | never null |
+| `description_loc` | `{category, line_index}` | S1→S6 | loc pointer → bio ×34 | never null |
+| `palette_color1` | number[4] RGBA floats 0–1, serialized r,g,b,a order | S1 `color1` | site token layer (colour-is-identity) | never null |
+| `palette_color2` | number[4] | S1 `color2` | token layer secondary | never null |
+| `gallery_icon` | `{container, file_id, path_id}` \| null | S1 `icon` PPtr | portrait slot (ART layer owns real portraits) | null when pathID 0 — honest-missing, never backfilled |
+| `case_back` | `{container, file_id, path_id}` \| null | S1 `caseBack` PPtr | gallery case art ref | null when pathID 0 |
+| `button_menu` | `{container, file_id, path_id}` \| null | S1 `buttonMenu` PPtr | menu button ref | null when pathID 0 |
+| `preview_prefab_key` | string \| null | S12 literal `'Personages/'` + S1 | `[unverified]` Resources.Load key (inferred concat; no load call site survives in IL-stub bodies) | null when `resource_path` empty |
+| `name_is_shared` | bool | derived within S1 | anti-merge flag: true iff another row shares the same `name_loc` (pair: `mita-usual` ↔ `mita-true`, Menu 83) | never null |
+| `gallery_order` | int | S1 array index | canonical in-game ordering | never null |
+| `name_en` | string | S4/S5 EN pivot | search/API convenience copy | never null |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | per-record staleness stamp | never null |
+
+**Pointer objects with `file_id`:** `file_id = 0` → target lives in
+`container`. `file_id ≠ 0` → external-dependency pointer (AssetStudioMod
+auto-load); the target container is NOT yet resolved — treat `path_id` as an
+opaque identifier and the whole pointer as unresolved until the scenes
+dataset ships the dependency graph. Current instances: the shared player
+icon (`file_id 2, path_id 276`) on player rows 1–9.
+
+**`character_id` rule (pinned):** mita rows — kebab-case of `resource_path`
+(camel-case and letter→digit boundaries split, lowercased: `MitaKind` →
+`mita-kind`, `Mita2D` → `mita-2-d`); player rows — `player-{gallery_order+1}`
+(nine players have no `resource_path`; spec §4.2's own example). Additive
+only: it never replaces `resource_path` or `save_key`.
+
+**Hex conversion for tokens:** `#RRGGBB` = per-channel `round(f×255)` clamped
+to [0,255] from the stored floats (row `mita-usual` c1 → `#cc73a2`,
+`mita-true` c1 → `#d92c45`).
+
+## `characters.candidates.jsonl` — record schema
+
+Stub ladder tiers 3–4 ONLY ([spec §6](../docs/specs/dataset-characters.mdx)).
+Tier 2 (`loc_only`) is empty today. Never promote a candidate to a page-grade
+row without registry/loc evidence.
+
+| Field | Type | Notes |
+|---|---|---|
+| `candidate_id` | slug | stable key |
+| `kind_class` | `mita_variant` \| `player_character` | which dataset could own it later |
+| `display_name` | string | scene name (verbatim) or wiki name (quoted form from research) |
+| `status` | `"unregistered"` | constant today |
+| `evidence` | array of `{path, locator, line?, kind?}` | client locators (tier 3) or `[]` (tier 4, wiki-only) |
+| `wiki_source_ref` | string \| null | repo-side research citation; null when evidence exists and no wiki claim is made |
+| `missing_fields` | string[] | drives mechanical missingdata.md |
+| `note` | string | what the evidence does and does not prove |
+
+## Relink files — edge-row schema
+
+First line `_meta` per file (family, pair, mechanism vocabulary, transform
+grammar where applicable, relocation note). Edge rows:
+
+| Field | Type | Notes |
+|---|---|---|
+| `direction` | `forward` \| `inverse` | every forward named edge has its mirror (doctrine Principle one bidirectionality) |
+| `from` / `to` | string \| null | character ids, or typed anchors: `scene:<container>`, `scene-class:<Class>`, `achievement:<steam_api_name>`, `flashes:<save_key>`, `outfit:<file_save>`, `loc:<Category>[<i>]` |
+| `mechanism` | `hard` \| `logic` \| `inferred` | doctrine vocabulary |
+| `method` | string | the recorded derivation; for J2 name-transform edges this is the applied T-rule that reproduces the claimed GameObject name byte-for-byte |
+| `status` | `modeled` \| `partial` | `partial` always carries `missing_fields` naming the concrete unblock |
+| family-specific keys | — | scene: `gameobject_name`, `locator`, `transform_id`; census rows: `instance_count`, `per_container_instances`, `containers_with_dumps_census`, `dump_files_incl_suffixed_census`; outfit: `string_name`, `file_save`, `display_name_loc`; achievement/cartridge: `member_key` / `save_key` |
+
+**Scene join (J2) grammar** — claimed Names are produced by exactly one of:
+`T0` verbatim equality; `T1` `Location<n>_` + modifier-before-head-noun swap;
+`T2` `Location<n>_` + whole-word decoration prepended to the raw path; `T3`
+`Location<n>_` + raw path. A name-transform edge NEVER claims the raw
+`resource_path` where it greps clean nowhere (`MitaBlack` claims only
+`Location11_BlackMita` / `Location11_EyesMitaBlack`, both grep-clean in
+`level13.xml`). Trailing-decoration compounds are outside the grammar and are
+ledgered in the README, not silently dropped.
+
+**Clothes-line pin (J3):** display names resolve under
+`GetString("Clothes", stringName − 1)`; the direct offset is rejected
+(stringName 13 out of range in all 34 locales; semantic mismatch
+original→School). Pinned in the outfit file meta and pack README.
+
+## Non-goals
+
+No invented values for fields the sources don't prove; no wiki-only names as
+rows; no speaker attributions; no portraits (ART layer); no per-cartridge
+placements (scenes dataset); no achievement unlock predicates
+(dataset-achievements, DS-2); no locale columns beside the pointers.

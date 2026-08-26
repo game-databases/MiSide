@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "Merhaba, [player]!"}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "Sonunda tanıştık!"}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "Çok heyecanlandım!"}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "Soruların var biliyorum..."}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "Şey, görebildiğin üzere,"}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "seni yanıma getirebilmek için"}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": "bu özel cihazı yaptım."}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "Ama oyunun daha başka bir sürümüne ışınlandın."}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "bu da benim..."}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "ama bu uzun hikaye!"}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "her neyse, Sadece seni gördüğüme sevindim!"}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": "Evet, ben Mita'yım."}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "Sen de [player]'sın, değil mi?"}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "Şimdiden gidiyor musun?"}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "Sanırım sana yardım edebilirim... ama ben ne olacağım?"}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "Lütfen benimle biraz daha kal..."}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "Şöyle anlatayım..."}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "Ve buraya geldin!"}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "Anladın mı?"}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": "Ehm... pek anlamadım."}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "Sorun değil!"}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": "Önemli olan şey, şu anda birlikte olmamız."}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "Aç mısın?"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "Yemek yapmaya ne dersin?"}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "İşte,"}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "Havuçları doğramamda yardım et."}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "Bu sebzeler nereden geldi?"}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": "Az önce burası boştu."}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": "[player] oyundayız, unuttun mu?"}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": "Hadi, yardımcı ol."}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "Teşekkürler!"}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "Şimdi makası getirir misin?"}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": "Makas banyoda."}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": "Şimdi, lütfen sandalyeye otur."}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "Biraz sos ister misin?"}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": "Hayır, teşekkürler."}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": "Yazık oldu."}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "Sos tadı gerçekten güzelleştiriyor!"}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "Teşekkürler."}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "Şimdiden hepsini yedin mi?"}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "Benim tabağım"}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "bitmiyor..."}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "Ne oldu?"}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": "Nasıl hissettiğini söyle."}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "Kalbim çarpıyor,"}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "Ve gözüm bulanıyor."}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "Tamam."}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": "Sanırım sorunun ne olduğunu biliyorum."}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "Kalkabiliyor musun?"}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "Bunlar ne?"}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": "Hap."}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": "Sana iyi hissettirecekler."}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": "Aynanın önüne git."}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": "Hapı yut."}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": "Hadi."}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "Nasıl hissediyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "Daha iyi misin?"}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "Evet."}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "Bu biraz hızlı oldu..."}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": "[player], bir oyundayız."}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": "Burada her şey çok daha basit."}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "En küçük çaba bile"}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": "büyük sonuçlar verir."}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": "Hepsi oyunun bir konseptinin parçası:"}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": "Basitlik."}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "Bir örnek, lütfen?"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": "Havuçlar mesela."}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "Bir tane doğradın,"}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": "ama 3 tane doğramışsın gibi kullandık."}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": "Bak, bunların hepsi çok ani."}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": "Korkuyorum, hem de az buz değil."}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "Bir sorun mu var?"}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": "Havalandırmada birkaç tane kartuş buldum."}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": "Üstünde isimler vardı."}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "Onların olayı ne?"}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "Kartuş mu?"}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "Ne kartuşu?"}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": "Bunu sonra birlikte çözelim."}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": "Ama sonra."}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": "Şimdi, bir şeyler yememiz lazım."}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": "Lütfen bana makası uzat."}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// Ring"}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "Yüzük?"}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// Mirror"}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "Aynada neden yansıma yok?"}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "A, doğru!"}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "Yansımayı açmayı unutmuşum."}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": "İşte."}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "Artık var!"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "Bu arada,"}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": "Önceden yansımanın ne olduğu hakkında hiç fikrim yoktu."}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "Bir güncellemeye kadar"}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": "benim dünyamda bu özellik yoktu."}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "Senin dünyanda"}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "çok fazla yansıma var mı?"}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": "E, evet."}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "Bulduğun 3 objeyi "}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "hatırladın mı?"}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "Tarayıcıya koyduğun?"}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "Şey, ee..."}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "O objeler"}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": "bu sürüme bağlılar."}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": "O yüzden buradasın."}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// Movbile TV"}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "Sana aldığım"}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": "televizyon bu."}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "Evet!"}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "Bana bozulduğunu"}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": "söylemiştin."}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "Yani... Sadece..."}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "Sana sürpriz yapmak istedim!"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "Dünyama getirebilmek için"}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": "küçük beyaz bir yalan söyledim."}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "Artık işe yarıyor, bilgi gösteriyor!"}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "Ve, şey..."}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "Biraz mühendis gibiyimdir."}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// School cloth"}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "Bu nedir?"}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "Okul üniforması mı?"}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "Ne yapıyorsun ki bunu?"}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "Okula mı gidiyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "Okula mı gidiyorum?"}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": "kesinlikle hayır."}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": "Ama üniformayı seviyorum."}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "Sence de üniformada"}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "tatlı durmuyor muyum?"}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// PC"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "Bilgisayar çalışıyor mu?"}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "Yoksa sadece masa süsü mü?"}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "Tabii ki de çalışıyor."}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "Buradaki her şey"}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": "senin dünyan ile aynı şekilde çalışıyor."}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "Benim dünyamda,"}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "Çok işim olduğu için..."}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": "Bilgisayar başında çok oturuyorum."}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": "Biliyorum."}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "İşin yüzünden"}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "benimle daha az "}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": "ilgileniyordun."}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "Bilirsin, benim de para kazanmam lazım."}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "Ayrıca sen böyle bir şeyi nereden biliyorsun ki?"}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": "Telefonunun kamerası... Bazen açık oluyor."}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": "Çok özür dilerim."}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": "Seni gizlice izliyordum >A<"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": "Ehm... bu çok da uygun değil."}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "Neyse."}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// Umbrella"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "Oyunu o kadar oynadım"}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": "ama hiç yağmur yağdığını görmedim."}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "Niye şemsiyen var ki?"}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": "Yağmur yağıyor, sadece çok nadir."}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": "Sen henüz görmedin."}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": "Belki bir gün görürsün."}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": "O zaman da şemsiye lazım olur."}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "Değil mi?"}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// Electrical panel"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "Burada elektrik panosu ne yapıyor."}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "Eğer biz bir oyundaysak,"}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "bu niye var ki?"}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "Öncelikle,"}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": "oyundayız."}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": "Yani \"Niye\" diye sormanın..."}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": "pek de bir anlamı yok."}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "Ancak,"}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": "elektriği yeniden başlatıyor."}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "Buradaki her şey"}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": "senin dünyandan örnek alınarak yapıldı."}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// Exit door"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "Dışarı çıkabilir miyiz?"}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "Şey..."}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": "Henüz değil."}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": "Belki sonra."}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": "Şimdilik burada kalalım."}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": "Evde."}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// Books"}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": "Çok fazla kitabın var."}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "Hepsini okudun mu?"}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": "Evet, Hepsini okudum."}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "Burada yalnız olmak"}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": "çok, çok sıkıcı."}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// TV in room kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "İkinci bir televizyonu ne yapıyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "Eski bir de."}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "Sevmedin mi?"}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "Atabilirim..."}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "Ama cevap verecek olursak..."}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": "Dekorasyon için."}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "Mutfağa hava katsın diye."}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "Ve çalışıyor da!"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "Tüm klasik programları"}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "buradan izleyebiliyorum!"}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "// Smartphone"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "Telefonum."}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": "Cebimde değil."}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "Peki, Buraya nasıl geldi?"}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": "Bu önemli değil."}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "Hey, bir fikrim var!"}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "Hadi fotoğraf çekelim!"}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "Baksana!"}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "Güzel bir fotoğraf oldu!"}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": "Senin için bir hatıra olsun."}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": "Bir sorum var."}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "Telefonda"}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "oyunu açsam,"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "oyunda seni görür müyüm?"}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": "Hayır, o şekilde çalışmıyor."}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "// TV"}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "Televizyonda"}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "kaç tane kanal var?"}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": "Bu televizyon öyle çalışmıyor."}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": "İnternete bağlı."}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "Yani her şeyi izleyebiliyorsun,"}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": "En azından internette olanları."}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": "Bir saniye."}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "Ehh, pardon..."}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "Bu ne?"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "bir daire etrafındaki kediler?"}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "A, bak."}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "Bak ne yapacağım."}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "Durdur!"}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "İçecek bir şey ister misin?"}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "Tuhaf reklammış..."}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "Ölü içecek mi?"}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "Evet, ve bu da"}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": "direkt reklamdan çıkan içecek."}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "Tadı..."}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "Sevdim,"}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": "ama tam olarak tarif edemiyorum."}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": "Çok karışık."}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "Tabii."}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "// Mita shy"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "N'apıyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "Dik dik bakma lütfen."}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "Beni utandırıyorsun."}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "// The statuette"}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "Şu korkunç figür."}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "Bu tarz şeyleri mi"}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "seviyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "Sana korkunç mu geldi?"}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "Evet."}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "Sanki lanetli gibi duruyor..."}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": "Kesinlikle lanetli değil."}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": "Korkunç da değil."}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "Bence daha çok, sevimli!"}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "Belki de haklısındır..."}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "Mita?"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "Ne oluyor?"}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "// Mita kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "Yemeye başlamadan önce,"}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "sohbet etmek ister misin?"}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "// Start Eat"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "Afiyet olsun."}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "// Quest 1"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "Öyle değil mi?"}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "Kalabilirsin."}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "Sorun etmem."}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "Aslında,"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "kalmanı İSTİYORUM ZATEN!"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "// Quest 2"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "Geri mi gitmek istiyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "Ama neden?"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "Burası çok güzel..."}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": "Ve rahat da."}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "Ayrıca, ben varım."}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "Yanlış anladın."}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": "Kalmak isterim."}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "Sadece... endişeleniyorum."}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "Evde bir şey unuttuysam diye."}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "Bir anda buraya geldim"}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "ve hazırlanmak için"}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": "hiç vaktim olmadı."}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": "Pardon... o kadar düşünemedim."}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "// Quest 3"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "Rüya mı? Kaçmak mı istiyorsun yani?"}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "Olan her şeyi unutmak?"}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": "Hayır, öyle değil."}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "Burası çok..."}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": "garip ve gerçek dışı hissettiriyor."}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "Ama sen..."}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": "Sen gerçek duruyorsun."}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "gerçek duruyor muyum?"}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "Ben GAYET DE gerçeğim,"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "seni şapşal!"}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "// Quest 4"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "Sadece işler"}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": "burada böyle."}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "Uzaktaki şeyleri "}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "göremiyor olmanı"}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": "garip bulabilirsin."}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": "O kadar da garip gelmedi aslında."}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": "Dürüst olayım, zarif duruyor."}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": "Ben de öyle düşünüyorum."}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": "Takılmaları da engelliyor."}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "Takılmaları mı engelliyor?"}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "Evet! Halen çözülmemiş hatalar da var."}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "Umalım da karşımıza çıkmasın."}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "// Quest 5"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "Makas ya da bıçak mı?"}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": "Sosu açarken bıçak da kullanabilirdim, evet."}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "Ama sen geldiğinde"}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": "her şeyin"}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": "hazır olmasını istedim."}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "Sana sürpriz yapmayı seviyorum."}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "Hem uzun da sürmedi!"}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "Tee hee."}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "// Glasses"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "Gözlük mü kullanıyorsun?"}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": "Sayılmaz."}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": "İstersen takarım ama."}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "Yakıştı mı?"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "// Yes"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "Tamamdır o zaman!"}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": "Böyle kalsın."}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "// No"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "Şey..."}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "Her neyse..."}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "// Use the sauce"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "Pekala,"}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "ne tür bir sos bu?"}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "Bu bir aşk sosu!"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "Aşk dolu!"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "Ve... dünyaya farklı bir bakış açısı katıyor."}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "Alışılmadık değil mi?"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "Öyle..."}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "Oyun konsolun mu var?"}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": "Havalıymış."}

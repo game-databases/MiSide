@@ -1,0 +1,629 @@
+# Site scaffold spec — stack, locales, kit, routing, map contract (D-S1)
+
+Status: DRAFT for verifier review; gates ALL `MiSide/site/` building. Authored
+2026-08-25 by the Documentator pass (brief D-S1) from the frozen research wave
+and the seven pinned dataset contracts. Pages, tools, and content come as
+separate pieces ([§8](#8-non-goals-of-the-scaffold-piece)) — this spec fixes
+only the ground they build on.
+
+Reads (in full, this pass): [spec.md](../../spec.md) ·
+[_foundation/decision-register.md](../../../_foundation/decision-register.md) ·
+[design-standard.md](../../../_foundation/design-standard.md) ·
+[seo-standard.md](../../../_foundation/seo-standard.md) ·
+[localization-architecture.md](../../../_foundation/localization-architecture.md) ·
+[site-sections.md](../../../_foundation/site-sections.md) ·
+[domain-doctrine.md](../../../_foundation/domain-doctrine.md) ·
+[FRAMEWORK.md](../../../FRAMEWORK.md) §2/§4/§8 ·
+[T2](../research/ui-style-scout.mdx) ·
+[contracts/*.mdx](../../contracts/) ×7 · `extracted/data/*/README.md` ·
+[`extracted/relinks/locale_availability.jsonl`](../../extracted/relinks/locale_availability.jsonl)
+(measured this pass: 2,686 cells — 1,734 `category_presence` + 680
+`dialogue_bucket` + 272 `book_page`; classifications present 2,108 / filler 297 /
+contentless 9 — over 34 locales). Shorthand **DR** =
+decision-register entry.
+
+---
+
+## 1. Stack pin & rendering strategy
+
+### 1.1 Stack
+
+`stack: next` is already declared ([spec.md](../../spec.md) frontmatter;
+[FRAMEWORK §2.20](../../../FRAMEWORK.md#220-engine-tech-stack-decided-2026-08-06)
+default profile: Next.js App Router + React 19 + TypeScript; Astro's ≲30k gate
+cannot be asserted pre-P5 because dialogue_node mass was unmeasured — now
+measured at 2,839 nodes, so the Next choice stands a fortiori). Exact pins
+(matching the sibling-pack precedent `graveyardKeeper/site/package.json`, the
+network's newest green Next site):
+
+| Package | Pin | Why |
+|---|---|---|
+| `next` | `16.3.2` (exact) | App Router; ISR + on-demand revalidation are load-bearing for patch ops ([§2.20](../../../FRAMEWORK.md#220-engine-tech-stack-decided-2026-08-06)) |
+| `react` / `react-dom` | `19.2.8` (exact) | profile pairing |
+| `typescript` | `^5` | |
+| `tailwindcss` + `@tailwindcss/postcss` | `^4` | token carrier ([§4.2](#42-the-token-layer-designtokenscss)) |
+| `radix-ui` | `^1.6.7` | stock behaviour layer of the kit ([§4](#4-component-kit-shadcn-upgraded-not-reskinned)) |
+| `shadcn` (CLI, devDep) | `^4.19.0` | copy-in componentry; components commit to `src/components/ui/` |
+| `class-variance-authority` / `clsx` / `tailwind-merge` | latest ^ | shadcn companions |
+| `tw-animate-css` | `^1.4.0` | motion baseline the upgrades extend |
+| `minisearch` | `^7.2.0` | search index ([§2.9](../../../FRAMEWORK.md#29-search)); corpus ≈250–350 entities + 19 dialogue graphs ≪ the ~100k Meilisearch line |
+| `leaflet` (+ types) | latest ^ | map machinery ([§2.6](../../../FRAMEWORK.md#26-maps-are-essential--top-priority-not-launch-blocking)) |
+| `lucide-react` | latest ^ | chrome icons ONLY; game icons come from the art layer ([§2.5](../../../FRAMEWORK.md#25-icons-are-the-games-own-art)) |
+
+Excluded per [§2.20](../../../FRAMEWORK.md#220-engine-tech-stack-decided-2026-08-06):
+Pages Router, pure SPAs, MUI/daisyUI/styled-components, TanStack Start. Standard
+libraries adopted where they earn their slot: TanStack Table + Virtual for data
+grids (achievement/minigame/dialogue tables); TanStack Query only if a client
+island needs fetch caching (live gauge, search). Node ≥ 20. Package manager:
+npm, lockfile committed.
+
+### 1.2 Rendering strategy per section type
+
+Static-first everywhere content lives — server-rendered or statically
+generated HTML for ALL content pages, internal link graph as plain `<a href>`
+([seo-standard §2](../../../_foundation/seo-standard.md#2-rendering--crawlability),
+[FRAMEWORK §2.8](../../../FRAMEWORK.md#28-entity-page-anatomy)). Parity: one
+render for humans, crawlers, and AI browsers — no bot-only prerender variant.
+
+| Surface | Strategy | Rationale |
+|---|---|---|
+| Entity pages, section indexes, glossary, lore | **SSG** (`generateStaticParams` over contract JSONL; `dynamicParams = false`) | corpus is finite and small (≈250–350 entities + 14 profiles + 24 scenes); one URL forever ([§2.7](../../../FRAMEWORK.md#27-url-architecture-is-the-product)) |
+| Same, patch ops | SSG + **on-demand revalidation** (`/api/revalidate`, shared secret, called by the pipeline emit stage after a rerun) | the ISR-grade patch-op reason Next was chosen ([spec.md](../../spec.md) stack rationale); a stale record after rerun is a defect ([dataset-characters](../../contracts/dataset-characters.mdx) rule 4: never render stale convenience copies) |
+| Dialogue browsable views (19 graphs) | SSG | transcripts ×34 are unique content; per-node standalone pages remain banned ([spec.md §Page inventory](../../spec.md#page-inventory) declared shape; [seo-standard §5](../../../_foundation/seo-standard.md#5-content-quality-rules-where-most-programmatic-sites-die) uniqueness floor) |
+| Guides | SSG from MDX content collection | every factual claim entity-linked (site-sections #4 aggressive-linking rule) |
+| News + `/news/patch/{id}` | SSG from pipeline changelog summaries + Steam news RSS input | D5 ambition move 3 shape; article dates are the article's own fact ([DR-2026-08-22-numbers-stand-alone]) |
+| Tools (ending explorer, console reference, …) | static shell + client islands; **state in the URL** (`replaceState`, never navigation keystrokes) | [DR-2026-08-22-inputs-answer-as-you-type]; shareable result URLs ([seo-standard §6](../../../_foundation/seo-standard.md#6-link-acquisition-built-into-product)) |
+| `/map` | SSG shell + Leaflet island; markers/metadata from emitted JSON | [§7](#7-map-module-contract) |
+| Live CCU gauge + history | client island reading collector-published snapshot JSON at the declared origin path; any history chart is **server-rendered SVG in the first HTML** | ephemeral/streaming planes never enter static entity JSON ([§2.1](../../../FRAMEWORK.md#21-three-data-planes), [spec live block](../../spec.md)); chart SSR precedent [DR-2026-08-18-chart-ssr] |
+| Static JSON API + `llms.txt` + sitemaps + RSS + OG images | build-emitted files/routes | machine plane is a launch gate ([seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo--be-the-cited-answer-not-just-the-ranked-page)) |
+
+CWV budgets (LCP < 2.5 s, scripted-interaction latency < 200 ms, CLS < 0.1,
+mobile + desktop) run in CI per distinct template × canonical locale
+([seo-standard §4](../../../_foundation/seo-standard.md#4-performance-core-web-vitals-are-a-ranking-input),
+[FRAMEWORK §8](../../../FRAMEWORK.md#8-definition-of-done-per-game--v22-dr-2026-08-15-d5-map-gate)).
+
+---
+
+## 2. Repo layout under `site/`
+
+The directory does not exist yet (verified empty this pass); the scaffold piece
+creates exactly this skeleton:
+
+```
+site/
+├── package.json               # §1.1 pins, exact
+├── next.config.ts             # redirects: /en/:path* → /:path* (301); typedRoutes
+├── tsconfig.json  ·  postcss.config.mjs
+├── components.json            # shadcn CLI config (RSC, cssVariables, new-york base)
+├── scripts/
+│   ├── emit-artifacts.mjs     # build step: static JSON API, search indexes,
+│   │                          #   map-marker JSON, RSS skeletons → public/  (AC S11)
+│   ├── check-chrome-parity.mjs# key-set equality across all chrome/<locale>.json (AC S4)
+│   └── check-no-third-party-maps.mjs  # negative embed grep (AC S7, FRAMEWORK §8 gate)
+├── public/
+│   ├── cdn/v<buildId>/        # permitted art classes copied from extracted/art at build
+│   │                          #   (sprites, portraits, per-locale UI art; NEVER audio/3D/video/GI/psd)
+│   ├── api/v1/…               # emitted static JSON, URL-derivable from page URLs
+│   ├── search/<locale>.idx.json
+│   ├── map/<scene_id>/…       # OWNED authored schematic imagery (§7)
+│   └── fonts/                 # subset woff2 from the §4.4 procedure
+└── src/
+    ├── app/
+    │   ├── layout.tsx         # <html>, font faces, tokens import — no chrome
+    │   ├── globals.css        # tailwind v4 theme bridge OVER design/tokens.css
+    │   ├── sitemap.ts  ·  robots.ts   # per-section-per-locale partition (§10.1), lastmod = buildId (seo §2)
+    │   ├── (pivot)/           # EN — bare paths (§3.1); every route below mirrors here
+    │   │   ├── layout.tsx     # pivot chrome (header/search field/locale combobox/footer)
+    │   │   ├── page.tsx       # /
+    │   │   └── …route modules per §5…
+    │   ├── [locale]/          # the SAME route tree for the 33 prefixed locales (§3.1);
+    │   │   └── layout.tsx     #   validates :locale against src/i18n/locales.ts, else 404
+    │   ├── og/[kind]/[slug]/route.tsx   # per-entity OG card renderer
+    │   └── api/revalidate/route.ts      # on-demand revalidation, shared-secret
+    ├── components/
+    │   ├── ui/                # shadcn primitives as copied — then upgraded IN PLACE (§4.1)
+    │   ├── kit/               # MiSide composites: PillButton, DialogueBand, NameTagPill,
+    │   │                      #   KeycapKbd, CartridgeCard, GradientPill, CorruptionHover,
+    │   │                      #   VoidWell, HeartWallpaper, LcdTerminal
+    │   ├── chrome/            # Header, SearchField (§6), LocaleCombobox, Footer, Breadcrumbs
+    │   ├── entity/            # EntityShell slots: sticky card, share rail, H1+quotable,
+    │   │                      #   locale row, conditional tabs (hidden panels, never client-only)
+    │   └── map/               # SceneMap module (Leaflet island) + focused inline variant
+    ├── i18n/
+    │   ├── locales.ts         # THE pinned 34-row table (§3.1) — code, dir, client-dir name,
+    │   │                      #   chromeAlias?, prefix — single import site for every consumer
+    │   ├── chrome/<locale>.json  # ×34 keyed chrome namespaces (§3.3)
+    │   └── request.ts         # getChrome(locale) — chrome namespace, never game text (loc-arch §4)
+    ├── data/                  # SERVER-ONLY build-time readers over ../extracted
+    │   ├── contracts.ts       # typed readers per contract file incl. _meta first-line parsing
+    │   ├── resolveLoc.ts      # {category, line_index} → string for a locale, 0-based,
+    │   │                      #   ARITHMETIC-FREE: offsets were applied at emit (TV −1 pin,
+    │   │                      #   dialogue −1 contract, Clothes −1 pin) — loaders never re-offset
+    │   └── availability.ts    # locale_availability.jsonl reader + dir-name→BCP-47 join
+    ├── lib/search/searchRows.ts   # ONE matching function, imported by server and browser (§6)
+    └── styles/design/tokens.css   # §4.2 — lives with the kit, imported by globals.css
+```
+
+Rules: every `(pivot)` and `[locale]` route module is a thin file (<15 lines)
+that delegates to a shared implementation under `src/components` / `src/lib`;
+no route logic exists twice. Loaders under `src/data/` never import client
+components; nothing bundles the corpus into client JS — the browser sees only
+emitted `public/` artifacts. Game data stays out of git per AGENTS.md rule 5 /
+[DR-2026-08-16] item 3; `site/public/cdn/` receives only permitted, web-sized
+classes at build time, regenerated — never committed.
+
+---
+
+## 3. Locale architecture implementation
+
+### 3.1 Routing: pivot EN bare, 33 prefixes
+
+Per [DR-2026-08-20-locale-urls] and
+[localization-architecture §1](../../../_foundation/localization-architecture.md#1-architecture-one-dedicated-page-per-entity-per-language):
+pivot **en** serves at bare paths (`/mita/mta-cap`); every other locale fully
+localized under its BCP-47 prefix (`/ru/…`, `/pt-BR/…`); `/{en}/*` URLs do not
+exist and **301** to the unprefixed path (`next.config.ts` redirect +
+defensive `[locale]` check); never query-string locales; never geo-redirects.
+Unknown locale codes **404** — they were never URLs. Implementation is the
+two-tree layout of [§2](#2-repo-layout-under-site): `(pivot)` + validated
+`[locale]`, both statically generable, sharing implementations. Home canonical
+is the bare `/`, declared/sitemapped as the answering URL
+([DR-2026-08-18-page-size]).
+
+The 34-locale set is the measured three-way reconcile in
+[spec.md §Locale strategy](../../spec.md#locale-strategy) (31↔31 store↔client
+exact + 3 client-only: ar, ar-EG, ru-x-prerev) and is pinned ONCE in
+`src/i18n/locales.ts` with columns: BCP-47 code, client dir name (the join key
+into `extracted/localization/<dir>/` and into the availability ledger, which
+keys locales by CLIENT dir name — "Arabic", "ChineseSimplified", … — verified
+this pass), text direction (`ltr` except `rtl` for ar, ar-EG), prefix, and
+optional `chromeAlias`. The mapping table is
+[spec.md](../../spec.md) `code-mapping` + the 34-row table there, transcribed
+verbatim and unit-tested against the ledger's locale vocabulary (a ledger
+locale with no mapping row fails the build).
+
+### 3.2 Availability: the ledger drives everything
+
+`extracted/relinks/locale_availability.jsonl` is the single source for the
+cross-locale link row, per-locale sitemaps, hreflang clusters, and coverage
+stats
+([localization-architecture §2](../../../_foundation/localization-architecture.md#2-cross-locale-link-contract),
+[§5.4](../../../_foundation/localization-architecture.md#5-data-layer-obligations--what-every-pack-must-ship));
+regenerated every rerun. Cell semantics already measured into it:
+`present` / `filler` / `contentless` (e.g. French `LocationDialogue Location16`,
+French `LocationHint Location18` 0-byte shells) — **contentless ≠ missing**
+([dataset-scenes](../../contracts/dataset-scenes.mdx) §Locale model rule 3).
+Declared filler policy: **explicit-filler**
+([spec.md](../../spec.md) `source-per-locale.filler-policy`) — a missing
+category renders the localized not-yet-translated filler; a page is omitted
+only when the entity has ZERO strings in that locale. Per-entity page
+availability additionally derives from the owning dataset's category-presence
+rule (characters: four categories' presence per locale dir,
+[dataset-characters §Locale model](../../contracts/dataset-characters.mdx)).
+
+### 3.3 Chrome i18n — all 34 ship at launch; none staged
+
+**Decision: all 34 locales ship chrome at launch. Staging is rejected**, and
+here is the justification the verifier checks against:
+
+1. The pack spec already rules it: *"Site chrome ships for every locale above
+   — all 34 have client coverage (64–76 category files each)"*
+   ([spec.md §Locale strategy](../../spec.md#locale-strategy) shipping bar).
+   A staged subset would reopen a settled spec call, not a scaffold freedom.
+2. [FRAMEWORK §2.4](../../../FRAMEWORK.md#24-all-languages-the-game-supports--launch-blocking)
+   makes ALL client languages launch-blocking, verified against the client —
+   which this pack has done twice (E1 step 5; the 2026-08-24 recount).
+3. hreflang clusters over partial chrome leak crawlers and users into
+   half-translated trees; the cluster is only honest when membership equals
+   availability end-to-end ([seo-standard §1](../../../_foundation/seo-standard.md#1-url--information-architecture)).
+4. The RU+EN dual community is a first-class audience and the store lists 31
+   locales — discoverability in those markets is a ship gate
+   ([DR-2026-08-17-discoverability]).
+5. Cost is bounded by design: chrome keys stay ≤150 at launch (nav, search,
+   filters, sort labels, map controls, tracker verbs, empty/error states,
+   breadcrumbs), and game-facing text — the expensive mass — costs nothing
+   extra because it IS the extracted LOC layer resolved per locale.
+
+Mechanism
+([localization-architecture §4](../../../_foundation/localization-architecture.md#4-site-chrome-i18n)):
+keyed per-locale resource files `src/i18n/chrome/<locale>.json`, en as pivot,
+namespaces `chrome.nav.* / search.* / filters.* / sort.* / map.* / tracker.* /
+empty.* / error.* / a11y.*` — a namespace **separate from game text**; chrome
+strings never claim client provenance and game categories are never imported
+into chrome files. Chrome i18n deliberately hand-rolls these keyed files +
+`getChrome(locale)` instead of adopting [FRAMEWORK
+§2.20](../../../FRAMEWORK.md#220-engine-tech-stack-decided-2026-08-06)'s
+named next-intl/next-translate: ≤150 flat keys ×34 with no interpolation or
+pluralisation need, parity enforced by a plain key-set diff (AC S4), and a
+pivot-bare/two-tree routing scheme that must not grow an i18n middleware
+layer ([DR-2026-08-20-locale-urls]) — the libraries would add a runtime
+dependency with no job here, while §2.4's mechanism clause (namespaced locale
+files + parity-check scripts) is satisfied verbatim. Parity script
+(`scripts/check-chrome-parity.mjs`) asserts
+identical key sets across all 34 files and fails the build on drift. Exactly
+two declared aliases are permitted, both flagged in `locales.ts.chromeAlias`:
+`ru-x-prerev → ru` (flavor orthography is a game-text property; chrome mirrors
+ru until the first loc pull justifies more) and `ar-EG → ar` (parity re-check
+owed at first loc pull, spec gap 8). Any further alias is a defect. Chrome
+copy is authored (machine-drafted, human-reviewed) in the target language —
+never English passthrough on a non-EN page
+([localization-architecture §3](../../../_foundation/localization-architecture.md#3-unique-localized-title--meta-description-per-locale-seo-requirement)).
+RTL: `ar`/`ar-EG` render `dir="rtl"` at the layout root; kit components use
+logical CSS properties (Tailwind `ms-/me-`, `start/end`) exclusively — a
+physical `left/right` utility inside kit components fails review. Per-locale
+fonts ship ([spec.md](../../spec.md) locale table rows 32–33; T1 §4).
+
+Titles/meta: unique per entity per locale, composed from the game's OWN
+strings via per-locale templates
+([localization-architecture §3](../../../_foundation/localization-architecture.md#3-unique-localized-title--meta-description-per-locale-seo-requirement),
+[seo-standard §5](../../../_foundation/seo-standard.md#5-content-quality-rules-where-most-programmatic-sites-die));
+`*_text_en` convenience copies are search/API glue, never rendered prose
+(characters contract rule 4).
+
+---
+
+## 4. Component kit — shadcn UPGRADED, not reskinned
+
+Authority: [DR-2026-08-24-miside-pack] ¶3 — token theming alone is explicitly
+insufficient; the copied components' interactions, animations, motion, and
+look-and-feel are rebuilt to the game's own UI behaviours, judged against the
+[design-standard §5 feel bar](../../../_foundation/design-standard.md#5-look-feel-and-soul--grading-bar).
+The kit supplies the accessible grammar (Radix behaviour stays stock); the
+game supplies behaviour and soul ([FRAMEWORK §2.11](../../../FRAMEWORK.md#211-design-from-the-games-own-ui)).
+
+### 4.1 Primitives: what inherits stock vs what is rebuilt
+
+shadcn primitives are added on demand by page/tool pieces, but the scaffold
+pins the upgrade CONTRACT for the launch-critical set. "Stock" = Radix
+accessibility/focus/keyboard semantics untouched; "rebuilt" = visuals, motion,
+and interaction skin per T2 evidence.
+
+| Primitive | Inherits stock | Rebuilt (evidence) |
+|---|---|---|
+| Button → `kit/PillButton` | Radix press/focus semantics | pill radius-full, gradient fill `--ms-accent-gradient`, glow lift `--ms-glow-pink` (T2 §3 key-hint pills, §6 recipes) |
+| Dialog / Sheet → `kit/DialogueBand` | focus trap, Escape, portal | bottom band, translucent pink ALPHA fill (reads pink over light, plum-purple over dark — alpha not solid), name-tag pill overlapping top-left, advance prompt pill top-right (T2 §3 dialogue box) |
+| Tabs → conditional-module switcher | keyboard nav | pill selector, hidden inactive panels in served HTML (§2.8) |
+| Tooltip / HoverCard → hover-join layer | positioning, delay | hover DOES WORK: definition, locale-correct table, or bidirectional stat highlight; tint-only hover fails (design-standard §5.3); compromised/glitched entities take `CorruptionHover` — VHS banding + RGB split `--ms-glow-glitch` as STATE not decoration (T2 §4.1, §7.5) |
+| Select / Combobox → `LocaleCombobox` | typeahead semantics | native names in list, accepts typed text, closed chip shows current code (design-standard §5.3) |
+| Command (palette internals) | filter plumbing | feeds the header search field (§6), never a `/search` route |
+| Badge / kbd → `KeycapKbd` | — | bold white letter on magenta rounded square; the site's keyboard-hint language (T2 §3, §7.7) |
+| Card → `CartridgeCard` | — | square rounded cell + header-pill panel + per-cell counts grid language for ANY grid-of-entities page (T2 §3 menu/list, §7.4) |
+| ScrollArea | — | rounded track (T2 §3 scrollbar) |
+| Table (TanStack) | virtualization | header pills, danger red `--ms-danger` for danger rows, CRT green `--ms-signal` reserved for machine-voice cells (buildId, dump refs) (T2 §4.3–4.4, §7.5) |
+| Collapsible / Accordion | disclosure a11y | module sections; empty sections OMITTED, never captioned ([DR-2026-08-22-copy-earns-its-place]) |
+
+Kit-wide laws: no sharp corners anywhere (radius family only — T2 §3 geometry
+summary, §7.2); dark plum field, never grey
+([T2 §5](../research/ui-style-scout.mdx#5-light-vs-dark-default)); the warm
+cream register is an optional secondary reading theme, never default; heart-
+wallpaper texture available as low-contrast section background (T2 §7.6);
+checkerboard-void `VoidWell` for honest empties of the same height as filled
+slots — no absence sentences (design-standard §5.1;
+[T2 §4.5](../research/ui-style-scout.mdx#4-glitch--error-motifs)).
+Mita-keyed colour identity: `EntityShell` sets `data-character="<character_id>"`
+and re-keys `--ms-accent-local` from `personages.jsonl` `palette_color1/2`
+(hex conversion pinned in the characters contract: per-channel
+`round(f×255)` clamp — `mita-usual` c1 → `#cc73a2`, `mita-true` → `#d92c45`);
+a shared grey card with swapped portrait is a fail (design-standard §5.1,
+[T2 §7.3](../research/ui-style-scout.mdx#7-anti-genericism-check)).
+
+### 4.2 The token layer (`design/tokens.css`)
+
+Structure: three tiers, consumed in order —
+(1) **primitives**: all 14 physical T2 §6 rows transcribed VERBATIM
+(`--ms-bg-0/1/2`,
+`--ms-text-1/2`, `--ms-accent`, `--ms-accent-soft`, `--ms-accent-gradient`,
+`--ms-danger`, `--ms-signal`, `--ms-warm`, radius family `999px/24px/14px`,
+`--ms-glow-pink`, `--ms-glow-glitch`) with their sample provenance in
+comments (the enumeration is complete: T2's own trailing "12 rows" line
+counts token *kinds*, the table carries 14 physical rows, and every one is
+transcribed); (2) **semantic bridge**: shadcn/Tailwind v4 theme variables
+(`--background`, `--foreground`, `--primary`, `--radius`, …) defined FROM the
+primitives so stock components inherit the soul mechanically; (3) **local
+overrides**: `--ms-accent-local` and friends, set per entity. Values come only
+from T2 sampling; introducing an uncited hex is a defect (AC S8).
+
+### 4.3 Typography floor
+
+No user-readable text below 12px; density from layout, never shrinking type
+([design-standard §3](../../../_foundation/design-standard.md#3-structural-rules),
+[DR-2026-08-20-design-bar] ¶4). Rounded bold sans for UI/prose, UPPERCASE
+section headers, white-on-pink with soft lift; pixel/LCD face RESERVED for
+machine-voice data (buildIds, dump refs, console reference) — never body text
+(T2 §2).
+
+### 4.4 Font-family decision procedure (run during scaffold, before first page piece)
+
+Typography today is impression-level (T2 §8 "Not done"); the scaffold closes
+it with THIS procedure, whose artifacts land in `tokens.css` +
+`missingdata.md`:
+
+1. **Enumerate candidates from the corpus**: grep `extracted/il2cpp/stringliteral.json`
+   (LIT) for `Fonts/` resource literals; grep `extracted/decompiled/` +
+   `harvest/mb-dump/` for `UnityEngine.Font` / `TMP_FontAsset` /
+   `m_FontData` consumers (TextMeshPro presence decides whether TTF bytes are
+   serialized at all); list Font-family assets in `extracted/census/` asset
+   lists and any `.ttf/.otf` already exported under `extracted/art/`
+   (the achievements pass proved `art/container-2d/resources.assets` holds
+   sprite exports — font assets, if present, export the same way).
+2. **Inspect per-locale art subsets** `extracted/art/localization-art/<locale>/Textures/`
+   (measured: ja 20 png vs en/ru/fr 26 — T2/E1 step 5) for glyph-fallback
+   atlases covering CJK/Arabic/Thai — these bound which scripts need a webfont
+   fallback chain regardless of the Latin face chosen.
+3. **Match** candidate faces against the T2 §2 impression set (rounded bold
+   sans; chunky pixel LCD face) by rendering the candidate glyphs over the
+   existing 900px thumbnails — never re-opening full-res JPEGs in agent
+   context (T2 method warning stands).
+4. **Decide**: identified game faces → self-hosted subsets under
+   `public/fonts/` (`unicode-range` per script; woff2; font-display swap);
+   license tag recorded repo-side as a fact (AGENTS.md rule 2 — analysis
+   stays owner-domain). Not identified → DECLARED substitute families chosen
+   against the same impressions, recorded in `tokens.css` comments AND
+   `missingdata.md` — silent substitution is a defect. Pixel face: any open
+   LCD-style face is acceptable for the machine voice; it is a costume, not a
+   claim of game provenance.
+
+---
+
+## 5. Routing map — page inventory → routes
+
+Slugs come ONLY from contract id columns; `generateStaticParams` reads them
+via `src/data/contracts.ts`; an unknown slug 404s and no slug is ever invented
+(AC S6). All routes below exist identically at bare paths (EN) and under each
+of the 33 prefixes ([§3.1](#31-routing-pivot-en-bare-33-prefixes)). Kinds
+absent from this table carry declared dispositions in
+[§5.1](#51-totality-dispositions-for-the-nine-kinds-without-a-contract-route)
+— no silent omissions against the spec page inventory.
+
+| Contract / inventory entry | Rows | Route pattern | Notes |
+|---|---|---|---|
+| `characters` kind `mita` | 14 | `/mita` · `/mita/[character_id]` | soul surfaces; kebab-case ids (`mita-usual`); `name_is_shared` pair disambiguates by id, never by title alone |
+| `characters` kind `player` | 10 | `/players` · `/players/[character_id]` | `player-{n}` ids |
+| `cartridges` | 23 | `/cartridges` · `/cartridges/[cartridge_id]` | letter↔digit hyphen ids (`mta-cap`, `plr-1099`) |
+| `cartridges` → minigames | 17 | `/minigames` · `/minigames/[minigame_id]` | `community_alias` may appear as displayed gloss, never in the key |
+| `achievements` | 26 | `/achievements` · `/achievements/[achievement_id]` | canonical spellings preserved (`ACHI_WinFIght`) |
+| `endings` | 4 | `/endings` · `/endings/[ending_id]` | includes `peaceful` mode-stub rendered visible-locked (COMP J11) |
+| `documents` profiles | 14 | `/lore/profiles/[document_id]` | full lore text ×34 via pointers |
+| `documents` paper_parts + novella | 6 | `/lore/[document_id]` | unique puzzle/reading surfaces |
+| `documents` notes ×160 | 160 | **no page** | consumer rule 1: never render note prose — there is none; they surface as placed interactables on location/map surfaces + JSON API rows. Thin-page ban ([seo-standard §5](../../../_foundation/seo-standard.md#5-content-quality-rules-where-most-programmatic-sites-die)) |
+| `documents` books | 8 | `/lore/books` · `/lore/books/[book_id]` | per-locale art availability from `art_per_locale` (Location19 = 32/34 — zh-Hans/zh-Hant absent; availability asserted, never assumed) |
+| `scenes` | 24 | `/locations` · `/locations/[scene_id]` | story scenes host objective hints, POI listings, focused map module |
+| `dialogue` graphs | 19 | `/dialogue/[container]` | level-scoped transcript views; speaker/choice scoping = in-place filter, canonical to the unfiltered view; per-node pages banned ([spec.md §Page inventory](../../spec.md#page-inventory)) |
+| `endings` choice_nodes ×371 | — | **no pages** | render inside `/endings/[id]` explorer module + JSON API (371 thin combo pages violate the uniqueness floor) |
+| Section indexes (spec §Section map) | — | `/guides` · `/guides/[slug]` · `/news` · `/news/[slug]` · `/news/patch/[id]` · `/tools` · `/glossary` · `/media` · `/devlog` · `/feedback` | CORE/CHEAP rows per [site-sections.md](../../../_foundation/site-sections.md); `/news/patch/[id]` fed by pipeline `changelog/{patch}/summary.json` (D5 move 3) |
+| Map | — | `/map` | focus state `/map?focus=<entity_kind>:<entity_slug>&scene=<scene_id>` — grammar pinned by the scenes contract |
+| Trackers/account (UGC mandate) | — | `/account/*` · tracker slots on entity pages | route slots reserved; auth provider is a per-pack build-time call ([DR-2026-08-16] ruling 2); comments/corrections mount as components, not routes |
+| Feeds | — | `/feeds/news.xml` · `/feeds/patch.xml` | site-sections #23 |
+| Machine plane | — | `/llms.txt` · `/api/v1/{kind}/{id}.json` (mirrors page URLs) · sitemap per section per locale | [seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo--be-the-cited-answer-not-just-the-ranked-page): the JSON answers with the same facts the page renders |
+| OG cards | — | `/og/[kind]/[slug]` → per-entity PNG | owned art ([§2.5](../../../FRAMEWORK.md#25-icons-are-the-games-own-art)); achievement icons render the named explicit-missing state while `icon.status:"pending-export"` |
+| Search | — | **NO ROUTE** | [§6](#6-search-in-place-architecture); `/search` 404s in every locale |
+
+Entity pages follow the [FRAMEWORK §2.8](../../../FRAMEWORK.md#28-entity-page-anatomy)
+anatomy through `EntityShell`: sticky in-fiction card → share rail → H1 +
+quotable answer block (feeds meta description) → cross-locale link row
+([localization-architecture §2](../../../_foundation/localization-architecture.md#2-cross-locale-link-contract))
+→ conditional tabs (present only when the entity has that data; inactive
+panels `hidden` in served HTML). Visible buildId stamp on every data-bearing
+surface, user-facing provenance class only — no source identity, URLs, or
+license tags on pages ([DR-2026-08-15] D2; AGENTS.md rule 3).
+
+### 5.1 Totality: dispositions for the nine kinds without a contract route
+
+The table above routes the seven pinned contracts' kinds.
+[spec.md §Page inventory](../../spec.md#page-inventory) names NINE further
+entity kinds with no owning dataset contract yet; each gets its disposition
+HERE, so no later piece invents a route or drops a kind silently
+(`choice_node` and documents `notes` already carry their rulings in the
+table). Standing rule: because slugs come ONLY from a pinned contract id
+column (AC S6), the reserved routes below emit ZERO pages until their owning
+contract lands (AGENTS.md rule 8 — frontend consumes contracts, never
+derives data); the `markers.jsonl` `_meta.pending_families` unblocks already
+name the missing owners.
+
+| Kind (spec est.) | Disposition | Ruling & reason |
+|---|---|---|
+| `monster_anomaly` (~10) | **route RESERVED**: `/monsters` · `/monsters/[monster_id]` | gated on a monster dataset contract pinning ids from LEVELS spawner refs (COMP J13; P5-dependent). Until then the kind appears only via `spawn-tables.jsonl` surfaces on scene pages and the pending marker-monsters layer; `LightRenderer_Fog` fog-anomaly candidates stay `kind:"other"`, never monsters ([dataset-scenes](../../contracts/dataset-scenes.mdx)) |
+| `chapter` (20) | **route RESERVED**: `/chapters` · `/chapters/[chapter_id]` | gated on a chapter registry contract — the levelN↔chapter correspondence settles at the first level dump (spec entities readiness-note). Ids/names follow the client's own `Menu` line pointers 100–118, never wiki numbering ([dataset-scenes §Locale model](../../contracts/dataset-scenes.mdx) rule 2). Until then chapters surface as `chapter_name_loc` modules on scene/Mita pages |
+| `save_point` (tens) | **no page** | thin-page ban ([seo-standard §5](../../../_foundation/seo-standard.md#5-content-quality-rules-where-most-programmatic-sites-die)): name-per-build + rename lineage carry no standalone quotable content. Surfaces: marker-save-points map layer, chapter/scene modules, and the changelog rename-lineage viewer input (COMP J9) |
+| `game_version` (~15) | **no page — glossary-hosted** | the version lattice IS glossary content (spec §Section map #14): registry-as-data module (COMP J5 replaces the blackboard) with travel-gate edges linking versions. Per-version prose does not exist in-corpus; standalone pages would be join-less stubs |
+| `outfit` (4+) | **no page — module-on-parent** | worn/reflected lives on `/mita/[character_id]` soul surfaces (COMP J7 + its inverse edge, emitted bidirectionally) plus the collection tracker set; 4+ rows of unlock/bindings data cannot carry an honest index+detail route pair |
+| `travel_gate` (~10) | **no page — glossary-hosted + map layer** | portal/device rules are named glossary content (spec §Section map #14); source/target-version edges render in the lattice module (COMP J10), instances as marker-travel-gates |
+| `secret_easter_egg` (dozens) | **no page at launch** | location + trigger alone fails the uniqueness floor ([seo-standard §5](../../../_foundation/seo-standard.md#5-content-quality-rules-where-most-programmatic-sites-die)); secrets surface as marker-secrets, location-scene modules, and completion-tracker entries. Standalone pages REOPEN only if a future secrets contract proves per-secret quotable content beyond location+trigger |
+| `debug_command` (~10) | **no page — tool-hosted** | the console-reference tool in [`tools-plan.md`](../../tools-plan.md) (E1 step 7 console discovery) renders commands in the machine-voice LCD register (§4.3), joined to affected entities (COMP J14); the glossary mirrors the verbs. Command names are reference material, not entity narratives |
+| `game_mode` (2) | **no page — module-on-parent** | the locked-content ledger module (spec per-game extras; COMP J11 visible-locked) hosts both modes; the `peaceful` stub already renders visible-locked on `/endings/[ending_id]`. Two rows cannot carry a route pair |
+
+No-page rulings do not strand data: each kind's rows emit through its hosting
+surface's page and JSON payload (the machine plane mirrors PAGES — a kind
+with no page contributes rows inside its host's `/api/v1` objects, never a
+dangling `/api/v1/{kind}/…` URL).
+
+---
+
+## 6. Search-in-place architecture
+
+Binding shape ([DR-2026-08-22-search-is-not-a-page],
+[DR-2026-08-22-inputs-answer-as-you-type]):
+[FRAMEWORK §2.9](../../../FRAMEWORK.md#29-search):
+
+- **There is no search route.** `/search` is a 404 on every locale; no
+  `href` to it exists in header/footer/robots/sitemap; capture lists omit it.
+- **The header owns the field.** Closed: "Search" is a word in the nav.
+  Open: the input grows across the nav row.
+- **Results replace page content in place at ≥2 typed characters**; content
+  returns on clear or Escape. Content is hidden (`hidden` attr / CSS), never
+  unmounted — scroll position and state survive.
+- **One matching function, both sides:** `lib/search/searchRows.ts` runs on
+  the server (SSR fallback + emitted-index generation) and in the browser;
+  what matches cannot depend on which side answered. Indexes are disposable
+  derived artifacts ([§2.1](../../../FRAMEWORK.md#21-three-data-planes)),
+  emitted per locale to `public/search/<locale>.idx.json` from
+  `name_*` convenience copies + resolved per-locale strings.
+- **Reactive-input law:** no `<form>`, no submit control anywhere in the
+  scaffold (grep-gated, AC S12); the field recomputes per keystroke. The
+  address bar does NOT follow search typing — unlike tool inputs, the field
+  has no route by ruling, so there is no shareable URL to owe; tool inputs
+  keep `replaceState` URL-following ([DR-2026-08-22-inputs-answer-as-you-type] ¶3).
+- Faceting by entity type rides the same function (type chips), staying
+  client-local — facet combinations create no URLs, so the robots
+  noindex-on-facet-combinations rule has nothing to bite
+  ([seo-standard §2](../../../_foundation/seo-standard.md#2-rendering--crawlability)).
+
+---
+
+## 7. Map module contract
+
+Owned scene maps or none — third-party embeds are banned at every stage and
+the negative grep is a launch gate
+([FRAMEWORK §2.6](../../../FRAMEWORK.md#26-maps-are-essential--top-priority-not-launch-blocking),
+[§8](../../../FRAMEWORK.md#8-definition-of-done-per-game--v22-dr-2026-08-15-d5-map-gate);
+owner ruling [DR-2026-08-16] ruling 1: top-priority workstream, gates
+site-ready not launch).
+
+- **Imagery: AUTHORED schematics** — `imagery-path: authored` per the spec
+  maps block (interior geography; no tile/minimap system evidenced in the
+  census), the FRAMEWORK path-D precedent (FO76/MIR4). Artwork lives in
+  `site/public/map/<scene_id>/`; production of the artwork itself is a
+  separate piece — the scaffold ships the module + registry.
+- **Registry:** `maps.json` equivalent emitted per scene (24 rows) declaring
+  bounds, zoom limits, and `coordinate-transform: rect-per-map` (assumed per
+  scene until the P5/S9 calibration refines it — spec maps block).
+- **Markers consume the scenes dataset, never raw dumps:** only
+  `markers.jsonl` rows may render, and that file enforces the no-orphan rule
+  (a marker exists iff `(entity_kind, entity_slug)` resolves to exactly one
+  owning-dataset row, and every placed entity carries ≥1 marker) — v0 is
+  `_meta`-only pending owner datasets, so the module MUST render zero markers
+  honestly until the projection rerun lands markers
+  ([dataset-scenes §markers](../../contracts/dataset-scenes.mdx)). Focus URLs
+  use the contract grammar `?focus=<entity_kind>:<entity_slug>&scene=<scene_id>`;
+  map state is a URL
+  ([§2.6](../../../FRAMEWORK.md#26-maps-are-essential--top-priority-not-launch-blocking)).
+- **Position truth is a source×space CONJUNCTION, not source alone** — the
+  scenes contract's honesty axis carries BOTH fields, so projection binds to
+  `source=="inline" AND space=="world-assumed"` and no other cell projects.
+  Dispositions are total over the axis (unit-tested in the module, AC S7):
+
+  | `source` | `space` | Disposition |
+  |---|---|---|
+  | `inline` | `world-assumed` | **PROJECTED** — this cell alone; today only `World.positionSpawn` (`scenes.jsonl` `spawn`) |
+  | `inline` | `unknown` | pending-placement — floats are inline but no frame is proven (`Player_Teleport`: IL-stub bodies prove no transform frame exists to project into) |
+  | `inline` | `parent-local` | pending-placement — coords are relative to `myParent≠0`; contract-explicit non-projection |
+  | `inline` | `object-local-offset` | pending-placement — ObjectItem hand/face offsets are NEVER map-projected (contract-explicit) |
+  | `pptr-unresolved` | any | pending-placement — placement proven, target unresolved until the transform stage (PIPE S9); never guessed points |
+  | `none` | — | pending-placement — no coordinates serialized (incl. empty positions arrays); the instance still surfaces in scene POI listings, just never as a plotted point |
+
+  Every non-projecting cell renders the SAME designed pending-placement
+  state; no cell of the axis is unhandled.
+- **Layers** per the spec maps block: apartment hub, location scenes, version
+  spaces, marker families (cartridges, profiles, secrets, save-points,
+  minigame-access, monsters, travel-gates). Markers use the game's own icons
+  ([§2.5](../../../FRAMEWORK.md#25-icons-are-the-games-own-art)).
+- **Two-way links:** every placement-bearing entity page embeds its focused
+  module inline; markers link to entity pages — crawlable `<a href>`, the
+  differentiator wikily/NWG lack
+  ([DR-2026-08-20-design-bar] ¶3, [DR-2026-08-22-enka-feel-soul] ¶3).
+
+---
+
+## 8. Non-goals of the scaffold piece
+
+- **Page implementations** — entity templates, guides, news authoring,
+  glossary content, media galleries: separate pieces. The scaffold ships
+  route slots, `EntityShell` slots, and one seed page proving routing/i18n
+  end-to-end (AC S2).
+- **Tool implementations** — ending explorer, console reference, dialogue
+  browser, planners: governed by [`tools-plan.md`](../../tools-plan.md)
+  scoring (7 ideas ranked; ≥5-scored gate already met). The scaffold provides
+  only the tool-route slots and the island/state-in-URL conventions.
+- **Map artwork** — authored schematics are commissioned separately (§7);
+  scaffold = module, registry schema, empty-honest states.
+- **UGC/auth runtime** — provider selection, moderation queue, upload
+  storage: per-pack build-time decisions ([DR-2026-08-19-ugc-accounts];
+  [DR-2026-08-16] ruling 2). Scaffold reserves routes/slots only.
+- **Deployment/domain** — tier and domain are owner-only D3 calls
+  ([DR-2026-08-24-miside-pack] ¶1; spec gaps 4); everything builds
+  localhost-first. No DNS, CDN edge config, ads/CMP, or analytics here.
+- **Content** — no guide prose, no lore writing, no invented data rows;
+  every factual claim traces to `extracted/` evidence (site-sections Rules;
+  spec Non-goals).
+- **Audio, video, 3D meshes, GI cache, psd masters** — never surfaces
+  ([FRAMEWORK §2.13](../../../FRAMEWORK.md#213-content-policy-and-build-discipline);
+  spec content-policy-holes; [DR-2026-08-18-media-scope]).
+
+---
+
+## 9. Acceptance criteria (verifier-checkable)
+
+| # | Criterion | Verification |
+|---|---|---|
+| **S1** | `site/package.json` pins exactly the §1.1 table; `npm ci && npm run build` succeeds green with the seed page | read manifest + run build |
+| **S2** | Bare paths serve EN; all 33 prefixes serve the mirrored tree; `/en/<path>` 301s to bare; unknown locale 404s; seed page renders identical content in ≥3 spot-checked locales with per-locale chrome strings | curl matrix over seed routes |
+| **S3** | Every entity page's served HTML carries an hreflang cluster EXACTLY equal to its `locale_availability` membership (+ self + `x-default` → bare path); zero cluster entries pointing at non-200 URLs | curl-grep + linkcheck on seeded fixtures |
+| **S4** | `chrome/<locale>.json` exists ×34, key sets identical (parity script exit 0; injected key drift → exit ≠ 0); `ar`/`ar-EG` served HTML carries `dir="rtl"`; only the two declared aliases pass | run script + mutation test + curl |
+| **S5** | `/search` 404s in every locale; zero `href*="/search"` in served HTML/robots/sitemaps; header field hides (not unmounts) content at ≥2 chars and restores on Escape | curl + scripted browser trace |
+| **S6** | `generateStaticParams` output per kind == the owning contract's id column (diff over full JSONL, not sampling); unknown slug → 404 | build-log diff vs `extracted/data/*/*.jsonl` |
+| **S7** | Map module renders only `markers.jsonl` rows (zero today); POI rows failing `source=="inline" AND space=="world-assumed"` never project coordinates — including the inline-but-`space:"unknown"` Player_Teleport class and every `parent-local`/`object-local-offset` row (unit test over the full §7 axis table, not the source field alone); `?focus=…&scene=…` restores state; third-party-embed grep (mapgenie.io + siblings) exits 0 | unit tests + script + browser |
+| **S8** | `tokens.css` defines all 14 T2 §6 rows value-identical to the table (full-table diff, not sampling); shadcn theme vars resolve from them; grep finds no hex literal inside `components/ui|kit` outside the token import | diff + lint rule |
+| **S9** | Every data-bearing seed template prints its `buildId`; served HTML contains zero repo-only provenance tokens (source identities, URLs, license tags) | curl-grep both directions |
+| **S10** | CWV budget config exists per distinct template × canonical locale and runs in CI; budgets LCP<2.5s / interaction<200ms / CLS<0.1 | CI config + one lab trace |
+| **S11** | `llms.txt` + static JSON API reachable and non-empty on the localhost production build; `/api/v1/{kind}/{id}.json` derivable from the page URL and fact-identical to the page | curl on `next start` |
+| **S12** | Zero `<form>` or `type="submit"` in shipped scaffold code; search/tool inputs recompute per keystroke | grep + scripted trace |
+| **S13** | Loc resolution is arithmetic-free: `resolveLoc` unit tests prove emitted pointers resolve 0-based with NO additional offset (TV `indexStringNameGame − 1`, dialogue `line_index = game_index − 1`, Clothes `stringName − 1` already applied upstream) | pytest/node unit tests vs contract examples |
+| **S14** | Sitemap partitions == generated static routes × ledger availability (full diff vs the build's route manifest, not sampling); every `<loc>` answers 200 on `next start` (zero orphans); `lastmod` == extraction buildId on every entry; sitewide Organization/WebSite/VideoGame graph present once per page and BreadcrumbList on breadcrumb pages | build-log diff + curl sweep + grep of served HTML ([§10](#10-machine-plane-ownership--sitemaps--structured-data)) |
+
+---
+
+## 10. Machine-plane ownership — sitemaps + structured data
+
+### 10.1 Sitemap generation (AC S14)
+
+`src/app/sitemap.ts` emits one partition per section per locale
+([seo-standard §2](../../../_foundation/seo-standard.md#2-rendering--crawlability)):
+
+- **Partition == generated static routes × ledger availability.** The URL
+  set is EXACTLY the build's static route manifest crossed with each URL's
+  availability-ledger membership ([§3.2](#32-availability-the-ledger-drives-everything)):
+  pivot entries at bare paths, one prefixed copy per locale where the ledger
+  admits the page, home canonical at `/` ([DR-2026-08-18-page-size]).
+  Nothing else enters — facet combinations cannot exist
+  ([§6](#6-search-in-place-architecture)), `/search` has no route, and
+  §5.1's reserved routes contribute nothing until their contracts land.
+- **Zero non-200 targets.** Every `<loc>` answers 200 on the production
+  build, verified by diffing the partitions against the route manifest and
+  curl-sweeping all entries on `next start` — an orphan `<loc>` is a defect
+  on the same bar as an orphan hreflang entry (AC S3).
+- **`lastmod` = the extraction buildId**, never wall-clock — a real
+  freshness signal per [seo-standard §2](../../../_foundation/seo-standard.md#2-rendering--crawlability);
+  the value is the pipeline emit stage's stamp, identical to the visible
+  buildId stamps (AC S9).
+
+### 10.2 schema.org JSON-LD ownership
+
+[seo-standard §3](../../../_foundation/seo-standard.md#3-snippets--structured-data)
+markup is assigned per piece now, so no page piece reinvents or duplicates
+it:
+
+| Types | Emitting piece | Notes |
+|---|---|---|
+| `Organization` + `WebSite` + `VideoGame` | scaffold — root layout (`src/app/layout.tsx`) | ONE server-rendered graph carried by every page; `sameAs` lists only §8 registry surfaces that exist at build time, extended as registrations land — never invented |
+| `BreadcrumbList` | scaffold — `chrome/Breadcrumbs` | every page rendering breadcrumbs emits it ([seo-standard §1](../../../_foundation/seo-standard.md#1-url--information-architecture)); positions derive from the shared breadcrumb trail, never per-page hand-rolls |
+| Entity `Thing` (+ type-specific) | page pieces — via the `EntityShell` jsonld slot | EntityShell owns the slot contract: one server-rendered `<script type="application/ld+json">`, no client injection; each entity template fills typed values from the same contract rows its HTML renders |
+| `ItemList` | page pieces — section/index templates | list pages only |
+| `HowTo` · `NewsArticle` · `SoftwareApplication` | page pieces — guides · news/patch pages · tool shells respectively | `FAQPage` only where an HTML Q&A block honestly exists ([seo-standard §3](../../../_foundation/seo-standard.md#3-snippets--structured-data)) |
+
+Laws: JSON-LD is server-rendered in the first HTML (parity plane, [§1.2](#12-rendering-strategy-per-section-type));
+values are identical to what the HTML and `/api/v1` render — one identity
+across HTML, JSON-LD, JSON API, and `llms.txt`
+([seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo--be-the-cited-answer-not-just-the-ranked-page));
+markup never asserts a value the extracted data does not hold.
+
+---
+
+## See also
+
+- [pipeline-run_all.mdx](pipeline-run_all.mdx) — the pipeline whose reruns
+  trigger revalidation (§1.2)
+- [dataset-scenes.mdx](../../contracts/dataset-scenes.mdx) — marker/focus
+  grammar authority (§7)
+- [tools-plan.md](../../tools-plan.md) — scored tool field the tool slots serve
+- [_foundation/templates/design-tokens.css](../../../_foundation/templates/design-tokens.css)
+  — shared token system the §4.2 tier structure follows

@@ -1,0 +1,93 @@
+# Test coverage map — AC-1…AC-16 → executable checks
+
+Suite location: `pipeline/tests/`. Run:
+
+```bash
+cd C:\_reps\game-databases\MiSide
+python -m pytest pipeline/tests -q                 # unit + integration tiers (~5 min)
+MISIDE_RUN_INSTALL_TESTS=1 python -m pytest pipeline/tests -m install   # I tier (NE8K only)
+```
+
+Tiers: **F** = synthetic fixture, seconds · **R** = integration on synthetic
+mini-root, offline, sandboxed under `output/test-scratch/` · **I** = real
+install at `A:\…\MiSide\`, triple-gated (env flag + root presence +
+conftest deselect), never runs in CI, refreshes the real `extracted/`.
+
+## Status (2026-08-24, end of TestWriter session)
+
+The parallel CodeWriter landed mid-session; the suite was then iterated to
+green through black-box negotiation only (no implementation source read):
+**66 passed / 0 failed across F+R; 4 install-tier tests skip unless
+gated.** Every AC-1…AC-16 check that is mechanically reachable without the
+real client passes against the landed driver.
+
+## Contract
+
+| AC | Requirement (spec §5) | Tests | Tier | Failure surfaces as | Status |
+|---|---|---|---|---|---|
+| AC-1 | `--list`: 8 stages in order + one-liners, exit 0, touches nothing | `test_cli_surface.py::test_list_prints_eight_stages_in_order`, `::test_list_touches_nothing` | F | parsed-entry order assert; whole-sandbox tree hash unchanged | PASS |
+| AC-2 | `--help`: game-root semantics (`*_Data` AND `Data`), all flags, all 4 exit codes; usage error → exit 2 | `::test_help_exit_zero_and_content`, `::test_unknown_flag_is_usage_error_exit_2`, `::test_bare_invocation_is_usage_error_exit_2` | F | rc + content regexes | PASS |
+| AC-3 | full run S1→S8 in order; failing stage → exit 3 named on stderr, downstream halted; missing dep outputs → exit 4 naming stage; stale pin block aborts before S1 | `::test_full_run_executes_all_stages_in_order`, `::test_failing_stage_exit_3_names_stage_and_halts_downstream`, `::test_missing_dependency_outputs_exit_4`, `::test_missing_midchain_dependency_exit_4`, `::test_stale_extraction_log_aborts_before_s1`, `::test_matching_log_block_lets_env_proceed` | R | rc codes; stderr name match; workroot untouched on stale abort | PASS |
+| AC-4 | `--stage X` output ≡ same stage's output inside a full run (modulo volatile fields) | `test_idempotency.py::test_stage_isolation_matches_full_run_outputs` | R | field-aware comparator diff per subtree | PASS |
+| AC-5 | double-run changes no non-enumerated byte; LOG record-dedupe; ledgers deterministic full rewrite | `::test_full_rerun_changes_no_nonenumerated_byte`, `::test_ledger_style_artifacts_deterministic`, `::test_volatile_fields_registry_exists` | R | field-aware violations incl. masked-payload dump on failure | PASS |
+| AC-6 | detect verdicts + census totals, derived not copied | `test_detect_stage.py` ×6 (fixture totals == manifest walk, log seed, rerun idempotent, drift FAIL-FAST, `--expect-drift`, buildId/label keys) | R | digit-containment vs manifest; drift rc | PASS |
+| AC-6 (exact E1 constants) | 51/583,027,900 · 69/1,694,288,048 · 2,277,315,948 · 34 dirs · v29 · 2021.3.35f1 | `test_install_smoke.py::test_ac6_detect_exact_e1_totals` | I | token containment in real detect.json | SKIP unless gated |
+| AC-7 | five artifacts + 57 DummyDlls + headless config delta + child cwd pinned + input argv shape | `test_il2cpp_stage.py` ×5 | R | artifact presence; stub exit 97 if RequireAnyKey true at spawn; cwd suffix; argv order | PASS |
+| AC-7 (counts) | dump.cs ≥250k lines, ±5% warn-not-fail vs pinned 288,102 | `test_install_smoke.py::test_ac7_il2cpp_artifacts_and_counts` | I | line count; warn-semantics manual (watch LOG warning row) | SKIP unless gated |
+| AC-8 | options-after-input only; ≥993 resources dumps w/ field trees + DataAchievements 26-array; all containers attempted & ledgered (full rewrite); per-container XML crosswalk; budget-before-sweep | `test_harvest_stage.py` ×7 (argv regression via stub argv log; keep-going LEDGER downgrade + rewrite-residue check; default FAIL-FAST exit 3; third-run modulo-volatile reproduction) | R | stub-enforced invariants (exit 95/99/42); structured `exit_code` asserts | PASS |
+| AC-9 | split-based counting (both newline shapes), zero-based `{category,line_index,text}`, verbatim text, skew ledger mandatory, non-UTF-8 → LEDGER then non-zero at end | `test_loc_parser.py` ×10 (mini-loc class + mini-root class) | F/R | record-shape assert; line-by-line verbatim vs source; ledger tokens; hex fragment `fffe` | PASS |
+| AC-9 (surface) | 34 locales × 2,210 files; EN 26 records; spot strings | `test_install_smoke.py::test_ac9_localization_surface` | I | counts + spot texts | SKIP unless gated |
+| AC-10 | catalogue reconciles to walked sums; media carve-out; Custom PNGs verbatim; GI level3-only row; staged scope in LOG | `test_art_catalogue.py` ×6 | R | independent re-walk vs catalogue digits; media-extension rglob; sha256 match | PASS |
+| AC-11 | trees for 57 main assemblies + Voice Editor set + `_structure/`; anchors verbatim; garbage-bodies caveat | `test_decompile_stage.py` ×4 | R | csproj counts; anchor greps; report keyword | PASS |
+| AC-12 | four Principle-two sections; method-per-number; Voice Editor source row; reconcile vs census + latest-ledger attempted-vs-succeeded; residue entries ×4; protocol placeholder | `test_census_reconcile.py` ×8 (incl. negative: truncated ledger must FAIL-FAST census) | R | section regexes; method-window check; mismatch → rc≠0 | PASS |
+| AC-13 | LOG pins block parses w/ tools/freeze/deltas | `test_provenance_hygiene.py::test_log_pins_block_after_full_run` (fixture-light) + `test_install_smoke.py::test_ac13_extraction_log_pins` (exact constants) | R/I | JSON-parse of pipeline-defaults block; token pins | PASS / SKIP gated |
+| AC-14 | nothing written under game-root; mutable state confined to workroot+extracted; 10 GB guard at S2 and before S4 sweep/S6/S7 | `::test_install_root_never_written` (pristine compare), `::test_writes_confined_to_workroot_and_extracted` (pre/post snapshot) | R | tree-hash divergence; new/changed-file scan outside allowed trees | PASS (guard abort path manual) |
+| AC-15 | tracking split encoded in pack `.gitignore`; no client bytes staged | `::test_gitignore_encodes_tracking_split`, `::test_no_client_bytes_in_test_tree` | static | missing `.gitignore` line; banned-byte markers under tests/ | PASS (`extracted/il2cpp/` line landed) |
+| AC-16 | both shims reach the same driver identically; no `.ps1`; shell-agnostic driver | `test_shims.py` ×2 | F | normalized stdout equality cmd vs sh vs direct | PASS |
+
+## Negotiation outcomes & spec observations (2026-08-24)
+
+Resolved during bring-up, black-box via stub side channels:
+
+1. **Asset-list mechanism (§8 verify item)** — resolved POSITIVE: `-m dump`
+   tolerates `--export-asset-list xml` in the same pass; crosswalks land at
+   `harvest/asset-list/<stem>.xml`. No fallback pass needed.
+2. **Stale-log defense scope** — the refusal fires on pipFreeze vs
+   `requirements.txt` disagreement only (exactly AC-3's letter). A WRONG
+   *tool version* in an otherwise well-formed pin block does NOT refuse —
+   flagged here because §S3's "stale-log defense" intent may want a
+   tool-version consistency warning too. Owner call.
+3. **Stage reports carry run-fact booleans** (`created:true→false`,
+   `freeze_matched_before`) that flip on idempotent reruns and are not in
+   `volatile-fields.json`. AC-5's text exempts "stage-report run facts", so
+   the suite masks top-level booleans on `census/stage-reports/*.json`
+   specifically; anything else changing is a hard failure.
+4. **Measure-first probe failure fail-fasts even under `--keep-going`** —
+   defensible (a failed probe cannot size the sweep budget); the LEDGER
+   downgrade applies to sweep-phase containers, which the suite tests.
+5. **§S2 prose vs artifact**: detect.json does not surface explicit
+   ".unity3d bundles absent / no Addressables catalog" verdicts. Not an
+   AC-6 item; noted for patch-day completeness if wanted later.
+
+## Known coverage gaps (honest ledger)
+
+1. **AC-14 free-space guard (<10 GB abort)** — not synthetically
+   triggerable without mocking internals (blind protocol forbids reading
+   implementation). Harness parity: the integration tier skips itself below
+   10 GiB free. Manual: shrink a volume below threshold, confirm S2 refuses
+   pre-write; also verify re-fire before S4 sweep / S6 / S7.
+2. **AC-7 warn-not-fail ±5% line-count semantics** — needs the real
+   288,102-line dump; observe the LOG warning row during the first
+   install-tier run.
+3. **AC-16 over true `ssh ne8k`** — shims verified locally (cmd + Git Bash);
+   remote invocation form is identical by construction.
+4. **AC-6/9/13 exact E1 constants** — install-tier only by design; fixture
+   tiers prove derive-from-walk correctness instead.
+
+## Fixture/stub contract
+
+See [fixtures/README.mdx](fixtures/README.mdx): synthetic-only rule,
+sandbox layout, stub-tool seams (workroot dirs + repo-zip paths), env-var
+side channels, stub exit codes. Stubs enforce spec invariants themselves
+(RequireAnyKey:false before spawn; measure-first gate; injected container
+failures) so green runs *prove* ordering properties rather than assume them.

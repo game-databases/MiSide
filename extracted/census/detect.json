@@ -1,0 +1,797 @@
+{
+  "schema": "miside.detect/1",
+  "game_root": "A:\\SteamLibrary\\steamapps\\common\\MiSide",
+  "measured_at": "2026-08-24T21:30:35+00:00",
+  "anchors": {
+    "executable": {
+      "present": true,
+      "bytes": 884240
+    },
+    "data_dir": {
+      "present": true,
+      "bytes": 0
+    },
+    "loose_data": {
+      "present": true,
+      "bytes": 0
+    }
+  },
+  "flavor": {
+    "engine": "unity",
+    "scripting_backend": "il2cpp",
+    "unity_version": "2021.3.35f1",
+    "metadata_version": 29,
+    "game_assembly": {
+      "present": true,
+      "bytes": 22411776
+    }
+  },
+  "version_label": "VERSION 0.93L",
+  "build_id": "19029065",
+  "loc_store": {
+    "present": true,
+    "path": "Data\\Languages",
+    "locale_dirs": 34,
+    "locales": [
+      "Arabic",
+      "Arabic (Egyptian)",
+      "Belarusian",
+      "Bulgarian",
+      "ChineseSimplified",
+      "ChineseTraditional",
+      "Croatian",
+      "Czech",
+      "English",
+      "Filipino",
+      "French",
+      "German",
+      "Hungarian",
+      "Indonesia",
+      "Italian",
+      "Japanese",
+      "Kazakh",
+      "Korean",
+      "Persian",
+      "Polish",
+      "Portugues Portugal",
+      "Português-Brasil",
+      "Pre-revolutionaryRussian",
+      "Romanian",
+      "Russian",
+      "Serbian (Latin)",
+      "Slovak",
+      "Spanish (LatinAmerica)",
+      "Spanish (Spain)",
+      "Swedish",
+      "Thai",
+      "Turkish",
+      "Ukrainian",
+      "Vietnamese"
+    ]
+  },
+  "voice_editor": {
+    "managed_present": true,
+    "managed_dlls": [
+      "Accessibility.dll",
+      "Assembly-CSharp.dll",
+      "Mono.Data.Sqlite.dll",
+      "Mono.Posix.dll",
+      "Mono.Security.dll",
+      "Mono.WebBrowser.dll",
+      "Novell.Directory.Ldap.dll",
+      "Ookii.Dialogs.dll",
+      "System.ComponentModel.Composition.dll",
+      "System.ComponentModel.DataAnnotations.dll",
+      "System.Configuration.dll",
+      "System.Core.dll",
+      "System.Data.DataSetExtensions.dll",
+      "System.Data.dll",
+      "System.Design.dll",
+      "System.DirectoryServices.dll",
+      "System.Drawing.Design.dll",
+      "System.Drawing.dll",
+      "System.EnterpriseServices.dll",
+      "System.IO.Compression.FileSystem.dll",
+      "System.IO.Compression.dll",
+      "System.Net.Http.dll",
+      "System.Numerics.dll",
+      "System.Runtime.Serialization.Formatters.Soap.dll",
+      "System.Runtime.Serialization.dll",
+      "System.Security.dll",
+      "System.ServiceModel.Internals.dll",
+      "System.Transactions.dll",
+      "System.Web.ApplicationServices.dll",
+      "System.Web.Services.dll",
+      "System.Web.dll",
+      "System.Windows.Forms.dll",
+      "System.Xml.Linq.dll",
+      "System.Xml.dll",
+      "System.dll",
+      "UnityEngine.AIModule.dll",
+      "UnityEngine.ARModule.dll",
+      "UnityEngine.AccessibilityModule.dll",
+      "UnityEngine.AndroidJNIModule.dll",
+      "UnityEngine.AnimationModule.dll",
+      "UnityEngine.AssetBundleModule.dll",
+      "UnityEngine.AudioModule.dll",
+      "UnityEngine.ClothModule.dll",
+      "UnityEngine.ClusterInputModule.dll",
+      "UnityEngine.ClusterRendererModule.dll",
+      "UnityEngine.CoreModule.dll",
+      "UnityEngine.CrashReportingModule.dll",
+      "UnityEngine.DSPGraphModule.dll",
+      "UnityEngine.DirectorModule.dll",
+      "UnityEngine.GIModule.dll",
+      "UnityEngine.GameCenterModule.dll",
+      "UnityEngine.GridModule.dll",
+      "UnityEngine.HotReloadModule.dll",
+      "UnityEngine.IMGUIModule.dll",
+      "UnityEngine.ImageConversionModule.dll",
+      "UnityEngine.InputLegacyModule.dll",
+      "UnityEngine.InputModule.dll",
+      "UnityEngine.JSONSerializeModule.dll",
+      "UnityEngine.LocalizationModule.dll",
+      "UnityEngine.NVIDIAModule.dll",
+      "UnityEngine.ParticleSystemModule.dll",
+      "UnityEngine.PerformanceReportingModule.dll",
+      "UnityEngine.Physics2DModule.dll",
+      "UnityEngine.PhysicsModule.dll",
+      "UnityEngine.ProfilerModule.dll",
+      "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "UnityEngine.ScreenCaptureModule.dll",
+      "UnityEngine.SharedInternalsModule.dll",
+      "UnityEngine.SpriteMaskModule.dll",
+      "UnityEngine.SpriteShapeModule.dll",
+      "UnityEngine.StreamingModule.dll",
+      "UnityEngine.SubstanceModule.dll",
+      "UnityEngine.SubsystemsModule.dll",
+      "UnityEngine.TLSModule.dll",
+      "UnityEngine.TerrainModule.dll",
+      "UnityEngine.TerrainPhysicsModule.dll",
+      "UnityEngine.TextCoreFontEngineModule.dll",
+      "UnityEngine.TextCoreTextEngineModule.dll",
+      "UnityEngine.TextRenderingModule.dll",
+      "UnityEngine.TilemapModule.dll",
+      "UnityEngine.UI.dll",
+      "UnityEngine.UIElementsModule.dll",
+      "UnityEngine.UIElementsNativeModule.dll",
+      "UnityEngine.UIModule.dll",
+      "UnityEngine.UNETModule.dll",
+      "UnityEngine.UmbraModule.dll",
+      "UnityEngine.UnityAnalyticsCommonModule.dll",
+      "UnityEngine.UnityAnalyticsModule.dll",
+      "UnityEngine.UnityConnectModule.dll",
+      "UnityEngine.UnityCurlModule.dll",
+      "UnityEngine.UnityTestProtocolModule.dll",
+      "UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "UnityEngine.UnityWebRequestAudioModule.dll",
+      "UnityEngine.UnityWebRequestModule.dll",
+      "UnityEngine.UnityWebRequestTextureModule.dll",
+      "UnityEngine.UnityWebRequestWWWModule.dll",
+      "UnityEngine.VFXModule.dll",
+      "UnityEngine.VRModule.dll",
+      "UnityEngine.VehiclesModule.dll",
+      "UnityEngine.VideoModule.dll",
+      "UnityEngine.VirtualTexturingModule.dll",
+      "UnityEngine.WindModule.dll",
+      "UnityEngine.XRModule.dll",
+      "UnityEngine.dll",
+      "mscorlib.dll",
+      "netstandard.dll"
+    ]
+  },
+  "containers": {
+    "serialized": [
+      {
+        "family": "globalgamemanagers",
+        "index": null,
+        "name": "globalgamemanagers",
+        "bytes": 798116
+      },
+      {
+        "family": "globalgamemanagers.assets",
+        "index": null,
+        "name": "globalgamemanagers.assets",
+        "bytes": 229452
+      },
+      {
+        "family": "resources.assets",
+        "index": null,
+        "name": "resources.assets",
+        "bytes": 99902624
+      },
+      {
+        "family": "sharedassets",
+        "index": 0,
+        "name": "sharedassets0.assets",
+        "bytes": 2023968
+      },
+      {
+        "family": "sharedassets",
+        "index": 1,
+        "name": "sharedassets1.assets",
+        "bytes": 5769240
+      },
+      {
+        "family": "sharedassets",
+        "index": 2,
+        "name": "sharedassets2.assets",
+        "bytes": 7730776
+      },
+      {
+        "family": "sharedassets",
+        "index": 3,
+        "name": "sharedassets3.assets",
+        "bytes": 7430472
+      },
+      {
+        "family": "sharedassets",
+        "index": 4,
+        "name": "sharedassets4.assets",
+        "bytes": 5037560
+      },
+      {
+        "family": "sharedassets",
+        "index": 5,
+        "name": "sharedassets5.assets",
+        "bytes": 18529444
+      },
+      {
+        "family": "sharedassets",
+        "index": 6,
+        "name": "sharedassets6.assets",
+        "bytes": 11093012
+      },
+      {
+        "family": "sharedassets",
+        "index": 7,
+        "name": "sharedassets7.assets",
+        "bytes": 3438248
+      },
+      {
+        "family": "sharedassets",
+        "index": 8,
+        "name": "sharedassets8.assets",
+        "bytes": 36609208
+      },
+      {
+        "family": "sharedassets",
+        "index": 9,
+        "name": "sharedassets9.assets",
+        "bytes": 83787408
+      },
+      {
+        "family": "sharedassets",
+        "index": 10,
+        "name": "sharedassets10.assets",
+        "bytes": 14562280
+      },
+      {
+        "family": "sharedassets",
+        "index": 11,
+        "name": "sharedassets11.assets",
+        "bytes": 7391008
+      },
+      {
+        "family": "sharedassets",
+        "index": 12,
+        "name": "sharedassets12.assets",
+        "bytes": 46099984
+      },
+      {
+        "family": "sharedassets",
+        "index": 13,
+        "name": "sharedassets13.assets",
+        "bytes": 53732312
+      },
+      {
+        "family": "sharedassets",
+        "index": 14,
+        "name": "sharedassets14.assets",
+        "bytes": 18987464
+      },
+      {
+        "family": "sharedassets",
+        "index": 15,
+        "name": "sharedassets15.assets",
+        "bytes": 4823056
+      },
+      {
+        "family": "sharedassets",
+        "index": 16,
+        "name": "sharedassets16.assets",
+        "bytes": 16522984
+      },
+      {
+        "family": "sharedassets",
+        "index": 17,
+        "name": "sharedassets17.assets",
+        "bytes": 21937360
+      },
+      {
+        "family": "sharedassets",
+        "index": 18,
+        "name": "sharedassets18.assets",
+        "bytes": 602872
+      },
+      {
+        "family": "sharedassets",
+        "index": 19,
+        "name": "sharedassets19.assets",
+        "bytes": 23291192
+      },
+      {
+        "family": "sharedassets",
+        "index": 20,
+        "name": "sharedassets20.assets",
+        "bytes": 1958716
+      },
+      {
+        "family": "sharedassets",
+        "index": 21,
+        "name": "sharedassets21.assets",
+        "bytes": 23840172
+      },
+      {
+        "family": "sharedassets",
+        "index": 22,
+        "name": "sharedassets22.assets",
+        "bytes": 16691984
+      },
+      {
+        "family": "sharedassets",
+        "index": 23,
+        "name": "sharedassets23.assets",
+        "bytes": 4016048
+      },
+      {
+        "family": "level",
+        "index": 0,
+        "name": "level0",
+        "bytes": 40512
+      },
+      {
+        "family": "level",
+        "index": 1,
+        "name": "level1",
+        "bytes": 32796
+      },
+      {
+        "family": "level",
+        "index": 2,
+        "name": "level2",
+        "bytes": 550856
+      },
+      {
+        "family": "level",
+        "index": 3,
+        "name": "level3",
+        "bytes": 1722160
+      },
+      {
+        "family": "level",
+        "index": 4,
+        "name": "level4",
+        "bytes": 1455068
+      },
+      {
+        "family": "level",
+        "index": 5,
+        "name": "level5",
+        "bytes": 3149504
+      },
+      {
+        "family": "level",
+        "index": 6,
+        "name": "level6",
+        "bytes": 1847988
+      },
+      {
+        "family": "level",
+        "index": 7,
+        "name": "level7",
+        "bytes": 1955132
+      },
+      {
+        "family": "level",
+        "index": 8,
+        "name": "level8",
+        "bytes": 1270984
+      },
+      {
+        "family": "level",
+        "index": 9,
+        "name": "level9",
+        "bytes": 3514392
+      },
+      {
+        "family": "level",
+        "index": 10,
+        "name": "level10",
+        "bytes": 2569776
+      },
+      {
+        "family": "level",
+        "index": 11,
+        "name": "level11",
+        "bytes": 764896
+      },
+      {
+        "family": "level",
+        "index": 12,
+        "name": "level12",
+        "bytes": 3523128
+      },
+      {
+        "family": "level",
+        "index": 13,
+        "name": "level13",
+        "bytes": 4935744
+      },
+      {
+        "family": "level",
+        "index": 14,
+        "name": "level14",
+        "bytes": 1980080
+      },
+      {
+        "family": "level",
+        "index": 15,
+        "name": "level15",
+        "bytes": 3001488
+      },
+      {
+        "family": "level",
+        "index": 16,
+        "name": "level16",
+        "bytes": 2336052
+      },
+      {
+        "family": "level",
+        "index": 17,
+        "name": "level17",
+        "bytes": 3364584
+      },
+      {
+        "family": "level",
+        "index": 18,
+        "name": "level18",
+        "bytes": 617216
+      },
+      {
+        "family": "level",
+        "index": 19,
+        "name": "level19",
+        "bytes": 1723480
+      },
+      {
+        "family": "level",
+        "index": 20,
+        "name": "level20",
+        "bytes": 362492
+      },
+      {
+        "family": "level",
+        "index": 21,
+        "name": "level21",
+        "bytes": 3064256
+      },
+      {
+        "family": "level",
+        "index": 22,
+        "name": "level22",
+        "bytes": 1897056
+      },
+      {
+        "family": "level",
+        "index": 23,
+        "name": "level23",
+        "bytes": 511300
+      }
+    ],
+    "streams": [
+      {
+        "name": "level10.resS",
+        "bytes": 2151184
+      },
+      {
+        "name": "level11.resS",
+        "bytes": 829968
+      },
+      {
+        "name": "level12.resS",
+        "bytes": 2836224
+      },
+      {
+        "name": "level13.resS",
+        "bytes": 46272
+      },
+      {
+        "name": "level14.resS",
+        "bytes": 7601872
+      },
+      {
+        "name": "level15.resS",
+        "bytes": 8693376
+      },
+      {
+        "name": "level16.resS",
+        "bytes": 7856048
+      },
+      {
+        "name": "level17.resS",
+        "bytes": 1338208
+      },
+      {
+        "name": "level18.resS",
+        "bytes": 3127296
+      },
+      {
+        "name": "level19.resS",
+        "bytes": 2505328
+      },
+      {
+        "name": "level21.resS",
+        "bytes": 2137616
+      },
+      {
+        "name": "level22.resS",
+        "bytes": 1991664
+      },
+      {
+        "name": "level23.resS",
+        "bytes": 752768
+      },
+      {
+        "name": "level3.resS",
+        "bytes": 3087088
+      },
+      {
+        "name": "level4.resS",
+        "bytes": 3375008
+      },
+      {
+        "name": "level5.resS",
+        "bytes": 8964080
+      },
+      {
+        "name": "level6.resS",
+        "bytes": 968256
+      },
+      {
+        "name": "level7.resS",
+        "bytes": 8787984
+      },
+      {
+        "name": "level8.resS",
+        "bytes": 1457392
+      },
+      {
+        "name": "level9.resS",
+        "bytes": 723360
+      },
+      {
+        "name": "resources.assets.resS",
+        "bytes": 218920848
+      },
+      {
+        "name": "resources.resource",
+        "bytes": 8141152
+      },
+      {
+        "name": "sharedassets0.assets.resS",
+        "bytes": 8438352
+      },
+      {
+        "name": "sharedassets0.resource",
+        "bytes": 70368
+      },
+      {
+        "name": "sharedassets1.assets.resS",
+        "bytes": 5818608
+      },
+      {
+        "name": "sharedassets1.resource",
+        "bytes": 44032
+      },
+      {
+        "name": "sharedassets10.assets.resS",
+        "bytes": 29564912
+      },
+      {
+        "name": "sharedassets10.resource",
+        "bytes": 8030400
+      },
+      {
+        "name": "sharedassets11.assets.resS",
+        "bytes": 13814384
+      },
+      {
+        "name": "sharedassets11.resource",
+        "bytes": 3056672
+      },
+      {
+        "name": "sharedassets12.assets.resS",
+        "bytes": 20456512
+      },
+      {
+        "name": "sharedassets12.resource",
+        "bytes": 1362144
+      },
+      {
+        "name": "sharedassets13.assets.resS",
+        "bytes": 197184496
+      },
+      {
+        "name": "sharedassets13.resource",
+        "bytes": 6049024
+      },
+      {
+        "name": "sharedassets14.assets.resS",
+        "bytes": 8008288
+      },
+      {
+        "name": "sharedassets14.resource",
+        "bytes": 3476224
+      },
+      {
+        "name": "sharedassets15.assets.resS",
+        "bytes": 23339264
+      },
+      {
+        "name": "sharedassets15.resource",
+        "bytes": 2199904
+      },
+      {
+        "name": "sharedassets16.assets.resS",
+        "bytes": 14097168
+      },
+      {
+        "name": "sharedassets16.resource",
+        "bytes": 2978400
+      },
+      {
+        "name": "sharedassets17.assets.resS",
+        "bytes": 8343776
+      },
+      {
+        "name": "sharedassets17.resource",
+        "bytes": 2873408
+      },
+      {
+        "name": "sharedassets18.resource",
+        "bytes": 121568
+      },
+      {
+        "name": "sharedassets19.assets.resS",
+        "bytes": 16576784
+      },
+      {
+        "name": "sharedassets19.resource",
+        "bytes": 3755904
+      },
+      {
+        "name": "sharedassets2.assets.resS",
+        "bytes": 76510304
+      },
+      {
+        "name": "sharedassets2.resource",
+        "bytes": 13744160
+      },
+      {
+        "name": "sharedassets20.assets.resS",
+        "bytes": 367784272
+      },
+      {
+        "name": "sharedassets20.resource",
+        "bytes": 4358624
+      },
+      {
+        "name": "sharedassets21.assets.resS",
+        "bytes": 87456560
+      },
+      {
+        "name": "sharedassets21.resource",
+        "bytes": 8147616
+      },
+      {
+        "name": "sharedassets22.assets.resS",
+        "bytes": 40041632
+      },
+      {
+        "name": "sharedassets22.resource",
+        "bytes": 2967040
+      },
+      {
+        "name": "sharedassets23.assets.resS",
+        "bytes": 18672592
+      },
+      {
+        "name": "sharedassets23.resource",
+        "bytes": 3142976
+      },
+      {
+        "name": "sharedassets3.assets.resS",
+        "bytes": 95646144
+      },
+      {
+        "name": "sharedassets3.resource",
+        "bytes": 6874688
+      },
+      {
+        "name": "sharedassets4.assets.resS",
+        "bytes": 118977728
+      },
+      {
+        "name": "sharedassets4.resource",
+        "bytes": 2689440
+      },
+      {
+        "name": "sharedassets5.assets.resS",
+        "bytes": 10490544
+      },
+      {
+        "name": "sharedassets5.resource",
+        "bytes": 5083648
+      },
+      {
+        "name": "sharedassets6.assets.resS",
+        "bytes": 22797696
+      },
+      {
+        "name": "sharedassets6.resource",
+        "bytes": 4239808
+      },
+      {
+        "name": "sharedassets7.assets.resS",
+        "bytes": 7736736
+      },
+      {
+        "name": "sharedassets7.resource",
+        "bytes": 1808864
+      },
+      {
+        "name": "sharedassets8.assets.resS",
+        "bytes": 46103664
+      },
+      {
+        "name": "sharedassets8.resource",
+        "bytes": 1864288
+      },
+      {
+        "name": "sharedassets9.assets.resS",
+        "bytes": 60733872
+      },
+      {
+        "name": "sharedassets9.resource",
+        "bytes": 10461568
+      }
+    ],
+    "other_top_level": [
+      {
+        "name": "RuntimeInitializeOnLoads.json",
+        "bytes": 906
+      },
+      {
+        "name": "ScriptingAssemblies.json",
+        "bytes": 3008
+      },
+      {
+        "name": "app.info",
+        "bytes": 18
+      },
+      {
+        "name": "boot.config",
+        "bytes": 120
+      }
+    ],
+    "totals": {
+      "serialized_count": 51,
+      "serialized_bytes": 583027900,
+      "stream_count": 69,
+      "stream_bytes": 1694288048,
+      "grand_total_bytes": 2277315948
+    }
+  },
+  "warnings": []
+}

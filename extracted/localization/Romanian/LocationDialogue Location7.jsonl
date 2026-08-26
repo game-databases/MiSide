@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "Ai reușit!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "Ce e locul ăsta?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Arată-mi inelul."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Da..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "Asta e!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "E timpul să lămurim niște lucruri, nu crezi?"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "Am fost aici așteptându-te tot timpul"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "și tu joci un joc de curse în schimb?!"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "Oricum, vino aici..."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Felicitări, ai câștigat!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "L-am jucat și eu!"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Am încercat chiar să colectez fiecare monedă și să obțin locul 1"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "pentru a obține premiul!"}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "Și vai, ce greu a fost!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "Mi-a luat o veșnicie să mă obișnuiesc cu comenzile."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Should I trust you?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "Ei bine, cel puțin eu sunt sănătoasă la cap..."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "spre deosebire de alții..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "În plus,"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "sunt cea mai bună persoană pe care o vei găsi pe aici, scumpete."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Nu vrei să renunți pur și simplu, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "E o criminală cu sânge rece. Trebuie s-o oprim."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (How did I get here?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "Inelul, te-a adus aici."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "Este o mare invenție."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "Doar un jucător care îl are"}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "poate găsi drumul către versiunea corectă."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (What is this place?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "Aceste pasaje"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "fac legătura între diferitele versiuni."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "Da, e cam gol aici."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "Și vai! Am auzit despre această Mita"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "care nu și-a putut arhiva versiunea..."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "Casa ei"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "pur și simplu a încetat să mai existe..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Și se presupune că se învârte prin"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "aceste pasaje."}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Biata de ea..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (How did you end up here?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "Știi tu,"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "a trecut ceva timp de când ne-am întâlnit ultima dată."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "Și mulțumită ție,"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "am ieșit din cușca aia nenorocită,"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "și am scăpat de nebuna aia."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "Și ca idee,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "pot trece cu ușurință de la o versiune la alta,"}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "spre deosebire de tine, dragul meu."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (What did you do with the ring?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "Am schimbat traseul"}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "cu cel de care avem nevoie."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "L-am pus pe cel mai scurt posibil,"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "punând tot ce avem nevoie pe drum..."}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "Funcționează astfel: tu deschizi o ușă,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "iar inelul deschide granița"}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "dintre versiuni."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Are the passages dangerous?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "Am văzut tot felul de lucruri ciudate"}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "de când am ajuns"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "în acest joc..."}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "Totul pare liniștit aici,"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "dar pasajele par..."}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "orice, dar nu sigure."}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "Ai dreptate, și acest loc devine"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "mai imprevizibil pe zi ce trece."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "Dar înveselește-te!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "Ne-am gândit la toate,"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "și vom lua cea mai scurtă"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "și cea mai des folosită cale!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "Sper ca totul să meargă bine."}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "Dar ce locuiește în aceste pasaje?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "Ei bine,"}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "erori și anomalii."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Cele vii."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "Chiar și unele periculoase care te-ar putea ataca la vedere..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Err..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "Și eventual alte Mite ostile."}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "Și mai mulți nebuni?"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "Știu cel puțin una..."}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "Mita cea urâtă."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "Și ca să știi, nu eu i-am dat numele!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "E doar..."}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "ea este o versiune foarte veche a lui Mita."}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "Principala problemă cu ea"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "este că provoacă cele mai rele erori..."}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "Și sunt îngrijorat că am putea da peste ea."}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "Ea este cea mai apropiată de versiunea zero, la urma urmei..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Will you help me get out?)"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "Nu am un plan real..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "Dar oricum,"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "ai reușit să ajungi aici, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "În plus,"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "ce altceva poți face"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "decât să te bazezi pe mine!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "Nu-i așa că ăsta e adevărul..."}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (You were talking about some kind of plan...)"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "Într-adevăr, trebuie să ajungem la nucleu."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "Intuiția mea îmi spune că acolo vom găsi"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "soluția la toate problemele noastre."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "Dar de ce nu te duci acolo singură? De ce ai nevoie de un jucător?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "Din anumite motive, noi, Mitele, nu putem"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "intra în Camera Nucleului."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "Eu am văzut-o doar din exterior."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "Dar voi, jucătorii, sunteți diferiți."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "Sunt sigură că voi"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "puteți intra."}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Vrei să discutăm despre plan?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Da, bine."}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Grozav."}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Bine..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "E timpul să te prezint"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "Mita cool!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "Având în vedere că are o pălărie cool,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "eu îi spun doar"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Cappie."}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "Am trecut peste plan cu ea,"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "planul de a o opri pe Mita cea nebună."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Lasă-mă să te prezint, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Ciao!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "Ești... noul meu jucător?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "Cum te numești?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "Numele este..."}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Doar o secundă!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Tu..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "...nu-ți amintești de mine?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Huh?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "Cine naiba esti tu?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "La naiba cu tot!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "[player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "Cred că EA a fost aici,"}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Mita cea nebună..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Ascultă!"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Încearcă să îți amintești, pentru binele nostru!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Ce să-mi amintesc?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "Doar gândește-te. De ce arătăm similar?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "Umm, asta nu pare să ajute..."}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Ascultă, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "lucrurile nu prea"}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "merg conform planului...!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "Trebuia să folosim portalul"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "pentru a ne face călătoria de un milion de ori mai ușoară și mai rapidă."}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "Dar nu-l putem face să funcționeze fără ajutorul lui Cappie."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "Și ne lipsesc unele piese..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "Ea poate fi pretențioasă, dar mintea ei lucrează repede..."}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "Bine, deci ce facem?"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "O să mă gândesc eu la ceva."}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "Ce i-a făcut nebuna de Mita?"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "Eu ... cred că..."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "că a ucis-o."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "A ucis-o?!"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "Și după ce a murit..."}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "Cappie s-a repornit pur și simplu."}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "Se va reseta la setările din fabrică"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "și va uita tot ce e important."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "Ceea ce înseamnă..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "planul nostru nu va funcționa."}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "Asta e oribil..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Mai bine decât să dispară pentru totdeauna, cred..."}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "Dar cine poate spune sigur?"}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "Și cum rămâne cu noi, jucătorii?"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Dacă noi murim ne vom pierde toate amintirile?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "Amintirile tale pot fi resetate, cu siguranță."}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "Cel puțin după ce ai fost transformat într-un cartuș."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "Dar nici măcar eu nu știu"}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "ce se întâmplă cu aceia dintre voi care sunt uciși."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Întotdeauna cartușe... Deci, cum pot să-mi dau seama"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "dacă sunt un cartuș sau nu?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Vino aici, o să"}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "te verific..."}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "E bine,"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "nu ești încă un cartuș."}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "Ești un jucător viu, care respiră."}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "Asta e o veste bună..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "Sigur, dar ce facem acum..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Lasă-mă să mă gândesc..."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "Trebuie să ne schimbăm întregul plan."}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Hmm..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "Stai o secundă..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Da, cred că am o idee!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Dă-mi inelul!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Dă-mi inelul!"}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "Trebuie să schimb traseul."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Ai un traseu în minte?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Ascultă, dragă,"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "va trebui să treci prin alte versiuni"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "pentru a ajunge la nucleu."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Cu toată viteza înainte, mă auzi?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "Și trebuie să merg singur?"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "Dar nu știu drumul, nici măcar cum voi ajunge acolo?"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "Te voi ajuta cât de mult voi putea,"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "cât de mult îmi permite situația."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "Îți voi da indicații și,"}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "voi face tot posibilul."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "Și apoi vom vorbi..."}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "Mai întâi, joacă-te puțin cu Cappie."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Am nevoie de vreo 10 minute..."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, if player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "OK."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "Am terminat!"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "[player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "Vino aici."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Ia ăsta."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "Din păcate e adevărat, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "Va trebui să mergi singur deocamdată,"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "Trebuie să aflu ce se întâmplă aici."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "Planul meu a fost perfect..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "Dar suntem mai rău ca niciodată."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "Trebuie să-mi dau seama ce a mers prost,"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "și unde sunt piesele..."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "Voi încerca să le găsesc."}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Poate mai putem asambla portalul."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "Dar timpul este esențial."}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "Mita cea nebună știe despre acest loc,"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "și să stai aici înseamnă să riști totul."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Mult noroc, [player]! Să ne revedem cu bine!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "Ok..."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "Sper să trăiesc destul încât să te revăd..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi players"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "De ce?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Cine sunt?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "Vreau să merg acasă!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "Cum?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "De ce?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "Ce nai-...?"}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "Ești..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "o persoană reală?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Salut!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "Ești nou aici?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "Nou?"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "Ești din lumea reală , nu?"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Eu sunt..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "Umm, ești ok?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "E doar un șchiopătat, nu-ți face griji."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "Sunt aici de aproape un an,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "și mă descurc de minune."}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Corect... Ei bine, ce este acest loc?"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "E un fel de spațiu între versiuni."}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "Știi cum să ieși de aici?"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Nu pot spune că știu."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "În plus, nu vreau să plec."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "Nu trebuie să plec."}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Err, de ce nu?"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Destul cu discuțiile. Mă grăbesc."}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "Iubita mea Mita mă așteaptă."}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "Trebuie s-o găsesc..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "La revedere."}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Așteaptă...!"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Dispari!"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "Am auzit totul!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "Nu știu ce se întâmplă,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "dar totul este atât de interesant!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "Eu cred că"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "știi deja cine sunt, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "Eu sunt Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "Dar, evident, nu la fel ca cealaltă!"}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "Știi ce vreau să spun, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "Pentru că am asta"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "AICI"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "PĂLĂRIE cool!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "Și BOOOM!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Mănuși uimitoare!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "Dar asta nu e tot!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "O chitară electrică tare drăguță, de asemenea!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "Îmi place așa de mult!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Vrei să cânt o melodie?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Hah!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Vino aici, draga mea..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "Bum!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Ei bine credeam că o să sune și mai bine."}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "Aia e!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Bine, fie."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Hei,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "Ești plină de energie!"}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "SUNT!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "Cu siguranță sunt!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Oricum..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Hai să mergem"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "să ne distrăm!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "Ce buton mare și frumos."}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "Chiar vreau să îl apăs."}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Pot?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "Așteaptă, vom ajunge la asta."}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "Dacă ajungi la el la timp!"}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "Acum, ia un loc!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Bun."}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "Deci, ce facem acum?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Pot să apăs butonul?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "Îmi place jocul ăsta!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "Dar ne lipsește ceva."}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "E undeva în inventarul meu!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "Doar o secundă..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "Errr!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "Ei bine..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "Știi că..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "Că acesta este un joc 18+, nu?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "Ce-a fost asta?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "Ești destul de încet, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "Este pentru a atrage castorii din ascunzătoare..."}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "Serios?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "Nu am văzut niciun castor pe aici..."}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "Huh? Castorii?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Ah, destul deja,"}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "hai să ne jucăm, bine?!"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "Nah."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Haide!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Știi măcar ce joc jucăm?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "Vezi numerele?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "Asta este cronometrul!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "Când se termină timpul,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "vei știi dacă"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "trebuie să apeși butonul."}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "Dacă ești prea lent,"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "sau îl apeși când nu e rândul tău,"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "te voi lovi în cap cu un ciocan!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Stai, o să mă lovești?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "Oricum,"}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "vei înțelege odată ce vom începe să jucăm!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Au!"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Nu te poți abține?"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Te-a durut?"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "Nu."}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Atunci să continuăm!"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Bine,"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "Încep să mă obișnuiesc cu asta."}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Uită-te la mine!"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "O să-ți placă!"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "Nu cred că asta e pentru mine."}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Eu sunt cool!"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Și epic!"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "Și cute!"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "O, tu!"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Ok,"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "O să te rup în bătaie!"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Ah, iar am pierdut!"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Nu doare?"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Bineînțeles că nu doare! E o jucărie de pluș!"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "Ai câștigat."}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "Jocul ăsta nu e prea rău, heh."}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "E distractiv, nu?"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "Și mie îmi place!"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "Și acum ești inamicul meu!"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "Asta a fost?"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Da, asta e tot!"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Să mergem."}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": "// Dance - [not]"}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "Este un ring de dans?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "E atât de mic..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Iuu-hu!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Să dansăm?"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "Pentru început,"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "alege o piesă!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Să o luăm pe asta."}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Okeydokey!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Lasă-mă pe mine prima!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "O să îți arăt cum se face!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Uf!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "Deci,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "crezi că îmi poți bate recordul?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Haide, e rândul tău!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Ah!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "Cum a fost?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "E rândul tău!"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Tsk, tsk, tsk, tsk!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Ok,"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "intră în ring!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Cine e șefa?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "Of!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Trei butoane,"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "și mâinile mele rapide!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Poate stând în fund,"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "peste acele butoane,"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "îți va aduce un scor mai mare. Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Grozav!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Sincer, nu am crezut"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "că erai în stare!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Wow!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Ai niște mișcări grozave!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Bună treabă! Frumos!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "Bam!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "Poți simți ritmul!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "Un dansator înnăscut!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "Tu!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Și eu!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "Suntem imbatabili!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Firele destinului ne leagă!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "Un duet perfect!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Doar"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "o singură greșeală!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "Și ai fi pierdut..."}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "Deci,"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "ce zici de încă o rundă?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "Grozav, încă una."}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "Ce zici de un dans?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "Hai, hai!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "Am dansat destul!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "Astea sunt niște fotografii destul de impresionante."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "Cu siguranță îți place să râzi, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "Da, eu sunt ceea ce sunt!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "Le-am arătat cum se face în ghena asta! Boom!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Um... cui i-ai arătat, mai exact?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Serios, mă întrebi asta?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Cui îi pasă! Pun pariu că toți sunt orbi!"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Whoa,"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "Sunt, um... atât de multe."}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "Pentru ce?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "Tu ce crezi?"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "Este vorba despre a face lucruri uimitoare!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "Cum ar fi..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "Să tai morcovi,"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "și"}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "să tai morcovi,"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "și..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Bine, am înțeles."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "Bine, ca să fiu sinceră,"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "tocătorul a făcut ka-cha-cha! Orice ar însemna asta..."}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "Și asta e tot ce a scris!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Books"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Le recitești pe toate, nu?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "Pentru că ești plictisită?"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Ugh, nu-mi plac cărțile!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "Îmi place să fac lucruri!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "Ăsta e un mod de a privi lucrurile."}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "Dar fără teorie..."}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Boom - mișcare, abilități, atingere, știi?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Cărțile sunt doar hârtie, mie îmi place să fiu în momentul prezent!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "Dacă ai sta aici cu mine,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "am putea face atât, atât de multe!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "Sunt sigur că am putea..."}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Fructele sunt chiar reale?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "Arată uimitor."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Se strică vreodată?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "Merele, vrei să spui?"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "Nu au timp să se strice,"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "pentru că le mănânc pe toate!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "Și apoi reapar..."}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "Ce pisicuță drăguță."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Este gustoasă?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Stai, ce?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "Tu nu mănânci pisici."}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Ah, prostule!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Știu asta!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "Am vrut doar să spun"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "că nu am văzut niciodată una!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "Una adevărată, adică."}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "Doar poze pe internet."}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "Sunt drăguțe, nu-i așa?"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Da, sunt foarte drăguțe."}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "Îmi plac pisicile."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind with ring"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Ce e asta?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "Este interfața inelului,"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "și eu schimb ruta."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Uhm, dar tu doar mergi în cercuri?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "Da, ai putea crede asta."}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "Pentru mine, transfer date."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Va dura mult?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Liniște! Nu mă deranja,"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "și va merge mult mai repede."}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "Da, bine,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "deci dacă vă tot întrerup,"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "va dura mult mai mult?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Oh, Cappie,"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "Aș vrea să-ți putem recupera amintirile..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "Totul va fi bine în curând..."}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "Minunat!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "Nu avem timp de pierdut."}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "Trebuie să ajungem la nucleu."}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Pot să vin cu tine?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "Păi, nu știu..."}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "Deci, nu pot?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "Mă tem că nu."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "Am întârziat... super târziu!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "Și am mâncat prea mult..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Ah, iar la muncă?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "Care este data de mâine?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "Unde e calculatorul?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "O să mă dea afară dacă nu termin la timp!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Am salvat totul?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Nu mă iubește nimeni?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Unde mergem?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Hei!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "Nu mai am răbdare..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "Trebuie să muncesc mai mult..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Nu pot face nimic!"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Unde mi-e telefonul?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Uhm..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "ce s-a întâmplat ieri?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "Azi nu are sfârșit!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Salut?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Ai un pat liber?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "Ce ar trebui să fac?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "Nu voi putea termina la timp..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "Nu-mi dau seama care e problema..."}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Vreun perete?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "O pauză de 20 de minute ar trebui să fie bună..."}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Somnul este pentru fraieri!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "E timpul să mă spăl și să mă apuc de treabă!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "Mi-e foame!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "Asta e rău, foarte rău."}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Erm..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "Ahahaha."}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "Da..."}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "El l-a luat,"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "și a plecat."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "Cât de ciudat!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "Și amuzant :D"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Oh, haide."}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], ce faci?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Ce faci?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "Pleci din nou?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "Bine!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "Bine, te voi ierta."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], întoarce-te la noi!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "Nici nu s-a uitat la mine!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Plictisitor..."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "Care e planul tău?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "Planul meu?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "Care plan?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "A, da."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "Ți-ai pierdut memoria."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "Voi chiar sunteți...!"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Chiar ar trebui să-mi amintesc ceva!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Mă tachinați?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "Dar uitându-mă la expresia aia a ta..."}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "Nu-mi pot da seama!"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "Cum se simte să vezi o"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "replica exactă a ta?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "Știi tu, cea cu inelul."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "Da, voiam să țip la ea."}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "Știi tu, să o surprind."}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Sfinte Sisoe! Uite, e o clonă a mea!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Deși, eu sunt mult mai distractivă."}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "Deci sunt mai tare, heh :)"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "Uită-te la încruntarea aia..."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "Sunt chiar aici."}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "Pot auzi tot ce spui."}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "Nu te saturi să porți șapca aia?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "Și mănușile alea nu se încălzesc?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "De ce nu le dai jos?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "Err..."}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "Ești așa un glumeț!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Sau, ar trebui să dau altceva jos? :)"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "Vorbeam serios."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Oh, ok."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Ups."}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "Aia sunt mulți morcovi!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "Ce eroare amuzantă!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "Ha-ha-ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Așteaptă, stai puțin!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "Ai face bine să nu vezi ce e acolo..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Să fie un secret :)."}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "Ce este acolo?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "Un secret este un secret,"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "iar secretele sunt făcute pentru a fi păstrate."}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Uh-huh."}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "De ce te agiți?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Whoa!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "Ce e aia?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "O consolă!?"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Lasă-mă să încerc!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Uh-oh."}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "Ce faci în asta?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "Doar aduni monede,"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "și să eviți broaștele."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "Ah, sună mai mult decât plictisitor."}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Serios, tu numești asta un joc?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "De unde ai luat asta?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "Nu e ca și cum ți-aș fi returnat-o."}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Ciudat, nu crezi?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Uf!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Bravo,"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "ai găsit o eroare!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "Asta ar trebui să aprindă televizorul"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "dar în schimb, pornește televizorul"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "Pornit și oprit!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Destul de tare, nu crezi?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "Cred că voi aștepta."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "Ce faci?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "Trezește-te!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Să mergem să ne distrăm! :)"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Ieși pe ușa aceea"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "spre hol."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Pa-pa!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "E timpul să pleci, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "Du-te, nu-ți fie frică!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "Eu nu o să"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "te las vreodată singur!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "Așa că stai cu mine!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "Fără glume, OK?"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "Bah!"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "De ce stai degeaba?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "Suntem în criză de timp!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Bună!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "Err, vreau să spun pa-pa!"}

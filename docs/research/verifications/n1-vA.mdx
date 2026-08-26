@@ -1,0 +1,8 @@
+# n1-vA — Verifier A (consistency lens): F-P2's N-1 ledger-write-mode fix
+
+Claim VERIFIED: rewrite-mode stated in S4 (:198–205, "never appending", rerun reproduces it "modulo the volatile fields") and aligned in AC-5 (:459–461), AC-8 (:479–481), AC-12 (:509–511).
+Append sweep clean: remaining "append" hits are .gitignore edits (:412, :537) and EXTRACTION-LOG human-append sections (:390) — deliberately outside the ledger class via AC-5's record-dedupe carve-out (:456–457).
+Math clean: one-row-per-container full rewrite makes AC-12's attempted-vs-succeeded sums count each of the 51 containers exactly once against the S2 census; AC-10 reconciles bytes from its own walks, AC-11 only emits its stage report — no double-count vector.
+FINDING: AC-5:460–461 grants all three ledger classes byte-identical reruns — but :456 itself enumerates "stage-report run facts" as per-run volatile, so stage reports change every run and the claim is unsatisfiable as written for them. S4 keeps the qualifier (:201–202); AC-5's ledger sentence dropped it. Sweep-attempts/locale-delta row schemas carry no enumerated-volatile fields, so only stage reports are affected.
+FIX: qualify AC-5:461 → "…so a rerun reproduces them byte-identically modulo the volatile fields."
+VERDICT: FAIL — AC-5:461 promises byte-identical stage-report reruns while :456 declares their run facts volatile; restore the modulo qualifier.

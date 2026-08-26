@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "New game"}
+{"category": "Menu", "line_index": 1, "text": "Continue"}
+{"category": "Menu", "line_index": 2, "text": "Main menu"}
+{"category": "Menu", "line_index": 3, "text": "Exit"}
+{"category": "Menu", "line_index": 4, "text": "Settings"}
+{"category": "Menu", "line_index": 5, "text": "Achievements"}
+{"category": "Menu", "line_index": 6, "text": "Credits"}
+{"category": "Menu", "line_index": 7, "text": "Back"}
+{"category": "Menu", "line_index": 8, "text": "Load game"}
+{"category": "Menu", "line_index": 9, "text": "Language"}
+{"category": "Menu", "line_index": 10, "text": "Loading..."}
+{"category": "Menu", "line_index": 11, "text": "Graphics"}
+{"category": "Menu", "line_index": 12, "text": "Master Volume"}
+{"category": "Menu", "line_index": 13, "text": "Keyboard & mouse"}
+{"category": "Menu", "line_index": 14, "text": "Controller"}
+{"category": "Menu", "line_index": 15, "text": "Resolution"}
+{"category": "Menu", "line_index": 16, "text": "Windowed mode"}
+{"category": "Menu", "line_index": 17, "text": "Graphic effects"}
+{"category": "Menu", "line_index": 18, "text": "Color effects"}
+{"category": "Menu", "line_index": 19, "text": "Soft shadows"}
+{"category": "Menu", "line_index": 20, "text": "Blur"}
+{"category": "Menu", "line_index": 21, "text": "Bloom"}
+{"category": "Menu", "line_index": 22, "text": "Anti-aliasing"}
+{"category": "Menu", "line_index": 23, "text": "Shadow Quality"}
+{"category": "Menu", "line_index": 24, "text": "World display quality"}
+{"category": "Menu", "line_index": 25, "text": "Programming"}
+{"category": "Menu", "line_index": 26, "text": "Animation"}
+{"category": "Menu", "line_index": 27, "text": "Sound effects"}
+{"category": "Menu", "line_index": 28, "text": "Music"}
+{"category": "Menu", "line_index": 29, "text": "Particles"}
+{"category": "Menu", "line_index": 30, "text": "Textures"}
+{"category": "Menu", "line_index": 31, "text": "3D models [98%]"}
+{"category": "Menu", "line_index": 32, "text": "Writing"}
+{"category": "Menu", "line_index": 33, "text": "Reset"}
+{"category": "Menu", "line_index": 34, "text": "Forward"}
+{"category": "Menu", "line_index": 35, "text": "Back"}
+{"category": "Menu", "line_index": 36, "text": "Left"}
+{"category": "Menu", "line_index": 37, "text": "Right"}
+{"category": "Menu", "line_index": 38, "text": "Interaction"}
+{"category": "Menu", "line_index": 39, "text": "Mouse sensitivity"}
+{"category": "Menu", "line_index": 40, "text": "Quit the game?"}
+{"category": "Menu", "line_index": 41, "text": "Yes"}
+{"category": "Menu", "line_index": 42, "text": "No"}
+{"category": "Menu", "line_index": 43, "text": "Back to main menu"}
+{"category": "Menu", "line_index": 44, "text": "Smooth Turning"}
+{"category": "Menu", "line_index": 45, "text": "Game settings"}
+{"category": "Menu", "line_index": 46, "text": "Shadow style"}
+{"category": "Menu", "line_index": 47, "text": "Outfits"}
+{"category": "Menu", "line_index": 48, "text": "UI"}
+{"category": "Menu", "line_index": 49, "text": "3D models [2%]"}
+{"category": "Menu", "line_index": 50, "text": "Voice Volume"}
+{"category": "Menu", "line_index": 51, "text": "Pause"}
+{"category": "Menu", "line_index": 52, "text": "Menu"}
+{"category": "Menu", "line_index": 53, "text": "Congrats! You completed the game!"}
+{"category": "Menu", "line_index": 54, "text": "Your time:"}
+{"category": "Menu", "line_index": 55, "text": "Subtitles"}
+{"category": "Menu", "line_index": 56, "text": "Brightness"}
+{"category": "Menu", "line_index": 57, "text": "Vertical sync"}
+{"category": "Menu", "line_index": 58, "text": "Saved"}
+{"category": "Menu", "line_index": 59, "text": "Characters"}
+{"category": "Menu", "line_index": 60, "text": "Characters - Mitas"}
+{"category": "Menu", "line_index": 61, "text": "Characters - Cartridges"}
+{"category": "Menu", "line_index": 62, "text": "Cartridges"}
+{"category": "Menu", "line_index": 63, "text": "Mitas"}
+{"category": "Menu", "line_index": 64, "text": "Delete All Game Data"}
+{"category": "Menu", "line_index": 65, "text": "Are you sure you want to completely delete all your progress and start from scratch?"}
+{"category": "Menu", "line_index": 66, "text": "Compiling shaders, estimated wait time: 2 hours."}
+{"category": "Menu", "line_index": 67, "text": "2-hour compilation?! That's bogus! We've done that for you already!"}
+{"category": "Menu", "line_index": 68, "text": "Creating realistic shadow tracing—estimated to take 10 minutes."}
+{"category": "Menu", "line_index": 69, "text": "Just kidding, we don't use those fancy things here."}
+{"category": "Menu", "line_index": 70, "text": "Umm..."}
+{"category": "Menu", "line_index": 71, "text": "Oh, we are ready!"}
+{"category": "Menu", "line_index": 72, "text": "View Bobbing"}
+{"category": "Menu", "line_index": 73, "text": "Show hints"}
+{"category": "Menu", "line_index": 74, "text": "Player Voice Style"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "Character profile added"}
+{"category": "Menu", "line_index": 77, "text": "Field Of View"}
+{"category": "Menu", "line_index": 78, "text": "Voice"}
+{"category": "Menu", "line_index": 79, "text": "Off"}
+{"category": "Menu", "line_index": 80, "text": "Show hand reaching out to the door"}
+{"category": "Menu", "line_index": 81, "text": "Animation"}
+{"category": "Menu", "line_index": 82, "text": "Enable player voice"}
+{"category": "Menu", "line_index": 83, "text": "Mita"}
+{"category": "Menu", "line_index": 84, "text": "Short-haired Mita"}
+{"category": "Menu", "line_index": 85, "text": "Kind Mita"}
+{"category": "Menu", "line_index": 86, "text": "Cap-wearing Mita"}
+{"category": "Menu", "line_index": 87, "text": "Tiny Mita"}
+{"category": "Menu", "line_index": 88, "text": "Sleepy Mita"}
+{"category": "Menu", "line_index": 89, "text": "2D Mita"}
+{"category": "Menu", "line_index": 90, "text": "Mila"}
+{"category": "Menu", "line_index": 91, "text": "Creepy Mita"}
+{"category": "Menu", "line_index": 92, "text": "Core Mita"}
+{"category": "Menu", "line_index": 93, "text": "Ghostly Mita"}
+{"category": "Menu", "line_index": 94, "text": "Chibi Mita"}
+{"category": "Menu", "line_index": 95, "text": "Dummy Mita"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "I'm Inside a Game?"}
+{"category": "Menu", "line_index": 101, "text": "Together at Last"}
+{"category": "Menu", "line_index": 102, "text": "Things Get Weird"}
+{"category": "Menu", "line_index": 103, "text": "The Basement"}
+{"category": "Menu", "line_index": 104, "text": "Beyond the World"}
+{"category": "Menu", "line_index": 105, "text": "The Loop"}
+{"category": "Menu", "line_index": 106, "text": "Chibi Mita"}
+{"category": "Menu", "line_index": 107, "text": "Dummies and Forgotten Puzzles"}
+{"category": "Menu", "line_index": 108, "text": "She Just Wants to Sleep"}
+{"category": "Menu", "line_index": 109, "text": "Novels"}
+{"category": "Menu", "line_index": 110, "text": "Reading Books, Destroying Glitches"}
+{"category": "Menu", "line_index": 111, "text": "Run and Hide!"}
+{"category": "Menu", "line_index": 112, "text": "Old Version"}
+{"category": "Menu", "line_index": 113, "text": "Being Candid"}
+{"category": "Menu", "line_index": 114, "text": "Reboot"}
+{"category": "Menu", "line_index": 115, "text": "Cappie"}
+{"category": "Menu", "line_index": 116, "text": "Ghost Mita"}
+{"category": "Menu", "line_index": 117, "text": "The Real World"}
+{"category": "Menu", "line_index": 118, "text": "\"Leave the Core!\""}
+{"category": "Menu", "line_index": 119, "text": "Player 1"}
+{"category": "Menu", "line_index": 120, "text": "Player 2"}
+{"category": "Menu", "line_index": 121, "text": "Player 3"}
+{"category": "Menu", "line_index": 122, "text": "Player 4"}
+{"category": "Menu", "line_index": 123, "text": "Player 5"}
+{"category": "Menu", "line_index": 124, "text": "Player 6"}
+{"category": "Menu", "line_index": 125, "text": "Player 7"}
+{"category": "Menu", "line_index": 126, "text": "Player 8"}
+{"category": "Menu", "line_index": 127, "text": "Player 9"}
+{"category": "Menu", "line_index": 128, "text": "Player 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Peaceful Mode"}
+{"category": "Menu", "line_index": 131, "text": "This mode is still in development! It's so expansive that the developers haven't managed to finish it yet. But don't worry—they've promised it will be included in a major update coming soon. And look at you, already ahead of the curve by unlocking access! Now all that's left is to wait..."}
+{"category": "Menu", "line_index": 132, "text": "So, what is Peaceful Mode? It's your chance to reconnect with Mita in a completely different way! She'll be overjoyed to spend more time with you, from morning to night, in a world brimming with fun and surprises. Expect heartfelt one-on-one conversations, cooking meals, playing games, and plenty of hilarious moments together."}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "Censor gore"}
+{"category": "Menu", "line_index": 136, "text": "Special Thanks:"}
+{"category": "Menu", "line_index": 137, "text": "Achievement Icons: Iceсloud"}
+{"category": "Menu", "line_index": 138, "text": "Framed Picture Art: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Translators"}
+{"category": "Menu", "line_index": 140, "text": "Translated the game into other languages."}
+{"category": "Menu", "line_index": 141, "text": "Publishing Partners"}
+{"category": "Menu", "line_index": 142, "text": "Game marketing"}
+{"category": "Menu", "line_index": 143, "text": "Playtesters"}
+{"category": "Menu", "line_index": 144, "text": "Played the game and found all sorts of bugs."}
+{"category": "Menu", "line_index": 145, "text": "This language translation was made by enthusiasts from the fan community and added to the game at their request."}
+{"category": "Menu", "line_index": 146, "text": "Warning! This game includes jump scares, sudden sharp sounds, and occasional screen flickering. Players with photosensitive epilepsy, heart conditions, or similar health concerns are advised to be cautious."}
+{"category": "Menu", "line_index": 147, "text": "Peaceful Mode Unlocked!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Photo Mode"}
+{"category": "Menu", "line_index": 150, "text": "Photo Mode: No movement restrictions. Keep in mind, you might see things that you shouldn't be able to."}
+{"category": "Menu", "line_index": 151, "text": "Exit Photo Mode"}
+{"category": "Menu", "line_index": 152, "text": "Hide UI"}
+{"category": "Menu", "line_index": 153, "text": "Hold to pan the camera"}
+{"category": "Menu", "line_index": 154, "text": "Hold to accelerate"}
+{"category": "Menu", "line_index": 155, "text": "Camera Smoothing"}
+{"category": "Menu", "line_index": 156, "text": "Speed"}
+{"category": "Menu", "line_index": 157, "text": "Effects"}
+{"category": "Menu", "line_index": 158, "text": "In-game Time Control"}
+{"category": "Menu", "line_index": 159, "text": "Brightness"}
+{"category": "Menu", "line_index": 160, "text": "Contrast"}
+{"category": "Menu", "line_index": 161, "text": "Vignette"}
+{"category": "Menu", "line_index": 162, "text": "Take Screenshot!"}
+{"category": "Menu", "line_index": 163, "text": "Open screenshot folder"}
+{"category": "Menu", "line_index": 164, "text": "Camera Rotation"}

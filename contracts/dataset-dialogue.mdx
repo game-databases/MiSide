@@ -1,0 +1,193 @@
+# Contract — dataset: dialogue graphs
+
+Frontend schema pin v1 for the node-keyed dialogue graph, emitted 2026-08-25
+by builder brief **B-3** against arbiter-approved
+[DS-3](../docs/specs/dataset-dialogue.mdx)
+([ds123-arbiter](../docs/research/verifications/ds123-arbiter.mdx)).
+Build pin: **buildId 19029065 / VERSION 0.93L** (stamped `build` on every
+record; user-facing surfaces print the buildId only). Emitter:
+`extracted/data/dialogue/build/emit_dialogue.py`; independent verifier:
+`extracted/data/dialogue/build/selfcheck_dialogue.py` (parked here pending
+PIPE §3 stage-tree adoption — same parking as B-1/B-2 relinks).
+
+## Files
+
+All under `extracted/data/dialogue/`:
+
+| File | Shape |
+|---|---|
+| `nodes.jsonl` | **2,839** records: 2,710 `ambient_line` · 13 `quest_box` · 70 `choice_case` · 11 `branch_group` · 11 `grouped_scene_dialogue` · 24 `pet_dialogue` |
+| `edges.jsonl` | **3,776** typed edges: 2,161 `next` · 70 `choice` · 10 `branch_left/right` · 1,535 `on_finish_action` |
+| `graphs/<level>.json` | 19 per-level graphs (`level3–17`, `level19–22`): nodes + entry points + terminals |
+| `speakers.json` | curated `themeDialogue` → entity mapping (14 enum values) |
+| `availability.csv` | 680 cells = 20 buckets × 34 locales, with pivot counts and tail deltas |
+| `residue-links.jsonl` | encoding-residue join (LD12 line 58 ↔ all 7 ledger rows) |
+| `_ledger/dangling-edges.jsonl` | 12 rows (AC D5 explained-diff set) |
+| `_ledger/range-check.jsonl` | per-level union-span validation rows (§3.6), all `validated` |
+| `_ledger/locale-parity.jsonl` | 4 measured locale tail-delta rows |
+| `_ledger/identity-reconciliation.jsonl` | 32 bare-named dump instances with recovered true PathIDs |
+| `_ledger/ac-scoreboard.json` | D1–D9 verdicts from the independent checker |
+
+## Identity scheme (load-bearing)
+
+- Node id = `<container>:<Class>#<truePathID>`, e.g.
+  `level9:Dialogue_3DText#20023`. The PathID is the component's **real
+  serialized PathID read from the scene file itself**, not the mb-dump
+  filename suffix — AssetStudioMod's `_#N` suffix is a tool-internal id
+  space that matches nothing in the ASL crosswalk (verified: no `#12799`
+  exists in `level9.xml`). Embedded cases/entries use path-scoped ids
+  (`...#pid/case/i`, `.../text/g/t`, `.../line/g/l`, `.../pet-line/d`).
+- The one bare-named dump file per class per container is matched to its
+  true PathID by elimination against the numbered files' resolved identities;
+  each such match is recorded in `_ledger/identity-reconciliation.jsonl`.
+- Edge targets: `nextText` points at **GameObject** PPtrs (resolved via the
+  GO→component map); `nextDialogue` points at components directly;
+  UnityEvent targets classify as dialogue-node id, `component:<Type>#pid`,
+  `gameobject:<pid>`, or `out-of-census-scope` (cross-file).
+
+## Join contract — `line_index = game_index − 1`
+
+Every pointer in this dataset converts at emit time. The spec's off-by-one
+contract ([DS-3 §3.2/§3.6](../docs/specs/dataset-dialogue.mdx)) applies to ALL
+four serialized index fields, and this build measured the confirmation:
+
+| Field | Carrier | Evidence for −1 |
+|---|---|---|
+| `indexString` | Dialogue_3DText | max == count on 16 levels; level6 `#7124`→LD4 line 0 `"Mita?"`; boundary proof in spec |
+| `stringFile` | DialogueChangerCase | level5 box (`fileQuest "Location 3"`): −1 lands case[0] (`exitButton=true`) on `"Never mind."` and every other case on a coherent question row; identity copy lands two of them on `//` comment rows |
+| `indexFile` | Loc14_DialogueText | max 217 == LD14 count |
+| `index` | Location18_DialogueIndex | union closes LD18 at 259 |
+
+Range authority = **pivot EN category counts** (`GetCountString` semantics).
+Per-locale tails differ in exactly 4 locales (see Locale parity below).
+
+## Level ↔ location binding (validated)
+
+`levelN → LocationDialogue Location(N−2)` held for **all 19 carrier levels**
+including the three union-closure levels the spec flagged (level3 closes LD1
+at 143 via pet mobs; level16 closes LD14 at 217 via branch groups; level20
+closes LD18 at 259 via grouped scenes) AND level4→LD2, which neither spec
+list named (measured span: max line_index 8 == count 9 − 1). Per-level rows
+with min/max/carrier counts live in `_ledger/range-check.jsonl`. Chapter
+joins stay deferred to SPEC gap #1; records carry `level` + `location` now,
+`chapter: null`.
+
+## Speaker model
+
+- `ambient_line.speaker.theme` = verbatim `Dialogue3DTheme` value; `entity`
+  slug resolves for 9 themes (`provisional-pending-ds1` status — alignment
+  with B-1's `character_id` namespace is that dataset's curation call);
+  **5 themes stay `{slug: null, status: "pending-curation"}`**: MitaKnow,
+  MitaFon, White, Creepy, MitaDream (brief/D6 fence — never guessed).
+- `branch_group.entries[].speaker_enum`: `player | mita` (Loc14WhioSpeak).
+- `grouped_scene_dialogue.groups[].personage_ptr`: raw Location18_Personage
+  PPtrs (entities land with DS-1 curation).
+- `choice_case`, `quest_box`, `pet_dialogue` serialize **no speaker field**;
+  the field stays null. This caps speaker coverage at 96.23% (D6 PARTIAL,
+  structural ceiling — see scoreboard note).
+- `voice_present` is null on every record: no serialized dialogue→audio join
+  exists in the corpus (AudioDialogue is a separate carrier family); the
+  linkage happens at runtime only.
+
+## Condition hints (§3.5 honesty box)
+
+The 328 EN `//` author-comment rows attach to the next non-blank non-comment
+row of their category (previous-row fallback), verbatim, `lang: "en"`, never
+rendered as speech — every hint-bearing ref of a node attaches, not just its
+first. **320 of 328 ship into emitted `condition_hints`** (324 placements
+over 318 nodes); the 8 whose target row no component serializes are ledgered
+explicitly in `_ledger/build-meta.json` → `hint_stats.unattached_rows` with
+reason + target line — never silently dropped. The reconciliation invariant
+`emitted + unattached == 328` is asserted in-code and re-derived
+independently by the checker. 0 text_refs land on comment rows. No predicate
+DSL is claimed anywhere — branching semantics live only in resolved
+`on_finish_action` calls.
+
+## Locale plan (measured, not assumed)
+
+- All 34 locales carry the 19 dialogue categories; positional pointers serve
+  every locale from one node record.
+- **French-only `LocationDialogue Location16`** = 0 bytes → `contentless`
+  for fr, `filler` elsewhere (33 locales). Never a missing-data alarm.
+- **Spec §2.1's "exact per-category line parity across locales" is REFUTED
+  by measurement**: Filipino LD20 (+1), Italian LD3 (+2), Português-Brasil
+  LD18 (−3), Turkish LD6 (−1). Deltas ship as data
+  (`_ledger/locale-parity.jsonl`, availability `tail_delta` column). Pivot EN
+  stays the range authority so no node record shifts; refs falling past a
+  locale's own tail render filler there (2 node-ref × locale cells today).
+  Surplus rows are unreferenced by any node (beyond max game_index).
+- `extracted/relinks/locale_availability.jsonl` does not exist yet (P1 relink
+  stage owns it — arbiter residue (c)); cells classify from measured category
+  presence directly, the same inputs that stage will encode. Re-drive when
+  P1 lands.
+
+## Edge semantics
+
+| kind | count | serialization | resolution |
+|---|---|---|---|
+| `next` | 2,161 | `nextText` (GO PPtr), `nextDialogue` (component PPtr) | 2,150 ambient + 11 group-kind resolve in-level; 12 non-null ambient targets host no dialogue node → ledgered, reason + hosted-components recorded |
+| `choice` | 70 | box → embedded case | always in-graph |
+| `branch_left`/`branch_right` | 5+5 | L14 `indexFileRight/Left` keyed on LOC LINE INDICES | dst = unique carrier node when one exists; otherwise the edge stays text-keyed (`dst: null` + `label_ref`) — measured: ALL 10 wired fork slots render rows no node component serializes (5 of 11 L14 components wire any side; the other 12 of 22 slots serialize 0) |
+| `on_finish_action` | 1,535 | persistent calls verbatim (target ptr, assembly type, method, mode, call_state, args) | 60 resolve to dialogue nodes; 1,254 to engine/game components; 220 to GameObjects; 1 null-target; rest classified |
+
+Baseline reconciliation (spec §2.2): non-null `nextText` 2,162 =
+2,150 resolved + 12 ledgered (exact); null-next terminals 548 (exact); the
+**662** measured non-empty ambient `eventFinish` groups reproduce **exactly**
+(+39 `eventFinishPrint`, +2 `eventDontVoice`; 1,535 calls across all slots
+and carriers).
+
+## Acceptance criteria scoreboard (this build)
+
+Independent repo-side checker (`selfcheck_dialogue.py`) re-derives everything
+from sources; verdict: **8 PASS · 1 PARTIAL · 0 FAIL**
+(`_ledger/ac-scoreboard.json`).
+
+- **D1 PASS** — census equals ASL numbers AND an independent filename recount.
+- **D2 PASS** — 3,001 refs range-checked vs pivot counts; `−1` conversion
+  verified on every record; union-span rule validated on all 19 levels; 4
+  locale tail deltas ledgered as data.
+- **D3 PASS** — 680 cells × 34 locales, FR LD16 contentless, zero locales dropped.
+- **D4 PASS** — all 7 residue ledger ids joined onto the LD12:58 node.
+- **D5 PASS** — every resolvable next-edge resolves; the unresolvable carry
+  ledger rows; terminals = 548 baseline exactly.
+- **D6 PARTIAL** — 96.23% structured-speaker coverage vs the ≥99% bar; the
+  gap is structural (107 nodes belong to kinds that serialize no speaker
+  field), not missing data; 100% of nodes whose kind HAS a speaker mechanism
+  carry one; enum table complete, 5 values `pending-curation` per fence.
+- **D7 PASS** — 320/328 comments emitted into `condition_hints` verbatim +
+  8 unattached ledgered explicitly = the asserted 328 reconciliation
+  invariant; 0 rendered as speech.
+- **D8 PASS** — build stamp + container + true PathID on every record.
+- **D9 PASS** — rerun reproduced all 30 output files byte-identical (sha256).
+
+## Deviations from the illustrative spec shapes (deliberate)
+
+1. **Output root `extracted/data/dialogue/`** (brief; arbiter residue (a)
+   picked the `data/` family). `graphs/`, `_ledger/` subdirs added to §7's
+   six-file list for AC D5/D2 provenance.
+2. **Emitter + checker parked at `data/dialogue/build/`** — write scope
+   excludes `pipeline/stages/`; register there at emit-stage adoption.
+3. **True component PathIDs replace dump-filename suffixes** in node ids —
+   the client file is the identity authority; filename `_#N` proved to be a
+   different id space.
+4. **Branch forks are text-keyed edges**, not node-only references — DS-3
+   §3.3 says "keyed on loc line indices"; measurement shows 10 wired forks
+   target rows no node serializes. `carrier-for-index-not-found` is therefore
+   NOT dangling when the row is in-range.
+5. **`random_router` emits zero nodes/edges**: `Location21_DialogueRandom`
+   has zero instances across all 51 containers (measured absence, not omission).
+6. **Locale parity finding contradicts spec §2.1's parity claim** — kept as
+   data with pivot-authoritative ranges; spec text amendment is the
+   specifier's call.
+7. **Quest-label categories** (`Location N`) ride their own −1 contract
+   (evidence above); EN `Location 3` line 12 carries a U+FFFD outside the 7
+   LD12 ledger rows — out of D4 scope, noted here for the loc layer.
+
+## Handoff to orchestrator
+
+- Move nothing — dialogue relink-family files already live under
+  `extracted/data/dialogue/`; register the emitter/checker modules + tests in
+  the PIPE manifest at adoption (same commit discipline as B-1/B-2).
+- Downstream consumers read this contract; per-Mita/per-chapter modules key
+  off `speaker.entity.slug` (provisional) and `level`/`location` until SPEC
+  gap #1 lands chapters.

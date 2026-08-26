@@ -1,0 +1,16 @@
+{
+  "stage": "census",
+  "host": "Ne8k",
+  "measured_at": "2026-08-25T00:28:04+00:00",
+  "status": "ok",
+  "reconciliations": {
+    "containers_attempted": 51,
+    "containers_succeeded": 51,
+    "containers_failed": [],
+    "succeeded_bytes": 583027900,
+    "loc_txt_walked": 2210,
+    "loc_parsed": 2210,
+    "loc_anomalous": 0
+  },
+  "duration_s": 2.247
+}

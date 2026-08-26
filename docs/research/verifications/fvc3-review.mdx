@@ -1,0 +1,14 @@
+# R-FVC3 — Code review of F-VC3 (1f651af3) — re-execution, not trust
+
+Suites rerun: tests **29/29** · hex lint OK · parity **×34** · tsc 0. Rendered claims checked on committed build `lSGP9…` (HTML, scripts stripped); joins re-derived from `extracted/` + D: art export.
+1. Save-key chips PASS — chips = `pickup_ref.container`→scene title + `collectible_set` (pinned cols; null ×13 → no chip); flash chip dropped; zero save-key visible text across all 33 mita-kind locale pages. Residual: anchorless `mta` → re-spaced "Mta" (VC-2-cleared DS-4 honesty).
+2. Cartridge modules PASS — re-derived for **all 23 rows**: subject ×22, found-in ×21, minigames ×21, every hop a shipped artifact (`personages`/`scenes` ids ARE `levelN`; relink row format matches parser exactly). mtakd renders Mitas 1 · Locations 1 · Minigames 2 (games-core, tetris) = corpus truth; no transitive joins.
+3. Art decline HONEST — hunted for a missed pointer: players' `gallery_icon` = one shared *unresolved* pointer (corpus ledger R5); `button_menu` PPtrs → `Menu_CasePersonage` components, sprites behind unresolved externals; `ChibiPlayer 1–7.png` referenced by **zero** datasets/relinks (ordinal map = invented join); locations = zero `location*` textures in export. Built grids corroborate: minigames 15 imgs == MINIGAME_ART 15 == disk 15; cartridges 10; endings 3; wells kept.
+4. Dialogue titles PASS — `Dialogue — …` / «Диалоги — …» / Arabic localized, both route trees; gen-routes never emits `dialogue/page.tsx` (no regen overwrite). 5. Lift PASS — compiled CSS carries `.hover\:\[transform\:translateY(-\.125rem…\]:hover{transform…}` inside `@media(hover:hover)` (first grep missed it: minifier strips the leading zero), transform is in the transition list; CDP matrix consistent.
+
+- [minor] Debris committed: `server-fvc3.log`/`server-fvc3b.log` (incl. NoFallbackError noise) + empty `server-fvc3-attempt3.log` — delete + untrack next round.
+- [minor] `art.ts` provenance comments misname source object on 2/15 rows vs emitter truth (`select-art.py`: DanceButton/GameMachine, not LineDance/Interface Screen Core — emission itself correct).
+- [info] entityView comment overstates "every player resource_path empty" — row 0 has `'Player'`; conclusion stands (no nameable `Player.png`, nearest is pose art).
+- [info] Lift is pointer-only by construction; keyboard focus gets ring not lift — matches this site's real-pointer idiom, focus indicator intact.
+
+VERDICT: APPROVE

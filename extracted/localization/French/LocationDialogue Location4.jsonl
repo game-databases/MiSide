@@ -1,0 +1,400 @@
+{"category": "LocationDialogue Location4", "line_index": 0, "text": "Mita ?"}
+{"category": "LocationDialogue Location4", "line_index": 1, "text": "Oh, tu es déjà réveillé ?"}
+{"category": "LocationDialogue Location4", "line_index": 2, "text": "Comment tu es arrivée ici ?"}
+{"category": "LocationDialogue Location4", "line_index": 3, "text": "Tu étais juste à côté de moi."}
+{"category": "LocationDialogue Location4", "line_index": 4, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 5, "text": "Non."}
+{"category": "LocationDialogue Location4", "line_index": 6, "text": "Tu étais figé devant le miroir."}
+{"category": "LocationDialogue Location4", "line_index": 7, "text": "Je suis partie."}
+{"category": "LocationDialogue Location4", "line_index": 8, "text": "Qu'est-ce qui est arrivé aux pièces ?"}
+{"category": "LocationDialogue Location4", "line_index": 9, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 10, "text": "Je les ai réarrangées,"}
+{"category": "LocationDialogue Location4", "line_index": 11, "text": "comme ça elles te seront plus familières."}
+{"category": "LocationDialogue Location4", "line_index": 12, "text": "C'est-à-dire,"}
+{"category": "LocationDialogue Location4", "line_index": 13, "text": "les pièces ne sont plus en ligne,"}
+{"category": "LocationDialogue Location4", "line_index": 14, "text": "mais tel qu'elles sont censées être."}
+{"category": "LocationDialogue Location4", "line_index": 15, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 16, "text": "Ce n'était pas nécessaire"}
+{"category": "LocationDialogue Location4", "line_index": 17, "text": "Je commençais à m'y habituer."}
+{"category": "LocationDialogue Location4", "line_index": 18, "text": "Je pense que tu t'y sentiras plus à l'aise comme ça."}
+{"category": "LocationDialogue Location4", "line_index": 19, "text": "// Mita card game - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 20, "text": "Bien"}
+{"category": "LocationDialogue Location4", "line_index": 21, "text": "On commence le jeu ?"}
+{"category": "LocationDialogue Location4", "line_index": 22, "text": "Je vais t'expliquer rapidement."}
+{"category": "LocationDialogue Location4", "line_index": 23, "text": "Le jeton indique le type d'action,"}
+{"category": "LocationDialogue Location4", "line_index": 24, "text": "par exemple, le cœur :"}
+{"category": "LocationDialogue Location4", "line_index": 25, "text": "Lorsqu'on dépose les cartes,"}
+{"category": "LocationDialogue Location4", "line_index": 26, "text": "si tu as davantage de cœur"}
+{"category": "LocationDialogue Location4", "line_index": 27, "text": "sur ta carte"}
+{"category": "LocationDialogue Location4", "line_index": 28, "text": "que je n'en ai sur la mienne,"}
+{"category": "LocationDialogue Location4", "line_index": 29, "text": "tu gagnes."}
+{"category": "LocationDialogue Location4", "line_index": 30, "text": "Prends les cartes."}
+{"category": "LocationDialogue Location4", "line_index": 31, "text": "Maintenant c'est mon tour."}
+{"category": "LocationDialogue Location4", "line_index": 32, "text": "Waouh !"}
+{"category": "LocationDialogue Location4", "line_index": 33, "text": "J'ai pioché de bonnes cartes !"}
+{"category": "LocationDialogue Location4", "line_index": 34, "text": "Je commence !"}
+{"category": "LocationDialogue Location4", "line_index": 35, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 36, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 37, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 38, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 39, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 40, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 42, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 43, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 44, "text": "À toi !"}
+{"category": "LocationDialogue Location4", "line_index": 45, "text": "Fais ton action !"}
+{"category": "LocationDialogue Location4", "line_index": 46, "text": "Yep."}
+{"category": "LocationDialogue Location4", "line_index": 47, "text": "C'est ton tour !"}
+{"category": "LocationDialogue Location4", "line_index": 48, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 49, "text": "Action de cœur."}
+{"category": "LocationDialogue Location4", "line_index": 50, "text": "La meilleure défense c'est l'attaque !"}
+{"category": "LocationDialogue Location4", "line_index": 51, "text": "Fais attention à la défense !"}
+{"category": "LocationDialogue Location4", "line_index": 52, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 53, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 54, "text": "La victoire est à toi !"}
+{"category": "LocationDialogue Location4", "line_index": 55, "text": "Tu as gagné !"}
+{"category": "LocationDialogue Location4", "line_index": 56, "text": "Tu es gagnant."}
+{"category": "LocationDialogue Location4", "line_index": 57, "text": "Oh toi alors..."}
+{"category": "LocationDialogue Location4", "line_index": 58, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 59, "text": "J'ai gagné !"}
+{"category": "LocationDialogue Location4", "line_index": 60, "text": "Je suis victorieuse !"}
+{"category": "LocationDialogue Location4", "line_index": 61, "text": "La victoire est à moi !"}
+{"category": "LocationDialogue Location4", "line_index": 62, "text": "Miam, j'en ai fait qu'une bouchée."}
+{"category": "LocationDialogue Location4", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 64, "text": "Égalité."}
+{"category": "LocationDialogue Location4", "line_index": 65, "text": "Tout pareil !"}
+{"category": "LocationDialogue Location4", "line_index": 66, "text": "Et c'est un match nul !"}
+{"category": "LocationDialogue Location4", "line_index": 67, "text": "C'est la même valeur..."}
+{"category": "LocationDialogue Location4", "line_index": 68, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 69, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 70, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 72, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 74, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 78, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 79, "text": "// The card game is interrupted - Player"}
+{"category": "LocationDialogue Location4", "line_index": 80, "text": "C'est quoi ce son là-bas ?"}
+{"category": "LocationDialogue Location4", "line_index": 81, "text": "Ça vient du placard."}
+{"category": "LocationDialogue Location4", "line_index": 82, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 83, "text": "Un son ?"}
+{"category": "LocationDialogue Location4", "line_index": 84, "text": "Quel son ?"}
+{"category": "LocationDialogue Location4", "line_index": 85, "text": "Je n'ai entendu aucun son."}
+{"category": "LocationDialogue Location4", "line_index": 86, "text": "Dis-moi quel genre de son c'était."}
+{"category": "LocationDialogue Location4", "line_index": 87, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 88, "text": "C'est comme si quelqu'un frappait à la porte."}
+{"category": "LocationDialogue Location4", "line_index": 89, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 90, "text": "Mais il n'y a..."}
+{"category": "LocationDialogue Location4", "line_index": 91, "text": "Il n'y a personne là-dedans."}
+{"category": "LocationDialogue Location4", "line_index": 92, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 93, "text": "Je veux vérifier."}
+{"category": "LocationDialogue Location4", "line_index": 94, "text": "C'est vraiment étrange."}
+{"category": "LocationDialogue Location4", "line_index": 95, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 96, "text": "Pourquoi ?"}
+{"category": "LocationDialogue Location4", "line_index": 97, "text": "Encore..."}
+{"category": "LocationDialogue Location4", "line_index": 98, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 99, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 100, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 101, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 103, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 104, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 105, "text": "Qu'est-ce que tu fais !?"}
+{"category": "LocationDialogue Location4", "line_index": 106, "text": "Il y a..."}
+{"category": "LocationDialogue Location4", "line_index": 107, "text": "Mes sous-vêtements là-dedans."}
+{"category": "LocationDialogue Location4", "line_index": 108, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 109, "text": "Tu caches quelque chose ?"}
+{"category": "LocationDialogue Location4", "line_index": 110, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 111, "text": "Pourquoi ne me crois-tu pas ?"}
+{"category": "LocationDialogue Location4", "line_index": 112, "text": "Qu'est-ce que j'ai fait de mal ?"}
+{"category": "LocationDialogue Location4", "line_index": 113, "text": "Je veux juste"}
+{"category": "LocationDialogue Location4", "line_index": 114, "text": "Je veux juste que tu sois avec moi."}
+{"category": "LocationDialogue Location4", "line_index": 115, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 116, "text": "J'aimerais pouvoir te le promettre, mais que va-t-il se passer ensuite ?"}
+{"category": "LocationDialogue Location4", "line_index": 117, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 118, "text": "Pourquoi es-tu autant intrigué par le placard ?"}
+{"category": "LocationDialogue Location4", "line_index": 119, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 120, "text": "Je veux juste savoir ce qui produit ces sons !"}
+{"category": "LocationDialogue Location4", "line_index": 121, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 122, "text": "Juste...."}
+{"category": "LocationDialogue Location4", "line_index": 123, "text": "Ce monde"}
+{"category": "LocationDialogue Location4", "line_index": 124, "text": "C'est juste ces quatre pièces."}
+{"category": "LocationDialogue Location4", "line_index": 125, "text": "Ce n'est pas suffisant pour toi ?"}
+{"category": "LocationDialogue Location4", "line_index": 126, "text": "Ne peux-tu pas juste essayer de rester avec moi ?"}
+{"category": "LocationDialogue Location4", "line_index": 127, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 128, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 129, "text": "// Don't stay - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 130, "text": "Je comprends."}
+{"category": "LocationDialogue Location4", "line_index": 131, "text": "Encore..."}
+{"category": "LocationDialogue Location4", "line_index": 132, "text": "Si tu veux savoir ce qu'il y a dedans,"}
+{"category": "LocationDialogue Location4", "line_index": 133, "text": "alors vas-y"}
+{"category": "LocationDialogue Location4", "line_index": 134, "text": "et vois par toi-même !"}
+{"category": "LocationDialogue Location4", "line_index": 135, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 136, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 138, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 139, "text": "Qu'est-ce que... ?"}
+{"category": "LocationDialogue Location4", "line_index": 140, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 141, "text": "Ça arrive."}
+{"category": "LocationDialogue Location4", "line_index": 142, "text": "La pièce n'a pas eu le temps de charger."}
+{"category": "LocationDialogue Location4", "line_index": 143, "text": "Attends un peu."}
+{"category": "LocationDialogue Location4", "line_index": 144, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 145, "text": "C'est étrange."}
+{"category": "LocationDialogue Location4", "line_index": 146, "text": "On est dans le téléphone de quelqu'un ?"}
+{"category": "LocationDialogue Location4", "line_index": 147, "text": "Et ce téléphone serait aussi lent ?"}
+{"category": "LocationDialogue Location4", "line_index": 148, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 149, "text": "Non."}
+{"category": "LocationDialogue Location4", "line_index": 150, "text": "C'est juste que tout n'est pas parfait"}
+{"category": "LocationDialogue Location4", "line_index": 151, "text": "dans ce monde..."}
+{"category": "LocationDialogue Location4", "line_index": 152, "text": "Et le chargement est fait"}
+{"category": "LocationDialogue Location4", "line_index": 153, "text": "par le Cœur de ce monde."}
+{"category": "LocationDialogue Location4", "line_index": 154, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 155, "text": "Le Cœur ?"}
+{"category": "LocationDialogue Location4", "line_index": 156, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 157, "text": "Typique, hein ?"}
+{"category": "LocationDialogue Location4", "line_index": 158, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 159, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 160, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 161, "text": "On peut soit"}
+{"category": "LocationDialogue Location4", "line_index": 162, "text": "jouer avec la console,"}
+{"category": "LocationDialogue Location4", "line_index": 163, "text": "ou jouer aux cartes."}
+{"category": "LocationDialogue Location4", "line_index": 164, "text": "C'est toi qui vois."}
+{"category": "LocationDialogue Location4", "line_index": 165, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 166, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 167, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 168, "text": "// Mita play fight - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 169, "text": "Est-ce qu'on devrait combattre ?"}
+{"category": "LocationDialogue Location4", "line_index": 170, "text": "Tu dois gagner"}
+{"category": "LocationDialogue Location4", "line_index": 171, "text": "quatre fois."}
+{"category": "LocationDialogue Location4", "line_index": 172, "text": "Allons-y."}
+{"category": "LocationDialogue Location4", "line_index": 173, "text": "Je pense que je vais commencer"}
+{"category": "LocationDialogue Location4", "line_index": 174, "text": "par te laisser gagner."}
+{"category": "LocationDialogue Location4", "line_index": 175, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 176, "text": "// + 1 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 177, "text": "Bien joué."}
+{"category": "LocationDialogue Location4", "line_index": 178, "text": "Maintenant accroche-toi !"}
+{"category": "LocationDialogue Location4", "line_index": 179, "text": "// + 2 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 180, "text": "Waouh !"}
+{"category": "LocationDialogue Location4", "line_index": 181, "text": "Ok, bon."}
+{"category": "LocationDialogue Location4", "line_index": 182, "text": "Maintenant je vais être sérieuse."}
+{"category": "LocationDialogue Location4", "line_index": 183, "text": "// + 3 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 184, "text": "Oh !"}
+{"category": "LocationDialogue Location4", "line_index": 185, "text": "Peux-tu me battre"}
+{"category": "LocationDialogue Location4", "line_index": 186, "text": "maintenant ?"}
+{"category": "LocationDialogue Location4", "line_index": 187, "text": "// + 4 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 188, "text": "Tu..."}
+{"category": "LocationDialogue Location4", "line_index": 189, "text": "es..."}
+{"category": "LocationDialogue Location4", "line_index": 190, "text": "Incroyable ! :) Tes doigts sont vraiment quelque chose !"}
+{"category": "LocationDialogue Location4", "line_index": 191, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 192, "text": "// - 1 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 193, "text": "Qu'est-ce qui t'arrives ?"}
+{"category": "LocationDialogue Location4", "line_index": 194, "text": "C'est pas intéressant."}
+{"category": "LocationDialogue Location4", "line_index": 195, "text": "// - 2 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 196, "text": "Bon"}
+{"category": "LocationDialogue Location4", "line_index": 197, "text": "Ça c'est fait. Fatality, btw."}
+{"category": "LocationDialogue Location4", "line_index": 198, "text": "// - 3 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 199, "text": "Alors"}
+{"category": "LocationDialogue Location4", "line_index": 200, "text": "Concentre-toi sur le jeu ou tu resteras un loser pour toujours !"}
+{"category": "LocationDialogue Location4", "line_index": 201, "text": "// - 4 - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 202, "text": "Qu'est-ce qui ne va pas ?"}
+{"category": "LocationDialogue Location4", "line_index": 203, "text": "Je t'ai fait sortir tout ton liquide blanc."}
+{"category": "LocationDialogue Location4", "line_index": 204, "text": "Tu n'avais qu'à t'y mettre plus sérieusement."}
+{"category": "LocationDialogue Location4", "line_index": 205, "text": "C'est pour ça que ça marche toujours pour moi !"}
+{"category": "LocationDialogue Location4", "line_index": 206, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 208, "text": "Très bien."}
+{"category": "LocationDialogue Location4", "line_index": 209, "text": "Allons jouer aux cartes, d'accord ?"}
+{"category": "LocationDialogue Location4", "line_index": 210, "text": "Dans ma chambre."}
+{"category": "LocationDialogue Location4", "line_index": 211, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 212, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 213, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 214, "text": "// [ERROR] - Player"}
+{"category": "LocationDialogue Location4", "line_index": 215, "text": "Qu'est-ce que c'est ?"}
+{"category": "LocationDialogue Location4", "line_index": 216, "text": "Où est le..."}
+{"category": "LocationDialogue Location4", "line_index": 217, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 218, "text": "Oh."}
+{"category": "LocationDialogue Location4", "line_index": 219, "text": "Désolé."}
+{"category": "LocationDialogue Location4", "line_index": 220, "text": "J'ai téléchargé un fichier"}
+{"category": "LocationDialogue Location4", "line_index": 221, "text": "depuis Internet."}
+{"category": "LocationDialogue Location4", "line_index": 222, "text": "Je voulais que ce soit joli"}
+{"category": "LocationDialogue Location4", "line_index": 223, "text": "dehors."}
+{"category": "LocationDialogue Location4", "line_index": 224, "text": "Mais au final"}
+{"category": "LocationDialogue Location4", "line_index": 225, "text": "le format du fichier n'était pas bon..."}
+{"category": "LocationDialogue Location4", "line_index": 226, "text": "Je corrigerai ça plus tard."}
+{"category": "LocationDialogue Location4", "line_index": 227, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 228, "text": "C'est pour ça qu'on ne peut pas quitter la maison ?"}
+{"category": "LocationDialogue Location4", "line_index": 229, "text": "C'est la raison, oui."}
+{"category": "LocationDialogue Location4", "line_index": 230, "text": "// Mita shy"}
+{"category": "LocationDialogue Location4", "line_index": 231, "text": "Hé..."}
+{"category": "LocationDialogue Location4", "line_index": 232, "text": "Qu'est-ce qu'il y a ?"}
+{"category": "LocationDialogue Location4", "line_index": 233, "text": "Tu veux quelque chose ?"}
+{"category": "LocationDialogue Location4", "line_index": 234, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 235, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 237, "text": "// Wall Clock - Player"}
+{"category": "LocationDialogue Location4", "line_index": 238, "text": "Cette horloge,"}
+{"category": "LocationDialogue Location4", "line_index": 239, "text": "elle indique quelle heure ?"}
+{"category": "LocationDialogue Location4", "line_index": 240, "text": "L'heure dans le jeu ?"}
+{"category": "LocationDialogue Location4", "line_index": 241, "text": "Ou est-ce qu'elle se synchronise avec mon téléphone ?"}
+{"category": "LocationDialogue Location4", "line_index": 242, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 243, "text": "Alors, euh..."}
+{"category": "LocationDialogue Location4", "line_index": 244, "text": "Je ne sais pas."}
+{"category": "LocationDialogue Location4", "line_index": 245, "text": "Quelque soit l'heure qu'il est"}
+{"category": "LocationDialogue Location4", "line_index": 246, "text": "ou qu'il se fasse tard,"}
+{"category": "LocationDialogue Location4", "line_index": 247, "text": "Dans ma maison..."}
+{"category": "LocationDialogue Location4", "line_index": 248, "text": "Les filles courageuses comme moi"}
+{"category": "LocationDialogue Location4", "line_index": 249, "text": "ne connaissent pas la fatigue !"}
+{"category": "LocationDialogue Location4", "line_index": 250, "text": "Si je le souhaite, ce sera toujours le printemps !"}
+{"category": "LocationDialogue Location4", "line_index": 251, "text": "Et toujours midi !"}
+{"category": "LocationDialogue Location4", "line_index": 252, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 253, "text": "Curieux..."}
+{"category": "LocationDialogue Location4", "line_index": 254, "text": "Et effrayant à la fois."}
+{"category": "LocationDialogue Location4", "line_index": 255, "text": "Coincé au même instant pour toujours..."}
+{"category": "LocationDialogue Location4", "line_index": 256, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 257, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 259, "text": "// Photos of Mita - Player"}
+{"category": "LocationDialogue Location4", "line_index": 260, "text": "Sympa ces photos."}
+{"category": "LocationDialogue Location4", "line_index": 261, "text": "J'imagine que c'est toi ?"}
+{"category": "LocationDialogue Location4", "line_index": 262, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 263, "text": "Yep"}
+{"category": "LocationDialogue Location4", "line_index": 264, "text": "Je les aime bien aussi."}
+{"category": "LocationDialogue Location4", "line_index": 265, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 266, "text": "Qui a pris ces photos ?"}
+{"category": "LocationDialogue Location4", "line_index": 267, "text": "Il y a quelqu'un d'autre dans ce monde ?"}
+{"category": "LocationDialogue Location4", "line_index": 268, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 269, "text": "J'imagine qu'on peut dire ça."}
+{"category": "LocationDialogue Location4", "line_index": 270, "text": "Et je te les présenterai."}
+{"category": "LocationDialogue Location4", "line_index": 271, "text": "Mais ce n'est pas encore le moment"}
+{"category": "LocationDialogue Location4", "line_index": 272, "text": "de partager une aussi agréable compagnie."}
+{"category": "LocationDialogue Location4", "line_index": 273, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 274, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 275, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 276, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 277, "text": "// Portal - Player"}
+{"category": "LocationDialogue Location4", "line_index": 278, "text": "Qu'est-il arrivé au portail ?"}
+{"category": "LocationDialogue Location4", "line_index": 279, "text": "Ou je ne sais comment tu appelles ça ?"}
+{"category": "LocationDialogue Location4", "line_index": 280, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 281, "text": "Par mon"}
+{"category": "LocationDialogue Location4", "line_index": 282, "text": "claquement de doigts magique"}
+{"category": "LocationDialogue Location4", "line_index": 283, "text": "je l'ai déplacé"}
+{"category": "LocationDialogue Location4", "line_index": 284, "text": "à un autre endroit."}
+{"category": "LocationDialogue Location4", "line_index": 285, "text": "On n'a plus besoin de ce portail maintenant."}
+{"category": "LocationDialogue Location4", "line_index": 286, "text": "Il interférerait avec nous."}
+{"category": "LocationDialogue Location4", "line_index": 287, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 289, "text": "// Mirror in the bedroom - Player"}
+{"category": "LocationDialogue Location4", "line_index": 290, "text": "C'est tellement étrange de regarder dans un miroir"}
+{"category": "LocationDialogue Location4", "line_index": 291, "text": "qui ne reflète rien..."}
+{"category": "LocationDialogue Location4", "line_index": 292, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 293, "text": "Les réflexions peuvent être activées"}
+{"category": "LocationDialogue Location4", "line_index": 294, "text": "si tu le souhaites,"}
+{"category": "LocationDialogue Location4", "line_index": 295, "text": "mais tu en as vraiment besoin ?"}
+{"category": "LocationDialogue Location4", "line_index": 296, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 297, "text": "Bien sûr"}
+{"category": "LocationDialogue Location4", "line_index": 298, "text": "Ou alors... est-ce que ça aurait des conséquences ?"}
+{"category": "LocationDialogue Location4", "line_index": 299, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 300, "text": "Oui"}
+{"category": "LocationDialogue Location4", "line_index": 301, "text": "On va se déplacer lentement et de manière saccadée,"}
+{"category": "LocationDialogue Location4", "line_index": 302, "text": "tu as déjà vu un dessin animé avec une fréquence d'images réduite ?"}
+{"category": "LocationDialogue Location4", "line_index": 303, "text": "Ça sera comme ça tout le temps..."}
+{"category": "LocationDialogue Location4", "line_index": 304, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 305, "text": "Je vois."}
+{"category": "LocationDialogue Location4", "line_index": 306, "text": "On va se passer de réflexion pour le moment alors..."}
+{"category": "LocationDialogue Location4", "line_index": 307, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 308, "text": "[player], j'imagine que"}
+{"category": "LocationDialogue Location4", "line_index": 309, "text": "tu aimes te regarder dans le miroir ?"}
+{"category": "LocationDialogue Location4", "line_index": 310, "text": "Tu as peur de voir une once de positivité sur ton visage ?"}
+{"category": "LocationDialogue Location4", "line_index": 311, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 312, "text": "Hein ? Je ne regarde rien de spécial..."}
+{"category": "LocationDialogue Location4", "line_index": 313, "text": "Je suis juste fatigué"}
+{"category": "LocationDialogue Location4", "line_index": 314, "text": "à cause du travail."}
+{"category": "LocationDialogue Location4", "line_index": 315, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 316, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 317, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 318, "text": "// Blue sneakers - Player"}
+{"category": "LocationDialogue Location4", "line_index": 319, "text": "Elles sont à toi ?"}
+{"category": "LocationDialogue Location4", "line_index": 320, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 321, "text": "Non, ce sont les tiennes"}
+{"category": "LocationDialogue Location4", "line_index": 322, "text": "Tu ne t'en souviens pas ?"}
+{"category": "LocationDialogue Location4", "line_index": 323, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 324, "text": "Je n'ai pas de baskets comme ça."}
+{"category": "LocationDialogue Location4", "line_index": 325, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 326, "text": "Maintenant tu en as."}
+{"category": "LocationDialogue Location4", "line_index": 327, "text": "Quand on sortira faire un tour"}
+{"category": "LocationDialogue Location4", "line_index": 328, "text": "tu pourras les porter."}
+{"category": "LocationDialogue Location4", "line_index": 329, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 330, "text": "Et pour les vêtements ?"}
+{"category": "LocationDialogue Location4", "line_index": 331, "text": "Je me suis retrouvé dans ce monde"}
+{"category": "LocationDialogue Location4", "line_index": 332, "text": "avec juste ce que je porte sur moi."}
+{"category": "LocationDialogue Location4", "line_index": 333, "text": "Comment je vais en trouver d'autres ?"}
+{"category": "LocationDialogue Location4", "line_index": 334, "text": "// Mita"}
+{"category": "LocationDialogue Location4", "line_index": 335, "text": "C'est n'est pas un problème."}
+{"category": "LocationDialogue Location4", "line_index": 336, "text": "J'ai vu ce que tu portes habituellement."}
+{"category": "LocationDialogue Location4", "line_index": 337, "text": "J'ai vu tes tristes goûts en matière de vêtements."}
+{"category": "LocationDialogue Location4", "line_index": 338, "text": "Mais ne t'en fais pas, je t'en trouverais d'autres,"}
+{"category": "LocationDialogue Location4", "line_index": 339, "text": "mais pas maintenant."}
+{"category": "LocationDialogue Location4", "line_index": 340, "text": "C'est promis."}
+{"category": "LocationDialogue Location4", "line_index": 341, "text": "// Player"}
+{"category": "LocationDialogue Location4", "line_index": 342, "text": "D'accord"}
+{"category": "LocationDialogue Location4", "line_index": 343, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 345, "text": "// Television game - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 346, "text": "À quel jeu devrions-nous jouer ?"}
+{"category": "LocationDialogue Location4", "line_index": 347, "text": "// Game milk - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 348, "text": "Dans ce jeu on va devoir se mettre des pains !"}
+{"category": "LocationDialogue Location4", "line_index": 349, "text": "Pour voir quelle brique de lait est la plus fermentée —"}
+{"category": "LocationDialogue Location4", "line_index": 350, "text": "quel drôle de jeu !"}
+{"category": "LocationDialogue Location4", "line_index": 351, "text": "Assez de lait pour aujourd'hui, faisons autre chose."}
+{"category": "LocationDialogue Location4", "line_index": 352, "text": "// Game penguins - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 353, "text": "Dans ce jeu, tout ce que tu dois faire c'est d'être un manchot."}
+{"category": "LocationDialogue Location4", "line_index": 354, "text": "Et glisser sur la banquise."}
+{"category": "LocationDialogue Location4", "line_index": 355, "text": "Bon, assez joué à ce jeu"}
+{"category": "LocationDialogue Location4", "line_index": 356, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 357, "text": "// Stay with Mita - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 358, "text": "Oh. Hein ?"}
+{"category": "LocationDialogue Location4", "line_index": 359, "text": "Tu es sérieux ? Je pensais que tu..."}
+{"category": "LocationDialogue Location4", "line_index": 360, "text": "Je suis tellement contente !"}
+{"category": "LocationDialogue Location4", "line_index": 361, "text": "Et un peu confuse."}
+{"category": "LocationDialogue Location4", "line_index": 362, "text": "Alors..."}
+{"category": "LocationDialogue Location4", "line_index": 363, "text": "Reste à mes côtés,"}
+{"category": "LocationDialogue Location4", "line_index": 364, "text": "pour toujours..."}
+{"category": "LocationDialogue Location4", "line_index": 365, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 367, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 368, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 369, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 370, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 372, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 374, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 375, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 377, "text": "// A game about penguins - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 378, "text": "C'est très simple."}
+{"category": "LocationDialogue Location4", "line_index": 379, "text": "Tu dois ramasser des boules de neige."}
+{"category": "LocationDialogue Location4", "line_index": 380, "text": "Évidemment, celui qui en possède le plus gagne !"}
+{"category": "LocationDialogue Location4", "line_index": 381, "text": "Allez, faisons deux manches."}
+{"category": "LocationDialogue Location4", "line_index": 382, "text": "// The first map - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 383, "text": "Wow, où tu vas avec toutes ces boules de neige ?"}
+{"category": "LocationDialogue Location4", "line_index": 384, "text": "Oups ! J'ai eu plus de boules de neige."}
+{"category": "LocationDialogue Location4", "line_index": 385, "text": "Dépêche-toi de me rattraper."}
+{"category": "LocationDialogue Location4", "line_index": 386, "text": "Ah, 1 - 1 !"}
+{"category": "LocationDialogue Location4", "line_index": 387, "text": "// The second map - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 388, "text": "Tu es fait pour être un manchot !"}
+{"category": "LocationDialogue Location4", "line_index": 389, "text": "Pourquoi ne pas aller glisser sur la banquise tant que tu y es ?"}
+{"category": "LocationDialogue Location4", "line_index": 390, "text": "Pfft, t'es trop lent."}
+{"category": "LocationDialogue Location4", "line_index": 391, "text": "Tu as toujours les boules de la manche précédente avec toi ?"}
+{"category": "LocationDialogue Location4", "line_index": 392, "text": "Oh, c'est rare que quelque chose comme ça se produise."}
+{"category": "LocationDialogue Location4", "line_index": 393, "text": "// The game is over - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 394, "text": "Bon, jouons à un autre jeu, d'accord ?"}
+{"category": "LocationDialogue Location4", "line_index": 395, "text": "Ou alors on arrête là ?"}
+{"category": "LocationDialogue Location4", "line_index": 396, "text": ""}
+{"category": "LocationDialogue Location4", "line_index": 397, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location4", "line_index": 398, "text": "Pourquoi tu as besoin de ça ?"}
+{"category": "LocationDialogue Location4", "line_index": 399, "text": "Tu es accro ?"}

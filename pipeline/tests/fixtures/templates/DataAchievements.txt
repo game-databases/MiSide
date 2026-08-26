@@ -1,0 +1,36 @@
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = 5148
+	UInt8 m_Enabled = 1
+	PPtr<MonoScript> m_Script
+		int m_FileID = 1
+		SInt64 m_PathID = 637
+	string m_Name = ""
+	DataAchievementsValues[] dataAchievements
+		Array Array
+		int size = 26
+			[0]
+			DataAchievementsValues data
+				string steamAchievement = "ACHI_WinFIght"
+				PPtr<Sprite> icon
+					int m_FileID = 0
+					SInt64 m_PathID = 863
+				SInt32 lineTranslate = 0
+				bool get = True
+			[1]
+			DataAchievementsValues data
+				string steamAchievement = "ACHI_ClickShadow"
+				PPtr<Sprite> icon
+					int m_FileID = 0
+					SInt64 m_PathID = 896
+				SInt32 lineTranslate = 1
+				bool get = False
+			[25]
+			DataAchievementsValues data
+				string steamAchievement = "ACHI_supermegapuperplayer"
+				PPtr<Sprite> icon
+					int m_FileID = 0
+					SInt64 m_PathID = 1024
+				SInt32 lineTranslate = 25
+				bool get = False

@@ -1,0 +1,414 @@
+# E1 — hands-on toolchain probe (MiSide)
+
+Explorer brief E1, executed 2026-08-24 on NE8K against the installed full
+game (`A:\SteamLibrary\steamapps\common\MiSide\`, buildId **19029065**,
+`Data/Version.txt` = `VERSION 0.93L`). Verifies
+[toolchain.md §2 primary path](../../toolchain.md#2-raw-harvest-path) against
+reality: every stage run for real, timings and artifact counts recorded,
+deviations flagged.
+
+Scratch root (all binaries, per extraction-host write rules):
+`D:\unpacked_game_data\MiSide\probe-001\` — `tools\`, `il2cpp\`, `assets\`,
+`venv\`. Disk check before writes: `Get-Volume` → D: 315.9 GiB free, A:
+562.8, C: 192.0 (need ~10 GB) — passed. Game install untouched (read-only).
+
+## Verdict table
+
+| # | Step | Verdict | Headline |
+|---|---|---|---|
+| 1 | Python venv + UnityPy/Pillow | **WORKS** | Python 3.14.7 fine; UnityPy 1.25.3 + Pillow 12.3.0 |
+| 2 | Il2CppDumper | **WORKS** | 2.5 s; metadata v29 auto-detected; `dump.cs` 288k lines + 57 DummyDlls |
+| 3 | Typed MB dump (probe P1) | **WORKS** | Type trees NOT stripped; 993 MonoBehaviours fully fielded in ~2 s |
+| 4 | Container census | **WORKS** | 51 SerializedFiles + 69 stream siblings = 2,277,315,948 B |
+| 5 | Localization sanity | **PARTIAL** (plan corrections) | Store is at game-root `Data\`, not `_Data\`; counts vary 64–76/dir; no trailing newlines |
+| 6 | Non-standard inventory (P2) | **WORKS** | No custom container anywhere — Unity assets + loose `Data\` are the whole store |
+| 7 | dump.cs recon | **WORKS** | Loc join authority found: `GlobalLanguage.GetString(name, index)` |
+
+---
+
+## Step 1 — Python env: WORKS
+
+```
+python -m venv D:\unpacked_game_data\MiSide\probe-001\venv     # 2.0 s, Python 3.14.7
+venv\Scripts\pip.exe install --quiet UnityPy Pillow            # 3.6 s (warm wheel cache)
+```
+
+`pip freeze` (pinned):
+
+```
+UnityPy==1.25.3  pillow==12.3.0  astc-encoder-py==0.1.12  brotli==1.2.0
+etcpak==0.9.15   fmod_toolkit==0.1.3  fsspec==2026.7.0   lz4==4.4.5
+pyfmodex==0.7.2  texture2ddecoder==1.0.6  tpk_ar==0.2.4  attrs==26.1.0
+archspec==0.2.6
+```
+
+Import test clean in 0.74 s. The `py` launcher also offers 3.12/3.11 as
+fallbacks but **none was needed** — toolchain.md's "if UnityPy fails on
+3.14" contingency did not trigger.
+
+## Step 2 — Il2CppDumper: WORKS
+
+Unzipped `Il2CppDumper-net6-win-v6.7.46.zip` → scratch
+`tools\Il2CppDumper\` (0.44 s). .NET 6 runtime present
+(`Microsoft.NETCore.App 6.0.36`).
+
+One required deviation for headless runs: `config.json`
+`RequireAnyKey: true → false` in the scratch copy (the stock config waits
+for a keypress at exit and would hang a non-interactive shell).
+
+Command (PowerShell, full backslash paths — MSYS-mangling avoided):
+
+```powershell
+Il2CppDumper.exe A:\...\GameAssembly.dll `
+                 A:\...\MiSideFull_Data\il2cpp_data\Metadata\global-metadata.dat `
+                 D:\unpacked_game_data\MiSide\probe-001\il2cpp
+```
+
+Console output verbatim:
+
+```
+Initializing metadata...
+Metadata Version: 29
+Initializing il2cpp file...
+Il2Cpp Version: 29
+Searching...
+CodeRegistration : 180face80
+MetadataRegistration : 181160c60
+Dumping...
+Done!
+Generate struct...
+Done!
+Generate dummy dll...
+Done!
+```
+
+Wall time **2.48 s**, no script.json needed (registrations found by scan),
+zero warnings. Outputs:
+
+| Artifact | Size | Notes |
+|---|---|---|
+| `dump.cs` | 10,420,763 B / 288,102 lines | 6,281 types (`TypeDefIndex` count) |
+| `il2cpp.h` | 16,439,803 B | struct header |
+| `script.json` | 30,021,645 B | method addresses |
+| `stringliteral.json` | 619,523 B | string literals |
+| `DummyDll\` | 57 DLLs | incl. `Assembly-CSharp.dll` (1,873,920 B), `Assembly-CSharp-firstpass`, MagicaCloth, UIEffect, Unity modules |
+
+## Step 3 — Typed MonoBehaviour dump (probe P1): WORKS
+
+Unzipped `AssetStudioModCLI_net8_portable.zip` (1.12 s). Version pinned by
+assembly `FileVersion`: **0.19.0.0** (`AssetStudioModCLI.dll`) — confirms
+[toolchain.md §2](../../toolchain.md#2-raw-harvest-path)'s note that the zip
+name carries no version.
+
+CLI gotcha found: the **input path must be the first argument**. Options-
+first invocation fails with `Error: Input path was empty.` (verbatim).
+
+Working command:
+
+```powershell
+AssetStudioModCLI.exe A:\...\resources.assets -m dump -t monoBehaviour `
+  --assembly-folder D:\...\probe-001\il2cpp\DummyDll `
+  -o D:\unpacked_game_data\MiSide\probe-001\assets\mb-dump
+```
+
+Loaded **5 files** (resources.assets + auto-resolved dependencies:
+globalgamemanagers.assets, sharedassets0.assets, both builtin resources) and
+exported **993 MonoBehaviours in ~2.0 s**, `Parse Assets Using TypeTree: True`.
+
+### P1 resolved positively — type trees are NOT stripped
+
+Field trees come out fully typed with DummyDll assemblies loaded.
+Approximate top-type census of the 993 dumps (filename-derived):
+
+Image 119 · MagicaBoneCloth 106 · MagicaCapsuleCollider 94 ·
+BoneClothMeshData 86 · BoneClothData 86 · SelectionData 69 · Text 64 ·
+Shadow 45 · UIGradient 44 · CanvasScaler 22 · CarSpace_* 24 ·
+UI_TextFontLanguage ~26 · Localization_UIText 12 · MakeManeken_* 16 ·
+Audio_* 17 · MitaClothesMagic 8 · Events_Data 4 … plus
+MinigamesController ×3, MinigamesSettings, Location4Fight ×3,
+Metroidvania_* ×5, DataAchievements, DataMaterialShaders,
+DataValues_Texture.
+
+### Sample dump verbatim — `mb-dump\DataAchievements.txt` (the relink gold)
+
+```
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject
+		int m_FileID = 0
+		SInt64 m_PathID = 5148
+	UInt8 m_Enabled = 1
+	PPtr<MonoScript> m_Script
+		int m_FileID = 1
+		SInt64 m_PathID = 637
+	string m_Name = ""
+	DataAchievementsValues[] dataAchievements
+		Array Array
+		int size = 26
+			[0]
+			DataAchievementsValues data
+				string steamAchievement = "ACHI_WinFIght"
+				PPtr<Sprite> icon
+					int m_FileID = 0
+					SInt64 m_PathID = 863
+				SInt32 lineTranslate = 0
+				bool get = True
+			[1]
+			DataAchievementsValues data
+				string steamAchievement = "ACHI_ClickShadow"
+				PPtr<Sprite> icon
+					int m_FileID = 0
+					SInt64 m_PathID = 896
+				SInt32 lineTranslate = 1
+				bool get = False
+			...(24 more entries, lineTranslate 2..25)...
+			[25] steamAchievement = "ACHI_supermegapuperplayer", lineTranslate = 25
+```
+
+Three-way join visible in one object: Steam API name ↔ icon `PPtr<Sprite>`
+pathID ↔ **`lineTranslate` = 0-based line index into
+`Data/Languages/<locale>/Achievements.txt`**. Verified end-to-end:
+entry `[25] ACHI_supermegapuperplayer` ↔ English `Achievements.txt` line 26
+= `Pro Gamer`; entry `[2] ACHI_DeathJuice` ↔ line 3 = `Dead juice`.
+
+### Sample dump verbatim — `mb-dump\Localization_UIText.txt` (loc component)
+
+```
+MonoBehaviour Base
+	PPtr<GameObject> m_GameObject ...
+	string m_Name = ""
+	bool EveryEnable = False
+	string NameFile = "MiniGame CarSpace"
+	SInt32 StringNumber = 1
+	SInt32 StringReserveNumber = 1
+	bool GrandSymbol = True
+	bool data = False
+	bool dontAutoTranslate = False
+	bool dontAutoFont = False
+	bool fontPixel = False
+	bool onEnable = False
+	string add = ""
+	string reffect0 = ""
+	bool deactiveTextTranslate = False
+	bool fs = False
+```
+
+Every localized UI string in a scene is one of these components: category
+(`NameFile`) + line number (`StringNumber`, with `StringReserveNumber` as
+fallback). This is the concrete shape of the category+line-index join.
+
+## Step 4 — Container census (PROOF.md source-inventory evidence): WORKS
+
+Measured with PowerShell over
+`A:\SteamLibrary\steamapps\common\MiSide\MiSideFull_Data\`:
+
+**SerializedFile-class files — 51 files, 583,027,900 B**
+
+| Family | Count | Bytes | Largest member |
+|---|---|---|---|
+| `globalgamemanagers` | 1 | 798,116 | — |
+| `globalgamemanagers.assets` | 1 | 229,452 | — |
+| `resources.assets` | 1 | 99,902,624 | — |
+| `sharedassetsN.assets` (N=0–23) | 24 | — | sharedassets9 = 83,787,408 |
+| `levelN` (N=0–23) | 24 | — | level13 = 4,935,744 |
+
+**Stream siblings (.resS/.resource) — 69 files, 1,694,288,048 B**
+(largest: `sharedassets20.assets.resS` 367,784,272;
+`resources.assets.resS` 218,920,848).
+
+**Grand total 2,277,315,948 B = 2.121 GiB.** Note the inversion: stream
+data outweighs the SerializedFiles ~3:1 — texture/audio bytes live in
+`.resS`/`.resource`, so any bulk export must read siblings, not just
+`.assets`.
+
+No `.unity3d` bundles, no Addressables catalog (confirms
+[toolchain.md §1](../../toolchain.md#1-flavor-detection--result-already-pinned)).
+
+## Step 5 — Localization sanity: PARTIAL (store confirmed; plan corrections)
+
+### Location correction
+
+The loc store is **at game root**: `A:\...\MiSide\Data\Languages\` — a
+sibling of `MiSideFull_Data\`, *not* inside it. Anything reading
+`MiSideFull_Data\Data\Languages` finds nothing (verified: that path does
+not exist). [toolchain.md §4](../../toolchain.md#4-localization)'s
+`<Data root>` placeholder must resolve to game root in the pipeline spec.
+Same tree holds `Data\Custom\` (character templates: `New (Sample)` +
+`Original`, each with Body/Cloth/Colors/Face/Hair.png) and
+`Data\LanguagesVoice\`.
+
+### Counts measured
+
+- Locale dirs: **34** (list matches toolchain.md exactly).
+- Total txt: **2,210** ✓ matches toolchain.md.
+- Files per dir are **not uniform ~66**: min 64 (Arabic (Egyptian),
+  Belarusian), max **76 (French)** — the category set itself differs per
+  locale. Join logic must tolerate missing categories, not assume a fixed set.
+- Categories seen in English: Achievements, AlternativeName, Badwords,
+  Clothes, CoreSoft, Location 1–14+19, LocationDialogue Location1–20,
+  LocationHint Location1–20, LocationHintKey Location General, Menu,
+  MiniGame CarSpace / MakeManeken / Shooter, Names, Personages,
+  TelevisionGames, Translation (+ `Textures/` dir).
+- Line-based plain text confirmed. Heads (first lines):
+  - EN `Achievements.txt`: `Clabber` / `Creak in the Dark` / `Dead juice` /
+    `Penguin Conundrum!` / `Safe of life` / `The fly's victory`
+  - RU `Achievements.txt`: `Кислое молоко.` / `Щелчок тьмы.` / `Мёртвый сок.` /
+    `Пингвинобеда!` / `Сейф жизни.` / `Победа мухи.`
+  - EN `MiniGame CarSpace.txt`: `You've finished!` / `Position` /
+    `Coins collected` / `Invasion` / `Defeat the boss`
+
+### Gotcha discovered: no trailing newlines
+
+`wc -l` reports `Achievements.txt` = 25 lines in EN/RU/FR, but the file has
+**26 real lines** — no trailing `\n` (byte check: 414 B, 26 non-empty
+split-parts, ends-with-newline false). The MonoBehaviour array has exactly
+26 entries (`lineTranslate` 0–25). Any pipeline counting newlines instead
+of split-lines undercounts every category file and silently shifts joins.
+
+### Per-locale textures
+
+Global: **777 png + 3 psd** ✓ matches toolchain.md. But subsets differ per
+locale: English/Russian/French Textures = 26 png each, Japanese = 20 png.
+Per-locale art sets cannot be assumed uniform.
+
+## Step 6 — Non-standard-extension inventory (P2): WORKS
+
+Full recursive extension census of game root (all 32k files grouped):
+
+Non-standard families (i.e. not Unity SerializedFile/stream families,
+not Mono runtime boilerplate):
+
+| Family | Count | Bytes | Identity |
+|---|---|---|---|
+| `.ogg` | 28,725 | 1,441,141,744 | audio corpus (voice/music) — media carve-out applies |
+| `GI/` tree | 62 | ~5.9 MB | **Enlighten Global-Illumination precomputed data** for level3 only: `MiSideFull_Data\GI\level3\<md5>\{*.iws.sse, *.rsc.sse, *.vis, *.caw, *.ecm, *.rgb}` |
+| `.png` outside Languages | 17 | — | `Data\Custom\` character templates (+ few others) |
+| `.dat` | 2 | 5,511,023 | `global-metadata.dat` (5,173,460 ✓ matches plan) + `il2cpp_data\Resources\mscorlib.dll-resources.dat` (337,563) |
+| `.psd` | 3 | 26,384,140 | inside Languages textures |
+
+`.aspx` ×3 / `browscap.ini` are Voice Editor Mono runtime boilerplate — not
+game content. Extensionless files >1 MB are just `levelN` + builtin
+resources.
+
+### Code-side confirmation (dump.cs)
+
+All 23 `BinaryWriter` and 8 `FileStream` mentions sit in .NET BCL internals
+(`System.Runtime.Serialization.Formatters.Binary.__BinaryWriter` plumbing,
+`System.IO.File.OpenRead`). **Zero custom container classes in game code.**
+
+**P2 closed:** MiSide has no Corepunk-style custom binary container. The
+complete store = 2.277 GB Unity SerializedFile corpus + loose
+`Data\` tree + ogg audio. The static-container-reversal contingency in
+[toolchain.md §3](../../toolchain.md#3-script-decompile) can be dropped from
+the baseline (keep only as generic background).
+
+## Step 7 — dump.cs recon: WORKS
+
+6,281 types total. Counts of `class .*<Pat>` hits and notable names
+(all `Assembly-CSharp`, global namespace unless noted):
+
+| Pattern | Hits | Notable classes |
+|---|---|---|
+| `Achievement` | 8 | `SteamAchievements`, `SteamManager`, `AchievementsController`, `DataAchievements`, `DataAchievementsValues`, `Achievement_cloth`, `Achievement_function` |
+| `Ending` | 1 | `MenuEnding` — endings surface through menu/UI code, no standalone Ending table class |
+| `Dialogue` | 14 | `DialogueGlobal`, `DialogueChanger`(+`Case`), `Dialogue_3DText`, `Dialogue_Data3DText`, `Dialogue_Symbol`, `DialogueChange_Button`, `AudioDialogue`, `TextDialogueMemory`, `Tamagotchi_Dialogue(_Mob/_Events)`, `FunctionsGame_DialogueAnimationFinish` |
+| `Cartridge` | 3 | `TamagotchiGame_Cartridge`, `..._Cartridge_Cartridge`, `TamagotchiGame_CartridgeDetails` |
+| `Mita` | 23 | `MitaCore`, `MitaPerson`, `MitaEvent`, `MitaLifeEmotion`, `MitaAIMovePoint`, `MitaClothes*` family, `DataClothMita*` family, `MenuMita(Dance)`, `Mob_ChibiMita(_Animation)`, `MitaMeshFixed`, `LightMitaTamagothci` |
+| `Location` | 175 | `Location1Main`, `Location1Tutorial`, `Location10_GameAutomate`, `Location10_ManekenChekpoint`, `Location11_BlackMita`, … — per-location controller classes mirror the loc categories |
+| Scene | — | `SceneLoading(_Preloading)`, `Scene_Function`, `Scene_Load`, `SceneStart` |
+
+### The loc-loader authority (join-key answer)
+
+```csharp
+public class GlobalLanguage : MonoBehaviour // TypeDefIndex: 4230
+{
+    public static List<LanguageFilesText> languageText; // 0x0
+    public static string GetString(string _name, int _string) { }
+    public static int GetCountString(string _name) { }
+}
+public class LanguageFilesText // TypeDefIndex: 4231
+{
+    public string name;     // 0x10  -> category ("MiniGame CarSpace")
+    public string[] strings; // 0x18 -> split lines of <locale>/<category>.txt
+}
+public class LanguageFilesTexture // TypeDefIndex: 2173
+{
+    public string name;       // 0x10
+    public Texture2D texture; // 0x18  -> per-locale art lookup, same pattern
+}
+```
+
+Loader implementation lives in `ConsoleInterface` (TypeDefIndex 1441 — the
+dev console): `CheckLocalization()` → private
+`LocalizatioLoad(string _path)` → `LocalizationClearText(string[])`.
+Join key **proven**: `GetString(categoryName, zeroBasedLineIndex)` — exactly
+what `Localization_UIText.NameFile`/`StringNumber` serialize and what
+`DataAchievements.lineTranslate` encodes.
+
+Surprise worth noting: the console exposes `OpenSettings/OpenFunctions/
+OpenAddons/OpenResources/OpenEditor/OpenLevels/ToggleDebugUnity/OpenData`
+plus a nested `ConsoleInterface.ConsoleCheats` — an in-game dev/debug
+surface that may itself be content (P7-style follow-up).
+
+---
+
+## Deviations from toolchain.md (consolidated)
+
+1. **Loc store path** — game-root `Data\Languages\`, sibling of
+   `MiSideFull_Data\`, not `<Data root>` ambiguous form (§4).
+2. **Per-dir category counts vary 64→76** (French max), not "~66 each" (§4).
+3. **Category files carry no trailing newline** — line counting must be
+   split-based; `wc -l` undercounts by 1 on Achievements.txt (§4).
+4. **Il2CppDumper needs `RequireAnyKey:false`** for headless runs (§2 step 1
+   didn't mention it; the Git-Bash cwd gotcha was real but insufficient alone).
+5. **AssetStudioModCLI arg order** — input path strictly first (§2 step 2).
+6. **resources.assets dump auto-loads dependencies** (5 files total), so
+   per-source attribution of dumped objects needs care when reconciling
+   coverage per source file.
+7. **UnityPy works on Python 3.14** — the §2 step 3 fallback clause never
+   fired; pin 1.25.3.
+
+## Risks discovered
+
+- **R-E1-1 (P5 still open, heavier than hoped):** everything juicy dumped so
+  far came from `resources.assets` (UI/minigame components). Dialogue graphs,
+  location logic and endings live in `levelN` scene files — the
+  `DialogueChanger`/`MitaEvent`/`Location*Controller` components will appear
+  there, and level dumps will be orders larger than 993 objects. Measure one
+  `levelN` before committing to a parser design (as P5 planned).
+- **R-E1-2:** `DataAchievements.get` bools serialize unlock state into the
+  asset (`True` on first entries) — defaults vs live state must be
+  distinguished when emitting the achievements dataset.
+- **R-E1-3:** per-locale category-set skew (64–76 dirs) + per-locale texture
+  subset skew (Japanese 20 vs EN/RU/FR 26) — locale reconciliation needs an
+  explicit present-vs-reference ledger, not an assert-equal.
+- **R-E1-4:** GI cache exists only for level3 — other levels' lighting is
+  elsewhere or baked; catalogue it, don't chase it.
+- **R-E1-5:** audio dominates the install (28,725 ogg ≈ 1.44 GB of ~2.9 GB
+  non-stream total) — first MEDIA-CATALOGUE row, offload per media carve-out.
+
+## Implications for the pipeline spec
+
+1. **Stage order is validated end-to-end and cheap:** venv → Il2CppDumper →
+   AssetStudioModCLI typed dump → UnityPy bulk. Measured wall time for steps
+   1–3 combined is under a minute of compute; the harvest stage cost is
+   dominated by the level/sharedassets sweep, not tooling.
+2. **Localization contract is fully derivable now** — emit
+   `{locale}/{category}.jsonl` records `{category, line_index, text}` with
+   split-based line counting, verbatim bytes preserved; the loader authority
+   `GlobalLanguage.GetString(name, index)` pins the key; ledger per-locale
+   category deltas. No code recovery needed — the join is proven from assets
+   + dump.cs together.
+3. **Achievements dataset ships three-way joins out of the box**
+   (`steamAchievement` ↔ icon pathID ↔ loc line) — 26 rows, hard mechanism,
+   `inferred:false`.
+4. **Drop the custom-container contingency** (P2 closed negative); baseline =
+   Unity SerializedFile corpus (2.277 GB measured) + loose `Data\` tree.
+5. **Keep the Lootbound text-dump parser pattern** — the observed quirks
+   (tab indent, `[N]` array indexing, typed scalars) match what toolchain.md
+   promised; typing via `--assembly-folder` is mandatory and sufficient.
+6. **Next probes in order:** P5 (one `levelN` object/type mix) → P3
+   (`--export-asset-list xml` SharedTableData/StringTable scan) → P4 (store
+   locale diff vs 34 present).
+7. **Pin into EXTRACTION-LOG.md:** buildId 19029065, `VERSION 0.93L`,
+   Il2CppDumper v6.7.46 (net6 zip name), AssetStudioModCLI 0.19.0.0
+   (FileVersion), pip freeze above, config delta `RequireAnyKey:false`.

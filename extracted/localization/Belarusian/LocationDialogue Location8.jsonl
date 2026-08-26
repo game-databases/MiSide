@@ -1,0 +1,84 @@
+{"category": "LocationDialogue Location8", "line_index": 0, "text": "// Player first"}
+{"category": "LocationDialogue Location8", "line_index": 1, "text": "Хто ты?"}
+{"category": "LocationDialogue Location8", "line_index": 2, "text": "Што з табою?"}
+{"category": "LocationDialogue Location8", "line_index": 3, "text": "Ты не можаш размаўляць?"}
+{"category": "LocationDialogue Location8", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 5, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 6, "text": "Пачакай..."}
+{"category": "LocationDialogue Location8", "line_index": 7, "text": "Ты хочаш пайсці?"}
+{"category": "LocationDialogue Location8", "line_index": 8, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 9, "text": "Так"}
+{"category": "LocationDialogue Location8", "line_index": 10, "text": "Мне трэба перайсці "}
+{"category": "LocationDialogue Location8", "line_index": 11, "text": "на мінулую версію"}
+{"category": "LocationDialogue Location8", "line_index": 12, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 13, "text": "\"Мінулую версію\"?"}
+{"category": "LocationDialogue Location8", "line_index": 14, "text": "Навошта табе ісці"}
+{"category": "LocationDialogue Location8", "line_index": 15, "text": "кудысьці?"}
+{"category": "LocationDialogue Location8", "line_index": 16, "text": "Ты можаш застацца тут..."}
+{"category": "LocationDialogue Location8", "line_index": 17, "text": "Стаць маім..."}
+{"category": "LocationDialogue Location8", "line_index": 18, "text": "другім сябрам"}
+{"category": "LocationDialogue Location8", "line_index": 19, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 20, "text": "// MitaBroke skip"}
+{"category": "LocationDialogue Location8", "line_index": 21, "text": "До-обра..."}
+{"category": "LocationDialogue Location8", "line_index": 22, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 23, "text": "// standing by the window (Random) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 24, "text": "Дзверы — не выхад"}
+{"category": "LocationDialogue Location8", "line_index": 25, "text": "Здаецца, ты спяшаешся..."}
+{"category": "LocationDialogue Location8", "line_index": 26, "text": "Але так ты не выратуешся"}
+{"category": "LocationDialogue Location8", "line_index": 27, "text": "Ты так хочаш збегчы?"}
+{"category": "LocationDialogue Location8", "line_index": 28, "text": "Звярні ўвагу на акно"}
+{"category": "LocationDialogue Location8", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 31, "text": "// quest 1 (Ты жа Міта?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 32, "text": "Гулец... Ты жа гулец?"}
+{"category": "LocationDialogue Location8", "line_index": 33, "text": "Мы можам пагуляць"}
+{"category": "LocationDialogue Location8", "line_index": 34, "text": "Калі ў мяне знойдуцца сілы,"}
+{"category": "LocationDialogue Location8", "line_index": 35, "text": "Мы абавязкова пагуляем"}
+{"category": "LocationDialogue Location8", "line_index": 36, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 37, "text": "// quest 2 (Што з табою здарылася?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 38, "text": "Я не ўпэўненая... ці... я не ведаю"}
+{"category": "LocationDialogue Location8", "line_index": 39, "text": "Я не думаю, што адбылося штосьці дрэннае"}
+{"category": "LocationDialogue Location8", "line_index": 40, "text": "Але і добрае здараецца ўсё радзей..."}
+{"category": "LocationDialogue Location8", "line_index": 41, "text": "Але затое я маю сябра"}
+{"category": "LocationDialogue Location8", "line_index": 42, "text": "Гульцоў больш няма..."}
+{"category": "LocationDialogue Location8", "line_index": 43, "text": "Яны адвярнуліся ад мяне?"}
+{"category": "LocationDialogue Location8", "line_index": 44, "text": "Мне страшна..."}
+{"category": "LocationDialogue Location8", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 46, "text": "// quest 3 (Стать вторым другом?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 47, "text": "Сябры..."}
+{"category": "LocationDialogue Location8", "line_index": 48, "text": "Іх станавілася ўсё менш,"}
+{"category": "LocationDialogue Location8", "line_index": 49, "text": "І застаўся толькі адзін..."}
+{"category": "LocationDialogue Location8", "line_index": 50, "text": "Гэта маркотна, гулец"}
+{"category": "LocationDialogue Location8", "line_index": 51, "text": "Ты можаш стаць маім новым сябрам?"}
+{"category": "LocationDialogue Location8", "line_index": 52, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 53, "text": "Я быў бы рады,"}
+{"category": "LocationDialogue Location8", "line_index": 54, "text": "Але мне трэба ісці далей"}
+{"category": "LocationDialogue Location8", "line_index": 55, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 56, "text": "Мне балюча..."}
+{"category": "LocationDialogue Location8", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 58, "text": "// quest 4 (Гэта твой дом?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 59, "text": "Дом?"}
+{"category": "LocationDialogue Location8", "line_index": 60, "text": "Гулец... А ты выглядаеш іначай"}
+{"category": "LocationDialogue Location8", "line_index": 61, "text": "Твае рукі сталі карацейшыя, а твар не такі злы..."}
+{"category": "LocationDialogue Location8", "line_index": 62, "text": "Гулец, ты стаў дабрэйшы."}
+{"category": "LocationDialogue Location8", "line_index": 63, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 64, "text": "Я не ведаю."}
+{"category": "LocationDialogue Location8", "line_index": 65, "text": "Што гэта значыць?"}
+{"category": "LocationDialogue Location8", "line_index": 66, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 67, "text": "Нічога страшнага..."}
+{"category": "LocationDialogue Location8", "line_index": 68, "text": "Бо цяпер мне не будзе балюча?"}
+{"category": "LocationDialogue Location8", "line_index": 69, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 70, "text": "// quest 5 (Як пакінуць гэтае месца?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 71, "text": "Ты пакінеш мяне, гулец?"}
+{"category": "LocationDialogue Location8", "line_index": 72, "text": "Можа, гэта мой..."}
+{"category": "LocationDialogue Location8", "line_index": 73, "text": "Лёс?"}
+{"category": "LocationDialogue Location8", "line_index": 74, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 75, "text": "Я..."}
+{"category": "LocationDialogue Location8", "line_index": 76, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 77, "text": "Дзверы табе ніколі не дапамогуць"}
+{"category": "LocationDialogue Location8", "line_index": 78, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 79, "text": "// Hold player (Random) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 80, "text": "Чаму ты хочаш пайсці?"}
+{"category": "LocationDialogue Location8", "line_index": 81, "text": "Застанься..."}
+{"category": "LocationDialogue Location8", "line_index": 82, "text": "Давай гуляць!"}
+{"category": "LocationDialogue Location8", "line_index": 83, "text": "Гулец..."}

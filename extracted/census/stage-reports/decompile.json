@@ -1,0 +1,1007 @@
+{
+  "stage": "decompile",
+  "host": "Ne8k",
+  "measured_at": "2026-08-25T00:28:01+00:00",
+  "status": "ok",
+  "ilspycmd_version": "ilspycmd: 11.0.0.9335",
+  "ilspycmd_path": "D:\\unpacked_game_data\\MiSide\\work\\tools\\ILSpy\\ilspycmd.exe",
+  "dotnet_root": "D:\\unpacked_game_data\\MiSide\\work\\it1-dotnet10",
+  "main_assemblies_attempted": 163,
+  "voice_editor_assemblies": 106,
+  "structure_types": 6155,
+  "recon_anchor_hits": {
+    "GlobalLanguage.GetString": false,
+    "CheckLocalization": true,
+    "DialogueChanger": true,
+    "MitaEvent": true,
+    "Location1Main": true
+  },
+  "bodies_caveat": "Decompiler method bodies are garbage-prone in call-heavy serializers (IL2CPP); take structure, get semantics from data — does-not-work/decompiler-method-bodies.md",
+  "keep_going": false,
+  "failed_assemblies": [],
+  "attempts": [
+    {
+      "assembly": "Assembly-CSharp-firstpass",
+      "argv_sha256": "5e2e081aff79a3dcf09eed42e1748b31e3a9c18483f0b2397eee95f1e83e8223",
+      "exit_code": 0,
+      "cs_files": 159
+    },
+    {
+      "assembly": "Assembly-CSharp",
+      "argv_sha256": "c93a6b4974367366bcb301a8ae0cf412de0b026f6292a935a0afd1380b82ee8d",
+      "exit_code": 0,
+      "cs_files": 1225
+    },
+    {
+      "assembly": "Il2CppDummyDll",
+      "argv_sha256": "8a8275afcbcd7b6141f3355c1b06d97f297e2459fbf7895bb1ac4529705fb71f",
+      "exit_code": 0,
+      "cs_files": 6
+    },
+    {
+      "assembly": "MagicaCloth",
+      "argv_sha256": "c984e06ec5425aa65e6c6f4f4753c08a28bc7cd4d3ead52d2b704fd7fc25cb99",
+      "exit_code": 0,
+      "cs_files": 129
+    },
+    {
+      "assembly": "Mono.Security",
+      "argv_sha256": "a5cad6445c0a668cb651d91a4a980d948ca4b3261af901714086fbe3576e7ed2",
+      "exit_code": 0,
+      "cs_files": 5
+    },
+    {
+      "assembly": "mscorlib",
+      "argv_sha256": "13e55e9840e05c0a69d4c76b450c5601de972c1f5e299827d11336747ee18952",
+      "exit_code": 0,
+      "cs_files": 1093
+    },
+    {
+      "assembly": "NaughtyAttributes.Core",
+      "argv_sha256": "11fd25f431cee8aacc1aa14af1a75b4593c49901e2853149372da8c2dda43e18",
+      "exit_code": 0,
+      "cs_files": 50
+    },
+    {
+      "assembly": "System.Configuration",
+      "argv_sha256": "75e597d48588830d03a9fe099e884278d44c2d179f585fa8c7e5d0f082e546bb",
+      "exit_code": 0,
+      "cs_files": 10
+    },
+    {
+      "assembly": "System.Core",
+      "argv_sha256": "9bd9373727bb70a46e86fee39d0c94b82dbd85995ae81c3f56e02b45e87bedd4",
+      "exit_code": 0,
+      "cs_files": 20
+    },
+    {
+      "assembly": "System",
+      "argv_sha256": "2e2609225e4eb77100629da7e37e9135f3c8af02926c438b367f69c3394f63e2",
+      "exit_code": 0,
+      "cs_files": 138
+    },
+    {
+      "assembly": "System.Xml",
+      "argv_sha256": "5a8d00a5926a23055148d00ec0e9e867b44909e7061c7529f432023547cfe2d5",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UIEffect",
+      "argv_sha256": "227557a7517c993646ebbe42b777afd392a10b80e0ae02fca85e054b6ed086a4",
+      "exit_code": 0,
+      "cs_files": 25
+    },
+    {
+      "assembly": "Unity.AI.Navigation",
+      "argv_sha256": "bd497c73c7dd7f2dbdce3e69e4e219d777dbbbc538224aec56900fe92e8613d9",
+      "exit_code": 0,
+      "cs_files": 7
+    },
+    {
+      "assembly": "Unity.Burst",
+      "argv_sha256": "d9b3c025cc0251186bebd9751626842c548b2fccee5205158aeffaaf612535d4",
+      "exit_code": 0,
+      "cs_files": 19
+    },
+    {
+      "assembly": "Unity.Burst.Unsafe",
+      "argv_sha256": "5fffbd4f6bc7629a67ed894574cc625e55eb5413726d6f7b0b04b5a385c75776",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "Unity.Collections",
+      "argv_sha256": "e18bd6afe532ecadc98330a58b5a0499f8db5be6679d4f674a5c80d4f713d6da",
+      "exit_code": 0,
+      "cs_files": 56
+    },
+    {
+      "assembly": "Unity.Mathematics",
+      "argv_sha256": "c83d371980183e86615633c1a2e66a8727c02deb2fcba6a1a80560bd05bd44f5",
+      "exit_code": 0,
+      "cs_files": 16
+    },
+    {
+      "assembly": "Unity.Postprocessing.Runtime",
+      "argv_sha256": "8bce697462377d4a1b4f2c56b52b539fc084e203442bccee67194ab77b3bb1b8",
+      "exit_code": 0,
+      "cs_files": 101
+    },
+    {
+      "assembly": "Unity.Timeline",
+      "argv_sha256": "a80d702ab2fcea81397521f813234567acb55f2f7943344202c3134716b0cf3c",
+      "exit_code": 0,
+      "cs_files": 84
+    },
+    {
+      "assembly": "UnityEngine.AIModule",
+      "argv_sha256": "cd01d6e994a8fa038513370bf53c6f3f23147882c61d5049404052717b82d264",
+      "exit_code": 0,
+      "cs_files": 21
+    },
+    {
+      "assembly": "UnityEngine.AndroidJNIModule",
+      "argv_sha256": "972609c4e0ea02fe9ddd1e187a15d396f1c4c66a90e2b72e0dba5848f4807542",
+      "exit_code": 0,
+      "cs_files": 15
+    },
+    {
+      "assembly": "UnityEngine.AnimationModule",
+      "argv_sha256": "66bb885d9ac343d09a4e5b3318a7d5bb508e2e0ff664709ace30dc8fa33c7ea2",
+      "exit_code": 0,
+      "cs_files": 50
+    },
+    {
+      "assembly": "UnityEngine.AssetBundleModule",
+      "argv_sha256": "041320b99a6ec69b0a47a7b6b2a9a91c8ee84b8bb201972baf59357cfbf2d265",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "UnityEngine.AudioModule",
+      "argv_sha256": "be5c6ecb68b803f69366934a9727aee939e543820ae1af2d69e974ff28138352",
+      "exit_code": 0,
+      "cs_files": 21
+    },
+    {
+      "assembly": "UnityEngine.CoreModule",
+      "argv_sha256": "19408a62a9063427050ce67c49d4d8105702ec1c5ce5adf370c9f184261f6eae",
+      "exit_code": 0,
+      "cs_files": 458
+    },
+    {
+      "assembly": "UnityEngine.DirectorModule",
+      "argv_sha256": "8f39dce1d56cadbb17296a06fc66ac024513487b8f00f1033a9f0a4c724cd1de",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine",
+      "argv_sha256": "31046c5c883eceed7c21b56a11b5e7ea3e21d9f3818b3aefde088693c0a123e5",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.GridModule",
+      "argv_sha256": "fdb6900f00fd175ef3a00a6ebe5111d665b579a842d3f9b005dd6b9da78b9997",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.ImageConversionModule",
+      "argv_sha256": "112bcbed0e760607a018c6a2ce5e203dc072ae0b78dc4874866e4dae001cab5c",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.IMGUIModule",
+      "argv_sha256": "63cd498c1a046d9d7f8279baef546178d1c651ddec37e9b8eb09139d02c4582d",
+      "exit_code": 0,
+      "cs_files": 31
+    },
+    {
+      "assembly": "UnityEngine.InputLegacyModule",
+      "argv_sha256": "12cb6ea0261590526a6f41f7fd985ae50fd88392dfbe41a91c0dbbe46d430a43",
+      "exit_code": 0,
+      "cs_files": 8
+    },
+    {
+      "assembly": "UnityEngine.InputModule",
+      "argv_sha256": "c37ae92325e7e88186bc498176ba0a12c0281f074113b4e0bf9bf51bb5923f37",
+      "exit_code": 0,
+      "cs_files": 5
+    },
+    {
+      "assembly": "UnityEngine.ParticleSystemModule",
+      "argv_sha256": "efd9c07f72eabfa0a035e6a5fb971e925b08cbdf3648b887c492f40030b9142b",
+      "exit_code": 0,
+      "cs_files": 7
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule",
+      "argv_sha256": "b3c800012ea0ab55a4b40ce56e2ab6675243aef6c37d4fc07120f93c6ec89f9e",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.PhysicsModule",
+      "argv_sha256": "ffd07b42f99bf4a29545e04121de9b9738ba885a72322fcf0b85fbab9ff0e254",
+      "exit_code": 0,
+      "cs_files": 23
+    },
+    {
+      "assembly": "UnityEngine.ScreenCaptureModule",
+      "argv_sha256": "44718aa65734cdcf82990ef2c70c20e323ed1b67e9ea9dcd95d792e7c58baeb8",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.SharedInternalsModule",
+      "argv_sha256": "a2ef7679e2b86fce986b9aec924f1f2a84a854ea496e86f257a3f9d1ec5fea6f",
+      "exit_code": 0,
+      "cs_files": 30
+    },
+    {
+      "assembly": "UnityEngine.SpriteMaskModule",
+      "argv_sha256": "f41cdeba3377484d076fef975845b2c263fb677b8cb863f2e0e43c7e9426e3f4",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.SpriteShapeModule",
+      "argv_sha256": "d4900cc4156555c5afb62c5cd1584bbeb1ddd2045fd7a3c1d3dd6b09c3850f59",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.SubsystemsModule",
+      "argv_sha256": "976b2126bd78b9fa48e93d997726846a6d96abe5ec474ead44e3642384dc68e7",
+      "exit_code": 0,
+      "cs_files": 12
+    },
+    {
+      "assembly": "UnityEngine.TerrainModule",
+      "argv_sha256": "b6e59267a776662d1aa3b667606e9d8527aceab42f317918010ea4979e91f66b",
+      "exit_code": 0,
+      "cs_files": 8
+    },
+    {
+      "assembly": "UnityEngine.TextCoreFontEngineModule",
+      "argv_sha256": "9432674a547592d1814b82cb0dce2bc1013aed99a50b6fb459c8784c22387585",
+      "exit_code": 0,
+      "cs_files": 18
+    },
+    {
+      "assembly": "UnityEngine.TextCoreTextEngineModule",
+      "argv_sha256": "56076888d2bf119d10b20bd5e8da2d7caab0a296baa313d1ae9228924d27cd33",
+      "exit_code": 0,
+      "cs_files": 53
+    },
+    {
+      "assembly": "UnityEngine.TextRenderingModule",
+      "argv_sha256": "32dff94a10573927b056973b171a5051973486256b6c29efcd9b269394ac4599",
+      "exit_code": 0,
+      "cs_files": 13
+    },
+    {
+      "assembly": "UnityEngine.TilemapModule",
+      "argv_sha256": "ae6858a4bbb43d606b99224698b229b35cd016fa12c12cc772332daecba355d4",
+      "exit_code": 0,
+      "cs_files": 11
+    },
+    {
+      "assembly": "UnityEngine.UI",
+      "argv_sha256": "e081aad59d70fb70b47f8d9290d5fa2f820bcff395a4a4d08390f23d838a1c59",
+      "exit_code": 0,
+      "cs_files": 115
+    },
+    {
+      "assembly": "UnityEngine.UIElementsModule",
+      "argv_sha256": "f2e789abcbd5e4228de5de9e104fad0f79f016cb380a30f372c7d1864bd34315",
+      "exit_code": 0,
+      "cs_files": 539
+    },
+    {
+      "assembly": "UnityEngine.UIElementsNativeModule",
+      "argv_sha256": "74f6b367f04e25c479271fad15df7876caafb4eee02a6b679a6f6f71c1fdef2e",
+      "exit_code": 0,
+      "cs_files": 30
+    },
+    {
+      "assembly": "UnityEngine.UIModule",
+      "argv_sha256": "4bdff53ca618919c4a32c801556cbed975066ea6ff3eaff5803a6ec1f387515f",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.UnityAnalyticsModule",
+      "argv_sha256": "f798377baa50fdf44080ee39aa420cddc55bdf1e6a89933936a15a7803927a7d",
+      "exit_code": 0,
+      "cs_files": 7
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestAudioModule",
+      "argv_sha256": "1b50414771a186dadf13e88c95c623682fadbcb39b1fb8ab0529d30228559f07",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestModule",
+      "argv_sha256": "397649b667f33f39cb42f6f87c63aac66ad6e5d2ff8107ed08d6af1772da567d",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.VFXModule",
+      "argv_sha256": "c917b0b5bd613ee7af1b7bce5d5895273ed536d5f260cb968829fea180d65296",
+      "exit_code": 0,
+      "cs_files": 11
+    },
+    {
+      "assembly": "UnityEngine.VideoModule",
+      "argv_sha256": "58215438bea71e8743af27edf19996867a8870eaa717d8e2e4ce7ba8574424c6",
+      "exit_code": 0,
+      "cs_files": 11
+    },
+    {
+      "assembly": "UnityEngine.VRModule",
+      "argv_sha256": "9c170aae131b80b50102458d74f2126f4b7512e980f0f1b3a93dfd07fa0e224c",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.WindModule",
+      "argv_sha256": "d7b456c05652b81808a52901f4e4c3e3fc1819f2fe658ef264710b51db9f7181",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.XRModule",
+      "argv_sha256": "eb879a491f5a9b383d2552a793d16d3ecc9edb7c7a117e0a6f213bd4d63e9d35",
+      "exit_code": 0,
+      "cs_files": 24
+    },
+    {
+      "assembly": "Accessibility",
+      "argv_sha256": "c8bc4c0a4d066c17ba92aba4aec825eb5641d0a4110509010df4442987d30df5",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "Assembly-CSharp",
+      "argv_sha256": "8e6671a741f26af360361e78e91c905d0c7670b35896e2fb6526cae45765f7e6",
+      "exit_code": 0,
+      "cs_files": 38
+    },
+    {
+      "assembly": "Mono.Data.Sqlite",
+      "argv_sha256": "99b2a27de4a84ba31cfed21c71715faf4d0b16d20649901e0a6804f14eb3ee26",
+      "exit_code": 0,
+      "cs_files": 56
+    },
+    {
+      "assembly": "Mono.Posix",
+      "argv_sha256": "a74a55c66afaf91fc7e6b0c5e410051d80b464de38c220c3229c20b929fcac14",
+      "exit_code": 0,
+      "cs_files": 160
+    },
+    {
+      "assembly": "Mono.Security",
+      "argv_sha256": "b2a983d3113134976420ea229dcf5480657e7ce338f0609df2b458e696c6004f",
+      "exit_code": 0,
+      "cs_files": 112
+    },
+    {
+      "assembly": "Mono.WebBrowser",
+      "argv_sha256": "72a9d8d3989a35d0cbdec1b096d19f669c4bb3667d972168d469ed58a437f2b9",
+      "exit_code": 0,
+      "cs_files": 326
+    },
+    {
+      "assembly": "mscorlib",
+      "argv_sha256": "31e2954f53e49ea4153d3421a6f2c93054331ceedba0783c8e9320d7a6c296f2",
+      "exit_code": 0,
+      "cs_files": 2312
+    },
+    {
+      "assembly": "netstandard",
+      "argv_sha256": "282ad2946ee25f00e0397c0162f5f81c7d2e367318205efed1e6072fb81eb91e",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "Novell.Directory.Ldap",
+      "argv_sha256": "eb82543c2f3720e087d173d0f4b8ae70470ea5343335e3fd7271c4ed0e190993",
+      "exit_code": 0,
+      "cs_files": 225
+    },
+    {
+      "assembly": "Ookii.Dialogs",
+      "argv_sha256": "cdc0122b05917742cf381e5466b66877fd910e9fd0185a24cb98469844216289",
+      "exit_code": 0,
+      "cs_files": 71
+    },
+    {
+      "assembly": "System.ComponentModel.Composition",
+      "argv_sha256": "981138feb844ff13a4b4828d13f40c13165784d8ea447041da90579e2b3a0b57",
+      "exit_code": 0,
+      "cs_files": 151
+    },
+    {
+      "assembly": "System.ComponentModel.DataAnnotations",
+      "argv_sha256": "9ef6632a0de8920411317b8b522818de178075082b7e8d8288f85b13135d094d",
+      "exit_code": 0,
+      "cs_files": 54
+    },
+    {
+      "assembly": "System.Configuration",
+      "argv_sha256": "d85f454ab78e1f6e944cfb92721c68bb10e0e2af860716cc48a8c3daf281dca9",
+      "exit_code": 0,
+      "cs_files": 139
+    },
+    {
+      "assembly": "System.Core",
+      "argv_sha256": "53995b80f124baf14974b8a84da0c2350bcea084b8143853e2832eb55747115e",
+      "exit_code": 0,
+      "cs_files": 579
+    },
+    {
+      "assembly": "System.Data.DataSetExtensions",
+      "argv_sha256": "98aaf0da9460c6f65e48beb594bc6c61ba1d5d8a392b6ea51fbc6ab2bcc98514",
+      "exit_code": 0,
+      "cs_files": 14
+    },
+    {
+      "assembly": "System.Data",
+      "argv_sha256": "d826d9a8415f5f4513ef7da60fc336692e62cb9020657a8226e6b5351c0ca7f7",
+      "exit_code": 0,
+      "cs_files": 701
+    },
+    {
+      "assembly": "System.Design",
+      "argv_sha256": "1b7adc5ef0247fa310446cbb4fc7a6eb9c7b1b1d4a854e30cc5c182814a1baa3",
+      "exit_code": 0,
+      "cs_files": 420
+    },
+    {
+      "assembly": "System.DirectoryServices",
+      "argv_sha256": "761438b50f6ae888878fc38dc67c0cafdf13ebc4416c170a3c67f0434d5e5db5",
+      "exit_code": 0,
+      "cs_files": 152
+    },
+    {
+      "assembly": "System",
+      "argv_sha256": "97aaf08f0661822e690704f60fe4c5393e1e8257146dcbe6769bdfb6fd9649ca",
+      "exit_code": 0,
+      "cs_files": 1625
+    },
+    {
+      "assembly": "System.Drawing.Design",
+      "argv_sha256": "adda861afc0d4fd167c58c71f036757df49c3f5e0189e16666bc918c7d4fe58e",
+      "exit_code": 0,
+      "cs_files": 21
+    },
+    {
+      "assembly": "System.Drawing",
+      "argv_sha256": "dbe6fdfa5f2aff7cc5890644381fcf0f1cef859415081e4ad428cce11dc7c703",
+      "exit_code": 0,
+      "cs_files": 258
+    },
+    {
+      "assembly": "System.EnterpriseServices",
+      "argv_sha256": "8637e65d60608cb9f8cea8eb0d7deda6ca8c20d3ccedb4660361f8267dac4495",
+      "exit_code": 0,
+      "cs_files": 120
+    },
+    {
+      "assembly": "System.IO.Compression",
+      "argv_sha256": "504ef67684cc4786679f5c6b066248578e6e00708db59add1789785201e2308e",
+      "exit_code": 0,
+      "cs_files": 51
+    },
+    {
+      "assembly": "System.IO.Compression.FileSystem",
+      "argv_sha256": "138dbef72d835eeb66eae93adf59f61b6ddea1240d51ef11c92402e8f05ddfd1",
+      "exit_code": 0,
+      "cs_files": 6
+    },
+    {
+      "assembly": "System.Net.Http",
+      "argv_sha256": "96ecb94d3f35a818bfc25e1852ccc7a4308dfc423f4fb98814952105d669259e",
+      "exit_code": 0,
+      "cs_files": 64
+    },
+    {
+      "assembly": "System.Numerics",
+      "argv_sha256": "61ba34e3ae7ece77bb4143c35f49ce754187ebf149a47232dd9a628699cd0a6e",
+      "exit_code": 0,
+      "cs_files": 21
+    },
+    {
+      "assembly": "System.Runtime.Serialization",
+      "argv_sha256": "514bc3a454a155a82c5d84e676f5dd14cacc154cb0171f1499bcf258ecc3fd6e",
+      "exit_code": 0,
+      "cs_files": 300
+    },
+    {
+      "assembly": "System.Runtime.Serialization.Formatters.Soap",
+      "argv_sha256": "f0011992edb93a45f54061477f869c52d68aaa47bd80b29c3de3f6deb4da5407",
+      "exit_code": 0,
+      "cs_files": 16
+    },
+    {
+      "assembly": "System.Security",
+      "argv_sha256": "37864d937b9891e667798d8a031fa203bd10ba15a61dc96af6b4a6809100b00d",
+      "exit_code": 0,
+      "cs_files": 236
+    },
+    {
+      "assembly": "System.ServiceModel.Internals",
+      "argv_sha256": "b93eb9d3a1eb9cef26a0cbef34f96167a94c3569235b8f975055a360c0f1dd8f",
+      "exit_code": 0,
+      "cs_files": 82
+    },
+    {
+      "assembly": "System.Transactions",
+      "argv_sha256": "aade723348127961699d249a611a52ab728c6b03a712b4982dd0fe21dcd6d745",
+      "exit_code": 0,
+      "cs_files": 49
+    },
+    {
+      "assembly": "System.Web.ApplicationServices",
+      "argv_sha256": "4c6452c99defc856d9808369cd98b47fd1bb490036e7515b05e631581da4db98",
+      "exit_code": 0,
+      "cs_files": 27
+    },
+    {
+      "assembly": "System.Web",
+      "argv_sha256": "7f6afb56b16df07914de7e058c7fbb6af59515b35728c0d4fe34a64b862cffb6",
+      "exit_code": 0,
+      "cs_files": 1798
+    },
+    {
+      "assembly": "System.Web.Services",
+      "argv_sha256": "f90b978bc5426a855a4c56682c3622c7ccb3a84c103f1c2d5c467a608790649b",
+      "exit_code": 0,
+      "cs_files": 309
+    },
+    {
+      "assembly": "System.Windows.Forms",
+      "argv_sha256": "d65fdbfdb2140d9c95210e1751894a8e7d81c2a4da3409fb392b4167567d3627",
+      "exit_code": 0,
+      "cs_files": 1172
+    },
+    {
+      "assembly": "System.Xml",
+      "argv_sha256": "1cb607ac1e82fa1220e8e59ea1ba86bdf9c9e9d0af6c6fcfcd28635e46dbf2d9",
+      "exit_code": 0,
+      "cs_files": 1080
+    },
+    {
+      "assembly": "System.Xml.Linq",
+      "argv_sha256": "85ea0fee7ff2bf6e1e51a7b1eb1354d8e53470e88129e429a532e4d3ed088f68",
+      "exit_code": 0,
+      "cs_files": 54
+    },
+    {
+      "assembly": "UnityEngine.AccessibilityModule",
+      "argv_sha256": "f833e135f4fa159550abc276b1dcfd051cac0bde1428bb86f0f2f9676da9aded",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.AIModule",
+      "argv_sha256": "538d680d2f8fb7246947dfeaa0447457e7004d23189b382d2609c662e1e15e27",
+      "exit_code": 0,
+      "cs_files": 32
+    },
+    {
+      "assembly": "UnityEngine.AndroidJNIModule",
+      "argv_sha256": "f7063f30f68cd86f41169de5559cefad8fb2fd4f89b49eb6a5a12b5b443bf532",
+      "exit_code": 0,
+      "cs_files": 29
+    },
+    {
+      "assembly": "UnityEngine.AnimationModule",
+      "argv_sha256": "6eb814bdf7d838b0959885955798c081fa08a6f34d3808387cb4493978c55050",
+      "exit_code": 0,
+      "cs_files": 102
+    },
+    {
+      "assembly": "UnityEngine.ARModule",
+      "argv_sha256": "2cf9f68ca173f167563596c32f92bd0b1918abb4f41e058b0e90a5b9d0509b03",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "UnityEngine.AssetBundleModule",
+      "argv_sha256": "142c9413d6fe62c20ae8aa0f40435f90b88e5c3061471bbdb68d4d65449f80f6",
+      "exit_code": 0,
+      "cs_files": 12
+    },
+    {
+      "assembly": "UnityEngine.AudioModule",
+      "argv_sha256": "6504ccfaef8ff1af378e10269f84e4ce2c5c90dcc1a2000a2b061eca044a0e2f",
+      "exit_code": 0,
+      "cs_files": 45
+    },
+    {
+      "assembly": "UnityEngine.ClothModule",
+      "argv_sha256": "28422cf98acd28586307b2939a65857f9d80d70727512bdac71cd5d5ea22d6a4",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "UnityEngine.ClusterInputModule",
+      "argv_sha256": "2169ab6934784713a74ef9aa3bbdbe3554501750c69859501c89c9365a22134a",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.ClusterRendererModule",
+      "argv_sha256": "e893f4fd35eb9837e268e5bb357b32595c28e4747a464252a00921ce36c67469",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.CoreModule",
+      "argv_sha256": "27e51ccbdd77e8eeaaeed5372de6f80e73e24d04443efb848303d60c4b220a22",
+      "exit_code": 0,
+      "cs_files": 843
+    },
+    {
+      "assembly": "UnityEngine.CrashReportingModule",
+      "argv_sha256": "a14cd379a8cdd9ced9953e8f607d1fc89d88cec270664a71333be92ef32d290d",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.DirectorModule",
+      "argv_sha256": "c6754e0875560934f6181f1b8bc4060f4c4b92af802ccab1a8505028b6e32330",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine",
+      "argv_sha256": "0ba4d5eab2b1500f34c18024971b95838636962fa0c73e517a239f7153a05a1e",
+      "exit_code": 0,
+      "cs_files": 18
+    },
+    {
+      "assembly": "UnityEngine.DSPGraphModule",
+      "argv_sha256": "31188dbbeb29616ece094f07021081ea873b5bc5da9addbfa4ed96880e15d0fa",
+      "exit_code": 0,
+      "cs_files": 10
+    },
+    {
+      "assembly": "UnityEngine.GameCenterModule",
+      "argv_sha256": "70aee487896d5ff95c5ac39404ce066e00678a873d97ceae2da8d3615bbc151b",
+      "exit_code": 0,
+      "cs_files": 21
+    },
+    {
+      "assembly": "UnityEngine.GIModule",
+      "argv_sha256": "7a8ce658f3bd4ee752fa336ec106f0e9e8d248f13fc10c3f850fbda8c18213a6",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.GridModule",
+      "argv_sha256": "5463219156209c29f2a16f2aa14643bdae85d8f32528963e6d0be1e0bdf6efd8",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.HotReloadModule",
+      "argv_sha256": "e90ae908b35a05d44e2676fb5f9e85234a486b8f727c0f632a05d8e3fda53f76",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.ImageConversionModule",
+      "argv_sha256": "81f8574cf6c1550025de92ae24f902ee7c99c96b938782c21f48cb096086f698",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.IMGUIModule",
+      "argv_sha256": "a1c35417819c73c8bb34419e59e5155a7c92fadc5d6b5cdd828bf2f2d819ddc7",
+      "exit_code": 0,
+      "cs_files": 41
+    },
+    {
+      "assembly": "UnityEngine.InputLegacyModule",
+      "argv_sha256": "c5526689a440a77af5cb0bf0d70c0c1fc23aafc95708ec9ebbb700ba79729b90",
+      "exit_code": 0,
+      "cs_files": 15
+    },
+    {
+      "assembly": "UnityEngine.InputModule",
+      "argv_sha256": "eeb28d9a6431c05c2f9d2bd744fc312c0bd4a4aa4b836f3d7fb592ccdecc367a",
+      "exit_code": 0,
+      "cs_files": 7
+    },
+    {
+      "assembly": "UnityEngine.JSONSerializeModule",
+      "argv_sha256": "fd4d1cc511376843058410f9e204e514859929252581ce54a1e8c023f4081474",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.LocalizationModule",
+      "argv_sha256": "1b6cfe389c499d3618895baf677080a7ae8fe1805414336cc540f72c9700dc27",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.NVIDIAModule",
+      "argv_sha256": "c1313922e7996afec8b7d206d5f7efc2a652932e979d7ac48e5e9542e3993484",
+      "exit_code": 0,
+      "cs_files": 19
+    },
+    {
+      "assembly": "UnityEngine.ParticleSystemModule",
+      "argv_sha256": "9b5a25a3f24471887e46eb4cd94c9b6048468de407ad47ec995ff0562b90220b",
+      "exit_code": 0,
+      "cs_files": 60
+    },
+    {
+      "assembly": "UnityEngine.PerformanceReportingModule",
+      "argv_sha256": "716cf10401af82cd0f6ad1cea4046cba12fe21c9e5d6a32f29570352bd8379a0",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.Physics2DModule",
+      "argv_sha256": "f08266734487873179444597de96b5d4ab88e45e506608521e4a5cb80554c910",
+      "exit_code": 0,
+      "cs_files": 58
+    },
+    {
+      "assembly": "UnityEngine.PhysicsModule",
+      "argv_sha256": "fe1d79e7b7ecb6f1c4263b9e1fa7bd47df0865a7968cc7f1e910bd0af66ef228",
+      "exit_code": 0,
+      "cs_files": 56
+    },
+    {
+      "assembly": "UnityEngine.ProfilerModule",
+      "argv_sha256": "9a6d2bb9c71c0c2e499c4b64fa2d89414620d5ffd0fedfd1a2c6b2dfc96b7a93",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule",
+      "argv_sha256": "f92327fc85247fc3d6a1fdd98e99fab040d2d37022cbe59e1d474586053fd45b",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.ScreenCaptureModule",
+      "argv_sha256": "55a268091c98c5581c0bd68e087268a355105410f4f8fed90fa55c6ca08cb37a",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.SharedInternalsModule",
+      "argv_sha256": "6dd26df1c94e39ba25c1f524e8db214fbeb5d139ee08c56ea7189f284333a29e",
+      "exit_code": 0,
+      "cs_files": 44
+    },
+    {
+      "assembly": "UnityEngine.SpriteMaskModule",
+      "argv_sha256": "e1bf659751c51ec4b532c3439754e7c332f6905eba1c938de4c48d642c45f96b",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.SpriteShapeModule",
+      "argv_sha256": "83af12278b9de73d7f52c888681122a39a28f64e237f61e1b1a45639e1945de2",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.StreamingModule",
+      "argv_sha256": "d86f49f0ed54e84c844d978ab2e4ac3b3984fa3be0d195fda396981b843a25a1",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.SubstanceModule",
+      "argv_sha256": "6e4e4f51b4b9fb2379159ca8c5b6d628a0de52b04abfbaec9d5cf4bc2d2e79a7",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.SubsystemsModule",
+      "argv_sha256": "b7f486a9cd7250b7a60f248396c37c03f4a3174b4f71c102b658cb26b0c99ef9",
+      "exit_code": 0,
+      "cs_files": 21
+    },
+    {
+      "assembly": "UnityEngine.TerrainModule",
+      "argv_sha256": "4dce21df6e996f32f6cdf5d030e04d9fa33eec9b920f2db9dda9e9a820631986",
+      "exit_code": 0,
+      "cs_files": 26
+    },
+    {
+      "assembly": "UnityEngine.TerrainPhysicsModule",
+      "argv_sha256": "4efd56f69319b23cdecc3c4957447a50f804224d817b8819a717e155bab56091",
+      "exit_code": 0,
+      "cs_files": 2
+    },
+    {
+      "assembly": "UnityEngine.TextCoreFontEngineModule",
+      "argv_sha256": "dddf84042aa8522735089567c4e7be93dad9784a13a3149f236d61c54b1778d0",
+      "exit_code": 0,
+      "cs_files": 44
+    },
+    {
+      "assembly": "UnityEngine.TextCoreTextEngineModule",
+      "argv_sha256": "ff2916815dcf6db87d069a18d66c3bbe19894a464bd528f3b4bc40909f39a240",
+      "exit_code": 0,
+      "cs_files": 59
+    },
+    {
+      "assembly": "UnityEngine.TextRenderingModule",
+      "argv_sha256": "59d3bdfd776826e9e6f6d1e943dbd48bd694b36b4e135abb0f50722e0cb69d2e",
+      "exit_code": 0,
+      "cs_files": 16
+    },
+    {
+      "assembly": "UnityEngine.TilemapModule",
+      "argv_sha256": "bb0650f9de5ecb058a53d0ed87bb23522d8445eeb3f3293c3b939fdc4f34425e",
+      "exit_code": 0,
+      "cs_files": 14
+    },
+    {
+      "assembly": "UnityEngine.TLSModule",
+      "argv_sha256": "b1533ed6a1068cb6f86e8f871c266a2c473ea42f7a34c4e86f901a0c39c05698",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.UI",
+      "argv_sha256": "38a434f80c0943ac6e1311f9eb1c9a4570d9cb721c7de7eb35932f4373eef2e4",
+      "exit_code": 0,
+      "cs_files": 115
+    },
+    {
+      "assembly": "UnityEngine.UIElementsModule",
+      "argv_sha256": "811540ac5646f63e8a7f6763468336438d0e2c1688b19c11c2b4be0a7e6f5c22",
+      "exit_code": 0,
+      "cs_files": 605
+    },
+    {
+      "assembly": "UnityEngine.UIElementsNativeModule",
+      "argv_sha256": "15b1ef1cdd472f9b4c172f21c0e0e78fd1fa611a8ecf270cb235c271ae9c0ff9",
+      "exit_code": 0,
+      "cs_files": 39
+    },
+    {
+      "assembly": "UnityEngine.UIModule",
+      "argv_sha256": "fb681d373425739a5005e50a30bd5cab86130748ff45a69331770400eb6e1759",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.UmbraModule",
+      "argv_sha256": "465b1901a20646a5bfc2e543b1fd9f87986165caf3fc2266523f950bde27d180",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.UNETModule",
+      "argv_sha256": "9102820d6f6019c9d880e8b254337b7582edf25965cda0d8f715edff2a787692",
+      "exit_code": 0,
+      "cs_files": 44
+    },
+    {
+      "assembly": "UnityEngine.UnityAnalyticsCommonModule",
+      "argv_sha256": "94bcb0a1621d6761d39e052ad539ca651f4a5db6855768ff49af1d5fea8f8a95",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.UnityAnalyticsModule",
+      "argv_sha256": "52e3cc80138358d82b48a6cb5a050b816d890990d76e807f7050d86ba9a4f25e",
+      "exit_code": 0,
+      "cs_files": 12
+    },
+    {
+      "assembly": "UnityEngine.UnityConnectModule",
+      "argv_sha256": "ef8d585a5c44ce2634e70c8eef7986aed89361405885c9e26eb19a5883dd7a58",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.UnityCurlModule",
+      "argv_sha256": "8126d16cd0b9cb55224036c4d2c91cd48eff06e647d0687e7861076ff6c214a3",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "UnityEngine.UnityTestProtocolModule",
+      "argv_sha256": "ec8ce287be3fedb41a679509de0f54202afa5247236e57161d59760ab4464a4e",
+      "exit_code": 0,
+      "cs_files": 1
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestAssetBundleModule",
+      "argv_sha256": "159c312709b16cd9a20381b90c4166bcab18393f31e2e3128ea1aa1b7ce27083",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestAudioModule",
+      "argv_sha256": "10f761747945d8cde50d11ee2e99dc072f621359cbaf0429aa3ad88290867e61",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestModule",
+      "argv_sha256": "4203d7252cc4f35b0c1bfe44b66ad737b845d27cae27c3f073cb00df87112cf2",
+      "exit_code": 0,
+      "cs_files": 17
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestTextureModule",
+      "argv_sha256": "b64a32f5d86d794bd4dee65442af68361614446b4afdd8f344af2733eb71c997",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.UnityWebRequestWWWModule",
+      "argv_sha256": "434f6baff5e67153960e00a6ea1dc9b4df684413cb98cabb6625bfaf6a94464e",
+      "exit_code": 0,
+      "cs_files": 4
+    },
+    {
+      "assembly": "UnityEngine.VehiclesModule",
+      "argv_sha256": "5a61bb6d15ccd405e1f6d21d8b732dda4499bd0de17e779b85ba9c6d0102f0da",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.VFXModule",
+      "argv_sha256": "35b458a1204d0e73482c563b3ae02c5f17d297eff18c0cdbf3c519fdbc61af1c",
+      "exit_code": 0,
+      "cs_files": 25
+    },
+    {
+      "assembly": "UnityEngine.VideoModule",
+      "argv_sha256": "222090f72229ca9adc461aaeaf63937196cb3039c18986b60b93f1c3bd1b452f",
+      "exit_code": 0,
+      "cs_files": 17
+    },
+    {
+      "assembly": "UnityEngine.VirtualTexturingModule",
+      "argv_sha256": "950e36f895a5fd81dcd9771388fa7aa7b35c56cfa93bde83cf37f42105f7141e",
+      "exit_code": 0,
+      "cs_files": 9
+    },
+    {
+      "assembly": "UnityEngine.VRModule",
+      "argv_sha256": "e75634304a7aa28e8701359fb3e8a83205d7599efb4c9e98c61f9b84b738efa9",
+      "exit_code": 0,
+      "cs_files": 10
+    },
+    {
+      "assembly": "UnityEngine.WindModule",
+      "argv_sha256": "3b5a520b6629f353edc61be294772f32a11627888a89774d11ff9132961a1db6",
+      "exit_code": 0,
+      "cs_files": 3
+    },
+    {
+      "assembly": "UnityEngine.XRModule",
+      "argv_sha256": "1f729e58ce5a507a9cc8f6a1146acb664ea0d86b59dc3fd7abe69b6c33454c77",
+      "exit_code": 0,
+      "cs_files": 40
+    }
+  ],
+  "warnings": [
+    "Decompiler method bodies are garbage-prone in call-heavy serializers (IL2CPP); take structure, get semantics from data — does-not-work/decompiler-method-bodies.md",
+    "recon anchors absent from the decompiled tree: ['GlobalLanguage.GetString']"
+  ],
+  "duration_s": 135.529
+}

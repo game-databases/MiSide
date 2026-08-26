@@ -1,0 +1,145 @@
+# R-D-C1 — verifier review of `docs/specs/data-contracts.mdx` (D-C1)
+
+Reviewed: [data-contracts.mdx](../../specs/data-contracts.mdx) @ 479 lines, against brief
+[D-C1](../../briefs/D-C1.md), builder log [D-C1.log](../../logs/D-C1.log). Every check below is a
+RE-MEASUREMENT over `extracted/data/`, `extracted/relinks/`, and the site readers — no citation
+trusted without re-derivation. Measured 2026-08-26 on the same tree the builder cites
+(buildId 19029065 / VERSION 0.93L, confirmed in `extracted/EXTRACTION-LOG.md`).
+
+## 1. Cited-count spot checks — ALL re-derived, all exact
+
+Ten count families re-measured from disk (brief asked ≥6):
+
+| Claim | Re-measured | Verdict |
+|---|---|---|
+| personages 24 (14 mita + 10 player) | 24 rows; kind split 14/10; save_key "" ×2 (`mita-usual`,`mita-true`); resource_path "" ×9 | ✔ |
+| cartridges 23 + minigames 17 (+2 candidates) | 23 / 17 / 2 data rows after `_meta` | ✔ |
+| achievements 26 | 26 headerless rows | ✔ |
+| endings 4 / choice_nodes 371 / branch_edges 1555 / flag_tables 5 | 4 (3 `ending` + 1 `mode-stub`) / 371 / 1555 / 5 | ✔ |
+| dialogue 2839 nodes / 3776 edges / 19 graphs / 14 themes | 2839 / 3776 / 19 `level*.json` (no level18) / curated_mapping ×14 | ✔ |
+| documents 14 profile + 166 world + 8 books | 14 / 166 / 8 (class-B descriptor headers skipped as data) | ✔ |
+| scenes 24 scenes / 986 POIs (inline 298 / pptr 76 / none 612) / 57 links | 24 / 986 (298/76/612 exact) / 57 (+24 spawn tables, 0 markers) | ✔ |
+| relinks 25 files = 1,159 edges | 25 relation files; per-family data-row counts sum to **1,159 exactly**; `_assembly-provenance.jsonl` = 30 records | ✔ |
+| availability 2,686 cells | 2686 rows = 680 bucket (646/33/1) + 1734 presence (1462/264/8) + 272 book_page (264 true); totals 2108/297/9 reproduce | ✔ |
+| missingdata 83 (12 XC + 9 CH + 7 ACH + 6 END + 10 DLG + 9 CAR + 8 DOC + 11 SCN + 3 DOCX + 8 MA) | unique-ID census = 83 with the identical family split | ✔ |
+
+Also verified against their sources: effect_class splits (709/468/356/10/8/3/1), predicate_class
+(12/11/3), unlock.status (11/15), type_tag (11/8/3/2/1/1), access_medium/key_source splits,
+placement_mechanism (11/2/1), scene_link edge_kind (19/15/15/7/1), direction splits in all eight
+split-bearing families (22/22, 10/10, 20/20, 19/18, 15/15, 8/4, 2/2), PROOF §5.3 scoreboard strings,
+books art cells 272/264. The §4.1 table reconciles byte-for-byte with PROOF §5.2.
+
+## 2. Findings requiring revision
+
+### F-1 (HIGH) — §4.2 anchor grammar does not match the corpus; AC C4 is unpassable as written
+
+Prefix census over every `from`/`to` endpoint in all 25 relation files (2,284 endpoints across
+1,142 anchored edges): forms NOT in the spec's "measured vocabulary" cover ≥1,527 endpoints (~67%) —
+`note:` ×686, `target:` ×370, `container:` ×354, `paper_part:` ×20, `save_point:` ×19,
+`controller:` ×10, `novella_surface:` ×6, `dialogue-carriers:` ×6, `choice_flag:` ×2,
+`prop_family:` ×2 — plus BARE ids with no kind prefix on the from side of
+character--achievement / character--cartridge / character--scene-membership
+(`mita-short-hairs`, `player-10`, `mila`, …; 52 endpoints). Conversely four LISTED forms never occur
+as anchors: `cartridge:<save_key>`, `document:<document_id>`, `cloth-site:<key>`,
+`encoding-residue:<…>` (those families key rows by id columns like `achievement_id`/`cloth_id`/
+`node_id`, or ship meta-only). As specified, C4's lint ("unknown anchor form → exit ≠ 0") fails on
+the majority of real edges. Fix: derive each family's anchor grammar into `joins.json` from disk and
+reword C4 to lint against those per-family grammars.
+
+### F-2 (MODERATE) — POI `space` enum invents `world-assumed`
+
+0 of 986 poi.jsonl rows carry `space:"world-assumed"`; measured values are only
+unknown ×668 / parent-local ×56 / object-local-offset ×262. The value IS emitted — but on
+scenes.jsonl `spawn` (20 rows, `{source:"inline", space:"world-assumed"}`), i.e.
+World.positionSpawn is a SCENE-level field, not a POI cell. §3.9 lists it in the POI enum and says
+"the ONLY projection-proven cell today is `inline ∧ world-assumed`" in the POI paragraph — this
+violates the spec's own C2 rule ("every enum lists only measured values"), misstates where the one
+projection-proven cell lives, and risks map consumers treating POI inline cells as proven.
+
+### F-3 (MODERATE) — §3.7 speaker-null claim contradicted by disk and by its own citation
+
+Null speakers ×129 ✔, but they span FIVE kinds: choice_case 70 + quest_box 13 + pet_dialogue 24 +
+branch_group 11 + grouped_scene_dialogue 11. The spec says nulls are "exactly the speaker-less kinds
+choice_case/quest_box/pet_dialogue" (=107, which is what DLG-3 in missingdata.md actually ledgered).
+Both the sentence and its cited ledger disagree with the emitted rows.
+
+### F-4 (MODERATE) — invented field `ptr` in the dialogue_edge block
+
+`"ptr"` occurs 0 times in edges.jsonl (it exists only in the emitter source and the dangling-edges
+ledger). Real edge fields unlisted by §3.7: `call_index` (all 3776), `call` (1535),
+`resolved_to` (1535), `anchor_entry` (142). Direct breach of the brief's "do NOT invent fields not
+present in emitted data".
+
+### F-5 (MODERATE) — §3.10 mechanism/status enums are not exhaustive
+
+Measured: document--minigame carries `mechanism:"scrMain PPtr (hard)"` ×10 (+ inferred ×2) with
+status mirroring the same free-text strings — outside {hard, logic, inferred} and {modeled, partial};
+dialogue-speaker-theme--character status ∈ {provisional-pending-ds1 ×9, pending-curation ×5};
+achievement--award-site / achievement--ending / cloth-site--outfit / encoding-residue carry no status
+at all. A consumer parsing either column as the pinned enum breaks.
+
+### F-6 (MODERATE) — §3's "COMPLETE field inventory" claim is falsified by omissions
+
+Data-row fields present on disk but absent from the blocks: dialogue_node `level`, `voice_present`;
+ending `notes_community`; world_document `scr_main` (5 rows), `audio_source_refs` (1);
+achievement.steam `captured_at_machine_plane`; spawn_table `spawn_table_id`, `level`, `status`,
+`destroy_objects_count`, `materials_count`, `meshes_count`, `textures_count`; poi `level`,
+`location_id`. Blocks that ARE complete against disk: personage, candidates, cartridge, minigame,
+choice_node, flag_table, profile_document, book, scene, scene_link. Fix the incomplete six or drop
+the completeness claim so entities.json generation isn't held to it.
+
+## 3. Non-blocking nits
+
+- n1: "`gallery_icon` PPtr|null when pathID 0" — zero rows have path_id 0; the ×15 nulls arise where
+  no icon serialized. (The populated 9 being the single shared external pointer level2/file_id 2/
+  path_id 276 is correct.)
+- n2: §7 cites `preview_prefab_key` as a measured `[unverified]` location — its values are plain
+  `'Personages/X'` strings; the labels live on cartridge `container_location_binding` ([inferred])
+  and END-2 `windows.chapter_attribution` ([community]) only.
+- n3: reads line says "all 30 `extracted/relinks/*.jsonl` files parsed" — 27 exist (25 relation +
+  availability + provenance).
+- n4: observed schema-id list omits `miside.cartridges.candidates/1`.
+- n5: the 3-class table doesn't classify `locale_availability.jsonl` / `_assembly-provenance.jsonl`
+  (both effectively class C headerless).
+- n6: §5 totals 2,108/297/9 silently exclude the 272 boolean book_page cells — numbers correct,
+  scope unlabeled.
+- n7: C6 folds the `next_resolved:'null'` trap into availability tests; testable but misplaced.
+
+## 4. Verified clean
+
+- **Header taxonomy (§2)**: exhaustive over consumed artifacts and correctly assigned — class A
+  verified on 10 dataset files + all 25 relation files (`_meta` first line), class B on the three
+  documents files (descriptor line with `row_count`, no `_meta`), class C on
+  achievements/endings×4/dialogue×3 (headerless; sidecars `_ledger/build-meta.json`,
+  `emit-ledger.jsonl`, `speakers.json` all exist). Single-object JSON set (speakers, poi-kinds,
+  graphs) matches. The criticism of scaffold's `_meta` phrasing is fair — contracts.ts's own header
+  comment overclaims `_meta`-only before correcting itself.
+- **Data traps**: `feeds_ending` null ×1555 and `next_resolved` string `'null'` ×572 (vs real null
+  ×94, resolved 2161, unresolved-in-level 12) both exist exactly as pinned as data.
+- **Availability semantics (§5)**: fallback chain follows from the measured cell distribution;
+  row shapes match `availability.ts`'s reader field-for-field; locale key domain = 34 client dir
+  names incl. `Português-Brasil`/`Pre-revolutionaryRussian`, matching spec.md `code-mapping`;
+  alias ruling matches scaffold §3.3; resolveLoc.ts confirms arithmetic-free 0-based resolution
+  (AC S13).
+- **ACs C1–C3, C5–C10**: each machine-checkable as stated (full-recount, negative/mutation tests,
+  tamper tests, unit matrices, renderer tests). C4 too once F-1's grammar is fixed. No vague ACs.
+- **Open questions (§9, 7)**: all legitimate consumer-needs-absent items with named unblocks
+  (ACH-1 icon path, XC-3/S9 calibration cadence, XC-2 chapter fill, DLG-1/DLG-2 slug rulings, XC-5
+  marker schema timing, XC-4 note-content shape, XC-11 descriptions) — none laziness.
+- **Consumer alignment**: serves `contracts.ts` / `resolveLoc.ts` / `availability.ts` shapes
+  directly; reference-by-reference (§4.3) matches PROOF §5.3's consume-by-reference reconciliation.
+- **Template/budget**: section skeleton mirrors [site-scaffold.mdx](../../specs/site-scaffold.mdx)
+  (numbered body → non-goals → open questions → ACs → See also); FRAMEWORK §4 governs `spec.md`
+  YAML sheets, not this doc class, so scaffold-skeleton conformance is the operative bar and is met.
+  MDX throughout, fragment relinks present, 479 ≤ 500 lines.
+- **Schema fidelity beyond findings**: sampled blocks personage/cartridge/minigame/achievement/
+  ending/candidates/documents/books/scenes reconcile field-for-field (enums, counts, hex example
+  `#cc73a2` re-derived exactly, residue node_id `level14:Dialogue_3DText#5559` exact).
+
+## 5. Verdict
+
+Six revision-required findings: one grammar/AC blocker (F-1) plus five factual schema claims
+contradicted by the corpus the spec itself cites (F-2…F-6). All are localized text fixes — the
+counts, structure, traps, semantics, and consumer wiring are sound and fully reproduced.
+
+VERDICT: NEEDS_REVISION — 6

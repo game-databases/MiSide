@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "Új játék"}
+{"category": "Menu", "line_index": 1, "text": "Folytatás"}
+{"category": "Menu", "line_index": 2, "text": "Főmenü"}
+{"category": "Menu", "line_index": 3, "text": "Kilépés"}
+{"category": "Menu", "line_index": 4, "text": "Beállítások"}
+{"category": "Menu", "line_index": 5, "text": "Teljesítményeid"}
+{"category": "Menu", "line_index": 6, "text": "Készítők"}
+{"category": "Menu", "line_index": 7, "text": "Vissza"}
+{"category": "Menu", "line_index": 8, "text": "Fejezetek"}
+{"category": "Menu", "line_index": 9, "text": "Nyelv"}
+{"category": "Menu", "line_index": 10, "text": "Betöltés..."}
+{"category": "Menu", "line_index": 11, "text": "Grafika"}
+{"category": "Menu", "line_index": 12, "text": "Hangerő"}
+{"category": "Menu", "line_index": 13, "text": "Billentyűzet és egér"}
+{"category": "Menu", "line_index": 14, "text": "Kontroller"}
+{"category": "Menu", "line_index": 15, "text": "Képernyőfelbontás"}
+{"category": "Menu", "line_index": 16, "text": "Ablakos képernyő"}
+{"category": "Menu", "line_index": 17, "text": "Vizuális effektek"}
+{"category": "Menu", "line_index": 18, "text": "Színes effektek"}
+{"category": "Menu", "line_index": 19, "text": "Enyhe árnyékok"}
+{"category": "Menu", "line_index": 20, "text": "Homályos effekt"}
+{"category": "Menu", "line_index": 21, "text": "Kiemelések"}
+{"category": "Menu", "line_index": 22, "text": "Élsimítás"}
+{"category": "Menu", "line_index": 23, "text": "Árnyékok"}
+{"category": "Menu", "line_index": 24, "text": "Környezet minősége"}
+{"category": "Menu", "line_index": 25, "text": "Programozás"}
+{"category": "Menu", "line_index": 26, "text": "Animációk"}
+{"category": "Menu", "line_index": 27, "text": "Hangok"}
+{"category": "Menu", "line_index": 28, "text": "Zene"}
+{"category": "Menu", "line_index": 29, "text": "Részecskék"}
+{"category": "Menu", "line_index": 30, "text": "Textúrák"}
+{"category": "Menu", "line_index": 31, "text": "3D modellek (98%)"}
+{"category": "Menu", "line_index": 32, "text": "Szkript"}
+{"category": "Menu", "line_index": 33, "text": "Visszavonás"}
+{"category": "Menu", "line_index": 34, "text": "Előre"}
+{"category": "Menu", "line_index": 35, "text": "Vissza"}
+{"category": "Menu", "line_index": 36, "text": "Bal"}
+{"category": "Menu", "line_index": 37, "text": "Jobb"}
+{"category": "Menu", "line_index": 38, "text": "Interakció"}
+{"category": "Menu", "line_index": 39, "text": "Egér érzékenysége"}
+{"category": "Menu", "line_index": 40, "text": "Biztosan kilépsz?"}
+{"category": "Menu", "line_index": 41, "text": "Igen"}
+{"category": "Menu", "line_index": 42, "text": "Nem"}
+{"category": "Menu", "line_index": 43, "text": "Kilépés a főmenübe"}
+{"category": "Menu", "line_index": 44, "text": "Simított fordulat"}
+{"category": "Menu", "line_index": 45, "text": "Játékbeállítások"}
+{"category": "Menu", "line_index": 46, "text": "Árnyékminta"}
+{"category": "Menu", "line_index": 47, "text": "Ruhatár"}
+{"category": "Menu", "line_index": 48, "text": "Felhasználói felület"}
+{"category": "Menu", "line_index": 49, "text": "3D modellek (2%)"}
+{"category": "Menu", "line_index": 50, "text": "Beszéd hangereje"}
+{"category": "Menu", "line_index": 51, "text": "Szüneteltetve"}
+{"category": "Menu", "line_index": 52, "text": "Menü"}
+{"category": "Menu", "line_index": 53, "text": "Gratulálunk a játék végigjátszásához!"}
+{"category": "Menu", "line_index": 54, "text": "Eddig tartott végigjátszani:  "}
+{"category": "Menu", "line_index": 55, "text": "Feliratok"}
+{"category": "Menu", "line_index": 56, "text": "Fényerő"}
+{"category": "Menu", "line_index": 57, "text": "Vertikális szinkron"}
+{"category": "Menu", "line_index": 58, "text": "Mentve"}
+{"category": "Menu", "line_index": 59, "text": "Karaktertár"}
+{"category": "Menu", "line_index": 60, "text": "Karaktertár - Miták"}
+{"category": "Menu", "line_index": 61, "text": "Karaktertár - Kazetták"}
+{"category": "Menu", "line_index": 62, "text": "Kazetták"}
+{"category": "Menu", "line_index": 63, "text": "Miták"}
+{"category": "Menu", "line_index": 64, "text": "Mentett adatok törlése"}
+{"category": "Menu", "line_index": 65, "text": "Biztosan ki szeretnéd törölni a mentett adataidat, és újra akarod kezdeni a játékot?"}
+{"category": "Menu", "line_index": 66, "text": "A shaderek összeállítása, becsült várakozási idő: úgy 2 óra."}
+{"category": "Menu", "line_index": 67, "text": "Hogy 2 óra?! Ez badarság! Tudod mit? Felgyorsítjuk neked a várakozási időt!"}
+{"category": "Menu", "line_index": 68, "text": "Realisztikus árnyékkövetés generálása; becsült várakozási idő: 10 perc."}
+{"category": "Menu", "line_index": 69, "text": "Ugyan, itt nem használunk kockaszavakat!"}
+{"category": "Menu", "line_index": 70, "text": "Őmm..."}
+{"category": "Menu", "line_index": 71, "text": "Ó, készen állunk!"}
+{"category": "Menu", "line_index": 72, "text": "Kamera billegése"}
+{"category": "Menu", "line_index": 73, "text": "Tippek"}
+{"category": "Menu", "line_index": 74, "text": "Játékos hangja"}
+{"category": "Menu", "line_index": 75, "text": "Discord-szerver"}
+{"category": "Menu", "line_index": 76, "text": "Új karakter feloldva"}
+{"category": "Menu", "line_index": 77, "text": "Látószög"}
+{"category": "Menu", "line_index": 78, "text": "Hang nyelve"}
+{"category": "Menu", "line_index": 79, "text": "Kikapcsolva"}
+{"category": "Menu", "line_index": 80, "text": "Kéz mutatása ajtónyitáskor"}
+{"category": "Menu", "line_index": 81, "text": "Animáció"}
+{"category": "Menu", "line_index": 82, "text": "Játékos hangjának engedélyezése"}
+{"category": "Menu", "line_index": 83, "text": "Mita"}
+{"category": "Menu", "line_index": 84, "text": "Rövidhajú-Mita"}
+{"category": "Menu", "line_index": 85, "text": "Jófej-Mita"}
+{"category": "Menu", "line_index": 86, "text": "Vagány-Mita"}
+{"category": "Menu", "line_index": 87, "text": "Pici-Mita"}
+{"category": "Menu", "line_index": 88, "text": "Hétalvó-Mita"}
+{"category": "Menu", "line_index": 89, "text": "Papírlapos-Mita"}
+{"category": "Menu", "line_index": 90, "text": "Mila"}
+{"category": "Menu", "line_index": 91, "text": "Terror-Mita"}
+{"category": "Menu", "line_index": 92, "text": "Mag-Mita"}
+{"category": "Menu", "line_index": 93, "text": "Üres-Mita"}
+{"category": "Menu", "line_index": 94, "text": "Csibi-Mita"}
+{"category": "Menu", "line_index": 95, "text": "Bábú-Mita"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "Bekerültem a játékba?"}
+{"category": "Menu", "line_index": 101, "text": "Végre együtt"}
+{"category": "Menu", "line_index": 102, "text": "Valami itt nagyon fura"}
+{"category": "Menu", "line_index": 103, "text": "A szekrény mögött"}
+{"category": "Menu", "line_index": 104, "text": "Az Óperenciás verzión is túl"}
+{"category": "Menu", "line_index": 105, "text": "Végtelenül folyó folyosó"}
+{"category": "Menu", "line_index": 106, "text": "Pici segítőkész"}
+{"category": "Menu", "line_index": 107, "text": "Fejtörő bábúk és rejtvények"}
+{"category": "Menu", "line_index": 108, "text": "Ébresztő, álomszuszék"}
+{"category": "Menu", "line_index": 109, "text": "Pimaszságból jeles"}
+{"category": "Menu", "line_index": 110, "text": "Hibarátkozás"}
+{"category": "Menu", "line_index": 111, "text": "Fuss, játékos, fuss!"}
+{"category": "Menu", "line_index": 112, "text": "Elavult verzió"}
+{"category": "Menu", "line_index": 113, "text": "Csak őszíntén"}
+{"category": "Menu", "line_index": 114, "text": "A visszaállítás"}
+{"category": "Menu", "line_index": 115, "text": "Sapi teszi a vagányt"}
+{"category": "Menu", "line_index": 116, "text": "Üresség"}
+{"category": "Menu", "line_index": 117, "text": "Visszatértem?"}
+{"category": "Menu", "line_index": 118, "text": "Kitörés a Magból"}
+{"category": "Menu", "line_index": 119, "text": "1. játékos"}
+{"category": "Menu", "line_index": 120, "text": "2. játékos"}
+{"category": "Menu", "line_index": 121, "text": "3. játékos"}
+{"category": "Menu", "line_index": 122, "text": "4. játékos"}
+{"category": "Menu", "line_index": 123, "text": "5. játékos"}
+{"category": "Menu", "line_index": 124, "text": "6. játékos"}
+{"category": "Menu", "line_index": 125, "text": "7. játékos"}
+{"category": "Menu", "line_index": 126, "text": "8. játékos"}
+{"category": "Menu", "line_index": 127, "text": "9. játékos"}
+{"category": "Menu", "line_index": 128, "text": "10. játékos"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Örökkön örökké együtt"}
+{"category": "Menu", "line_index": 131, "text": "Ez az üzemmód jelenleg is fejlesztés alatt áll! Olyan nagy ez a játékmód, hogy a fejlesztőknek nem volt idejük befejezni azt a játék megjelenésére. De ne aggódj, megígérték, hogy egy jelentős frissítésben ez a mód elérhető lesz. Azért nézzenek csak oda, már eleve feloldottad ezt a módot! Addig várjunk."}
+{"category": "Menu", "line_index": 132, "text": "Mi is az az „Örökkön örökké együtt?” Mitával úgy találkozhatsz, mint még soha! Annyira, de annyira örülni fog annak, hogy veled töltheti az idejét egy olyan világban, ami tele van meglepetéssel! Egymással beszélgethettek, sütiket is készíthettek, játékokkal játszhattok, meg megannyi mókás élményben lehet részed vele!"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "Vér és erőszak cenzúrázása"}
+{"category": "Menu", "line_index": 136, "text": "Külön köszönet:"}
+{"category": "Menu", "line_index": 137, "text": "A teljesítmények ikonjait rajzolta: Iceсloud"}
+{"category": "Menu", "line_index": 138, "text": "Rajzolta: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Fordították"}
+{"category": "Menu", "line_index": 140, "text": "A játék szövegét másik nyelvre fordították"}
+{"category": "Menu", "line_index": 141, "text": "Kiadói partner"}
+{"category": "Menu", "line_index": 142, "text": "Játékmarketing"}
+{"category": "Menu", "line_index": 143, "text": "Bétatesztelők"}
+{"category": "Menu", "line_index": 144, "text": "A játékot tesztelték, és annak hibáit bejelentették"}
+{"category": "Menu", "line_index": 145, "text": "Ez a nyelv rajongói fordítás, és a kérésükre lett hozzáadva a játékhoz."}
+{"category": "Menu", "line_index": 146, "text": "Figyelem! Ez a játék tartalmazhat hirtelen zajokat, ugrásszerű ijesztegetést, és képernyővillódzást. A játék epilepsziában, szívbetegségben, és egyéb egészségügyi problémákban szenvedő játékosoknak nem ajánlott."}
+{"category": "Menu", "line_index": 147, "text": "„Örökkön örökké együtt” játékmód feloldva!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Fotómód"}
+{"category": "Menu", "line_index": 150, "text": "Fotómód: A kamerát bárhová elrepítheted, ahová csak szeretnéd."}
+{"category": "Menu", "line_index": 151, "text": "Kilépés"}
+{"category": "Menu", "line_index": 152, "text": "Felület elrejtése"}
+{"category": "Menu", "line_index": 153, "text": "Tartsd lenyomva a kamera pásztázáshoz"}
+{"category": "Menu", "line_index": 154, "text": "Gyors mozdulat"}
+{"category": "Menu", "line_index": 155, "text": "Cinematikus mozdulat"}
+{"category": "Menu", "line_index": 156, "text": "Gyorsaság"}
+{"category": "Menu", "line_index": 157, "text": "Hatások"}
+{"category": "Menu", "line_index": 158, "text": "Játékbeli idő"}
+{"category": "Menu", "line_index": 159, "text": "Fényerő"}
+{"category": "Menu", "line_index": 160, "text": "Kontraszt"}
+{"category": "Menu", "line_index": 161, "text": "Vignetta"}
+{"category": "Menu", "line_index": 162, "text": "Fotózz!"}
+{"category": "Menu", "line_index": 163, "text": "Képek mappájának megnyitása"}
+{"category": "Menu", "line_index": 164, "text": "Kamera elforgatása"}

@@ -1,0 +1,19 @@
+# R-SB1 — code review: SB-1 site scaffold (MiSide), 2026-08-25
+
+Re-ran S1–S8/S12–S14 myself: pins exact; parity ×34 exit 0; hex lint 0; negative map grep 0;
+26/26 unit tests (default discovery); live curl matrix green — /en/*→301, unknown-locale 404,
+/search 404 pivot+prefixed, dir="rtl" ar/ar-EG, titles Мита/Міта/ミタ, 35-entry hreflang
+clusters = ledger membership + x-default→bare, lastmod=2026-08-24, api/v1+llms.txt fact-identical,
+markers row_count=0 honest. tokens.css == T2 §6 verbatim (own full diff); resolveLoc arithmetic-free.
+fa-LTR and CWV-without-Lighthouse are logged, spec-letter-honest deviations — acceptable (fa needs a
+spec amendment). BLOCKER-1 (major): `buildEntityMetadata` canonical lacks the locale prefix
+(entityView.tsx:157) — every prefixed entity DETAIL page declares the EN bare path canonical
+(/ru/mita/mita-usual → canonical /mita/mita-usual), so crawlers consolidate all 33 locales into EN,
+against localization-architecture §1 / seo-standard §1 (index+home metadata are correct).
+BLOCKER-2 (major): sitemap `<loc>` values are RELATIVE (`/ru/mita`, `/`) and robots.txt's
+`Sitemap:` line is relative — protocol-invalid; engines reject the partitions (§10.1/S14 intent).
+Minors (non-blocking): `npm test` script (`node --test tests/`) MODULE_NOT_FOUND on Node 22 while
+default discovery passes → staged CI step fails as written; prefixed home canonical is the 308 form
+`/ru/`; root JSON-LD has no standalone Organization node and `inLanguage:["en","ru"]`; Radix select
+trigger keeps dir="ltr" inside RTL pages; dead lookalike-guard block in check-chrome-parity.mjs.
+VERDICT: NEEDS_REVISION — 2

@@ -1,0 +1,133 @@
+# Contract — dataset `documents` (profiles, world papers, books)
+
+Status: **PINNED v1** (`miside.documents.*` schemas) — built 2026-08-25 by
+builder B-5 against the approved spec
+[`docs/specs/dataset-documents.mdx`](../docs/specs/dataset-documents.mdx)
+([arbiter ruling](../docs/research/verifications/ds456-arbiter.mdx): DS-5
+APPROVED; B-5 cleared under the §1 fence). The frontend consumes THIS document
+and the files below; it never re-derives fields, resolves pointers differently,
+or invents fallbacks.
+
+- Build stamps on every record: `build_id` **19029065**, `version_label`
+  **0.93L** (EXTRACTION-LOG `pipeline-defaults` == `census/detect.json`,
+  verified at emit; stale-log refusal armed).
+- Corpus paths are repo-relative under `extracted/`; raw-client scene reads are
+  absolute on this host (NE8K) and read-only.
+- **Placement authority:** [DS-4](dataset-cartridges.mdx) §1 shared-source
+  ruling. The 11 placed rows' `(save_key, container)` pairs consume BY
+  REFERENCE from `cartridges.jsonl` (`pickup_ref`); this dataset never emits
+  standalone placement rows. Emission-time reconciliation vs DS-4 is wired
+  into `selfcheck_documents.py`; divergence settles toward DS-4's census.
+
+## Files
+
+```
+extracted/data/documents/
+├── profile_documents.jsonl     # 14 rows + _meta   (schema miside.documents.profile_documents/1)
+├── world_documents.jsonl       # 166 rows + _meta  (miside.documents.world_documents/1)
+├── books.jsonl                 # 8 rows + _meta    (miside.documents.books/1)
+├── README.md                   # honesty ledger feed + regeneration notes
+├── build/                      # emitter + selfcheck (PIPE registration pending)
+└── relinks/                    # parked; moves to extracted/relinks/ at stage registration
+    ├── document--character.jsonl
+    ├── document--achievement.jsonl
+    ├── document--scene-membership.jsonl
+    ├── document--event-wiring.jsonl
+    └── document--minigame.jsonl
+```
+
+Every `.jsonl` file's FIRST line is a `{"_meta": …}` header (schema id,
+generator, source table, build pins, row count, derived fields, dedupe rule).
+Data rows follow, one JSON object per line, UTF-8, `\n`, no BOM, fixed key
+order (byte-deterministic; proven by re-emit diff).
+
+## Locale model (binding — inherited from DS-1 §4.1)
+
+Text is stored as **pointers** `{category, line_index}` into
+`extracted/localization/<locale>/<category>.jsonl`, resolved through the game's
+own `GlobalLanguage.GetString` authority. Parity measured at emit:
+`Personages` = 26 records in all 34 locales; `Menu` 83–95 and `Achievements`
+12/13 resolve everywhere; zero U+FFFD in any consumed cell. Skew is never
+hardcoded — render filler per the declared explicit-filler policy.
+
+## `profile_documents.jsonl` — record schema (14 rows, registry order)
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `document_id` | slug | derived | `<character_id>-profile` |
+| `family` | const | schema | `"profile"` |
+| `subject_character_id` | slug | DS-1 emission | join key to `personages.jsonl` (built slugs are authoritative, e.g. `mita-usual`) |
+| `registry_ref` | string | S1 | `level2#resourceMita[<i>]` |
+| `flash_save_key` | string\|null | FlashTaker.save | row 0 = `"mta"` (measured namespace divergence; registry `nameSave` empty), rows 1–12 verbatim registry keys, row 13 `null` (keyless both namespaces) |
+| `placement` | object\|null | DS-4 AC-2 by reference | `{carrier_class:"FlashTaker", component_path_id, container}`; null on rows 6/9/13 |
+| `placement_mechanism` | enum | §3 | `placed`(11) \| `script_granted`(6,9) \| `story_granted`(13) |
+| `lore_loc` / `name_loc` | pointer objects | registry→loc | `Personages` 1–14 · `Menu` 83–95 (94/93 swap preserved) |
+| `name_en` | string | derived pivot | convenience EN copy; pointer remains truth |
+| `name_is_shared` | bool | derived | true where another profile row shares the Menu line (rows 0 & 13, symmetric) |
+| `chapter` | null | R3 | fills ONLY from the P5 level↔chapter map |
+| `achievement_sets` | string[] | §2.2-3 | `["mita-profiles"]` (= contract id 13, `ACHI_mitastory`) |
+| `evidence` | locator[] | pinned grammar | `container#pathID` or `<file>.jsonl#line_index=<n>` only |
+| `build_id` / `version_label` | stamps | EXTRACTION-LOG | every record |
+
+## `world_documents.jsonl` — record schema (166 rows)
+
+Families: `note` ×160 (level-owned census, dedupe rule §7-R4) ·
+`paper_part` ×5 (BlackRoom puzzle set, `puzzle_index` 0–4) ·
+`novella_surface` ×1 (chapter-18 reading UI).
+
+| Field | Type | Notes |
+|---|---|---|
+| `document_id` | slug | `note-<container>-<truePID>` · `paperpart-level13-<index>` · `novella-location18` |
+| `carrier` | object | `{container, dump_file, mb_class, path_id, serialized_container}` — `path_id` is the TRUE serialized component PathID (raw-header identity pass, B-3 method; AssetStudioMod `_#N` suffixes are tool ordinals). `serialized_container` names where the component physically serializes when dependency auto-load parked the dump in a level folder (91 of 160 notes reduce to 4 shared prefab components: `resources.assets#11121/#11246/#11286` ×23 levels each, `sharedassets2.assets#799` ×22) |
+| `scene_ref` | object | `{container, gameobject_path_id}` — GO PPtr verbatim from the dump; transforms wait on P5 |
+| `text_mechanism` | const today | `"unresolved"` on every row (R1) — resolution becomes a diffable event via this enum (`loc_pointer`\|`scene_text`\|`baked_texture`\|`unresolved`) |
+| `text_loc` | null | honest-missing until a carrier is PROVEN; never backfilled |
+| `event_wiring` | array | `{trigger, method, target_type, target_ptr}` — serialized UnityEvent persistent calls (`Events_Data._event[i]`, `Time_Events.EventsOnTime[j]@<time>`, `Button.onClick`, novella `pauseStart/pauseStop`); `method` = serialized `m_MethodName`, `target_type` = assembly type short name |
+| `sprite_ptr` | object\|null | RAW `{file_id, path_id}` PPtr from the note's Image sibling (R5: naming waits on the sprite index); null when the note GO hosts no Image |
+| `puzzle_index` | int\|null | paper parts only (0–4) |
+| `scr_main` | object\|null | paper parts only — serialized controller PPtr (all → `level13#19195` `Location11_BlackRoom`) |
+| `actor_refs` | array | novella only — `{path_id, name_personage}` for the 4 serialized personages |
+| `audio_source_refs` | int[] | novella only — 8 serialized AudioSource PathIDs |
+| `build_id` / `version_label` | stamps | every record |
+
+## `books.jsonl` — record schema (8 rows)
+
+`book_id` (`books-0/1/2/4`, `book-1/2/3/4`) · `consumer_scene` (texture subtree:
+`Location House` / `Location19`; NOT a parsed-scene binding — R5) ·
+`texture_rel` (repo-relative art locator) · `art_per_locale` (per-locale bool,
+DERIVED by walking `art/localization-art/<locale>/Textures/` — availability is
+never asserted) · `locales_missing` + `art_per_locale_available_count`.
+Measured: Location House pages 34/34 locales; Location19 pages **32/34** —
+ChineseSimplified + ChineseTraditional do not ship them (spec §2.3's "8/8 ×34"
+was finer-measured this pass; see README divergence 1). `dressing_only: false`;
+shelf-prop sprites stay ART-layer catalogue rows.
+
+## Relink edges (parked; `{from, to, mechanism, method, status, kind, call}` + `_meta`)
+
+| File | Pair | Mechanism |
+|---|---|---|
+| `document--character.jsonl` | profile ↔ character | hard — J2 identity + flash-key cross-check |
+| `document--achievement.jsonl` | profile ↔ `ACHI_mitastory` | hard pairing; predicate unverified-behavior |
+| `document--scene-membership.jsonl` | documents ↔ containers | hard census (notes under §7-R4; profiles cite DS-4 by reference) |
+| `document--event-wiring.jsonl` | documents ↔ call targets | hard serialized persistent calls (forward + inverse) |
+| `document--minigame.jsonl` | paper_part ↔ `Location11_BlackRoom` (hard) · magnet census edge ↔ `Takemagnetfridge` (inferred; magnets owned by DS-2 Part B) |
+
+## Consumer rules
+
+1. Never render note prose — there is none in the client corpus; notes render
+   as placed interactables with their wiring.
+2. Resolve all text through the locale pointers at render time; `name_en` is
+   search glue only.
+3. `chapter` renders as unknown until the scenes dataset lands; do not infer
+   from containers.
+4. Completion trackers key "Hi, Mita" off `achievement_sets` ∪
+   `flash_save_key IS NULL AND placement_mechanism='story_granted'` (row 13
+   counts; the predicate spans 12 keyed + 1 keyless row).
+
+## Acceptance-criteria scoreboard (this build)
+
+Selfcheck `extracted/data/documents/build/selfcheck_documents.py`: **10/10
+PASS** on buildId 19029065 — AC-1 includes live reconciliation against
+DS-4's emitted `cartridges.jsonl` (**RECONCILED**, 11-pair multiset
+byte-equal); AC-9 proves byte-determinism by full re-emit diff (9 artifacts)
+and exercises the stale-log refusal on a mutated pin.

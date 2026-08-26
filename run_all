@@ -1,0 +1,5 @@
+#!/bin/sh
+# MiSide pack — single-entrypoint pipeline driver (POSIX-sh entry for Git
+# Bash / `ssh ne8k`). Native Windows callers use run_all.cmd.
+# Spec: docs/specs/pipeline-run_all.mdx
+exec python "$(dirname "$0")/pipeline/run_all.py" "$@"

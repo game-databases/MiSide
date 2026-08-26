@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+/* token layer lives with the kit; imported BEFORE the theme bridge uses it */
+@import "../styles/design/tokens.css";
+@import "leaflet/dist/leaflet.css";
+
+/*
+ * Tailwind v4 theme bridge OVER design/tokens.css (spec §2 tree).
+ * The @theme inline mapping itself lives in tokens.css tier 2 so stock
+ * components inherit the soul mechanically.
+ */
+
+body {
+  background:
+    radial-gradient(
+      1200px 800px at 70% -10%,
+      color-mix(in srgb, var(--ms-bg-1) 55%, transparent),
+      transparent
+    ),
+    var(--ms-bg-0);
+  color: var(--ms-text-1);
+  font-family: var(--ms-font-sans);
+  /* dark plum field, never grey (T2 §5) */
+  min-height: 100dvh;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ms-accent) 45%, transparent);
+}
+
+/* UPPERCASE section headers register (T2 §2) */
+h2.section-header,
+[data-slot="section-header"] {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

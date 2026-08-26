@@ -1,0 +1,26 @@
+{
+  "build_id": "19029065",
+  "rows": {
+    "candidates": 2,
+    "cartridges": 23,
+    "j1": 44,
+    "j2": 0,
+    "j3": 20,
+    "j4": 76,
+    "j5": 4,
+    "j6": 0,
+    "minigames": 17
+  },
+  "version_label": "0.93L",
+  "written_sorted": [
+    "extracted\\data\\cartridges\\cartridges-minigames.candidates.jsonl",
+    "extracted\\data\\cartridges\\cartridges.jsonl",
+    "extracted\\data\\cartridges\\minigames.jsonl",
+    "extracted\\data\\cartridges\\relinks\\cartridge--character.jsonl",
+    "extracted\\data\\cartridges\\relinks\\cartridge--scene-placement.jsonl",
+    "extracted\\data\\cartridges\\relinks\\minigame--achievement.jsonl",
+    "extracted\\data\\cartridges\\relinks\\minigame--choice-condition.jsonl",
+    "extracted\\data\\cartridges\\relinks\\minigame--outfit-unlock.jsonl",
+    "extracted\\data\\cartridges\\relinks\\minigame--scene-carrier.jsonl"
+  ]
+}

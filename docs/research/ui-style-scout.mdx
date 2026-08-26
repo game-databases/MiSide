@@ -1,0 +1,255 @@
+# T2 — UI style scout: design-token evidence from screenshots (MiSide)
+
+Brief [T2-ui-style-scout.md](../briefs/T2-ui-style-scout.md), executed
+2026-08-24 (attempt 4 — prior attempts died reading full-res JPEGs, so this
+pass never opens one in context: 900 px thumbnails were rendered with the
+probe venv's Pillow into
+[`design/refs/screenshots/thumbs/`](../../design/refs/screenshots/) and only
+those were viewed; every hex below was extracted programmatically from the
+originals via `Image.quantize` / `getpixel` box-medians). Fulfils FRAMEWORK
+[§2.11](../../../../FRAMEWORK.md#211-design-from-the-games-own-ui) — tokens
+from the game's own UI — under the dual mandate of
+[design-standard.md](../../../../_foundation/design-standard.md) §1 and its
+§5 feel bar.
+
+Evidence: 22 images already on disk (9 store shots `steam-ss0..8`, 2 demo
+shots `demo-ds0/1`, 3 trailer thumbs, 6 community captures `comm-*`, plus
+prior attempts' derived crop composites). Provenance:
+[`credits.jsonl`](../../design/refs/screenshots/credits.jsonl) (this pass
+appended the rows that were missing — see [§8](#8-method--provenance)).
+
+The one-line read: **MiSide's chrome is pill-shaped candy pink floating on
+deep purple space, and its horror face is the same shapes lit by CRT green
+and alarm red.** The site should be dark plum-first with a magenta-pink
+accent system, rounded-everything geometry, and glitch treatments reserved
+for "corrupted" data.
+
+---
+
+## 1. Dominant palettes
+
+### 1.1 Cozy mode
+
+Two cozy registers coexist and the site needs both:
+
+**Candy register (the game's actual UI surface).** Full-bleed pink menus and
+dialogue backdrops — `steam-ss2` quantized: `#e06eb0` 23%, `#df81b0` 21%,
+`#e091b4` 20%, `#df5eae` 18%; direct samples `page-bg #df72b3`, header pill
+`#fda3c7`, category pill `#f8b3d2`, scrollbar track `#de7bb1` [all sampled,
+steam-ss2]. The flat dialogue backdrop in `demo-ds1` is a single hot
+magenta-pink: `#cc2a73` at 65% coverage [sampled]. Panel fills sit lighter:
+`#ffc3dd`, `#f59dc0`, `#de7da3` [sampled, steam-ss2 panel region]; the
+name tag is pure hot pink `#ff009c` [sampled, demo-ds1].
+
+**Cream register (the apartment itself).** Warm wood + cream interiors —
+`steam-ss1` quantized: `#cb9885` 21%, `#e7bbab` 15%, `#fce1d5` 13%
+[sampled]. This is the "daylight" face; it is scenery, not chrome — the
+game never puts UI on cream.
+
+### 1.2 The purple constant
+
+Behind every cozy screen sits deep purple space: `steam-ss1` HUD backdrop
+`#5a1565` direct, quantized `#4a1d5a` 24% / `#601f59` 11% [sampled]. The
+translucent dialogue band over a dark room reads `#54175d` / `#4f1262`
+[sampled, steam-ss1] — i.e. the same pink band at low alpha over purple.
+Purple is the connective tissue between the two faces: even the fog horror
+scene `steam-ss7` is mauve, not grey — quantized `#704660` 26%, `#82618b`
+15%, direct `fog #785a8c` [sampled]. The dusk scene `steam-ss6` cools toward
+blue-lavender: `#586174` 29%, `#97a2b4` 27%, `#272d38` 18% [sampled].
+
+### 1.3 Horror / glitch mode
+
+- **Machine-room black + alarm red + CRT green** — `steam-ss8` quantized:
+  `#1b0116` 31%, `#03000a` 23%, `#300a1a` 17% [sampled]; direct: red light
+  strip `#fc0f43`, doorway red `#813e47`, screen dark `#140316` [sampled].
+- **Crimson chapel** — `comm-dialogue-horror-ptbr`: lattice windows
+  `#ff2b58`, frame `#fc3258` [sampled].
+- **Liminal checkerboard void** — `comm-checkerboard-void`: grey-lavender
+  tiles `#6e748a` 33% / `#646581` / `#676b88`, one teal object `#407982`
+  [sampled] — desaturated purple again, never neutral grey.
+- **VHS-washed pastel** — `demo-ds0` (glitch mirror scene) quantized:
+  `#b2abb0` 27%, `#d5c1c2` 16%, `#998393` 16%, `#a7bfcf` 15%, direct
+  `pastel-wall #c9c8cd` [sampled] — the horror of the cozy palette drained
+  and fringed, not a new palette.
+- **LCD minigame** — `comm-minigame-lcd-defeat`: screen `#101010`/`#110f14`
+  with olive cast `#22492b`, pixel text green `#08cb05` [sampled].
+
+## 2. Typography impressions
+
+- **UI sans: rounded, friendly, bold.** Dialogue lines ("Thanks a lot!",
+  "Nice to meet you, rrr!" — `steam-ss1`, `demo-ds1`), name tags, and button
+  labels are a rounded-terminal sans at medium/bold weight; no thin weights,
+  no serifs anywhere in the corpus. Mixed case for prose, **UPPERCASE for
+  section headers** ("MINI GAMES", "ELECTRONICS", "PROCESSING" — `steam-ss2`)
+  and key labels ("SPACE" — `demo-ds1`).
+- **White-on-pink with soft lift.** Chrome text is white `#fffcff`
+  [sampled, demo-ds1] on pink pills, with a subtle darker-pink/drop lift
+  (visible on the SPACE pill and header pills in `steam-ss2`).
+- **Pixel font as flavor.** The handheld console renders `SCORE: 26` /
+  `DEFEAT` in a chunky pixel font, green `#08cb05` on near-black
+  [sampled, comm-minigame-lcd-defeat]. This is the game's "machine voice"
+  and the natural font for score/telemetry-flavored data on the site.
+- **Keycap letters.** `W/A/S/D`/`ESC` hints are single bold white letters on
+  small magenta rounded squares (`comm-minigame-tv-penguins`,
+  `comm-minigame-lcd-defeat`).
+- **Subtitles.** `comm-dialogue-horror-ptbr` shows purple rounded-sans
+  subtitles with a heavy dark outline; `comm-horror-caption-band` shows the
+  caption style as white rounded text on a maroon gradient pill (`#84504f` →
+  `#934053` [sampled]). Whether the purple subtitle fill is game-native or a
+  community overlay is [unverified] — the pill-caption style in
+  `comm-horror-caption-band` and `demo-ds0` ("I'm washing") is consistent
+  enough to treat as native.
+
+## 3. UI chrome patterns
+
+- **Dialogue box** (`steam-ss1`, `demo-ds1`, `comm-dialogue-sorry-sweetheart`):
+  full-width bottom band, translucent pink fill (reads `#ec6796` over the
+  magenta backdrop, `#54175d` over a dark room — alpha, not a solid),
+  fully-rounded corners; **name tag pill** overlapping the band's top-left
+  (`Mita`/`Мита` — locale-stable chrome); **advance prompt** as a pink
+  "SPACE" pill at the band's top-right.
+- **Choices/captions** (`demo-ds0`): mid-screen choice pill "TAKE PILLS"
+  in vivid magenta-purple `#c02dbb`/`#872cb2` [sampled] with keycap-style
+  brackets; bottom caption band translucent dark-pink `#866087` [sampled].
+- **HUD** (`steam-ss1`, crop composite `.crops-ui.jpg`): top-left circular
+  portrait in a ring with a **level chip** `#ff5598` [sampled] and two
+  **pill gauges** (white outline, pale-pink fill `#ffdfe5` → `#f9bacb`
+  [sampled], icon in a circle at the left cap); top-right **currency pill**
+  (coin + count) and a circular avatar button.
+- **Menu/list** (`steam-ss2`): full-bleed patterned pink background (a
+  repeating wallpaper of hearts and household icons — also behind
+  `comm-dialogue-sorry-sweetheart`); category **panels** (lighter pink,
+  rounded ~24 px) each with an uppercase **header pill** and a row of three
+  **square cells** (rounded ~12–16 px, dark cartridge-style thumbnails,
+  `#bb70a8` [sampled] shadowed) with per-cell counts; rounded scrollbar
+  track with a lock glyph at its end.
+- **Key hints**: keycap chip + gradient label pill pairs
+  (`comm-minigame-tv-penguins`: `W UP / A LEFT / S DOWN / D RIGHT`;
+  `comm-minigame-lcd-defeat`: `ESC` + "FINISH PLAYING" pill, gradient
+  `#b338b1 → #d682b1` [sampled]).
+- **LCD console** (`comm-minigame-lcd-defeat`): blue plastic shell, dark
+  olive screen, green pixel text, yellow hex buttons — a physical-object
+  framing of a data surface.
+
+Geometry summary: **everything is a pill or a rounded square** — no sharp
+corners in any UI crop; radius family ≈ full (tags/pills/keycaps), ~24 px
+(panels, dialogue band), ~12–16 px (cells, chips), all at 1080p scale.
+
+## 4. Glitch / error motifs
+
+1. **VHS banding + chromatic aberration** — `demo-ds0` (and crop composites
+   `.crops-ui2/3.jpg`): horizontal displacement slices, magenta/green
+   fringing on edges, scanline noise over the whole frame. The single most
+   reusable motif: a "corruption hover" for compromised entities.
+2. **Texture explosion** — full-frame dissolve into RGB confetti
+   (`.ugc2/u16.jpg`, crop in `.crops-ui2.jpg`). Reads as "the world is
+   failing"; good as a 404/error-state texture, too loud for routine accents.
+3. **Red corruption streaks / glyph columns** — `steam-ss8` (vertical red
+   glyph strip, red light bars `#fc0f43`), `.ugc2/u11.jpg` (red streak
+   corridor). Danger/glitch accent language.
+4. **CRT green terminals** — `steam-ss8` wall screens, LCD minigame text
+   `#08cb05` [sampled]. The "machine truth" voice — right for raw-data
+   surfaces (build IDs, pipeline output).
+5. **Liminal void rooms** — `comm-checkerboard-void` checkerboard, `.ugc2/u27.jpg`
+   purple void: emptiness rendered as a *designed* space (matches
+   design-standard §5.1 "honesty without apology" — empty wells can be void-
+   patterned rather than grey).
+
+## 5. Light vs dark default
+
+**Dark-first: a deep purple-plum, not black and not grey.** Reasons, all
+sampled: the game's own chrome lives on purple space `#4a1d5a`/`#5a1565`
+(`steam-ss1`); its horror register bottoms out at near-black purple
+`#140316`/`#03000a` (`steam-ss8`); pink/magenta accents (`#ff009c`,
+`#cc2a73`, `#fda3c7`) are mid-to-high-chroma and need a dark field to carry;
+FRAMEWORK §2.11 mandates dark-first. Pure black would kill the purple
+constant that makes MiSide *not* a generic dark wiki; grey-neutral would
+break the "even the fog is mauve" finding from `steam-ss7`. A warm-cream
+secondary surface (`#fce1d5`/`#e7bbab` — the apartment register, `steam-ss1`)
+is worth keeping as an optional light theme for long reading pages, never
+the default.
+
+## 6. Token recommendations
+
+For `design/tokens.css` (names per the shared token system; values sampled,
+blend choices noted):
+
+| Token | Value | Basis |
+|---|---|---|
+| `--ms-bg-0` | `#140316` | deepest page bg [sampled: steam-ss8 dark] |
+| `--ms-bg-1` | `#4a1d5a` | raised layer / "space" panels [sampled: steam-ss1 quantize 24%] |
+| `--ms-bg-2` | `#5a1565` | hover/active layer on bg-1 [sampled: steam-ss1 HUD backdrop] |
+| `--ms-text-1` | `#fffcff` | primary text (chrome white) [sampled: demo-ds1] |
+| `--ms-text-2` | `#d4bcbb` | muted text [sampled: comm-horror-caption-band pill region] |
+| `--ms-accent` | `#ff009c` | hot pink — name tags, primary actions [sampled: demo-ds1] |
+| `--ms-accent-soft` | `#fda3c7` | pill/panel pink for fills on dark [sampled: steam-ss2] |
+| `--ms-accent-gradient` | `#b338b1 → #d682b1` | button/pill gradient recipe [sampled: comm-minigame-lcd-defeat] |
+| `--ms-danger` | `#fc0f43` | glitch/danger red [sampled: steam-ss8] |
+| `--ms-signal` | `#08cb05` | CRT/LCD green — machine-voice data [sampled: comm-minigame-lcd-defeat] |
+| `--ms-warm` | `#fce1d5` | cream — cozy secondary surface [sampled: steam-ss1 quantize] |
+| `--ms-radius-full / -lg / -md` | `999px / 24px / 14px` | pill chrome / panels+dialogue band / cells+chips (§3 geometry) |
+| `--ms-glow-pink` | `0 0 12px rgba(255,0,156,.35), 0 2px 0 rgba(105,60,115,.55)` | pill lift; shadow tone `#693c73` [sampled: comm-minigame-lcd-defeat] |
+| `--ms-glow-glitch` | `0 0 10px rgba(252,15,67,.45)` + 1 px `#08cb05`/`#ff009c` split text-shadow | corruption hover recipe (§4.1, §4.3) |
+
+That is 12 rows = the 6–10 token *kinds* the brief asks for (bg layers, text
+tiers, accent + gradient, danger, success/signal, warm, radius family, two
+glow recipes).
+
+## 7. Anti-genericism check
+
+What makes a MiSide page instantly *not* a generic dark wiki (proposals only;
+build pipeline decides):
+
+1. **Purple, not dark-grey.** The base field is `#140316 → #4a1d5a` purple.
+   One glance separates it from every grey-wiki; it is the game's own
+   "space behind the apartment" (§1.2).
+2. **Pill-shaped chrome everywhere.** Name-tag pills, keycap chips, gradient
+   pills, fully-rounded dialogue bands (§3) — sharp-cornered cards would
+   read as someone else's site.
+3. **Mita-keyed colour identity.** Each Mita variant carries a palette
+   (blue-purple-haired Mita red/blue in `steam-ss4/5`; white-haired Mita on
+   black `.ugc2/u12.jpg`; sketch-style glasses Mita `.ugc2/u25.jpg`; red-lit
+   chapel Mita `comm-dialogue-horror-ptbr`). Per design-standard §5.1
+   "colour is identity": entity pages re-key accent + art glow to their
+   Mita's palette, not a shared grey card.
+4. **Cartridge cards.** Category panels with header pill + square
+   cartridge-style cells with counts (`steam-ss2`) map 1:1 to any
+   grid-of-entities page (items, minigames, endings).
+5. **Corruption as state, not decoration.** VHS banding + RGB split on hover
+   for glitched/corrupted entities (§4.1); red `#fc0f43` for danger rows;
+   CRT green `#08cb05` reserved for machine-voice data (build IDs, dump
+   output); checkerboard-void pattern for honest empty wells (§4.5).
+6. **Heart-wallpaper texture.** The repeating hearts-and-objects wallpaper
+   (`steam-ss1/2`, `comm-dialogue-sorry-sweetheart`) as a low-contrast
+   section background — cozy register in one move.
+7. **Keycap `kbd` styling.** `W/A/S/D`/`ESC`/`SPACE` chips (§3) as the
+   site's keyboard-hint language — game-native and instantly recognizable.
+8. **The tension itself.** Every page should hold both faces — cozy pill
+   chrome on purple space, one glitch treatment never more than a hover
+   away. All-candy reads as a fan shrine; all-horror reads as an edgy wiki;
+   the game is the cut between them.
+
+## 8. Method & provenance
+
+- Viewed: 22 thumbnails in `design/refs/screenshots/thumbs/` (900 px wide,
+  Pillow LANCZOS, q78) — full-res files never entered context (attempts 1–3
+  died there).
+- Sampled: `Image.quantize(6, MEDIANCUT)` for dominance; 9×9-px box medians
+  and region quantizes for chrome points, coordinates mapped from thumbs
+  (×2.1333 for 1920-wide, ×2.8444 for 2560-wide). Two early probes hit
+  portrait art instead of chrome (ss1 name-tag/SPACE regions are
+  skin-contaminated in §sampling logs); those points were re-taken from
+  `demo-ds1` and region-dominance scans, so every hex cited above traces to
+  a printed sample.
+- `credits.jsonl` gaps closed this pass: `.ugc2/u01..u30.jpg` +
+  `.ugcpool/ugc01..30.jpg` credited against the 30 URLs in the prior
+  attempt's `.ugc_urls.txt` — the positional mapping is content-verified for
+  six anchors by MD5 (u01/u06/u24/u27/u29/u30 are byte-identical to the
+  promoted `comm-*` files); the remaining 24 pool rows are positional
+  [unverified per-file]. Derived artifacts (`.contact-*.jpg`,
+  `.crops-ui*.jpg`, `.probe-*.png`, `thumbs/*`) got `kind:"derived"` rows
+  naming their sources.
+- Not done (no retry loops): no in-game font files inspected — typography
+  stays impression-level (§2); trailer thumbs (`steam-teaser`,
+  `steam-movietrailer*`) glanced via `.contact-official.jpg` only, too small
+  to sample.

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>MiSide DB — build progress</title>
+<style>
+  :root{
+    --bg:#0d0a12; --panel:#171220; --panel2:#1e1729; --line:#2c2138;
+    --text:#e8e0f0; --dim:#9b8fae; --accent:#ff5c7a; --ok:#5ce0a1;
+    --warn:#ffc857; --mono:'Cascadia Code','Consolas',monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+       font:15px/1.55 'Segoe UI',system-ui,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:26px;margin:0 0 4px;letter-spacing:.3px}
+  h1 .heart{color:var(--accent)}
+  .sub{color:var(--dim);font-size:13px;margin-bottom:28px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:28px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .stat b{display:block;font-size:22px;font-weight:600}
+  .stat span{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--dim);
+     margin:30px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  ul{list-style:none;margin:0;padding:0}
+  li{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+     padding:10px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+  li.done{opacity:.62}
+  li .tag{flex:none;font-family:var(--mono);font-size:11px;border-radius:5px;
+          padding:2px 7px;background:var(--panel2);color:var(--dim)}
+  li.q{border-left:3px solid var(--warn)}
+  li.active{border-left:3px solid var(--accent)}
+  .log p{margin:0 0 10px;padding:10px 14px;background:var(--panel);
+         border:1px solid var(--line);border-radius:8px;font-size:14px}
+  .log time{color:var(--dim);font-family:var(--mono);font-size:12px;display:block}
+  code{font-family:var(--mono);background:var(--panel2);border-radius:4px;padding:1px 5px;font-size:.9em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>MiSide Database <span class="heart">♥</span> build progress</h1>
+  <div class="sub">closed-loop orchestrator · NE8K · canonical task list: <code>docs/TODO.mdx</code> · questions: <code>docs/questions.md</code></div>
+
+  <div class="grid">
+    <div class="stat"><b>Phase 0→1</b><span>research + hands-on probe — active</span></div>
+    <div class="stat"><b>Full 2527500</b><span>INSTALLED on A: · buildId 19029065</span></div>
+    <div class="stat"><b>Toolchain</b><span>pinned: Unity 2021.3.35f1 · IL2CPP v29</span></div>
+    <div class="stat"><b>Locales</b><span>34 client dirs · store lists 30 — reconcile pending</span></div>
+  </div>
+
+  <h2>Active now</h2>
+  <ul>
+    <li class="active"><span class="tag">DATASET WAVE</span> three builders curating in parallel from the extracted corpus: characters/Mitas · achievements+endings · dialogue graphs (~2,850 nodes) — contracts drafts + build logs land with them</li>
+    <li><span class="tag">DONE ✓</span> extraction pipeline closed end-to-end on real install: 2,210 loc tables / 180,148 records · 163 assemblies decompiled · PROOF.md byte-exact · AC scoreboard clean</li>
+    <li><span class="tag">NEXT</span> builder verifiers → remaining datasets (cartridges, documents/lore, scenes/locations) → relink layer → site build begins on frozen spec</li>
+  </ul>
+
+  <h2>Milestones banked</h2>
+  <ul>
+    <li><span class="tag">✓ VERIFIED</span> E1 toolchain probe (double-PASS): dumper works on real client, type trees present, loc join key proven in code, census 2.277 GB / 51+69 containers</li>
+    <li><span class="tag">✓ VERIFIED</span> S1 research pair (double-PASS + 10 corrections applied): 5 competitors analyzed, applied delta J1–J14; niche is EMPTY; 31 store languages / 34 client dirs</li>
+    <li><span class="tag">✓ RULED</span> DR-2026-08-24-miside-pack: shadcn/ui UPGRADED per game soul (not token-reskin); questions §4–§8 pipeline rulings (ILSpy CLI, never mutate A:\ install…)</li>
+  </ul>
+
+  <h2>Owner question queue</h2>
+  <ul>
+    <li><span class="tag">Q1 ✓</span> Full client 2527500 — resolved: installed by owner's Steam client on this host. Residual owner-gate: SteamGuard for headless DepotDownloader (demo/patch pulls only)</li>
+    <li><span class="tag">Q3</span> Site placement (D3) — deferred to ship time, no action needed</li>
+  </ul>
+
+  <h2>Log</h2>
+  <div class="log" id="log">
+    <p><time>2026-08-25 · pass 7</time>EXTRACTION PIPELINE COMPLETE against the real client —
+    X-3 all stages green (S5 rerun under the ruled recover-or-mark codec
+    policy; S7 decompiled 163/163 assemblies via nuget ilspycmd at the
+    exact pin with DOTNET_ROOT injected in-code; S8 PROOF.md byte-exact).
+    Independent verification reproduced game-root walks to the second.
+    Structure-graph parser bug found+fixed+regenerated. Dataset wave
+    launched: specs for characters, achievements+endings, dialogue went
+    the full review→fix→verify→arbiter chain with corpus-reproduced
+    evidence — three builders now curating in parallel.</p>
+    <p><time>2026-08-24 · pass 6</time>BUILD WAVE CLOSED after the full mandated loop:
+    CodeWriter ∥ TestWriter blind → code review r1 (7 findings incl. an
+    unwired flag and a stale-ledger abort hazard) → fixer → r2 (verified +
+    1 new minor) → fixer → r3 APPROVE → arbiter FIX_LOOP on 2 survivors
+    (unguarded decompile leg, tautological residue test) → fixer → r4
+    APPROVE. Tests: 70 total, 66 green black-box vs the real driver, stub
+    tool exes enforce spec invariants; test review APPROVE. Pack spec FROZEN
+    (34-row locale table, D3 owner-gated). X-1 executor now running the
+    pipeline against the real client for the first time.</p>
+    <p><time>2026-08-24 · pass 5</time>PIPELINE SPEC FROZEN after two fixer/verifier rounds
+    (N-1 ledger write mode = deterministic full rewrite; AC-5 restored its
+    volatile-fields qualifier — the trap a consistency verifier caught and
+    re-sampling confirmed). T2 style scout ACCEPTED on attempt 4: dual-soul
+    palette (cozy candy-pink / horror plum+alarm-red, deep-purple constant),
+    pill-chrome + VHS-corruption motifs, 14-row token table; all 32 hexes
+    independently re-derived from originals at L2sq=0. BUILD WAVE LAUNCHED:
+    C-W1 CodeWriter ∥ T-W1 TestWriter, blind to each other, 16 ACs as test
+    contract.</p>
+    <p><time>2026-08-24 · pass 4</time>P1 spec adjudicated: Arbiter confirmed all 14 fixes landed,
+    found ONE new blocker (N-1: S4 append-vs-idempotency contradiction on the
+    sweep-attempts ledger), ruled FIX_LOOP scoped to that single fix — everything
+    else build-ready. Fresh Fixer F-P2 dispatched (one decision, two sentences,
+    AC-5/8/12 aligned). T2 style scout on attempt 4 with an engineered
+    no-large-image-reads strategy: 20 thumbnails + contact sheets generated
+    locally, pixel hexes sampled programmatically. TODO.mdx rebuilt: 66 points,
+    deduped, entity datasets decomposed into 7 named curation pieces.</p>
+    <p><time>2026-08-24 · pass 3</time>PrepareTask loop running hot. Pipeline spec drafted (D1: 8 stages,
+    16 ACs), reviewed by fresh agent R-P1 (NEEDS_REVISION, 14 line-level findings incl.
+    ruling contradictions), SpecFixer F-P1 applying. Research phase closed: E1 probe +
+    S1 research both double-verified and accepted; T2 style scout on attempt 3
+    (attempts 1–2 died to API-400 / silent fleet-load death), credits.jsonl landed.
+    Orchestrator rulings §4–§8 recorded (ILSpy CLI, install never mutated, Voice Editor
+    = source row, git tracked-light policy).</p>
+    <p><time>2026-08-24 · pass 2</time>New orchestrator session resumed after full stop. Canon re-read in full.
+    KEY FINDING: the full game is installed on NE8K at A:\SteamLibrary\steamapps\common\MiSide\
+    (StateFlags 4, buildId 19029065, Unity 2021.3.35f1 IL2CPP metadata v29) — Q1 answered,
+    demo lane dropped as moot. T1 runbooks verified as measured facts. Bootstrap committed
+    (ea574bb) and pushed. Agents relaunched detached via nohup claude -p --model ox-alpha:
+    S1 (game+competitor research), E1 (hands-on toolchain probe with real dumper runs).
+    Pack layout dirs instantiated; .gitignore guards heavy extraction outputs.</p>
+    <p><time>2026-08-24 · pass 1</time>Pack restarted from zero after orchestrator full stop.
+    Canon read in full (AGENTS + all _foundation binding docs + FRAMEWORK). Store facts pinned:
+    MiSide 2527500, demo 2527520, soundtrack 3404450, 30 locales, AIHASTO/IndieArk.
+    steamcmd anonymous blocked ("No subscription") → free-demo install sent to logged-in
+    Steam client. Agents S1 (game+competitor research) and T1 (Unity toolchain) launched
+    via claude CLI. TODO.mdx + this page created.</p>
+  </div>
+</div>
+</body>
+</html>

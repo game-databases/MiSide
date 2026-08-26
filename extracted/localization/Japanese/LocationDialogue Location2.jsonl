@@ -1,0 +1,9 @@
+{"category": "LocationDialogue Location2", "line_index": 0, "text": "// Player start"}
+{"category": "LocationDialogue Location2", "line_index": 1, "text": "僕はどこにいるんだ？"}
+{"category": "LocationDialogue Location2", "line_index": 2, "text": "見覚えのある場所だ"}
+{"category": "LocationDialogue Location2", "line_index": 3, "text": "ゲームの中にいるのか？"}
+{"category": "LocationDialogue Location2", "line_index": 4, "text": "// Player try open the door"}
+{"category": "LocationDialogue Location2", "line_index": 5, "text": "閉まってる？"}
+{"category": "LocationDialogue Location2", "line_index": 6, "text": "// Player in dark"}
+{"category": "LocationDialogue Location2", "line_index": 7, "text": "暗いな、ここは。"}
+{"category": "LocationDialogue Location2", "line_index": 8, "text": "何も見えない。"}

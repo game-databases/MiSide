@@ -1,0 +1,25 @@
+# deps / build
+node_modules/
+.next/
+out/
+
+# emitted build artifacts (regenerated every build by scripts/emit-artifacts.mjs)
+public/api/
+public/search/
+public/llms.txt
+public/feeds/
+
+# permitted art classes copied from extracted/art at build time — never committed
+public/cdn/
+
+# next env
+.env*.local
+
+# misc
+*.tsbuildinfo
+next-env.d.ts
+
+# local logs
+build-out.log
+server.log
+MiSide/site/*.log

@@ -1,0 +1,605 @@
+{"category": "LocationDialogue Location19", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 1, "text": "Ja... Vratio sam se!?"}
+{"category": "LocationDialogue Location19", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 3, "text": "O moj Bože!"}
+{"category": "LocationDialogue Location19", "line_index": 4, "text": "Uplašio si me!"}
+{"category": "LocationDialogue Location19", "line_index": 5, "text": "Oj, čovječe,"}
+{"category": "LocationDialogue Location19", "line_index": 6, "text": "Moj sejv fajl — o, ne!"}
+{"category": "LocationDialogue Location19", "line_index": 7, "text": "Ne kužim..."}
+{"category": "LocationDialogue Location19", "line_index": 8, "text": "Gdje je igra?"}
+{"category": "LocationDialogue Location19", "line_index": 9, "text": "Pokvario si rutu!"}
+{"category": "LocationDialogue Location19", "line_index": 10, "text": "Što hoćeš?"}
+{"category": "LocationDialogue Location19", "line_index": 11, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 12, "text": "Treba mi verzija..."}
+{"category": "LocationDialogue Location19", "line_index": 13, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 14, "text": "Ha?"}
+{"category": "LocationDialogue Location19", "line_index": 15, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 16, "text": "Moram se nekako vratiti na staru verziju."}
+{"category": "LocationDialogue Location19", "line_index": 17, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 18, "text": "Okej!"}
+{"category": "LocationDialogue Location19", "line_index": 19, "text": "Previše sam zauzeta"}
+{"category": "LocationDialogue Location19", "line_index": 20, "text": "da te zabavim, glupane!"}
+{"category": "LocationDialogue Location19", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 22, "text": "A što je to? Igračke?"}
+{"category": "LocationDialogue Location19", "line_index": 23, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 24, "text": "Vidi ga, koji kreten!"}
+{"category": "LocationDialogue Location19", "line_index": 25, "text": "Među nama neće biti prijateljstva."}
+{"category": "LocationDialogue Location19", "line_index": 26, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 27, "text": "Slušaj, moram doći do Jezgra."}
+{"category": "LocationDialogue Location19", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 29, "text": "Ti si kriv što sam se povrijedila."}
+{"category": "LocationDialogue Location19", "line_index": 30, "text": "Prokletstvo."}
+{"category": "LocationDialogue Location19", "line_index": 31, "text": "Ha?"}
+{"category": "LocationDialogue Location19", "line_index": 32, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 33, "text": "...Moram doći do Jezgra i zaustaviti Mitu!"}
+{"category": "LocationDialogue Location19", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 35, "text": "Mita?"}
+{"category": "LocationDialogue Location19", "line_index": 36, "text": "Molim te!"}
+{"category": "LocationDialogue Location19", "line_index": 37, "text": "Nije me briga za nju!"}
+{"category": "LocationDialogue Location19", "line_index": 38, "text": "Ni prvu, ni stotu!"}
+{"category": "LocationDialogue Location19", "line_index": 39, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 40, "text": "Ali i ti si Mita..."}
+{"category": "LocationDialogue Location19", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 42, "text": "Ja sam Mila."}
+{"category": "LocationDialogue Location19", "line_index": 43, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 44, "text": "Mi-Ta? La?"}
+{"category": "LocationDialogue Location19", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 46, "text": "Da! Sve su one Mite i Mite,"}
+{"category": "LocationDialogue Location19", "line_index": 47, "text": "Mita ovamo, Mita tamo, Mita svuda!"}
+{"category": "LocationDialogue Location19", "line_index": 48, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 49, "text": "Dakle... ti si Mila."}
+{"category": "LocationDialogue Location19", "line_index": 50, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 51, "text": "Da, rekla sam ti! Koliko si ti spor?"}
+{"category": "LocationDialogue Location19", "line_index": 52, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 53, "text": "Pa sretno, Mila..."}
+{"category": "LocationDialogue Location19", "line_index": 54, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 55, "text": "Kamo misliš da ideš?"}
+{"category": "LocationDialogue Location19", "line_index": 56, "text": "Misliš da možeš samo tako otići odavde?"}
+{"category": "LocationDialogue Location19", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 58, "text": "// Player check exit"}
+{"category": "LocationDialogue Location19", "line_index": 59, "text": "Jesi li mislio da ćeš pronaći nešto unutra?"}
+{"category": "LocationDialogue Location19", "line_index": 60, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 61, "text": "Prokletstvo!"}
+{"category": "LocationDialogue Location19", "line_index": 62, "text": "Što je ovo?"}
+{"category": "LocationDialogue Location19", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 64, "text": "Što si očekivao-"}
+{"category": "LocationDialogue Location19", "line_index": 65, "text": "Zemlju čuda?"}
+{"category": "LocationDialogue Location19", "line_index": 66, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 67, "text": "Kako da izađem?"}
+{"category": "LocationDialogue Location19", "line_index": 68, "text": "Ovdje bi trebao biti izlaz."}
+{"category": "LocationDialogue Location19", "line_index": 69, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 70, "text": "Nema izlaza."}
+{"category": "LocationDialogue Location19", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 72, "text": "Pa, koja je ovo verzija onda?"}
+{"category": "LocationDialogue Location19", "line_index": 73, "text": "Mislim da sam na dobrom putu."}
+{"category": "LocationDialogue Location19", "line_index": 74, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 75, "text": "// Glitch kitchen"}
+{"category": "LocationDialogue Location19", "line_index": 76, "text": "Je li ovo tvoje?"}
+{"category": "LocationDialogue Location19", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 78, "text": "Odmakni se!"}
+{"category": "LocationDialogue Location19", "line_index": 79, "text": "Ne znam što je to..."}
+{"category": "LocationDialogue Location19", "line_index": 80, "text": "nekakav glič!"}
+{"category": "LocationDialogue Location19", "line_index": 81, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 82, "text": "Prsten mi se trese iz nekog razloga."}
+{"category": "LocationDialogue Location19", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 84, "text": "Kakav prsten?"}
+{"category": "LocationDialogue Location19", "line_index": 85, "text": "Zaručnički prsten?"}
+{"category": "LocationDialogue Location19", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 87, "text": "Ne, dala mi ga je jedna od Mita - jedna od tisuću njih."}
+{"category": "LocationDialogue Location19", "line_index": 88, "text": "Ona koja bi me mogla izvući."}
+{"category": "LocationDialogue Location19", "line_index": 89, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 90, "text": "I ti ćeš to dotaknuti?"}
+{"category": "LocationDialogue Location19", "line_index": 91, "text": "Znaš, ako moja kuća eksplodira, i ti ćeš biti mrtav!"}
+{"category": "LocationDialogue Location19", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 93, "text": "// Bathroom - Mila is washing"}
+{"category": "LocationDialogue Location19", "line_index": 94, "text": "Hej!"}
+{"category": "LocationDialogue Location19", "line_index": 95, "text": "Izađi VAN!"}
+{"category": "LocationDialogue Location19", "line_index": 96, "text": "Zar ne vidiš da je kupaonica zauzeta?!"}
+{"category": "LocationDialogue Location19", "line_index": 97, "text": "// The player continues to stand 1"}
+{"category": "LocationDialogue Location19", "line_index": 98, "text": "Zašto još uvijek stojiš tu?!"}
+{"category": "LocationDialogue Location19", "line_index": 99, "text": "Izlazi van!"}
+{"category": "LocationDialogue Location19", "line_index": 100, "text": "// The player continues to stand 2"}
+{"category": "LocationDialogue Location19", "line_index": 101, "text": "Nemoj me nervirati!"}
+{"category": "LocationDialogue Location19", "line_index": 102, "text": "Gubi se odavde!"}
+{"category": "LocationDialogue Location19", "line_index": 103, "text": "// The player continues to stand 3"}
+{"category": "LocationDialogue Location19", "line_index": 104, "text": "Jesi li gluh ili što?"}
+{"category": "LocationDialogue Location19", "line_index": 105, "text": "Tuširam se!"}
+{"category": "LocationDialogue Location19", "line_index": 106, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 107, "text": "// Mila came out and swears"}
+{"category": "LocationDialogue Location19", "line_index": 108, "text": "Što je to bilo?"}
+{"category": "LocationDialogue Location19", "line_index": 109, "text": "Bez srama, bez savjesti..."}
+{"category": "LocationDialogue Location19", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 111, "text": "Zašto si odjednom ušla u kupaonicu?"}
+{"category": "LocationDialogue Location19", "line_index": 112, "text": "Mogla si pričekati"}
+{"category": "LocationDialogue Location19", "line_index": 113, "text": "dok nisam izašao!"}
+{"category": "LocationDialogue Location19", "line_index": 114, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 115, "text": "Nisam znala koliko će ti trebati."}
+{"category": "LocationDialogue Location19", "line_index": 116, "text": "Koliko ćeš se još uopće petljati s ovim gličevima?"}
+{"category": "LocationDialogue Location19", "line_index": 117, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 118, "text": "Gličevi?"}
+{"category": "LocationDialogue Location19", "line_index": 119, "text": "Ima ih još?"}
+{"category": "LocationDialogue Location19", "line_index": 120, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 121, "text": "Da..."}
+{"category": "LocationDialogue Location19", "line_index": 122, "text": "dobro, ako moja kuća još stoji,"}
+{"category": "LocationDialogue Location19", "line_index": 123, "text": "Pretpostavljam da si riješio kvar u kuhinji?"}
+{"category": "LocationDialogue Location19", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 125, "text": "Nekako jesam."}
+{"category": "LocationDialogue Location19", "line_index": 126, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 127, "text": "Dobro. Sada imaš moje dopuštenje"}
+{"category": "LocationDialogue Location19", "line_index": 128, "text": "otići u kupaonicu."}
+{"category": "LocationDialogue Location19", "line_index": 129, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 130, "text": "Hvala."}
+{"category": "LocationDialogue Location19", "line_index": 131, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 132, "text": "// Mila hides under the table"}
+{"category": "LocationDialogue Location19", "line_index": 133, "text": "Mila?"}
+{"category": "LocationDialogue Location19", "line_index": 134, "text": "Što radiš tamo ispod?"}
+{"category": "LocationDialogue Location19", "line_index": 135, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 136, "text": "Au!"}
+{"category": "LocationDialogue Location19", "line_index": 137, "text": "Opet si me uplašio!"}
+{"category": "LocationDialogue Location19", "line_index": 138, "text": "Što hoćeš?"}
+{"category": "LocationDialogue Location19", "line_index": 139, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 140, "text": "Jesi li vidjela još koji glič?"}
+{"category": "LocationDialogue Location19", "line_index": 141, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 142, "text": "Oh, znači tvoji problemi bi trebali biti"}
+{"category": "LocationDialogue Location19", "line_index": 143, "text": "izgovor da me spriječiš da završim svoju knjigu?"}
+{"category": "LocationDialogue Location19", "line_index": 144, "text": "Ne, nisam!"}
+{"category": "LocationDialogue Location19", "line_index": 145, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 146, "text": "U redu, sam ću ga potražiti."}
+{"category": "LocationDialogue Location19", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 148, "text": "Sačekaj,"}
+{"category": "LocationDialogue Location19", "line_index": 149, "text": "moram pitati..."}
+{"category": "LocationDialogue Location19", "line_index": 150, "text": "želiš izaći van,"}
+{"category": "LocationDialogue Location19", "line_index": 151, "text": "zar ne?"}
+{"category": "LocationDialogue Location19", "line_index": 152, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 153, "text": "Tako je."}
+{"category": "LocationDialogue Location19", "line_index": 154, "text": "Želim izaći iz ove igre."}
+{"category": "LocationDialogue Location19", "line_index": 155, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 156, "text": "Ovo bi moglo zvučati čudno..."}
+{"category": "LocationDialogue Location19", "line_index": 157, "text": "ali zašto ne bi ostao čitati sa mnom?"}
+{"category": "LocationDialogue Location19", "line_index": 158, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 159, "text": "Prvo vičeš na mene, a sada tražiš da ostanem?"}
+{"category": "LocationDialogue Location19", "line_index": 160, "text": "Čitati knjige?"}
+{"category": "LocationDialogue Location19", "line_index": 161, "text": "Možda i bih,"}
+{"category": "LocationDialogue Location19", "line_index": 162, "text": "ali moram nastaviti dalje."}
+{"category": "LocationDialogue Location19", "line_index": 163, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 164, "text": "Dobro!"}
+{"category": "LocationDialogue Location19", "line_index": 165, "text": "Idi i traži svoje gličeve..."}
+{"category": "LocationDialogue Location19", "line_index": 166, "text": "Ovo je drugi put da sam se ozlijedila"}
+{"category": "LocationDialogue Location19", "line_index": 167, "text": "zbog tebe!"}
+{"category": "LocationDialogue Location19", "line_index": 168, "text": "// Player saw a glitch"}
+{"category": "LocationDialogue Location19", "line_index": 169, "text": "Ah, pronašao sam ga."}
+{"category": "LocationDialogue Location19", "line_index": 170, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 171, "text": "// Mila stands with a sword"}
+{"category": "LocationDialogue Location19", "line_index": 172, "text": "Obraćaš li pozornost?"}
+{"category": "LocationDialogue Location19", "line_index": 173, "text": "Boji me se!"}
+{"category": "LocationDialogue Location19", "line_index": 174, "text": "Pogledaj što mogu!"}
+{"category": "LocationDialogue Location19", "line_index": 175, "text": "Eto koliko sam opasna!"}
+{"category": "LocationDialogue Location19", "line_index": 176, "text": "Ali ipak... nisi ni trepnuo."}
+{"category": "LocationDialogue Location19", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 178, "text": "Ti to ozbiljno?!"}
+{"category": "LocationDialogue Location19", "line_index": 179, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 180, "text": "Što nije u redu?"}
+{"category": "LocationDialogue Location19", "line_index": 181, "text": "Nije li to bilo dovoljno uvjerljivo?"}
+{"category": "LocationDialogue Location19", "line_index": 182, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 183, "text": "Ne baš..."}
+{"category": "LocationDialogue Location19", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 185, "text": "Dakle, vidjeo si sve dok si rješavao te gličeve,"}
+{"category": "LocationDialogue Location19", "line_index": 186, "text": "zar ne?"}
+{"category": "LocationDialogue Location19", "line_index": 187, "text": "Već si znao da je kamen unaprijed izrezan,"}
+{"category": "LocationDialogue Location19", "line_index": 188, "text": "zar ne?"}
+{"category": "LocationDialogue Location19", "line_index": 189, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 190, "text": "Ne."}
+{"category": "LocationDialogue Location19", "line_index": 191, "text": "Samo... mi smo u igri."}
+{"category": "LocationDialogue Location19", "line_index": 192, "text": "Ovdje je pucketanjem prstiju sve moguće."}
+{"category": "LocationDialogue Location19", "line_index": 193, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 194, "text": "Oh,"}
+{"category": "LocationDialogue Location19", "line_index": 195, "text": "idiote!"}
+{"category": "LocationDialogue Location19", "line_index": 196, "text": "Pucketanjem prstiju, ha?"}
+{"category": "LocationDialogue Location19", "line_index": 197, "text": "Što misliš zašto sam čitala sve te knjige?"}
+{"category": "LocationDialogue Location19", "line_index": 198, "text": "Da mogu pucnuti prstima i završiti s tim?"}
+{"category": "LocationDialogue Location19", "line_index": 199, "text": "Radije bih sve sama uradila,"}
+{"category": "LocationDialogue Location19", "line_index": 200, "text": "upravo onako kako to knjige opisuju."}
+{"category": "LocationDialogue Location19", "line_index": 201, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 202, "text": "// Mila is doing push-ups"}
+{"category": "LocationDialogue Location19", "line_index": 203, "text": "Što to radiš?"}
+{"category": "LocationDialogue Location19", "line_index": 204, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 205, "text": "Zar ne možeš skontati!?"}
+{"category": "LocationDialogue Location19", "line_index": 206, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 207, "text": "Da, ali zašto to radiš?"}
+{"category": "LocationDialogue Location19", "line_index": 208, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 209, "text": "Da postanem dovoljno jaka da te udarim šakom u lice!"}
+{"category": "LocationDialogue Location19", "line_index": 210, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 211, "text": "Što nije u redu s tobom?"}
+{"category": "LocationDialogue Location19", "line_index": 212, "text": "Čudno se ponašaš."}
+{"category": "LocationDialogue Location19", "line_index": 213, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 214, "text": "Dobro!"}
+{"category": "LocationDialogue Location19", "line_index": 215, "text": "Što se tiče udaranja—"}
+{"category": "LocationDialogue Location19", "line_index": 216, "text": "nisam mislila ozbiljno."}
+{"category": "LocationDialogue Location19", "line_index": 217, "text": "I nisam čudna!"}
+{"category": "LocationDialogue Location19", "line_index": 218, "text": "Jedinstvena sam!"}
+{"category": "LocationDialogue Location19", "line_index": 219, "text": "Želim biti što više drugačija od svih ostalih."}
+{"category": "LocationDialogue Location19", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 221, "text": "Ne moraš se toliko truditi."}
+{"category": "LocationDialogue Location19", "line_index": 222, "text": "Vjeruj mi — već si dosta drugačija."}
+{"category": "LocationDialogue Location19", "line_index": 223, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 224, "text": "Znam!"}
+{"category": "LocationDialogue Location19", "line_index": 225, "text": "Pogledaj što mogu!"}
+{"category": "LocationDialogue Location19", "line_index": 226, "text": "Vidiš ovo?"}
+{"category": "LocationDialogue Location19", "line_index": 227, "text": "A sada — bez ruku!"}
+{"category": "LocationDialogue Location19", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 229, "text": "Znam da je igra,"}
+{"category": "LocationDialogue Location19", "line_index": 230, "text": "ali ovo je toliko nerealno..."}
+{"category": "LocationDialogue Location19", "line_index": 231, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 232, "text": "Auč!"}
+{"category": "LocationDialogue Location19", "line_index": 233, "text": "Joj!"}
+{"category": "LocationDialogue Location19", "line_index": 234, "text": "Glupa fizika..."}
+{"category": "LocationDialogue Location19", "line_index": 235, "text": "Govoriš o realizmu,"}
+{"category": "LocationDialogue Location19", "line_index": 236, "text": "i onda,"}
+{"category": "LocationDialogue Location19", "line_index": 237, "text": "bum! Ovo se desi!"}
+{"category": "LocationDialogue Location19", "line_index": 238, "text": "I ti MENE nazivaš čudnom?"}
+{"category": "LocationDialogue Location19", "line_index": 239, "text": "Glupane!"}
+{"category": "LocationDialogue Location19", "line_index": 240, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 241, "text": "// Last glitch ready - player exit"}
+{"category": "LocationDialogue Location19", "line_index": 242, "text": "Prolaz je tu."}
+{"category": "LocationDialogue Location19", "line_index": 243, "text": "Uspjeli smo, Mila!"}
+{"category": "LocationDialogue Location19", "line_index": 244, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 246, "text": "Dobar posao,"}
+{"category": "LocationDialogue Location19", "line_index": 247, "text": "junače!"}
+{"category": "LocationDialogue Location19", "line_index": 248, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 249, "text": "O moj Bože!"}
+{"category": "LocationDialogue Location19", "line_index": 250, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 251, "text": "Oh!"}
+{"category": "LocationDialogue Location19", "line_index": 252, "text": "Oprosti—nisam htjela."}
+{"category": "LocationDialogue Location19", "line_index": 253, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 254, "text": "U redu je, Mila. Sada mogu nastaviti dalje."}
+{"category": "LocationDialogue Location19", "line_index": 255, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 256, "text": "Vidi, znam da moraš ići..."}
+{"category": "LocationDialogue Location19", "line_index": 257, "text": "ali zar ne možeš ostati ovdje"}
+{"category": "LocationDialogue Location19", "line_index": 258, "text": "još samo malo?"}
+{"category": "LocationDialogue Location19", "line_index": 259, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 260, "text": "Ne mogu čekati."}
+{"category": "LocationDialogue Location19", "line_index": 261, "text": "Luda Mita nije baš strpljiv tip osobe."}
+{"category": "LocationDialogue Location19", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 263, "text": "Joj, mrzim je!"}
+{"category": "LocationDialogue Location19", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 265, "text": "Mrzim je, mrzim je!"}
+{"category": "LocationDialogue Location19", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 267, "text": "Mila, slušaj..."}
+{"category": "LocationDialogue Location19", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 269, "text": "Zašto sam uopće ovdje?"}
+{"category": "LocationDialogue Location19", "line_index": 270, "text": "Ne razumijem!"}
+{"category": "LocationDialogue Location19", "line_index": 271, "text": "Zašto ne razumijem?!"}
+{"category": "LocationDialogue Location19", "line_index": 272, "text": "I nikad neću izaći odavde!"}
+{"category": "LocationDialogue Location19", "line_index": 273, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 274, "text": "Razumijem kako se osjećaš, Mila."}
+{"category": "LocationDialogue Location19", "line_index": 275, "text": "Želiš li da se vratim? Kasnije?"}
+{"category": "LocationDialogue Location19", "line_index": 276, "text": "Ako mogu?"}
+{"category": "LocationDialogue Location19", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 278, "text": "Ostani ovdje, Igraču..."}
+{"category": "LocationDialogue Location19", "line_index": 279, "text": "Zabavan si, nije isto kad sam sama..."}
+{"category": "LocationDialogue Location19", "line_index": 280, "text": "Što ako ne uspiješ?"}
+{"category": "LocationDialogue Location19", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 282, "text": "Hoću. Još samo malo je ostalo."}
+{"category": "LocationDialogue Location19", "line_index": 283, "text": "// If the player clicks on the computer"}
+{"category": "LocationDialogue Location19", "line_index": 284, "text": "Upravo sam se vratio iz one ravne dimenzije,"}
+{"category": "LocationDialogue Location19", "line_index": 285, "text": "A sad... evo nas opet."}
+{"category": "LocationDialogue Location19", "line_index": 286, "text": "Jedva čekam da se vratim u stvarni svijet..."}
+{"category": "LocationDialogue Location19", "line_index": 287, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 288, "text": "Ha-ha-ha! :)"}
+{"category": "LocationDialogue Location19", "line_index": 289, "text": "Oh,"}
+{"category": "LocationDialogue Location19", "line_index": 290, "text": "'stvarni' svijet, ha?"}
+{"category": "LocationDialogue Location19", "line_index": 291, "text": "Kao urbana legenda!"}
+{"category": "LocationDialogue Location19", "line_index": 292, "text": "Nikad ga nisam vidjela."}
+{"category": "LocationDialogue Location19", "line_index": 293, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 294, "text": "Mislim..."}
+{"category": "LocationDialogue Location19", "line_index": 295, "text": "da mora postojati put natrag."}
+{"category": "LocationDialogue Location19", "line_index": 296, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 297, "text": "Baš si samouvjeren!"}
+{"category": "LocationDialogue Location19", "line_index": 298, "text": "Kakva šala!"}
+{"category": "LocationDialogue Location19", "line_index": 299, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 300, "text": "// Ask about books"}
+{"category": "LocationDialogue Location19", "line_index": 301, "text": "Zašto uopće čitaš knjige?"}
+{"category": "LocationDialogue Location19", "line_index": 302, "text": "Tu je internet..."}
+{"category": "LocationDialogue Location19", "line_index": 303, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 304, "text": "Internet? Pun je romana!"}
+{"category": "LocationDialogue Location19", "line_index": 305, "text": "Ali radije bih imala"}
+{"category": "LocationDialogue Location19", "line_index": 306, "text": "pravu knjigu u mojim rukama."}
+{"category": "LocationDialogue Location19", "line_index": 307, "text": "Samo kroz"}
+{"category": "LocationDialogue Location19", "line_index": 308, "text": "njih počinjem"}
+{"category": "LocationDialogue Location19", "line_index": 309, "text": "učiti o..."}
+{"category": "LocationDialogue Location19", "line_index": 310, "text": "ovom svijetu."}
+{"category": "LocationDialogue Location19", "line_index": 311, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 312, "text": "// Ask about the paintings"}
+{"category": "LocationDialogue Location19", "line_index": 313, "text": "Ove slike — jesu li stvarne?"}
+{"category": "LocationDialogue Location19", "line_index": 314, "text": "U drugim verzijama,"}
+{"category": "LocationDialogue Location19", "line_index": 315, "text": "da, postoje... ali su gotovo prenapadne."}
+{"category": "LocationDialogue Location19", "line_index": 316, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 317, "text": "Ja sam MiLa, razumiješ? Ne kao ostale."}
+{"category": "LocationDialogue Location19", "line_index": 318, "text": "A ovi?"}
+{"category": "LocationDialogue Location19", "line_index": 319, "text": "To su crteži, znaš,"}
+{"category": "LocationDialogue Location19", "line_index": 320, "text": "pretvarajući se da su više nego što jesu."}
+{"category": "LocationDialogue Location19", "line_index": 321, "text": "Vidjela sam druge Mite"}
+{"category": "LocationDialogue Location19", "line_index": 322, "text": "stojeći upravo ovako."}
+{"category": "LocationDialogue Location19", "line_index": 323, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 324, "text": "Mila?"}
+{"category": "LocationDialogue Location19", "line_index": 325, "text": "Halo?"}
+{"category": "LocationDialogue Location19", "line_index": 326, "text": "// Mila."}
+{"category": "LocationDialogue Location19", "line_index": 327, "text": "Nakon svega toga..."}
+{"category": "LocationDialogue Location19", "line_index": 328, "text": "Ne želim biti takva."}
+{"category": "LocationDialogue Location19", "line_index": 329, "text": "To je... odvratno!"}
+{"category": "LocationDialogue Location19", "line_index": 330, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 331, "text": "// Ask about the butterfly painting"}
+{"category": "LocationDialogue Location19", "line_index": 332, "text": "Jesi li vidjela prirodu?"}
+{"category": "LocationDialogue Location19", "line_index": 333, "text": "Takve prave leptire?"}
+{"category": "LocationDialogue Location19", "line_index": 334, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 335, "text": "Ne,"}
+{"category": "LocationDialogue Location19", "line_index": 336, "text": "ali imam knjigu ovdje negdje."}
+{"category": "LocationDialogue Location19", "line_index": 337, "text": "Čak imaju utisnuta mala krila..."}
+{"category": "LocationDialogue Location19", "line_index": 338, "text": "Ova slika,"}
+{"category": "LocationDialogue Location19", "line_index": 339, "text": "ipak..."}
+{"category": "LocationDialogue Location19", "line_index": 340, "text": "malo je kriva."}
+{"category": "LocationDialogue Location19", "line_index": 341, "text": "I tu je mrlja..."}
+{"category": "LocationDialogue Location19", "line_index": 342, "text": "Ah, tako je bolje."}
+{"category": "LocationDialogue Location19", "line_index": 343, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 344, "text": "Da li želiš vidjeti pravog leptira? Ići u šetnju prirodom?"}
+{"category": "LocationDialogue Location19", "line_index": 345, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 346, "text": "Kakvo pitanje!"}
+{"category": "LocationDialogue Location19", "line_index": 347, "text": "Naravno,"}
+{"category": "LocationDialogue Location19", "line_index": 348, "text": "da bih!"}
+{"category": "LocationDialogue Location19", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 350, "text": "// Make long eye contact 1"}
+{"category": "LocationDialogue Location19", "line_index": 351, "text": "Zašto buljiš?"}
+{"category": "LocationDialogue Location19", "line_index": 352, "text": "Skreni pogled!"}
+{"category": "LocationDialogue Location19", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 354, "text": "// Make long eye contact 2"}
+{"category": "LocationDialogue Location19", "line_index": 355, "text": "Dosta!"}
+{"category": "LocationDialogue Location19", "line_index": 356, "text": "Prestani više!"}
+{"category": "LocationDialogue Location19", "line_index": 357, "text": "Glupane..."}
+{"category": "LocationDialogue Location19", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 359, "text": "// Make long eye contact 3"}
+{"category": "LocationDialogue Location19", "line_index": 360, "text": "Hajde više!"}
+{"category": "LocationDialogue Location19", "line_index": 361, "text": "Što je s ovim buljenjem?"}
+{"category": "LocationDialogue Location19", "line_index": 362, "text": "Ja sam dama, znaš!"}
+{"category": "LocationDialogue Location19", "line_index": 363, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 364, "text": "Jesi li ikada čuo za manire?"}
+{"category": "LocationDialogue Location19", "line_index": 365, "text": "Iš, iš!"}
+{"category": "LocationDialogue Location19", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 367, "text": "// Whispers 1"}
+{"category": "LocationDialogue Location19", "line_index": 368, "text": "Zašto uvijek meni šalju"}
+{"category": "LocationDialogue Location19", "line_index": 369, "text": "neke neupućene tipove,"}
+{"category": "LocationDialogue Location19", "line_index": 370, "text": "i očekuju da se lijepo igram?"}
+{"category": "LocationDialogue Location19", "line_index": 371, "text": "S mini-igrama?!"}
+{"category": "LocationDialogue Location19", "line_index": 372, "text": "Kao glupi Tamagoči!"}
+{"category": "LocationDialogue Location19", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 374, "text": "// Whispers 2"}
+{"category": "LocationDialogue Location19", "line_index": 375, "text": "Samo luta okolo..."}
+{"category": "LocationDialogue Location19", "line_index": 376, "text": "radoznala mala budala."}
+{"category": "LocationDialogue Location19", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 378, "text": "// Whispers 3"}
+{"category": "LocationDialogue Location19", "line_index": 379, "text": "Jesi li nešto rekao?"}
+{"category": "LocationDialogue Location19", "line_index": 380, "text": "Ova pozadinska glazba me izluđuje!"}
+{"category": "LocationDialogue Location19", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 382, "text": "// Whispers 4"}
+{"category": "LocationDialogue Location19", "line_index": 383, "text": "Kako da mu kažem"}
+{"category": "LocationDialogue Location19", "line_index": 384, "text": "da sam zauzeta?"}
+{"category": "LocationDialogue Location19", "line_index": 385, "text": "Ne želim društvo..."}
+{"category": "LocationDialogue Location19", "line_index": 386, "text": "Što ako ode? Ne, zašto bi me bilo briga?"}
+{"category": "LocationDialogue Location19", "line_index": 387, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 388, "text": "// Whispers 5"}
+{"category": "LocationDialogue Location19", "line_index": 389, "text": "Mama... tata..."}
+{"category": "LocationDialogue Location19", "line_index": 390, "text": "Zašto te riječi zvuče poznato?"}
+{"category": "LocationDialogue Location19", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 392, "text": "// Whispers 6"}
+{"category": "LocationDialogue Location19", "line_index": 393, "text": "Ovdje je jednom pao snijeg... ali zašto?"}
+{"category": "LocationDialogue Location19", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 395, "text": "// Whispers 7"}
+{"category": "LocationDialogue Location19", "line_index": 396, "text": "Samo se pojavi niotkuda! Grozno."}
+{"category": "LocationDialogue Location19", "line_index": 397, "text": "Što ako... tamo nema ničega?"}
+{"category": "LocationDialogue Location19", "line_index": 398, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 399, "text": "// Nearby 1"}
+{"category": "LocationDialogue Location19", "line_index": 400, "text": "Evo nas,"}
+{"category": "LocationDialogue Location19", "line_index": 401, "text": "stojimo okolo..."}
+{"category": "LocationDialogue Location19", "line_index": 402, "text": "u tišini..."}
+{"category": "LocationDialogue Location19", "line_index": 403, "text": "Zašto samo stojimo ovdje?"}
+{"category": "LocationDialogue Location19", "line_index": 404, "text": "Mačka ti pojela jezik?"}
+{"category": "LocationDialogue Location19", "line_index": 405, "text": "Ili,"}
+{"category": "LocationDialogue Location19", "line_index": 406, "text": "jednostavno ne znaš što bi rekao?"}
+{"category": "LocationDialogue Location19", "line_index": 407, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 408, "text": "// Nearby 2"}
+{"category": "LocationDialogue Location19", "line_index": 409, "text": "Odričem se mrkve!"}
+{"category": "LocationDialogue Location19", "line_index": 410, "text": "Ozbiljno, objavljujem rat."}
+{"category": "LocationDialogue Location19", "line_index": 411, "text": "Znaš li što ta stvar radi"}
+{"category": "LocationDialogue Location19", "line_index": 412, "text": "savršenoj, blijedoj koži djevojke?"}
+{"category": "LocationDialogue Location19", "line_index": 413, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 414, "text": "// Nearby 3"}
+{"category": "LocationDialogue Location19", "line_index": 415, "text": "Knjige ne pomažu mnogo sa ovim, ali ako budem imala sreće,"}
+{"category": "LocationDialogue Location19", "line_index": 416, "text": "možda konačno shvatim poentu..."}
+{"category": "LocationDialogue Location19", "line_index": 417, "text": "Od ovih beskrajnih mrkvi koje iskaču"}
+{"category": "LocationDialogue Location19", "line_index": 418, "text": "oko mene hvata"}
+{"category": "LocationDialogue Location19", "line_index": 419, "text": "me jeza!"}
+{"category": "LocationDialogue Location19", "line_index": 420, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 421, "text": "// Nearby 4"}
+{"category": "LocationDialogue Location19", "line_index": 422, "text": "Ne volim ekscentrike!"}
+{"category": "LocationDialogue Location19", "line_index": 423, "text": "Ljubitelji mrkvi, ljubitelji mačaka..."}
+{"category": "LocationDialogue Location19", "line_index": 424, "text": "I evo tebe, skupljaš gličeve."}
+{"category": "LocationDialogue Location19", "line_index": 425, "text": "Iskreno, ti si najčudnija osoba koju sam ikad upoznala!"}
+{"category": "LocationDialogue Location19", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 427, "text": "// Nearby 5"}
+{"category": "LocationDialogue Location19", "line_index": 428, "text": "Želiš znati što bih najviše voljela raditi?"}
+{"category": "LocationDialogue Location19", "line_index": 429, "text": "...Pa, to je malo neugodno za reći."}
+{"category": "LocationDialogue Location19", "line_index": 430, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 431, "text": "// Nearby 6"}
+{"category": "LocationDialogue Location19", "line_index": 432, "text": "Kažu da je borba"}
+{"category": "LocationDialogue Location19", "line_index": 433, "text": "protiv vlastite prirode IZAZOV."}
+{"category": "LocationDialogue Location19", "line_index": 434, "text": "Radim na disciplini, ali ti"}
+{"category": "LocationDialogue Location19", "line_index": 435, "text": "nemaš pojma kako bi voljela samo"}
+{"category": "LocationDialogue Location19", "line_index": 436, "text": "sjesti s tobom da imamo čajanku!"}
+{"category": "LocationDialogue Location19", "line_index": 437, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 438, "text": "// Nearby 7"}
+{"category": "LocationDialogue Location19", "line_index": 439, "text": "Čak i s naočalama,"}
+{"category": "LocationDialogue Location19", "line_index": 440, "text": "Ne mogu vidjeti kroz slojeve tvoje čudne,"}
+{"category": "LocationDialogue Location19", "line_index": 441, "text": "jednoumne odlučnosti."}
+{"category": "LocationDialogue Location19", "line_index": 442, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 443, "text": "// Nearby 8"}
+{"category": "LocationDialogue Location19", "line_index": 444, "text": "Čitala sam da je sudbina poput nekog scenarija"}
+{"category": "LocationDialogue Location19", "line_index": 445, "text": "koji čak i kaže"}
+{"category": "LocationDialogue Location19", "line_index": 446, "text": "kako ćeš provesti dan."}
+{"category": "LocationDialogue Location19", "line_index": 447, "text": "Ha! Tko je napisao to sranje?"}
+{"category": "LocationDialogue Location19", "line_index": 448, "text": "Jesi li to bio ti?"}
+{"category": "LocationDialogue Location19", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 450, "text": "// Nearby 9"}
+{"category": "LocationDialogue Location19", "line_index": 451, "text": "Podnosim budale, ali one lude?"}
+{"category": "LocationDialogue Location19", "line_index": 452, "text": "Mrzim ih."}
+{"category": "LocationDialogue Location19", "line_index": 453, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 454, "text": "// Nearby 10"}
+{"category": "LocationDialogue Location19", "line_index": 455, "text": "Neke od Mita"}
+{"category": "LocationDialogue Location19", "line_index": 456, "text": "zapravo su nekako slatke..."}
+{"category": "LocationDialogue Location19", "line_index": 457, "text": "Htjela bih ih bolje upoznati čak i ako su samo"}
+{"category": "LocationDialogue Location19", "line_index": 458, "text": "klonovi klonova od klonova."}
+{"category": "LocationDialogue Location19", "line_index": 459, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 460, "text": "// Nearby 11"}
+{"category": "LocationDialogue Location19", "line_index": 461, "text": "Ali postoji jedna koja je malo drugačija."}
+{"category": "LocationDialogue Location19", "line_index": 462, "text": "No, njoj fali daska u glavi."}
+{"category": "LocationDialogue Location19", "line_index": 463, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 464, "text": "// Nearby 12"}
+{"category": "LocationDialogue Location19", "line_index": 465, "text": "Bez repića!"}
+{"category": "LocationDialogue Location19", "line_index": 466, "text": "Odrezala bih ih da mogu!"}
+{"category": "LocationDialogue Location19", "line_index": 467, "text": "Neugodni su!"}
+{"category": "LocationDialogue Location19", "line_index": 468, "text": "Znaš što mislim — ti i skloniš većinu kose!"}
+{"category": "LocationDialogue Location19", "line_index": 469, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 470, "text": "// Nearby 13"}
+{"category": "LocationDialogue Location19", "line_index": 471, "text": "Što ako samo nema ničega iza tih vrata?"}
+{"category": "LocationDialogue Location19", "line_index": 472, "text": "A ova kuća, ti i ja — postojimo"}
+{"category": "LocationDialogue Location19", "line_index": 473, "text": "bez ikakvog razloga?"}
+{"category": "LocationDialogue Location19", "line_index": 474, "text": "Pa zašto si tako siguran?"}
+{"category": "LocationDialogue Location19", "line_index": 475, "text": "Jesi li ikada čuo za petominutnu hipotezu?"}
+{"category": "LocationDialogue Location19", "line_index": 476, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 477, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 478, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 479, "text": "// Last glitch ready - player exit"}
+{"category": "LocationDialogue Location19", "line_index": 480, "text": "Kakav jeziv hodnik..."}
+{"category": "LocationDialogue Location19", "line_index": 481, "text": "Ideš li stvarno tamo?"}
+{"category": "LocationDialogue Location19", "line_index": 482, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 483, "text": "Da."}
+{"category": "LocationDialogue Location19", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 485, "text": "// FaceStone"}
+{"category": "LocationDialogue Location19", "line_index": 486, "text": "Oh, \"promišljen\" gospodin."}
+{"category": "LocationDialogue Location19", "line_index": 487, "text": "Što će ti on?"}
+{"category": "LocationDialogue Location19", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 489, "text": "Saznat ćeš"}
+{"category": "LocationDialogue Location19", "line_index": 490, "text": "uskoro."}
+{"category": "LocationDialogue Location19", "line_index": 491, "text": "I zašto ga uvijek imitiraš tako?"}
+{"category": "LocationDialogue Location19", "line_index": 492, "text": "Neka ti faca samo ostane jednostavna."}
+{"category": "LocationDialogue Location19", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 494, "text": "Uhh..."}
+{"category": "LocationDialogue Location19", "line_index": 495, "text": "u redu."}
+{"category": "LocationDialogue Location19", "line_index": 496, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 497, "text": "// Katana"}
+{"category": "LocationDialogue Location19", "line_index": 498, "text": "Je li to igračka katana?"}
+{"category": "LocationDialogue Location19", "line_index": 499, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 500, "text": "To NIJE igračka katana!"}
+{"category": "LocationDialogue Location19", "line_index": 501, "text": "Jedan dodir ove oštrice"}
+{"category": "LocationDialogue Location19", "line_index": 502, "text": "i krvarit ćeš."}
+{"category": "LocationDialogue Location19", "line_index": 503, "text": "Ja sam vješt mačevalac, za razliku od tebe!"}
+{"category": "LocationDialogue Location19", "line_index": 504, "text": "Bolje se pobrini za sebe-"}
+{"category": "LocationDialogue Location19", "line_index": 505, "text": "ne bih želila vidjeti kako samom sebi odsiječeš prste."}
+{"category": "LocationDialogue Location19", "line_index": 506, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 507, "text": "// Mirror"}
+{"category": "LocationDialogue Location19", "line_index": 508, "text": "Ogledalo..."}
+{"category": "LocationDialogue Location19", "line_index": 509, "text": "a nema odraza?"}
+{"category": "LocationDialogue Location19", "line_index": 510, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 511, "text": "Ti"}
+{"category": "LocationDialogue Location19", "line_index": 512, "text": "izgledaš tako nezadovoljeno."}
+{"category": "LocationDialogue Location19", "line_index": 513, "text": "Gledaj, čitala sam sve o odrazima"}
+{"category": "LocationDialogue Location19", "line_index": 514, "text": "u knjigama!"}
+{"category": "LocationDialogue Location19", "line_index": 515, "text": "Ali u mojoj verziji, ne mogu ih napraviti."}
+{"category": "LocationDialogue Location19", "line_index": 516, "text": "Ne mogu to učiniti, u redu?"}
+{"category": "LocationDialogue Location19", "line_index": 517, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 518, "text": "// Switch light"}
+{"category": "LocationDialogue Location19", "line_index": 519, "text": "Ovo ne radi."}
+{"category": "LocationDialogue Location19", "line_index": 520, "text": "Svjetla se ovdje sama pale i gase..."}
+{"category": "LocationDialogue Location19", "line_index": 521, "text": "kao po nekoj skripti!"}
+{"category": "LocationDialogue Location19", "line_index": 522, "text": "Ali!"}
+{"category": "LocationDialogue Location19", "line_index": 523, "text": "Iz nekog razloga, kupaonski prekidač"}
+{"category": "LocationDialogue Location19", "line_index": 524, "text": "zapravo radi."}
+{"category": "LocationDialogue Location19", "line_index": 525, "text": "Tako čudno!"}
+{"category": "LocationDialogue Location19", "line_index": 526, "text": "// Switch light off"}
+{"category": "LocationDialogue Location19", "line_index": 527, "text": "Ovdje je još uvijek osvjetljeno?"}
+{"category": "LocationDialogue Location19", "line_index": 528, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 529, "text": "// Little carrot"}
+{"category": "LocationDialogue Location19", "line_index": 530, "text": "Mrkva?"}
+{"category": "LocationDialogue Location19", "line_index": 531, "text": "Čekaj, gdje je nestala?"}
+{"category": "LocationDialogue Location19", "line_index": 532, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 533, "text": "Joj, muka mi je te mrkve!"}
+{"category": "LocationDialogue Location19", "line_index": 534, "text": "Kao da je živa!"}
+{"category": "LocationDialogue Location19", "line_index": 535, "text": "Svaki put kad je vidim,"}
+{"category": "LocationDialogue Location19", "line_index": 536, "text": "teleportira se negdje drugdje."}
+{"category": "LocationDialogue Location19", "line_index": 537, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 538, "text": "// Little carrot"}
+{"category": "LocationDialogue Location19", "line_index": 539, "text": "E, to je ta mrkva..."}
+{"category": "LocationDialogue Location19", "line_index": 540, "text": "opet je nestala!"}
+{"category": "LocationDialogue Location19", "line_index": 541, "text": "Misliš li da možemo išta učiniti u vezi s njom?"}
+{"category": "LocationDialogue Location19", "line_index": 542, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 543, "text": "Ne."}
+{"category": "LocationDialogue Location19", "line_index": 544, "text": "vjeruj mi,"}
+{"category": "LocationDialogue Location19", "line_index": 545, "text": "Pokušala sam!"}
+{"category": "LocationDialogue Location19", "line_index": 546, "text": "Samo je zanemari. Mislim da je"}
+{"category": "LocationDialogue Location19", "line_index": 547, "text": "nekakva kozmička šala."}
+{"category": "LocationDialogue Location19", "line_index": 548, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 549, "text": "// Tetris"}
+{"category": "LocationDialogue Location19", "line_index": 550, "text": "Hej!"}
+{"category": "LocationDialogue Location19", "line_index": 551, "text": "Jesam li ja tebi neka šala?"}
+{"category": "LocationDialogue Location19", "line_index": 552, "text": "// Tetris"}
+{"category": "LocationDialogue Location19", "line_index": 553, "text": "Ne vraćam ti."}
+{"category": "LocationDialogue Location19", "line_index": 554, "text": "Ne, nikad!"}
+{"category": "LocationDialogue Location19", "line_index": 555, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 556, "text": "// Soap."}
+{"category": "LocationDialogue Location19", "line_index": 557, "text": "Dakle, ovaj... je li ovaj sapun pravi?"}
+{"category": "LocationDialogue Location19", "line_index": 558, "text": "Ili je samo još jedan ukras?"}
+{"category": "LocationDialogue Location19", "line_index": 559, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 560, "text": "Jel se ti šališ?"}
+{"category": "LocationDialogue Location19", "line_index": 561, "text": "Većina stvari ovdje se zapravo"}
+{"category": "LocationDialogue Location19", "line_index": 562, "text": "ponaša kao prava! Stvarno..."}
+{"category": "LocationDialogue Location19", "line_index": 563, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 564, "text": "// BagWall"}
+{"category": "LocationDialogue Location19", "line_index": 565, "text": "Gdje si nestao!?"}
+{"category": "LocationDialogue Location19", "line_index": 566, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 567, "text": "Ja mogu proći ovuda?"}
+{"category": "LocationDialogue Location19", "line_index": 568, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 569, "text": "Jesi li pronašao novi bag ili nešto?"}
+{"category": "LocationDialogue Location19", "line_index": 570, "text": "Što je to?"}
+{"category": "LocationDialogue Location19", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 572, "text": "Izgleda kao..."}
+{"category": "LocationDialogue Location19", "line_index": 573, "text": "ništa."}
+{"category": "LocationDialogue Location19", "line_index": 574, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 575, "text": "Ah, opet se vratilo."}
+{"category": "LocationDialogue Location19", "line_index": 576, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 577, "text": "// Quest 1 Glasses"}
+{"category": "LocationDialogue Location19", "line_index": 578, "text": "Imaš li loš vid?"}
+{"category": "LocationDialogue Location19", "line_index": 579, "text": "Zašto su ti potrebne naočale?"}
+{"category": "LocationDialogue Location19", "line_index": 580, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 581, "text": "Što - ne sviđaju ti se?"}
+{"category": "LocationDialogue Location19", "line_index": 582, "text": "To se zove stil!"}
+{"category": "LocationDialogue Location19", "line_index": 583, "text": "I moj vid je savršen, hvala."}
+{"category": "LocationDialogue Location19", "line_index": 584, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 585, "text": "// Quest 2 Name miLa"}
+{"category": "LocationDialogue Location19", "line_index": 586, "text": "Mi-La?"}
+{"category": "LocationDialogue Location19", "line_index": 587, "text": "Zašto ne..."}
+{"category": "LocationDialogue Location19", "line_index": 588, "text": "Mi-Ka?"}
+{"category": "LocationDialogue Location19", "line_index": 589, "text": "Ili Mi-Sa?"}
+{"category": "LocationDialogue Location19", "line_index": 590, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 591, "text": "Ja sam Mila. To je to. Zašto?"}
+{"category": "LocationDialogue Location19", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 593, "text": "Oh... ništa."}
+{"category": "LocationDialogue Location19", "line_index": 594, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 595, "text": "// Quest 3 Evening"}
+{"category": "LocationDialogue Location19", "line_index": 596, "text": "Sviđa mi se večer."}
+{"category": "LocationDialogue Location19", "line_index": 597, "text": "Kad će pasti noć?"}
+{"category": "LocationDialogue Location19", "line_index": 598, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 599, "text": "Noć?"}
+{"category": "LocationDialogue Location19", "line_index": 600, "text": "Uf, nemoj ni počinjati."}
+{"category": "LocationDialogue Location19", "line_index": 601, "text": "Beskrajni dani ovdje..."}
+{"category": "LocationDialogue Location19", "line_index": 602, "text": "samo jedan za drugim,"}
+{"category": "LocationDialogue Location19", "line_index": 603, "text": "kao da se ponavljaju."}
+{"category": "LocationDialogue Location19", "line_index": 604, "text": "Uf..."}

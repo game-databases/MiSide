@@ -1,0 +1,89 @@
+# I-T1 — ilspycmd 11.0.0.9335-rc acquisition (I-4 unblock)
+
+| | |
+|---|---|
+| Investigator | I-T1 subagent, 2026-08-25, host `NE8K` |
+| Incident | [x1-execution-report.mdx §I-4](x1-execution-report.mdx#i-4--fatal--s7-decompile-pinned-zip-contains-no-ilspycmdexe) |
+| Spec | [pipeline-run_all.mdx §2 S7](../specs/pipeline-run_all.mdx#s7-decompile) · §8 verify items |
+
+**Channel (evidence).** The correct distribution channel is the **nuget
+dotnet-tool package id `ilspycmd`** (not `ICSharpCode.ILSpyCmd` — that id
+does not exist; flatcontainer returns BlobNotFound). The exact pinned
+version **exists there**:
+`api.nuget.org/v3-flatcontainer/ilspycmd/index.json` lists `11.0.0.9335-rc`
+between `11.0.0.9223-preview1` and `11.0.0.9375`. Upstream GitHub release
+[`v11.0-rc`](https://api.github.com/repos/icsharpcode/ILSpy/releases) ships
+GUI-only assets (the spec-pinned `ILSpy_windows_selfcontained_11.0.0.9335-rc-x64.zip`
+among them) — **no CLI asset exists upstream**, re-confirming I-4's root
+cause: the pin text named a channel that never contained a CLI.
+
+**Package facts.** nupkg `ilspycmd.11.0.0.9335-rc.nupkg`, 4,741,133 B,
+sha256 `9e336464fb5554cf1ed1ac50bb41db2ce369ad875670b6024bc49123d063c816`.
+Single TFM: `tools/net10.0/any/` — **net10.0 only**, no net8/net9 variant,
+no apphost exe inside. Host reality: SDK 8.0.424 + NETCore 6–9 runtimes;
+SDK 8's installer refuses the package ("DotnetToolSettings.xml not found")
+and no net10 runtime exists machine-wide.
+
+**Install record (all under workroot, zero machine mutation).**
+
+1. Local .NET SDK 10.0.400 extracted to
+   `D:\unpacked_game_data\MiSide\work\it1-dotnet10\`
+   (zip sha256 `83fbf0699a984d08063579b06edfc8c327af62234b1aaeeadc5d7ae7f5a0514a`).
+2. `<local-sdk>\dotnet.exe tool install --tool-path D:\unpacked_game_data\MiSide\work\tools\IlSpyCmd ilspycmd --version 11.0.0.9335-rc`
+   → shim `IlSpyCmd\ilspycmd.exe` (sha256 `0bdd39b9…da5c23f`) + payload
+   `.store\ilspycmd\11.0.0.9335-rc\...\any\ilspycmd.dll`
+   (sha256 `9ed6d7a6…2f2e1c`). Self-stores; no nuget-global dependency.
+3. **Runtime requirement:** the shim is framework-dependent and ignores
+   app-local runtime layouts (both flattened-dll and full
+   `host\fxr`+`shared` roots inside the tool dir were tested and rejected);
+   it resolves via `DOTNET_ROOT` or machine roots only. Working invocation:
+
+   ```sh
+   DOTNET_ROOT='D:\unpacked_game_data\MiSide\work\it1-dotnet10' \
+     D:\unpacked_game_data\MiSide\work\tools\ILSpy\ilspycmd.exe <args>
+   ```
+
+4. Mirror copy landed at `work\tools\ILSpy\` (whole dir incl. `.store`) so
+   [`decompile.py` `_ilspycmd()`](../../pipeline/stages/decompile.py)
+   finds `<workroot>\tools\ILSpy\ilspycmd.exe` at its first probe and never
+   enters the broken zip-unzip branch. Verified working from that path.
+
+**Proof run (S3 DummyDll, pipeline argv shape `-p -o <outdir> <dll>`).**
+Input `extracted\il2cpp\DummyDll\UnityEngine.UI.dll` (348,160 B) → scratch
+`work\it1-proof\UnityEngine.UI\`: exit 0, wall **0.741 s**, **115 .cs**
+files in a real project tree (`Properties/AssemblyInfo.cs`,
+namespace directories), bodies carry the Il2CppDummyDll structure markers
+(`[Token]`, `[FieldOffset]`) the doctrine wants. `--help` clean; `-p/-o/-t/-m`
+flags match the spec'd shapes. Noise note: each run prints an
+update-notice ("Latest version is '11.0.0.9375'") — stdout noise only,
+exit code unaffected; `--version` output is `ilspycmd: 11.0.0.9335` /
+`ICSharpCode.Decompiler: 11.0.0.9335`.
+
+**Pipeline-resolution verdict.** Two findings for the fixer:
+
+1. **Path resolution is now satisfied by files alone** — the mirror at
+   step 4 hits `_ilspycmd()`'s first branch. But **runtime resolution is
+   NOT satisfied**: S7 children inherit the driver env, which carries no
+   `DOTNET_ROOT`, so every `ilspycmd.exe` spawn dies rc=150 ("You must
+   install .NET"). Minimal fixer options: (a) export
+   `DOTNET_ROOT=<workroot>\it1-dotnet10` when invoking `run_all` (works
+   today, zero code change, must be documented as an entrypoint
+   precondition), or (b) small code fix injecting that env var in the S7
+   subprocess wrapper (preferred for AC-16 reproducibility).
+2. **Staging-fallback hygiene:** `_ilspycmd()`'s unzip fallback globs
+   `ILSpy_windows_selfcontained_*-x64.zip` and takes `zips[0]` — today that
+   resolves to exactly one file (the correct GUI zip, which contains no CLI,
+   so the fallback can never succeed by design). Not a live bug since the
+   exe probe above short-circuits it, but at fix time tighten the glob to
+   the exact filename or retire the branch entirely — the CLI no longer
+   comes from any zip in that directory.
+
+**Errata owed (spec pin text is wrong-channel).**
+[pipeline-run_all.mdx §2 S7](../specs/pipeline-run_all.mdx#s7-decompile)
+and [toolchain.md §3](../../toolchain.md#3-script-decompile) name the GUI
+selfcontained zip as the CLI source. Correct pin: dotnet-tool package
+`ilspycmd` **11.0.0.9335-rc** from nuget.org, net10.0 TFM,
+`DOTNET_ROOT` precondition, plus the EXTRACTION-LOG pins block gains
+channel + hashes. Substituting host global 8.2.0.7535 stays refused.
+
+ACQUISITION: SOLVED — 11.0.0.9335-rc@D:\unpacked_game_data\MiSide\work\tools\IlSpyCmd (+ mirror at ...\tools\ILSpy); needs DOTNET_ROOT=D:\unpacked_game_data\MiSide\work\it1-dotnet10 in S7 child env

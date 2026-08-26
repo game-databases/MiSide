@@ -1,0 +1,28 @@
+# VC-2 — Adjudication of F-VC1 (fresh critic, production build, port 4792)
+
+Method: every claim re-proven live, not trusted — DOM/computed-style evals, real-pointer Playwright hovers, canvas font metrics, exact-1536px viewport, route HTML census; competitor chrome re-shot same day.
+
+1. **Art-first — MOSTLY.** `/` 15 decoded imgs, ach icons 26, book covers 8 per-locale, Mita portraits real; 13 MB « 200 MB budget; accents trace to `palette_color1/2` floats, portraits/covers to `art.ts`/`books-art.json` (only `sectionArt()` hardcodes 4 identity slugs). But cartridges/players/minigames/locations/endings indexes ship **zero** imgs.
+2. **Search — YES, with a cap defect.** Idx 156 rows × 11 kinds, RU-localized; typing "mita" replaces content in place, Escape restores, VoidWell empty state. But 52 rows match and UI shows 20 (`searchRows.ts:78` hard cap), all Mitas+Lore — matching cartridges/achievements silently invisible; endings have no "mita" row at all.
+3. **Entity objects — MITAS ONLY.** Real names in h1/title/breadcrumb («Ghostly Mita»), per-Mita accents verified distinct (`#cc73a2` vs `#b7b7b7`) from registry palettes, portrait present, conditional related rail on black (Cartridges/Lore/Locations/Achievements). But cartridges/books/dialogue still surface raw ids — h1/title "mta", "Books0", rail item "mtaghost"; modules are thin link lists (no stats/map); dialogue `<title>` = generic "MiSide Database".
+4. **Horror register — HALF.** Ambient motion live everywhere (`getAnimations()` 1–3; `ms-scan-breathe`, `ms-glow-pulse`; enka runs 0), DialogueBand renders (`name-tag-pill`, `lcd-terminal`). But real-pointer hover on the lone `data-corrupted` card produced **zero** computed-style change (group-hover self-trigger bug in `CartridgeCard.tsx`), `CorruptionHover active` renders on no entity route, no SPACE keycap on `/dialogue/*`, VHS 404 is static (anims=0).
+5. **RU nav @1536px — YES.** Single nav row, right edge 1084 < search toggle 1109, `scrollWidth == clientWidth`.
+6. **VT323 Cyrillic — YES.** Stack `VT323, Nunito, Consolas`: digits/Latin measure VT323-exact (70.41=70.41), Cyrillic lands on Nunito rung (122.55≈120.28, not VT323 110.33, not monospace 134.42) — no tofu; pixel-digits + rounded-Cyrillic in one chip remains a taste caveat.
+7. **AR — YES.** `<html lang="ar" dir="rtl">` served and runtime-verified.
+8. **De-narration — YES.** Home opens on the grid; no intro sentence; locale combobox + quiet details chip replace the pill wall.
+
+Grades (Δ vs VC-1): Home **7**(+3) · Entity detail **5**(+3) · Search-in-place **7**(+4) · RU **8**(+3) · AR **8**(+2) · Chrome/motion **5**(+2).
+
+Still losing to competitors: NWG home leads with 101 live images and its entity stacks Crafting / Crafting-Calculator / 3D-Model / Images modules under a full-name+perks `<title>` — our entity is one lore paragraph plus a link rail, and "mta"/"Books0" titles would never survive that bar. Enka re-keys the whole object to the selection and titles by entity; we re-key only a card spine. Wikily's icon-table density (49 imgs on home) dwarfs our five art-less section grids.
+
+Remaining fixes, highest impact first:
+
+1. Raw-id names off-mita: emit display-name mapping in the data layer (rule 8), consume in `entityView.tsx`, search emitter, breadcrumbs — kills "mta"/"Books0"/"mtaghost".
+2. Resurrect hover corruption: fix group-hover self-trigger in `kit/CartridgeCard.tsx`, drive `CorruptionHover active` from a real compromised flag in data.
+3. Art the five bare section indexes via existing `indexArtFor` + corpus identity art (`routes/EntityIndexRoute.tsx`, `sectionPages.tsx`).
+4. Search cap: raise/kind-balance the 20-limit or show a "+N more" chip (`lib/search/searchRows.ts`, `SearchField.tsx`).
+5. Entity module density (counts/stats inside modules) + entity-named dialogue `<title>` (§5.2).
+6. Animate the VHS 404 block; put the SPACE keycap in the DialogueBand footer (`global-not-found.tsx`, `kit/DialogueBand.tsx`).
+7. Home still ends at the category grid — add one featured-content module (news/devlog row or map thumbnail).
+
+CRITIC: FIXES_REQUIRED — 7 items

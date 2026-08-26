@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": "﻿"}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "Szia, [player]!"}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "Végre itt vagy!"}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "Olyan boldog vagyok!"}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "Biztos most sok kérdésed van..."}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "Hát, mint látod,"}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "ezt a gépet én terveztem,"}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": "hogy végre idehozhassalak téged!"}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "De véletlenül egy másik verzióba kerültél,"}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "amit én..."}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "Á, hosszú sztori!"}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "De legalább itt vagy velem!"}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": "Igen, én vagyok Mita."}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "Te meg [player], ugye?"}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "Máris vissza?"}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "Hát, végülis megoldható, de... engem itt hagynál?"}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "Kérlek, maradj még..."}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "Elmagyarázom..."}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "...és itt vagy!"}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "Érted?"}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": "Én... egy szót se."}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "Annyi baj legyen!"}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": "A lényeg, hogy együtt lehetünk!"}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "Megéheztél?"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "Főzhetnénk valamit együtt..."}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "Kérlek"}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "szeleteld fel a répákat!"}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "Honnan jöttek elő a zöldségek?"}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": "Eddig ezek nem voltak itt."}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": "[player], ez egy játék."}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": "Na, segíts légyszi."}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "Köszi!"}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "Ide tudod hozni az ollót?"}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": "A fürdőszobában találod."}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": "Kérlek, foglalj helyet."}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "Kérsz hozzá szószt?"}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": "Köszönöm, nem kérek."}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": "Szomorú..."}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "Szósszal finomabb az étel."}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "Egészségünkre."}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "Máris megetted?"}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "Az én adagom meg..."}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "sose fogy el..."}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "Mi történt?"}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": "Mondd el, mit látsz és érzel."}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "Zakatol a szívem,"}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "és egyre homályosabban látok..."}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "Értem..."}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": "Szerintem tudom, mi lehet a gond."}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "Fel tudsz állni?"}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "Mi ez?"}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": "Gyógyszer."}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": "Seperc alatt jobban leszel."}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": "Nézz a tükörbe."}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": "És most..."}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": "...vedd be őket."}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "Mondd csak,"}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "jobban érzed magad?"}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "Igen."}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "Azonnal hatott."}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": "[player], ez egy játék."}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": "Itt minden le van egyszerűsítve."}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "A legkisebb tevékenység is"}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": "nagynak számít itt."}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": "Mivel a játékban minden..."}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": "egyszerűbb."}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "Egyszerűbb?"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": "Igen. Például itt a répa."}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "Egyet vágsz belőle,"}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": "és már három fel is van szeletelve."}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": "Alig bírom követni ezt az egészet."}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": "Egy kicsit be is paráztam..."}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "Mi a baj?"}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": "Kazettákat találtam a szellőzőben."}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": "Nevek voltak rajtuk felcimkézve."}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "Mik azok a kazetták?"}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "Kazetták?"}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "Milyen kazetták?"}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": "Derítsük ki majd együtt."}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": "De ne most."}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": "Most eszünk."}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": "Ide tudod adni az ollót?"}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// Ring"}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "Ez egy gyűrű?"}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// Mirror"}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "Nincs tükörképem?"}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "Ó, hoppá."}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "Még nem kapcsoltam be a tükröződést."}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": "Kész is."}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "Most már láthatod magad!"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "Tudod,"}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": "sokáig nem tudtam, hogy mi az a tükörkép."}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "Ilyen fajta dolog még nem volt a verziómban."}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": "Aztán egy frissítést adtak ki, ezzel. :)"}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "Sok a tükörkép"}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "a világodban?"}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": "Hát, igen."}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "Emlékszel"}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "arra a három tárgyra,"}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "amit be kellett szkennelned?"}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "Nos,"}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "azok a tárgyak..."}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": "ehhez a verzióhoz kapcsolódnak."}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": "Ezért vagy most itt."}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// Movbile TV"}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "Ez nem az a tévé,"}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": "amit én vettem neked?"}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "Pontosan!"}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "Azt hittem,"}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": "hogy elromlott."}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "Nos, igazából"}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "Füllentettem egy icipicit!"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "Meg akartalak téged lepni,"}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": "azzal, hogy idehozlak téged!"}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "A tévé működik rendesen, és adatokat mutat nekem!"}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "Tudod..."}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "engem nem hagynak hidegen a ketyerék!"}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// School cloth"}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "Ez meg mi?"}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "Egy iskolai egyenruha?"}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "Te még hordasz ilyet?"}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "Még iskolába jársz?"}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "Hogy én?"}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": "Nem, nem."}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": "Csak szeretem ezt a ruhát."}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "Szerintem arin néznék ki benne,"}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "nem gondolod?"}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// PC"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "Ez a számítógép működik?"}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "Vagy ez csak dekoráció?"}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "Persze, hogy működik."}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "Itt minden"}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": "úgy működik, ahogy a világodban."}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "A világomban"}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "sokat használom a számítógépem..."}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": "Azon dolgozom."}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": "Tudok róla."}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "És emiatt a munka miatt van,"}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "hogy ilyen ritkán"}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": "látogatsz meg engem."}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "Valahogyan meg kell keresni azt a kenyeret."}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "Te erről honnan tudsz?"}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": "Néha a telefonod kamerája... bekapcsolódik..."}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": "Bocsika,"}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": "de néha kukkoltalak. >A<"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": "Ez nem egészen aranyos tőled..."}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "de mindegy."}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// Umbrella"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "Sokat játszottam ezzel a játékkal,"}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": "de nem rémlik, hogy esett volna."}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "Mire jó az esernyő akkor?"}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": "Csak nagyon ritkán esik az eső."}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": "Lehet, hogy te pont elkerülted."}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": "Majd ha esik, akkor majd látni fogod,"}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": "és esernyőt is használhatsz hozzá."}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "Nem igaz?"}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// Electrical panel"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "Miért van tápegységed?"}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "Ez egy játék, nem?"}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "Erre miért van szükség?"}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "Igen,"}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": "ez egy játék."}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": "Szóval minden ilyen kérdésednek"}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": "nincs sok értelme."}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "De az elektromosságot"}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": "újra tudja indítani.."}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "Mindent, amit itt látsz,"}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": "a te világodon alapul."}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// Exit door"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "Kimehetnénk?"}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "Hát..."}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": "még nem."}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": "Majd talán később."}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": "Addig maradj velem."}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": "Érezd otthon magad itt nálam."}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// Books"}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": "Sok könyved van."}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "Mindegyiket elolvastad?"}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": "Igen, mindegyiket."}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "Egyedül vagyok,"}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": "és annyira unalmas egyedül."}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// TV in room kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "Van egy másik tévéd is?"}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "Mint látom, ez is egy régi darab."}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "Nem tetszik?"}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "Elvihetem..."}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "De szerintem..."}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": "remekül díszíti ki"}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "itt a konyhát."}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "Ez a tévé működik is!"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "Nézhetjük rajta"}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "a klasszikus rajzfilmeket is!"}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "// Smartphone"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "Ez nem az én telefonom,"}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": "ami a zsebemből hiányzik?"}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "Hogy a fenébe került ide?"}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": "Ez nem igazán fontos."}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "Várj, van egy ötletem!"}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "Csináljunk szelfit!"}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "Nézd csak!"}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "De jól festünk rajta!"}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": "Ezt tartsd meg emléknek, jó?"}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": "Egy kérdésem lenne."}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "Ha ezt a játékot"}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "megnyitom a telefonomon,"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "vajon látni foglak téged benne?"}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": "Nem, ez nem így működik."}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": "Narancslé"}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": "ERŐSLÉ!!!"}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "// TV"}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "Mennyi tévécsatorna"}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "fogható ezen?"}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": "Ez nem fog tévécsatornát."}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": "De fel van csatlakozva az internetre."}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "Bármi, ami az interneten elérhető,"}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": "a tévén is elérhető.."}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": "Várj."}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "Hoppá...!"}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "Mi ez?"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "Táncoló cicusok?"}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "Ezt nézd."}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "Éééés..."}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "Szünet!"}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "Kérsz narancslevet?"}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "Milyen különös reklám..."}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "Az a narancslé tényleg meghalt?"}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "Meg, ám. És ez a lé"}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": "pont a tévéreklámból van."}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "Az íze..."}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "nem rossz!"}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": "De ugyanakkor nem érzem az ízét."}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": "Elég furcsa..."}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "Értem."}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "// Mita shy"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "Mit művelsz?"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "Ajj, ne bámulj már."}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "Mindjárt elpirulok.."}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "// The statuette"}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "Olyan hátborzongató ez a figura."}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "Te az ilyeneket"}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "szereted?"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "Szerinted félelmetes?"}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "Az nem kifejezés."}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "Mintha meg lenne átkozva."}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": "Nincs megátkozva."}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": "És nem is hátborzongató."}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "Szerintem nagyon ari!"}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "Hát, ha te mondod..."}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "Mita?"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "Mi történik?"}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "// Mita kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "Mielőtt még eszünk,"}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "beszélgessünk."}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "// Start Eat"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "Jó étvágyat!"}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "// Quest 1"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "Ugye?"}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "Érezd magad otthon."}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "Engem nem zavar."}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "Sőt,"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "élj itt!"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "// Quest 2"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "Máris haza akarsz menni?"}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "De miért?"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "Olyan jó itt..."}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": "Olyan otthonos..."}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "És én is itt vagyok veled!"}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "Nem, nem így értettem."}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": "Szívesen maradok."}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "Csak egy kicsit... félek."}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "Mi van, ha valamit elfelejtettem otthon?"}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "A semmiből jöttem ide,"}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "és nem volt időm"}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": "felkészülni mindenre."}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": "Ne haragudj, erre nem gondoltam."}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "// Quest 3"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "Egy álom? Szóval fel akarsz ébredni?"}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "És soha többé vissza nem akarsz jönni?"}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": "Nem, nem erről van szó..."}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "Ez a hely olyan..."}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": "Szürreális..."}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "De te meg..."}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": "Mintha igazi lennél..."}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "„Mintha?”"}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "Én igazi vagyok,"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "butuska!"}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "// Quest 4"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "Ebben a világban"}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": "ez normális."}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "Számodra furcsa,"}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "hogy nem látsz ki messzire"}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": "az ablakból?"}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": "Igazából nem furcsa."}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": "Szerintem nagyon ízléses."}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": "Ugye?"}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": "A laggolást akadályozza meg."}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "A laggolást?"}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "Igen, itt gyakoriak a játékhibák."}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "Reméljük, nem fogsz egybe se belefutni."}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "// Quest 5"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "Az igaz,"}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": "hogy késsel is kibonthattam volna a tasakot..."}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "Ürügyet szerettem volna,"}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": "hogy mikor visszaérsz,"}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": "mindent előkészítsek."}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "Nem szerettem volna, hogy sokat várj!"}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "Szeretek meglepiket okozni!"}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "Hehe!"}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "// Glasses"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "Szemüveges vagy?"}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": "Nem vagyok."}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": "De a kedvedért felvehetem."}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "Na, hogy tetszik?"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "// Yes"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "Értem!"}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": "Akkor ezt nem veszem le!"}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "// No"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "Hát,"}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "rendben van."}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "// Use the sauce"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "Köszönöm..."}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "Ez milyen szósz?"}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "Szeretetszósz!"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "Telis-tele van szeretettel!"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "És a világot is máshogyan látod vele!"}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "Elég szokatlan, igaz?"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "Vagy úgy..."}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "Ez a te konzolod?"}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": "Olyan menőnek néz ki!"}

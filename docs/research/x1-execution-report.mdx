@@ -1,0 +1,214 @@
+# X-1 — Execution report: real-install `run_all` runs (MiSide)
+
+| | |
+|---|---|
+| Executor | X-1 executor subagents; this file covers **wave 3** (2026-08-25, host `Ne8k`) and preserves the wave 1–2 incident anchors below |
+| Client | buildId **19029065**, `VERSION 0.93L`, Unity 2021.3.35f1 IL2CPP (metadata v29), game root read-only throughout |
+| Wave 3 runs | **A** full run (`work\x1-run3.log`) · **B** documented resume `--from art-export --to census` (`work\x1-run4-resume.log`) |
+| Prior waves | Wave 1 baseline + wave 2 `--keep-going` (2026-08-24 22:16/22:20) stopped at S4 — incident [I-1](#incidents); remediated by [s4-crash-investigation.mdx](s4-crash-investigation.mdx) (cycle-guarded AssetStudioModCLI 0.19.0.1, landed in workroot 23:44) |
+| Round 3 runs | **X-3 final resume** (2026-08-25): S5 rerun + `--from decompile --to census` slice — see [Round 3](#round-3-2026-08-25-x-3-executor--final-resume-to-completion) below |
+| Round 4 runs | **X-4 F-CW9 regen** (2026-08-25): `references.json` rebuilt via the same slice — see [Round 4](#round-4-2026-08-25-x-4-executor--fcw9-referencesjson-regen) below |
+
+**Verdict: EXECUTION: STOPPED — decompile** (fatal tool-artifact defect, [I-4](#incidents)). Stages S1–S6 are green against real data; S7 cannot start from the spec'd artifact; S8 is unreachable until it is resolved.
+
+## Per-stage outcome (wave 3)
+
+Wall times from stage-report `duration_s` / report mtimes.
+
+| # | Stage | Outcome | Wall | Evidence vs AC |
+|---|---|---|---|---|
+| S1 | env | ok | 0.339 s | venv reused, `freeze_matched_before: true`, 13 pins, Python 3.14.7 |
+| S2 | detect | ok | 0.031 s | AC-6 byte-exact (below); I-2 fix verified live |
+| S3 | il2cpp-dump | ok | 3.98 s | AC-7 pass: 57 DummyDlls, headless, child cwd pinned to tool dir |
+| S4 | mono-typed-dump | ok | ~165 s | AC-8 pass on the fixed tool — see below |
+| S5 | loc-jsonl | work complete, **exit non-zero by design** | 1.269 s | AC-9 qualified pass; incident I-3 |
+| S6 | art-export | ok | 348.8 s | AC-10 pass with drift note; 12 GB under `art/` |
+| S7 | decompile | **FAILED at tool staging** | <5 s | deterministic; incident I-4; no stage report written for the abort |
+| S8 | census | not reached | — | depends on S7 outputs |
+
+Run A timeline 00:30:34→00:33:25 (S1–S5); run B 00:41→00:47:47 (S6–S7).
+
+## AC scoreboard
+
+- **AC-6 detect — PASS, byte-exact:** serialized **51 / 583,027,900 B**, streams **69 / 1,694,288,048 B**, grand total **2,277,315,948 B**, GameAssembly.dll 22,411,776 B, metadata v29, buildId 19029065, `VERSION 0.93L`, **34** locale dirs, Voice Editor tree present (106 Managed DLLs).
+- **AC-7 il2cpp-dump — PASS:** seconds-class, headless, 57 DummyDlls.
+- **AC-8 mono-typed-dump — PASS:** tool **0.19.0.1** (FileVersion-checked, stock refused); probe of `level1` now yields **1543 typed dumps** where 0.19.0.0 crashed ×3; sweep-budget gate honored before the level/sharedassets sweep; **51/51 containers succeeded**, 0 ledgered failures, **140,380 objects**, 51/51 asset-list XMLs (`asset_list_mechanism: cli-combined`); `census/sweep-budget.json` exists.
+- **AC-9 loc-jsonl — QUALIFIED PASS:** **34 locales**; EN `Achievements.jsonl` = **26 records**, index 25 = `Pro Gamer`; RU index 0 = `Кислое молоко.` (both spot-checks exact); skew ledger written (68 rows). Emitted **2,203 category JSONL / 179,651 records** against the ≥2,210 floor — the shortfall is exactly the 7 undecodable files ([I-3](#i-3--s5-exit-policy-deadlock-new)), residue-explained rather than silent.
+- **AC-10 art-export — PASS with drift note:** staged scope derived and recorded in EXTRACTION-LOG (`languages-art: export-webp`, `container-sprites-tex2d: export`, audio/video/GI/psd catalogue-in-place, custom+loose images copy-verbatim); families reconcile to the walk: audio 28,727 / 1,441,448,548 B (**E1 constant said 28,725 / 1,441,141,744 — +2 files / +306,804 B; walked number wins per spec §8; doc correction owed**), psd 26,384,140 B (=E1 exactly), GI 62 files / 5,988,963 B, per-locale art 777 exported; no destructive move (`destructive_move_performed: false`); no audio/video bytes under `extracted/`.
+- **AC-11 decompile — BLOCKED** (I-4). **AC-12 PROOF.md — BLOCKED** (no S7 outputs; not attempted).
+- **AC-13 EXTRACTION-LOG pins — PARTIAL:** pins block carries buildId/versionLabel/**unity 2021.3.35f1 (I-2 fix confirmed in the block)**/metadata v29/Il2CppDumper 6.7.46/ilspycmd pin + 13-line pip freeze + config delta, plus ten human event sections through `art-run`. Two lags: the block still reads AssetStudioModCLI **0.19.0.0** although the stage report records 0.19.0.1 runtime FileVersion (the intended self-heal did not rewrite the log), and ilspycmd remains `verified: false`.
+- **AC-14 held:** free-space guards fired (D: ≈313 GB vs 10 GB bar); an mtime scan of the game root found **zero files modified since 2026-08-24 22:00** — the install stayed read-only across all four runs.
+
+## Incidents
+
+### I-1 (waves 1–2, historical anchor)
+
+S4 measure-first probe of `level1` died ×2 with `0xC00000FD` in Cecil type-tree recursion; prescribed `--keep-going` fallback applied once, identical failure (the probe path bypassed the flag). Root-caused and fixed by [s4-crash-investigation.mdx](s4-crash-investigation.mdx) — self-referential `ConsoleEditor_HierarchyCase`, cycle-guarded local rebuild **0.19.0.1** from upstream `6b66ec7`. Wave 3 proves the fix inside the real pipeline (51/51 green).
+
+### I-2 (wave 1 finding — closed this wave)
+
+`detect` read the Unity string as empty (wrong header offset). The offset-48 fix landed before wave 3; this wave's run reported `2021.3.35f1` and the pins block carries it. Closed.
+
+### I-3 — S5 exit-policy deadlock (new)
+
+Seven category files — **all one category, `LocationDialogue Location12`, in seven locales** (Croatian, English, Filipino, Indonesia, Serbian Latin, Slovak, Vietnamese) — are legacy single-byte encoded mid-file (CP1250 `9a`=š / `f2`=ô visible in the hex evidence) inside otherwise-UTF-8 trees. Spec §2 S5 semantics: parse continues, raw bytes hex-ledgered into `loc-jsonl.json`, **stage exits non-zero at stage end if anything was ledgered**. Under AC-3 that halts every full run before S6 — so a full `run_all` can never complete while those files ship in the client, even though the loc layer itself finished cleanly (2,203/2,210 emitted, shortfall fully explained by the ledger).
+
+Executor handling: no §7 row covers S5, and `--keep-going` is S4/S7-only. The documented resume slice `--from art-export --to census` was used once (run B) as the fallback-shaped action — entrypoint-sanctioned, idempotent stages, no code touched. That decision needs a ruling (escalation 2).
+
+### I-4 (FATAL) — S7 decompile: pinned zip contains no `ilspycmd.exe`
+
+`decompile` unzips the spec-pinned `tools\ILSpy\release\ILSpy_windows_selfcontained_11.0.0.9335-rc-x64.zip` (superproject tree) into `<workroot>\tools\ILSpy\` and then rglobs for `ilspycmd.exe`. The zip's 287 entries contain only the **GUI**: `ILSpy.exe` + `createdump.exe`. No CLI binary exists inside it, so the failure is deterministic — re-running cannot help. This is exactly the risk §7 flagged ("decompiler step never exercised … exact form [unverified]"): the EXTRACTION-LOG pin recorded `"verified": false` and was never proven against the artifact.
+
+Host reality check: a global dotnet-tool `ilspycmd` exists at `C:\Users\lineg\.dotnet\tools\ilspycmd.exe` but is version **8.2.0.7535** ≠ pin **11.0.0.9335-rc**. Substituting it would silently break the pin, and installing a different acquisition path is a toolchain/spec change — out of executor scope per brief ("never modify code/tests… report it"). §7 prescribes no runtime fallback → **STOPPED after S7's single failure**. Minor observability gap: the abort wrote no `stage-reports/decompile.json`.
+
+## Findings (non-blocking)
+
+- **F4 — log-pin lag:** pins block says AssetStudioModCLI 0.19.0.0 while the stage ran 0.19.0.1 (report + warnings record the mismatch); the intended `update_defaults` self-heal didn't rewrite the block. Housekeeping commit owed alongside escalation 1.
+- **F5 — audio constants drifted:** walked 28,727 files / 1,441,448,548 B vs E1-pinned 28,725 / 1,441,141,744 (+2 / +306,804 B). Walked number wins (spec §8); toolchain/spec/doc correction owed.
+- **F6 — media-catalogue aggregation:** `media-catalogue.jsonl` family rows are per-directory aggregates that nest, so naive row-summing double-counts (audio sums to 2× the true total). Authoritative totals live in `stage-reports/art-export.json`. Worth a note in the future consumer contract.
+
+## Residue (state at stop)
+
+`extracted/` holds: complete S1–S6 outputs — `il2cpp/` (57 DummyDlls), `harvest/mb-dump/<51 containers>` (140,380 txt) + `harvest/asset-list/*.xml` (51), `localization/` (34 locales, 2,204 JSONL incl. `_ledger/locale-delta.jsonl`), `art/` (12 GB), `MEDIA-CATALOGUE.md` + `media-catalogue.jsonl`, full census set (`detect.json`, `sweep-budget.json`, `sweep-attempts.jsonl` 51 rows, six stage reports). Missing: `decompiled/**`, `_structure/**`, `PROOF.md` — all gated behind I-4. Workroot retains `x1-run{,2-keepgoing,3,4-resume}.log`. Nothing was written to the game root.
+
+## Escalations (orchestrator/owner — none executed)
+
+1. **Unblock S7/S8 (I-4):** acquire a real `ilspycmd` 11.0.0.9335-rc dotnet-tool artifact (or rule otherwise), land it in `workroot\tools\ILSpy\` or fix the stage's staging path, sync the F4 pin lag, then `./run_all <root> --from decompile --to census` completes P1.
+2. **Rule on I-3:** either a flag/warning downgrade for ledgered-but-complete loc anomalies, or bless the `--from art-export` resume as the standard flow when S5 exits non-zero with `ok-with-ledgered-anomalies`.
+3. Fold F5/F6 corrections into the same docs commit.
+
+EXECUTION: STOPPED — decompile (pinned ILSpy zip contains no ilspycmd.exe; deterministic tool-artifact defect; host global ilspycmd 8.2.0.7535 ≠ pin 11.0.0.9335-rc; no §7 fallback exists)
+
+## Round 3 (2026-08-25, X-3 executor — final resume to completion)
+
+Runs against the real install at `A:\SteamLibrary\steamapps\common\MiSide\`
+(buildId 19029065 unchanged), workroot `D:\unpacked_game_data\MiSide\work\`,
+POSIX shim only, logs `work\x1-run5-s5.log` + `work\x1-run6-decompile-census.log`.
+Both s6-arbiter rulings were in code before launch ([f-cw67-vA](verifications/f-cw67-vA.mdx)
+PASS): S5 option-b strict codec policy, S7 nuget `ilspycmd` 11.0.0.9335-rc with
+`DOTNET_ROOT` injected in-code. Binding order followed: **S5 alone →
+`--from decompile --to census`**. No §7 fallback was ever needed.
+
+### Per-stage outcome (Round 3)
+
+| Stage | Outcome | Wall | Evidence |
+|---|---|---|---|
+| S5 rerun (`--stage loc-jsonl`) | ok, **exit 0** | 1.746 s | `emitted == walked == 2,210`, records **180,148**, anomalies **0** — the wave-3 exit-policy deadlock (I-3) is gone |
+| S7 decompile | ok, exit 0 | 131.756 s | 163/163 assemblies (57 main DummyDlls + **106** Voice Editor Managed), **0 failed**, no `--keep-going`; ilspycmd measured `11.0.0.9335` from `work\tools\ILSpy\ilspycmd.exe` with `DOTNET_ROOT=<workroot>\it1-dotnet10` injected by the stage itself (zero caller env) |
+| S8 census | ok, exit 0 | 2.339 s | all reconciliations exact; `PROOF.md` written |
+
+Slice wall ≈2.5 min — the feared "tens of minutes" long pole never materialized.
+Trees: `decompiled/main` 4,721 .cs + `decompiled/voice-editor` 15,434 .cs
+(20,155 files, ~71.4 MB); `_structure/` = `types.json` (6,155 catalog types),
+`hierarchy.json` (4,597 nodes; 2,392 with bases, 440 with derived),
+`references.json`, README.
+
+### AC scoreboard (AC-1…16)
+
+| AC | Verdict | Basis |
+|---|---|---|
+| AC-1 / AC-2 CLI surface | PASS (carried) | wave-3 runs + f-cw67 smoke (`--list` exit 0, 8 stages); not re-run this round |
+| AC-3 full-run semantics | PASS (carried) + **I-3 clause closed** | fail-fast naming carried from wave 3; S5's forced non-zero exit is gone, so a full run can no longer be halted by ledgered loc files |
+| AC-4 / AC-5 idempotency | PASS (carried + fresh signal) | 68-pass suite; this round's identical-payload S5 rerun deduped its `loc-run` log event live (no new line) and rewrote ledgers byte-stable |
+| AC-6 detect byte-exact | PASS (carried) | wave-3 totals unchanged; buildId still 19029065 |
+| AC-7 il2cpp-dump | PASS (carried) | 57 DummyDlls on disk consumed by S7 this round |
+| AC-8 mono-typed-dump | PASS (carried) | 51/51 sweep, 140,380 objects; consumed by S8 reconciliation this round |
+| AC-9 loc-jsonl | **PASS (fresh)** | 34 locales; mechanical invariant `emitted(2210) == walked(2210)` asserted in-code; EN `Achievements.jsonl` 26 records, index 25 = `Pro Gamer`; RU index 0 = `Кислое молоко.`; both halves of the skew ledger present; the 27 phantom `extra_vs_reference` rows are gone (EN reference set derives post-policy) — remaining extras are genuine skew (VoiceOver family ×7 locales, French Location 5/15–18/20 set, Hungarian `badwords`, zh-Hant `Font 2`) |
+| AC-10 art-export | PASS (carried; F5 drift stands) | census re-walk reconciles: ogg **28,727 / 1,441,448,548 B** (walked wins per spec §8 over E1's 28,725 / 1,441,141,744), psd **3 / 26,384,140 B** exact, GI **62 / 5,988,963 B** exact, custom 17 / 11,186,378 B, per-locale art 777 png + 3 psd |
+| AC-11 decompile | **PASS (fresh)** | all 57 main + 106 VE trees emitted, 0 failed attempts; `GlobalLanguage.GetString(string _name, int _string)` signature intact at `decompiled/main/Assembly-CSharp-firstpass/GlobalLanguage.cs:14`; bodies caveat recorded in the stage report |
+| AC-12 PROOF.md | **PASS (fresh)** | four Principle-two sections, method-per-number everywhere, Voice Editor P7 row (118 files / 37,918,664 B, extension mix), protocol placeholder explicitly seeded |
+| AC-13 pins | **PASS (fresh)** — both wave-3 lags healed | S7's `update_defaults` rewrote the ilspycmd entry live: version `11.0.0.9335`, artifact `ilspycmd.11.0.0.9335-rc.nupkg`, channel `nuget.org dotnet-tool`, package sha256 = errata hash, canonical `toolDir: ILSpy`, runtime `DOTNET_ROOT=<workroot>\it1-dotnet10 injected by the stage`, **verified: true**; AssetStudioModCLI **0.19.0.1** stands |
+| AC-14 read-only install | **PASS (fresh)** | mtime scan of the whole game root: **zero files touched since 2026-08-25 00:00** (newest install mtime 2026-08-24 17:33:06); free-space guard re-fired pre-batch as designed |
+| AC-15 git hygiene | green by configuration | `.gitignore` guards exactly the ruled local-only subtrees (`harvest/`, `decompiled/`, `art/`, `media/`, `il2cpp/`); `PROOF.md`/census/localization committable — the commit act itself is out of executor scope (X-3 runs no git writes) |
+| AC-16 shim equivalence | PASS (carried) | every Round 3 invocation went through the POSIX shim; cmd-shim equivalence from the test suite |
+
+No AC is red this round; nothing install-gated remains.
+
+### Census totals vs AC-10/AC-12
+
+PROOF.md §1 source inventory (all derived from own walks): containers
+51 / 583,027,900 B + streams 69 / 1,694,288,048 B = grand total
+120 files / **2,277,315,948 B**; loc tree 3,002 files (2,210 txt / 777 png +
+3 psd) / 371,861,650 B; audio 28,727 / 1,441,448,548 B catalogued in place;
+video absent (0/0); GI 62 / 5,988,963 B; Data\Custom 17 / 11,186,378 B;
+Voice Editor 118 / 37,918,664 B. §2 reconciliations all ✔: 51 attempted =
+51 succeeded, bytes exact to the S2 census, loc parsed 2,210 + anomalous 0 =
+walked 2,210.
+
+### EXTRACTION-LOG pin state
+
+Pins block now carries every required pin with zero lags: buildId 19029065 ·
+VERSION 0.93L · Unity 2021.3.35f1 · metadata v29 · Il2CppDumper 6.7.46 ·
+AssetStudioModCLI **0.19.0.1** (F4 healed) · ilspycmd **nuget dotnet-tool
+11.0.0.9335-rc channel with nupkg sha256, toolDir `ILSpy`, DOTNET_ROOT runtime
+pin, verified: true** (wave-3's GUI-zip artifact name is gone) · 13-line pip
+freeze · `RequireAnyKey:false`. Run events appended this round:
+`loc-run` (dedupe-stable) + `decompile-run` (163 assemblies / 0 failed /
+6,155 structure types).
+
+### Residue summary (incl. encoding marks)
+
+- **I-3 legacy encoding (new, closed as residue):** 7 files — all
+  `LocationDialogue Location12`, one per locale — recovered-or-marked under
+  the strict declared-codec policy: **Slovak 62 segments + Serbian (Latin) 13
+  segments round-trip-decoded losslessly under cp1250** (75 recovered; SK line
+  58 reads `0.8A a 8Ě54*.` with the Ě exactly where Czech/Hungarian ship that
+  glyph); **5 single-stray-byte files (Croatian, English, Filipino, Indonesia,
+  Vietnamese) carry one declared U+FFFD each** at line 58 (the corpus cannot
+  justify a decoded glyph for the fleet-corrupted `0xCC`). All seven files sit
+  on the 71-line category norm — no structural divergence, no post-recovery
+  control characters. Per-segment offset/hex/action rows:
+  `localization/_ledger/encoding-residue.jsonl` (7 rows); the same summary is
+  seeded into PROOF.md §3 as `[I-3]`.
+- Standing residue seeds carried into PROOF.md §3: levelN dump depth [R-E1-1],
+  achievement unlock-state ambiguity [R-E1-2], locale category/texture skew
+  [R-E1-3], GI level3-only [R-E1-4], cyclic typetree tails [I-S4].
+
+### Findings (non-blocking, new)
+
+- **F7 — `_structure/references.json` is degenerate:** every edge list is
+  empty. `parse_dump_cs` closes each type body immediately because dump.cs
+  declaration lines carry no `{` (the brace lands on the following line), so
+  intra-body reference collection never scans body lines. Hierarchy and the
+  type catalog are unaffected (they parse from declaration lines). Consumer
+  contract should treat references.json as placeholder until the parser fix.
+- **F8 — `entrypointCommit` pin lag (F4-class):** the pins block still reads
+  seed-time `26e6add` while the driver is at c1eda22; `detect` seeds the key
+  only when absent. Fold a refresh into the next docs/pins commit.
+- Anchor-probe nuance (recorded, no action): the stage report warns
+  `GlobalLanguage.GetString` is "absent" because IL2CPP stub trees carry
+  signatures without call sites, so the contiguous string can never appear;
+  the probe's other four anchors hit. Signature verified directly (AC-11 row).
+
+EXECUTION: COMPLETE — all stages green
+
+## Round 4 (2026-08-25, X-4 executor — F-CW9 references.json regen)
+
+Closes finding F7: the F-CW9 parser fix ([commit 22dc05f](../../../pipeline/stages/decompile.py),
+`decl_opened` opener gate) was proven correct but the shipped
+`_structure/references.json` still held the degenerate pre-fix data. One run
+against buildId 19029065 (unchanged), workroot default, POSIX shim, log
+`work/x1-run7-x4-regen.log`: **`./run_all <game-root> --from decompile --to census`**
+— the CLI's narrowest structure-graph form (`--stage decompile` is equivalent;
+no structure-only mode exists; S7 rebuilds `_structure/` after its idempotent
+batch re-run). Slice wall **2m17.9 s** (`decompile` stage 135.529 s +
+`census` 2.247 s per stage reports).
+
+| Check | Result |
+|---|---|
+| references.json | **nonempty edges 2,738 / 4,597 nodes · total refs 8,272** — exact match to the F-CW9 proof targets (pre-regen state measured 0 / 0 on the same node count) |
+| hierarchy.json | byte-identical to pre-regen (sha256 `98440def…`) |
+| types.json | byte-identical to pre-regen (sha256 `1bfdf351…`; 6,155 catalog types) |
+| EXTRACTION-LOG pins | whole file **byte-identical** (`aa19b0f1…`) — pins block untouched and the `decompile-run` event deduped away (payload signature identical to Round 3) |
+| census/PROOF consistency | rerun in-slice: all reconciliations ✔ (containers 51 attempted = 51 succeeded, bytes 583,027,900 exact, loc parsed 2,210 + anomalous 0 = walked 2,210); PROOF.md regenerated **byte-identical** (`28fddcba…`) |
+| S7 batch health | 163 assemblies attempted / 0 failed / no `--keep-going`; ilspycmd 11.0.0.9335; structure_types 6,155 |
+| install read-only | newest mtime under the Voice Editor tree (the only game-root path S7 reads) still 2026-08-24 17:33 |
+
+Notes: `_structure/README.md` also changed — F-CW9 itself rewords that
+template ("intra-signature type references" → "intra-block type reference
+edges"), so the new wording ships with this regen by design, not drift. Edge
+spot-checks read as genuine intra-block field-type references
+(`DialogueChanger → Location21_IconQuest`, `MitaEvent →
+Animator_FunctionsOverride/TimePointInt`); top out-degrees 26–28.
+
+REGEN: COMPLETE

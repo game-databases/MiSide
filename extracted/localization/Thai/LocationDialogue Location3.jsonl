@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "สวัสดี [player]!"}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "ในที่สุดเราก็ได้เจอกัน!"}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "ฉันตื่นเต้นจังเลย!"}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "ฉันรู้ว่าคุณคงมีคำถามเต็มไปหมด..."}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "ก็... อย่างที่คุณเห็น"}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "ฉันสร้างอุปกรณ์สุดวิเศษนี้ขึ้นมา"}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": "เพื่อพาคุณมาที่นี่"}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "แต่ไม่รู้ทำไม คุณถึงดันไปโผล่ในเวอร์ชันอื่น"}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "ฉันก็เลย..."}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "แต่เรื่องมันยาวน่ะ!"}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "ยังไงก็ตาม ฉันดีใจที่ได้เจอคุณนะ!"}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": "ใช่แล้ว"}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "ส่วนคุณก็คือ [player] ใช่ไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "คุณอยากกลับแล้วเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "ฉันพาคุณกลับได้นะ แต่... แล้วฉันล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "อยู่ต่ออีกนิดไม่ได้เหรอ..."}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "งั้นเดี๋ยวฉันจะอธิบายให้ฟังนะ..."}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "แล้วคุณก็มาโผล่นี่!"}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "เข้าใจไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": "เอ่อ... ไม่เลย"}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "งั้นไม่เป็นไร!"}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": "ที่สำคัญคือ ตอนนี้เราอยู่ด้วยกันแล้ว!"}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "คุณหิวหรือยัง?"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "เรามาทำอาหารด้วยกันไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "นี่"}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "คุณช่วยหั่นแครอทให้หน่อยนะ"}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "ผักพวกนี้มาจากไหนกัน?"}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": "เมื่อกี้ยังไม่มีเลย"}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": "[player] เราอยู่ในเกมนะ"}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": "เร็วเข้า ช่วยฉันหน่อยนะ"}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "ขอบคุณนะ!"}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "ช่วยไปหยิบกรรไกรให้ฉันหน่อยได้ไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": "มันอยู่ในห้องน้ำน่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": "นั่งก่อนสิ"}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "คุณอยากได้ซอสไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": "ไม่ล่ะ ขอบคุณ"}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": "น่าเสียดายจัง..."}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "มันทำให้อาหารมีรสชาติมากขึ้นนะ"}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "อร่อยมากเลย"}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "คุณกินหมดแล้วเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "ส่วนจานฉันเนี่ย"}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "กินเท่าไหร่ก็ไม่หมดสักที..."}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "เกิดอะไรขึ้น?"}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": "บอกฉันหน่อยว่าตอนนี้คุณรู้สึกยังไง"}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "หัวใจฉันรู้สึกเจ็บแปล๊บ ๆ"}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "ตาฉันมันเบลอไปหมดเลย"}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "เข้าใจแล้ว"}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": "ฉันรู้แล้วว่าคุณเป็นอะไร"}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "ยืนไหวไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "มันคืออะไร?"}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": "ยาน่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": "มันจะช่วยให้คุณรู้สึกดีขึ้น"}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": "มายืนตรงหน้ากระจกนะ"}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": "กินเลย"}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": "ฉันจะอยู่ข้าง ๆ เอง"}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "รู้สึกยังไงบ้าง?"}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "ดีขึ้นไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "ดีขึ้น"}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "ทำไมมันออกฤทธิ์เร็วจัง..."}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": "ก็เราอยู่ในเกมไง [player] "}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": "อะไรก็เรียบง่ายไปหมดที่นี่"}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "แค่ทำอะไรนิดเดียว"}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": "ก็จะได้ผลลัพธ์ที่เกินคาด"}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": "เกมก็เป็นแบบนี้แหละ"}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": "ทำให้ทุกอย่างเป็นเรื่องง่าย"}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "อธิบายเพิ่มหน่อยสิ?"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": "ก็อย่างเช่นแครอท"}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "คุณหั่นแค่หัวเดียว"}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": "แต่กลับได้มาสามหัวเลย"}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": "นี่มันเกิดขึ้นเร็วมาก"}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": "ฉันว่าฉันเริ่มจะกลัว ๆ หน่อยแล้วล่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "มีอะไรหรือเปล่า?"}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": "ฉันเจอตลับในช่องระบายอากาศ"}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": "พวกมันมีชื่อเขียนไว้ด้วย"}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "มันคืออะไรเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "ตลับ?"}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "ตลับอะไรเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": "งั้นเดี๋ยวเราไปดูด้วยกัน"}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": "แต่ต้องหลังจาก"}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": "กินข้าวเสร็จนะ"}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": "แล้ว... ได้หยิบกรรไกรมาให้ฉันด้วยไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// Ring"}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "แหวนเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// Mirror"}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "ทำไมกระจกถึงไม่มีภาพสะท้อนล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "โอ้ จริงด้วย"}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "ฉันลืมเปิดภาพสะท้อนน่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": "เป็นไง"}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "ภาพสะท้อนกลับมาแล้ว!"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "จะว่าไงดี..."}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": "ก่อนหน้านี้ฉันไม่รู้ด้วยซ้ำว่าภาพสะท้อนคืออะไร"}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "มันไม่มีในโลกของฉัน"}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": "จนกระทั่งมีการอัปเดตหนึ่ง :)"}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "แล้วโลกของคุณล่ะ..."}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "มีภาพสะท้อนเยอะไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": "ก็เยอะอยู่นะ"}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "คุณจำได้ไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "ที่คุณเอาของสามอย่าง"}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "มาวางบนเครื่องสแกนนี้น่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "ก็ คือ..."}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "สามอย่างนั้น"}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": "มันเชื่อมต่อกับโลกเวอร์ชันนี้"}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": "แล้วคุณก็เลยได้มาอยู่ที่นี่"}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// Movbile TV"}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "นั่นคือทีวี"}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": "ที่ฉันซื้อไม่ใช่เหรอ"}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "ใช่แล้ว!"}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "ไหนเธอบอกว่า"}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": "มันพังแล้วไง"}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "เอ่อ... คือฉันอยากจะ"}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "เซอร์ไพรส์คุณไง!"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "ก็เลยต้องโกหกนิดหน่อย"}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": "ทั้งหมดเพื่อที่จะพาคุณมาที่นี่"}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "แล้วมันก็ได้ผล อย่างที่เห็น!"}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "โอ้ จะว่าไปแล้ว..."}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "ฉันก็เป็นวิศวกรด้วยนะ!"}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// School cloth"}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "นี่อะไร?"}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "ชุดนักเรียนเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "ทำไมต้องมีชุดนี้ด้วยล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "เธอไปโรงเรียนด้วยเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "ไปโรงเรียนเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": "ไม่ ฉันไม่ได้ไป"}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": "แต่ฉันชอบชุดนั้นนะ"}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "คุณไม่คิดว่าฉันน่ารักเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "ถ้าใส่ชุดนั้นน่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// PC"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "คอมนี่ใช้งานได้ไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "หรือเป็นแค่ของตกแต่งเฉย ๆ?"}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "ใช้ได้สิ"}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "ทุกอย่างที่นี่"}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": "ใช้ได้เหมือนที่โลกของคุณเลย"}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "ในโลกของฉัน"}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "ฉันมักจะนั่งอยู่หน้าคอม..."}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": "แล้วก็ทำงานอย่างหนัก"}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": "ฉันรู้"}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "ก็เพราะงานของคุณ"}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "คุณเลยไม่ค่อยได้มา..."}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": "สนใจฉันสักเท่าไหร่"}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "ฉันก็ต้องทำงานหาเงินน่ะสิ"}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "เดี๋ยวนะ… เธอรู้เรื่องนั่นได้ยังไง?"}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": "กล้องโทรศัพท์คุณ... มันเปิดเองบางครั้ง"}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": "ขอโทษนะ"}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": "ที่ฉันแอบดูคุณน่ะ >A<"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": "เอ่อ... นั่นมันไม่ดีเลยนะ"}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "แต่ช่างเถอะ"}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// Umbrella"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "ฉันก็เล่นมานานนะ"}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": "แต่ไม่เคยเห็นฝนตกที่นี่เลย"}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "แล้วทำไมถึงต้องมีร่มด้วยล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": "ก็มีฝนตกนะ—แค่ไม่ตกไม่บ่อย"}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": "คุณแค่ยังไม่เคยเจอ"}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": "บางทีวันหนึ่งคุณอาจจะเห็นก็ได้นะ"}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": "แล้วตอนนั้น คุณอาจจะต้องใช้ร่มนี่"}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "คุณคิดว่าไง?"}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// Electrical panel"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "ทำไมถึงมีแผงไฟฟ้าอยู่ที่นี่ล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "ถ้าเราอยู่ในเกม"}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "มันเอาใช้ทำอะไร?"}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "ก่อนอื่นเลยนะ"}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": "เราก็อยู่ในเกมแล้ว"}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": "แต่ถ้าถามว่า 'ทำไม'..."}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": "ฉันก็ไม่รู้เหมือนกัน"}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "แต่มันก็ทำให้"}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": "ไฟฟ้ากลับมาได้นะ"}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "ทุกอย่างที่นี่ถูกสร้างขึ้นมา"}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": "ตามโลกของคุณ"}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// Exit door"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "เราออกไปข้างนอกได้ไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "ไม่..."}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": "ยังไม่ได้"}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": "เดี๋ยวฉันบอกทีหลัง"}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": "เราอยู่ที่นี่ก่อนดีกว่า"}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": "ที่บ้านของเรา :)"}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// Books"}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": "เธอมีหนังสือเยอะจัง"}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "เธออ่านหมดแล้วเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": "อ่านหมดแล้ว ทุกเล่มเลย"}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "การอยู่ที่นี่คนเดียว"}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": "มันน่าเบื่อมาก ๆ แบบมาก ๆ เลย"}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// TV in room kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "ทำไมต้องมีทีวีเครื่องที่สองล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "แถมยังเป็นเครื่องเก่าอีก?"}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "ไม่ชอบเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "ฉันเอาออกได้นะ"}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "หรือไม่ก็..."}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": "ปล่อยมันไว้"}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "เป็นแค่ของตกแต่งในห้องครัว"}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "แต่มันก็ยังใช้ได้อยู่นะ!"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "ฉันสามารถดู"}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "รายการเก่า ๆ ได้!"}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "// Smartphone"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "โทรศัพท์ฉันนี่"}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": "มันหายไปจากกระเป๋าของฉัน"}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "มันมาอยู่นี่ได้ไง?"}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": "อืม มันไม่สำคัญหรอก"}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "นี่ ฉันนึกอะไรดี ๆ ได้ล่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "มาถ่ายรูปกัน!"}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "อย่างปัง!"}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "เป็นรูปที่เยี่ยมมากเลย!"}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": "เป็นที่ระลึกสำหรับคุณ"}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": "ฉันมีคำถาม"}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "ถ้าฉัน"}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "เล่นเกมในนั้น"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "ฉันจะเห็นเธอไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": "ไม่ คุณจะไม่เห็นฉันในนั้นหรอก"}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": "น้ำผลไม้สุดอร่อย!"}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": "เข้มข้นถึงใจ!!!"}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "// TV"}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "เธอรู้ไหมว่า..."}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "มันมีทั้งหมดกี่ช่อง?"}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": "มันไม่ได้ใช้เสาอากาศหรอก"}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": "มันใช้อินเทอร์เน็ตน่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "คุณสามารถดูได้ทุกอย่าง"}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": "ที่มีบนเว็บอะนะ"}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": "เดี๋ยวก่อน"}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "โอ๊ะ!"}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "อะไรน่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "วงแหวนน้อนแมวเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "โอ้ ดูสิ"}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "คอยดูนะ"}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "ตอนนี้แหละ!"}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "น้ำผลไม้หน่อยไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "โฆษณามันแปลก ๆ..."}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "น้ำผลไม้ตายเนี่ยนะ?"}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "ใช่แล้ว และนี่ก็คือน้ำผลไม้..."}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": "จากโฆษณานั่นยังไงล่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "อืม... รสชาตินี้..."}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "ฉันชอบนะ"}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": "แต่ก็เหมือนไม่รู้ว่าเป็นรสชาติอะไร"}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": "งง ๆ ยังไงก็ไม่รู้"}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "ใช่"}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "// Mita shy"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "คุณทำอะไรเนี่ย?"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "อย่าจ้องกันแบบนั้นสิ"}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "คุณทำให้ฉันเขินหมดแล้วเนี่ย"}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "// The statuette"}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "ตุ๊กตานั่นดูน่าขนลุกยังไงก็ไม่รู้"}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "เธอ..."}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "ชอบอะไรแบบนี้เหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "คุณคิดว่ามันน่ากลัวเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "ใช่"}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "มันดูเหมือนต้องสาปอะไรสักอย่าง..."}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": "ไม่ มันไม่ต้องโดนสาปแน่นอน"}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": "และก็ไม่น่ากลัวด้วย"}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "เธอน่ารักจะตาย"}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "บางทีเธออาจพูดถูก..."}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "มิตะ?"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "มันเกิดอะไรขึ้น?"}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "// Mita kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "เรามาคุยกันก่อน"}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "กินข้าวดีกว่าไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "// Start Eat"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "ทานให้อร่อย!"}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "// Quest 1"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "ใช่ไหมล่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "คุณอยู่ที่นี่ได้เลยนะ"}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "ฉันไม่ว่าอะไรหรอก"}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "แล้วก็"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "ทำตัวตามสบายได้เลยนะ!"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "// Quest 2"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "อยากกลับแล้วเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "ทำไมล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "ที่นี่มันไม่ดีเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": "ฉันว่าอบอุ่นดีจะตาย"}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "แถมยังมีฉันอยู่ด้วย"}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "อย่าเพิ่งเข้าใจผิดสิ"}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": "ฉันอยากอยู่ที่นี่นะ"}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "ฉันแค่... กังวล"}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "กังวลว่า ฉันจะลืมอะไรไว้ที่บ้าน..."}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "ฉันมาที่นี่กะทันหันเกินไป"}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "ไม่มีเวลา..."}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": "ได้เตรียมตัวอะไรเลย"}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": "โอ้... ขอโทษนะ ฉันไม่คิดให้รอบคอบเอง"}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "// Quest 3"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "ฝัน? คุณอยากจะหนีเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "และลืมทุกอย่างที่นี่ไปเนี่ยนะ?"}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": "ไม่ใช่"}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "ฉันแค่รู้สึกว่า..."}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": "มันแปลก ๆ ไม่ค่อยเป็นธรรมชาติเท่าไหร่"}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "แต่เธอ..."}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": "เธอดูเหมือนจริงมากเลย"}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "เหมือนจริงเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "ก็ฉันคือของจริงไง!"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "ตาบื้อเอ้ย!!"}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "// Quest 4"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "มันเป็นปกติ"}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": "ของโลกนี้น่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "คุณอาจจะคิดว่ามันแปลก ๆ"}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "ที่มองไม่เห็นของที่อยู่"}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": "ในระยะไกล ๆ"}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": "ก็ไม่ได้รู้สึกแปลกขนาดนั้นหรอก"}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": "ถ้าพูดตามตรงก็ มันดูมีระดับดีนะ"}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": "ใช่ไหมล่ะ?!"}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": "เพื่อหลีกเลี่ยงอาการแลคน่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "อาการแลคเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "ใช่ ยังมีบั๊กที่ยังไม่แก้อยู่ด้วย"}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "ฉันหวังว่าคุณ จะไม่เจอมันนะ"}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "// Quest 5"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "ทำไมต้องใช้งั้นเหรอ...? เอ่อ..."}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": "ฉันใช้มีดเปิดซอสได้นะ"}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "แต่ฉันอยากเตรียมทุกอย่าง"}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": "ไว้ให้พร้อม"}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": "ก่อนที่คุณจะกลับมา"}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "เพื่อเซอร์ไพรส์คุณไงล่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "แถมไม่ต้องเตรียมอะไรเยอะด้วย"}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "อิ ๆ"}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "// Glasses"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "เธอใส่แว่นด้วยเหรอ?"}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": "ไม่เลย"}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": "แต่ฉันใส่มันได้นะ ถ้าคุณอยากให้ใส่?"}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "เป็นไงน่ารักไหม"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "// Yes"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "จริงเหรอ?!"}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": "งั้นฉันจะใส่มันตลอดเลย!"}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "// No"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "เอ่อ..."}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "โอเค..."}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "// Use the sauce"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "เอาล่ะ"}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "มันจะเป็นซอสแบบไหนกันนะ?"}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "มันคือซอสแห่งความรัก!"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "ที่เต็มไปด้วยรสชาติของความรัก"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "แล้วโลกทั้งใบของคุณก็จะเปลี่ยนไป"}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "ฟังดูแปลกดีใช่ไหมล่ะ?"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "ก็จริง..."}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "นั่นคือคอนโซลของเธอใช่ไหม?"}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": "ดูเจ๋งมากเลย!"}

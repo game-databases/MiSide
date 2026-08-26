@@ -1,0 +1,401 @@
+# DS-4 — Dataset spec: Cartridges & mini-games
+
+Status: **SPEC (curation contract)** — authored 2026-08-25 by brief DS-4 from
+the orchestrator; not yet built. Emission is a future `run_all` stage over the
+P1 corpus, which is already on disk and proven
+([PROOF.md](../../../extracted/PROOF.md)). Sibling specs:
+[DS-1 characters](dataset-characters.mdx) ·
+[DS-2 achievements/endings](dataset-achievements-endings.mdx) ·
+[DS-3 dialogue](dataset-dialogue.mdx).
+
+Citation shorthands: **SPEC** = [spec.md](../../spec.md) · **D1** =
+[game-research.mdx](../research/game-research.mdx) · **PIPE** =
+[pipeline-run_all.mdx](pipeline-run_all.mdx) · **DS-1** =
+[dataset-characters.mdx](dataset-characters.mdx) · **DS1-CONTRACT** =
+[../../contracts/dataset-characters.mdx](../../contracts/dataset-characters.mdx)
+· **DOCTRINE** =
+[../../\_foundation/extraction-doctrine.md](../../_foundation/extraction-doctrine.md).
+Corpus paths are repo-relative under `extracted/`; every factual claim about
+game data names the file it was read from. DEC files are Il2CppDumper
+IL-stub output: field/shape authority only, no method bodies (see R1).
+
+---
+
+## 1. Scope
+
+This dataset owns the **rows** for exactly two SPEC entity kinds:
+
+- `cartridge_item` — flash-drive collectibles depicting Mitas and containing
+  converted players (SPEC §entities; D1 §3);
+- `minigame` — playable mini-game surfaces with access medium, carriers,
+  rule/threshold evidence, and unlock hooks (SPEC §entities; tools lane
+  "Minigame Rule Revealer", [tools-plan.md §3.5](../../tools-plan.md)).
+
+Everything else is **joined, not owned**: character identities (DS-1),
+achievement definitions ([DS-2](dataset-achievements-endings.mdx)), scene
+transforms/placements and chapter attribution (scenes dataset, P5-gated),
+outfit rows (outfit side of DS-1's join plan), profile documents
+(`profile_document` is its own SPEC kind — not a cartridge; no row here).
+Scales in SPEC were estimates ("~23", "~17"); this spec replaces them with
+measured registry sizes (§3): **23 cartridge keys (13 character-family + 10
+player), 21 with measured pickup carriers**, and **17 client-evidenced
+minigame surfaces** pending one emit-time sweep (§3.2).
+
+**Shared-source ruling — pickup placement (with [DS-5](dataset-documents.mdx)).**
+The 21 measured `(container, save)` pairs appear in two emit plans: here as
+`pickup_ref` (§4.1) fed by the §3.1 C2 census, and in DS-5's
+`profile_documents.jsonl` `placement` column (its §3 table, §4.2 schema).
+This dataset is the **single placement authority** for cartridge pickups —
+the FlashTaker carrier census is a primary source of this spec (C2, §3.1,
+AC-2) and the cartridge row is the entity the pickup places — so DS-5
+consumes the pairs by reference to this dataset's emission instead of
+re-measuring them, and its §1.2 boundary row gains a citation to this spec
+before either emit stage lands. The two `(save_key, container)` multisets
+reconcile byte-for-byte at emit time; divergence is a verifier failure
+settled toward this census, never a silent second derivation. Scene-level
+geometry is unchanged: transforms/chapter attribution stay with the scenes
+dataset (P5-gated), as above.
+
+## 2. Source inventory (what feeds each field)
+
+| # | Artifact | Role | Evidence it carries |
+|---|---|---|---|
+| C1 | `extracted/il2cpp/stringliteral.json` entry addr `0x13AD860` (array index 4223) | **Primary — the cartridge save-key registry** | One newline-joined literal of exactly 23 keys: `mta, mtachi, mtashh, mtakd, mtacap, mtal, mtaman, mtaghost, mtad, mtad2, mla, mtac, mtacore` then `plr1a…plr1099` — read this pass |
+| C2 | `extracted/harvest/mb-dump/<container>/FlashTaker*.txt` (21 instances over 12 containers) | **Primary — measured pickup carriers** | Each serializes `string save = "<key>"` + `objectTake`/`objectInterface` PPtrs; full table §3.2 |
+| C3 | `extracted/decompiled/main/Assembly-CSharp/FlashTaker.cs` | Pickup mechanism authority | `[SerializeField] string save`; `PlayerTake()`, `PlayerTakeQuietly()`, `static SaveFlash(string)` |
+| C4 | `/Save/Flashes` (`0x13A7B28`), `Flashes` (`0x13BEC20`) literals (C1 file) | Collection identity | The save collection path — same anchor DS-1 J5 used |
+| C5 | `extracted/harvest/mb-dump/level6/MinigamesTelevisionController.txt` | **Primary — TV-games registry** | `games[] size = 2`: `{nameResource "Fight", indexStringNameGame 1}`, `{nameResource "Pinguin", indexStringNameGame 2}`; per-entry `spriteCase/spriteBackground/gradienText1..2/outlineText`, `dialogueWin[4]/dialogueLose[4]`, `countWin/countLose/countDraw = 0` |
+| C6 | `MinigamesTelevisionController_Game.cs` (DEC) | TV entry field authority | Fields as serialized in C5 incl. `indexStringNameGame`, `playead`, `dataObjects[]` |
+| C7 | `extracted/harvest/mb-dump/{level9,level12,level13}/MinigamesAutomate.txt` | **Primary — prefab/scene minigame loaders** | `resourceGame = "Minigame CarSpace"` (level9), `"Minigame MakeManeken"` (level12); `sceneGame = "MinigameShooter"` (level13, `resourceGame = ""`) — read this pass |
+| C8 | `MinigamesAutomate.cs`, `MinigamesController.cs`, `MinigamesSettings.cs`, `MinigamesFastMenu*.cs`, `Tamagotchi_MiniGame.cs` (DEC) | Runtime-chrome authority | Loader fields (`resourceGame`, `sceneGame`, `positionCreateGame`, start/finish events); controller fog/camera/fast-menu settings; NOT entity rows (§3.5) |
+| C9 | `extracted/localization/<locale>/{MiniGame CarSpace,MiniGame MakeManeken,MiniGame Shooter,TelevisionGames}.jsonl` | In-game minigame text ×34 | EN counts 8 / 35 / 10 / 2; parity + skew measured §5 |
+| C10 | `extracted/harvest/asset-list/<container>.xml` | Scene-carrier graph | `<Name>Location4TableCardGame<` only in `level6.xml`; `Location7_GameDance<`+`Location7_HammerButton<` only `level9.xml`; `Location14_PCSnaker<` only `level16.xml`; `Location17_PumpkinClicker<` only `level19.xml`; `Shooter_Main<` only `level23.xml`; `GamesCore_Main<` in `level15.xml`+`level17.xml`; `TamagotchiGame_{Cooking,FindFurniture,HelpTrash,Sorting}<` only `level3.xml` — all grepped this pass |
+| C11 | `extracted/data/achievements/achievements.jsonl` | Achievement join target | 26 rows; 8 carry `type_tag: "minigame"` with `joins.minigame_id: null` (the slot this dataset fills); `ACHI_cartridgeplayers` carries `collectible_set: "player-cartridges"` |
+| C12 | `extracted/data/achievements/relink-achievement-award-site.jsonl` + mb-dump `AchievementGet` UnityEvent sites (11 dumps, e.g. `level9/Dialogue_3DText_#13057.txt` → `ACHI_greatdance`) | Award-site mechanism | `m_MethodName = "AchievementGet"`, `m_StringArgument = "ACHI_*"` — grant sites are serialized data, grep-clean |
+| C13 | `extracted/data/characters/relinks/character--cartridge.jsonl` | Join anchor to reuse | Forward edges `character_id → flashes:<save_key>` for the non-empty DS-1 save keys, `mechanism: logic` |
+| C14 | `Achievement_function.cs`, `Achievement_cloth.cs`, `AchievementsController.cs` (DEC) | Grant/unlock authorities | `AchievementGet(string _nameAchievement)`; `ClothCompleted(string _nameCloth)` — outfit-unlock hook |
+| C15 | `extracted/harvest/mb-dump/level20/Location18_Flash.txt` + `Location18_Flash.cs` (DEC) | Non-FlashTaker pickup lead | Serialized `novella` PPtr only, no `save` field — candidate carrier for an unregistered pickup (R3) |
+| C16 | `extracted/decompiled/_structure/{types,hierarchy}.json` | Class census | Minigame class families (Shooter_\* ×14, Location7_GameDance_\* ×4, Tetris\* ×3, TamagotchiGame_\* …) |
+
+## 3. Anchor discovery — measured registries
+
+### 3.1 Cartridges: the save-key registry and its pickup carriers
+
+C1 pins the complete cartridge key universe at **23 keys** — the client-side
+proof of D1 §3's "13 character + 10 player" estimate. C2 measures where 21 of
+them are physically picked up (every `FlashTaker*` dump in the corpus, value
+of `string save`):
+
+| Container | `save` | Family | Container | `save` | Family |
+|---|---|---|---|---|---|
+| `level8/FlashTaker.txt` | `plr3vi` | player | `level14/FlashTaker_#3992.txt` | `plr9mpa` | player |
+| `level9/FlashTaker.txt` | `plr2v` | player | `level15/FlashTaker.txt` | `plr8qeqe` | player |
+| `level9/FlashTaker_#13953.txt` | `mtacap` | mita | `level16/FlashTaker.txt` | `plr1099` | player |
+| `level10/FlashTaker.txt` | `plr4asw` | player | `level16/FlashTaker_#5525.txt` | `plr1a` | player |
+| `level10/FlashTaker_#5875.txt` | `mtal` | mita | `level17/FlashTaker.txt` | `mta` | mita |
+| `level11/FlashTaker.txt` | `mtachi` | mita | `level17/FlashTaker_#10568.txt` | `mtakd` | mita |
+| `level12/FlashTaker.txt` | `mtashh` | mita | `level17/FlashTaker_#9853.txt` | `plr6vcx` | player |
+| `level12/FlashTaker_#15624.txt` | `plr5bz` | player | `level19/FlashTaker.txt` | `mtad` | mita |
+| `level13/FlashTaker.txt` | `mtaman` | mita | `level21/FlashTaker.txt` | `plr7vczn` | player |
+| `level13/FlashTaker_#14421.txt` | `mtaghost` | mita | `level21/FlashTaker_#11480.txt` | `mla` | mita |
+| `level14/FlashTaker.txt` | `mtac` | mita | | | |
+
+Findings this table pins:
+
+1. **21 of 23 registry keys have measured pickups.** Missing from C2:
+   `mtad2` (community: kitchen side table) and `mtacore` (community: Core
+   computer "Get FlashDrive") — both present in C1, neither carried by any
+   FlashTaker dump (R3).
+2. **The pickup namespace ≠ the gallery namespace for base Mita.** C1 and C2
+   carry `mta`, but DS-1's registry (`level2/MenuPersonage.txt`) has *empty*
+   `nameSave` for `MitaUsual`/`MitaTrue` (DS1-CONTRACT nullability note).
+   Joins therefore go through the C1 literal + C13 anchors, never through an
+   assumed `nameSave` equality.
+3. **Container ≠ chapter.** Carriers span levels 8–21; per DS-3 §3.6 the
+   story binding is `levelN ↔ Location(N−2)` `[inferred]`. Community chapter
+   attributions (D1 §3) never enter rows (§8-R5).
+4. **The gallery IS the cartridge album.** Menu labels live at `Menu.jsonl`
+   lines 61–62 ("Characters - Cartridges", "Cartridges"), and menu buttons
+   call `MenuPersonage.OpenPersonage("<save_key>")` with cartridge keys —
+   measured: `level2/ButtonMouseClick_#2179.txt` passes `"mtad2"`. The
+   display-name join rides DS-1 rows; cartridges add no name column of their
+   own.
+
+### 3.2 Minigames: four registries, one kind
+
+Measured client evidence groups into four registry shapes — all owned here as
+one `minigame` kind keyed by their distinct client identifiers:
+
+1. **Resources-loaded prefabs via `MinigamesAutomate`** (C7): `Minigame
+   CarSpace`, `Minigame MakeManeken`, plus scene-load `MinigameShooter`
+   (whose `Shooter_Main` script lives in `level23.xml` — a dedicated scene).
+2. **TV console games** (C5): entries `Fight` and `Pinguin`, named by
+   `indexStringNameGame` into the `TelevisionGames` category (§5 pin).
+3. **Scene-carrier classes** (C10): `Location4TableCardGame(_Card/_CardHold/
+   _CardMemory)` @level6 · `Location7_GameDance(_Music/_Music_Note/_Sphere)`
+   + `Location7_HammerButton(_Animations)` @level9 · `Location14_PCSnaker`
+   @level16 · `Location17_PumpkinClicker` @level19 · `GamesCore_Main(
+   _Folder/_Sphere)/GamesCore_InputField*` @level15+level17 · `MenuMitaDance`
+   @level2 · `TetrisGame/TetrisFrog/TetrisSpriteAnimation` @levels 3–22
+   (broad import — carrier breadth recorded, not over-read).
+4. **Tamagotchi-phone activities** (C10, level3 only):
+   `TamagotchiGame_Cooking(_Food)`, `_FindFurniture(_Object)`, `_HelpTrash`,
+   `_Sorting(_Item/_ItemAnimation)`, `_Chip(_Case/_Plita)` — the in-fiction
+   phone-sim loop (86 `*tamagotchi*` dumps in level3), Peaceful-Mode-adjacent
+   present-but-unreachable content captured under SPEC COMP-J11 posture.
+
+That is **17 measured surfaces** (3 prefab/scene + 2 TV + 8 carrier-class +
+4 tamagotchi activity families: Cooking, FindFurniture, HelpTrash, Sorting).
+The emit pass re-sweeps all 51 containers before the count freezes; D1 §4's
+community table (~17,
+names like "Hetoor"/"Spaceracer"/"DDR") is an alias source only — no such
+string exists anywhere in the client (grep over C1 + C9 returned nothing),
+so community names never become keys (AC-8).
+
+### 3.3 Achievement & outfit hooks (already-built datasets this dataset fills)
+
+- `achievements.jsonl` (C11) leaves `joins.minigame_id` null on all 8
+  `type_tag:"minigame"` rows: `ACHI_PinguinTusim`, `ACHI_tetro`,
+  `ACHI_racingfirst`, `ACHI_applesnake`, `ACHI_logA`, `ACHI_logB`,
+  `ACHI_hellwin`, `ACHI_hellmegawin` — plus `ACHI_greatdance` tagged `story`
+  but granted inside the dance location (C12: `level9/Dialogue_3DText_
+  #13057.txt`). This dataset emits the edges; it does not mutate DS-2 files.
+- Outfit unlocks ride `Achievement_cloth.ClothCompleted(string _nameCloth)`
+  (C14) — already materialized for School/Christmas in
+  `relink-outfit-cloth-site.jsonl`; Pumpkin/Vampire and Penguin-Piles/
+  Christmas links land here as minigame→outfit edges.
+- Collectible set: `ACHI_cartridgeplayers` → `collectible_set:
+  "player-cartridges"` (C11) joins the 10 player-cartridge rows.
+
+### 3.5 Non-entity infrastructure (never rows)
+
+`MinigamesController` (per-scene render/fog/camera chrome), `MinigamesFast
+Menu(_Case/_CaseMouse)` (pause menu), `MinigamesSettings` (post-processing),
+`MinigamesTelevisionGame` runtime shell (C8) are presentation plumbing.
+Caveat for the sweep: hashing all 48 `MinigamesController.txt` dumps yields
+exactly **4 content groups (19/16/12/1)** — boilerplate dominates, and
+`level2`'s hash is shared by 12 members, so it is not a lone real-value
+outlier; identical hashes collapse to one logical instance per group (R4,
+asserted mechanically by AC-7).
+
+## 4. Schema
+
+Output tree (mirrors DS-1 §4.3; PIPE manifest gains the stage in the same
+commit per [DR-2026-08-18-pipeline]):
+
+```
+extracted/data/cartridges-minigames/
+├── cartridges.jsonl                  # §4.1 — 23 owned rows
+├── minigames.jsonl                   # §4.2 — 17 owned rows
+├── cartridges-minigames.candidates.jsonl   # §7 stub ladder tiers 3–4
+└── README.md                         # honesty ledger + regeneration notes
+extracted/relinks/
+├── cartridge--character.jsonl        # §6 J1 (mirror of C13 anchors)
+├── cartridge--scene-placement.jsonl  # §6 J2 (parked until scenes dataset)
+├── minigame--achievement.jsonl       # §6 J3
+├── minigame--scene-carrier.jsonl     # §6 J4
+├── minigame--outfit-unlock.jsonl     # §6 J5
+└── minigame--choice-condition.jsonl  # §6 J6
+```
+
+First line of every `.jsonl` is `{"_meta": …}` (schema id
+`miside.cartridges.cartridges/1`, `miside.minigames.minigames/1`, generator,
+source table §2, build pins, derived-field list); UTF-8, `\n`, no BOM.
+
+### 4.1 `cartridges.jsonl` record schema (23 rows)
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `cartridge_id` | slug | derived from `save_key` | kebab-case (`mta-cap`, `plr-3`); additive only, never replaces originals |
+| `family` | enum | C1 position | `character` \| `player` (first 13 / last 10 literal slots) |
+| `status` | enum | §7 ladder | `registered-pickup` \| `registered-unresolved-pickup` |
+| `save_key` | string verbatim | C1/C2/C3 | the primary client identifier; byte-exact |
+| `registry_literal_ref` | string | C1 | `il2cpp/stringliteral.json@0x13AD860[<slot>]` — slot = 0-based position in the newline list (collection-order candidate, `[unverified]` semantics) |
+| `pickup_ref` | object\|null | C2 | `{container, file, field: "save", value}` or `null` when unresolved (R3) — null is honest-missing, never backfilled |
+| `depicts_character_id` | string\|null | C13 mirror | DS-1 `character_id` for `family: character`; null for players |
+| `contains_player_id` | string\|null | derived | `player-{n}` (DS-1 player slug scheme) for `family: player`; null otherwise |
+| `collectible_set` | string\|null | C11 | `"player-cartridges"` on the 10 player rows; null elsewhere (`Hi, Mita` belongs to profiles, not here) |
+| `container_location_binding` | string\|null | C2 + DS-3 §3.6 | `level<N>→Location<M>` label, status `[inferred]`; null when `pickup_ref` null |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | `19029065` / `0.93L` on every record |
+
+Display text is deliberately absent: names resolve through
+`depicts_character_id` → DS-1 `name_loc` pointers (§3.1 finding 4) — one
+truth, no copied locale columns (same ruling as DS-1 §4.1).
+
+### 4.2 `minigames.jsonl` record schema
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `minigame_id` | slug | derived from `client_key` | e.g. `carspace`, `fight`, `location-7-game-dance` |
+| `client_key` | string verbatim | C5/C7/C9/C10 | the measured identifier (`Minigame CarSpace`, `Fight`, class name…) |
+| `key_source` | enum | §3.2 | `automate_resource` \| `automate_scene` \| `tv_games_array` \| `scene_carrier_class` \| `tamagotchi_activity` |
+| `access_medium` | enum | derived from key_source + container | `resources-prefab` \| `dedicated-scene` \| `television` \| `scene-prop` \| `core-terminal` \| `tamagotchi-phone` \| `menu` |
+| `carrier_containers` | string[] | C10/C2-style census | containers whose asset-lists/dumps evidence the class |
+| `loader_ref` | object\|null | C7 | automate dump locator + exact field/value; null for non-automate rows |
+| `name_loc` | object\|null | C9 | `{category, line_index}` where a name table exists (TV rows via `TelevisionGames`); **null-honest** for prefab/carrier rows — the client ships no display-name table for them (grep over `English/*.jsonl`, this pass) |
+| `community_alias` | string\|null | D1 §4 | wiki label ("Hetoor", "Spaceracer"…) with citation; never the key |
+| `ui_strings_loc` | object\|null | C9 | `{category, line_count}` pool reference for in-game strings (`MiniGame *` categories) |
+| `rule_evidence` | array | repo artifacts only | each `{path, locator, claim}` — serialized counters (`countWin/countLose/countDraw`, C5), stat labels (`MiniGame Shooter` lines 3–8: Time/Deaths/Shots/Headshots/Damage taken/Jumps), loc-stated rules; empty allowed, invention never |
+| `scoring_derivable` | bool | R1 | false today everywhere; true requires decompiled bodies (native-code pass) |
+| `achievement_ids` | string[] | §3.3/J3 | ACHI ids joined via award sites + type_tag |
+| `unlocks_outfits` | string[] | J5 | `cloth_id`s (`FIIdClSchool`-style vocabulary) |
+| `present_but_unreachable` | bool | SPEC COMP-J11 | true for tamagotchi-activity rows + any Peaceful-Mode-locked surface |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | per-record staleness stamp |
+
+## 5. Locale plan
+
+Pointer columns, not copies — DS-1 §4.1's ruling applies unchanged, and the
+measured parity supports it: `MiniGame CarSpace` 8 lines ×34 locales,
+`MiniGame Shooter` 10 ×34, `TelevisionGames` 2 ×34, `MiniGame MakeManeken`
+35 lines in 33 locales and **34 in Arabic** (the sole skew; counted this
+pass over `extracted/localization/*/`). Per-locale availability derives from
+category presence + line coverage, fed by
+`localization/_ledger/locale-delta.jsonl` — never hardcoded; the Arabic
+MakeManeken cell renders the declared explicit-filler state for its missing
+row (SPEC §Locale strategy filler policy).
+
+**TelevisionGames offset pin (binding, mirrors DS-1 R2's discipline).** C5's
+`indexStringNameGame` values are 1 and 2 while the category spans lines 0–1.
+Names resolve under `GetString("TelevisionGames", indexStringNameGame − 1)`:
+`Fight → line 0 "Dairy Scandal"`, `Pinguin → line 1 "Penguin Piles"`. The
+identity hypothesis is rejected on semantics (it would name the fight-styled
+entry "Penguin Piles") exactly like DS-1's clothes off-by-one; the pin lives
+in the file `_meta` and README, and AC-4 makes a verifier recompute both.
+
+## 6. Join plan
+
+| # | Pair | Key | Mechanism | Status |
+|---|---|---|---|---|
+| J1 | cartridge ↔ character/player | `save_key` ↔ C13 `flashes:<save_key>` anchors; dual typed edge `depicts` (mita rows) / `contains` (player rows), emitted bidirectionally | **hard** for key membership (C1 literal + C2/C3); **logic** for the contains-reveal chain | modeled — mirrors and extends DS-1 J5 without mutating it |
+| J2 | cartridge ↔ location/scene placement | `pickup_ref` container + transform/trigger coords | **hard** (coords exist in LEVELS) | **parked** — scenes dataset owns transforms/chapters (COMP J2); file emits meta-only until that stage lands |
+| J3 | minigame ↔ achievement | C12 award sites (`AchievementGet` args) ∪ C11 type_tag/minigame rows; fills `joins.minigame_id` consumer-side | **hard** where a grant site is dumped; **logic** where only type_tag binds (runtime-granted awards live in undumped prefabs) | partial — every edge records which of the two bound it |
+| J4 | minigame ↔ location/scene | C10 carrier-class → container map + C7 automate containers + DS-3 §3.6 binding rule | **hard** (script/container co-presence); container≠chapter caveat per §3.1 finding 3 | modeled |
+| J5 | minigame ↔ outfit | C14 `ClothCompleted(string)` call sites + existing cloth-site relink vocabulary | **hard** for dumped call sites; **logic** for wiki-asserted links (Vampire↔Pumpkins) until dumped | partial |
+| J6 | minigame/tv-game ↔ ending choice conditions | endings dataset's "Play a console game"-class prerequisites consume `minigame_id`s from here | **logic/inferred** | keyed here, owned by [DS-2 Part B](dataset-achievements-endings.mdx) |
+
+Cross-references stay bidirectional: every edge file also emits the inverted
+index (doctrine Principle one).
+
+The same rule runs across datasets: [DS-5](dataset-documents.mdx) orders its
+emit stage after this one and reconciles its `(save_key, container)` multiset
+against `cartridges.jsonl` instead of re-deriving the census (ruling in §1);
+conversely, this dataset joins profile views only by id
+(`depicts_character_id` ↔ DS-5 `subject_character_id`), never by copying
+their columns forward.
+
+## 7. Stub-first plan (evidence-tier ladder)
+
+1. `registered-pickup` — in C1 **and** has a C2 carrier (21 cartridge rows):
+   full record.
+2. `registered-unresolved-pickup` — in C1, no carrier yet (`mtad2`,
+   `mtacore`): full identity row, `pickup_ref: null`,
+   `missing_fields: ["pickup_ref"]`, unblock named (R3 sweep).
+3. Candidate minigame surfaces — class evidence without a loader/name row
+   (e.g. `Metroidvania_Interactive.cs` if the sweep finds no scene use):
+   candidates ledger only, `evidence: [{path, locator}]`.
+4. Wiki-only minigame claims (D1 §4 rows whose client surface the sweep
+   cannot find — e.g. the patch-note-only Tetris variant framing): **no row,
+   no candidate**; noted in README against the research citation, per the
+   no-fan-lore non-goal (SPEC §Non-goals).
+
+Every non-full row carries `missing_fields: [...]` so missingdata.md
+generates mechanically.
+
+## 8. Completeness register (what stays `[unverified]`)
+
+| # | Risk | Consequence | Handling |
+|---|---|---|---|
+| R1 | **Decompiled bodies are IL-stub form** — DEC files carry fields/signatures only (every C3/C6/C8/C14 file). COMP J6's "exact scoring functions" and tools-plan §3.5 calculators are **not** derivable from the current corpus. | wrong thresholds if anyone transcribes community numbers as data | `scoring_derivable: false` + `rule_evidence` restricted to serialized counters/loc text; unblock ledgered: native-code decompilation pass over `GameAssembly.dll` methods (Ghidra/IDA-class tooling — a new toolchain row, owner-costed), not silently dropped |
+| R2 | TelevisionGames −1 offset is a pinned hypothesis, not proven code | mis-named TV rows | §5 pin + AC-4 recomputation; rejected hypothesis named with its failure |
+| R3 | `mtad2`/`mtacore` pickups unresolved; `Location18_Flash` (C15) has no `save` field and the Core-computer button is not yet located in dumps | incomplete placement set claimed as complete | tier-2 rows + emit-time full-container sweep AC before the placement set is called closed |
+| R4 | Template-dump boilerplate: the 48 `MinigamesController.txt` dumps cluster into only 4 hash groups, sized 19/16/12/1 (§3.5) | phantom instances inflate carriers | dedupe by content hash; one logical instance per group; AC-7 asserts the measured partition |
+| R5 | Level ≠ chapter; community placements contradict each other (D1 §3 Ghostly-Mita ch 9 vs 10) | imported contradictions | rows store measured containers only; chapter attribution is the scenes dataset's output, never copied from D1 |
+| R6 | Peaceful Mode will add minigames + costume unlocks (D1 §1/§7) | stale set after the mode ships | `present_but_unreachable` flags today; buildId-stamped rerun diffs the set (SPEC automation block) |
+| R7 | Post-0.93L silent builds unknown (SPEC missing-data) | drift | buildId stamping + rerun diff; nothing else available pre-harvest |
+| R8 | No client display-name table for prefab/carrier minigames (§4.2 note) | pages would need invented titles | `name_loc: null` honest + `community_alias` cited; page H1 strategy is a frontend question answered from these fields, not by inventing names |
+
+## 9. Acceptance criteria (verifier-checkable)
+
+Each criterion runs against repo artifacts only, without re-running
+extraction.
+
+1. **Registry census reconciles.** `cartridges.jsonl` has exactly 23 data
+   rows; splitting the C1 literal at address `0x13AD860` on `\n` yields the
+   identical multiset of `save_key` values byte-for-byte, in order; family
+   split is 13 `character` / 10 `player` by literal slot.
+2. **Pickup census greps clean.** Exactly 21 rows carry `pickup_ref`;
+   for each, `grep 'string save = "<value>"'` hits the named
+   `harvest/mb-dump/<container>/<file>`; the (container, save) multiset
+   equals a fresh grep over all `FlashTaker*.txt`; the 2 unresolved rows are
+   exactly `mtad2`/`mtacore` with `pickup_ref: null` and `missing_fields`
+   naming R3.
+3. **Namespace honesty holds.** No row claims a DS-1 `nameSave` equality;
+   the `mta` row documents the empty-`nameSave` fact (DS1-CONTRACT); ≥5
+   spot-checked J1 edges reuse C13's `flashes:<save_key>` anchors verbatim
+   and emit mirrored inverse rows.
+4. **TV-name pin recomputes.** Applying `GetString("TelevisionGames",
+   indexStringNameGame − 1)` to both C5 entries yields Dairy Scandal /
+   Penguin Piles in all 34 locale dirs; applying the identity offset yields
+   the documented wrong pairing — both computations shown in the README with
+   the rejection rationale (DS-1 AC-6 pattern).
+5. **Minigame rows trace to artifacts.** Every `client_key` cites a locator
+   that greps clean: automate rows equal the three C7 field values (2
+   resource + 1 scene); TV rows equal the two C5 array entries; carrier rows'
+   `carrier_containers` match fresh `<Name>Class<` greps over
+   `harvest/asset-list/*.xml`; zero rows keyed by a community name (AC-8's
+   firewall restated mechanically).
+6. **Achievement fill covers the slot.** `minigame--achievement.jsonl`
+   references only ids present in C11; all 8 `type_tag:"minigame"` ids
+   appear exactly once forward + inverse; each edge records `hard` (with
+   award-site locator) or `logic` (type-tag-only) as its mechanism; no DS-2
+   file is modified by this stage (diff proves it).
+7. **Boilerplate dedupe enforced.** Re-hashing all 48 `MinigamesController.txt`
+   dumps reproduces the recorded partition into exactly 4 content groups sized
+   19/16/12/1 (`level2`'s hash shared by 12 members — no dump and no group is
+   privileged as the template); identical hashes collapse to one logical
+   instance, and no carrier count anywhere counts duplicate-hash dumps twice.
+8. **Rule-evidence firewall.** Every `rule_evidence` entry's `(path,
+   locator)` resolves and quotes text/numbers present there; zero numeric
+   thresholds appear in any row that lacks such an entry;
+   `scoring_derivable` is false on all rows today; D1 §4 prose numbers
+   (25 coins, 2 minutes…) occur nowhere in data rows — only inside cited
+   loc strings where the game itself states them.
+9. **Locale availability derives.** Page-facing availability computes from
+   the four categories per locale and matches
+   `_ledger/locale-delta.jsonl`; deleting `Arabic/MiniGame MakeManeken.jsonl`
+   in a scratch copy flips the computed cell, and the recorded 34-vs-35-line
+   Arabic skew is reproduced from the files (filler policy demonstrably
+   data-driven).
+10. **Stale-log refusal + stamps.** Every row carries
+    `build_id 19029065` / `version_label 0.93L`; the stage refuses to emit
+    when EXTRACTION-LOG `pipeline-defaults` disagree with
+    `census/detect.json` (PIPE §3 defense, same as DS-1 §9).
+
+## 10. Implementation notes
+
+- Emission lands as a `run_all` stage after the characters/achievements
+  stages (it consumes C11–C13 outputs), idempotent, reading only §2
+  artifacts — [DR-2026-08-18-pipeline]; PIPE §4 manifest gains the module +
+  test in the same commit.
+- Schema changes post-ship = new schema version in `_meta` + regenerating
+  rerun, never in-place mutation (DS-1 §9 convention).
+- Commit plan: schema draft + stubs land as one commit per AGENTS rule 5,
+  after verifier review of this spec (family convention, DS-2 shared
+  conventions).
+
+## See also
+
+- [dataset-characters.mdx](dataset-characters.mdx) — sibling spec; J1/J5
+  anchor reuse and the pointer-columns ruling
+- [../../contracts/dataset-characters.mdx](../../contracts/dataset-characters.mdx)
+  — the built contract shape this dataset's future contract mirrors
+- [dataset-achievements-endings.mdx](dataset-achievements-endings.mdx) —
+  the `minigame_id` slot and ending-condition consumers
+- [dataset-dialogue.mdx](dataset-dialogue.mdx) §3.6 — the level↔location
+  binding rule J2/J4 inherit
+- [../research/game-research.mdx](../research/game-research.mdx) §3–§4 —
+  the community model this dataset supersedes with client evidence
+- [../../tools-plan.md](../../tools-plan.md) §3.5 — Minigame Rule Revealer,
+  scope-corrected by §8-R1
+- [../../_foundation/extraction-doctrine.md](../../_foundation/extraction-doctrine.md)
+  — Principle one/two, relink bars

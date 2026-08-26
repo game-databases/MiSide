@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "왔네요!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "여긴 어디야?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "반지 좀 보여주세요."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "좋아요!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "이제 상황을 정리해 볼까요?"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "계속 기다리고 있었는데…"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "레이싱 게임이 그렇게 재미있었나요?"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "자, 이쪽으로 오세요."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "클리어 축하해요!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "저도 예전에 해봤었는데,"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "코인 다 모아서 1등 해보세요."}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "업적도 얻을 수 있어요."}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "세상에! 이 게임 진짜 어려웠죠!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "조작법 익히는 데만 한참 걸렸다니까요."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Should I trust you?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "네, 적어도 전 아직 미치진 않았어요."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "어떤 미타와는 다르게…"}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "그리고요!"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "이곳에서 당신을 도와줄 사람, 저밖에 없어요."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "이대로 포기하고 싶진 않죠?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "그 애는 살인마예요. 우리가 막아야 해요."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (How did I get here?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "이 반지 덕분이에요."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "아주 특별한 아이템이죠."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "모든 플레이어에게 필요한…"}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "이게 없으면 정상 버전으로 넘어갈 수가 없거든요."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (What is this place?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "이곳은…"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "버전과 버전 사이의 통로예요."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "지금은 텅 비어 있죠…"}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "예전에 어떤 불운한 미타가 있었어요."}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "하지만 자기 버전을 저장하지 못했죠."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "그래서 그 미타의 집이,"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "그대로 사라져 버렸어요…"}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "지금도 그 미타는…"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "이 통로 어딘가에서 떠돌아다닌다고…"}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "정말 불쌍하죠…"}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (How did you end up here?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "우선…"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "당신이 떠나고 정말 오랜 시간이 지났어요."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "당신 덕분에,"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "그 감옥에서 탈출할 수 있었죠."}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "미치광이 미타에게서 도망칠 수 있었어요."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "그리고 이제,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "모든 버전을 자유롭게 넘나들 수 있어요."}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "당신과는 다르게요."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (What did you do with the ring?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "제가 루트를 재설정했어요."}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "우리만의 루트로요."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "최단 경로로 설정하고,"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "거쳐야 할 포인트도 다 체크했어요…"}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "작동 원리는 간단해요. 문을 열면,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "반지가 버전 간의 경계를 열어 주는 거죠."}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "바로 이렇게요."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Are the passages dangerous?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "여기 게임 속에…"}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "들어온 뒤로,"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "계속 이상한 일만 생기는데…"}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "조용해 보이는"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "이 '통로'들이"}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "왠지 위험한 것 같아…"}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "맞아요, 이곳은"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "매일이 예측 불가예요."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "하지만 걱정 마세요!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "완벽하게 시뮬레이션 해봤거든요."}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "가장 짧고"}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "가장 안전한 루트로만 갈 거예요!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "정말 괜찮을까?"}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "도대체 이 통로 안에 뭐가 있는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "그게…"}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "버그, 오류, 글리치 같은 것들이요."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "그것들은 자신의 의지를 가지고 움직여요…"}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "심지어 당신을 공격할 수도 있으니, 정말 위험해요."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "공격적인 미타들도 많아요."}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "결함 있는 미타가 더 있다고?"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "네, 한 명 알고 있죠."}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "추악한 미타…"}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "제가 지은 이름은 아니에요!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "예를 들자면…"}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "정말 초기 버전의 미타인데"}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "이 버전의 문제는,"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "끔찍한 버그를 일으킨다는 거예요…"}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "어쩌면 마주칠지도 몰라요."}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "제로 버전에 가장 가까운 존재니까요…"}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Will you help me get out?)"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "구체적인 계획은 아직 없지만,"}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "그래도 다행인 건,"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "여기까지 왔다는 거예요."}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "게다가"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "저, '착한 미타'를 믿는 것 외에는"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "제대로 된 계획도 없잖아요!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "그것도 그렇네…"}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (You were talking about some kind of plan...)"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "맞아요, 코어를 찾는 거예요."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "제 직감으로는 모든 문제의 해답이"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "거기에 숨겨져 있을 거예요."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "근데 왜 하필 플레이어가 해야 하는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "이상하게도 우리 미타들은,"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "코어룸에 들어갈 수가 없어요."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "밖에서 들여다보기만 했죠."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "하지만 플레이어는 달라요, 미타가 아니니까."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "당신, 그리고 다른 플레이어들이 도와준다면"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "반드시 해낼 수 있을 거예요."}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "작전 회의 한번 할까요?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "좋아."}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "좋아요!"}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "그럼…"}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "이번에 소개해드릴 사람은"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "우리의 파트너, 멋쟁이 미타랍니다!!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "멋진 모자를 쓰고 있어서,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "우리는 그냥"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "캐피' 라고 부르죠."}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "저와 그녀는 줄곧 같이 의논하면서,"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "미치광이 미타를 막기 위한 계획을 세웠어요."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "환영해요, [player]님"}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "안녕하세요!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "새로운… 플레이어인가요?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "이름이 뭐예요?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "내 이름은…"}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "잠깐!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "나를…"}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "…기억 못 하는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "네?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "누구시죠?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "이런!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "[player]님, 보아하니…"}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "그 녀석이 먼저 다녀갔나 봐요."}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "그 미치광이 미타가…"}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "기억을 좀 떠올려 봐!"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "우리 모두를 위해서, 기억해 내야 해!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "뭘 기억하라는 거죠?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "그리고 왜 저랑 똑같이 생겼죠?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "여기까지인가 봐요…"}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "잘 들어요, [player]님."}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "상황이 완전히…"}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "…꼬여버렸어요!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "이 포탈이 우리 계획의 핵심이었는데,"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "이것만 있었어도 쉽게 끝낼 수 있었어요."}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "근데 캐피가 기억을 잃어버려서, 포탈을 조립할 수가 없어요."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "부품도 모자라고…"}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "좀 까다로운 성격이긴 해도, 머리는 좋았는데…"}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "그럼 이제 어떡해야 해?"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "일단 다른 방법을 찾아볼게요…"}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "미치광이 미타가 도대체 무슨 짓을 한 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "왠지… 알것 같아요."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "캐피를를 죽인 것 같아요."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "죽였다고?!"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "아마 눈치챘겠지만…"}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "죽은 미타는 리셋되어 부활해요."}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "하지만 중요한 기억은 전부 지워지고,"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "초기화 상태로 되돌아가죠."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "그러니까…"}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "최악이죠…"}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "진짜 끔찍하군…"}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "그래도 영원히 사라지는 것보단 나을지도…"}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "혹시 알아…"}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "그럼 플레이어도,"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "죽이고 기억을 리셋할 수 있는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "플레이어의 기억은 지울 수 있어요."}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "하지만 그러려면 카트리지가 되어야 해요."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "죽일 수 있는지는…"}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "저도 잘 모르겠어요."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "또 카트리지 얘기네… 근데 어떻게 확신해,"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "내가 지금 카트리지가 아니란 걸?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "제가 확인해 볼게요."}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "이쪽으로 와보세요…"}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "다행이에요."}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "카트리지가 아니라"}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "리얼' 플레이어라서요!"}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "다행이네…"}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "아, 진짜 곤란하네…"}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "잠시만요…"}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "전략 수정이 필요할 것 같은데…"}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "잠깐만…"}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "아! 아이디어가 떠올랐어요!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "반지 좀 보여주세요!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "흠…"}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "루트 재설정이 필요해요."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "방법을 찾은 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "잘 들어보세요."}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "다른 버전들을 통과해야 해요."}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "최종 목적지는 코어에요."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "최대한 빠르게 가야 해요, 알겠죠?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "결국 내가 나서야 하는 건가…"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "근데 난 방법도 모르고 어디로 가야 하는지도 몰라."}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "최대한 서포트해 드릴게요."}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "제가 할 수 있는 선에서요."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "길 안내도 해드리고, 그리고…"}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "좀 더 생각해 볼게요."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "나중에 다시 얘기해요…"}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "잠깐 캐피랑 얘기하고 있어요."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "10분만 시간을 주세요."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, if player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "됐어요."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "완벽하게 수정했어요."}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "자, [player]님"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "이쪽으로 오세요."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "이거 받으세요."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "죄송해요, [player]님."}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "이제 혼자서 해야 해요."}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "전 여기서 무슨 일이 일어났는지 조사하려고요."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "완벽한 계획이었는데…"}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "최악의 상황까지 와 버렸네요."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "반드시 알아내야 해요."}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "부품들이 어디로 갔는지…"}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "운이 좋으면 다시 찾아서"}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "조립할 수 있을지도 몰라요."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "빨리 움직여야 해요."}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "미치광이 미타가 우리 위치를 알고 있으니,"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "여기 있으면 위험해져요."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "행운을 빌어요! [player]님, 조심히 가세요!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "알겠어…"}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "다음에 만날 때까지 살아있도록 노력해볼게…"}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi players"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "왜?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "난 누구지?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "집에 가고 싶어!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "어떻게 된 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "대체 왜…"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "이건 대체…"}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "당신…"}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "진짜 사람이에요?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "안녕하세요."}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "새로 오신 건가요?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "새로… 요?"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "현실 세계에서 오셨죠?"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "네…"}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "다친 건가요?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "다리가 좀 불편할 뿐이에요, 신경 쓰지 마세요."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "전 여기 온 지 1년이 넘었어요."}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "그리고 나름 잘 지내고 있고요."}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "음… 여긴 어디죠?"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "여러 버전 사이의 숨겨진 공간이죠."}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "여기서 나가는 방법 아세요?"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "모르겠네요."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "나가고 싶다고 생각해 본 적이 없거든요."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "그럴 필요성도 못 느꼈고…"}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "왜죠?"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "그건 중요하지 않아요. 전 바빠서요."}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "저의 미타가 기다리고 있거든요."}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "그녀에게 돌아가야 해요…"}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "이만 가볼게요."}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "잠깐만요."}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "저리 꺼져!"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "다 들었어요!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "뭔 일이 있었는지는 모르겠지만,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "완전 재밌을 것 같네요!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "그나저나…"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "제가 누군지 눈치채셨나요?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "전 미타예요!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "하지만 다른 미타랑은 다르죠."}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "왜인지 궁금하신가요?"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "저에겐…"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "짜잔!"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "멋진 모자가 있거든요!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "그리고…"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "프리미엄 장갑!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "또!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "귀여운 일렉 기타도 있으니까요!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "너무 멋져!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "한번 들어보실래요?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "야호!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "이리와, 나의 소울메이트…"}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "시작할게요!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "음… 사실 더 잘할 수 있는데,"}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "그래도 열심히 했어요."}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "아, 아쉽네요."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "이야,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "넌 정말 에너지가 넘치네."}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "당연하죠!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "이게 바로 저예요!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "저랑 같이"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "재미있는 거 할래요?"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "이 버튼 진짜 누르고 싶다."}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "한 번만 눌러볼까?"}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "눌러도 돼?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "조금만 기다리세요."}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "곧 기회가 올 거예요!"}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "일단 앉아보세요!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "됐어요."}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "이제 뭐 해?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "버튼 눌러도 돼?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "하하!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "이 미니게임 진짜 재밌어요!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "근데 뭐가 더 필요해요…"}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "제 인벤토리에 있을 텐데?"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "잠시만요…"}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "앗!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "이거…"}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "성인물 게임인 건 아시죠?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "방금 그건 뭐였어?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "아직도 모르시겠어요?"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "이건 쥐를 잡기 위한…"}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "진심이야?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "여긴 쥐가 없잖아…"}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "네? 쥐요?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "농담은 그만하시고,"}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "바로 게임 시작할까요?"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "안 돼."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "시작할게요!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "게임을 설명해 드릴까요?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "위에 숫자 보이나요?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "타이머예요!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "시간이 다 되면,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "시스템에서 알려줄 거예요."}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "그때 버튼을 누르면 되는데,"}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "만약에 타이밍을 놓치거나"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "실수로 잘못 누르면"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "제가 이 망치로 머리를 내리칠 거예요!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "머리를 내리쳐?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "괜찮아요."}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "게임하다 보면 다 아시게 될 거예요!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "앗!"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "왜 이렇게 세게 때려?"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "많이 아파요?"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "별로 안 아파."}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "그럼 계속해 볼까요!"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "오케이!"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "이제 좀 감 잡은 것 같아."}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "제 실력을 보여드릴게요!"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "이번엔 진심으로 때려볼게요!"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "이 게임, 나랑은 안 맞는 것 같아…"}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "하하!"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "나 너무 멋져!"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "그리고 완전 대단해!"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "그리고 또, 너무 귀여워!"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "이럴 수가!"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "오케이!"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "다음엔 제대로 복수할 거예요!"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "어… 또 졌어요?"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "안 아파?"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "당연히 안 아프죠! 이건 장난감이라고요!"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "제가 졌네요."}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "이 게임 꽤 재밌는데?"}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "저도요…"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "네, 저도 완전 재밌어요!"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "이제 제 최고의 라이벌이에요!"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "끝난 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "네네!"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "다른 데로 가볼까요?"}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "이게 댄스 패드야?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "왜 이렇게 작아…"}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "오호!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "댄스 배틀 어때요?"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "우선…"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "곡 하나 골라보세요!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "이거로 할게!"}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "좋아요!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "제가 먼저 할게요!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "시범을 보여드리죠."}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "후!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "한번 도전해 볼래요?"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "과연 제 점수를 넘을 수 있을지!"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "파이팅! 기대할게요!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "앗!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "어때요?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "이제 당신 차례예요!"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "둠칫-둠칫-둠칫-둠칫!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "오케이!"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "댄스파티 시작해 볼까요!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "하하!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "댄스 마스터는 바로 접니다만?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "후!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "버튼 세 개로도"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "이런 퍼포먼스가 가능하다니!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "아니 그냥 바닥에서"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "데굴데굴 구르는 게"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "점수가 더 잘 나올 것 같은데요? 히히힛!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "대단해요!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "상상도 못했어요,"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "이렇게 잘하실 줄은!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "세상에나!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "춤 실력이 대단해요!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "대단해요!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "따단!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "리듬감이 엄청나요!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "완전 프로 댄서네요!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "당신!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "그리고 저!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "완전 운명의 콤비네요!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "호흡이 너무 잘 맞아요!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "완벽한 듀오 같지 않나요?"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "아쉽네요."}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "하나만 실수했어도,"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "제가 이길 수 있었을 텐데…"}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "한번 도전해 볼래요?"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "한 판 더?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "진짜 마지막으로,"}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "한 판만 더 추실래요?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "스톱! 스톱!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "이제 체력이 바닥났어요!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "이 사진들 완전 '파격'적이네."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "넌 항상 예측 불가야."}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "당연하죠! 그게 바로 제 스타일이죠!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "이런 곳에서도 즐길 수 있다는 걸 보여주고 싶었거든요! 짜잔!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "음… 누구한테 보여주는 건데?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "지금 '누구'냐고 묻는 거예요?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "그게 중요한가요? 어차피 다들 눈치도 못 챌 텐데!"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "우와,"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "뭐가 이리 많아?"}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "왜?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "그건 당연히…"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "엄청 대단한 일을 위해서죠!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "예를 들면…"}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "당근 썰기,"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "그리고"}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "당근 썰기,"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "그리고…"}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "그만해, 이제 알겠어."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "사실은요…"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "이 도마가 갑자기 \"탁탁탁\" 소리를 내더니, 이렇게 되어버렸어요!"}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "저도 어떻게 된 건지…"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Books"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "또 이 책들이네?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "심심할 때 읽는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "흥! 전 책 같은 거 안 좋아해요!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "완전 실전파거든요!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "그것도 좋은데,"}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "그래도 기본은 알아야…"}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "붐! - 액션, 스킬, 감각! 아시겠죠?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "하고픈게 있다면 책 같은 건 쳐다보지도 않을 거예요!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "만약 저랑 같이 있어 준다면,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "재미난 것들을 엄청 많이 할 수 있어요!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "그렇겠지…"}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "이 과일들 진짜야?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "엄청 신선해 보이는데."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "이것들도 상하는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "아, 이 사과요???"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "상할 리가 없죠."}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "제가 다 먹어버릴 테니까요!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "그러면 새로 리셋되고… 또 먹고!"}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "귀여운 고양이네."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "고양이는 먹는 건가요?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "그게 무슨 소리야?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "고양이는 먹는 게 아니야."}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "참나!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "그건 저도 알아요!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "제 말은 그게 아니라…"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "전 진짜 고양이를 한 번도 못 봤거든요."}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "진짜 살아있는 고양이요."}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "인터넷에서만 봤어요…"}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "엄청 귀엽겠죠?"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "응, 귀여워,"}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "저도 고양이를 좋아해요."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind with ring"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "그건 뭐야?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "반지 인터페이스요."}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "루트를 재설정하고 있어요."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "그냥 동그라미만 이리저리 옮기는 것 같은데?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "당신한텐 그저 동그라미로 보이겠지만,"}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "제 눈엔 이게 다 데이터예요."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "진짜 금방 끝나?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "쉿, 방해만 안 하면"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "금방 끝낼 수 있을 텐데…"}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "그러니까,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "내가 계속 방해하면,"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "엄청 오래 걸린다는 거지?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "하아, 캐피…"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "네가 기억을 되찾았으면 좋겠다…"}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "곧 괜찮아질 거야…"}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "좋아요!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "시간이 없어요,"}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "코어를 찾아야 해요!"}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "저도 같이 가도 돼요?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "그건 당연히…"}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "안 돼요?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "안되지."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "아아, 늦었다, 늦었어!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "라면 먹고 싶다!"}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "코딩 조금만 더 하면 끝나는데…"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "내일이 며칠이더라?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "내 컴퓨터가 어디 갔지?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "제시간에 끝내야 하는데…"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "작업을 저장했더라?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "누구 하나 나한테 관심 두는 사람 없네?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "우리 어디가?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "이봐!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "자신감이 바닥나고 있어…"}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "더 열심히!"}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "아무것도 할 수 없어…"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "내 폰이 어디있지?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "아…"}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "어제 무슨 일 있었어?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "시간은 왜 이렇게 안 가!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "안…녕?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "한잠 잘까?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "내가 뭘 하면 돼?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "제시간에 못 끝내겠는데…"}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "대체 어디서 문제가 생긴 거야…"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "마감! 마감!"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "20분 정도는 쉬어도 괜찮겠지…"}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "잠? 있을 수 없는 일이지!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "시원하게 씻고 출근해야지!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "배고파…"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "아니야, 이건 아니야!"}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "아하하"}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "알았어…"}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "그래도 그렇지."}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "그냥 가버렸네."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "뭔가 이상한데,"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "그리고 너무 웃겨."}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "너 쫌!"}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player]님, 뭐 하시는 거예요?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "왜 그래?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "또 가는 거야?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "그래!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "뭐… 네 맘대로 하든가."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player]님~ 저희한테 돌아오세요!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "나한테 전혀 신경도 안 써!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "진짜 재미없어…"}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "너의 계획이 뭐야?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "계획?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "무슨 계획이요?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "아, 맞다."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "넌 아무것도 기억 못 하는구나."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "그게 무슨…"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "제가 뭐라도 기억해 내야 하나 보네요!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "장난치는 건 아니죠?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "근데 그 표정을 보니…"}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "엄청 진지해 보이네요."}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "너랑 똑같이 생긴 사람을 보면,"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "기분이 어때?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "내 반지 가져간 그 미타 말이야."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "헤헤, 처음엔 소리 지를 뻔했어요!"}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "깜짝 놀랐었어요."}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "세상에! 완전 도플갱어잖아요!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "근데 저만큼 유머러스하진 않더라고요."}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "즉, 제가 더 매력적이란 뜻이죠 :)"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "엄청 우울해 보였어요."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "옆에서 다 듣고 있거든."}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "이것들이 진짜!"}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "모자 쓰고 있으면 불편하지 않아?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "장갑도 더운데 계속 끼고 있고…"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "왜 안 벗어?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "그건…"}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "농담이시죠?"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "혹시… 다른 거 벗기를 기대하는 건가요? :)"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "진지하게 묻는 거야."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "아, 아니야."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "세상에."}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "당근이 엄청 많아요!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "이런 버그 처음 보네요!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "하하하!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "잠깐!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "문밖은 안 보는 게 좋을 것 같네요…"}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "그냥 비밀로 해두죠."}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "뭐가 있는데?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "비밀이잖아요."}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "말하면 비밀이 아니죠!"}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "음…"}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "일부러 내 궁금증을 일으키는 거지?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "와아!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "이게 뭐예요?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "게임기인가요!?"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "한 번만 해보면 안 돼요?"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "또 시작이네."}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "이거 어떻게 하는 거예요?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "코인만 모으면 돼."}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "개구리를 피하면서."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "완전 노잼이네요."}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "이런 것도 게임이라고…"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "어디서 갖고 온 거예요?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "제가 아직 돌려주지도 않았는데…"}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "이상하네?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "휴…"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "됐어요."}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "방금 버그 보셨죠!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "원래는 TV만 켜지는 건데,"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "웬일인지,"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "TV가 나타났다 사라졌다 하네요!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "신기하지 않나요?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "여기 앉아서 좀 쉴래."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "뭐 하시는 거예요?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "일어나세요!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "재미있는 거 하러 가요!"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "저쪽 문으로 나가세요."}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "로비로 가면 돼요."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "그럼 빠잇!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "이제 가야 해요, [player]님!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "걱정 말고 어서 가세요!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "싫어!"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "보내기 싫단 말이야!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "여기 계속 있어요!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "캐피!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "장난칠 때가 아니야."}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "아!"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "거기서 뭐 하는 거예요?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "시간이 없어요!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "안녕하세요!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "…가 아니라 안녕히 가세요!"}

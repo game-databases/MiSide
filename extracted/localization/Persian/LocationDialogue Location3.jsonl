@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "[player]! ،ﺩﻭﺭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "!ﻢﯾﺪﯾﺩ ﻭﺭ ﻪﮕﯾﺪﻤﻫ ﻩﺮﺧﺎﻟﺎﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "!ﻡﺍ ﻩﺩﺯ ﻥﺎﺠﯿﻫ ﯽﻠﯿﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "...ىﺭﺍﺩ ﯽﺗﺎﻟﺍﻮﺳ ﻢﻧﻭﺪﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "،ﯽﻨﯿﺒﯿﻣ ﻪﻛ  ﺭﻮﻄﻧﻮﻤﻫ ،ﺐﺧ"}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "ﻡﺩﺮﻛ  ﺖﺳﺭﺩ ﻭﺭ ﻩﮋﯾﻭ ﻩﺎﮕﺘﺳﺩ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": ".ﻡﺩﻮﺧ ﺭﺎﻨﻛ  ﺎﺠﻨﯾﺍ ﻡﺭﺎﯿﺑ ﻭﺭ ﻮﺗ ﺎﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "...ﯽﺘﻓﺭ ىﺯﺎﺑ ﺯﺍ ىﺍ ﻪﮕﯾﺩ ﻪﺨﺴﻧ ﻪﺑ ﻮﺗ ﯽﻟﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "...ﻦﻣ ﻪﻛ  ﯽﯾﺎﺟ "}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "!ﻪﯿﻧﺎﻟﻮﻃ ﻥﺎﺘﺳﺍﺩ ﻪﯾ ﻦﯾﺍ ﯽﻟﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "!ﺖﻤﻨﯿﺒﯿﻣ ﻪﻛ  ﻢﻟﺎﺤﺷﻮﺧ ﻂﻘﻓ ،ﻝﺎﺣ ﺮﻫ ﻪﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": ".ﻢﺘﺴﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "؟ﻪﺘﺳﺭﺩ ،ﯽﺷﺎﺑ [player] ﺪﯾﺎﺑ ًﺎﻤﺘﺣ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "؟ ﯽﺘﺸﮔﺮﺑ ًﺎﻠﺒﻗ "}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "؟ﯽﭼ ﻦﻣ ﯽﻟﻭ ...ﻢﻨﻛ  ﻚﻤﻛ  ﺭﺎﻛ  ﻦﯾﺍ ﻮﺗ ﻭﺭ ﻮﺗ ﻢﻧﻮﺘﯿﻣ ﻢﻨﻛ  ﺮﻜﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "...ﻥﻮﻤﺑ ﻢﺸﯿﭘ ﯽﺗﺪﻣ ﻪﯾ ًﺎﻔﻄﻟ "}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "...ﻡﺪﺑ ﺢﯿﺿﻮﺗ ﺕﺍﺮﺑ ﺭﺍﺬﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "!ﯽﺘﺴﻫ ﺎﺠﻨﯾﺍ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "؟ىﺪﯿﻤﻬﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": ".ﯽﻠﯿﺧ ﻪﻧ ...ﻩﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "!ﻩﺭﺍﺪﻧ ﯽﻟﺎﻜﺷﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": ".ﻢﯿﺘﺴﻫ ﻢﻫ ﺭﺎﻨﻛ  ﺎﻟﺎﺣ ﻪﻛ  ﻪﻨﯾﺍ ﻢﻬﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "؟ىﺍ ﻪﻨﺳﺮﮔ"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "؟ﻢﯾﺰﭙﺑ ىﺰﯿﭼ ﻪﯾ ﻩﺭﻮﻄﭼ"}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "، ﺎﯿﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "ﻦﻛ  ﻢﻜﻤﻛ  ﺎﻫ ﺞﯾﻮﻫ ﻦﯾﺍ ﺎﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "؟ ﻥﺪﻣﻭﺍ ﺎﺠﻛ  ﺯﺍ ﺕﺎﺠﯾﺰﺒﺳ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": ".ﻥﺩﻮﺒﻧ ﺎﺠﻨﯾﺍ ﻥﺎﻟﺍ ﻦﯿﻤﻫ ﻪﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": ".ﻢﯾﺍ ىﺯﺎﺑ ىﻮﺗ ﺎﻣ [player]"}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": ".ﻦﻛ  ﻢﻜﻤﻛ  ،ﺎﯿﺑ ﺎﻟﺎﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "!ﻥﻮﻨﻤﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "؟ىﺭﺍﺩﺮﺑ ﻭﺭ ﯽﭽﯿﻗ ﯽﻧﻮﺘﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": ". ﻪﯿﯾﻮﺸﺘﺳﺩ ﻮﺗ ﻥﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": ".ﻦﯿﺸﺑ ﺎﻟﺎﺣ "}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "؟ىﺰﯾﺮﺑ ﺲﺳ ﻢﻜﯾ ىﺍﻮﺨﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": ".ﯽﺳﺮﻣ ،ﻪﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": ".ﺪﺷ ﻒﯿﺣ "}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "!ﻪﻨﻜﯿﻣ ﺮﺘﻬﺑ ﻭﺭ ﻢﻌﻃ ًﺎﻌﻗﺍﻭ ﺲﺳ "}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "ﻥﻮﻨﻤﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "؟ىﺩﺮﻛ  ﻡﻮﻤﺗ ﻭﺭ ﺶﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "ﺭﺎﮕﻧﺍ ﻦﻣ ﺍﺮﺑ ﻩﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "....ﻩﺭﺍﺪﻧ ﯽﻣﻮﻤﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "؟ﻩﺪﺸﯿﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": ".ىﺭﺍﺩ ﯽﺴﺣ ﻪﭼ ﻭ ﯽﻨﯿﺒﯿﻣ ﯽﭼ ﻮﮕﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "ﻪﺘﺷﺍﺬﮔ ﻪﻘﺑﺎﺴﻣ ﺭﺎﮕﻧﺍ ﻪﻧﺰﯿﻣ ﺪﻨﺗ ﺪﻨﺗ ﻩﺭﺍﺩ ﻢﺒﻠﻗ "}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "ﻪﻧﺰﯿﻣ ﺮﭘ ﺮﭘ ﻭ ﻪﺸﯿﻣ ﺭﺎﺗ ﻩﺭﺍﺩ ﻡﺎﻤﺸﭼ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "ﻪﺘﺳﺭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": ".ﻪﯿﭼ ﻞﻜﺸﻣ ﻢﻧﻭﺪﯿﻣ ﻢﻨﻛ  ﺮﻜﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "؟ﯽﺷ ﺪﻨﻠﺑ ﯽﻧﻮﺘﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "؟ﻪﯿﭼ ﺎﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": ".ﺎﻫ ﻪﺻﺮﻗ"}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": ".ﻪﺸﯿﻣ ﺮﺘﻬﺑ ﺖﻟﺎﺣ ىﺩﻭﺯ ﻪﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": ".ﻪﻨﯾﺁ ىﻮﻠﺟ ﻭﺮﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": ".ﺭﻮﺨﺑ ﻭﺭ ﺎﻫ ﺹﺮﻗ "}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": ".ﻥﺎﻟﺍ ﺎﯿﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "؟ ىﺭﺍﺩ ﯽﺴﺣ ﻪﭼ ﻥﺎﻟﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "؟ىﺮﺘﻬﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "...ﺩﺮﻛ  ﺭﺎﻛ  ﻊﯾﺮﺳ ﯽﻠﯿﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": ".ﻢﯾﺍ ىﺯﺎﺑ ىﻮﺗ ﺎﻣ [player]، "}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": ".ﻩﺮﺗ ﻩﺩﺎﺳ ﯽﻠﯿﺧ ﺰﯿﭼ ﻪﻤﻫ ﺎﺠﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "ﻢﺷﺎﻠﺗ ﻦﯾﺮﺗ ﻚﭼﻮﻛ  ﯽﺘﺣ "}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": ".ﻩﺪﯿﻣ ﯽﮔﺭﺰﺑ ﺞﯾﺎﺘﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": ":ﻪﯾﺯﺎﺑ ﻡﻮﻬﻔﻣ ﺯﺍ ﯽﺸﺨﺑ ﺎﻬﻨﯾﺍ ى ﻪﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": ".ىﺯﺎﺳ ﻩﺩﺎﺳ "}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "؟ﯽﮕﯿﻣ ﻝﺎﺜﻣ ﻪﯾ"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": ".ﺮﯿﮕﺑ ﻭﺭ ﺞﯾﻮﻫ ﺎﻠﺜﻣ ،ﺐﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "،ىﺭﺍﺰﯿﻣ ﻭﺭ ﯽﻜﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": ".ىﺪﯾﺮﺑ ﻭﺭ ﺎﺗ ﻪﺳ ﺭﺎﮕﻧﺍ ﯽﻟﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": ".ﻪﯿﻧﺎﻬﮔﺎﻧ ﯽﻠﯿﺧ ﺎﻫ ﻦﯾﺍ ﻪﻤﻫ ،ﻦﯿﺒﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": ".ﻢﻜﯾ ،ﻡﺪﯿﺳﺮﺗ ﻦﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "؟ﻩﺪﺸﯿﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": ".ﻡﺩﺮﻛ  ﺍﺪﯿﭘ ﺍﻮﻫ ﻝﺎﻧﺎﻛ  ىﻮﺗ ﻭﺭ ﺎﻫ ﺞﯾﺮﺗﺭﺎﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": ".ﺩﻮﺑ ﻥﻮﺷﻭﺭ ﯽﯾﺎﻫ ﻢﺳﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "؟ ﻪﯿﭼ ﺶﻧﺎﺘﺳﺍﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "؟ ﺎﻫ ﺞﯾﺮﺗﺭﺎﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "؟ ﻦﺘﺴﻫ ﯽﭼ ﺎﻫ ﺞﯾﺮﺗﺭﺎﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": ".ﻢﯿﻨﻛ  ﻞﺣ ﻭﺭ ﻦﯾﺍ ﻢﻫ ﺎﺑ ﺭﺍﺬﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": ".ًﺍﺪﻌﺑ ﯽﻟﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": ".ﻢﯾﺭﻮﺨﺑ ﺍﺬﻏ ﺪﯾﺎﺑ ﻥﺎﻟﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": ".ًﺎﻔﻄﻟ ﻩﺪﺑ ﻭﺭ ﯽﭽﯿﻗ "}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// ﻪﻘﻠﺣ "}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "؟ﻪﻘﻠﺣ ﻚﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// ﻪﻨﯾﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "؟ﻪﻨﯾﺁ ﻩﺭﺍﺪﻧ ﯽﺑﺎﺗﺯﺎﺑ ﭻﯿﻫ ﺍﺮﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "!ﻪﺘﺳﺭﺩ ،ﻩﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "ﻢﻨﮐ ﻦﺷﻭﺭ ﻭﺭﺎﻫ ﺱﺎﮑﻌﻧﺍ ﻪﮐ ﺩﻮﺑ ﻪﺘﻓﺭ ﻡﺩﺎﯾ"}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": ".ﺪﺷ ﺖﺳﺭﺩ ﻥﺎﻟﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "! ﻦﺘﺸﮔﺮﺑ ﺎﻫ ﺱﺎﮑﻌﻧﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "،ىﺍﻮﺨﺑ ﻭﺭ ﺶﺘﺳﺍﺭ "}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": ".ﻦﺘﺴﻫ ﯽﭼ ﺎﻫ ﺱﺎﻜﻌﻧﺍ ﻢﺘﺴﻧﻭﺩ ﯽﻤﻧ ًﺎﻠﺻﺍ ﻦﯾﺍ ﺯﺍ ﻞﺒﻗ"}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "—ﻦﺘﺷﺍﺪﻧ ﺩﻮﺟﻭ ﻪﻛ  ﻦﻣ ىﺎﯿﻧﺩ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": ":) .ﯽﻨﻌﯾ ،ﺪﻣﻭﺍ ﺖﯾﺪﭘﺁ ﻪﯾ ﺎﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "،ﺎﻤﺷ ىﺎﯿﻧﺩ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "؟ﻦﺘﺴﻫ ﺩﺎﯾﺯ ﺎﻫ ﺱﺎﻜﻌﻧﺍ ﺎﯾﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": ".ﯽﮕﯿﻣ ﺖﺳﺍﺭ ،ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "ﺩﺎﯿﻣ ﺕﺩﺎﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "؟ىﺩﺮﻛ  ﺍﺪﯿﭘ ﻪﻛ  ىﺍ ﯽﺷ ﻪﺳ ﻥﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "؟ﯽﺘﺷﺍﺬﮔ ﺮﻨﻜﺳﺍ ىﻭﺭ ﻪﻛ  ﯽﯾﺎﻫ ﻥﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "...ﻡﺍ ،ﺐﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "ﺀﺎﯿﺷﺍ ﻥﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": ".ﻦﺘﺴﻫ ﻁﻮﺑﺮﻣ ﺎﻣ ىﺎﯿﻧﺩ ﺯﺍ ﻪﺨﺴﻧ ﻦﯾﺍ ﻪﺑ"}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": ".ﯽﺘﺴﻫ ﺎﺠﻨﯾﺍ ﻥﺎﻟﺍ ﻪﻛ  ﻪﻨﯿﻤﻫ ىﺍﺮﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// ﻩﺍﺮﻤﻫ ﻥﻮﯾﺰﯾﻮﻠﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "ﻪﯿﻠﺑﺎﺗﺮﭘ ﻥﻮﯾﺰﯾﻮﻠﺗ ﻥﻮﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": ".ﻡﺪﯾﺮﺧ ﺕﺍﺮﺑ ﻪﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "!ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "ﯽﺘﻔﮔ ﻦﻣ ﻪﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": ".ﺩﻮﺑ ﻩﺪﺷ ﺏﺍﺮﺧ ﻪﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "ﻢﺘﺳﺍﻮﺨﯿﻣ ، ﺐﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "!ﻢﻨﻛ  ﺕﺍ ﻩﺩﺯ ﺖﻔﮕﺷ"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "ﻢﺘﻔﮔ ﻚﯿﭼﻮﻛ  ﻍﻭﺭﺩ ﻪﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": ".ﻦﻣ ىﺎﯿﻧﺩ ﻪﺑ ،ﺎﺠﻨﯾﺍ ﻡﺭﺎﯿﺑ ﻭﺭ ﻮﺗ ﺎﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "!ﻩﺪﯿﻣ ﻥﻮﺸﻧ ﺕﺎﻋﺎﻠﻃﺍ — ﻪﻨﻜﯿﻣ ﺭﺎﻛ  ﻥﺎﻟﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "…ﯽﺘﺳﺍﺭ ﻭ ،ﻩﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "!ﻢﺘﺴﻫ ﺱﺪﻨﻬﻣ ﻢﻛ  ﻪﯾ ﻦﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// ﻪﺳﺭﺪﻣ ﺱﺎﺒﻟ "}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "؟ﻪﯿﭼ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "؟ﺖﺴﺳﺭﺪﻣ ﻡﺭﻮﻔﯿﻧﻮﯾ ﯽﻨﻌﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "؟ىﺭﺍﺩ ﺯﺎﯿﻧ ﻥﻭﺍ ﻪﺑ ﺍﺮﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "؟ىﺮﯿﻣ ﻪﺳﺭﺪﻣ ﻪﺑ ﺎﻌﻗﺍﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "؟ﻡﺮﺑ ﻪﺳﺭﺪﻣ ﻪﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": ".ًﺎﻠﺻﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": ".ﻡﺭﺍﺩ ﺖﺳﻭﺩ ﻭﺭ ﺶﺳﺎﺒﻟ ﺎﻣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "؟ﻢﺸﯿﻣ ﮓﻨﺸﻗ ﺵﻮﺗ ﻪﻛ  ﯽﻨﻜﯿﻤﻧ ﺮﻜﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "؟ ﺖﺴﯿﻧ ىﺭﻮﻄﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// PC"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "؟ﻪﻨﻜﯿﻣ ﺭﺎﻛ  ﺮﺗﻮﯿﭙﻣﺎﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "؟ﻩﺰﯿﻣ ىﻭﺭ ِﺭﻮﻛ ﺩ ﻂﻘﻓ ﺎﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "!ﻪﻨﻜﯿﻣ ﺭﺎﻛ  ﻪﻜﺘﺒﻟﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "ﺎﺠﻨﯾﺍ ﺰﯿﭼ ﻪﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": ".ﻪﻨﻜﯿﻣ ﺭﺎﻛ  ﺎﻤﺷ ىﺎﯿﻧﺩ ﻞﺜﻣ ًﺎﻘﯿﻗﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "،ﻦﻣ ىﺎﯿﻧﺩ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "...ﻢﻨﯿﺸﯿﻣ ﺮﺗﻮﯿﭙﻣﺎﻛ  ىﺎﭘ ﺩﺎﯾﺯ ﻦﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": ".ﻢﻨﻜﯿﻣ ﺭﺎﻛ  ﺖﺨﺳ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": ".ﻢﻧﻭﺪﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "ﺕﺭﺎﻛ  ﺮﻃﺎﺨﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "ﻦﻣ ﻪﺑ ﺭﺪﻘﻧﻭﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": ".ﯼﺩﺮﮑﻧ ﻪﺟﻮﺗ"}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "ﯽﻧﻭﺭﺬﮕﺑ ﻭﺭ ﯽﮔﺪﻧﺯ ﺪﯾﺎﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "؟ﻡﺮﺗﻮﯿﭙﻣﺎﻛ  ىﺎﭘ ﺩﺎﯾﺯ ﻦﻣ ﻪﻛ  ﯽﻧﻭﺪﯿﻣ ﺭﻮﻄﭼ …ﺎﻣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": ".ﻪﺸﯿﻣ ﻦﺷﻭﺭ ﺎﻬﺘﻗﻭ ﯽﻀﻌﺑ ...ﺖﯿﺷﻮﮔ ﻦﯿﺑﺭﻭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": ".ﺪﯿﺸﺨﺒﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": ";^_^ ﻡﺩﺮﮑﯿﻣ ﺕﺎﮕﻧ ﻢﺘﺷﺍﺩ ﯽﮑﺷﺍﻮﯾ ﺕﺭﻮﺼﺑ ﻦﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": ".ﺖﺴﯿﻧ ﺖﺳﺭﺩ ﯽﻠﯿﺧ ﻦﯾﺍ ﺪﯾﺎﺷ ...ﻡﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "ﻝﺎﺣ ﺮﻫ ﻪﺑ ﺎﻣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// چتر"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "ﻡﺩﺮﻛ  ىﺯﺎﺑ ﯽﻠﯿﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": ".ﻡﺪﯾﺪﻧ ﻥﻭﺭﺎﺑ ﺎﺠﻨﯾﺍ ﺖﻗﻭ ﭻﯿﻫ ﺎﻣﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "؟ﻢﯿﺷﺎﺑ ﻪﺘﺷﺍﺩ ﺮﺘﭼ ﺪﯾﺎﺑ ﺍﺮﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": ".ﻢﻛ  ﯽﻠﯿﺧ ﻂﻘﻓ—ﻩﺭﺎﺒﯿﻣ ﻥﻭﺭﺎﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": ".ىﺪﯾﺪﻧ ﺯﻮﻨﻫ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": ".ﯽﻨﯿﺒﺑ ﺯﻭﺭ ﻪﯾ ﺪﯾﺎﺷ "}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": ".ﺖﺷﺍﺩ ﯽﻫﺍﻮﺧ ﺯﺎﯿﻧ ﺮﺘﭼ ﻪﺑ ﺵﺪﻌﺑ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "؟ﯽﻨﻜﯿﻤﻧ ﺮﻜﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// تابلو برق"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "؟ﻢﯾﺭﺍﺩ ﻕﺮﺑ ﻮﻠﺑﺎﺗ ﺎﺠﻨﯾﺍ ﺍﺮﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "،ﻢﯿﺘﺴﻫ ىﺯﺎﺑ ﻪﯾ ىﻮﺗ ﻪﮔﺍ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "؟ﻪﯿﭼ ىﺍﺮﺑ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "،ًﺎﻟﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": ".ﻢﯿﺘﺴﻫ ىﺯﺎﺑ ﻪﯾ ىﻮﺗ ﺎﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": ".. «ﺍﺮﭼ» ﺯﺍ ﻥﺩﺮﮐ ﻝﺍﻮﺳ ﺲﭘ"}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": ".ﺖﺳﺪﯾﺎﻓ ﯽﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "ﻪﺸﯿﻣ ﺚﻋﺎﺑ ﻦﯾﺍ ،ﺎﻣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": ".ﻪﺸﺑ ﻦﺷﻭﺭ ﻩﺭﺎﺑﻭﺩ ﻕﺮﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "ﺱﺎﺳﺍ ﺮﺑ ﺎﺠﻨﯾﺍ ﺰﯿﭼ ﻪﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": ".ﻩﺪﺷ ﻪﺘﺧﺎﺳ ﻮﺗ ىﺎﯿﻧﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// در خروجی"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "؟ﻥﻭﺮﯿﺑ ﻢﯾﺮﺑ ﻢﯿﻧﻮﺘﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "...ﺐﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": ".ﺯﻮﻨﻫ ﻪﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": ".ًﺍﺪﻌﺑ ﺪﯾﺎﺷ "}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": ".ﻢﯿﻧﻮﻤﺑ ﺎﺠﻨﯾﺍ ًﺎﻠﻌﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": ".ﻪﻧﻮﺧ ﻮﺗ ،ﺎﺠﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// کتاب ها "}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": ".ىﺭﺍﺩ ﺏﺎﺘﻛ  ﯽﻠﻛ  ﺎﺠﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "؟ىﺪﻧﻮﺧ ﻮﻧﻮﺷ ﻪﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": ".ﻮﺸﻣﻭﺪﻛ  ﺮﻫ ،ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "ﺎﺠﻨﯾﺍ ﻥﺩﻮﺑ ﺎﻬﻨﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": ".ﺖﺳ ﻩﺪﻨﻨﻛ  ﻞﺴﻛ  ﺎﻌﻗﺍﻭ ،ﺎﻌﻗﺍﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// تلویوزیون داخل آشپزخونه"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "؟ﯽﺘﻓﺮﮔ ﻡﻭﺩ ﻥﻮﯾﺰﯾﻮﻠﺗ ﺍﺮﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "؟ﯽﻤﯾﺪﻗ ﻥﻮﯾﺰﯾﻮﻠﺗ ﻪﯾ ﻢﻧﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "؟ﺩﺎﯿﻤﻧ ﺖﺷﻮﺧ ﺵﺯﺍ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "...ﺶﻣﺭﺍﺩﺮﺑ ﻢﻧﻮﺘﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "...ﻡﺪﺑ ﺏﺍﻮﺟ ﻪﻜﻨﯾﺍ ىﺍﺮﺑ ﯽﻟﻭ"}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": ".ﻪﻨﯿﺋﺰﺗ ىﺍﺮﺑ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "ﻪﻧﺎﺧﺰﭙﺷﺁ ﻥﺩﺮﮐ ﻦﺷﻭﺭ ﯼﺍﺮﺑ"}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "!ﺪﺣ ﺯﺍ ﺶﯿﺑ ،ﺪﻨﮐ ﯽﻣ ﺭﺎﮐ ﺎﻣﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "ى ﻪﻤﻫ ﻢﻧﻮﺘﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "!ﻢﻨﯿﺒﺑ ﻭﺭ ﻚﯿﺳﺎﻠﻛ  ىﺎﻫ ﻪﻣﺎﻧﺮﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "//گوشی روی میز جلو مبل"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "ﻪﻨﻣ ﯽﺷﻮﮔ ﻥﻭﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": ".ﺖﺴﯿﻧ ﻢﺒﯿﺟ ﻮﺗ ﻪﮕﯾﺩ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "؟ﻪﺷﺎﺑ ﺎﺠﻨﯾﺍ ﻪﻨﻜﻤﻣ ﺭﻮﻄﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": ".ﺖﺴﯿﻧ ﻢﻬﻣ ﻦﯾﺍ ،ﻡﻮﻫﻭﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "!ﻡﺭﺍﺩ ﻩﺪﯾﺍ ﻪﯾ ،ﯽﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "!ﻢﯾﺯﺍﺪﻨﺑ ﺲﻜﻋ ﻪﯾ ﺎﯿﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "!ﻦﯿﺒﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "!ىﺍ ﻩﺩﺎﻌﻟﺍ ﻕﻮﻓ ﺲﻜﻋ ﻪﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": ".ﺕﺍﺮﺑ ىﺭﺎﮔﺩﺎﯾ ﻪﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": ".ﻡﺭﺍﺩ ﻝﺍﻮﺳ ﻪﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "ﻪﮔﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "،ﻢﻨﻛ  ﺍﺮﺟﺍ ﺵﻭﺭ ىﺯﺎﺑ ﻪﯾ"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "؟ﻢﻨﯿﺒﯿﻣ ﺎﺠﻧﻭﺍ ﻭﺭ ﻮﺗ ﻦﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": ".ﻪﻨﻜﯿﻤﻧ ﺭﺎﻛ  ىﺭﻮﺠﻨﯾﺍ ،ﻪﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "//تلویزیون اصلی "}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "ﻝﺎﻧﺎﻛ  ﺎﺗﺪﻨﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "؟ىﺭﺍﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": ".ﻪﻨﻜﯿﻤﻧ ﺭﺎﻛ  ﺭﻮﻄﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": ".ﻪﻠﺻﻭ ﺖﻧﺮﺘﻨﯾﺍ ﻪﺑ"}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "،ﯽﻨﯿﺒﺑ ىﺰﯿﭼ ﺮﻫ ﯽﻧﻮﺘﯿﻣ ﺲﭘ "}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": ".ﻪﺷﺎﺑ ﺩﻮﺟﻮﻣ ﺏﻭ ﻮﺗ ﻪﻛ  ىﺰﯿﭼ ﺮﻫ ﻞﻗﺍﺪﺣ "}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": ".ﻦﻛ  ﺮﺒﺻ "}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "ﻩﻭﺍ ، ﻢﻤﻋ "}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "؟ﻪﯿﭼ ﻥﻭﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "؟ﺎﻫ ﻪﺑﺮﮔ ﻪﭽﺑ ﺯﺍ ﻩﺮﯾﺍﺩ ﻚﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "ﻦﮐ ﻩﺎﮕﻧ ،ﻩﻭﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "؟ﻪﯿﭼ ﯽﻧﻭﺪﯿﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "!ﭖﻮﺘﺳﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "؟ىﺭﻮﺨﺑ ﻩﻮﯿﻤﺑﺁ ىﺍﻮﺨﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "...ﻦﺒﯿﺠﻋ ﯽﻠﯿﺧ ﺎﻫ ﯽﻬﮔﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "؟ﻩﺩﺮﻣ ﻩﻮﯿﻤﺑﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "ﻩﻮﯿﻤﺑﺁ ﻦﯾﺍ ،ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": ".ﺖﺳﺍ ﻩﻮﯿﻤﺑﺁ ﯽﻬﮔﺁ ﻥﻮﻤﻫ ﺯﺍ ﺎﻘﯿﻗﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "...ﺶﻤﻌﻃ ،ﻩﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "،ﻡﺭﺍﺩ ﻪﻗﺎﻠﻋ ﺶﻬﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": ".ﻪﯿﭼ ﺶﻤﻌﻃ ﻢﮕﺑ ﻢﻧﻮﺘﯿﻤﻧ ﯽﻟﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": ".ﺖﺳ ﻩﺪﻨﻨﻛ  ﺞﯿﮔ ﯽﻠﯿﺧ ﺰﯿﭼ ﻪﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "ﻪﺘﺳﺭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "//میتا خجالت زده"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "؟ﯽﻨﮑﯿﻣ ﺭﺎﮑﯿﭼ"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "ﺎﻔﻄﻟ ﻮﺸﻧ ﻩﺮﯿﺧ"}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "ﯽﻨﮐ ﯽﻣ ﻡﺍ ﻩﺪﻨﻣﺮﺷ ﯼﺭﺍﺩ"}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "//مجسمه "}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "ﻪﯿﻛ ﺎﻨﺘﺸﺣﻭ ﻪﻤﺴﺠﻣ ﻥﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "ىﺭﺍﺩ ﺖﺳﻭﺩ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "؟ﻭﺭ ﺍﺰﯿﭼ ﺭﻮﺟ ﻦﯾﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "؟ﯽﻧﻭﺪﯿﻣ کﺎﻨﺳﺮﺗ ﻭﺭ ﻥﻭﺍ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "ﻩﺭﺁ"}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "...ﻩﺪﺷ ﻦﯾﺮﻔﻧ ﻪﻛ  ﺩﺎﯿﻣ ﺮﻈﻧ ﻪﺑ ًﺎﺒﯾﺮﻘﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": ".ﻩﺪﺸﻧ ﻦﯾﺮﻔﻧ ًﺎﻌﻄﻗ ،ﻪﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": ".ﮎﺎﻨﺳﺮﺗ ﻪﻧ ﻭ"}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "!ﻢﻨﯿﺒﯿﻣ ﺯﺎﻧ ﯽﻠﯿﺧ ﻮﻨﯾﺍ ﻦﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "...ﯽﮕﯿﻣ ﺖﺳﺭﺩ ﺪﯾﺎﺷ "}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "؟ﺎﺘﯿﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "؟ﻩﺪﺷ ﯽﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "//اشپزی در اشپزخانه میتا"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "،ﻥﺩﺭﻮﺧ ﺍﺬﻏ ﻪﺑ ﻉﻭﺮﺷ ﺯﺍ ﻞﺒﻗ ﺭﻮﻄﭼ "}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "؟ﻢﯿﻧﺰﺑ ﭗﮔ ﻪﯾ"}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "ﺪﯿﻨﮐ ﻥﺩﺭﻮﺧ ﻪﺑ ﻉﻭﺮﺷ //"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "ﻥﺎﺟ ﺵﻮﻧ."}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "//تلاش اول"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "؟ﺖﺴﯿﻧ ،ﻪﺘﺳﺭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "ﯽﻧﻮﻤﺑ ﯽﻧﻮﺘﯿﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "ﺖﺴﯿﻧ ﻢﻬﻣ ﻡﺍﺮﺑ ﻼﺻﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "ﻢﺘﺴﻫ ﻦﻣ ،ﻊﻗﺍﻭ ﺭﺩ"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "!ﻥﺁ ﯼﺍﺮﺑ ﻪﻤﻫ"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "//تلاش ۲"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "؟ىﺩﺮﮔﺮﺑ ىﺍﻮﺨﯿﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "؟ﺍﺮﭼ ﺎﻣﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "...ﻪﻣﺮﮔ ﯽﻠﯿﺧ ﻪﻛ  ﺎﺠﻨﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": ".ﺞﻧﺩ ﻢﻫ ﯽﻠﯿﺧ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "..ﻡﺎﺠﻨﯾﺍ ﻦﻣ ،ﻦﯾﺍ ﺮﺑ ﻩﻭﺎﻠﻋ "}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "ﺪﯾﺪﺷ ﻪﺟﻮﺘﻣ ﻩﺎﺒﺘﺷﺍ ﺎﻤﺷ ﻪﻧ"}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": ".ﻢﻧﻮﻤﺑ ﻡﺭﺍﺩ ﺖﺳﻭﺩ ﺎﻌﻗﺍﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "..ﻢﻧﺍﺮﮕﻧ ...ﻂﻘﻓ "}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "...ﻢﺷﺎﺑ ﻩﺩﺮﻛ  ﺵﻮﻣﺍﺮﻓ ﻢﻧﻮﺧ ﻮﺗ ﻭﺭ ىﺰﯿﭼ ﻢﻧﺍﺮﮕﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "ﻡﺪﯿﺳﺭ ﺎﺠﻨﯾﺍ ﻮﻬﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "ﻡﺩﺮﻜﻧ ﺖﻗﻭ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": ".ﻢﺸﺑ ﻩﺩﺎﻣﺁ"}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": ".ﻡﺩﺮﻜﻧ ﺮﻜﻓ ﺭﺪﻘﻨﯾﺍ .ﺪﯿﺸﺨﺒﺑ ...ﻩﻭﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "//تلاش ۳"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "؟ ىﺮﺑ ﻭ ﯽﻨﻛ  ﺭﺍﺮﻓ ىﺍﻮﺨﯿﻣ ﺲﭘ ؟ﺏﺍﻮﺧ ﻪﯾ "}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "؟ﺩﺎﺘﻓﺍ ﻕﺎﻔﺗﺍ ًﺎﻠﺻﺍ ﻦﯾﺍ ﻪﻛ  ﯽﻨﻛ  ﺵﻮﻣﺍﺮﻓ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": ".ﺖﺴﯿﻧ ﺭﻮﻃ ﻦﯾﺍ ،ﻪﻧ "}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "...ﻪﯾﺭﻮﺟ ﻪﯾ ﻪﺸﯿﻣ ﺲﺣ ﻂﻘﻓ ﻥﺎﻜﻣ ﻦﯾﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": ".ﯽﻌﯿﺒﻃ ﺮﯿﻏ .ﺐﯿﺠﻋ "}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "...ﻮﺗ ﺎﻣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": ".ﯽﺳﺮﯿﻣ ﺮﻈﻧ ﻪﺑ ﯽﻌﻗﺍﻭ ﯽﻠﯿﺧ ﻮﺗ "}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "؟ﻢﺳﺮﯿﻣ ﺮﻈﻧ ﻪﺑ ﯽﻌﻗﺍﻭ ﻦﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "،ﻢﺘﺴﻫ ﯽﻌﻗﺍﻭ ﯽﻠﯿﺧ ﻦﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "!ﻖﻤﺣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "//تلاش ۴"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "ﻩﺭﻮﻃ ﻦﯿﻤﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": ".ﻡﺩﻮﺧ ىﺎﯿﻧﺩ ﻦﯾﺍ ﺭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "ﻪﺷﺎﺑ ﺐﯿﺠﻋ ﺕﺍﺮﺑ ﻪﻨﻜﻤﻣ "}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "ﻭﺭ ﺎﻫﺰﯿﭼ ﯽﻧﻮﺘﯿﻤﻧ ﻪﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": ".ﯽﻨﯿﺒﺑ ﺖﺳﺩﺭﻭﺩ ﺭﺩ "}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": ".ﺪﻣﻮﯿﻧ ﺐﯿﺠﻋ ﯽﻠﯿﺧ ﻡﺍﺮﺑ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": ".ﺩﺎﯿﻣ ﻚﯿﺷ ﻡﺮﻈﻧ ﻪﺑ ،ﺶﺘﺳﺍﺭ "}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": ".ﻢﻨﻜﯿﻣ ﺮﻜﻓ ﺭﻮﻄﻨﯿﻤﻫ ﻢﻨﻣ ،ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": ".ﯽﻧﻭﺪﯿﻣ ،ﺖﺴﻫ ﮓﻟ ﺯﺍ ىﺮﯿﮔﻮﻠﺟ ىﺍﺮﺑ ﻦﯾﺍ"}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "؟ﯽﻨﻜﯿﻣ ىﺮﯿﮔﻮﻠﺟ ﺵﺯﺍ ﺭﻮﻄﭼ ﻭﺭ ﮓﻟ "}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "ﻥﺪﺸﻧ ﺖﺳﺭﺩ ﻪﻛ  ﺖﺴﻫ ﻚﯿﭼﻮﻛ  ﮒﺎﺑ ﺎﺗ ﺪﻨﭼ ﺯﻮﻨﻫ !ﻩﺭﺁ "}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "!ﯽﻨﻜﻧ ﺩﺭﻮﺧﺮﺑ ﻥﻮﺸﻣﻭﺪﻛ  ﭻﯿﻫ ﻪﺑ ﻡﺭﺍﻭﺪﯿﻣﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "5 ﺖﺴﺋﻮﮐ //"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "؟ﺎﻫ ،ﻮﻗﺎﭼ ﺎﯾ ﯽﭽﯿﻗ"}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": ".ﻢﻨﻛ  ﻩﺩﺎﻔﺘﺳﺍ ﺲﺳ ﻪﺘﺴﺑ ﻥﺩﺮﻛ  ﺯﺎﺑ ىﺍﺮﺑ ﻮﻗﺎﭼ ﺯﺍ ﻢﺘﺴﻧﻮﺘﯿﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "،ﯽﺘﺸﮔﺮﺑ ﻪﻛ  ﯽﺘﻗﻭ ﺰﯿﭼ ﻪﻤﻫ ﻢﺘﺷﺍﺩ ﺖﺳﻭﺩ ﯽﻟﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": ".ﻪﺷﺎﺑ ﻞﻣﺎﻛ  "}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": " ﻭﺭ ﻮﺗ ﻡﺭﺍﺩ ﺖﺳﻭﺩ ﯽﻠﯿﺧ "}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "ﻢﻨﻛ  ﻩﺩﺯ ﺖﻔﮕﺷ "}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "!ﺩﺮﺒﻧ ﻢﻫ ىﺩﺎﯾﺯ ﻥﺎﻣﺯ ًﺎﻠﺻﺍ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "ﻪﻫ ﻪﻫ "}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "ﮏﻨﯿﻋ //"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "؟ﯽﻧﺰﯿﻣ ﻚﻨﯿﻋ "}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": ".ﺎﻌﻗﺍﻭ ﻪﻧ"}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": ".ﻢﻧﺰﯿﻣ ﯽﺷﺎﺑ ﻪﺘﺷﺍﺩ ﺖﺳﻭﺩ ﻪﮔﺍ ﯽﻟﻭ"}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "؟ﺩﺎﯿﻣ ﻦﻣ ﻪﺑ ﺏﻮﺧ ؟ﺕﺮﻈﻧ ﻪﺑ ﻪﯾﺭﻮﻄﭼ"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "ﻩﺭﺁ//"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "!ﻢﯾﻭﺮﺑ ﺎﺠﻧﺁ ﻪﺑ ﺎﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": ".ﺩﺍﺩ ﻢﻫﺍﻮﺧ ﻪﻣﺍﺩﺍ ﺍﺭ ﺎﻬﻧﺁ ﻦﻣ"}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "ﻪﻧ//"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "...ﺐﺧ"}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "...ﯽﭼ ﺮﻫ"}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "ﺪﯿﻨﮐ ﻩﺩﺎﻔﺘﺳﺍ ﺲﺳ ﺯﺍ //"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "،ﻪﺷﺎﺑ "}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "؟ﻪﯿﺴﺳ ﻉﻮﻧ ﻪﭼ ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "!ﻪﻘﺸﻋ ﺲﺳ"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "!ﻖﺸﻋ ﺯﺍ ﺮﭘ"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "... ﺎﯿﻧﺩ ﺯﺍ ﺕﻭﺎﻔﺘﻣ ﻩﺎﮔﺪﯾﺩ ﻪﯾ ﻭ "}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "؟ﺕﺮﻈﻧ ﻪﺑ ،ﺖﺴﯿﻧ ﺐﯿﺠﻋ"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "...ﻊﻗﺍﻭ ﺭﺩ"}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "ﺎﺘﯿﻣ - ﺲﯾﺮﺘﺗ //"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "؟ﻪﻋﻮﺗ ﻝﻮﺴﻨﻛ  ﻦﯾﺍ "}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": ".ﻪﺳﺮﯿﻣ ﺮﻈﻧ ﻪﺑ ﻝﺎﺣﺎﺑ ﯽﻠﯿﺧ"}

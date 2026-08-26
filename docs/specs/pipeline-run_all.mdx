@@ -1,0 +1,655 @@
+# P1 — Extraction pipeline spec: `run_all` skeleton + harvest / decompile / loc / art stages
+
+| | |
+|---|---|
+| Piece | **P1** (PrepareTask D1 spec; loop continues with Reviewer → Arbiter → CodeWriter+TestWriter) |
+| Type | feature |
+| Affected area | new `pipeline/` tree + pack-root `run_all` entrypoint shims + `extracted/` outputs |
+| Verified reality base | [explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx#verdict-table) — all seven steps executed for real against the installed client, 2026-08-24 |
+| Client ground truth | buildId **19029065**, `VERSION 0.93L`, Unity 2021.3.35f1, IL2CPP metadata v29 — [data-acquisition.md](../../data-acquisition.md#current-state-full-game-installed) |
+| Binding doctrine | [extraction-doctrine.md](../../../_foundation/extraction-doctrine.md#principle-two-completeness-is-proven-not-claimed) · [DR-2026-08-18-pipeline](../../../_foundation/decision-register.md#owner-ruling--reproducible-single-entrypoint-pipeline-dr-2026-08-18-pipeline) · [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope) |
+| Host constraints | [extraction-host.md](../../../_foundation/extraction-host.md#where-to-write) — extraction runs on NE8K, in place; heavy writes prefer `D:`/`A:` |
+
+**Errata 2026-08-24** (measured; [s4-crash-investigation.mdx](../research/s4-crash-investigation.mdx) wins over the prose below where they disagree): §2 S4's tool pin is **AssetStudioModCLI 0.19.0.1**, a cycle-guarded local rebuild of upstream aelurum/AssetStudioMod `6b66ec7` — stock 0.19.0.0 dies with STATUS_STACK_OVERFLOW (0xC00000FD) on MiSide's self-referential `ConsoleEditor_HierarchyCase` meeting guardless Cecil typetree recursion (output format byte-identical where no cycle exists; AC-8 otherwise unchanged). The E1 claim "Type trees NOT stripped" is corrected there (§Root cause item 4): MiSide MonoBehaviour typetrees ARE stripped — all typing comes from the `--assembly-folder` DummyDll route. S2's "leading string of `globalgamemanagers`" reads the Unity version embedded in the SerializedFile v22 header (offset 48 on buildId 19029065; never at offset 0). The cyclic-tail truncation behavior is an AC-12 residue-ledger entry.
+**Errata 2026-08-25** ([s6-arbiter](../research/verifications/s6-arbiter.mdx) item 2; [ilspycmd-acquisition.mdx](../research/ilspycmd-acquisition.mdx) wins over §2 S7's tool prose): S7's CLI comes from the **nuget dotnet-tool package `ilspycmd` 11.0.0.9335-rc** — nupkg `ilspycmd.11.0.0.9335-rc.nupkg` sha256 `9e336464fb5554cf1ed1ac50bb41db2ce369ad875670b6024bc49123d063c816`, net10.0-any TFM, installed `--tool-path` into `<workroot>\tools\ILSpy\`; the §2-pinned `ILSpy_windows_selfcontained_11.0.0.9335-rc-x64.zip` is a GUI-only upstream asset that never contained a CLI (I-4 root cause), so no zip fallback exists and host-global ilspycmd stays refused. Precondition: the shim resolves its net10 runtime via `DOTNET_ROOT` alone — the S7 stage injects `DOTNET_ROOT=<workroot>\it1-dotnet10` into its child env itself; exporting it around `run_all` is tribal knowledge and not part of the contract (AC-16 unchanged).
+**Errata 2026-08-25** ([s6-arbiter](../research/verifications/s6-arbiter.mdx) item 1 wins over §2 S5's failure prose): S5 non-UTF-8 handling is **recover-or-mark** — re-decode under the file's ONE declared codec only if ALL invalid segments round-trip byte-exactly, else declared U+FFFD per segment plus a residue row (locale/category/codec/per-segment offset+hex) seeding AC-12's residue ledger; the stage exits **0** when every anomaly is recovered-or-explicitly-marked, exit 3 staying reserved for absent store, post-recovery control characters / structural divergence (e.g. line-count off norm), and any unhandled anomaly class; the stage report carries the mechanical invariant `emitted == walked-txt-count` so S8 reconciles by construction (ledger writes keep AC-5's deterministic-full-rewrite mode), and the EN reference set derives post-policy — the phantom `extra_vs_reference` rows vanish.
+
+**Contract:** one discoverable entrypoint at the pack root,
+`./run_all <path-to-game-files>`, reproduces the P1 slice of `extracted/`
+A→Z with no tribal knowledge; every stage idempotent and runnable in
+isolation; tool + version + buildId pinned in
+`extracted/EXTRACTION-LOG.md`, which the entrypoint reads its defaults
+from. Later pieces (entity datasets, logic, relink, contracts) plug in as
+additional stages behind the same driver.
+
+**Argument semantics:** `<path-to-game-files>` is the **game root**
+(e.g. `A:\SteamLibrary\steamapps\common\MiSide\`) — the directory holding
+`MiSideFull.exe`, `MiSideFull_Data\`, **and** the loose `Data\` tree. E1
+proved the loc store sits at game root, *not* inside `*_Data\`
+([E1 §Step 5](../research/explorer-e1-hands-on.mdx#step-5--localization-sanity-partial-plan-corrections),
+deviation 1) — the driver resolves all three anchors from the one root and
+`detect` hard-fails if any anchor is missing.
+
+## 1. Non-goals (boundaries of later pieces)
+
+P1 ends at a complete, proof-backed **raw layer**: typed dumps, loc JSONL,
+art/media catalogue, decompiled source trees, census/PROOF source
+inventory. It does **not** spec the internals of:
+
+- **Entity curation** — canonical JSONL datasets (characters/Mitas, items,
+  cartridges/minigames, locations, documents, achievements, endings,
+  dialogue). P1 only produces the typed MonoBehaviour dumps and asset-list
+  crosswalks they derive from.
+- **Relink layer** — pairwise join matrix, UI-link→schema map,
+  `RELATIONS.md`, `locale_availability.jsonl`. P1 preserves every internal
+  identifier (PPtr pathIDs, `lineTranslate`, `steamAchievement`,
+  category names) so relinking is possible, and emits the proven join
+  authorities as *data*, nothing more.
+- **Logic layer derivations** — `extracted/logic/` unlock predicates,
+  ending trees, minigame rules. P1 ships decompiled structure
+  (hierarchies/reference graphs) as input to that work.
+- **Contracts** (`contracts/` pinning) — Phase 2.
+- **Protocol section content** — single-player game still owes a protocol
+  section in PROOF.md ([doctrine](../../../_foundation/extraction-doctrine.md#protocol-layer-clientserver-reconstruction));
+  P1's census only seeds the section placeholder (Steam achievements/cloud
+  saves/telemetry surface inventory is a later piece).
+- **Demo diff pass** — dropped until a demo install exists
+  ([questions.md](../questions.md) Q2).
+
+## 2. Stage table
+
+Registry order (dependency order; `env` added on cited evidence —
+[toolchain.md §2 step 3](../../toolchain.md#2-raw-harvest-path): "first
+pipeline stage creates the pack venv"):
+
+| # | Stage | Depends on | Produces (under `extracted/` unless noted) | Runtime expectation |
+|---|---|---|---|---|
+| S1 | `env` | — | venv at workroot (outside repo) | ~6 s warm ([E1 §Step 1](../research/explorer-e1-hands-on.mdx#step-1--python-env-works)) |
+| S2 | `detect` | env | `census/detect.json`, EXTRACTION-LOG seed, container census | seconds–minutes (filesystem walk) |
+| S3 | `il2cpp-dump` | detect | `il2cpp/` (dump.cs, il2cpp.h, script.json, stringliteral.json, `DummyDll/`) | **2.48 s measured** ([E1 §Step 2](../research/explorer-e1-hands-on.mdx#step-2--il2cppdumper-works)) |
+| S4 | `mono-typed-dump` | il2cpp-dump | `harvest/mb-dump/<container>/*.txt`, `harvest/asset-list/*.xml` | 993 objects from `resources.assets` in **~2.0 s**; level/sharedassets sweep **unmeasured** (R-E1-1) |
+| S5 | `loc-jsonl` | detect | `localization/<locale>/<category>.jsonl`, `localization/_ledger/*` | unmeasured; 360 MB loose tree, minutes-class [unverified] |
+| S6 | `art-export` | detect | `art/**`, `MEDIA-CATALOGUE.md`, `media-catalogue.jsonl` | unmeasured; dominated by `.resS` decode [unverified] |
+| S7 | `decompile` | il2cpp-dump | `decompiled/main/**`, `decompiled/voice-editor/**`, `decompiled/_structure/**` | unmeasured; decompiler CLI not exercised by E1 [unverified] |
+| S8 | `census` | S2–S7 | `PROOF.md` (source inventory, coverage reconciliation, residue ledger, protocol placeholder) | seconds–minutes |
+
+Failure semantics used below: **FAIL-FAST** = non-zero exit, named stage on
+stderr, no downstream stage starts; **LEDGER** = record the anomaly in the
+stage's report, `extracted/census/stage-reports/<stage>.json`, and continue
+(never silently drop — the ledger row is the product).
+
+### S1 `env`
+
+- **Inputs:** none (repo-local `pipeline/requirements.txt`).
+- **Outputs:** `D:\unpacked_game_data\MiSide\work\venv\` (workroot default;
+  `--work-root` overrides). Nothing in the repo.
+- **Invocation (E1-proven):** `python -m venv <workroot>\venv` then
+  `<venv>\Scripts\pip.exe install --quiet -r pipeline\requirements.txt`.
+  Pins = E1's `pip freeze`: `UnityPy==1.25.3 pillow==12.3.0 astc-encoder-py==0.1.12 brotli==1.2.0 etcpak==0.9.15 fmod_toolkit==0.1.3 fsspec==2026.7.0 lz4==4.4.5 pyfmodex==0.7.2 texture2ddecoder==1.0.6 tpk_ar==0.2.4 attrs==26.1.0 archspec==0.2.6`.
+  Python 3.14.7 works — the 3.12/3.11 fallback contingency never fired
+  ([E1 §Step 1](../research/explorer-e1-hands-on.mdx#step-1--python-env-works)).
+- **Idempotency:** skip install when `pip freeze` already matches the pins.
+- **Failure:** FAIL-FAST (pip resolution error).
+
+### S2 `detect`
+
+Re-runs the flavor-detection procedure ([toolchain.md §1](../../toolchain.md#1-flavor-detection--result-already-pinned))
+and the container census ([E1 §Step 4](../research/explorer-e1-hands-on.mdx#step-4--container-census-proofmd-source-inventory-evidence-works))
+as code. This is patch-day step 1 of the update watch
+([data-acquisition.md §Update watch](../../data-acquisition.md#update-watch)).
+
+- **Inputs:** game root. **Outputs:** `extracted/census/detect.json`
+  (verdicts + per-file census rows), initial `extracted/EXTRACTION-LOG.md`
+  pin block when absent.
+- **Checks (expected values from E1):** `GameAssembly.dll` at root
+  (22,411,776 B) ⇒ IL2CPP; u32 LE at offset 4 of
+  `MiSideFull_Data\il2cpp_data\Metadata\global-metadata.dat` = **29**;
+  leading string of `globalgamemanagers` = **2021.3.35f1**; loc store at
+  `<root>\Data\Languages\` present with **34** locale dirs; Voice Editor
+  Mono tree present at `<root>\Voice Editor\Miside Voice Editor_Data\Managed\`;
+  census: **51** SerializedFile-class files (**583,027,900 B**) + **69**
+  stream siblings `.resS/.resource` (**1,694,288,048 B**) =
+  **2,277,315,948 B**; no `.unity3d` bundles, no Addressables catalog.
+- **Free-space guard:** `Get-Volume`-equivalent check before any write;
+  ~10 GB headroom required (E1's estimate); bulk staging prefers `D:`/`A:`
+  ([extraction-host §Where to write](../../../_foundation/extraction-host.md#where-to-write)).
+- **Failure:** FAIL-FAST on missing anchors, metadata > 31 (message points
+  at the Cpp2IL escalation, [toolchain.md §8 P6](../../toolchain.md#8-open-risks--probes)),
+  or census total deviating from a previous `detect.json` by >0 B without
+  `--expect-drift` (patch-day honesty: a silent byte change is a buildId
+  change).
+
+### S3 `il2cpp-dump`
+
+- **Tool:** Il2CppDumper **v6.7.46** (net6 win zip, repo
+  `tools\Il2CppDumper\release\`) unzipped once into `<workroot>\tools\Il2CppDumper\`.
+  Headless config delta: scratch copy's `config.json`
+  `RequireAnyKey: true → false` — stock config waits for a keypress and
+  hangs non-interactive shells ([E1 deviation 4](../research/explorer-e1-hands-on.mdx#deviations-from-toolchainmd-consolidated)).
+  No `script.json` input needed (registrations found by scan).
+- **Invocation (verbatim shape from E1, PowerShell, absolute backslash
+  paths — the MSYS-mangling avoidance):**
+
+  ```powershell
+  Il2CppDumper.exe <GAME>\GameAssembly.dll `
+                   <GAME>\MiSideFull_Data\il2cpp_data\Metadata\global-metadata.dat `
+                   <EXTRACTED>\il2cpp
+  ```
+
+- **Child cwd:** the driver runs the exe with its working directory pinned
+  to the tool dir (`<workroot>\tools\Il2CppDumper\`) — E1 invoked it bare
+  from that dir ([E1 §Step 2](../research/explorer-e1-hands-on.mdx#step-2--il2cppdumper-works))
+  and cwd-independence was never tested; a cwd gotcha is on record for this
+  exact tool ([toolchain.md §2](../../toolchain.md#2-raw-harvest-path)).
+  Matching the proven shape costs nothing.
+- **Outputs:** `extracted/il2cpp/` — `dump.cs` (E1: 10,420,763 B /
+  288,102 lines, 6,281 types), `il2cpp.h`, `script.json`,
+  `stringliteral.json`, `DummyDll\` (**57** DLLs incl. `Assembly-CSharp.dll`
+  1,873,920 B). E1 wall time 2.48 s, zero warnings.
+- **Failure:** FAIL-FAST (metadata-version gate is deterministic,
+  [toolchain.md §7 pitfall 1](../../toolchain.md#7-known-pitfalls-pre-loaded-from-the-knowledge-base)).
+
+### S4 `mono-typed-dump`
+
+Typed MonoBehaviour dumps over every container, feeding entity curation.
+
+- **Tool:** AssetStudioModCLI **0.19.0.0** (net8 portable zip, repo
+  `tools\AssetStudioMod\release\AssetStudioModCLI_net8_portable.zip`; zip
+  name carries no version — pin by assembly `FileVersion` as E1 did).
+- **Invocation (E1-proven shape; input path strictly FIRST — options-first
+  fails with `Error: Input path was empty.`):**
+
+  ```powershell
+  AssetStudioModCLI.exe <container> -m dump -t monoBehaviour `
+    --assembly-folder <EXTRACTED>\il2cpp\DummyDll `
+    -o <EXTRACTED>\harvest\mb-dump\<container-stem>
+  ```
+
+  The same pass is planned to also emit `--export-asset-list xml` per
+  container to
+  `extracted/harvest/asset-list/<container-stem>.xml` — the name/pathID/
+  source crosswalk later pieces resolve PPtrs from
+  ([toolchain.md §2 step 2](../../toolchain.md#2-raw-harvest-path)).
+  **[unverified]** — E1 never exercised `--export-asset-list`, so the flag
+  combination with `-m dump` is confirmed during build (§8); if dump mode
+  does not emit it, fall back to a dedicated second pass or a
+  UnityPy-derived crosswalk (AC-8 accepts either mechanism).
+- **Containers:** all 51 SerializedFile-class files from the census:
+  `globalgamemanagers`, `globalgamemanagers.assets`, `resources.assets`,
+  `sharedassets0–23.assets`, `level0–23`. Text-dump quirks (tab indent,
+  continuation lines, NUL residue, array shape) are handled by the
+  established parser pattern ([toolchain.md §2 step 2](../../toolchain.md#2-raw-harvest-path)).
+- **Known behavior to design around:** dumping `resources.assets`
+  auto-resolves dependencies (E1 saw 5 files loaded: + globalgamemanagers.assets,
+  sharedassets0.assets, both builtin resources) — per-source attribution
+  during reconciliation must account for it (E1 deviation 6).
+- **Measure-first gate (R-E1-1):** before the full sweep, dump the smallest
+  `levelN` alone and record object/type mix + wall time in
+  `extracted/census/sweep-budget.json`; the full-sweep loop consumes that
+  budget. Level dumps are expected orders larger than 993 objects. The S2
+  free-space guard re-fires (same 10 GB bar, `common.py` helper)
+  immediately before the full sweep starts — level/sharedassets writes are
+  the largest unknown in the run.
+- **Outputs:** `extracted/harvest/mb-dump/<container-stem>/*.txt` (E1:
+  993 fully-typed dumps from `resources.assets` in ~2.0 s; `DataAchievements`
+  carries the 26-entry array with `steamAchievement` ↔ icon PPtr ↔
+  `lineTranslate` three-way join intact),
+  `extracted/harvest/asset-list/*.xml`.
+- **Failure:** per-container FAIL-FAST by default, `--keep-going` downgrades
+  to LEDGER — each attempt (container, argv sha, exit, objects dumped)
+  lands in `extracted/census/sweep-attempts.jsonl`, so a half-swept
+  corpus never looks complete and census S8 reconciles attempted-vs-
+  succeeded from that ledger. Ledger write mode: **deterministic full
+  rewrite** — at stage end the driver rewrites the whole file from this
+  run's attempts, one row per container in sweep order, never appending;
+  a rerun over unchanged inputs therefore reproduces it byte-for-byte
+  modulo the volatile fields. All ledger-style artifacts follow the same
+  rule (`_ledger/locale-delta.jsonl`, `census/stage-reports/<stage>.json`)
+  — rewritten per stage run, never appended — so idempotency holds by
+  construction.
+
+### S5 `loc-jsonl`
+
+- **Input:** `<GAME>\Data\Languages\<locale>\<Category>.txt` (loose tree at
+  game root — E1 deviation 1) + `Textures\` + `Font` per locale.
+- **Emission:** `extracted/localization/<locale>/<category>.jsonl`, one
+  record per line: `{category, line_index, text}` with `line_index`
+  zero-based — the join key proven end-to-end:
+  `GlobalLanguage.GetString(name, index)`
+  ([E1 §Step 7](../research/explorer-e1-hands-on.mdx#step-7--dumpcs-recon-works);
+  loader chain `CheckLocalization → LocalizatioLoad → LocalizationClearText`
+  in `ConsoleInterface`). Text preserved verbatim UTF-8, odd chars
+  recorded, never normalized ([toolchain.md §4](../../toolchain.md#4-localization)).
+  **Line counting is split-based** — category files carry **no trailing
+  newline**; `wc -l` undercounts (EN `Achievements.txt`: 25 reported, 26
+  real, matching `lineTranslate` 0–25) (E1 deviation 3).
+- **Ledger:** `extracted/localization/_ledger/locale-delta.jsonl` —
+  per-locale present-vs-reference(EN) category set plus per-locale
+  `Textures\`/font subset rows (both halves of R-E1-3). Category counts vary
+  64–76/dir (French max; Arabic (Egyptian)/Belarusian min) and per-locale
+  texture subsets differ (JA 20 png vs EN/RU/FR 26) — assert-equal is
+  forbidden; the skew ledger is the deliverable (E1 deviation 2, risk
+  R-E1-3).
+- **Scope boundary:** per-locale `Textures\`/fonts are *catalogued* here
+  (rows handed to S6's MEDIA-CATALOGUE), not copied inline — they are part
+  of localization, not droppables ([toolchain.md §4 item 3](../../toolchain.md#4-localization)).
+- **Failure:** LEDGER for missing categories/locales (skew is expected); a
+  non-UTF-8-decodable category file is LEDGERed too — raw bytes hex-encoded
+  into the stage report, parsing continues, and the stage exits non-zero at
+  stage end if any file was ledgered (honesty without letting one odd file
+  among 2,210 block the whole loc layer); FAIL-FAST only if the store
+  itself is absent.
+
+### S6 `art-export`
+
+Implements the art policy table ([toolchain.md §5](../../toolchain.md#5-art-export-policy))
+under [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope):
+
+- **Staged scope ([questions.md](../questions.md) §6, A→STAGED):** the
+  walk/catalogue pass runs first; each family's export-vs-catalogue scope
+  is derived from those first-pass row counts under the per-family rule in
+  [toolchain.md §5](../../toolchain.md#5-art-export-policy) and recorded in
+  EXTRACTION-LOG.md — decided at build time from measured rows, per family
+  not globally, with no owner round-trip inside P1.
+- **Export (2D):** sprites + Texture2D → PNG via AssetStudioModCLI
+  `-m export -t sprite,tex2d` (same input-first CLI discipline), atlas
+  sub-rects via UnityPy `Sprite.image`; WebP conversion with Pillow
+  (already pinned in S1). Sprite-vs-Texture2D preference is baked **per
+  asset family**, not globally ([toolchain.md §5](../../toolchain.md#5-art-export-policy)).
+  Outputs `extracted/art/<family>/…`. Loose `Data\Custom\*.png` character
+  templates copy through verbatim as raw-layer artifacts. The free-space
+  guard re-fires (same 10 GB bar, `common.py` helper) before export begins
+  — `.resS`-decode write volume is unmeasured.
+- **Catalogue (everything else):** emit `extracted/MEDIA-CATALOGUE.md` +
+  `extracted/media-catalogue.jsonl` rows with counts + bytes, measured by
+  filesystem walk (numbers below are E1's, re-measured at runtime):
+  audio `.ogg` **28,725 files / 1,441,141,744 B** (media carve-out: never
+  emitted into `extracted/`), GI Enlighten tree **62 files / ~5.9 MB**
+  (level3 only — R-E1-4: catalogue, don't chase), `.psd` **3 / 26,384,140 B**,
+  per-locale localized art (**777 png + 3 psd** globally), 3D models and
+  animations catalogue-first; textures start catalogue-first and flip to
+  export only where the derived staged scope above says so.
+- **Offload boundary ([questions.md](../questions.md) §5 ruling):** the
+  live Steam install is never mutated — this stage writes catalogue rows
+  and a *proposed* reverse-move manifest, performs **no destructive move**,
+  and creates no pack-held media copies unless the owner later opts in;
+  audio+video stay IN PLACE on `A:`, catalogued with paths+bytes.
+- **Failure:** LEDGER per unconvertible asset (named black-square policy is
+  frontend's problem; the catalogue must stay complete); FAIL-FAST if
+  catalogue byte sums disagree with the walk.
+
+### S7 `decompile`
+
+- **Main game:** batch-decompile the **57 DummyDlls** from S3 with the
+  **ILSpy CLI** — `ilspycmd`, headless batch project export; zip
+  `tools\ILSpy\release\ILSpy_windows_selfcontained_11.0.0.9335-rc-x64.zip` —
+  [toolchain.md §3](../../toolchain.md#3-script-decompile);
+  [questions.md](../questions.md) §4 rules the pipeline pick, and dnSpyEx
+  stays interactive-only for spot checks (it never enters `run_all`). Exact
+  `ilspycmd` invocation form **[unverified]** — E1 did not exercise this
+  step; CodeWriter pins the working command + version into
+  EXTRACTION-LOG.md at build time (§8). Expect correct structure, garbage-
+  prone bodies in call-heavy serializers — take structure, get semantics
+  from data ([does-not-work/decompiler-method-bodies.md](../../../game-unpacking-knowledge-base-and-guides/unity/does-not-work/decompiler-method-bodies.md#5-applying-it-to-another-unity-game)).
+- **Voice Editor (Mono sub-app):** decompile
+  `<GAME>\Voice Editor\Miside Voice Editor_Data\Managed\*.dll` directly —
+  no dump step ([toolchain.md §2 secondary](../../toolchain.md#2-raw-harvest-path)).
+  Its code names the voice-line/loc conventions the main game consumes.
+- **Structure artifacts (doctrine-required):** alongside raw source under
+  `extracted/decompiled/{main,voice-editor}/<assembly>/`, emit
+  `extracted/decompiled/_structure/` — class hierarchy + type reference
+  graphs derived from `dump.cs` (6,281 types) + the decompiled trees
+  ([doctrine Logic layer](../../../_foundation/extraction-doctrine.md#the-three-mandatory-layers)).
+  Known recon anchors to preserve verbatim: `GlobalLanguage`/
+  `LanguageFilesText`/`LanguageFilesTexture`, `ConsoleInterface` loader
+  chain, the `Location*Controller` family (175 `Location` hits),
+  `DialogueChanger`, `MitaEvent` families ([E1 §Step 7](../research/explorer-e1-hands-on.mdx#step-7--dumpcs-recon-works)).
+- **Custom-container contingency:** dropped from baseline — P2 closed
+  negative, zero custom container classes in game code
+  ([E1 §Step 6](../research/explorer-e1-hands-on.mdx#step-6--non-standard-extension-inventory-p2-works)).
+- **Failure:** FAIL-FAST per assembly with `--keep-going` LEDGER escape
+  hatch; structure-graph emission is mandatory, never skipped. The
+  free-space guard re-fires (same 10 GB bar) before the batch begins —
+  57 decompiled trees are unmeasured.
+
+### S8 `census`
+
+Writes `extracted/PROOF.md` per Principle two
+([doctrine](../../../_foundation/extraction-doctrine.md#principle-two-completeness-is-proven-not-claimed)):
+
+1. **Source inventory** — every container/source with sizes/totals **and
+   how each was measured** (tool + count method): the 51+69 container
+   census from S2, the loc tree (34 dirs / 2,210 txt / 777 png + 3 psd),
+   the `.ogg` family, GI tree, `Data\Custom`, Voice Editor `*_Data` as a
+   second source row ([toolchain.md §8 P7](../../toolchain.md#8-open-risks--probes)).
+2. **Coverage reconciliation** — per source: attempted vs succeeded, read
+   from `census/sweep-attempts.jsonl` + the per-stage reports (containers
+   swept vs dumped; loc files parsed), diff explained. Numbers
+   must reconcile to source totals byte-for-byte.
+3. **Residue ledger** — seeded from E1's known gaps: levelN dump depth
+   pending measurement (R-E1-1), per-locale category/texture skew ledgered
+   in S5, GI level3-only (R-E1-4), unlock-state bools needing
+   defaults-vs-live separation downstream (R-E1-2).
+4. **Remaining theoretical surface + protocol placeholder** — seeded;
+   filled by later pieces (Non-goals).
+
+- **Failure:** FAIL-FAST on any reconciliation mismatch — a wrong total is
+  worse than a crashed run.
+
+## 3. Entrypoint + output tree
+
+Driver CLI (stdlib `argparse`, no third-party deps outside the venv):
+
+```
+run_all <game-root>                     # all stages in registry order
+run_all <game-root> --list              # print stages in order + one-liners
+run_all --help                          # usage, args, per-stage flags
+run_all <game-root> --stage loc-jsonl [--stage art-export]
+run_all <game-root> --from mono-typed-dump --to census
+run_all <game-root> --work-root D:\unpacked_game_data\MiSide\work
+```
+
+Exit codes: `0` ok · `2` usage error · `3` stage failure (failed stage
+named on stderr) · `4` missing dependency outputs (run the earlier stage
+first).
+
+`extracted/` produced by P1 (light derived data; heavy classes stay
+catalogue-first):
+
+```
+extracted/
+├── EXTRACTION-LOG.md            # pins; driver reads its defaults here
+├── PROOF.md                     # S8
+├── MEDIA-CATALOGUE.md           # S6 (human)
+├── media-catalogue.jsonl        # S6 (machine)
+├── census/detect.json  census/sweep-budget.json  census/volatile-fields.json
+├── census/sweep-attempts.jsonl  census/stage-reports/<stage>.json
+├── il2cpp/{dump.cs,il2cpp.h,script.json,stringliteral.json,DummyDll/}
+├── harvest/mb-dump/<container-stem>/*.txt
+├── harvest/asset-list/<container-stem>.xml
+├── localization/<locale>/<category>.jsonl
+├── localization/_ledger/locale-delta.jsonl
+├── art/<family>/…
+└── decompiled/{main,voice-editor}/<assembly>/…  decompiled/_structure/…
+```
+
+`census/volatile-fields.json` is maintained by the driver
+(`pipeline/common.py`): the enumerated run-varying fields exempt from
+byte-identity comparison — measurement timestamps, wall-time durations,
+host names. Idempotency (AC-4/AC-5) compares modulo it: same *data*, not
+same clock.
+
+Workroot default `D:\unpacked_game_data\MiSide\work\` holds `venv\` +
+unzipped `tools\` — outside the repo, per E1's scratch layout
+([E1 header](../research/explorer-e1-hands-on.mdx#e1--hands-on-toolchain-probe-miside))
+and [extraction-host write rules](../../../_foundation/extraction-host.md#where-to-write).
+
+**EXTRACTION-LOG.md contract** ([toolchain.md §6](../../toolchain.md#6-version-pinning-extraction-log-discipline)):
+a fenced ```json block tagged `pipeline-defaults` near the top carries
+`buildId`, `versionLabel`, resolved tool paths + versions
+(Il2CppDumper 6.7.46, AssetStudioModCLI 0.19.0.0, decompiler CLI + version
+once pinned), the S1 pip freeze, config deltas
+(`RequireAnyKey:false`), and the entrypoint commit. The driver reads this
+block for defaults and refuses to run when pins disagree with
+`pipeline/requirements.txt` (stale-log defense). Below it, human-append
+sections record each acquisition/rerun event
+([data-acquisition.md §Depot recording](../../data-acquisition.md#depotmanifest-recording-buildid-pinning)).
+
+## 4. File manifest (CodeWriter creates)
+
+| File | Purpose |
+|---|---|
+| `run_all.cmd` | cmd shim → `python pipeline\run_all.py %*` (native Windows entry; PowerShell invokes `.cmd` directly, so no separate `.ps1` shim) |
+| `run_all` | POSIX-sh shim for Git Bash / `ssh ne8k` invocation forms |
+| `pipeline/run_all.py` | stdlib driver: registry, `--list/--help/--stage/--from/--to`, EXTRACTION-LOG defaults reader, exit codes 0/2/3/4 |
+| `pipeline/common.py` | shared helpers: absolute-Windows-path subprocess wrapper (list argv, no shell — MSYS-safe by construction; per-tool child-cwd pinning), log upsert, byte-walk census primitives, re-fireable free-space guard, `census/volatile-fields.json` maintenance |
+| `pipeline/stages/__init__.py` | ordered `STAGES` registry: `(name, module, deps, description)` |
+| `pipeline/stages/env.py` | S1 venv + pinned install, idempotent on `pip freeze` match |
+| `pipeline/stages/detect.py` | S2 flavor checks + container census + free-space guard + LOG seed |
+| `pipeline/stages/il2cpp_dump.py` | S3 tool unzip/config-delta/invocation/artifact verification |
+| `pipeline/stages/mono_typed_dump.py` | S4 per-container typed dumps + asset-list XML + measure-first sweep budget |
+| `pipeline/stages/loc_jsonl.py` | S5 split-based line parse → JSONL + skew ledger |
+| `pipeline/stages/art_export.py` | S6 2D export + MEDIA-CATALOGUE emission (no destructive moves) |
+| `pipeline/stages/decompile.py` | S7 batch decompile (main DummyDll + Voice Editor Managed) + `_structure/` graphs |
+| `pipeline/stages/census.py` | S8 PROOF.md generator with method-per-number |
+| `pipeline/requirements.txt` | the 13-pin freeze from E1 §Step 1 |
+| pack `.gitignore` | append `extracted/il2cpp/` — the one heavy subtree not yet guarded (questions.md §8 ruling: Il2CppDumper output stays local-only; `harvest/`, `decompiled/`, `art/`, `media/` are already in `.gitignore`) |
+
+Test-side files (TestWriter owns): `pipeline/tests/test_loc_parser.py`,
+`test_census_reconcile.py`, `test_cli_surface.py`, `test_idempotency.py`,
+plus `pipeline/tests/fixtures/` (below).
+
+Windows-first notes binding the implementation: all child processes get
+absolute backslash paths via list argv (never shell-interpolated strings)
+— this retires the Git-Bash/MSYS mangling class
+([toolchain.md §7 pitfall 8](../../toolchain.md#7-known-pitfalls-pre-loaded-from-the-knowledge-base))
+by construction; AssetStudioModCLI input path stays argv[1]; the Il2CppDumper
+scratch `config.json` delta is applied programmatically before every S3 run,
+whose child cwd is pinned to the tool dir (S3);
+loc files are decoded UTF-8 with `splitlines()` counting; tests comparing
+output over `ssh ne8k` strip CRLF
+([extraction-host](../../../_foundation/extraction-host.md#if-you-are-an-agent-on-the-mac)).
+
+## 5. Acceptance criteria (TestWriter contract)
+
+**Entrypoint surface**
+
+- **AC-1** `run_all --list` prints exactly the 8 registry stages in
+  execution order, each with a one-line description; exit 0; touches
+  nothing.
+- **AC-2** `run_all --help` prints usage including `<game-root>` semantics
+  (root holds `*_Data\` AND `Data\`), all flags, all four exit codes
+  (0/2/3/4); exits 0 on `--help`; a usage error exercises exit 2.
+- **AC-3** A full run executes S1→S8 in registry order; a failing stage
+  stops the run with exit 3 and names the failed stage on stderr; no
+  downstream stage runs. Invoking a stage whose dependency outputs are
+  absent exits 4 naming the missing stage; a stale `EXTRACTION-LOG.md`
+  pin block (pins disagreeing with `pipeline/requirements.txt`) aborts
+  the run before S1 (stale-log defense).
+
+**Isolation & idempotency**
+
+- **AC-4** `--stage <name>` produces outputs byte-identical to the same
+  stage's outputs within a full run (same inputs, same workroot), modulo
+  the volatile fields enumerated in
+  `extracted/census/volatile-fields.json` (measurement timestamps,
+  wall-time durations, host names).
+- **AC-5** Running any stage twice consecutively changes no byte under
+  `extracted/` beyond mtimes and those volatile fields — e.g.
+  `sweep-budget.json` wall times, the `detect.json` measurement stamp,
+  stage-report run facts — except `EXTRACTION-LOG.md`, which gains no
+  new line when tool set, buildId, and inputs are unchanged (record dedupe).
+  Ledger-style artifacts (`sweep-attempts.jsonl`,
+  `_ledger/locale-delta.jsonl`, stage reports) obey the S4 write mode —
+  deterministic full rewrite, never append — so a rerun reproduces them
+  byte-identically modulo the volatile fields. Idempotency means same data, not same clock: a rerun
+  that changes any non-enumerated byte fails.
+
+**Per-stage correctness (values = E1 ground truth on the current install)**
+
+- **AC-6** `detect` reports: Unity `2021.3.35f1`; metadata version 29;
+  IL2CPP verdict; 51 SerializedFiles / 583,027,900 B; 69 streams /
+  1,694,288,048 B; grand total 2,277,315,948 B; 34 locale dirs at game-root
+  `Data\Languages\`; and writes those totals where S8 can consume them.
+- **AC-7** `il2cpp-dump` yields `dump.cs` (≥250k lines; E1 pinned
+  288,102 — deviation >5% from the EXTRACTION-LOG-pinned count warns and
+  logs, never fails), `il2cpp.h`, `script.json`, `stringliteral.json`, and
+  57 DummyDlls; runs in seconds-class, headless (no stdin wait —
+  `RequireAnyKey:false` verified in the scratch config).
+- **AC-8** `mono-typed-dump` accepts options-after-input only (options-first
+  is never emitted); `resources.assets` produces ≥993 typed dumps with
+  non-empty field trees, `DataAchievements.txt` among them with a 26-entry
+  array; all 51 containers are attempted and each attempt is recorded in
+  `census/sweep-attempts.jsonl` (container, argv sha, exit, objects
+  dumped), the ledger rewritten in full at stage end per the S4 write
+  mode; per-container `.xml` asset lists land in `harvest/asset-list/`
+  — emitted by the same pass if §8 verifies it, else by the fallback
+  chosen at build time; `sweep-budget.json` exists before any
+  `levelN`/`sharedassetsN` sweep.
+- **AC-9** `loc-jsonl` emits ≥2,210 category JSONL files across every
+  present locale directory (34 on buildId 19029065 — a patch adding a
+  locale extends the surface rather than failing the AC); EN
+  `Achievements.jsonl` has **26** records (indices
+  0–25 — split-based counting proven against the no-trailing-newline
+  bytes); record text is byte-verbatim (spot-check: EN line 26 = `Pro Gamer`,
+  RU line 1 = `Кислое молоко.`); `_ledger/locale-delta.jsonl` documents
+  every per-locale category delta AND per-locale texture/font subset delta
+  instead of asserting uniformity (subset values spot-checkable: JA 20 png
+  vs EN/RU/FR 26).
+- **AC-10** `art-export` catalogue rows reconcile to walked byte sums:
+  ogg 28,725 / 1,441,141,744 B; psd 3 / 26,384,140 B; GI tree 62 files;
+  per-locale art 777 png + 3 psd; no audio/video bytes are written under
+  `extracted/`; `Data\Custom\*.png` copies verbatim; the derived
+  per-family export scope is recorded in EXTRACTION-LOG.md (staged §6
+  ruling).
+- **AC-11** `decompile` emits source trees for all 57 main assemblies +
+  the Voice Editor Managed set, plus `_structure/` hierarchies/reference
+  graphs; `GlobalLanguage.GetString` and the loader chain appear in the
+  main tree with signatures intact; the bodies-are-garbage-prone caveat is
+  recorded in `census/stage-reports/decompile.json`.
+- **AC-12** `PROOF.md` contains all four Principle-two sections; every
+  number carries tool + method; the source inventory contains a Voice
+  Editor `*_Data` row with counts+bytes+method (P7); container totals
+  reconcile to the S2 census exactly (attempted-vs-succeeded from
+  `census/sweep-attempts.jsonl` — the latest S4 run's full rewrite, one
+  row per container, never accumulated across runs); residue ledger has
+  entries for: levelN
+  dump depth unmeasured, locale/texture skew, GI level3-only, achievement
+  unlock-state ambiguity; protocol section exists as an explicitly-seeded
+  placeholder.
+
+**Provenance & hygiene**
+
+- **AC-13** After a successful run, `EXTRACTION-LOG.md` pins: buildId
+  19029065, `VERSION 0.93L`, Unity 2021.3.35f1, metadata v29,
+  Il2CppDumper 6.7.46, AssetStudioModCLI 0.19.0.0 (FileVersion-derived),
+  decompiler CLI + version, the 13-line pip freeze, config deltas, and the
+  entrypoint commit.
+- **AC-14** The pipeline writes nothing under `<game-root>` (install stays
+  read-only, as E1 kept it); all mutable state lives in workroot +
+  `extracted/`; the free-space guard aborts before writes when headroom
+  < 10 GB — checked at S2 and re-fired before S4's full sweep, S6 export,
+  and S7 decompile (the late, large writers).
+- **AC-15** No client bytes are staged for git (AGENTS rule 5); tracking
+  follows the ruled split ([questions.md](../questions.md) §8), which the
+  pack `.gitignore` already encodes: local-only = `il2cpp/`, `harvest/`,
+  `decompiled/`, `art/`, `media/`; committed normally =
+  `EXTRACTION-LOG.md`, `PROOF.md`, `MEDIA-CATALOGUE.md` +
+  `media-catalogue.jsonl`, census summaries (`detect.json`,
+  `sweep-budget.json`, `sweep-attempts.jsonl`, `stage-reports/`), and
+  `localization/**` ("only derived artifacts travel"). Four of the five
+  ignored subtrees are guarded today; CodeWriter appends the missing
+  `extracted/il2cpp/` line (file manifest). Owner can widen later.
+- **AC-16** Both shims (`run_all.cmd`, `run_all`) reach the same driver
+  with identical results from cmd and Git Bash / `ssh ne8k` respectively;
+  cmd is the native-Windows entry (PowerShell invokes `.cmd` directly), so
+  no separate `.ps1` shim exists; the driver itself makes no assumptions
+  about the calling shell.
+
+## 6. Test plan sketch
+
+Tiers — **F**ixture (synthetic, seconds), **R**eal-subset (copied real
+bytes into a fixture game root, minutes), **I**nstall (real client at
+`A:\…\MiSide\`, expensive, explicitly gated):
+
+- **Fixtures under `pipeline/tests/fixtures/`:**
+  - `mini-loc/` — synthetic `Data\Languages\` with 2 locales × 3
+    categories, including one file with no trailing newline and one locale
+    missing a category. Drives AC-9's parser math and ledger behavior
+    deterministically (F).
+  - `mini-root/` — fake game root assembled from **copied real bytes**:
+    `GameAssembly.dll`, `global-metadata.dat`, `globalgamemanagers`,
+    `globalgamemanagers.assets`, `resources.assets`, smallest
+    `sharedassetsN.assets`, `level0`, EN/RU/JA `Languages` subsets,
+    Voice Editor Managed `Assembly-CSharp.dll`. Lives on `D:` scratch.
+    Drives end-to-end S2→S8 smoke without touching `A:` (R).
+- **Unit tests (F):** split-based line counting incl. `\r\n`, lone `\n`,
+  no-final-newline; census reconciliation arithmetic (sum-of-parts ==
+  grand total, mismatch ⇒ fail); CLI surface (AC-1/2/3: usage error → 2,
+  missing dependency outputs → 4 naming the stage, stale-pin refusal
+  aborts before S1).
+- **Integration on `mini-root` (R):** AC-4 isolation equivalence; AC-5
+  double-run byte-diff harness (hash tree, rerun, compare modulo
+  mtime + `census/volatile-fields.json`);
+  AC-7 artifact-set shape; AC-8 arg-order regression (assert the emitted
+  argv keeps input first); AC-10 catalogue-vs-walk reconciliation; AC-12
+  PROOF section presence.
+- **Install-tier smoke (I — the only tests allowed to touch `A:\`):** one
+  full `run_all` against the real install verifying AC-6 exact totals,
+  AC-9's 34×2,210 surface, AC-13 pins. Runtime-budgeted: S3+S4(resources)
+  are seconds-class per E1; the S4 full sweep and S6/S7 budgets are
+  **unknown until `sweep-budget.json` exists** — cap the first Install-tier
+  run at measure-then-decide, per R-E1-1, and let it run long only after
+  the budget is recorded.
+- **Never** a test precondition: network access, Steam login, or writes to
+  `A:`.
+
+## 7. Risks & fallbacks (E1 findings only)
+
+| Risk | Spec response |
+|---|---|
+| **R-E1-1** — levelN scene dumps are orders larger than the 993-object resources dump; dialogue/location/endings components live there | S4 measure-first `sweep-budget.json` gate before the full sweep; per-container `--keep-going` ledger mode; census reconciles attempted vs succeeded |
+| **R-E1-2** — `DataAchievements.get` serializes unlock state into assets (defaults vs live) | Not solved in P1 (entity-curation concern); AC-8 requires the field to survive verbatim into dumps so the later dataset can separate them |
+| **R-E1-3** — per-locale category skew (64–76) + texture subset skew (JA 20 vs 26) | S5 skew ledger is mandatory output; assert-equal forbidden (AC-9) |
+| **R-E1-4** — GI cache exists only for level3 | Catalogue row only; no chase logic |
+| **R-E1-5** — audio dominates the install (28,725 ogg ≈ 1.44 GB) | Media carve-out: catalogue + proposed offload manifest, never emitted inline (AC-10) |
+| E1 deviation 4/5 — headless hangs (RequireAnyKey) + AssetStudioModCLI arg order | Programmatic config delta each S3 run (AC-7); argv-order invariant tested (AC-8) |
+| E1 deviation 6 — dependency auto-load muddies per-source attribution | S4 records which containers AssetStudioModCLI actually loaded per invocation; S8 reconciles on that, not on naive per-file attribution |
+| E1 deviation 3 — `wc -l` class undercounting | Split-based counting is an AC (AC-9) with a dedicated unit test |
+| Decompiler step never exercised | Marked [unverified]; `ilspycmd` command + version pinned at build time into EXTRACTION-LOG.md (§8); no second candidate in `run_all` — dnSpyEx stays interactive-only ([questions.md §4](../questions.md)) |
+
+## 8. Verify-during-build items
+
+Carried from the E1 verification round (TODO: "one uncited ~2.9 GB
+denominator"): the pipeline must **derive** every total it prints from its
+own walks — no total may be copied from a doc. AC-6/AC-10/AC-12 enforce
+this mechanically: if a stage's walked number disagrees with this spec's
+cited value, the stage wins, the discrepancy is logged, and the spec/doc
+gets corrected in the same commit.
+
+Verify items carried into build:
+
+- Confirm `-m dump` tolerates `--export-asset-list xml` in the same pass —
+  E1 never exercised the flag. If dump mode does not emit the XML, switch
+  to a dedicated second pass or a UnityPy-derived crosswalk and record the
+  chosen mechanism in EXTRACTION-LOG.md (AC-8 accepts either).
+- Pin `ilspycmd`: prove headless batch project export over the 57
+  DummyDlls, then record command + version in EXTRACTION-LOG.md (exact
+  form [unverified] until then; questions.md §4 ruling stands regardless).
+
+## 9. Open questions — none left (all ruled 2026-08-24)
+
+D1 raised five candidates here; the orchestrator ruled them into
+[questions.md](../questions.md) §4–§8 the same day, and those rulings WIN
+over any earlier wording in this spec. Kept as the conformance record:
+
+1. **Decompile CLI pick — RULED (§4):** pipeline uses **ILSpy CLI**
+   (`ilspycmd`, headless batch project export); dnSpyEx stays
+   interactive-only for spot checks; only one tool enters `run_all`.
+   Remaining build task: pin the `ilspycmd` version at build time (§8).
+2. **Audio/video offload mechanics — RULED (§5):** the live Steam install
+   on `A:` is never mutated; audio+video stay IN PLACE, catalogued with
+   paths+bytes into MEDIA-CATALOGUE / media-catalogue.jsonl; the
+   [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope)
+   offload drive applies to pack-held copies, which P1 does not create
+   unless the owner later opts in.
+3. **Texture family scope — STAGED (§6):** decided at art-export build
+   time from the first catalogue-row counts, per family (S6 mechanism
+   above); no global pick and no owner round-trip inside P1.
+4. **Voice Editor as content source — RULED (§7):** a PROOF content-source
+   row (probe P7); its Mono assemblies decompile in the same S7 stage;
+   its voice-line data conventions recorded as evidence in PROOF.md.
+5. **Tracked-light policy for `extracted/` — RULED (§8):** `harvest/`,
+   `decompiled/`, `art/`, `media/` stay local-only (`.gitignore` guards
+   them; `il2cpp/` joins them via the manifest task above); datasets,
+   relinks, logic, contracts, and PROOF/VALIDATION/EXTRACTION-LOG
+   artifacts commit normally ("only derived artifacts travel"). Owner can
+   widen later. Encoded in AC-15.
+
+## See also
+
+- [explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx#implications-for-the-pipeline-spec) — verified invocations this spec encodes
+- [toolchain.md](../../toolchain.md#2-raw-harvest-path) — pinned toolchain plan
+- [data-acquisition.md](../../data-acquisition.md#update-watch) — patch-day rerun flow (`run_all` is its step 3)
+- [extraction-doctrine.md](../../../_foundation/extraction-doctrine.md#principle-two-completeness-is-proven-not-claimed) — PROOF.md + single-entrypoint requirements
+- [../TODO.mdx](../TODO.mdx) — Phase 1 checklist this piece implements

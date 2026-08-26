@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "Zvládl jsi to!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "Kde to vůbec jsme?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Ukaž mi ten prsten."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Jo..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "A je to!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "Nechceš si něco vyjasnit?"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// Player didnt approach MitaKind and decided to play a game - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "Celou dobu tu na tebe čekám"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "A ty tady hraješ na automatu?!"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "To je jedno, pojď sem..."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// Player talked to MitaKind first, and then played the game to the end - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Gratuluji, vyhrál jsi!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "Taky jsem to hrála!"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Snažila jsem se posbírat všechny mince a dostat se na 1. místo"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "Abych získala \"úspěch\"!"}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "No... nebylo to úplně jednoduché."}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "Trvalo mi celkem dlouho, než jsem si zvykla na ovládání."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Should I trust you?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "No, aspoň nejsem šílená..."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "Na rozdíl od jiných..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "Kromě toho,"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "Jsem ten nejmilejší člověk, kterého tady najdeš, zlato."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Přece se nechceš jen tak vzdát, ne?"}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "Ona vraždí všechny, kteří jí stojí v cestě. Musíme ji zastavit."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (How did I get here?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "Ten prsten tě sem dovedl."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "Je to skvělý vynález."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "Jen hráč, který ho má,"}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "Najde cestu do správné verze."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (What is this place?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "Tyto chodby"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "Propojují různé verze."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "Ano, je tu trochu prázdno."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "Dokonce jsem slyšela o jedné Mitě,"}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "Které nearchivovali její verzi..."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "Její dům"}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "Prostě přestal existovat..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Prý se pořád někde toulá"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "V těchto chodbách."}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Je mi jí líto..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (How did you end up here?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "No,"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "Už je to chvilka, co jsme se naposledy viděli."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "Díky tobě"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "Jsem se dostala z toho vězení,"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "A utekla té maniačce."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "A pro tvou informaci,"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "Umím snadno přecházet mezi verzemi,"}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "Na rozdíl od tebe, miláčku."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (What did you do with the ring?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "Změnila jsem trasu"}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "Na tu, kterou potřebujeme."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "Nastavila jsem tu nejkratší možnou,"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "Kterou spolu půjdeme."}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "Funguje takhle: Otevřeš dveře,"}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "A prsten ti umožní projít"}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "Mezi verzemi."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Are the passages dangerous?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "Od té doby, co jsem se dostal"}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "Do této hry,"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "Jsem viděl hodně divných věcí."}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "Zdá se, že tady je klid,"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "Ale ty chodby..."}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "Určitě nejsou bezpečné."}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "Máš pravdu, a každým dnem"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "Je to jenom horší."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "Ale hlavu vzhůru!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "Máme plán."}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "Vezmeš to nejkratší cestou."}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "Tou nejkratší a nejbezpečnější!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "Doufám, že to půjde hladce."}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "Co všechno vůbec je v těch chodbách?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "No..."}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "Vady, chyby, anomálie..."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Někdy i živé..."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "Některé jsou i nebezpečné, zaútočí na první pohled..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Eeh..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "A možná i další krvelačné Mity."}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "Další krvelačné Mity?!"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "Vím alespoň o jedné..."}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "Ošklivá Mita."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "A jen abys věděl, tak já jsem ji takhle nepojmenovala!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "Je jen..."}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "Velmi ranou verzí Mity."}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "Hlavní problém s ní je,"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "Že způsobuje hrozné chyby..."}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "Obávám se, že bychom na ni mohli narazit."}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "Koneckonců je nejblíž verzi nula..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Will you help me get out?) - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "Nemám žádný konkrétní plán..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "Ale tak či tak,"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "Ses sem dostal, ne?"}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "Kromě toho,"}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "Co jiného ti zbývá,"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "Než se spolehnout na mě, Laskavou Mitu!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "To máš pravdu... // Player"}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (You were talking about some kind of plan...) - MitaKind + Continue"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "Musíme se dostat k Jádru."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "Něco mi říká, že tam najdeme odpověď"}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "Na všechny naše problémy."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "Na co vlastně potřebuješ v Jádru pomoc hráče?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "Z nějakého důvodu my, Mity, nemůžeme"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "Do Jádra vstoupit."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "Viděla jsem ho jen zvenčí."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "Ale ty nejsi Mita, ty jsi hráč."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "Věřím, že ty určitě"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "Budeš moci jít dovnitř!"}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Zní jako plán?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Dobře. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Skvěle. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Takže..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "Je na čase, abych ti představila"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "Cool Mitu!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "Protože nosí tu cool čepici,"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "Tak jí prostě říkám"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Čapka."}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "Probírala jsem s ní náš plán"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "Jak zastavit Šílenou Mitu."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Seznam se, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Čauky!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "Ty seš můj... nový hráč?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "Jak ti mám říkat?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "Já jsem..."}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Počkat!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Ty..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "...Si mě nepamatuješ?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": "// Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Co?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "A ty jsi kdo?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "Sakra!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "[player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "Myslím, že tu byla ona,"}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Šílená Mita..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Poslyš! // for Mitacap"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Zkus si vzpomenout, pro dobro nás všech!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Vzpomenout si na co?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "A proč vypadáš jak já?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "No, tak to je fakt konec..."}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Poslouchej, [player],"}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "Zatím nám to nejde"}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "Úplně podle plánu!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "Měli jsme použít portál"}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "A tím si milionkrát ulehčit a urychlit cestu."}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "Ale bez pomoci Čapky ho nezprovozníme."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "A dokonce nám chybí i nějaké součástky..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "Možná je trochu roztěkaná, ale pálí jí to..."}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "Dobře, co teď budeme dělat? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "Na něco příjdu. // MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "A co jí udělala Šílená Mita? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "No... Myslím, že..."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "Že ji zabila."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "Zabila?! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "Přesně tak."}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "A když jakákoliv Mita zemře, tak se prostě restartuje."}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "Zapomene na všechno důležité"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "A obnoví se do továrního nastavení."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "Jinými slovy..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "Je to v prdeli."}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "To je strašné..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Asi lepší než zmizet navždy..."}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "I když... kdo ví."}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "A co hráči?"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Jde nás taky zabít a tím vymazat paměť?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "Určitě ti lze vymazat vzpomínky."}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "Teda alespoň poté, jakmile se z tebe stane kazeta."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "Ale co se stane zemřelému hráči,"}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "To ani já nevím."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Pořád slyším něco o kazetách... Jak to říct?"}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "Jak vím, jestli jsem kazeta nebo ne?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Pojď sem."}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "Zkontroluju to."}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "Uf,"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "Ještě nejsi kazeta."}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "Jsi živý a zdravý hráč."}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "To rád slyším..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "Nicméně..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Nech mě přemýšlet..."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "Musíme změnit celý náš plán."}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Hmm..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "Dej mi chvilku..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Myslím, že mám nápad!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Dej mi ten prsten!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Tak jo."}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "Musím znovu změnit trasu."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Na jakou jsi přišla?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Poslouchej, zlatíčko,"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "Budeš muset projít dalšími verzemi"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "Než se dostaneš k Jádru."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Plnou parou vpřed, rozumíš?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "A musím jít sám?"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "Vůbec nevím, kudy mám jít."}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "Budu se ti snažit pomáhat, jak jen budu moct,"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "Když to situace dovolí."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "Budu tě navádět a..."}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "Udělám, co bude v mých silách."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "A pak si promluvíme."}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "Zatím se nějak zabav s Čapkou."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Potřebuju asi tak deset minut..."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, if player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "OK."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "Mám to!"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "[player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "Pojď sem."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Vem si ho."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "Bohužel máš pravdu, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "Zatím budeš muset jít sám,"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "Musím přijít ještě na kloub tomu, co se tady doopravdy děje."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "Můj plán byl bezchybný..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "Ale jsme na tom hůř než kdy dřív."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "Musím zjistit, co se pokazilo,"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "A kde jsou ty součástky..."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "Pokusím se je najít."}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Třeba se nám ještě podaří dát portál dohromady."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "Ale není čas ztrácet čas."}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "Šílená Mita o tomhle místě ví,"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "Nemůžeme riskovat všechno tím, že tu zůstaneš."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Hodně štěstí, [player]! Brzy se uvidíme!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "Dobře."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "Jen doufám, že se našeho setkání dožiju..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi players"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "Proč?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Kdo jsem?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "Chci domů!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "Jak?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "Proč?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "Co to..."}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson - Player"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "Ty..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "Jsi skutečný člověk?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Ahoj!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "Seš tu novej?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "Novej? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "Seš z reálnýho světa, ne? // LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Jsem..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "Co se ti stalo?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "Jen trochu kulhám, neřeš."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "Už jsem tady asi rok,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "A je mi tu skvěle."}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Dobře... A kde to vůbec jsme? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "Jsme v nějakým prostoru mezi verzemi. // LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "A víš, jak se odsud dostat? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Nemůžu říct, že jo."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "Stejnak nechci odejít."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "Nemám důvod."}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Proč ne? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Dost kecání. Spěchám. // LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "Moje milovaná Mita na mě čeká."}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "Musím za ní jít..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "Tak zdar."}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Počkej...! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Odpal!"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "Všechno jsem slyšela!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "Nevím vůbec, co se děje,"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "Ale je to všechno tak zajímavé!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "Hádám,"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "Že už víš, kdo jsem?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "Já jsem Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "Ale očividně ne stejná jako tamta!"}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "Chápeš jak to myslím, ne?"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "Protože mám"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "TUHLE!"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "Úžasnou čepici!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "A TADÁ!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Úžasný rukavice!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "Ale to není všechno!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "Taky mám tuhle krutopřísnou elektrickou kytaru!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "Mám ji strašně ráda!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Chceš, abych ti něco zabrnkala?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Hehe!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Pojď sem, bejby..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "Ták!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Upřímně jsem doufala, že to bude znít líp."}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "To je fuk!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Eh, tak nic."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Hej,"}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "Ty jsi docela energická, že?"}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "JSEM!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "Rozhodně jsem!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Ale..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Pojď!"}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "Jdem něco dělat!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// HAMMER GAME"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "To je ale pěkný velký tlačítko."}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "Mám chuť ho zmáčknout."}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Můžu?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "Hned se k tomu dostaneš."}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "Pokud to teda stihneš!"}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "Zatím si sedni!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Dobře."}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "Co teď?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Už to můžu zmáčknout?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Haha!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "Tuhle hru mám fakt ráda!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "Akorát nám ještě něco chybí."}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "Mám to někde v inventáři!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "Vteřinku..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "Aj!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "No..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "Však víš, že..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "Tahle hra je pro dospělé, ne?"}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "Co to bylo?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "Nevíš, co to je?"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "To je na sejmutí krtka..."}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "Cože?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "Žádné krtky jsem tu neviděl..."}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "Cože? Krtci?"}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Ty neřeš,"}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "A pojďme hrát, jo?"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "Radši ne."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Ale no tak!"}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Víš, jak se to vůbec hraje?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "Vidíš to číslo?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "To je odpočet!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "Až vyprší čas,"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "Ukáže se,"}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "Jestli máš stisknout tlačítko nebo ne."}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "Pokud budeš pomalejší,"}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "Nebo ho zmáčkneš, když nemáš,"}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "Tak tě praštím kladivem do hlavy!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Ty mě jako budeš bít?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "No..."}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "To pochopíš za chodu!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Jau! // Player"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Nemohla ses udržet?"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Bolelo to? // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "Ne. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Tak pokračujem! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Dobře, // Player"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "Už se začínám chytat."}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Sleduj! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "Bude se ti to líbit!"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "Myslím, že to není nic pro mě."}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Haha!"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Jsem úžasná!"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Jsem nejlepší!"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "A k tomu roztomilá!"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "Ty! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Dobře,"}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "Nakopu ti zadek!"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Zase? // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Nebolí to? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Jasně, že ne! Je to plyšová hračka! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "Vyhrál jsi."}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "Tahle hra se mi začíná líbit. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "No, mně... // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "To taky baví!"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "A teď jsi můj úhlavní nepřítel! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "To je konec? // Player"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Jo, to je všechno! // MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Jdeme."}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "To je taneční podložka?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "Je tak malinká..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Ju-chů!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Zatančíme si?"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "Nejdřív to nejdůležitější,"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "Vyber skladbu!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Zkusíme tuhle."}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Okej!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Já půjdu první!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "Ukážu ti, jak se to dělá!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Fíha!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "Tak,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "Myslíš, že překonáš můj rekord?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Šup, jsi na řadě!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Tak!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "Co ty na to?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "Teď ty!"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Tsk, tsk, tsk, tsk!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Dobře,"}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "Na taneční parket!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Haha!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Kdo je tady šéf?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "No jo!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Dámy a pánové,"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "Konec představení!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Možná, když si sedneš"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "A budeš se vrtět na té podložce"}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "Tak budeš mít lepší skóre, haha!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Úžasné!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Upřímně řečeno, docela jsem"}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "Tě podcenila!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Páni!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Ty mi tedy umíš tancovat!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Dobrá práce! Super!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "A je to tam!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "Výborně sis držel rytmus!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "Jsi úplně přirozený tanečník!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "Ty!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Já!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "Máme úplně stejné skóre!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Osud nás spojil!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "Krásný duet!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Stačila by"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "Jen jediná chybka!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "A prohrál bys..."}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "No,"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "Co takhle další kolo?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "Super, co takhle ještě jednou?"}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "Co ty na to?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "No tak, no tak!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "Už toho tancování bylo dost!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "Máš tu hezké fotky."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "S tebou je asi vždycky zábava, co?"}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "Je to tak, já jsem prostě já!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "A ukázala jsem jim, co jsem zač!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Aa... komu přesně?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Vážně se ptáš na to komu?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Koho to zajímá! Stejnak se vsadím, že byli všichni slepí!"}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard - Player"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Tyjo,"}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "Máš jich... tolik."}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "Na co?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "Na co myslíš?"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "Mám jich tolik, abychom mohli spolu dělat úžasné věci!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "Třeba jako..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "Krájet mrkev,"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "Nebo..."}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "Krájet mrkev,"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "A taky..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Jasně, jasně... chápu."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "No, abych byla upřímná,"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "Prý jsou ty prkénka zabugované! Ať už to znamená cokoliv..."}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "A teď je jich tu prostě hodně!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Books - Player"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Asi je máš všechny přečtené, co?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "Protože ses nudila."}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Fuu, nemám ráda knihy!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "Radši dělám něco praktického!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "To je taky cesta."}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "Ale bez teorie..."}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Pohyb, motorika, hmat. Chápeš?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Knihy jsou jen kusy papíru, já radši žiju teď a tady!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "Pokud bys tu se mnou zůstal,"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "Mohli bychom toho spolu tolik dělat!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "To určitě. // Player"}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits - Player"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Je to ovoce skutečné?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "Vypadá totiž úžasně."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Může se vůbec někdy zkazit?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "O, myslíš ty jablka?"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "Nestihnou se zkazit,"}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "Protože je vždycky sním!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "A pak se tu zase objeví."}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat - Player"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "Roztomilá kočička."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Je k sežrání?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Počkat, co?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "Kočky se nejí!"}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Ty jsi ale hlupáček!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Já to vím!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "Chtěla jsem říct,"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "Že jsem nikdy žádnou kočku neviděla!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "Teda skutečnou."}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "Jen fotky na internetu."}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "Jsou roztomilé, že?"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Ano, jsou velmi roztomilé."}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "Mám je rád."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind with ring - Player"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Co to je?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "Je to rozhraní prstenu,"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "A právě měním trasu."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Ale... vždyť jen kreslíš kolečka?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "No počkej, pro tebe to možná vypadá jen jako kreslení koleček,"}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "Pro mě to je přenos dat."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Bude to trvat dlouho?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Psst! Když mě nebudeš rušit,"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "Tak to půjde rychleji."}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "Jasně,"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "Takže pokud tě budu stále vyrušovat,"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "Tak ti to potrvá dýl?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Ach, Čapko,"}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "Kéž by se ti vrátily vzpomníky..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "Nebude to na dlouho..."}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "Dobrá!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "Nemáme času nazbyt."}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "Musíme se dostat k Jádru."}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Mohla bych jít s vámi?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "Odpověď asi znáš..."}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "Ne?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "Ne."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "Jdu pozdě... strašně pozdě!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "Jím až moc..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Zase práce?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "Co je zítra za den?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "Kde mám počítač?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "Jestli to nestihnu, dostanu padáka!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Uložil jsem všechno?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Copak mě nikdo nemá rád?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Kam to jdeme?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Hej!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "Dochází mi trpělivost..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "Musím se víc snažit..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Je tu všechno tak velké!"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Kde mám telefon?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Ehm..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "Co, že se včera stalo?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "Dnešek prostě nemá konce!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Ahoj?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Tudy je postel?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "Co mám dělat?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "Nestihnu to dokončit včas..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "V čem je problém?"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Tady jsou stěny?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "Nic se nestane, když si dám 20"}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Spát je pro slabochy!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "Je čas se umýt a jít do práce!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "Mám hlad!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "Tohle musí být špatně."}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Ehm..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "Ahahaha."}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "No..."}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "Prostě se vzal,"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "A odešel."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "Jak divné!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "A směšné!"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Ale no tak."}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], co děláš?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Co to?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "Zase odešel?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "Jo!"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "Dobře, odpouštím ti."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "Země volá, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "Ani se na mě nepodíval!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Tak nudný..."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "Co jste měli v plánu?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "Plán?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "Jaký plán?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "Ajo vlastně."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "Nic si nepamatuješ."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "Vy jste vážně něco, lidi!"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Co bych si jako měla pamatovat!"}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Děláte si ze mě jen srandu?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "No, ale když koukám na tvůj výraz..."}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "Nedokážu říct."}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "Jaké je to"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "Vidět svoji přesnou kopii?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "Tu s tím prstenem."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "Hehe, původně jsem na ni chtěla zakřičet."}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "Protože mě trochu vyděsila."}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Ty vogo! To je můj klon! Chápeš, ne?"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Ale není tak veselá, jako já."}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "Takže jsem lepší!"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "Však se podívej, jak se mračí..."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": "// MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "Já jsem tady taky..."}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "A všechno slyším!"}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3 - Player"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "Ty tu čepici asi moc nesundáváš, že?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "A nepotí se ti ruce, když máš pořád ty rukavice?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "Nechceš si to sundat?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "Err..."}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "Ty jsi mi ale vtipálek!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Nebo bych si měla sundat i něco jiného?"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "Myslel jsem to vážně."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Ale to je fuk."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Jejda!"}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "To je ale tuna mrkve!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "A vtipná chyba!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "Hahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Počkej, počkej!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "Nedívej, co tam je..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Ať je to radši tajemství."}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "A co tam je?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "Co by to bylo za tajemství"}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "Kdybych ti ho řekla!"}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Jasně..."}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "Proč tě to tak zaujalo?"}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Páni!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "Co to máš?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "Konzole!?"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Nech mě to taky zkusit!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Hej!"}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "Jak se to hraje?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": "// Player"}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "Stačí sbírat mince,"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "A vyhýbat se žábám."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "To zní dost nudně."}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Tohle tě fakt baví hrát?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "Odkud jsi to vzal?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "Vždyť jsem ti to nevrátila."}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Trochu divné, nemyslíš?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV - MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Ale!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Co s tím je?"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "Asi jsi našel chybu!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "Má to normálně zapnout televizi,"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "Ale z nějakého důvodu to místo toho"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "Ukazuje a schovává samotnou televizi!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Docela hustý, ne?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit - Player"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "Myslím, že se tu prostě posadím."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "Cože?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "No tak, vstaň!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Pojďme se spolu bavit!"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1 - MitaKind"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Jdi těmito dveřmi"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "Do chodby."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Pá pá!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "Myslím, že je na čase jít, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "Běž, neboj se!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "Já bych tě nikdy"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "Nikam neposlala samotného!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "Tak tu se mnou zůstaň!"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Čapko!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "Nedělej si z toho srandu, jo?"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "Ale no tak!"}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "Proč tu jen tak stojíš?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "Není čas ztrácet čas!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": "// MitaCap"}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Čauky!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "Teda- měj se!"}

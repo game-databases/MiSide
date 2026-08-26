@@ -1,0 +1,633 @@
+# DS-2 — Dataset curation specs: Achievements · Endings & choice trees
+
+| | |
+|---|---|
+| Piece | **DS-2** (Dataset Specifier brief; two datasets, one file — they share the ending↔achievement anchor) |
+| Type | dataset-spec (curation schemas + evidence contracts over the existing raw layer) |
+| Affected area | new `extracted/datasets/` JSONL outputs + `extracted/relinks/` reverse indexes + `contracts/*.schema.json` drafts; no pipeline-stage changes required to stub |
+| Verified reality base | measured directly on the X-3 extraction output this pass (2026-08-25): `extracted/harvest/mb-dump/**` (typed MB dumps across all 51 containers — the resources.assets probe alone yielded 993; level3 alone holds 4,021 dump files), `extracted/localization/<locale>/*.jsonl` (180,148 records / 2,210 files / 34 locales), `extracted/decompiled/main/Assembly-CSharp/*.cs`, `extracted/il2cpp/dump.cs` + `stringliteral.json` |
+| Client ground truth | buildId **19029065**, `VERSION 0.93L`, Unity 2021.3.35f1, IL2CPP metadata v29 ([EXTRACTION-LOG.md](../../extracted/EXTRACTION-LOG.md) pipeline-defaults) |
+| Binding doctrine | [extraction-doctrine.md](../../../_foundation/extraction-doctrine.md) Principle zero/one/two · AGENTS.md rule 8 (every data-answerable question is the dataminer's) · [DR-2026-08-22-numbers-stand-alone](../../../_foundation/decision-register.md) (machine-plane stamps only) |
+| Upstream reads | [spec.md](../../spec.md) entities `achievement`/`ending`/`choice_node` · [game-research.mdx](../research/game-research.mdx) §5–6 · [explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx) step 3/7 · [pipeline-run_all.mdx](pipeline-run_all.mdx) §1 non-goals (this file fills part of that hole) |
+
+**Decompile-depth caveat that shapes everything below.** The
+`decompiled/main/**` trees are ilspycmd 11.0.0.9335 output over Il2CppDumper
+DummyDlls: **signatures, field offsets, and tokens are real; method bodies
+are empty** (`AchievementsController.cs:68-71` — `MoveNext()` returns
+`default`). Every claim below is therefore classed by what it actually
+proves:
+
+- **[proven-hard]** — serialized in a dump we hold (UnityEvent persistent
+  calls, flag tables, field values). Reproducible byte-level evidence.
+- **[proven-structure]** — class/field/method exists with pinned
+  `dump.cs` line, token, or offset.
+- **[unverified-behavior]** — requires IL2CPP *native* method bodies
+  (numeric constants, condition order). Not provable from metadata; needs a
+  future native-decompile pass or gameplay capture.
+- **[community]** — wiki/guide attribution carried as labeled context,
+  never as evidence.
+
+---
+
+## Part A — Achievements
+
+### A.1 Corpus reality (measured 2026-08-25)
+
+1. **The registry is one MonoBehaviour**: `DataAchievements` in
+   `resources.assets` holds `DataAchievementsValues[26]`
+   ([DataAchievements.txt](../../extracted/harvest/mb-dump/resources.assets/DataAchievements.txt),
+   `int size = 26`). Each entry has exactly the three join keys plus one
+   state bool — field truth at
+   [DataAchievementsValues.cs](../../extracted/decompiled/main/Assembly-CSharp/DataAchievementsValues.cs):
+   `steamAchievement:string` (0x10), `icon:PPtr<Sprite>` (0x18),
+   `lineTranslate:int` (0x20), `[HideInInspector] get:bool` (0x24).
+2. **Count reconcile: dump 26 = store 26 = wiki 26** — the research §5
+   triple-verified total survives contact with ground truth *unchanged*
+   (`achievements.total=26`, Steam stats page, D1 §5). No drift to report;
+   AC-A1 pins it anyway because patches add achievements.
+3. **Names live in loc, not code**: `lineTranslate` is the 0-based index
+   into `Data/Languages/<locale>/Achievements.txt` via the proven loader
+   authority `GlobalLanguage.GetString(name, index)`
+   ([E1 step 7](../research/explorer-e1-hands-on.mdx#step-7--dumpcs-recon-works)).
+   Measured parity: **all 34 locales carry exactly 26 lines** in
+   `extracted/localization/<locale>/Achievements.jsonl` (loop-checked this
+   pass) — zero locale skew on this category, so every achievement page can
+   ship fully localized names from day one. The client carries **names
+   only** — no description strings exist in any loc category → descriptions
+   are an external-surface join (A.5).
+4. **Unlock triggers are partially serialized.** Scanning every dump for
+   persistent calls into the trigger classes found **13 sites**: 11 ×
+   `Achievement_function.AchievementGet(string)` with the `ACHI_*` id as
+   the string argument, 2 × `Achievement_cloth.ClothCompleted(string)`
+   with outfit ids. Full site list with args in the table at A.2. Trigger
+   classes:
+   [Achievement_function.cs](../../extracted/decompiled/main/Assembly-CSharp/Achievement_function.cs)
+   (`AchievementComplete(int x)` 0x60000F2 / `AchievementGet(string)`
+   0x60000F3),
+   [Achievement_cloth.cs](../../extracted/decompiled/main/Assembly-CSharp/Achievement_cloth.cs)
+   (`ClothCompleted`/`ClothQuietCompleted`),
+   [AchievementsController.cs](../../extracted/decompiled/main/Assembly-CSharp/AchievementsController.cs)
+   (`dataAchievements` array @0x18, `AchievementCompleted(string)`,
+   `ClearAllAchievements()`, `ProgressAchievementString()`,
+   coroutine `CheckAchievementsSteam()` — the Steam sync pump).
+5. **`get` bools are polluted state** (residue R-E1-2,
+   [PROOF.md §3](../../extracted/PROOF.md)): entries `[0]` and `[3]`
+   serialize `get = True` in the shipped asset — someone's editor-session
+   unlock baked into the prefab defaults. They must never render as
+   unlock state or rarity signal.
+6. **Icons are NOT yet exported.** All 26 icon PPtrs point into
+   `resources.assets` (m_FileID 0), pathIDs **862–910**; the art-export
+   stage's `container-2d/resources.assets/` set contains no object with
+   any of those pathIDs (checked `_#862…_#910` patterns this pass — zero
+   hits). The sprite objects exist in the container but were not in the
+   exported slice → a targeted re-export pass is required (AC-A5).
+7. **Steam side is keyless-reachable**: global unlock % per achievement
+   from the community stats page (rarest "Pro Gamer" 10.5%, most common
+   "Creak in the Dark" 86.4%, D1 §5); localized *descriptions* would need
+   the keyed schema endpoint — out of scope until per-site graduation
+   (spec non-goal).
+
+### A.2 Ground-truth row table (the reconciled 26)
+
+`EN name` resolved through `GetString("Achievements", lineTranslate)` from
+`localization/English/Achievements.jsonl`. "Award site" = serialized
+PersistentCall cite (container/file, target pathID of the
+`Achievement_function`/`Achievement_cloth` instance in that level).
+Predicate status per the four-class taxonomy above.
+
+| # | steam_api_name | icon pathID | line | EN name | Serialized award site | Predicate |
+|--:|---|---:|---:|---|---|---|
+| 0 | `ACHI_WinFIght` | 863 | 0 | Clabber | level6/Dialogue_3DText_#7081 → pathID 9330 | proven-hard |
+| 1 | `ACHI_ClickShadow` | 896 | 1 | Creak in the Dark | level6/Time_Events_#6148 → pathID 9330 | proven-hard |
+| 2 | `ACHI_DeathJuice` | 898 | 2 | Dead juice | level5/ObjectAnimationPlayer_#6900 → pathID 11264 | proven-hard |
+| 3 | `ACHI_PinguinTusim` | 886 | 3 | Penguin Conundrum! | level6/Dialogue_3DText_#7008 → pathID 9330 | proven-hard |
+| 4 | `ACHI_safelife` | 878 | 4 | Safe of life | none serialized | unverified-behavior (Part B) |
+| 5 | `ACHI_tetro` | 865 | 5 | The fly's victory | none serialized | unverified-behavior |
+| 6 | `ACHI_omta` | 909 | 6 | O, Great Mita! | level13/Location11_PrayerRoom → pathID 17407 | proven-hard |
+| 7 | `ACHI_foundu` | 908 | 7 | Found you! | level21/Events_Data_#11524 → pathID 14404 | proven-hard |
+| 8 | `ACHI_mmnice` | 895 | 8 | Delicious Love | none serialized | unverified-behavior |
+| 9 | `ACHI_none` | 893 | 9 | Conditions Met | level6/Events_Data_#6042 → pathID 9330 | proven-hard |
+| 10 | `ACHI_wrumwrum` | 871 | 10 | Accelerate! | none serialized | unverified-behavior |
+| 11 | `ACHI_slaphead` | 864 | 11 | Pat on the head! | level9/Dialogue_3DText_#12820 → pathID 18198 | proven-hard |
+| 12 | `ACHI_cartridgeplayers` | 868 | 12 | Caught Them All | none serialized (set-completion) | unverified-behavior |
+| 13 | `ACHI_mitastory` | 897 | 13 | Hi, Mita | none serialized (set-completion) | unverified-behavior |
+| 14 | `ACHI_final` | 862 | 14 | Is This the end? | level18/ObjectAnimationPlayer_#1041 → pathID 1453 | proven-hard |
+| 15 | `ACHI_racingfirst` | 910 | 15 | Going at Maximum Speed! | none serialized (minigame body) | unverified-behavior |
+| 16 | `ACHI_achi` | 899 | 16 | Some Achievement? | level14/ObjectInteractive → pathID 5139 | proven-hard |
+| 17 | `ACHI_greatdance` | 884 | 17 | The Great Dance | level9/Dialogue_3DText_#13057 → pathID 18198 | proven-hard |
+| 18 | `ACHI_applesnake` | 875 | 18 | A Long Long Tail | none serialized (minigame body) | unverified-behavior |
+| 19 | `ACHI_stopu` | 867 | 19 | You shall not pass! | none serialized | unverified-behavior |
+| 20 | `ACHI_logA` | 904 | 20 | Phase 1 Logs | none serialized (Quadrangle body) | unverified-behavior |
+| 21 | `ACHI_logB` | 874 | 21 | Phase 2 Logs | none serialized (Quadrangle body) | unverified-behavior |
+| 22 | `ACHI_hellwin` | 873 | 22 | Helluvah Win! | none serialized (Hetoor body) | unverified-behavior |
+| 23 | `ACHI_hellmegawin` | 876 | 23 | Without Taking Damage?! | none serialized (Hetoor body) | unverified-behavior |
+| 24 | `ACHI_carrot` | 892 | 24 | Carrot | none serialized | unverified-behavior |
+| 25 | `ACHI_supermegapuperplayer` | 881 | 25 | Pro Gamer | none (meta: all others) | unverified-behavior |
+
+Scoreboard: **11/26 award moments are hard-serialized today**; the other
+15 are called from native bodies (minigame controllers, set-completion
+counters) and stay `unverified-behavior` until a native-body pass.
+
+Curated observations worth keeping (all [proven-structure] unless noted):
+
+- `ACHI_none` — the API name for **"Conditions Met"** — is the flagship
+  trap for anyone joining Steam ids naively; its award chain is the
+  wardrobe-stay sequence in level6 (B.2).
+- `ACHI_WinFIght`'s typo ("FIght") and `ACHI_supermegapuperplayer` are
+  canonical spellings; never "fix" them.
+- `ACHI_tetro` ↔ "The fly's victory" shows API-name semantics cannot be
+  trusted for classification — the Fly Console idle win, not Tetris
+  ([inferred] semantic gloss; the *join* is the lineTranslate, not the
+  name).
+- Outfit award sites serialize two cloth ids: `FIIdClSchool` (level5)
+  and `Chirfns` (level6). `FIIdClSchool`→"School" is certain
+  (loc `Clothes.jsonl#line_index=10`); `Chirfns`→"Christmas"
+  (loc `Clothes.jsonl#line_index=12`) is **[inferred]** until matched against
+  `DataClothMita*` prefab fields.
+
+### A.3 Schema — `extracted/datasets/achievements.jsonl`
+
+One row per `DataAchievementsValues` entry (one canonical row per
+achievement, COMP J12). Draft contract: `contracts/achievement.schema.json`.
+
+```jsonc
+{
+  "achievement_id": "ACHI_none",            // = steam_api_name; primary key
+  "registry_index": 9,                       // DataAchievementsValues[] index (= lineTranslate on this build)
+  "build_id": 19029065,                      // first-seen pin; per-record staleness model (spec automation block)
+  "display": {                               // per-locale name via GetString("Achievements", line_translate)
+    "<locale>": {"name": "Conditions Met", "category": "Achievements", "line_index": 9}
+  },
+  "description": {                           // EXTERNAL ONLY — client has no desc strings
+    "en": {"text": "…", "source_role": "official-feed", "source": "STEAM-stats"}
+  },
+  "icon": {
+    "container": "resources.assets", "path_id": 893,
+    "asset_ref": null,                       // filled by the A5 re-export pass; null ⇒ explicit MISSING ledger row
+    "status": "pending-export"
+  },
+  "line_translate": 9,
+  "unlock": {
+    "predicate_class": "serialized-site | code-body | aggregate",
+    "status": "proven-hard | unverified-behavior",
+    "sites": [
+      {"level": "level6", "file": "Events_Data_#6042.txt", "object_path_id": 9330,
+       "target_type": "Achievement_function", "method": "AchievementGet",
+       "args": {"string": "ACHI_none"}}
+    ],
+    "evidence": ["harvest/mb-dump/level6/Events_Data_#6042.txt"],
+    "notes_community": null                   // wiki prose lives here, labeled, never in evidence[]
+  },
+  "type_tag": "ending | minigame | story | missable | secret | collectible | meta",
+  "joins": {
+    "ending_id": "conditions-met",           // Part B key; null otherwise
+    "minigame_id": null,                     // TelevisionGames/MiniGame* keyed (DS-minigames)
+    "collectible_set": null,                 // "player-cartridges" | "mita-profiles"
+    "outfit_id": null,                       // ClothCompleted sites only
+    "chapter_attribution": null              // [community] until levelN↔chapter map lands
+  },
+  "steam": {"appid": 2527500, "global_percent": 42.3, "captured_at_machine_plane": true},
+  "flags": {"serialized_get_bool": true, "get_bool_trusted": false}
+}
+```
+
+Emission rules:
+
+- **Deterministic full rewrite** every run (AC-5 pattern); rows sorted by
+  `registry_index`.
+- Locale cells driven exclusively by
+  `relinks/locale_availability.jsonl`; a missing locale cell is a ledger
+  fact, never filler text (explicit-filler policy).
+- `global_percent` + capture time are machine-plane fields
+  (`data-*`/JSON only) — never user-facing stamps (DR numbers-stand-alone).
+- Reverse indexes into `extracted/relinks/`: `achievement→award_site`,
+  `achievement→ending`, `achievement→minigame`,
+  `collectible_set→members`.
+
+### A.4 Joins (characters/scenes and beyond)
+
+- **Endings** — `ACHI_final`/`ACHI_safelife`/`ACHI_none` are the three
+  ending anchors (Part B owns the edge).
+- **Minigames** — award sites sit inside minigame scenes (`Penguin
+  Conundrum!` via `Dialogue_3DText` in the ch-3 TV room; Hetoor/Quadrangle/
+  Spaceracer/Snake bodies pending) and loc keys exist
+  (`TelevisionGames.jsonl`: Dairy Scandal/Penguin Piles; `MiniGame *`
+  categories). Join key = scene membership once DS-minigames lands.
+- **Outfits** — the two `ClothCompleted` sites give outfit unlocks the same
+  hard treatment (School @level5, Christmas-candidate @level6); joins to
+  the `outfit` entity kind (COMP J7).
+- **Characters/scenes** — award sites carry their scene homes:
+  prayer-room keyboard (`Location11_PrayerRoom`, level13 → "O, Great
+  Mita!" matches the wiki's Discord-keyboard trivia), missing-assets door
+  (`ObjectInteractive`, level14 → "Some Achievement?"), fight/dance rooms
+  (level9). These feed mita/chapter pages as evidence-backed trivia with
+  cites, replacing the wiki's unsourced anecdotes.
+- **Collectible sets** — "Caught Them All"/"Hi, Mita" join the cartridge
+  and profile datasets as set-completion targets; the completion predicate
+  itself is code-body [unverified-behavior].
+
+### A.5 Completeness risks
+
+1. **15/26 predicates need native bodies** — biggest honest gap. Options:
+   native decompile pass (Il2CppDumper `script.json` addresses + Ghidra)
+   or accept `unverified-behavior` with community gloss. Decision deferred
+   to owner (cost/benefit); the schema already carries the split.
+2. **Icon bytes missing from exports** (pathIDs 862–910) — fixable now
+   with one filtered AssetStudioMod pass; without it, no achievement page
+   has its art and OG cards fall back to non-entity art.
+3. **Descriptions are EN-only forever (keyless)**; localized descriptions
+   would require keyed endpoints — record as a deliberate hole, not an
+   oversight.
+4. **`get` bool pollution** — quarantined by `get_bool_trusted:false`.
+5. **Steam % drift** — ephemeral plane; history policy per spec live block
+   if we ever chart it.
+6. **Patch sensitivity** — new achievements change array size and shift
+   nothing else (indices are stable append-only so far, [inferred]); AC-A1
+   makes any movement loud.
+
+### A.6 Curated output format proposal
+
+- Site plane: one page per achievement (26 pages, all-locale titles from
+  game strings), card-grid index filtered by `type_tag`; global-% shown as
+  a rarity band, never a leaderboard; award-site evidence rendered as a
+  "where the game grants this" module linking the scene/entity page.
+- Machine plane: static JSON per seo-standard §9 —
+  `/api/achievements.json` mirroring the dataset verbatim.
+- Tracker surface (site-section #8): checklists keyed by `achievement_id`;
+  collectible-set trackers consume `collectible_set→members` index.
+
+### A.7 Stub plan
+
+Shippable today from the existing corpus, before any new extraction pass:
+
+1. `extracted/datasets/achievements.jsonl` — 26 full rows: all three join
+   keys + 34-locale names + predicate statuses from A.2; icons/status =
+   `pending-export`.
+2. `contracts/achievement.schema.json` draft.
+3. Reverse indexes `achievement→award_site`, `achievement→ending`.
+Blocked until follow-up passes: icon bytes (art pass), 15 body predicates
+(native pass or accepted-unverified), Steam % snapshot (first live pull).
+
+### A.8 Acceptance criteria (Achievements)
+
+- **AC-A1 Count reconciliation**: emitted rows == `DataAchievements`
+  array size == per-locale `Achievements.jsonl` line count (each of 34
+  locales) == 26; any disagreement FAIL-FASTs the emit.
+- **AC-A2 Three-way join completeness**: every row has non-null
+  `steam_api_name`, `icon.path_id`, `line_translate`; name resolution via
+  `GetString("Achievements", line_translate)` succeeds in all 34 locales
+  with an availability-ledger row each.
+- **AC-A3 Award-site sweep reproducibility**: scanning all 51 containers
+  for persistent calls into `Achievement_function`/`Achievement_cloth`
+  resolves exactly 13 sites whose string args match the A.2 table
+  byte-for-byte on buildId 19029065; unresolved or extra sites FAIL.
+- **AC-A4 Evidence discipline**: no row claims `proven-hard` without a
+  resolvable cite (mb-dump path + pathID, or dump.cs line); automated
+  lint verifies every `evidence[]` entry exists on disk;
+  `ACHI_safelife.predicate_status == "unverified-behavior"` asserted
+  explicitly.
+- **AC-A5 Icon export closure**: after the art pass, all 26 pathIDs
+  resolve to exported png bytes, or carry an explicit MISSING row in the
+  media catalogue — zero silent gaps.
+- **AC-A6 Steam cross-ref shape**: one canonical row per achievement;
+  name mismatch between Steam and in-game loc renders as a flagged
+  discrepancy (both strings kept, in-game wins display); % values never
+  appear in user-facing HTML without their coverage label.
+- **AC-A7 `get` quarantine**: `serialized_get_bool` recorded for all 26
+  (expected True exactly at indices 0 and 3 on this build) and
+  `get_bool_trusted` false everywhere; no renderer reads it.
+- **AC-A8 Stub validity**: the stub validates against the schema draft
+  and round-trips (read→emit is byte-stable).
+
+---
+
+## Part B — Endings & choice trees
+
+### B.1 Corpus reality (measured 2026-08-25)
+
+**Ending surfaces.**
+
+- Exactly **one real `MenuEnding` MonoBehaviour** exists in the corpus:
+  `level2/MenuEnding_#2903.txt` (GameObject pathID 515, serialized
+  `textSafeDoor` PPtr → pathID 3492; private `click:int` @0x18 not
+  serialized). Class:
+  [MenuEnding.cs](../../extracted/decompiled/main/Assembly-CSharp/MenuEnding.cs)
+  — sole method `MitaClickSafe()` (token 0x60005F5). **Name-collision
+  trap:** 45 more `MenuEnding.txt` dumps across containers are
+  *TimelineAssets* named "MenuEnding" (e.g.
+  `globalgamemanagers/MenuEnding.txt` — `m_Tracks[10]`, PlayableAsset
+  payload), not the component. Filename census lies; type census doesn't.
+- The safe chain:
+  [Basement_Safe](../../extracted/decompiled/main/Assembly-CSharp/Basement_Safe.cs)
+  (dump.cs:113524 — serialized `active:bool`, digit `buttons[11]`,
+  `eventRight:UnityEvent`; private `passwordNow`, `countTry`) +
+  [Basement_SafeConsole](../../extracted/decompiled/main/Assembly-CSharp/Basement_SafeConsole.cs)
+  (dump.cs:113585 — `TakeCartridge()`, `DataMoshActive(bool)`,
+  `ExitGame()`, `eventDeactivation`). Exactly **two serialized instances**
+  exist: `level8/Basement_Safe.txt` (`active=True`, `eventRight` → 2
+  calls: ObjectInteractive.Activation(True) + GameObject.SetActive(True))
+  and `level17/Basement_Safe.txt`. Both levels also carry the console
+  counterpart. Wiki documents three windows (ch 4 @17%, ch 18 @98%, empty
+  in ch 19): the third window has **no Basement_Safe component** in any
+  dump — an inert prop at best [unverified-behavior for the windows
+  themselves; proven-hard for instance count].
+- The safe code literal **`'4970'` exists** in
+  `extracted/il2cpp/stringliteral.json` — corroborates the wiki's code as
+  a real in-binary constant [proven-structure; the *comparison logic*
+  stays unverified-behavior].
+- Ending-mode statics: class `GlobalGame` (dump.cs:206933) carries
+  `gameEndingMenu:bool` @0xA4 and `showHintPeacemode:bool` @0xE8 (field
+  serialized at dump.cs:206984); menu loc
+  carries the locked-mode strings — `Menu.jsonl#line_index=130` "Peaceful
+  Mode", `Menu.jsonl#line_index=147` "Peaceful Mode Unlocked!" (loc rows
+  are cited by their 0-based record pointer, never a bare file-line
+  number — see the cite grammar in B.3). Peaceful Mode ships as a locked
+  stub row (Principle zero / COMP J11).
+
+**Choice machinery (all [proven-structure], instances [proven-hard]).**
+
+- [`DialogueChanger`](../../extracted/decompiled/main/Assembly-CSharp/DialogueChanger.cs)
+  (dump.cs:125374) — the branching dialogue/choice component: serialized
+  `fileQuest:string` (loc category of the prompt lines), `buttons:
+  DialogueChangerCase[]` where each
+  [case](../../extracted/decompiled/main/Assembly-CSharp/DialogueChangerCase.cs)
+  (dump.cs:125472) carries `stringFile:int` (prompt line index →
+  GetString(fileQuest, n)), **`eventClick:UnityEvent` — the branch edge**,
+  plus `closeClick/oneTime/exitButton/oneTimeUse` modifiers. Measured
+  census: **13 DialogueChanger instances across 10 levels** (level5 ×2,
+  level9 ×2, level15 ×2, level8/10/11/12/14/16/21 ×1).
+- [`ObjectInteractive`](../../extracted/decompiled/main/Assembly-CSharp/ObjectInteractive.cs)
+  (dump.cs:126466) — interactable with serialized `eventClick:UnityEvent`
+  + `active:bool`; the other half of player-choice edges (doors,
+  keyboards, consumables). Measured census: **353 pure
+  `ObjectInteractive` instances, all 353 wired** (non-empty eventClick
+  call list) — zero unwired pure instances exist on this build. The
+  oft-repeated **391 is a composition artifact**, not a component count:
+  it folds in 38 non-subclass sibling MonoBehaviours that merely share
+  the name prefix — `ObjectInteractive_ReqIK` ×26 (no `eventClick` field
+  at all), `ObjectInteractive_ItemTake` ×11, `ObjectInteractive_Group` ×1
+  — reclassified here as separate classes with their own exclusion rows
+  (AC-B2); `ObjectInteractive_CaseInfo` variants ×58 are excluded
+  separately on class identity.
+- Flag store:
+  [`Events_IntMemory`](../../extracted/decompiled/main/Assembly-CSharp/Events_IntMemory.cs)
+  (dump.cs:101861, AddComponentMenu "Functions/Event/Event memory") —
+  serialized `intMemory:int` state + `_memory[]:{ifInt:int, _event:
+  UnityEvent}` conditional branch table, driven by
+  `Set/Add/Remove/CheckEventIndex(int)`. Five instances (level4 ×2 —
+  branch tables of 4 and 1 entries visible in dumps, level13/5/9 ×1).
+  Router sibling [`Events_Data`](../../extracted/decompiled/main/Assembly-CSharp/Events_Data.cs)
+  (dump.cs:101787, `EV(int)`/`NewEvent(int)` dispatching
+  `UnityEvent[] _event`) — **379 instances** corpus-wide.
+- **The six-prerequisite tracker exists as one component**:
+  [`Location4Condition`](../../extracted/decompiled/main/Assembly-CSharp/Location4Condition.cs)
+  (dump.cs:121852) — private bools `lookStove/lookVentil` (@0x18/0x19) +
+  methods `Lookstove/Nolookstove/Lookventil/Nolookventil/Takemagnetfridge/
+  Trysous/Playconsole`. That is exactly the wiki's six "Conditions Met"
+  prerequisites (oven-avoid, vent-avoid, sauce, magnets, console, +
+  global story flag elsewhere) wired as toggle pairs — but grouped in ONE
+  location-scoped component present in levels 3–6, while the wiki spreads
+  them across chapters 0–3. **Chapter attribution is [community]; the
+  component inventory is [proven-hard].** The bools are private and do
+  not serialize — evaluation order/latching is unverified-behavior.
+- **Ending award chains are serialized.** The clearest:
+  `level6/Events_Data_#6042.txt` fires 9 calls, in order: WorldPlayer.
+  CameraClickTelevision → World.DestroyGameobject(GO #20) →
+  UnityEngine.GameObject.SetActive(True) →
+  UnityEngine.GameObject.SetActive(True) → World.DestroyGameobject(GO
+  #166) → World.DestroyGameobject(GO #170) → WorldPlayer.PlayerFullHide →
+  UI_Alpha.AlphaZeroDeactivated →
+  **Achievement_function.AchievementGet("ACHI_none")** — i.e. the
+  "stay with Mita" sequence terminating in the Conditions Met award (the
+  five mid-chain calls run destroy/set/set/destroy/destroy; both SetActive
+  targets are `UnityEngine.GameObject`, not `World`).
+  Likewise `ACHI_final` awards from `level18/ObjectAnimationPlayer_#1041`.
+  `ACHI_safelife` has **no serialized site** — its award lives in the
+  safe-chain native bodies [unverified-behavior].
+
+### B.2 Schema set (Part B emits four files)
+
+All under `extracted/datasets/`, drafts under `contracts/`.
+
+**`endings.jsonl`**
+
+```jsonc
+{
+  "ending_id": "conditions-met",
+  "display_name_loc": {"category": "Achievements", "line_index": 9},  // endings share the achievement title
+  "achievement_id": "ACHI_none",
+  "mode_unlocked": {"mode_id": "peaceful", "state": "locked-stub",
+                    "evidence": ["localization/English/Menu.jsonl#line_index=130",
+                                  "il2cpp/dump.cs:206984"]},
+  "windows": [                              // numeric gates; empty unless proven
+    {"kind": "safe-access", "chapter_attribution": "[community] ch4@17%, ch18@98%, ch19-empty",
+     "instances": ["harvest/mb-dump/level8/Basement_Safe.txt",
+                   "harvest/mb-dump/level17/Basement_Safe.txt"],
+     "status": "unverified-behavior"}
+  ],
+  "conditions": [
+    {"kind": "negative", "subject": "lookVentil", "polarity": "must-stay-false",
+     "evidence": ["decompiled/main/Assembly-CSharp/Location4Condition.cs",
+                  "il2cpp/dump.cs:121852"], "status": "proven-structure"},
+    {"kind": "aggregate", "subject": "complete-main-story-once",
+     "evidence": [], "attribution": "community", "status": "unverified-behavior"}
+  ],
+  "award_chain": [
+    {"level": "level6", "file": "Events_Data_#6042.txt",
+     "calls": ["WorldPlayer.CameraClickTelevision",
+               "World.DestroyGameobject(GO #20)",
+               "UnityEngine.GameObject.SetActive(True)",
+               "UnityEngine.GameObject.SetActive(True)",
+               "World.DestroyGameobject(GO #166)",
+               "World.DestroyGameobject(GO #170)",
+               "WorldPlayer.PlayerFullHide",
+               "UI_Alpha.AlphaZeroDeactivated",
+               "Achievement_function.AchievementGet(ACHI_none)"]}
+  ]
+}
+```
+
+**`choice_nodes.jsonl`** — one row per DialogueChanger /
+choice-capable ObjectInteractive / Events_IntMemory instance.
+
+```jsonc
+{
+  "node_id": "level5:DialogueChanger:7590",        // container:type[#pathID-suffix]
+  "kind": "dialogue-changer | object-interactive | event-memory",
+  "container": "level5", "object_path_id": 7590,
+  "prompt_loc": {"category": "<fileQuest>", "lines": [2, 4]},   // per-case stringFile
+  "options": [
+    {"option_index": 1, "label_line": 4,
+     "modifiers": {"closeClick": false, "oneTime": false, "exitButton": true, "oneTimeUse": false},
+     "edge_ids": ["level5:DC7590:opt1"]}
+  ]
+}
+```
+
+**`branch_edges.jsonl`** — one row per PersistentCall (the graph edges;
+this is the file the ending explorer renders).
+
+```jsonc
+{
+  "edge_id": "level5:DC7590:opt1:call0",
+  "from_node": "level5:DialogueChanger:7590", "from_option": 1,
+  "target": {"type": "Events_IntMemory", "method": "CheckEventIndex",
+             "object_path_id": 128, "assembly": "Assembly-CSharp"},
+  "args": {"bool": true},
+  "effect_class": "flag-query | flag-set | scene-flow | award | cosmetic | audiovisual",
+  "feeds_ending": "conditions-met",      // when the chain reaches an ending award
+  "status": "proven-hard"
+}
+```
+
+**`flag_tables.jsonl`** — Events_IntMemory instances as data (real shape
+of the level4 main instance; `node_id` pathID resolves from the dump at
+emit time):
+
+```jsonc
+{"node_id": "level4:Events_IntMemory", "int_memory_default": 0,
+ "branches": [{"if_int": 1, "calls": 2}, {"if_int": 2, "calls": 2},
+              {"if_int": 3, "calls": 2}, {"if_int": 4, "calls": 4}],
+ "evidence": ["harvest/mb-dump/level4/Events_IntMemory.txt"]}
+// sibling instance harvest/mb-dump/level4/Events_IntMemory_#3327.txt:
+// 1 branch (ifInt=3 → 7 calls), intMemory default 0
+```
+
+> The JSONC blocks above are **illustrative shapes**, except where a
+> comment pins them to a named dump; ACs B5/B8 define the fidelity bar.
+
+### B.3 Grounding rules
+
+- Every `evidence[]` value is a cite in one of three grammars:
+  repo path (+ optional `:line` — a FILE line number), mb-dump
+  container/file (+ pathID), loc category + explicit `#line_index=<n>`
+  (0-based pointer into the jsonl record sequence). A loc row is **never**
+  cited with a bare `path:N` colon form: that parses as a file line and
+  binds record `line_index = N−1` (e.g. `Menu.jsonl:130` resolves to
+  line_index 129 — an empty string — while "Peaceful Mode" sits at
+  `Menu.jsonl#line_index=130`). Lore prose is structurally impossible in evidence fields;
+  wiki content may appear only in `*_community`/`attribution` fields.
+- Edge truth = the serialized PersistentCall (target pathID + assembly-
+  qualified type + method name + ArgumentCache). We do not guess what a
+  method "means"; effect_class labels are curated annotations, kept apart
+  from the cite.
+- Numeric constants (17%/98% windows, password compare, condition
+  ordering) are unreachable from metadata — always
+  `unverified-behavior` unless a future native-body pass proves them.
+- Level↔chapter mapping stays open (spec gap 1 / P5 successor); until it
+  lands, chapter numbers are `[community]` labels on nodes, never stored
+  in `chapter_attribution` as data.
+
+### B.4 Joins
+
+- **achievements** — `ending_id ↔ achievement_id` both directions
+  (`ACHI_*` rows in Part A carry `joins.ending_id`).
+- **characters/mita_variant** — award chains and DialogueChanger prompts
+  resolve their GameObject graphs to scene residents (`MitaPerson`,
+  `Character_Look` targets appear inside edge chains already — e.g.
+  level5 case calls `MitaPerson.FaceEmotion("smile")`); feeds Mita pages'
+  "choices that change her" modules.
+- **location_scene / chapter** — node `container` is the scene key; joins
+  deepen automatically when the levelN↔chapter map closes.
+- **game_mode** — Peaceful Mode stub row keyed `mode_id:"peaceful"`
+  (COMP J11), fed by Menu loc + `showHintPeacemode`.
+- **minigames/outfits** — choice nodes that gate outfits (cloth award
+  sites sit inside option chains) join Part A's outfit ids.
+
+### B.5 Completeness risks
+
+1. **Body-dependent semantics** — negative-condition evaluation, window
+   percentages, `MitaClickSafe` internals: unverified-behavior until a
+   native pass. The explorer must render these as "condition tracked by
+   the game here" with the cite, never as guaranteed mechanics.
+2. **Edge completeness is bounded by serialization** — choices routed
+   purely through code (no UnityEvent) are invisible to us today; the 13
+   DialogueChanger + ObjectInteractive census is a floor, not a ceiling.
+   Cross-check against the 6 community-documented choices and expand.
+3. **Cyclic-typetree residue (I-S4)** — truncated nested tails exist in
+   dev-console components only (bounded loss, PROOF.md §3); none observed
+   in ending/choice components, but the emit should assert call-list
+   integrity (non-zero m_Calls where m_Target pathID ≠ 0).
+4. **TimelineAsset name collision** — a filename-based census of
+   "MenuEnding" returns 46 same-name dumps: 45 TimelineAsset collisions
+   plus the one real level2 component; type-aware filtering is mandatory.
+5. **Peaceful Mode flux** — the locked stub will become a real mode in a
+   patch; every stub row carries buildId so the diff is mechanical.
+6. **Demo boundary** — demo 2527520 ends exactly at the wardrobe choice;
+   a future diff pass would isolate the choice subtree cleanly (deferred,
+   DAQ).
+
+### B.6 Curated output format proposal
+
+- **Ending explorer tool** (spec tools lane; COMP J1 moat): consumes
+  `choice_nodes + branch_edges + flag_tables` as one read-only graph JSON;
+  nodes colored by `effect_class`; `unverified-behavior` subgraphs get the
+  honesty treatment (visible-locked styling, checkerboard void — T2 §4.5)
+  instead of invented certainty.
+- Page plane: `/endings/{ending_id}` with conditions table (cite-linked),
+  award-chain walkthrough, joined achievement card; choice-node details
+  live on scene/Mita pages as embedded modules rather than thin standalone
+  pages (seo-standard uniqueness floor).
+- Machine plane: `/api/endings.json`, `/api/choice-graph/{level}.json`.
+
+### B.7 Stub plan
+
+Today, from held artifacts: `endings.jsonl` (3 ending rows + peaceful
+stub, conditions from Location4Condition/menu cites), `flag_tables.jsonl`
+(5 instances, complete), `choice_nodes.jsonl` (13 DialogueChanger
+instances + the 13 award-site ObjectInteractive/Dialogue_3DText hosts),
+`branch_edges.jsonl` (all PersistentCalls of those nodes). Blocked:
+window percentages, chapter keys, invisible code-routed branches.
+
+### B.8 Acceptance criteria (Endings & choice trees)
+
+- **AC-B1 Ending registry closure**: ≥3 ending rows, each anchored to a
+  distinct `ACHI_*` id present in Part A, each with ≥1 evidence cite that
+  exists on disk; plus one `peaceful` mode-stub row citing
+  Menu.jsonl#line_index=130 and dump.cs:206984.
+- **AC-B2 Choice sweep reproducibility**: a full scan of all 51 containers
+  emits every `DialogueChanger`, pure wired `ObjectInteractive`, and
+  `Events_IntMemory` instance; counts pinned on this build
+  (**13 / 353 / 5**) — zero unwired pure interactives exist — plus the
+  excluded-census rows, each pinned: `CaseInfo` variants ×58;
+  non-subclass siblings `ReqIK` ×26, `ItemTake` ×11, `Group` ×1 (= the 38
+  that compose the false "391"); a rerun reproduces the identical node id
+  set byte-for-byte and FAILs if any sibling class leaks into the node set.
+- **AC-B3 Target resolution**: every `branch_edges.target.type+method`
+  resolves to a class+method declared in `decompiled/main/**` or a Unity
+  assembly tree; unresolved targets FAIL the emit.
+- **AC-B4 Cite-only evidence**: lint rejects any `evidence[]` value not
+  matching the cite grammar or not present on disk; `attribution`/
+  `*_community` fields are the only free-text allowed.
+- **AC-B5 Flag tables complete**: all five Events_IntMemory instances
+  emitted with full branch lists matching dump contents (level4 main
+  instance = 4 branches with call counts 2/2/2/4).
+- **AC-B6 Window honesty**: safe-window percentages appear only inside
+  `windows[].chapter_attribution` marked `[community]` with
+  `status:"unverified-behavior"`; `'4970'` cited from
+  `stringliteral.json`; no percentage ever rendered as proven.
+- **AC-B7 MenuEnding disambiguation**: the dataset keys exactly one
+  `MenuEnding` MonoBehaviour (level2, GameObject pathID 515, textSafeDoor
+  →3492) and the emit ledger counts and excludes Timeline assets sharing
+  the name (count pinned at emit time).
+- **AC-B8 Award-chain fidelity**: `conditions-met.award_chain` equals the
+  ordered PersistentCall list of `level6/Events_Data_#6042.txt`
+  (9 calls ending `AchievementGet(ACHI_none)`); `ACHI_safelife` ships
+  with empty serialized chain + `unverified-behavior` status.
+
+---
+
+## Shared conventions (both datasets)
+
+- **Staleness**: every row carries `build_id` (per-record model, spec
+  automation block); appmanifest watch re-runs the sweep and diffs.
+- **Locale**: names ride the proven category+lineIndex authority; the
+  Achievements category is currently skew-free across 34 locales — AC-A1
+  keeps that a checked invariant instead of an assumption.
+- **Provenance**: two-class rule — user-facing surfaces show buildId +
+  coverage only; source identities stay repo-side.
+- **Indexes**: reverse indexes emitted per pair per doctrine Principle
+  one; `achievement→award_site` and `ending←branch_edge` are launch
+  members of the relink matrix.
+- **Commit plan**: schema drafts + stubs land together as one commit per
+  dataset (AGENTS rule 5), after verifier review of this spec.

@@ -1,0 +1,294 @@
+/*
+ * MiSide design tokens — three tiers per site-scaffold spec §4.2.
+ *
+ * Tier 1 (primitives): every one of the 14 physical rows of the T2 §6 token
+ * table transcribed VERBATIM (`docs/research/ui-style-scout.mdx`); sample
+ * provenance kept in comments. Values come only from T2 sampling —
+ * introducing an uncited hex anywhere under src/components is an AC-S8 defect.
+ *
+ * Tier 2 (semantic bridge): shadcn / Tailwind v4 theme variables derived FROM
+ * tier 1 so stock primitives inherit the soul mechanically.
+ *
+ * Tier 3 (local overrides): --ms-accent-local & friends, set per entity by
+ * EntityShell (data-character re-key; hex conversion pinned in the characters
+ * contract: per-channel round(f×255) clamp).
+ */
+
+/* ------------------------------------------------------------------ */
+/* Tier 1 — primitives (T2 §6 table, 14 physical rows, verbatim)       */
+/* ------------------------------------------------------------------ */
+:root {
+  /* deepest page bg [sampled: steam-ss8 dark] */
+  --ms-bg-0: #140316;
+  /* raised layer / "space" panels [sampled: steam-ss1 quantize 24%] */
+  --ms-bg-1: #4a1d5a;
+  /* hover/active layer on bg-1 [sampled: steam-ss1 HUD backdrop] */
+  --ms-bg-2: #5a1565;
+
+  /* primary text (chrome white) [sampled: demo-ds1] */
+  --ms-text-1: #fffcff;
+  /* muted text [sampled: comm-horror-caption-band pill region] */
+  --ms-text-2: #d4bcbb;
+
+  /* hot pink — name tags, primary actions [sampled: demo-ds1] */
+  --ms-accent: #ff009c;
+  /* pill/panel pink for fills on dark [sampled: steam-ss2] */
+  --ms-accent-soft: #fda3c7;
+  /* button/pill gradient recipe [sampled: comm-minigame-lcd-defeat] */
+  --ms-accent-gradient-from: #b338b1;
+  --ms-accent-gradient-to: #d682b1;
+
+  /* glitch/danger red [sampled: steam-ss8] */
+  --ms-danger: #fc0f43;
+  /* CRT/LCD green — machine-voice data [sampled: comm-minigame-lcd-defeat] */
+  --ms-signal: #08cb05;
+  /* cream — cozy secondary surface [sampled: steam-ss1 quantize] */
+  --ms-warm: #fce1d5;
+
+  /* radius family: pill chrome / panels+dialogue band / cells+chips
+     (T2 §3 geometry summary) */
+  --ms-radius-full: 999px;
+  --ms-radius-lg: 24px;
+  --ms-radius-md: 14px;
+
+  /* pill lift; shadow tone [sampled: comm-minigame-lcd-defeat] */
+  --ms-glow-pink-drop: rgba(105, 60, 115, 0.55);
+  --ms-glow-pink:
+    0 0 12px rgba(255, 0, 156, 0.35),
+    0 2px 0 var(--ms-glow-pink-drop);
+
+  /* corruption hover recipe (T2 §4.1, §4.3): glow + 1 px CRT-green/hot-pink
+     split text-shadow — STATE treatment for compromised entities, never
+     decoration */
+  --ms-glow-glitch:
+    0 0 10px rgba(252, 15, 67, 0.45);
+  --ms-glitch-split-a: #08cb05;
+  --ms-glitch-split-b: #ff009c;
+
+  /* composed recipes over the rows above */
+  --ms-accent-gradient: linear-gradient(
+    90deg,
+    var(--ms-accent-gradient-from),
+    var(--ms-accent-gradient-to)
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Fonts — §4.4 procedure outcome (executed 2026-08-25, SB-1)          */
+/*                                                                     */
+/* Corpus evidence (build 19029065):                                   */
+/*  • NO TextMeshPro anywhere — `TMPro|TextMeshPro` greps dump.cs at   */
+/*    zero hits; TMP_FontAsset/m_FontData appear only inside           */
+/*    decompiled UnityEngine.UI/Text.cs (the uGUI consumer itself).    */
+/*    So no TTF bytes are serialized through TMP.                      */
+/*  • No `Fonts/` resource literals in il2cpp/stringliteral.json.      */
+/*  • No .ttf/.otf exported under extracted/art (art offloaded to      */
+/*    D:\unpacked_game_data\MiSide\art-export\ this pass; regenerable  */
+/*    via run_all S6).                                                 */
+/*  • The client's OWN per-script face set survives in                 */
+/*    decompiled/main/Assembly-CSharp/OptionsGame.cs: fontPixelRussian, */
+/*    fontRussian, fontJapaneseChinese, fontKorean, fontThai,          */
+/*    fontArabic, fontOther (+ Dialogue_3DText private Font) — the     */
+/*    fallback chain below mirrors that script split.                  */
+/*                                                                     */
+/* Decision (§4.4 step 4): faces NOT identified by name (no m_FontNames */
+/* evidence, no font bytes on disk) → DECLARED substitutes chosen      */
+/* against the T2 §2 impressions, recorded here AND in the build log.  */
+/* Silent substitution is the defect this block exists to prevent.     */
+/* License tags (repo-side facts only, never user-facing): both faces  */
+/* SIL Open Font License 1.1.                                          */
+/* ------------------------------------------------------------------ */
+@font-face {
+  /* DECLARED substitute for the game's rounded bold UI sans (T2 §2:
+     "rounded, friendly, bold", no thin weights). Not a game-provenance claim. */
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url("/fonts/nunito-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  /* Cyrillic subset — the co-primary RU audience reads this face. */
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url("/fonts/nunito-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  /* DECLARED substitute for the chunky LCD pixel voice (T2 §2 machine voice).
+     RESERVED for machine-voice data (buildIds, dump refs, console reference) —
+     never body text. A costume, not a claim of game provenance. */
+  font-family: "VT323";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/vt323-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Webfont chain mirroring the client's OptionsGame.cs script split.
+     CJK/Korean/Thai/Arabic ride system faces until identified game faces
+     ship (per-script, exactly like fontJapaneseChinese/fontKorean/fontThai/
+     fontArabic do in-client). */
+  --ms-font-sans:
+    "Nunito",
+    ui-rounded,
+    "Segoe UI",
+    "Hiragino Sans", "Yu Gothic", "Microsoft YaHei", "PingFang SC",
+    "Apple SD Gothic Neo", "Malgun Gothic",
+    "Leelawadee UI", "Tahoma",
+    "Segoe UI", "Tahoma", "Arial",
+    sans-serif;
+  /* machine voice — LCD register only. Nunito sits between VT323 and the
+     system mono: VT323's unicode-range is latin-only, so without this rung
+     Cyrillic chip text fell to Consolas BESIDE VT323 digits inside one
+     surface — mixed-voice chrome (VC-1 fix #7). Non-latin machine-voice
+     strings now take the site's own sans; latin/digits keep VT323. */
+  --ms-font-lcd:
+    "VT323",
+    "Nunito",
+    "Consolas",
+    monospace;
+}
+
+/* ------------------------------------------------------------------ */
+/* Tier 2 — semantic bridge (shadcn / Tailwind v4 theme vars)          */
+/* Defined FROM tier 1; stock components inherit the soul mechanically. */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: var(--ms-bg-0);
+  --foreground: var(--ms-text-1);
+
+  --card: var(--ms-bg-1);
+  --card-foreground: var(--ms-text-1);
+  --popover: var(--ms-bg-1);
+  --popover-foreground: var(--ms-text-1);
+
+  --primary: var(--ms-accent);
+  --primary-foreground: var(--ms-text-1);
+  --secondary: var(--ms-bg-2);
+  --secondary-foreground: var(--ms-text-1);
+
+  --muted: color-mix(in srgb, var(--ms-bg-1) 72%, black);
+  --muted-foreground: var(--ms-text-2);
+
+  /* semantic accent ≠ primitive accent: hover/tint surfaces use bg-2 so the
+     hot pink stays reserved for identity + actions */
+  --accent: var(--ms-bg-2);
+  --accent-foreground: var(--ms-text-1);
+
+  --destructive: var(--ms-danger);
+  --destructive-foreground: var(--ms-text-1);
+
+  --border: color-mix(in srgb, var(--ms-accent-soft) 26%, transparent);
+  --input: color-mix(in srgb, var(--ms-accent-soft) 32%, transparent);
+  --ring: var(--ms-accent);
+
+  /* radius scale derives from the pinned family — no sharp corners anywhere */
+  --radius: var(--ms-radius-md);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--ms-radius-md) - 6px);
+  --radius-md: var(--ms-radius-md);
+  --radius-lg: var(--ms-radius-lg);
+  --radius-xl: calc(var(--ms-radius-lg) + 6px);
+
+  --font-sans: var(--ms-font-sans);
+  --font-lcd: var(--ms-font-lcd);
+
+  --shadow-glow-pink: var(--ms-glow-pink);
+  --shadow-glow-glitch: var(--ms-glow-glitch);
+}
+
+/* ------------------------------------------------------------------ */
+/* Tier 3 — local overrides (per-entity re-key slot)                   */
+/* EntityShell sets data-character and re-keys these from personages   */
+/* palette_color1/2 floats via round(f×255) clamp (characters contract).*/
+/* ------------------------------------------------------------------ */
+:root {
+  --ms-accent-local: var(--ms-accent);
+  --ms-accent-local-soft: var(--ms-accent-soft);
+  --ms-glow-local: var(--ms-glow-pink);
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion (VC-1 fix: document.getAnimations() = 0 read as a dead       */
+/* surface). Two slow, low-amplitude loops over EXISTING tier-1 rows — */
+/* no new colors, no decoration beyond the game's own glow/CRT voice.  */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes ms-glow-pulse {
+    0%,
+    100% {
+      box-shadow: var(--ms-glow-pink);
+    }
+    50% {
+      /* R-FVC1 nit: every channel derives from tier-1 tokens — the accent
+         glow via color-mix (== its sampled rgba at higher alpha), the drop
+         tone via --ms-glow-pink-drop. No restated literals. */
+      box-shadow:
+        0 0 18px color-mix(in srgb, var(--ms-accent) 50%, transparent),
+        0 2px 0 var(--ms-glow-pink-drop);
+    }
+  }
+  .ms-glow-pulse {
+    animation: ms-glow-pulse 3.2s ease-in-out infinite;
+  }
+
+  /* CRT breathing on the machine voice — barely-there, never blinking */
+  @keyframes ms-scan-breathe {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.93;
+    }
+  }
+  [data-slot="lcd-terminal"] {
+    animation: ms-scan-breathe 4s ease-in-out infinite;
+  }
+
+  /* VHS banding drift (VC-2 fix #6): the scanline overlay on compromised
+     surfaces crawls one pattern period — motion as STATE, not decoration.
+     5px = the repeating gradient's own period, so the loop is seamless. */
+  @keyframes ms-vhs-drift {
+    from {
+      background-position-y: 0;
+    }
+    to {
+      background-position-y: 5px;
+    }
+  }
+  .ms-vhs-drift {
+    animation: ms-vhs-drift 900ms linear infinite;
+  }
+}

@@ -1,0 +1,15 @@
+# f-cw5-vA — Verifier on F-CW5 pin-block self-heal (`pipeline/stages/detect.py`, landed as commit 5e3d1df)
+
+Claim VERIFIED. `mutate` upserts every machine key of the §3 contract (buildId/versionLabel/unity/metadataVersion/python/tools×3/configDeltas/pipFreeze/entrypointCommit/references); it deep-copies then assigns, so non-owned top-level keys and extra per-tool fields survive; `_split_defaults_block` rewrites only lines strictly inside the FIRST fenced block (unterminated fence ⇒ no-op), so human event sections below are unreachable by rewrite.
+
+Empty reads guarded for buildId (None→skip) and unity (""→skip); metadataVersion cannot be empty (raises instead). Caveat: `versionLabel` "" (Version.txt deleted while `Data\` stands) still overwrites — pre-existing behavior, a truthful-absent read rather than a failed one; noted, not blocking.
+
+Verified-on-disk precedence holds: prev.verified:true merges `{**entry, **prev}` so S7's measured ilspycmd pin survives S2 reruns; non-verified entries take `{**prev, **entry}`, healing X-1's stale AssetStudioModCLI 0.19.0.0→0.19.0.1 at S2. `detect-measured-change` unchanged in substance: old mutate could only move the four measured scalars, new fires iff changed∧measured_changed with identical payload; pure heals surface only via the new `log_pin_block_updated` report flag.
+
+AC-5 two-rerun trace: rerun A over a pre-heal log may add seed fields to a verified entry once (one-time heal); rerun B recomputes an equal dict and `update_defaults` short-circuits before writing ⇒ byte-stable thereafter, deterministic key order. Merge rule makes the first-cut downgrade oscillation impossible; in-memory replay of the exact merge on an X-1-style stale block confirms heal + verified precedence + second-run identity.
+
+Suite: `pytest pipeline/tests -q -k "idempotency or provenance or detect"` → 17 selected, **16 passed, 1 skipped** (integration-tier free-space gate), 53 deselected — includes `test_full_rerun_changes_no_nonenumerated_byte`, the test the fixer's first cut failed.
+
+Scope clean: commit touches only detect.py (+ its brief doc); detect worktree matches HEAD; live work-root logs untouched.
+
+VERDICT: PASS

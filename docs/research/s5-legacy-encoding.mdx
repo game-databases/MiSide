@@ -1,0 +1,59 @@
+# I-S5 — Investigator report: the 7 legacy-encoded loc files (incident I-3)
+
+| | |
+|---|---|
+| Investigator | I-S5 subagent, 2026-08-25, host NE8K (game root `A:\SteamLibrary\steamapps\common\MiSide\`, read-only throughout) |
+| Inputs | [x1-execution-report.mdx](x1-execution-report.mdx#i-3--s5-exit-policy-deadlock-new) · [pipeline-run_all.mdx §2 S5 + AC-9](../specs/pipeline-run_all.mdx#s5-loc-jsonl) · [loc_jsonl.py](../../pipeline/stages/loc_jsonl.py) · [explorer-e1-hands-on.mdx §Step 5](explorer-e1-hands-on.mdx#step-5--localization-sanity-partial-store-confirmed-plan-corrections) |
+| Measured on | live install tree (2,210 txt over 34 locale dirs, byte-scanned in full) + wave-3 stage report `_ledger/locale-delta.jsonl` |
+
+## 1. The seven files
+
+Same relative path in every case: `Data\Languages\<locale>\LocationDialogue Location12.txt`. All are small (998–1,408 B), LF-only, no trailing newline (category norm).
+
+| Locale | Bytes | Invalid segs | First bad offset | Head (hex → decoded) |
+|---|---|---|---|---|
+| Croatian | 998 | 1 | 833 | `0a4f7374616e69…` — clean UTF-8 `\nOstani ovde.\nMislim da…` until the stray byte |
+| English | 1,049 | 1 | 906 | `0a537461792068657265…` — `\nStay here.\nI think I dr…`, pure ASCII until stray byte |
+| Filipino | 1,154 | 1 | 950 | `0a4469746f206b61206c616e67…` — `\nDito ka lang.\nMay naiwa…` |
+| Indonesia | 1,102 | 1 | 948 | `0a54657461706c61682064692073696e69…` — `\nTetaplah di sini.\nKayak…` |
+| Serbian (Latin) | 1,017 | 13 | 41 | `…zaboravila ne` + `9a` + `to.` — legacy bytes start at line 1 |
+| Slovak | 1,011 | 62 | 6 | `0a5a6f737461` `f2` `20747 52e…` → `\nZostaň tu.\nMyslím, že s…` under cp1250 |
+| Vietnamese | 1,408 | 1 | 1,185 | `0ae1bb9e20c491c3a279…` — proper UTF-8 Vietnamese (`Ế Đ ây ại…`) until stray byte |
+
+**Two distinct failure classes, not one:** Croatian/English/Filipino/Indonesia/Vietnamese are valid UTF-8 except for **exactly one stray byte each — always `0xCC`, always in line 58** (the coordinates line, see §3). Serbian (Latin) and Slovak carry genuine runs of unconverted single-byte text (13 and 62 invalid segments).
+
+## 2. Codec verdicts
+
+Method: maximal-contiguous-segment isolation under strict UTF-8, then per-segment trial decode over 13 candidate codecs with **byte round-trip proof** (`decoded.encode(codec) == original_bytes`), then language-consistency check against the file's own UTF-8 context.
+
+- **Slovak — cp1250 (Windows-1250), proven.** Every one of the 62 segments round-trips under cp1250 (iso-8859-2 agrees on all bytes present; mac-latin2/cp1251/koi8-r produce nonsense). Recovery yields correct Slovak orthography: `Zostaň tu.` · `Myslím, že som niečo stratila.` · `Poďme sa zahrať!` · `Si plyšový medvedík` · `Ukážem ti ako.` Independent confirmation: Slovak's own `0xCC` recovers to `Ě` under cp1250 — exactly the glyph Czech and Hungarian ship (already UTF-8-transcoded) at the same position of the same line.
+- **Serbian (Latin) — cp1250 family, proven for every byte present.** All 13 segments are `9a`/`9e`/`8e` → š/ž/Ž (identical mapping in cp1250, cp1252, cp1254; cp1250 declared for vendor consistency with Slovak). Recovery reads as correct Serbian Latin: `zaboravila nešto` · `Želim svog medu!` · `Želi da se igra`.
+- **The five single-`CC` files — NOT recoverable, by corpus evidence.** No codec gives `8⟦CC⟧54*` meaning (cp1250 `Ě`, cp1251 `М`, cp1252 `Ì`, koi8-r `л` — all nonsense inside coordinates). Line 58 is corrupted *fleet-wide*: the same source glyph ships as `Ì`×7, `М`×10 (RU/FR/DE/JA/ZH/KO/KK…), `Ě`×2, `M`×2, `I`×3, `Ъ`×1 (Pre-revolutionaryRussian: `8МЪ54*`), literal U+FFFD×3 (BG/IT/ES-Spain), raw `CC`×6. Each locale's translator tool transcoded its own ANSI codepage byte `0xCC`; the upstream glyph was destroyed before shipping. Decoding it would *fabricate* a character the corpus cannot justify.
+- Erratum vs I-3 wording: cp1250 `9a`=š is correct; **`f2`=ň, not ô** (`ô` is `f4` — visible in `pôjdeme`).
+
+Structural normality: **all 34 locales' `LocationDialogue Location12` split into exactly 71 lines** (`Counter({71: 34})`) — blank-line skeleton and `// Quest N (…)` comment lines (indices 25/31/38/44/49/60) align everywhere. The 7 files are structurally intact; only byte encoding differs. Post-recovery, Slovak/Serbian keep 71 lines, zero control characters.
+
+## 3. Survey of all 34 dirs (would S5 trip again?)
+
+Full byte-scan of 2,210 txt files: **exactly 7 non-UTF-8 files — the ones above.** No other category or locale carries the signature. Adjacent traps found while scanning:
+
+- **36 files are UTF-8-BOM'd** (mostly Hungarian): `parse_category` keeps the BOM, so `line_index 0` text starts with `\ufeff` (verified in emitted `localization/Hungarian/CoreSoft.jsonl`). .NET's `StreamReader` strips BOMs, so in-game parity of first lines likely differs; join keys unaffected. Worth an F-note when touched next.
+- **Line 58 is defective in all 34 locales** (census above) — even healthy-parsed locales carry mojibake verbatim. Nothing for S5 to do under the verbatim rule; the future dialogue dataset wants a known-defects note.
+- CRLF appears in 1,802 files — `splitlines()` handles both; no impact.
+
+**Ledger pollution (new, fixes itself under option b):** because English's own Location12 failed to parse, the *reference* category set lost the category — 27 locales now show phantom `extra_vs_reference: ["LocationDialogue Location12"]` rows in `_ledger/locale-delta.jsonl`, corrupting R-E1-3's skew semantics for every locale.
+
+## 4. Options paper
+
+| | (a) hard-fail unchanged | (b) declared-codec recovery → UTF-8 rows + residue | (c) skip-file + missingdata mark |
+|---|---|---|---|
+| Files emitted | 2,203 — **AC-9 floor ≥2,210 literally unmet** (today's "qualified pass" is an AC-9 failure as written) | **2,210/2,210 — AC-9 met without amendment** | 2,203 — requires amending AC-9 |
+| Data recovered | none; run deadlocks (I-3) before S6 under AC-3 | Slovak+Serbian dialogue **losslessly recovered** (75 segments, round-trip-proven, orthography-verified); 5 stray bytes become declared U+FFFD | nothing ever; permanent hole in the 34×20 LocationDialogue matrix |
+| Doctrine fit | worst: reachable data blocks the pipeline | best: Principle zero (extract everything reachable) + residue honesty; nothing stripped ([realtime goal](../../../_foundation/extraction-doctrine.md#principle-zero)) | violates Principle zero — 497 lines dropped incl. provably recoverable ones |
+| Ledger | polluted reference set persists | repaired automatically (EN ref regains the category; 27 phantom EXTRA rows vanish) | pollution persists |
+| Code cost | zero | ~40 lines in `loc_jsonl.py` + fixture + tests + §2 S5 amendment (codec declaration, exit semantics — escalation 2 already requests the ruling) | small, but spec surgery on AC-9 anyway |
+| Risk | every patch-day rerun re-hits the deadlock | silent mis-decode — mitigated by round-trip proof, per-segment residue (offset/hex/context/codec), U+FFFD-only where unprovable | reviewers may read skips as corruption hiding |
+
+**Recommended: (b), strict variant.** Segment-wise decode: UTF-8 where valid; at failure offsets, apply a single declared codec only when *all* segments of the file round-trip under it (else U+FFFD); every handled file gets a residue entry (locale, category, codec, per-segment offset/hex/recovered-text-or-FFFD); exit policy becomes *zero when every anomaly is recovered-or-explicitly-marked*, non-zero only for unhandled anomaly classes — the ledger row stays the product, matching §2 S5's own stated intent ("honesty without letting one odd file among 2,210 block the whole loc layer"). Open probe once I-4 clears: confirm from decompiled `GlobalLanguage` which encoding the engine itself uses (prediction: UTF-8-with-replacement, i.e. in-game already shows U+FFFD for these six bytes).
+
+DIAGNOSIS: COMPLETE — recommend option b

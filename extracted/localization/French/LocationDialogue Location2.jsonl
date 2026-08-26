@@ -1,0 +1,9 @@
+{"category": "LocationDialogue Location2", "line_index": 0, "text": "// Player start - Player"}
+{"category": "LocationDialogue Location2", "line_index": 1, "text": "Où suis-je ?"}
+{"category": "LocationDialogue Location2", "line_index": 2, "text": "Cet endroit me dit quelque chose..."}
+{"category": "LocationDialogue Location2", "line_index": 3, "text": "Est-ce que je suis dans le jeu ?"}
+{"category": "LocationDialogue Location2", "line_index": 4, "text": "// Player try open the door - Player"}
+{"category": "LocationDialogue Location2", "line_index": 5, "text": "C'est verrouillé ?"}
+{"category": "LocationDialogue Location2", "line_index": 6, "text": "// Player in dark - Player"}
+{"category": "LocationDialogue Location2", "line_index": 7, "text": "Il fait sombre là-dedans."}
+{"category": "LocationDialogue Location2", "line_index": 8, "text": "Je ne peux rien y voir."}

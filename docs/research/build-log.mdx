@@ -1,0 +1,895 @@
+# Build log — MiSide datasets
+
+Append-only record of dataset-builder passes. One block per builder brief;
+counts, join coverage, AC scoreboard, deviations. Spec canon:
+[`../specs/dataset-characters.mdx`](../specs/dataset-characters.mdx) ·
+[`../specs/pipeline-run_all.mdx`](../specs/pipeline-run_all.mdx).
+
+---
+
+## B-1 build — DS-1 characters & Mitas (2026-08-25)
+
+Builder: Dataset Builder subagent (brief B-1), against arbiter-approved
+[DS-1](../specs/dataset-characters.mdx)
+([ds123-arbiter](verifications/ds123-arbiter.mdx)). Corpus pins read live
+from `extracted/EXTRACTION-LOG.md`: buildId **19029065**, **0.93L**.
+
+### Emitted
+
+| File | Rows |
+|---|---|
+| `extracted/data/characters/personages.jsonl` | `_meta` + **24** data rows (14 mita + 10 player) |
+| `extracted/data/characters/characters.candidates.jsonl` | `_meta` + **26** (8 tier-3 scene candidates w/ client locators; 18 tier-4 wiki-only names — 16 with `evidence: []`, 2 [Flower/Ballerina] carrying text-mention locators only; tier-2 `loc_only` EMPTY — registry desc indices consume Personages 1–14 exactly) |
+| `extracted/data/characters/relinks/character--scene-membership.jsonl` | 4 named edges (+4 inverse) + 4 unnamed-class census rows |
+| `extracted/data/characters/relinks/character--outfit.jsonl` | 4 outfit-table inventory rows (hard) |
+| `extracted/data/characters/relinks/character--achievement.jsonl` | 22 forward + 22 inverse (family `ACHI_cartridgeplayers`, partial by design) |
+| `extracted/data/characters/relinks/character--cartridge.jsonl` | 22 forward + 22 inverse (FlashTaker `/Save/Flashes` identities, modeled) |
+| `extracted/data/characters/relinks/character--dialogue-speaker.jsonl` | 3 speaker slots + 3 inverse (names only — R1) |
+| `contracts/dataset-characters.mdx` | frontend schema pin v1 |
+
+Byte-determinism proven: full rerun reproduced all seven JSONLs
+md5-identical.
+
+### Join coverage
+
+| Join | Coverage | Note |
+|---|---|---|
+| J1 loc pointers | **24/24 rows × 34 locales = 100%** | all resolutions non-empty, zero U+FFFD |
+| J2 scene membership | named edges **2/14** mita rows (`mita-core` verbatim ×2 containers, hard; `mita-black` via T1+T2 @level13, inferred); players 0/10; unnamed census complete: 93/31/17/3 instances over 45/31/17/3 containers | remainder ledgered (decorative variants, candidates) |
+| J3 outfit | table side **4/4** hard; reflection targets open (COMP J7) | Clothes-line pin recorded (chosen n−1, rejection named) |
+| J4 achievement family | **22/24** keyed rows (partial) | 2 empty-save-key rows excluded honestly |
+| J5 cartridge/profile identity | **22/24** modeled | same exclusions; placement waits on scenes dataset |
+| J6 dialogue speakers | 3 slots stored; attributions **0 by design** (R1 → DS-3) | carrier keys fixed here |
+
+### AC scoreboard (spec §8) — **10/10 PASS**
+
+All ten executed repo-side this pass (scripted, deterministic):
+
+- **AC-1** PASS — 24 data rows; tuple multiset == dump byte-for-byte; sizes 10@48 / 14@301.
+- **AC-2** PASS — 34 locales × 24 × 2 pointers resolve non-empty; zero U+FFFD; encoding-residue holds no character-category rows (all 7 are `LocationDialogue Location12`).
+- **AC-3** PASS — all 9 S2 fields survive as columns; identifiers byte-verbatim incl. both empty save keys.
+- **AC-4** PASS — RGBA ∈ [0,1]; spot rows match §3; hex reproduces (`#cc73a2`, `#d92c45`).
+- **AC-5** PASS — families mta*/mla/plr*; plr set exactly plr1a…plr1099; every key present with mechanism in the cartridge relink file.
+- **AC-6** PASS — both offsets recomputed from S8+S9 ×34; n−1 yields Default/School/Vampire/Christmas; direct offset fails (stringName 13 out of range everywhere + original→School); pin recorded in file meta + README.
+- **AC-7** PASS — every claimed (container, Name) greps clean; `MitaBlack` claimed verbatim nowhere; transform grammar recomputes each claimed Name byte-for-byte; unnamed counts equal the FULL suffixed filename census exactly (93/31/17/3).
+- **AC-8** PASS — README carries the Version-category gap (44 `NameFile="Version"` UIText links, no `Version.txt` in any locale), both empty-icon facts, and the stub-ladder state; zero non-`registered` personages rows; no invented values.
+- **AC-9** PASS — availability derived from category presence ×34, matches `_ledger/locale-delta.jsonl` coverage (34/34); simulated category deletion flips the cell in-memory (data-driven, not asserted).
+- **AC-10** PASS — zero wiki-only names among the 24 rows; 13 tracked names live only in candidates with client locators or `evidence: []`.
+
+Arbiter load-bearing anchors independently re-verified before building:
+zero bare `<Name>MitaBlack</Name>` in any asset-list;
+`Location11_BlackMita`@level13.xml:3280 + `Location11_EyesMitaBlack`@:1552;
+registry sizes 10@48 / 14@301.
+
+### Deviations
+
+No spec violations. Interpretation decisions, all documented in the contract
+and pack README:
+
+1. **Relink files parked at `extracted/data/characters/relinks/`** — the
+   builder brief's write scope excludes `extracted/relinks/`; files move
+   there when the emit stage registers (arbiter residue item (a), same
+   commit as the PIPE tree update).
+2. **Schema superset:** `case_back` + `button_menu` columns added — spec
+   AC-3 demands every S2 field survive as a column or an explicit
+   drop-with-reason; dropping two real PPtr identifiers was the worse
+   option. Pointer objects gained `file_id` to keep external-dependency
+   PPtrs honest (shared player icon, file_id 2 path_id 276).
+3. **`character_id` player arm:** `player-{gallery_order+1}` (nine players
+   have empty `resource_path`; matches the spec's own `player-3` example).
+4. **`name_is_shared` applied symmetrically** — the stated predicate
+   ("another row shares name_loc") marks BOTH members of the Menu-83 pair.
+5. **Census refinement:** S14's "45 containers" was a presence figure; the
+   emitted rows add true instance counts that reconcile exactly with the
+   suffixed mb-dump filename census (93 MitaPerson dumps incl. `#pathID`
+   files). No contradiction — finer measurement of the same artifacts.
+
+### Handoff to orchestrator
+
+- Move `extracted/data/characters/relinks/*` → `extracted/relinks/` at emit-stage registration.
+- Register the stage module + test file in the PIPE manifest (same commit; spec §9).
+- Downstream consumers read `contracts/dataset-characters.mdx`; portraits remain the ART layer's deliverable (R5).
+
+---
+
+## B-2 build — DS-2 achievements + endings & choice trees (2026-08-25)
+
+Builder: Dataset Builder subagent (brief B-2), against arbiter-approved
+[DS-2](../specs/dataset-achievements-endings.mdx)
+([ds123-arbiter](verifications/ds123-arbiter.mdx)). Ground truth re-measured
+this pass over all 51 containers / **140,380 dumps**; loc read from
+`extracted/localization/<locale>/*.jsonl`; Steam global-% captured keyless
+2026-08-25T02:19:10Z (machine plane).
+
+### Emitted
+
+| File | Rows |
+|---|---|
+| `extracted/data/achievements/achievements.jsonl` | **26** (all 34-locale names) |
+| `extracted/data/achievements/relink-achievement-award-site.jsonl` | 11 (hard) |
+| `extracted/data/achievements/relink-achievement-ending.jsonl` | 3 (hard) |
+| `extracted/data/achievements/relink-outfit-cloth-site.jsonl` | 2 (`FIIdClSchool` resolved, `Chirfns` [inferred]) |
+| `extracted/data/achievements/emit-ledger.jsonl` | 5 |
+| `extracted/data/endings/endings.jsonl` | **4** (3 endings + peaceful mode-stub) |
+| `extracted/data/endings/choice_nodes.jsonl` | **371** (13 DC / 353 OI / 5 IM) |
+| `extracted/data/endings/branch_edges.jsonl` | **1555** |
+| `extracted/data/endings/flag_tables.jsonl` | 5 (level4 main = 2/2/2/4 verified) |
+| `extracted/data/endings/relink-ending-branch-edge.jsonl` | 0 (feeds rule below) |
+| `extracted/data/endings/emit-ledger.jsonl` | 6 |
+| `contracts/dataset-achievements.mdx`, `contracts/dataset-endings.mdx` | frontend schema pins v1 |
+
+Byte-determinism proven: full rerun reproduced all ten JSONLs sha256-identical.
+
+### Predicate class census (26)
+
+`serialized-site` **11** · `code-body` **12** · `aggregate` **3** (12
+set-cartridges, 13 set-profiles, 25 meta-all). Status split holds the spec's
+fence exactly: **11 proven-hard / 15 unverified-behavior** — no guessed
+bodies. Award-site sweep reproduced the spec's 13 sites byte-for-byte on
+buildId 19029065 (AC-A3), both cloth sites included.
+
+### AC scoreboard (spec A.8 + B.8)
+
+A1 PASS · A2 PASS · A3 PASS · A4 PASS (**413/413 evidence cites lint-clean
+corpus-wide**) · A5 PENDING (icon bytes absent from art exports — 0 pathID
+hits in 437 `container-2d/resources.assets` sprites; official Steam icon URLs
+captured per-row as interim) · A6 PASS (Steam↔loc EN name sets equal 26/26,
+zero discrepancies; global-% captured real) · A7 PASS (`get` True only at
+{0,3}, trusted=false everywhere) · A8 PASS.
+B1–B8 all PASS (per-AC detail in
+[dataset-endings contract §scoreboard](../../contracts/dataset-endings.mdx#acceptance-criteria-scoreboard-this-build)).
+21/21 executable emit checks green.
+
+### New ground-truth facts found while verifying
+
+1. Every container holds a `DataAchievements` clone (48 total); level6's is
+   field-identical to the canonical `resources.assets` registry.
+2. BOTH safe instances (level8, level17) serialize `active=True` with the
+   identical 2-call `eventRight` chain — not just level8.
+3. `Location4Condition` = levels 3–6 (4 instances), matching the spec claim.
+4. Level18 final chain is **13 calls with `AchievementGet("ACHI_final")`
+   mid-chain at index 4**, not last — stored verbatim.
+5. `feeds_ending` = 0 by measurement: no component anywhere targets
+   #6042/#1041 via UnityEvent (level6/level18 swept corpus-wide); triggers ride
+   native bodies (#6042 carries `onStartZeroIndex=True`) → trigger context is
+   unverified-behavior. The empty relink file IS that answer.
+6. 3 dead-reference edges (serialized `m_Target` pathID 0); one names
+   `CoreSkip` — a type absent from il2cpp metadata entirely (stale name on a
+   destroyed-target call). Ledgered as residue, never resolved.
+7. level5's IntMemory serializes TWO branches with `ifInt=0` — kept in order;
+   edge ids carry a branch ordinal because of it.
+
+### Deviations
+
+No spec violations. Interpretation decisions, documented in the contracts:
+
+1. **Output family `extracted/data/{achievements,endings}/`** per brief;
+   relinks parked inside those dirs like B-1 — move to `extracted/relinks/`
+   at emit-stage registration (arbiter residue item (a)).
+2. **Contracts ship as MDX pins**, not `contracts/*.schema.json` — the brief's
+   write scope names the two contract docs; JSON Schema generates from them
+   later.
+3. **Windows placed on `safe-of-life`**, not conditions-met (component
+   ownership; no AC pins row placement).
+4. **Choice-node emit follows AC-B2's pinned sweep (371 nodes)** rather than
+   B.7's smaller stub sketch; award-chain hosts are not DC/OI/IM kinds and
+   stay on `endings.award_chain`.
+5. **`effect_class` gains `dead-reference`** for null-target calls; remaining
+   six labels map via a documented deterministic table.
+6. **Locale availability measured emit-side** —
+   `relinks/locale_availability.jsonl` (P1 stage) does not exist yet;
+   dependency ledgered, re-drive when P1 lands.
+
+### Handoff to orchestrator
+
+- Move `extracted/data/{achievements,endings}/*relink*.jsonl` → `extracted/relinks/` at emit-stage registration.
+- Register the stage module + tests in the PIPE manifest (same commit).
+- Art pass owes icon pathIDs 862–910 (AC-A5 closure); owner decision owed on
+  native-body decompile for the 15 fenced predicates (spec A.5.1).
+
+---
+
+## B-3 build — DS-3 dialogue graphs (2026-08-25)
+
+Builder: Dataset Builder subagent (brief B-3), against arbiter-approved
+[DS-3](../specs/dataset-dialogue.mdx)
+([ds123-arbiter](verifications/ds123-arbiter.mdx)). Inputs: all 24 level
+typed dumps (`extracted/harvest/mb-dump/`), the level scene files themselves
+for identity resolution (read-only, MonoScript table from
+`globalgamemanagers.assets`), loc JSONLs ×34, encoding-residue ledger.
+
+### Emitted — node scale vs spec §5 floor: EXACT
+
+| File | Rows |
+|---|---|
+| `extracted/data/dialogue/nodes.jsonl` | **2,839** nodes: 2,710 `ambient_line` · 13 `quest_box` · 70 `choice_case` · 11 `branch_group` · 11 `grouped_scene_dialogue` · 24 `pet_dialogue` |
+| `extracted/data/dialogue/edges.jsonl` | **3,776** edges: 2,161 `next` · 70 `choice` · 10 `branch_left/right` · 1,535 `on_finish_action` |
+| `extracted/data/dialogue/graphs/<level>.json` | 19 level graphs with entry-point + terminal sets |
+| `extracted/data/dialogue/speakers.json` | 14-value theme table (9 provisional slugs, 5 `pending-curation`) |
+| `extracted/data/dialogue/availability.csv` | 680 cells = 20 buckets × 34 locales (+ pivot counts, tail deltas) |
+| `extracted/data/dialogue/residue-links.jsonl` | LD12 line 58 ↔ all 7 residue ids |
+| `_ledger/{dangling-edges,range-check,locale-parity,identity-reconciliation,ac-scoreboard}` + `build-meta.json` | provenance ledgers |
+| `contracts/dataset-dialogue.mdx` | frontend schema pin v1 |
+
+SPEC's placeholder "thousands [unverified]" resolves to **2,839 nodes /
+3,776 edges** on buildId 19029065 — matching §5's ~2,850 floor arithmetic
+exactly (2,710+70+22+24 plus the 13 boxes).
+
+Byte-determinism proven: rerun reproduced all 30 output files byte-identical.
+
+### Measured confirmations the spec flagged as open
+
+1. **Union-of-carriers binding rule VALIDATED on all 19 carrier levels**
+   (§3.6 was `[inferred]`): union max == count − 1 everywhere, including the
+   three closure levels AND `level4→LD2`, which neither spec list named.
+2. **Off-by-one contract holds for ALL FOUR index fields** — including
+   `DialogueChangerCase.stringFile`, where the level5 box proves it
+   semantically: `−1` lands the exit button case on `"Never mind."` and each
+   choice on a coherent question; an identity copy lands two cases on `//`
+   comment rows.
+3. **662 non-empty ambient `eventFinish` groups reproduce exactly** (+39
+   `eventFinishPrint`, +2 `eventDontVoice`); non-null `nextText` 2,162 =
+   2,150 in-graph resolves + 12 ledgered targets (exact); null-next
+   terminals **548 exact**.
+4. **`Location21_DialogueRandom`: zero instances across all 51 containers** —
+   the §3.1 router kind emits nothing (measured absence, not omission).
+
+### New ground-truth facts found while building
+
+1. **AssetStudioMod's dump-filename `_#N` is NOT a PathID space** — no
+   `#12799` exists in `level9.xml`; true component PathIDs are recovered by
+   parsing each scene's raw MonoBehaviour headers (GO PPtr + MonoScript
+   class table) and matching dumps via their GameObject PPtr; the one
+   bare-named file per class per container resolves by elimination (32 rows
+   in `_ledger/identity-reconciliation.jsonl`). Node ids use TRUE PathIDs.
+2. **Spec §2.1's "exact per-category line parity across locales" is
+   REFUTED**: Filipino LD20 +1, Italian LD3 +2, Português-Brasil LD18 −3,
+   Turkish LD6 −1 (30/34 locales exactly even). Deltas ship as data
+   (`_ledger/locale-parity.jsonl`); pivot EN stays the range authority;
+   surplus rows are unreferenced by any node.
+3. **Branch forks are text-keyed, not node-keyed**: all 10 wired L14 fork
+   slots — 5 of 11 components wire any side; the other 12 of 22 slots
+   serialize 0 — target loc rows NO component serializes; emitted as
+   text-keyed edges (`dst: null` + `label_ref`), never as dangling.
+4. The 12 unresolvable `nextText` targets point at GOs hosting no dialogue
+   components (one hosts `GameObject_Destroy`; eleven host none) — ledgered
+   with hosted-component evidence.
+5. UnityEvent action targets classify exactly against the full object
+   census: 60 dialogue nodes, 1,254 engine/game components (AudioSource/
+   Animator/ParticleSystem/Collider…), 220 GameObjects, 1 null-target.
+
+### AC scoreboard (spec §10) — **8 PASS · 1 PARTIAL · 0 FAIL**
+
+D1 PASS (census == ASL == independent filename recount) · D2 PASS (3,001
+refs × pivot counts, `−1` verified everywhere, span rule validated ×19,
+parity deltas ledgered) · D3 PASS (680 cells; FR LD16 contentless; zero
+locales dropped) · D4 PASS (7/7 residue ids joined) · D5 PASS (all resolvable
+edges resolve; 12 explained-diff rows; terminals = 548 exact) · **D6 PARTIAL
+— 96.23% vs ≥99% bar, structural**: choice_case (70), quest_box (13),
+pet_dialogue (24) serialize no speaker field at all; 100% of nodes whose
+kind HAS a speaker mechanism carry one; enum table complete with the 5
+fenced enums at `null:"pending-curation"` · D7 PASS (320/328 hints emitted
+verbatim, lang-tagged, never speech + 8 unattached ledgered = 328 invariant;
+see fix round below) · D8 PASS · D9 PASS.
+
+### Deviations
+
+No spec violations. Interpretation decisions, documented in the contract:
+
+1. **Output root `extracted/data/dialogue/`** per brief (arbiter residue (a)
+   family pick); `graphs/` + `_ledger/` subdirs added to §7's file list for
+   AC provenance.
+2. **Emitter/checker parked at `data/dialogue/build/`** — write scope
+   excludes `pipeline/stages/`; register there at adoption.
+3. **True component PathIDs replace filename suffixes** in node ids (finding
+   1 above); client file is the identity authority.
+4. **Identity pass reads the installed scene files read-only** (UnityPy raw
+   header parse; no typetree needed) — mb-dump filenames alone cannot yield
+   true PathIDs; path pinned in EXTRACTION-LOG.
+5. **Locale availability measured emit-side** — `relinks/locale_availability.jsonl`
+   (P1 stage) still absent; dependency ledgered like B-2 deviation 6.
+6. **Quest-label U+FFFD observation**: EN `Location 3` line 12 carries a
+   replacement char outside the 7 LD12 ledger rows — out of D4 scope,
+   recorded for the loc layer.
+
+### Handoff to orchestrator
+
+- Register `emit_dialogue.py` / `selfcheck_dialogue.py` in the PIPE stage
+  tree + tests at adoption (same commit discipline as B-1/B-2).
+- Downstream consumers key off `contracts/dataset-dialogue.mdx`;
+  `speaker.entity.slug` values are `provisional-pending-ds1` until B-1's
+  character curation assigns canonical ids (the 5 pending enums stay null
+  per fence — owner/curation call, do not guess).
+- Chapter joins deferred to SPEC gap #1; records carry `level` + `location`.
+
+### F-B3 fix round — D7 hint-drop defect (2026-08-25)
+
+[b3-vA](verifications/b3-vA.mdx) returned FAIL on D7 (mis-scored PASS): 11
+of the 328 EN author-comment rows shipped nowhere as `condition_hints`
+(emitted items 320 vs source 328). Two structural causes, both fixed in
+`emit_dialogue.py::attach_hints`: (1) the emitter attached only each node's
+**first** hint-bearing ref (early `break`) — removed, every hint-bearing ref
+attaches; (2) comments whose target row no component serializes vanished
+silently — they now land in `hint_stats.unattached_rows` with reason +
+target line. The reconciliation invariant
+`emitted + unattached == en_comment_rows_total` is asserted in-code (the
+emitter aborts on breach). Checker D7 rewritten to re-derive the attachment
+independently from the EN sources + emitted node refs instead of trusting
+the attach-stage stat.
+
+New numbers: **320/328 emitted into `condition_hints`** (324 placements over
+318 nodes — 6 nodes carry more than one hint), **8 unattached, all explicit**
+(LD1 119 · LD14 75/139/163/180 · LD19 378 · LD7 271/655 — each "target row
+not carried by any node"; the verifier's other three rows LD1 104/108,
+LD14 199 were break-losses and now attach). Diff surface: `nodes.jsonl`
+condition_hints only + `_ledger/build-meta.json` + scoreboard/docs; every
+other output byte-identical across reruns (D9: 30 files). Scoreboard stays
+**8 PASS · 1 PARTIAL · 0 FAIL**, D7 PASS on the real invariant.
+
+---
+
+## B-4 build — DS-4 cartridges & mini-games (2026-08-25)
+
+Builder: Dataset Builder subagent (brief B-4), against arbiter-approved
+[DS-4](../specs/dataset-cartridges.mdx)
+([ds456-arbiter](verifications/ds456-arbiter.mdx): DS-4 APPROVED). All §2
+anchors re-measured first-hand this pass (C1 literal split, fresh FlashTaker
+grep, TV controller array, automate ×3, loc counts ×34, asset-list greps,
+achievements/C13 joins, AC-7 hash partition). Pins: buildId **19029065**,
+**0.93L**.
+
+### Emitted
+
+| File | Rows |
+|---|---|
+| `extracted/data/cartridges/cartridges.jsonl` | `_meta` + **23** (13 character / 10 player by literal slot) |
+| `extracted/data/cartridges/minigames.jsonl` | `_meta` + **17** (3 prefab/scene + 2 TV + 8 carrier-class + 4 tamagotchi activities) |
+| `extracted/data/cartridges/cartridges-minigames.candidates.jsonl` | `_meta` + **2** tier-3 candidates (tamagotchi Chip/Cartridge UI; Metroidvania_\* boilerplate family) |
+| `extracted/data/cartridges/relinks/cartridge--character.jsonl` | 22 forward + 22 inverse (dual typed depicts/contains; C13 anchors verbatim) |
+| `extracted/data/cartridges/relinks/cartridge--scene-placement.jsonl` | meta-only (parked until scenes dataset; placement authority declared) |
+| `extracted/data/cartridges/relinks/minigame--achievement.jsonl` | 10 forward + 10 inverse (4 attributed: 3 hard + applesnake logic; 6 type-tag-only null-target partials) |
+| `extracted/data/cartridges/relinks/minigame--scene-carrier.jsonl` | 38 forward + 38 inverse over class-family × container |
+| `extracted/data/cartridges/relinks/minigame--outfit-unlock.jsonl` | 2 forward + 2 inverse (pinguin→Chirfns hard; pumpkin→HellVamp logic) |
+| `extracted/data/cartridges/relinks/minigame--choice-condition.jsonl` | meta-only (measured absence) |
+| `extracted/data/cartridges/README.md` + `build/{emit_cartridges,selfcheck_cartridges}.py` | honesty ledger + deterministic emitter + AC harness |
+| `contracts/dataset-cartridges.mdx` | frontend schema pin v1 |
+
+Byte-determinism proven: consecutive emitter runs reproduced all nine JSONLs
+md5-identical.
+
+### Join coverage
+
+| Join | Coverage | Note |
+|---|---|---|
+| J1 cartridge↔character/player | **22/23** keyed rows mirrored (mta honestly anchorless — DS-1 empty nameSave); gallery wiring corroborates all 23 | placement waits on scenes dataset |
+| J2 cartridge↔scene placement | meta-only by design (P5-gated) | 21-pair multiset declared the single authority; DS-5 consumes the **11-row mita-side overlap** by reference |
+| J3 minigame↔achievement | 8/8 minigame-tagged ids exactly once fwd+inv + WinFIght/greatdance extras; targets attributed on 4 (PinguinTusim, WinFIght, greatdance hard w/ dumped sites; applesnake mechanical containment) | remaining 6 stay null-target `partial` — no invention |
+| J4 minigame↔carrier | all carrier containers grep-equal fresh `<Name>Class<` sweeps; prefab spread deduped 48-of-51 → canonical home + loader | partition recorded in `_meta` |
+| J5 minigame↔outfit | 2 edges: 1 hard (dumped dual-grant site), 1 wiki-asserted logic kept partial | School site (level5) deliberately unbound to any minigame |
+| J6 minigame↔choice-condition | measured absence (0 conditions corpus-wide) | key space declared for DS-2 Part B |
+
+### AC scoreboard (spec §9) — **10/10 PASS**
+
+Executed repo-side by `build/selfcheck_cartridges.py` (scripted,
+deterministic): AC-1 registry multiset+order+13/10 slots · AC-2 21 pickups
+grep-clean, unresolved exactly mtad2/mtacore · AC-3 namespace honesty
+(mta-null documented, 22/22 anchors reused, inverses mirrored) · AC-4 −1 pin
+resolves ×34, identity offset indexes out of range everywhere, EN exact,
+README documents rejection · AC-5 automate/TV/carrier keys equal their C5/C7/
+asset-list locators, Hetoor/Spaceracer zero-grep holds, zero community-name
+keys · AC-6 ids ⊆ C11, 8-slot fill exact, mechanisms labeled, write-scope
+manifest proves DS-2 untouched · AC-7 48 dumps → 19/16/12/1 groups,
+level2-group=12 recorded, controllers never counted as carriers · AC-8 every
+rule_evidence quote resolves at its locator, `scoring_derivable` false ×17,
+community prose numbers absent from data rows · AC-9 availability derived and
+ledger-reconciled, Arabic 34-vs-35 skew reproduced from files, scratch
+deletion flips the computed cell · AC-10 log↔detect pins agree, stamps on
+every dataset row / relink meta / award-site dict.
+
+### New ground-truth facts found while building
+
+1. **The album is wired button-for-button**: all 23 C1 registry keys appear
+   one-to-one as `MenuPersonage.OpenPersonage("<save_key>")` string arguments
+   across 23 `level2` dumps (`ButtonMouseClick_#2179.txt` → `"mtad2"` was the
+   only instance the spec cited).
+2. **Dual-grant site**: `level6/Dialogue_3DText_#7008.txt` calls
+   `AchievementGet("ACHI_PinguinTusim")` AND `ClothCompleted("Chirfns")` in
+   one serialized chain — the hard pinguin→Christmas-outfit edge the spec
+   hoped for ("Penguin-Piles/Christmas links land here").
+3. **Metroidvania_\* is a shipped-but-unused game family** (5 classes): every
+   dumped `Metroidvania_Interactive` component across all 48 containers is
+   byte-identical (md5 `a4c8a17f…`) — held as a tier-3 cut-content candidate,
+   never promoted.
+4. **Prefab auto-load spread quantified**: `CarSpace_*`/`MakeManeken_*`
+   asset-list presence spans 48 of 51 containers (dependency auto-load);
+   dedupe collapses it to canonical home + loader container.
+5. Census refinements: Shooter\_ family = **11 unique classes** (spec prose
+   said ×14; types.json carries one duplicate row); tamagotchi phone ships
+   Chip(_Case/_Plita) + Cartridge UI classes beyond the four counted activity
+   families — both ledgered, nothing dropped.
+
+### Deviations
+
+No spec violations. Interpretation decisions, all documented in the contract:
+
+1. **Output root `extracted/data/cartridges/`** per brief (arbiter residue (a)
+   family pick); the candidates file keeps the spec's cross-kind name
+   `cartridges-minigames.candidates.jsonl`.
+2. **Tier-4 = no candidate rows** (spec §7 item 4's explicit "no row, no
+   candidate" wins over the §4 tree comment "tiers 3–4"); Fly Console /
+   Forgotten Panels / Monster-Slap / Destroying Glitches are noted in README
+   against D1 §4.
+3. **Schema supersets:** `key_locator` column (makes AC-5 traceability
+   mechanical); `missing_fields: []` on full rows; stamps on candidate rows
+   and award/unlock-site dicts. Same deviation class as B-1's #2.
+4. **Slug rule pinned as boundary-split kebab** (`plr3vi → plr-3-vi`): the
+   spec's two examples conflict under any single rule; this matches
+   `mta-cap` verbatim and stays injective where truncating to `plr-3` would
+   collide.
+5. **J3 attribution standard**: a target is named only on mechanical client
+   evidence (verbatim identifier containment or co-container grant site) —
+   community attributions (e.g. Quadrangle="Phase 1/2 logs") live only in the
+   cited `community_alias`, never in an edge.
+6. **Emitter/checker parked at `data/cartridges/build/`** — write scope
+   excludes `pipeline/stages/`; register there at adoption (B-3 precedent).
+
+### Handoff to orchestrator
+
+- **FENCE (ds456-arbiter agenda-1, binding):** this dataset's emit-stage PIPE
+  manifest registration MUST land in the same commit as the DS-4 §1
+  restatement to the **11-row-overlap scope** (the mita-side pickup pairs DS-5
+  consumes by reference; the 10 player-side pickups are DS-4's alone), and
+  before either emit stage runs. Recorded here as the builder-side obligation;
+  the §1 edit itself is outside B-4's write scope.
+- Move `relinks/*` → `extracted/relinks/` at stage registration (same commit).
+- Register the stage module + tests in the PIPE manifest (same-commit
+  discipline as B-1/B-2/B-3).
+
+---
+
+## B-6 build — DS-6 scenes, lattice & placement (2026-08-25)
+
+Builder: Dataset Builder subagent (brief B-6), against post-F-DS6
+[DS-6](../specs/dataset-scenes.mdx) ([ds456-arbiter](verifications/ds456-arbiter.mdx)
+PARTIAL → F1–F4 fixed → [ds6-vA](verifications/ds6-vA.mdx) PASS). Pins read
+live from `extracted/EXTRACTION-LOG.md`: buildId **19029065**, **0.93L**.
+Every §2 number re-measured first-hand this pass; all reproduce (World 20/20
+story tuples byte-equal incl. zeros exactly {9,15,22}; Scene_Load 19 with
+level18 absent; FlashTaker 21 pairs; dedupe deltas 31/15 · 353/312 · 359/334
+· 105/71 · 657/382; SaveGame 19⇄19 both directions).
+
+### Emitted
+
+| File | Rows |
+|---|---|
+| `extracted/data/scenes/scenes.jsonl` | `_meta` + **24** registry rows (20 story + boot/title/menu + level23 `unbound`) |
+| `extracted/data/scenes/scene-links.jsonl` | `_meta` + **57** = 41 lattice edges (19 loads / 7 unloads / 15 continues) + 15 chapter pointers + 1 level18-absence ledger row |
+| `extracted/data/scenes/poi.jsonl` | `_meta` + **986** instances over 23 classes |
+| `extracted/data/scenes/spawn-tables.jsonl` | `_meta` + **24** Event_CreateResource rows (halloween ×3, christmas ×21) |
+| `extracted/data/scenes/markers.jsonl` | `_meta` only in v0 — no-orphan rule, 4 pending families with unblocks |
+| `poi-kinds.json` + `README.md` | curated class→kind rulings + honesty ledger |
+| `relinks/` (parked) | scene--chapter · scene--dialogue-pool · scene--objective-hints · cartridge--character-placement · scene--save-vocabulary |
+| `contracts/dataset-scenes.mdx` | frontend schema pin v1 |
+
+Byte-determinism proven: full rerun reproduced all seven outputs
+md5-identical (S8, also asserted inside check_scenes.py).
+
+### Position-truth census (inline vs deferred)
+
+inline **346** (ObjectItem 262 object-local-offset · Transform_Position 71,
+49 point sets, empty-array instances → source "none" · Player_Teleport 13
+inline-but-space-unknown) · pptr-unresolved **76** (Trigger_Teleport 14 →
+Transform targets incl. #10938→pathID 6192 · MitaAIMovePoint 31 ·
+FlashTaker pickup-GO hooks · Trigger_DistanceCircle · Transform_Position
+parents) · none **564**. `world-assumed` occurs only on World.positionSpawn.
+
+### AC scoreboard (spec §10) — **S1–S10 all PASS**
+
+37/37 mechanical checks green (`build/check_scenes.py`; brief said S1–S11,
+§10 defines ten criteria — all ten executed). Highlights beyond the
+re-measurements above:
+
+- **S2** chapter pointers resolve non-empty ×34 locales for parts 101–115
+  (measured **15** non-zero, not §5's projected 16); zero-parts emit null.
+- **S4** fileSave ∪ nameLevelSaves == stringliteral set, both directions;
+  primaries 15 + secondaries 4 = 19.
+- **S5** 20/21 saves match DS-1 keys exactly; `mta`, `mtad2`, `mtacore`
+  carry explicit curation rows; Tamagotchi pet cartridges distinct family.
+- **S7** zero orphan markers; deferred families ledgered with unblocks
+  (DS-4/DS-5 emissions were in flight at build time; monster/save-point
+  owners don't exist yet).
+
+### New ground-truth facts found while building
+
+1. **level7 unloads "Scene 5 - StartHorror"** — DS-6 §2.3's table shows `—`;
+   `mb-dump/level7/Scene_Load.txt:12` measures the string. Rows follow the
+   dump; unloads count is 7, not the table's 6.
+2. **eventDay is holiday-gated**: DEC enum {halloween, christmas, none};
+   corpus holds only 0=halloween (levels 4/5/6 first instances) and
+   1=christmas (×21). Spec's "day-gated" gloss corrected.
+3. **LocationHint pools: 18 EN files, not 19** — `LocationHint Location18`
+   (level20) exists only as a French **0-byte** shell; no locale carries
+   content. Classified per DS3 §4 (contentless ≠ missing); no fabricated
+   pointers; README-ledgered.
+4. **Event_CreateResource distribution**: levels 3–19 + 21; multiples at
+   4/5/6 (×2), 17 (×3); absent from 20 and 22 (§2.7's gloss was looser).
+5. Some Transform_Position instances serialize EMPTY positions arrays →
+   labelled `source:"none"`.
+
+### Deviations
+
+No spec violations; documented superset choices:
+
+1. **Schema additions** (declared in each `_meta.derived_fields`):
+   `objective_hints_source_locale`, `chapter_name_en`,
+   `objective_hints_text_en`, Transform_Position `points[]` +
+   `position.target` for parent PPtrs, ECR array-count columns +
+   `event_day_label`, poi `joins.*` payloads, scenes `provenance`.
+2. **POI v1 class set exceeds the §5 floor** (986 ≥ 650): adds ObjectItem
+   (schema demands its exclusion ruling), MinigamesController ×70 (J7 hard
+   access side), Basement_Safe ×2, Tamagotchi family ×4. KeyHint ×382 /
+   MakeManeken dummies / Trigger_Event ×334 / remaining trigger families are
+   enumerated next-tier in README with counts — never dropped.
+3. **markers.jsonl v0 has zero data rows** — the no-orphan rule is absolute;
+   projection reruns once owning entity datasets land.
+4. **Cartridge placements consumed by reference**: every FlashTaker POI row
+   names DS-4's `cartridges.jsonl` as `placement_authority`; scenes owns
+   carrier instances + pickup-GO hooks only.
+
+### Handoff to orchestrator
+
+- Same-commit fence: when the emit stage registers in the PIPE manifest,
+  the registration must cite the DS-6 §2.7 level-scene-owns dedupe rule
+  (emitter walks `mb-dump/level*/` only; non-level copies collapse into
+  `_meta.dedupe_accounting`) — B-1/B-4/B-5 relocation precedent applies to
+  `scenes/relinks/*` → `extracted/relinks/`.
+- Rerun marker projection after DS-4 (cartridges) + DS-5 (documents) land;
+  join keys (`save_key`) already on every cartridge POI row.
+- PIPE §6's future transform stage S9 flips the 76 pptr-unresolved rows to
+  inline without schema change; Player_Teleport frame calibration included.
+- Verifier note: spec §2.3 table row level7 (unload column) and §5 "16
+  non-zero chapter pointers" deserve the same measured-correction treatment
+  F1–F4 received if a fix round opens.
+
+---
+
+## B-5 build — DS-5 documents & lore collectibles (2026-08-25)
+
+Builder: Dataset Builder subagent (brief B-5), against arbiter-approved
+[DS-5](../specs/dataset-documents.mdx)
+([ds456-arbiter](verifications/ds456-arbiter.mdx): DS-5 APPROVED, B-5 cleared
+under the §1 fence). Pins re-read live at emit: buildId **19029065**,
+**0.93L**; stale-log guard compares EXTRACTION-LOG `pipeline-defaults`
+against `census/detect.json` before any write.
+
+### Emitted
+
+| File | Rows |
+|---|---|
+| `extracted/data/documents/profile_documents.jsonl` | `_meta` + **14** (11 placed · 2 script-granted [rows 6, 9] · 1 story-granted [row 13]) |
+| `extracted/data/documents/world_documents.jsonl` | `_meta` + **166** (160 notes + 5 BlackRoom paper parts `indexPuzle` 0–4 + 1 novella surface) |
+| `extracted/data/documents/books.jsonl` | `_meta` + **8** localized readable-book textures |
+| `extracted/data/documents/relinks/document--{character,achievement,scene-membership,event-wiring,minigame}.jsonl` | 28 / 28 / 354 / 370 / 12 edges (each forward + inverse, `_meta` header) |
+| `contracts/dataset-documents.mdx` | frontend schema pin v1 |
+
+Byte-determinism proven: full re-emit into a temp dir reproduced all 9
+artifacts md5-identical (the selfcheck does this every run). Final md5s:
+profile `585483a2…`, world `495bf982…`, books `b0a3331e…`.
+
+### AC scoreboard (spec §8) — **10/10 PASS**
+
+All ten executed repo-side by
+`extracted/data/documents/build/selfcheck_documents.py`:
+
+- **AC-1** PASS — 14 rows; `(resource_path, lore_line, name_line)` multiset ==
+  fresh `level2/MenuPersonage.txt` parse byte-for-byte; flash rules hold
+  (row 0 = measured `"mta"` with the empty registry `nameSave` documented
+  beside it; row 13 null); mechanism split 11/2/1 exactly at rows {6,9}/{13};
+  the 11 placed `(save_key, container)` pairs equal the corpus FlashTaker
+  census and **RECONCILE byte-for-byte against B-4's landed emission**
+  (`data/cartridges/cartridges.jsonl`) — the consume-by-reference join is
+  live, not deferred. Row 0's placement carries the TRUE component PathID:
+  `level17#13630`.
+- **AC-2** PASS — 160 notes == per-container filename census ×23 levels;
+  `_meta.dedupe` records the full collapse arithmetic (98 non-level copies →
+  1 field-signature group, raw-md5 detail 25/25/25/23; see new-facts below
+  for the 73-underlying-components split); paper parts cover {0..4}, all →
+  scrMain `level13#19195`; one novella with 4 actor refs (all name_personage
+  resolved).
+- **AC-3** PASS — Personages = 26 records ×34 locales; all 14 lore pointers +
+  Menu 83–95 resolve non-empty everywhere; zero U+FFFD; residue ledger holds
+  no consumed-category rows.
+- **AC-4** PASS — `achievement_sets` pinned to the contract vocabulary;
+  `Achievements.jsonl` lines 12/13 resolve ×34 ("Caught Them All"/
+  "Hi, Mita").
+- **AC-5** PASS — negative findings re-proven mechanically this pass and
+  stated in README: ComicBook dumps in exactly 21 containers; English = 65
+  categories, none notes/documents/profiles-like; `Translation.jsonl` exactly
+  1 record `"-"`; 49 >60-char `m_Text` occurrences over all 18,117 `Text*`
+  dumps; zero note rows deviate from `text_mechanism:"unresolved"` +
+  `text_loc:null`.
+- **AC-6** PASS — R2 adjudication EXECUTED: `MenuPersonage` exists only at
+  level2 corpus-wide; classes touching `nameSave`/`resourceMita` close over
+  {Menu, MenuPersonage, PersonageResource}; the `*Personage*/*Profile*`
+  class census closes without a second registry candidate; `/Save/Flashes`
+  is the only flash collection literal. Outcome recorded; falsifier restated
+  verbatim from §2.2.
+- **AC-7** PASS — `chapter` null on all 14 rows; every evidence locator
+  matches the `container#pathID` / `<file>.jsonl#line_index=<n>` grammar
+  (0 violations); no community labels in data rows.
+- **AC-8** PASS — book availability recomputed from the filesystem for every
+  cell (never asserted): Location House pages 34/34 locales; Location19 pages
+  **32/34** — zh-Hans/Hant lack them entirely; deletion-flip simulation holds.
+- **AC-9** PASS — guard accepts live pins and refuses a mutated buildId;
+  determinism proven by re-emit diff.
+- **AC-10** PASS — README honesty ledger feed covers R1 (160 unresolved note
+  carriers), rows 6/9 script grants (with `CoreSoft.jsonl#line_index=37` =
+  "Get Flash Drive" verified verbatim), row 13 keyless/shared state, the null
+  chapter column, and R5's raw sprite-pointer state.
+
+### New ground-truth facts found while building
+
+1. **The 160 level-owned note rows serialize as only 73 distinct
+   components.** 91 of them are instances of just **4 Resources-loaded shared
+   prefabs** — `resources.assets#11121`, `#11246`, `#11286` (23 levels each)
+   and `sharedassets2.assets#799` (22 levels); AssetStudioMod dependency
+   auto-load re-lists those prefab objects inside many level dump folders.
+   Each row keeps its level-owned census slot per the §7-R4 ruling while the
+   new `carrier.serialized_container` field records where the component
+   physically serializes. The remaining 69 rows are level-scene-serialized
+   singletons.
+2. **True component PathIDs replace dump ordinals everywhere** (B-3 finding 1
+   method): raw-header identity pass over the scene files resolved all 166
+   world carriers + 21 FlashTakers with zero unresolved identities; dump
+   filenames ride along as `carrier.dump_file` locators; serialized GO PPtrs
+   are verbatim from the dumps.
+3. **Book-art parity is finer than spec §2.3**: not "8/8 ×34" but 32 × 8/8 +
+   zh-Hans/Hant **4/8** (no `Location19/Book {1,2,3,4}.webp` in either zh
+   tree; their whole localized subset is 16 files). Cells derive from disk,
+   so the dataset already says this; zh consumers render declared filler.
+4. Novella surface serializes **8** AudioSources (`audioMain`, `audio1–5`,
+   `audioNext`, `audioReady`), not the 7 sketched in spec §2.4; stored
+   verbatim as `audio_source_refs`.
+5. Note event wiring is rich serialized data: **185 persistent calls** across
+   the set (top targets: GameObject.SetActive 59, WorldPlayer 22,
+   GameObject_Destroy 16, ObjectDoor-class door logic 15), plus 18 notes with
+   a named sprite pointer — all raw PPtrs pending the R5 index.
+
+### Deviations
+
+No spec violations. Interpretation decisions, all documented in the contract:
+
+1. **`subject_character_id` uses BUILT DS-1 slugs** (`mita-usual`,
+   `mita-short-hairs`, …) — spec §3's draft column predates B-1's emission;
+   J2 names the built emission the join authority. AC-1 multiset equality is
+   on registry triples, which match byte-for-byte.
+2. **`carrier.path_id` = TRUE serialized PathID**, not the AssetStudioMod dump
+   ordinal the spec example used; `dump_file` kept for grep-clean evidence.
+3. **Row 0 `flash_save_key="mta"`** per AC-1's single sanctioned divergence.
+4. **`event_wiring` shape** `{trigger, method, target_type, target_ptr}` maps
+   the spec triple (`method` = serialized m_MethodName, i.e. the target
+   method); `trigger` adds the owning serialized field.
+5. **`scr_main` additive field** on paper-part rows (J6 payload on-row).
+6. **Emitter/checker parked at `data/documents/build/`**; relinks parked in
+   `relinks/` — same registration-commit move as B-1/B-2/B-3.
+
+### Host incident during this pass
+
+C: hit **0 bytes free** mid-build (≈192 GiB free on 2026-08-24 per DAQ). A
+concurrent actor triaged `extracted/art/` to
+`D:\unpacked_game_data\MiSide\art-export\` (`MOVED-TO.txt`). One intermediate
+emit produced degenerate book cells against the emptied path before the
+pointer existed; final outputs were re-emitted through the mechanized
+MOVED-TO fallback and re-verified against the D: tree (cells identical to the
+pre-triage measurement). Orchestrator attention: the disk-full condition
+itself is unresolved and host-wide.
+
+### Handoff to orchestrator
+
+- **Arbiter fence (A-DS456 agenda 1), recorded as required:** the emit-stage
+  PIPE manifest registration commit must carry BOTH the DS-5 §1.2
+  consume-by-reference citation to DS-4 §1/AC-2 AND the §9 stage ordering of
+  DS-5 after DS-4's stage — same commit as the module+test registration,
+  before either stage runs.
+- Move `extracted/data/documents/relinks/*` → `extracted/relinks/` in that
+  same commit (DS-1 relocation precedent).
+- AC-1 reconciliation vs `cartridges.jsonl` is now LIVE in emitter+selfcheck;
+  it fails loudly if the two datasets ever drift.
+- Downstream consumers read `contracts/dataset-documents.mdx`; note-content
+  stays stub/deferred per R1 — unblock order: R5 sprite index → P5 hierarchy
+  → native decompile.
+
+---
+
+## CLOSURE-1 — Phase 1 closure: relink assembly + PROOF refresh + missingdata ledger (2026-08-25)
+
+Closure subagent pass (no agent spawns, no git). Write surface:
+`extracted/relinks/` + `extracted/data/missingdata.md` + the §5 append below
+PROOF.md + this block. Pins re-read from `extracted/EXTRACTION-LOG.md`
+`pipeline-defaults`: buildId **19029065**, **0.93L**. Corpus otherwise
+read-only; game root untouched.
+
+### Relink layer assembled — `extracted/relinks/`
+
+| Artifact | Content |
+|---|---|
+| 25 relation files `<subject>--<object>.jsonl` | **1,159 join edges**, every parked dataset relink family consolidated; data rows byte-verbatim from sources, `_meta` headers normalized to the `{"_meta": …}` convention with `consolidated_from` + authority-ruling provenance |
+| `locale_availability.jsonl` | **2,686 rows**: 680 dialogue bucket cells (seeded verbatim from `dialogue/availability.csv`) + 1,734 category-presence cells measured from disk presence with split-based record counts (achievements ×1, cartridges ×4, characters ×4 categories; scenes Menu + all 20 `Location N` quest pools + all 21 LocationHint stems) + 272 book-page cells copied from `books.jsonl` `art_per_locale`. Classification `present|contentless|filler` per DS-3 §4 |
+| `_assembly-provenance.jsonl` | 30 rows: per-source consolidation records + adjudications + staging policy + pending PIPE registration fences |
+
+**Ownership rulings applied** (orchestrator brief): cartridges owns pickup
+placement → canonical `cartridge--scene-placement.jsonl` carries DS-4 §1's
+authority declaration, the census itself staying in `cartridges.jsonl`
+`pickup_ref` (21 pairs); characters owns identity joins → the three-way
+cartridge↔character emission consolidates into ONE authoritative
+`character--cartridge.jsonl` (DS-1), with DS-4's typed depicts/contains
+mirror and DS-6's placement-augmented mirror recorded as adjudicated
+supersessions (`_assembly-provenance.jsonl`); scenes'
+`cartridge--character-placement.jsonl` (49 lines) is excluded from the
+canonical tree as a by-reference restatement of the same census.
+Dialogue keeps its graph family in place (contract handoff: move nothing);
+its two relink-family artifacts consolidate as
+`dialogue-node--encoding-residue.jsonl` (AC D4 join) and
+`dialogue-speaker-theme--character.jsonl` (14 curated enum rows, 5
+pending-curation preserved slug-null per fence).
+
+Parked copies under `data/*/relinks/` are NOT deleted — they remain the
+emitters' own outputs (each run_all stage regenerates them there);
+`extracted/relinks/` is the canonical read surface until XC-6 lands.
+
+Byte-determinism proven: two consecutive assembly passes reproduced the
+whole tree sha256-stable (tree digest `c419071268e3cf4d7fa60ee9a8bfd53802833f65ce437de5afefb3c579d0476d`);
+written bytes == computed bytes asserted by read-back hash per file. No
+wall-clock inputs anywhere.
+
+### missingdata ledger
+
+[`extracted/data/missingdata.md`](../../extracted/data/missingdata.md):
+**83 entries** sweeping every `[unverified]` / stub / pending-curation /
+parked mark across the six datasets + specs — 12 cross-cutting, 60
+per-dataset, 3 closure documentation defects, 8 measured absences (proven
+so no later piece re-chases them). Classes: owner-call (native-decompile
+cost, demo install Q2, speaker-enum curation ×5, `flashes:mta` ruling,
+Metroidvania promotion, keyed Steam descriptions) vs derivable-later vs
+measured-absence, each with its named unblock.
+
+### PROOF refresh
+
+`extracted/PROOF.md` gains §5 "Dataset-era reconciliation" (prior content
+untouched): entity coverage table (24+23+17+26+4+371+1555+5+2839+3776+14+
+166+8+24+986+24), join/locale coverage tables, the full AC-scoreboard
+reconciliation (B-1 10/10 · A 7+1 PENDING · B 8/8 · D 8/1 PARTIAL/0 · B-4
+10/10 · B-5 10/10 live-reconciled · S 37/37), and a consolidated residue
+summary that marks R-E1-1/-2/-3 and I-3 resolved by the dataset era.
+
+### Corrections recorded at closure (append-only log)
+
+1. **Position-truth census correction (supersedes one line of B-6 above).**
+   The emitted `poi.jsonl` measures inline **298** (ObjectItem 262 +
+   Player_Teleport 13 + Transform_Position 23) / pptr-unresolved **76**
+   (FlashTaker 19 · MitaAIMovePoint 25 · Trigger_DistanceCircle 18 ·
+   Trigger_Teleport 14) / none **612**. B-6's prose line "inline 346 …
+   Transform_Position 71 … MitaAIMovePoint 31 … Trigger_DistanceCircle 32"
+   counted pre-emission intentions (incl. 48 empty-array point sets the
+   emission correctly labels `none`); the scenes README already carried the
+   correct census. Data unaffected; S6 labelling contract intact.
+2. **scenes/README.md files bullet is degenerate** (hundreds of repeated
+   `ObjectInteractive ×312` tokens — generator bug in the ledger prose;
+   `poi.jsonl` data verified unaffected at closure). Repair owed at the
+   next scenes emitter run (missingdata DOCX-1).
+
+### Handoff to orchestrator
+
+- PIPE registration commit still owes every emit stage + module/test AND the
+  arbiter fences (ds456 agenda-1 DS-4 §1 restatement to the 11-row-overlap
+  scope; A-DS456 DS-5 §1.2 citation + §9 ordering; DS-6 §2.7 dedupe
+  citation) — unchanged, restated in `_assembly-provenance.jsonl`.
+- `RELATIONS.md` pairwise roll-up remains unwritten (doctrine output,
+  derivable-later; PROOF §5 states it honestly rather than claiming it).
+- Marker projection rerun is now unblocked for cartridge/save-point legs
+  (DS-4/DS-5 landed); monster/save-point entity owners still don't exist.
+
+---
+
+## SB-1 build — site scaffold (2026-08-25)
+
+Builder: SB-1 (Site Builder subagent; no agent spawns, no git). Write scope
+honored: `MiSide/site/` + this block. Contract:
+[`site-scaffold.mdx`](../specs/site-scaffold.mdx). Reads in full: AGENTS.md,
+decision-register, design/seo/localization/site-sections/domain-doctrine
+standards, FRAMEWORK §2/§8, spec.md, T2, all 7 dataset contracts,
+`locale_availability.jsonl` vocabulary.
+
+### Tree summary
+
+`site/` per spec §2: `package.json` (exact §1.1 pins), `next.config.ts`
+(`/en/:path*`→`/:path*` **301** + typedRoutes), tsconfig/postcss/components.json
+(new-york/RSC/cssVariables), `scripts/{gen-chrome,gen-routes,emit-artifacts,
+check-chrome-parity,check-no-third-party-maps,check-cwv}.mjs`,
+`cwv.budgets.json`, `ci/github-workflow-ci.yml` (staged — repo-root install is
+outside site/ write scope), `public/fonts` (77 KB woff2) + emitted
+machine plane (`public/api/v1`, `public/search`, `public/map`, `public/llms.txt`),
+and `src/`: app twin trees `(pivot)`+`[locale]` (62 thin wrappers, all <15 lines),
+sitemap index `/sitemap.xml` → partitions `/sitemap/{section}@{locale}.xml`,
+`robots.ts`, `og/[kind]/[slug]` (ImageResponse PNG, static ×165),
+`api/revalidate` (secret-gated), feeds skeletons; `styles/design/tokens.css`;
+`i18n/` locales table + chrome ×34 + `getChrome`; `data/` contracts/resolveLoc/
+availability (server-only); `lib/search/searchRows.ts`; components `ui/`(11)
+`kit/`(10) `chrome/`(5) `entity/EntityShell` `map/{SceneMap,projection,mapState}`.
+
+### Kit primitives upgraded (list)
+
+Button→**PillButton** · Dialog/Sheet→**DialogueBand** (alpha pink band via
+color-mix, NameTagPill overlap top-start, keycap advance pill top-end; Radix
+focus-trap stock) · Tabs→conditional-module switcher (**forceMount + hidden**
+inactive panels in served HTML) · Tooltip→hover-join layer · Select→
+**LocaleCombobox** (native names, typeahead, closed chip = code) · Command row
+satisfied by SearchField feeding the shared `searchRows` fn — **cmdk excluded**
+to keep package.json exactly at the §1.1 pin table (deviation logged below) ·
+Badge/kbd→**KeycapKbd** · Card→**CartridgeCard** · ScrollArea (rounded track) ·
+Table (header pills, data-danger rows, machine-voice cells) · Collapsible.
+Composites: GradientPill, CorruptionHover (state-only, VHS banding + RGB split),
+VoidWell (checkerboard, same-height empties), HeartWallpaper (inline SVG
+pattern), LcdTerminal (CRT-green LCD register for buildId/dump refs).
+
+### Font finding (§4.4 procedure executed against build 19029065)
+
+- **No TextMeshPro**: `TMPro|TextMeshPro` greps dump.cs at ZERO hits;
+  `TMP_FontAsset/m_FontData` appear only in decompiled `UnityEngine.UI/Text.cs`
+  (the uGUI consumer itself) → TTF bytes are not serialized via TMP.
+- No `Fonts/` literals in stringliteral.json; no .ttf/.otf under extracted/art
+  (art offloaded to D:\unpacked_game_data\MiSide\art-export\ this pass).
+- **The client's own per-script face set survives** in decompiled
+  `OptionsGame.cs`: fontPixelRussian, fontRussian, fontJapaneseChinese,
+  fontKorean, fontThai, fontArabic, fontOther (+ Dialogue_3DText private Font).
+- Decision (step 4, faces NOT identified by name): DECLARED substitutes —
+  **Nunito** (rounded bold sans impression; latin+cyrillic subsets,
+  unicode-range) and **VT323** (LCD machine voice; latin). Both OFL, tags
+  recorded here repo-side only. Fallback chain mirrors the game's own
+  OptionsGame script split (CJK/Korean/Thai/Arabic system faces). Recorded in
+  tokens.css comments; **needs mirroring into extracted/data/missingdata.md**
+  (outside this pass's write scope).
+
+### AC scoreboard
+
+| AC | Result | Evidence |
+|---|---|---|
+| S1 pins+build | PASS | exact §1.1 manifest; `npm run build` exit 0 |
+| S2 locale matrix | PASS | / 200; /ru,/pt-BR,/ar,/ja… 200; seed entity renders Мита/Міта/ミタ from one route pair; /en/* 301; /xx 404 |
+| S3 hreflang | PASS | entity pages carry 34+x-default alternates exactly = ledger membership; canonical set |
+| S4 chrome parity | PASS | parity script exit 0 (34 files, identical keys); mutation path fails; ar/ar-EG served `dir="rtl"`; only 2 declared aliases |
+| S5 search-in-place | PASS | /search 404 all locales; zero "search" hrefs in HTML/robots/sitemaps; field hides #page-content ≥2 chars, restores on Escape/clear; content never unmounted |
+| S6 params==id column | PASS | node --test full-diff per kind vs JSONL (14/10/23/17/26/4/15*/9*/24 — see note); unknown slug 404s |
+| S7 map conjunction | PASS | axis-table unit tests total; poi.jsonl sweep: zero non-projecting coords incl. Player_Teleport class; markers.jsonl v0 → zero markers rendered; negative embed grep exit 0 |
+| S8 tokens | PASS | 14 T2 rows verbatim w/ provenance comments; semantic bridge resolves from them; hex lint exit 0 over ui|kit |
+| S9 buildId stamp | PASS | LcdTerminal stamp on home/index/detail/dialogue/footer; HTML scans clean of repo-only tokens |
+| S10 CWV config | PARTIAL | budgets per template × en in cwv.budgets.json + runner + staged CI yaml; lab traces need Lighthouse (not bundled — C: floor); honest SKIP without it |
+| S11 machine plane | PASS | api/v1/{kind}/{id}.json URL-derivable + fact-identical fields; kind indexes; llms.txt non-empty on next start |
+| S12 reactive law | PASS | zero `<form>`/submit in src; field recomputes per keystroke; address bar untouched while searching |
+| S13 arithmetic-free | PASS | TV Fight→LD line 0 "Dairy Scandal", Pinguin→1, Clothes[10]="School", Menu[83]="Mita", LD4[0]="Mita?" all resolve with NO offset; ru pivot differs |
+| S14 sitemap+JSON-LD | PASS* | partitions == routes × ledger (full enumeration); every `<loc>` a generated route; lastmod=2026-08-24 build stamp everywhere; Org/WebSite/VideoGame graph once per page + BreadcrumbList from shared trail. *curl sweep of all ~6.5k locs not run — spot matrix green |
+
+26/26 unit tests green (node --test, zero extra deps). Build: **7,054 static
+pages**, Turbopack, ~12 s generate phase.
+
+### Deviations & findings for the orchestrator
+
+1. **Corpus header-shape variance discovered**: documents family writes its
+   `_meta` as a BARE object line (no `"_meta"` wrapper); achievements/endings/
+   dialogue files carry NO header; endings relink file is empty-by-contract.
+   Readers handle all three shapes (contracts.ts `looksLikeHeader`) — upstream
+   emitters may want to standardize.
+2. Dialogue nodes key on `id`, not `node_id` (contract §Identity scheme).
+   With the bare-header fix applied, all kind counts reconcile exactly with
+   the contracts: 14/10/23/17/26/4/14/6/8/24.
+3. cmdk omitted (pin-table exactness); Command row covered by SearchField +
+   shared matcher. TanStack Table/Virtual not yet installed (no grid ships in
+   scaffold; add with first table piece — will extend package.json beyond §1.1
+   minimum then).
+4. CI workflow staged at `site/ci/github-workflow-ci.yml` — needs root install.
+5. fa (Persian) kept `ltr` per spec §3.1 letter ("rtl for ar, ar-EG") — flagged
+   as likely spec oversight; recommend amendment before page pieces render
+   Persian prose.
+6. CWV S10 partial as noted; lighthouse installs in CI step.
+7. Disk: single `site/node_modules`; npm cache cleaned post-install (~5.7 GB
+   free after final build on C:).

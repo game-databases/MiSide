@@ -1,0 +1,14 @@
+# R-SB2 — code review r2: F-SB1 fixes verified live (commit 321e0830), 2026-08-25
+
+BLOCKER-1 ✅ re-served prod build on port 4783 and curled: /ru/mita/mita-usual → canonical
+/ru/mita/mita-usual; /de/… prefixed likewise; pivot stays bare; hreflang cluster intact on all 3
+(35 alternates = ledger + aliases + x-default→bare, no double-prefix).
+BLOCKER-2 ✅ swept ALL 850 partitions myself over HTTP: 9,146 `<url>` entries, 0 non-absolute
+`<loc>`; robots.txt Sitemap line absolute.
+Minors ×5 ✅ each reproduced fixed: npm test glob form 26/26 green; /ru canonical slash-free;
+JSON-LD standalone Organization @id-node referenced by VideoGame.author + inLanguage = 34 codes;
+/ar select trigger SSRs dir="rtl"; dead lookalike-guard loop gone from parity script.
+Regression ✅ parity ×34 exit 0, hex lint OK, tests green — diff scope is exactly the fix commit;
+lastmod still pinned 2026-08-24. Non-blocking hygiene note: the fixer committed its own
+build-fix.log/server-fix.log into git — delete in next housekeeping commit, not a product defect.
+VERDICT: APPROVE

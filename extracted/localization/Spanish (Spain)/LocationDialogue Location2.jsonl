@@ -1,0 +1,9 @@
+{"category": "LocationDialogue Location2", "line_index": 0, "text": "// Inicio del jugador"}
+{"category": "LocationDialogue Location2", "line_index": 1, "text": "¿Dónde estoy?"}
+{"category": "LocationDialogue Location2", "line_index": 2, "text": "Este lugar me resulta familiar."}
+{"category": "LocationDialogue Location2", "line_index": 3, "text": "Espera... ¿estoy en el juego?"}
+{"category": "LocationDialogue Location2", "line_index": 4, "text": "// El jugador intenta abrir la puerta"}
+{"category": "LocationDialogue Location2", "line_index": 5, "text": "¿Está cerrada con llave?"}
+{"category": "LocationDialogue Location2", "line_index": 6, "text": "// El jugador en la oscuridad"}
+{"category": "LocationDialogue Location2", "line_index": 7, "text": "Está oscuro aquí."}
+{"category": "LocationDialogue Location2", "line_index": 8, "text": "No puedo ver nada."}

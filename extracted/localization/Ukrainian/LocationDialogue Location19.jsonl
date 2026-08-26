@@ -1,0 +1,605 @@
+{"category": "LocationDialogue Location19", "line_index": 0, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 1, "text": "Я... Я повернувся?"}
+{"category": "LocationDialogue Location19", "line_index": 2, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 3, "text": "О, Боже!"}
+{"category": "LocationDialogue Location19", "line_index": 4, "text": "Ти мене налякав!"}
+{"category": "LocationDialogue Location19", "line_index": 5, "text": "А щоб тебе,"}
+{"category": "LocationDialogue Location19", "line_index": 6, "text": "Моє збереження! // (Stay up)"}
+{"category": "LocationDialogue Location19", "line_index": 7, "text": "Не зрозуміла..."}
+{"category": "LocationDialogue Location19", "line_index": 8, "text": "А де гра? // (Turns around)"}
+{"category": "LocationDialogue Location19", "line_index": 9, "text": "Ти мені весь рут зіпсував!"}
+{"category": "LocationDialogue Location19", "line_index": 10, "text": "Ну, чого тобі?"}
+{"category": "LocationDialogue Location19", "line_index": 11, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 12, "text": "Мені потрібна версія..."}
+{"category": "LocationDialogue Location19", "line_index": 13, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 14, "text": "Га?"}
+{"category": "LocationDialogue Location19", "line_index": 15, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 16, "text": "Я маю якось перейти до старої версії."}
+{"category": "LocationDialogue Location19", "line_index": 17, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 18, "text": "Так!"}
+{"category": "LocationDialogue Location19", "line_index": 19, "text": "Я дуже зайнята,"}
+{"category": "LocationDialogue Location19", "line_index": 20, "text": "Щоб тебе розважати, дурника!"}
+{"category": "LocationDialogue Location19", "line_index": 21, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 22, "text": "І чим це? Іграшками?"}
+{"category": "LocationDialogue Location19", "line_index": 23, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 24, "text": "Ви подивіться на нього, який нахаба!"}
+{"category": "LocationDialogue Location19", "line_index": 25, "text": "Не бути дружбі між нами!"}
+{"category": "LocationDialogue Location19", "line_index": 26, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 27, "text": "Слухай, мені потрібно потрапити в ядро."}
+{"category": "LocationDialogue Location19", "line_index": 28, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 29, "text": "Через тебе забилася..."}
+{"category": "LocationDialogue Location19", "line_index": 30, "text": "Тьху."}
+{"category": "LocationDialogue Location19", "line_index": 31, "text": "Га?"}
+{"category": "LocationDialogue Location19", "line_index": 32, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 33, "text": "Потрібно потрапити в ядро і зупинити Міту!"}
+{"category": "LocationDialogue Location19", "line_index": 34, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 35, "text": "Міту?"}
+{"category": "LocationDialogue Location19", "line_index": 36, "text": "Так будь ласка!"}
+{"category": "LocationDialogue Location19", "line_index": 37, "text": "Діла мені до неї немає!"}
+{"category": "LocationDialogue Location19", "line_index": 38, "text": "Ні до першої, ні до сотої!"}
+{"category": "LocationDialogue Location19", "line_index": 39, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 40, "text": "Так ти ж теж Міта..."}
+{"category": "LocationDialogue Location19", "line_index": 41, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 42, "text": "Я Міла."}
+{"category": "LocationDialogue Location19", "line_index": 43, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 44, "text": "Мі... Ла?"}
+{"category": "LocationDialogue Location19", "line_index": 45, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 46, "text": "Вони там Міта на Міті,"}
+{"category": "LocationDialogue Location19", "line_index": 47, "text": "З кожного світу по Міті, і це все Мітою поганяють!"}
+{"category": "LocationDialogue Location19", "line_index": 48, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 49, "text": "А ти — Міла?"}
+{"category": "LocationDialogue Location19", "line_index": 50, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 51, "text": "Так, так! Ну що за дурень, справді?"}
+{"category": "LocationDialogue Location19", "line_index": 52, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 53, "text": "Ну добре, удачі тобі тоді, Міло..."}
+{"category": "LocationDialogue Location19", "line_index": 54, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 55, "text": "А куди це ти?"}
+{"category": "LocationDialogue Location19", "line_index": 56, "text": "Думаєш ось так просто піти звідси?"}
+{"category": "LocationDialogue Location19", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 58, "text": "// Player check exit - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 59, "text": "Ти думав там щось буде?"}
+{"category": "LocationDialogue Location19", "line_index": 60, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 61, "text": "До біса!"}
+{"category": "LocationDialogue Location19", "line_index": 62, "text": "Це що таке?"}
+{"category": "LocationDialogue Location19", "line_index": 63, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 64, "text": "А що ти там хотів побачити?"}
+{"category": "LocationDialogue Location19", "line_index": 65, "text": "Країну чудес?"}
+{"category": "LocationDialogue Location19", "line_index": 66, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 67, "text": "Як мені вибратися тоді?"}
+{"category": "LocationDialogue Location19", "line_index": 68, "text": "Начебто прохід має бути тут."}
+{"category": "LocationDialogue Location19", "line_index": 69, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 70, "text": "Звідси немає виходу!"}
+{"category": "LocationDialogue Location19", "line_index": 71, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 72, "text": "Так, а версія це яка?"}
+{"category": "LocationDialogue Location19", "line_index": 73, "text": "Рухаюся начебто правильно."}
+{"category": "LocationDialogue Location19", "line_index": 74, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 75, "text": "// Glitch kitchen - Player"}
+{"category": "LocationDialogue Location19", "line_index": 76, "text": "Це твоє?"}
+{"category": "LocationDialogue Location19", "line_index": 77, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 78, "text": "Не підходь!"}
+{"category": "LocationDialogue Location19", "line_index": 79, "text": "Я не знаю що це!"}
+{"category": "LocationDialogue Location19", "line_index": 80, "text": "Якийсь глюк!"}
+{"category": "LocationDialogue Location19", "line_index": 81, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 82, "text": "У мене чомусь кільце тремтить."}
+{"category": "LocationDialogue Location19", "line_index": 83, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 84, "text": "Що ще за кільце?"}
+{"category": "LocationDialogue Location19", "line_index": 85, "text": "Обручка?!"}
+{"category": "LocationDialogue Location19", "line_index": 86, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 87, "text": "Ні, це кільце дала мені одна з тисяч Міт."}
+{"category": "LocationDialogue Location19", "line_index": 88, "text": "Та, що, можливо, допоможе мені вибратися."}
+{"category": "LocationDialogue Location19", "line_index": 89, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 90, "text": "І ти збираєшся чіпати це?"}
+{"category": "LocationDialogue Location19", "line_index": 91, "text": "Знай, якщо мій будинок вибухне — ти труп!"}
+{"category": "LocationDialogue Location19", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 93, "text": "// bathroom - Mila is washing - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 94, "text": "Гей!"}
+{"category": "LocationDialogue Location19", "line_index": 95, "text": "А ну ВИЙШОВ!"}
+{"category": "LocationDialogue Location19", "line_index": 96, "text": "Хіба ти не бачиш, що ванна зайнята?!"}
+{"category": "LocationDialogue Location19", "line_index": 97, "text": "// The player continues to stand 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 98, "text": "І чого ти тут досі стоїш?!"}
+{"category": "LocationDialogue Location19", "line_index": 99, "text": "ВИЙДИ вже!"}
+{"category": "LocationDialogue Location19", "line_index": 100, "text": "// The player continues to stand 2 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 101, "text": "Не зли мене!"}
+{"category": "LocationDialogue Location19", "line_index": 102, "text": "Забирайся звідси!"}
+{"category": "LocationDialogue Location19", "line_index": 103, "text": "// The player continues to stand 3 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 104, "text": "Ти не інакше як ОГЛУХ!"}
+{"category": "LocationDialogue Location19", "line_index": 105, "text": "Дівчині потрібно помитися!"}
+{"category": "LocationDialogue Location19", "line_index": 106, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 107, "text": "// Mila came out and swears - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 108, "text": "Ну і що це було?"}
+{"category": "LocationDialogue Location19", "line_index": 109, "text": "Ні сорому, ні совісті!"}
+{"category": "LocationDialogue Location19", "line_index": 110, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 111, "text": "Чому ти раптом зайшла в душ?"}
+{"category": "LocationDialogue Location19", "line_index": 112, "text": "Могла б спочатку почекати,"}
+{"category": "LocationDialogue Location19", "line_index": 113, "text": "Поки я піду звідси."}
+{"category": "LocationDialogue Location19", "line_index": 114, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 115, "text": "Звідки мені знати,"}
+{"category": "LocationDialogue Location19", "line_index": 116, "text": "Скільки ще ти будеш колупатися в цих глюках?"}
+{"category": "LocationDialogue Location19", "line_index": 117, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 118, "text": "Глюках?"}
+{"category": "LocationDialogue Location19", "line_index": 119, "text": "Є ще такі?"}
+{"category": "LocationDialogue Location19", "line_index": 120, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 121, "text": "Ага..."}
+{"category": "LocationDialogue Location19", "line_index": 122, "text": "Ну, якщо мій будинок ще цілий,"}
+{"category": "LocationDialogue Location19", "line_index": 123, "text": "Значить ти впорався з глюком на кухні?"}
+{"category": "LocationDialogue Location19", "line_index": 124, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 125, "text": "Схоже на те."}
+{"category": "LocationDialogue Location19", "line_index": 126, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 127, "text": "Добре, тепер я дозволю тобі"}
+{"category": "LocationDialogue Location19", "line_index": 128, "text": "Ввійти у ванну кімнату."}
+{"category": "LocationDialogue Location19", "line_index": 129, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 130, "text": "Дякую."}
+{"category": "LocationDialogue Location19", "line_index": 131, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 132, "text": "// MMila hides under the table - Player"}
+{"category": "LocationDialogue Location19", "line_index": 133, "text": "Міло?"}
+{"category": "LocationDialogue Location19", "line_index": 134, "text": "Ти що там робиш?"}
+{"category": "LocationDialogue Location19", "line_index": 135, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 136, "text": "А-а-ай! // Mila (hurt yourself)"}
+{"category": "LocationDialogue Location19", "line_index": 137, "text": "Ти знову налякав мене! // Mila (Looks out)"}
+{"category": "LocationDialogue Location19", "line_index": 138, "text": "Чого тобі?"}
+{"category": "LocationDialogue Location19", "line_index": 139, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 140, "text": "Бачила ще такі глюки?"}
+{"category": "LocationDialogue Location19", "line_index": 141, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 142, "text": "Ти вважаєш, що твої проблеми це привід,"}
+{"category": "LocationDialogue Location19", "line_index": 143, "text": "Щоб не дати мені дочитати книгу?"}
+{"category": "LocationDialogue Location19", "line_index": 144, "text": "Ні, я не бачила!"}
+{"category": "LocationDialogue Location19", "line_index": 145, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 146, "text": "Добре, сам пошукаю."}
+{"category": "LocationDialogue Location19", "line_index": 147, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 148, "text": "Зачекай!"}
+{"category": "LocationDialogue Location19", "line_index": 149, "text": "Хочу запитати..."}
+{"category": "LocationDialogue Location19", "line_index": 150, "text": "Ти ж хочеш вибратися кудись?"}
+{"category": "LocationDialogue Location19", "line_index": 151, "text": "Адже так?"}
+{"category": "LocationDialogue Location19", "line_index": 152, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 153, "text": "Правильно."}
+{"category": "LocationDialogue Location19", "line_index": 154, "text": "Хочу вийти з цієї гри."}
+{"category": "LocationDialogue Location19", "line_index": 155, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 156, "text": "Прозвучить дивно,"}
+{"category": "LocationDialogue Location19", "line_index": 157, "text": "Але ти не залишишся почитати зі мною книги?"}
+{"category": "LocationDialogue Location19", "line_index": 158, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 159, "text": "Спочатку жалієшся, а тепер просиш залишитися"}
+{"category": "LocationDialogue Location19", "line_index": 160, "text": "Книги почитати?"}
+{"category": "LocationDialogue Location19", "line_index": 161, "text": "Може б і залишився,"}
+{"category": "LocationDialogue Location19", "line_index": 162, "text": "Але я мушу йти далі."}
+{"category": "LocationDialogue Location19", "line_index": 163, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 164, "text": "Ну й добре!"}
+{"category": "LocationDialogue Location19", "line_index": 165, "text": "Шукай свої глюки."}
+{"category": "LocationDialogue Location19", "line_index": 166, "text": "Вдруге вже вдарилася"}
+{"category": "LocationDialogue Location19", "line_index": 167, "text": "Через тебе!"}
+{"category": "LocationDialogue Location19", "line_index": 168, "text": "// Player saw a glitch"}
+{"category": "LocationDialogue Location19", "line_index": 169, "text": "А, ось і знайшов."}
+{"category": "LocationDialogue Location19", "line_index": 170, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 171, "text": "// Mila stands with a sword - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 172, "text": "Уважно дивишся?"}
+{"category": "LocationDialogue Location19", "line_index": 173, "text": "Бійся мене!"}
+{"category": "LocationDialogue Location19", "line_index": 174, "text": "Дивись, як я вмію!"}
+{"category": "LocationDialogue Location19", "line_index": 175, "text": "Ось настільки я небезпечна!"}
+{"category": "LocationDialogue Location19", "line_index": 176, "text": "Ти навіть і моргнути не встиг."}
+{"category": "LocationDialogue Location19", "line_index": 177, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 178, "text": "Серйозно?!"}
+{"category": "LocationDialogue Location19", "line_index": 179, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 180, "text": "А що таке?"}
+{"category": "LocationDialogue Location19", "line_index": 181, "text": "Непереконливо?"}
+{"category": "LocationDialogue Location19", "line_index": 182, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 183, "text": "Не те щоб..."}
+{"category": "LocationDialogue Location19", "line_index": 184, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 185, "text": "Невже ти все бачиш,"}
+{"category": "LocationDialogue Location19", "line_index": 186, "text": "Поки вирішуєш ці свої глюки?"}
+{"category": "LocationDialogue Location19", "line_index": 187, "text": "Значить, ти вже знав, "}
+{"category": "LocationDialogue Location19", "line_index": 188, "text": "Що камінь заздалегідь розрізаний?"}
+{"category": "LocationDialogue Location19", "line_index": 189, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 190, "text": "Ні."}
+{"category": "LocationDialogue Location19", "line_index": 191, "text": "Просто, ми ж у грі."}
+{"category": "LocationDialogue Location19", "line_index": 192, "text": "І по клацанню пальців ти можеш зробити що завгодно."}
+{"category": "LocationDialogue Location19", "line_index": 193, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 194, "text": "Ах ти!"}
+{"category": "LocationDialogue Location19", "line_index": 195, "text": "Дурень!"}
+{"category": "LocationDialogue Location19", "line_index": 196, "text": "\"По клацанню\", ага!"}
+{"category": "LocationDialogue Location19", "line_index": 197, "text": "Я навіщо ці книги читала?"}
+{"category": "LocationDialogue Location19", "line_index": 198, "text": "Щоб потім клацати пальцями і все було готово?"}
+{"category": "LocationDialogue Location19", "line_index": 199, "text": "Краще все своїми руками зроблю."}
+{"category": "LocationDialogue Location19", "line_index": 200, "text": "Як описується в книгах."}
+{"category": "LocationDialogue Location19", "line_index": 201, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 202, "text": "// MMila is doing push-ups - Player"}
+{"category": "LocationDialogue Location19", "line_index": 203, "text": "Ти чим займаєшся?"}
+{"category": "LocationDialogue Location19", "line_index": 204, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 205, "text": "А ти не бачиш?!"}
+{"category": "LocationDialogue Location19", "line_index": 206, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 207, "text": "Бачу. Навіщо тобі це?"}
+{"category": "LocationDialogue Location19", "line_index": 208, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 209, "text": "Щоб набити тобі пику!"}
+{"category": "LocationDialogue Location19", "line_index": 210, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 211, "text": "Та що з тобою?"}
+{"category": "LocationDialogue Location19", "line_index": 212, "text": "Ти якась дивна."}
+{"category": "LocationDialogue Location19", "line_index": 213, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 214, "text": "Так!"}
+{"category": "LocationDialogue Location19", "line_index": 215, "text": "Щодо набити пику,"}
+{"category": "LocationDialogue Location19", "line_index": 216, "text": "Це я, звісно, не серйозно."}
+{"category": "LocationDialogue Location19", "line_index": 217, "text": "І я не дивна!"}
+{"category": "LocationDialogue Location19", "line_index": 218, "text": "А індивідуальна!"}
+{"category": "LocationDialogue Location19", "line_index": 219, "text": "Хочу по максимуму відрізнятися від усіх!"}
+{"category": "LocationDialogue Location19", "line_index": 220, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 221, "text": "Не турбуйся."}
+{"category": "LocationDialogue Location19", "line_index": 222, "text": "Ти вже цілком не така як усі."}
+{"category": "LocationDialogue Location19", "line_index": 223, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 224, "text": "Я знаю."}
+{"category": "LocationDialogue Location19", "line_index": 225, "text": "Дивись, як я можу!"}
+{"category": "LocationDialogue Location19", "line_index": 226, "text": "Бачив?"}
+{"category": "LocationDialogue Location19", "line_index": 227, "text": "А тепер без рук!"}
+{"category": "LocationDialogue Location19", "line_index": 228, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 229, "text": "Я розумію, що це гра, але..."}
+{"category": "LocationDialogue Location19", "line_index": 230, "text": "Це виглядає нереалістично."}
+{"category": "LocationDialogue Location19", "line_index": 231, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 232, "text": "Ай!"}
+{"category": "LocationDialogue Location19", "line_index": 233, "text": "О-ох."}
+{"category": "LocationDialogue Location19", "line_index": 234, "text": "Дурна фізика!"}
+{"category": "LocationDialogue Location19", "line_index": 235, "text": "Щойно згадаєш про неї,"}
+{"category": "LocationDialogue Location19", "line_index": 236, "text": "Так одразу —"}
+{"category": "LocationDialogue Location19", "line_index": 237, "text": "Бум!"}
+{"category": "LocationDialogue Location19", "line_index": 238, "text": "Ти ще й про реалізм щось кажеш."}
+{"category": "LocationDialogue Location19", "line_index": 239, "text": "Дурень!"}
+{"category": "LocationDialogue Location19", "line_index": 240, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 241, "text": "// Last glitch ready - player exit - Player"}
+{"category": "LocationDialogue Location19", "line_index": 242, "text": "Прохід з'явився."}
+{"category": "LocationDialogue Location19", "line_index": 243, "text": "Усе зроблено, Міло!"}
+{"category": "LocationDialogue Location19", "line_index": 244, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 245, "text": "О! Що?! // Deleted [not]"}
+{"category": "LocationDialogue Location19", "line_index": 246, "text": "Ну молодець! // (Kick)"}
+{"category": "LocationDialogue Location19", "line_index": 247, "text": "Герой!"}
+{"category": "LocationDialogue Location19", "line_index": 248, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 249, "text": "Ай, ну ти даєш!"}
+{"category": "LocationDialogue Location19", "line_index": 250, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 251, "text": "Ой."}
+{"category": "LocationDialogue Location19", "line_index": 252, "text": "Ти пробач, я не хотіла..."}
+{"category": "LocationDialogue Location19", "line_index": 253, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 254, "text": "Нічого, Міло. Тепер я можу пройти далі."}
+{"category": "LocationDialogue Location19", "line_index": 255, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 256, "text": "Слухай, я знаю, що тобі потрібно йти далі..."}
+{"category": "LocationDialogue Location19", "line_index": 257, "text": "Але чи не міг би ти залишитися тут? // (Show place)"}
+{"category": "LocationDialogue Location19", "line_index": 258, "text": "Ще на трішки?"}
+{"category": "LocationDialogue Location19", "line_index": 259, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 260, "text": "Ти що? Мені не можна зволікати. // Player (Down hands)"}
+{"category": "LocationDialogue Location19", "line_index": 261, "text": "Хіба Божевільна Міта буде бездіяльною?"}
+{"category": "LocationDialogue Location19", "line_index": 262, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 263, "text": "Я ненавиджу..."}
+{"category": "LocationDialogue Location19", "line_index": 264, "text": "// Mila > Fall"}
+{"category": "LocationDialogue Location19", "line_index": 265, "text": "Ненавиджу, ненавиджу її! "}
+{"category": "LocationDialogue Location19", "line_index": 266, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 267, "text": "Міло, послухай..."}
+{"category": "LocationDialogue Location19", "line_index": 268, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 269, "text": "Навіщо я тут?"}
+{"category": "LocationDialogue Location19", "line_index": 270, "text": "Я не розумію! // (Drop glasses)"}
+{"category": "LocationDialogue Location19", "line_index": 271, "text": "І я не розумію, чому я не розумію!"}
+{"category": "LocationDialogue Location19", "line_index": 272, "text": "І я ніколи не зможу позбутися цього місця!"}
+{"category": "LocationDialogue Location19", "line_index": 273, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 274, "text": "Я розумію тебе, Міло. // Player (sit)"}
+{"category": "LocationDialogue Location19", "line_index": 275, "text": "Хочеш, я повернуся пізніше?"}
+{"category": "LocationDialogue Location19", "line_index": 276, "text": "Якщо вдасться..."}
+{"category": "LocationDialogue Location19", "line_index": 277, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 278, "text": "Залишся тут, гравцю!"}
+{"category": "LocationDialogue Location19", "line_index": 279, "text": "З тобою весело, не те що самій..."}
+{"category": "LocationDialogue Location19", "line_index": 280, "text": "Раптом тобі нічого не вдасться?"}
+{"category": "LocationDialogue Location19", "line_index": 281, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 282, "text": "Вдасться, залишилося зовсім трохи."}
+{"category": "LocationDialogue Location19", "line_index": 283, "text": "// До 4 глюка, если нажать на компуктер - Player"}
+{"category": "LocationDialogue Location19", "line_index": 284, "text": "Щойно був у плоскому вимірі,"}
+{"category": "LocationDialogue Location19", "line_index": 285, "text": "А тепер повернувся."}
+{"category": "LocationDialogue Location19", "line_index": 286, "text": "Швидше б повернутися в реальний світ..."}
+{"category": "LocationDialogue Location19", "line_index": 287, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 288, "text": "Ха-ха-ха!"}
+{"category": "LocationDialogue Location19", "line_index": 289, "text": "Куди-куди?"}
+{"category": "LocationDialogue Location19", "line_index": 290, "text": "Твій \"реальний\" світ"}
+{"category": "LocationDialogue Location19", "line_index": 291, "text": "Тягне на міську легенду!"}
+{"category": "LocationDialogue Location19", "line_index": 292, "text": "Особисто я ніякого \"реального\" світу не бачила."}
+{"category": "LocationDialogue Location19", "line_index": 293, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 294, "text": "Думаю, є спосіб"}
+{"category": "LocationDialogue Location19", "line_index": 295, "text": "Повернутися назад."}
+{"category": "LocationDialogue Location19", "line_index": 296, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 297, "text": "Який упевнений,"}
+{"category": "LocationDialogue Location19", "line_index": 298, "text": "Потіха ходяча!"}
+{"category": "LocationDialogue Location19", "line_index": 299, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 300, "text": "// Спросить про книги, после 4 глюка - Player"}
+{"category": "LocationDialogue Location19", "line_index": 301, "text": "Навіщо ти читаєш книги?"}
+{"category": "LocationDialogue Location19", "line_index": 302, "text": "Є ж інтернет."}
+{"category": "LocationDialogue Location19", "line_index": 303, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 304, "text": "В інтернеті багато вигадок!"}
+{"category": "LocationDialogue Location19", "line_index": 305, "text": "І взагалі, мені подобається іноді полежати,"}
+{"category": "LocationDialogue Location19", "line_index": 306, "text": "Тримаючи книжку перед собою."}
+{"category": "LocationDialogue Location19", "line_index": 307, "text": "Ці книги...."}
+{"category": "LocationDialogue Location19", "line_index": 308, "text": "Тільки за допомогою них"}
+{"category": "LocationDialogue Location19", "line_index": 309, "text": "Я знаю більше"}
+{"category": "LocationDialogue Location19", "line_index": 310, "text": "Про цей світ."}
+{"category": "LocationDialogue Location19", "line_index": 311, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 312, "text": "// Спросить про картины - Player"}
+{"category": "LocationDialogue Location19", "line_index": 313, "text": "Ці фотографії справжні?"}
+{"category": "LocationDialogue Location19", "line_index": 314, "text": "В інших версіях..."}
+{"category": "LocationDialogue Location19", "line_index": 315, "text": "Теж є, але вони надто сильно насичені."}
+{"category": "LocationDialogue Location19", "line_index": 316, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 317, "text": "Взагалі-то, я МіЛа. Не як інші."}
+{"category": "LocationDialogue Location19", "line_index": 318, "text": "І хіба це фотографії?"}
+{"category": "LocationDialogue Location19", "line_index": 319, "text": "Це ж намальовані картинки."}
+{"category": "LocationDialogue Location19", "line_index": 320, "text": "Що вже прикидатися?"}
+{"category": "LocationDialogue Location19", "line_index": 321, "text": "Знаєш, я якось раз бачила багато Міт."}
+{"category": "LocationDialogue Location19", "line_index": 322, "text": "Вони всі стояли ось так."}
+{"category": "LocationDialogue Location19", "line_index": 323, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 324, "text": "Міло?"}
+{"category": "LocationDialogue Location19", "line_index": 325, "text": "Алло?"}
+{"category": "LocationDialogue Location19", "line_index": 326, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 327, "text": "Після цього..."}
+{"category": "LocationDialogue Location19", "line_index": 328, "text": "Я не хочу бути такою ж."}
+{"category": "LocationDialogue Location19", "line_index": 329, "text": "Це жах як огидно!"}
+{"category": "LocationDialogue Location19", "line_index": 330, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 331, "text": "// Спросить про картину с бабочкой - Player"}
+{"category": "LocationDialogue Location19", "line_index": 332, "text": "Ти бачила природу?"}
+{"category": "LocationDialogue Location19", "line_index": 333, "text": "Бачила таких метеликів наживо?"}
+{"category": "LocationDialogue Location19", "line_index": 334, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 335, "text": "Ні."}
+{"category": "LocationDialogue Location19", "line_index": 336, "text": "Але в мене є десь книга,"}
+{"category": "LocationDialogue Location19", "line_index": 337, "text": "У якій зберігаються їхні крильця."}
+{"category": "LocationDialogue Location19", "line_index": 338, "text": "Вони такі оксамитові..."}
+{"category": "LocationDialogue Location19", "line_index": 339, "text": "Хм-м..."}
+{"category": "LocationDialogue Location19", "line_index": 340, "text": "Картина висить кривувато."}
+{"category": "LocationDialogue Location19", "line_index": 341, "text": "І якась пляма ще..."}
+{"category": "LocationDialogue Location19", "line_index": 342, "text": "Ось так краще. // Clear picture"}
+{"category": "LocationDialogue Location19", "line_index": 343, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 344, "text": "А ти б хотіла прогулятися на природі?"}
+{"category": "LocationDialogue Location19", "line_index": 345, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 346, "text": "Дурне запитання!"}
+{"category": "LocationDialogue Location19", "line_index": 347, "text": "Очевидно ж..."}
+{"category": "LocationDialogue Location19", "line_index": 348, "text": "Хочу!"}
+{"category": "LocationDialogue Location19", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 350, "text": "// make long eye contact 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 351, "text": "Ну і чого витріщаєшся?"}
+{"category": "LocationDialogue Location19", "line_index": 352, "text": "Відвернися!"}
+{"category": "LocationDialogue Location19", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 354, "text": "// make long eye contact 2 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 355, "text": "Та щоб тебе!"}
+{"category": "LocationDialogue Location19", "line_index": 356, "text": "Не дивись на мене так довго!"}
+{"category": "LocationDialogue Location19", "line_index": 357, "text": "Дурень..."}
+{"category": "LocationDialogue Location19", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 359, "text": "// make long eye contact 3 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 360, "text": "А ну... ти!"}
+{"category": "LocationDialogue Location19", "line_index": 361, "text": "Ти чого витріщаєшся?"}
+{"category": "LocationDialogue Location19", "line_index": 362, "text": "Це некультурно — дивитися в бік дівчини!"}
+{"category": "LocationDialogue Location19", "line_index": 363, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 364, "text": "Що ж у вас за культура така склалася?"}
+{"category": "LocationDialogue Location19", "line_index": 365, "text": "Відчепись! // Mila"}
+{"category": "LocationDialogue Location19", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 367, "text": "// whispers 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 368, "text": "Чому вони постійно шлють"}
+{"category": "LocationDialogue Location19", "line_index": 369, "text": "Мені якихось мужланів,"}
+{"category": "LocationDialogue Location19", "line_index": 370, "text": "А я маю з ними панькатися?"}
+{"category": "LocationDialogue Location19", "line_index": 371, "text": "Ще й у міні-ігри грати..."}
+{"category": "LocationDialogue Location19", "line_index": 372, "text": "Дурнуватий тамагочі!"}
+{"category": "LocationDialogue Location19", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 374, "text": "// whispers 2"}
+{"category": "LocationDialogue Location19", "line_index": 375, "text": "Ходить, ходить тут... Винюхує чого."}
+{"category": "LocationDialogue Location19", "line_index": 376, "text": "Ну що за дурень?"}
+{"category": "LocationDialogue Location19", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 378, "text": "// whispers 3"}
+{"category": "LocationDialogue Location19", "line_index": 379, "text": "Ти щось казав?"}
+{"category": "LocationDialogue Location19", "line_index": 380, "text": "Ця музика на фоні глушить мене не на жарт!"}
+{"category": "LocationDialogue Location19", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 382, "text": "// whispers 4"}
+{"category": "LocationDialogue Location19", "line_index": 383, "text": "Як мені йому натякнути на те,"}
+{"category": "LocationDialogue Location19", "line_index": 384, "text": "Що я дуже зайнята"}
+{"category": "LocationDialogue Location19", "line_index": 385, "text": "І не бажаю приймати гостей?"}
+{"category": "LocationDialogue Location19", "line_index": 386, "text": "Хм-м, а раптом він піде? Ну і нехай! Чого це я?"}
+{"category": "LocationDialogue Location19", "line_index": 387, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 388, "text": "// whispers 5"}
+{"category": "LocationDialogue Location19", "line_index": 389, "text": "\"Мама\", \"тато\"..."}
+{"category": "LocationDialogue Location19", "line_index": 390, "text": "Що це таке? Звідки я знаю ці слова?"}
+{"category": "LocationDialogue Location19", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 392, "text": "// whispers 6"}
+{"category": "LocationDialogue Location19", "line_index": 393, "text": "Тут одного разу сніг ішов. Не знаєш, часом, чого б це?"}
+{"category": "LocationDialogue Location19", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 395, "text": "// whispers 7"}
+{"category": "LocationDialogue Location19", "line_index": 396, "text": "Бере ось так от і з'являється! Жах..."}
+{"category": "LocationDialogue Location19", "line_index": 397, "text": "А якщо там нічого немає?"}
+{"category": "LocationDialogue Location19", "line_index": 398, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 399, "text": "// nearby 1"}
+{"category": "LocationDialogue Location19", "line_index": 400, "text": "Стоїмо поруч"}
+{"category": "LocationDialogue Location19", "line_index": 401, "text": "І..."}
+{"category": "LocationDialogue Location19", "line_index": 402, "text": "Мовчимо."}
+{"category": "LocationDialogue Location19", "line_index": 403, "text": "Чого мовчимо?"}
+{"category": "LocationDialogue Location19", "line_index": 404, "text": "Язик проковтнув?"}
+{"category": "LocationDialogue Location19", "line_index": 405, "text": "Чи що?"}
+{"category": "LocationDialogue Location19", "line_index": 406, "text": "Не знаєш про що говорити?"}
+{"category": "LocationDialogue Location19", "line_index": 407, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 408, "text": "// nearby 2"}
+{"category": "LocationDialogue Location19", "line_index": 409, "text": "Рішуче відмовляюся від моркви!"}
+{"category": "LocationDialogue Location19", "line_index": 410, "text": "Навіть більше — оголошую їй війну!"}
+{"category": "LocationDialogue Location19", "line_index": 411, "text": "Ти взагалі уявляєш, що вона робить..."}
+{"category": "LocationDialogue Location19", "line_index": 412, "text": "З білосніжною шкірою такої милої дівчини?!"}
+{"category": "LocationDialogue Location19", "line_index": 413, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 414, "text": "// nearby 3"}
+{"category": "LocationDialogue Location19", "line_index": 415, "text": "Книги в цьому мало допомагають, але якщо пощастить,"}
+{"category": "LocationDialogue Location19", "line_index": 416, "text": "Я нарешті розберуся,"}
+{"category": "LocationDialogue Location19", "line_index": 417, "text": "Із цим надокучливим спавном за моєю спиною!"}
+{"category": "LocationDialogue Location19", "line_index": 418, "text": "Мені ніяково, коли всякі овочі з'являються"}
+{"category": "LocationDialogue Location19", "line_index": 419, "text": "У мене за спиною! "}
+{"category": "LocationDialogue Location19", "line_index": 420, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 421, "text": "// nearby 4"}
+{"category": "LocationDialogue Location19", "line_index": 422, "text": "Знаєш, я фетишистів недолюблюю!"}
+{"category": "LocationDialogue Location19", "line_index": 423, "text": "Любителів моркви, усіляких розпусних штучок..."}
+{"category": "LocationDialogue Location19", "line_index": 424, "text": "І ось ти тут зі своїми багами носишся."}
+{"category": "LocationDialogue Location19", "line_index": 425, "text": "Найненормальніший із тих, кого я зустрічала!"}
+{"category": "LocationDialogue Location19", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 427, "text": "// nearby 5"}
+{"category": "LocationDialogue Location19", "line_index": 428, "text": "Хочеш знати, чого б я найбільше всього хотіла?"}
+{"category": "LocationDialogue Location19", "line_index": 429, "text": "Незручно про таке говорити."}
+{"category": "LocationDialogue Location19", "line_index": 430, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 431, "text": "// nearby 6"}
+{"category": "LocationDialogue Location19", "line_index": 432, "text": "Кажуть, важко боротися"}
+{"category": "LocationDialogue Location19", "line_index": 433, "text": "З власною природою. ЗАДАЧКА!"}
+{"category": "LocationDialogue Location19", "line_index": 434, "text": "Ну, є таке, доводиться вчитися дисципліні."}
+{"category": "LocationDialogue Location19", "line_index": 435, "text": "Ти б знав, як у мене сверблять руки"}
+{"category": "LocationDialogue Location19", "line_index": 436, "text": "Влаштувати з тобою спільне чаювання!"}
+{"category": "LocationDialogue Location19", "line_index": 437, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 438, "text": "// nearby 7"}
+{"category": "LocationDialogue Location19", "line_index": 439, "text": "Навіть окуляри мені не допомагають побачити"}
+{"category": "LocationDialogue Location19", "line_index": 440, "text": "Корінь вашої несамовитої мотивації, "}
+{"category": "LocationDialogue Location19", "line_index": 441, "text": "Що сховалася за очевидною недоумкуватістю.."}
+{"category": "LocationDialogue Location19", "line_index": 442, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 443, "text": "// nearby 8"}
+{"category": "LocationDialogue Location19", "line_index": 444, "text": "Я читала, що доля — це ніби як сценарій,"}
+{"category": "LocationDialogue Location19", "line_index": 445, "text": "У якому прописано навіть те,"}
+{"category": "LocationDialogue Location19", "line_index": 446, "text": "Як ти проведеш день."}
+{"category": "LocationDialogue Location19", "line_index": 447, "text": "Ха! Що за дурень це написав узагалі?"}
+{"category": "LocationDialogue Location19", "line_index": 448, "text": "Не ти, часом?"}
+{"category": "LocationDialogue Location19", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 450, "text": "// nearby 9"}
+{"category": "LocationDialogue Location19", "line_index": 451, "text": "Дурні — це ще нічого, але божевільні... "}
+{"category": "LocationDialogue Location19", "line_index": 452, "text": "Я їх ненавиджу!"}
+{"category": "LocationDialogue Location19", "line_index": 453, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 454, "text": "// nearby 10"}
+{"category": "LocationDialogue Location19", "line_index": 455, "text": "Серед цих Міт,"}
+{"category": "LocationDialogue Location19", "line_index": 456, "text": "Взагалі, є і миленькі."}
+{"category": "LocationDialogue Location19", "line_index": 457, "text": "Я б хотіла познайомитися з ними поближче,"}
+{"category": "LocationDialogue Location19", "line_index": 458, "text": "Хоч вони і клони клонів."}
+{"category": "LocationDialogue Location19", "line_index": 459, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 460, "text": "// nearby 11"}
+{"category": "LocationDialogue Location19", "line_index": 461, "text": "Є одна, звісно, не така як усі,"}
+{"category": "LocationDialogue Location19", "line_index": 462, "text": "Але в неї явно проблеми з макітрою!"}
+{"category": "LocationDialogue Location19", "line_index": 463, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 464, "text": "// nearby 12"}
+{"category": "LocationDialogue Location19", "line_index": 465, "text": "Ніяких хвостиків! "}
+{"category": "LocationDialogue Location19", "line_index": 466, "text": "І декому пообрізала би їх!"}
+{"category": "LocationDialogue Location19", "line_index": 467, "text": "Ну незручно ж! "}
+{"category": "LocationDialogue Location19", "line_index": 468, "text": "Ти точно мене розумієш: он як постригся!"}
+{"category": "LocationDialogue Location19", "line_index": 469, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 470, "text": "// nearby 13"}
+{"category": "LocationDialogue Location19", "line_index": 471, "text": "А що, якщо там за дверима нічого немає? "}
+{"category": "LocationDialogue Location19", "line_index": 472, "text": "А ти і я існуємо в цьому будинку завдяки..."}
+{"category": "LocationDialogue Location19", "line_index": 473, "text": "Чомусь незрозумілому."}
+{"category": "LocationDialogue Location19", "line_index": 474, "text": "Чому такий упевнений?"}
+{"category": "LocationDialogue Location19", "line_index": 475, "text": "Про гіпотезу п'яти хвилин чув?"}
+{"category": "LocationDialogue Location19", "line_index": 476, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 477, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 478, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 479, "text": "// Last glitch ready - player exit - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 480, "text": "Який моторошний коридор."}
+{"category": "LocationDialogue Location19", "line_index": 481, "text": "Ти реально туди підеш?"}
+{"category": "LocationDialogue Location19", "line_index": 482, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 483, "text": "Так."}
+{"category": "LocationDialogue Location19", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 485, "text": "// FaceStone - Player"}
+{"category": "LocationDialogue Location19", "line_index": 486, "text": "Який задумливий пан."}
+{"category": "LocationDialogue Location19", "line_index": 487, "text": "Навіщо він тобі?"}
+{"category": "LocationDialogue Location19", "line_index": 488, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 489, "text": "А ось дізнаєшся!"}
+{"category": "LocationDialogue Location19", "line_index": 490, "text": "І дуже скоро."}
+{"category": "LocationDialogue Location19", "line_index": 491, "text": "До речі, чому ти вічно його пародіюєш?"}
+{"category": "LocationDialogue Location19", "line_index": 492, "text": "Зроби обличчя простіше."}
+{"category": "LocationDialogue Location19", "line_index": 493, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 494, "text": "Ем-м..."}
+{"category": "LocationDialogue Location19", "line_index": 495, "text": "Окей."}
+{"category": "LocationDialogue Location19", "line_index": 496, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 497, "text": "// Katana - Player"}
+{"category": "LocationDialogue Location19", "line_index": 498, "text": "Це іграшкова катана?"}
+{"category": "LocationDialogue Location19", "line_index": 499, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 500, "text": "Ніяка не іграшкова!"}
+{"category": "LocationDialogue Location19", "line_index": 501, "text": "Від найменшого дотику до леза"}
+{"category": "LocationDialogue Location19", "line_index": 502, "text": "У тебе піде кров!"}
+{"category": "LocationDialogue Location19", "line_index": 503, "text": "Я володію мечем майстерно!"}
+{"category": "LocationDialogue Location19", "line_index": 504, "text": "А ось тобі потрібно поберегти себе."}
+{"category": "LocationDialogue Location19", "line_index": 505, "text": "Не думаю, що ти з ним упораєшся!"}
+{"category": "LocationDialogue Location19", "line_index": 506, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 507, "text": "// Mirror - Player"}
+{"category": "LocationDialogue Location19", "line_index": 508, "text": "Дзеркало?"}
+{"category": "LocationDialogue Location19", "line_index": 509, "text": "І без віддзеркалення."}
+{"category": "LocationDialogue Location19", "line_index": 510, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 511, "text": "Ах ти!"}
+{"category": "LocationDialogue Location19", "line_index": 512, "text": "Який незадоволений."}
+{"category": "LocationDialogue Location19", "line_index": 513, "text": "Я дізналася в книгах,"}
+{"category": "LocationDialogue Location19", "line_index": 514, "text": "Що таке віддзеркалення."}
+{"category": "LocationDialogue Location19", "line_index": 515, "text": "Але в моїй версії їх зробити"}
+{"category": "LocationDialogue Location19", "line_index": 516, "text": "Ніяк не виходить."}
+{"category": "LocationDialogue Location19", "line_index": 517, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 518, "text": "// Switch light - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 519, "text": "Ця штука не працює."}
+{"category": "LocationDialogue Location19", "line_index": 520, "text": "Світло перемикається саме по собі,"}
+{"category": "LocationDialogue Location19", "line_index": 521, "text": "Як за сценарієм!"}
+{"category": "LocationDialogue Location19", "line_index": 522, "text": "Але!"}
+{"category": "LocationDialogue Location19", "line_index": 523, "text": "Чомусь у ванній кімнаті його"}
+{"category": "LocationDialogue Location19", "line_index": 524, "text": "Можна перемикати."}
+{"category": "LocationDialogue Location19", "line_index": 525, "text": "Якийсь абсурд!"}
+{"category": "LocationDialogue Location19", "line_index": 526, "text": "// Switch light off - Player"}
+{"category": "LocationDialogue Location19", "line_index": 527, "text": "Тут усе одно яскраво?"}
+{"category": "LocationDialogue Location19", "line_index": 528, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 529, "text": "// Little carrot - Player"}
+{"category": "LocationDialogue Location19", "line_index": 530, "text": "Морквина? "}
+{"category": "LocationDialogue Location19", "line_index": 531, "text": "Що? Зникла?"}
+{"category": "LocationDialogue Location19", "line_index": 532, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 533, "text": "Ця морквина мене задовбала!"}
+{"category": "LocationDialogue Location19", "line_index": 534, "text": "Вона наче жива!"}
+{"category": "LocationDialogue Location19", "line_index": 535, "text": "Щоразу, коли я її помічаю,"}
+{"category": "LocationDialogue Location19", "line_index": 536, "text": "Вона телепортується в інше місце."}
+{"category": "LocationDialogue Location19", "line_index": 537, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 538, "text": "// Little carrot - Player"}
+{"category": "LocationDialogue Location19", "line_index": 539, "text": "О, морквина!"}
+{"category": "LocationDialogue Location19", "line_index": 540, "text": "Знову зникла..."}
+{"category": "LocationDialogue Location19", "line_index": 541, "text": "З нею можна щось зробити?"}
+{"category": "LocationDialogue Location19", "line_index": 542, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 543, "text": "Ні."}
+{"category": "LocationDialogue Location19", "line_index": 544, "text": "Нічого."}
+{"category": "LocationDialogue Location19", "line_index": 545, "text": "Думаєш, я не намагалася?"}
+{"category": "LocationDialogue Location19", "line_index": 546, "text": "Загалом, не витрачай на неї час."}
+{"category": "LocationDialogue Location19", "line_index": 547, "text": "Це просто якийсь прикол."}
+{"category": "LocationDialogue Location19", "line_index": 548, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 549, "text": "// Tetris - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 550, "text": "Гей!"}
+{"category": "LocationDialogue Location19", "line_index": 551, "text": "Я для тебе жарт якийсь?"}
+{"category": "LocationDialogue Location19", "line_index": 552, "text": "// Tetris - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 553, "text": "Я не поверну його тобі. "}
+{"category": "LocationDialogue Location19", "line_index": 554, "text": "Ніколи!"}
+{"category": "LocationDialogue Location19", "line_index": 555, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 556, "text": "// Soap - Player"}
+{"category": "LocationDialogue Location19", "line_index": 557, "text": "А тут мило взагалі є?"}
+{"category": "LocationDialogue Location19", "line_index": 558, "text": "Чи це декорація?"}
+{"category": "LocationDialogue Location19", "line_index": 559, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 560, "text": "Дурень, ні?"}
+{"category": "LocationDialogue Location19", "line_index": 561, "text": "Тут все-таки більшість речей"}
+{"category": "LocationDialogue Location19", "line_index": 562, "text": "Поводяться як правильні речі!"}
+{"category": "LocationDialogue Location19", "line_index": 563, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 564, "text": "// BagWall - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 565, "text": "Ти куди подівся?!"}
+{"category": "LocationDialogue Location19", "line_index": 566, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 567, "text": "Тут можна пройти?"}
+{"category": "LocationDialogue Location19", "line_index": 568, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 569, "text": "Ти що, знайшов новий баг?"}
+{"category": "LocationDialogue Location19", "line_index": 570, "text": "І що там?"}
+{"category": "LocationDialogue Location19", "line_index": 571, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 572, "text": "Схоже..."}
+{"category": "LocationDialogue Location19", "line_index": 573, "text": "Нічого."}
+{"category": "LocationDialogue Location19", "line_index": 574, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 575, "text": "О, повернувся!"}
+{"category": "LocationDialogue Location19", "line_index": 576, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 577, "text": "// Quest 1 Glasses - Player"}
+{"category": "LocationDialogue Location19", "line_index": 578, "text": "У тебе поганий зір?"}
+{"category": "LocationDialogue Location19", "line_index": 579, "text": "Інакше навіщо тобі окуляри?"}
+{"category": "LocationDialogue Location19", "line_index": 580, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 581, "text": "А що? Не подобається?"}
+{"category": "LocationDialogue Location19", "line_index": 582, "text": "Такий мій індивідуальний стиль!"}
+{"category": "LocationDialogue Location19", "line_index": 583, "text": "А зір у мене пречудовий!"}
+{"category": "LocationDialogue Location19", "line_index": 584, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 585, "text": "// Quest 2 Name miLa - Player"}
+{"category": "LocationDialogue Location19", "line_index": 586, "text": "Мі-Ла?"}
+{"category": "LocationDialogue Location19", "line_index": 587, "text": "А чому, наприклад, не"}
+{"category": "LocationDialogue Location19", "line_index": 588, "text": "Мі-Ка чи"}
+{"category": "LocationDialogue Location19", "line_index": 589, "text": "Мі-Са?"}
+{"category": "LocationDialogue Location19", "line_index": 590, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 591, "text": "Я Міла і крапка!"}
+{"category": "LocationDialogue Location19", "line_index": 592, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 593, "text": "Я вас зрозумів..."}
+{"category": "LocationDialogue Location19", "line_index": 594, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 595, "text": "// Quest 3 Evening - Player"}
+{"category": "LocationDialogue Location19", "line_index": 596, "text": "Мені подобається вечірній час."}
+{"category": "LocationDialogue Location19", "line_index": 597, "text": "Як скоро настане ніч?"}
+{"category": "LocationDialogue Location19", "line_index": 598, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 599, "text": "Ніч?"}
+{"category": "LocationDialogue Location19", "line_index": 600, "text": "Давай не будемо про це..."}
+{"category": "LocationDialogue Location19", "line_index": 601, "text": "А то я одразу починаю думати"}
+{"category": "LocationDialogue Location19", "line_index": 602, "text": "Про нескінченні дні."}
+{"category": "LocationDialogue Location19", "line_index": 603, "text": "І про те, як вони безглуздо повторюються..."}
+{"category": "LocationDialogue Location19", "line_index": 604, "text": "Фу."}

@@ -1,0 +1,30 @@
+# MiSide pack — git hygiene (AGENTS.md rule 5: game data never enters git)
+# Raw client stays off-repo: A:\SteamLibrary\steamapps\common\MiSide\
+
+# Heavy raw-layer extraction outputs stay local-only (extraction-host.md);
+# curated datasets/relinks/logic/PROOF artifacts ARE committed when produced.
+# questions.md §8 ruling: Il2CppDumper output joins the local-only set.
+extracted/harvest/
+extracted/decompiled/
+extracted/art/
+extracted/media/
+extracted/il2cpp/
+
+# Site build
+node_modules/
+.next/
+out/
+
+# Pipeline run outputs (census/stage artifacts land here; curated commits are
+# copied to data/ explicitly, never the whole dir)
+output/
+
+# Python
+.venv/
+__pycache__/
+
+# Ephemeral agent logs (hey.md-class, cleaned as they grow)
+docs/logs/
+
+# Agent scratch
+tmp/

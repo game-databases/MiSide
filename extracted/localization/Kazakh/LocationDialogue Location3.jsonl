@@ -1,0 +1,437 @@
+{"category": "LocationDialogue Location3", "line_index": 0, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 1, "text": "Сәлем, [player]!"}
+{"category": "LocationDialogue Location3", "line_index": 2, "text": "Міне, біз де кездестік)"}
+{"category": "LocationDialogue Location3", "line_index": 3, "text": "Мен осындай өте қуаныштым! "}
+{"category": "LocationDialogue Location3", "line_index": 4, "text": "Білемін, сенде сұрақтар бар."}
+{"category": "LocationDialogue Location3", "line_index": 5, "text": "Иә, қалай көресің..."}
+{"category": "LocationDialogue Location3", "line_index": 6, "text": "Мен мынау ерекше құрылығы,"}
+{"category": "LocationDialogue Location3", "line_index": 7, "text": "Сен мұнда тезірек келсең үшін, қасыңда болған."}
+{"category": "LocationDialogue Location3", "line_index": 8, "text": "Бірақ сен неліктен басқа ойының нұқсанда болған,"}
+{"category": "LocationDialogue Location3", "line_index": 9, "text": "Қайсы мен..."}
+{"category": "LocationDialogue Location3", "line_index": 10, "text": "Ой, бұл ұзақ айту!"}
+{"category": "LocationDialogue Location3", "line_index": 11, "text": "Солай, сені көргеніме қуаныштымын!"}
+{"category": "LocationDialogue Location3", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 13, "text": "// Answer 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 14, "text": "Бұл мен)"}
+{"category": "LocationDialogue Location3", "line_index": 15, "text": "Сен [player]сын ба?"}
+{"category": "LocationDialogue Location3", "line_index": 16, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 17, "text": "// Answer 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 18, "text": "Сен әлдеқашан артқа келгің келеді ме?"}
+{"category": "LocationDialogue Location3", "line_index": 19, "text": "Ал... Ойламын, солай істеуге болады. Бірақ мен ше?"}
+{"category": "LocationDialogue Location3", "line_index": 20, "text": "Ал бірге боламыз)"}
+{"category": "LocationDialogue Location3", "line_index": 21, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 22, "text": "// Answer 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 23, "text": "Қазір мен саған айтамын..."}
+{"category": "LocationDialogue Location3", "line_index": 24, "text": "Солай сен осында!"}
+{"category": "LocationDialogue Location3", "line_index": 25, "text": "Түсінесің ба?"}
+{"category": "LocationDialogue Location3", "line_index": 26, "text": "Ешнәрсе түсінбедің.  // Player"}
+{"category": "LocationDialogue Location3", "line_index": 27, "text": "Ал, ештеңе етпейді. // Mita"}
+{"category": "LocationDialogue Location3", "line_index": 28, "text": "Ең бастысы, біз енді біргеміз)"}
+{"category": "LocationDialogue Location3", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 30, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 31, "text": "Сен ашсың ба?"}
+{"category": "LocationDialogue Location3", "line_index": 32, "text": "Ал біргеміз тамақ пісіреміз?"}
+{"category": "LocationDialogue Location3", "line_index": 33, "text": "Міне."}
+{"category": "LocationDialogue Location3", "line_index": 34, "text": "Сәбізбен маған көмектесші.)"}
+{"category": "LocationDialogue Location3", "line_index": 35, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 36, "text": "Қайдан көкөністер болған?"}
+{"category": "LocationDialogue Location3", "line_index": 37, "text": "Қазір ғана осында ештеңе болмайды ғой!"}
+{"category": "LocationDialogue Location3", "line_index": 38, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 39, "text": "[player], біз ойында ғой)"}
+{"category": "LocationDialogue Location3", "line_index": 40, "text": "Ал, кө-мек-тес!"}
+{"category": "LocationDialogue Location3", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 42, "text": "Рахмет)"}
+{"category": "LocationDialogue Location3", "line_index": 43, "text": "Сен қайшы алып келесің бе?"}
+{"category": "LocationDialogue Location3", "line_index": 44, "text": "Ол шомылу бөлмесінде."}
+{"category": "LocationDialogue Location3", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 46, "text": "Бастау үшін отыр."}
+{"category": "LocationDialogue Location3", "line_index": 47, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 48, "text": "// Kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 49, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 50, "text": "Тұздық баласың ба?"}
+{"category": "LocationDialogue Location3", "line_index": 51, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 52, "text": "Эмм... Жоқ."}
+{"category": "LocationDialogue Location3", "line_index": 53, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 54, "text": "Аянышты."}
+{"category": "LocationDialogue Location3", "line_index": 55, "text": "Онымен тамақ өте жұпардай болады)"}
+{"category": "LocationDialogue Location3", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 57, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 58, "text": "Рахмет."}
+{"category": "LocationDialogue Location3", "line_index": 59, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 60, "text": "Сен бәрін жедің бе?"}
+{"category": "LocationDialogue Location3", "line_index": 61, "text": "Менің бөлігім көрінеді"}
+{"category": "LocationDialogue Location3", "line_index": 62, "text": "Шексіз.)"}
+{"category": "LocationDialogue Location3", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 64, "text": "// Help"}
+{"category": "LocationDialogue Location3", "line_index": 65, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 66, "text": "Не болды?"}
+{"category": "LocationDialogue Location3", "line_index": 67, "text": "Айт, не көресің және сезіссің."}
+{"category": "LocationDialogue Location3", "line_index": 68, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 69, "text": "Жүрек ауырады,"}
+{"category": "LocationDialogue Location3", "line_index": 70, "text": "Көзімде шулайды."}
+{"category": "LocationDialogue Location3", "line_index": 71, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 72, "text": "Солай!"}
+{"category": "LocationDialogue Location3", "line_index": 73, "text": "Мен сенде не болып жатқанын білемін."}
+{"category": "LocationDialogue Location3", "line_index": 74, "text": "Тұрасың ба?"}
+{"category": "LocationDialogue Location3", "line_index": 75, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 76, "text": "// Bathroom"}
+{"category": "LocationDialogue Location3", "line_index": 77, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 78, "text": "Мынау не?"}
+{"category": "LocationDialogue Location3", "line_index": 79, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 80, "text": "Таблеткалар."}
+{"category": "LocationDialogue Location3", "line_index": 81, "text": "Саған жақындап жақсы болады"}
+{"category": "LocationDialogue Location3", "line_index": 82, "text": "Айнаның алдында тұр..."}
+{"category": "LocationDialogue Location3", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 84, "text": "Іш."}
+{"category": "LocationDialogue Location3", "line_index": 85, "text": "Мен күреймін."}
+{"category": "LocationDialogue Location3", "line_index": 86, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 87, "text": "// Black room"}
+{"category": "LocationDialogue Location3", "line_index": 88, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 89, "text": "Қаласын?"}
+{"category": "LocationDialogue Location3", "line_index": 90, "text": "Жақсарып жатыр ма?"}
+{"category": "LocationDialogue Location3", "line_index": 91, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 92, "text": "Иә."}
+{"category": "LocationDialogue Location3", "line_index": 93, "text": "Тезірек соншама әсер берілген ба?"}
+{"category": "LocationDialogue Location3", "line_index": 94, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 95, "text": "[player], біз ойындамыз."}
+{"category": "LocationDialogue Location3", "line_index": 96, "text": "Осында бәрі жайбарақат."}
+{"category": "LocationDialogue Location3", "line_index": 97, "text": "Сен кішкене жігері бересің,"}
+{"category": "LocationDialogue Location3", "line_index": 98, "text": "Бірақ нәтиже әдетте әлдеқайда көлемдірек."}
+{"category": "LocationDialogue Location3", "line_index": 99, "text": "Бұл ойынның шарт:"}
+{"category": "LocationDialogue Location3", "line_index": 100, "text": "Жалаңдық."}
+{"category": "LocationDialogue Location3", "line_index": 101, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 102, "text": "Мысалы?"}
+{"category": "LocationDialogue Location3", "line_index": 103, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 104, "text": "Сәбіз:"}
+{"category": "LocationDialogue Location3", "line_index": 105, "text": "Сен тек біреуін кескенсің,"}
+{"category": "LocationDialogue Location3", "line_index": 106, "text": "Ал бірде үш дайын болады."}
+{"category": "LocationDialogue Location3", "line_index": 107, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 108, "text": "Тыңда, бұл өте кенет болған,"}
+{"category": "LocationDialogue Location3", "line_index": 109, "text": "Және бұл жағдай маған өте қорқытайды..."}
+{"category": "LocationDialogue Location3", "line_index": 110, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 111, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 112, "text": "Бәрі жақсы ма?"}
+{"category": "LocationDialogue Location3", "line_index": 113, "text": "// player"}
+{"category": "LocationDialogue Location3", "line_index": 114, "text": "Мен желдеткіштен әлдебір картридждерді таптым."}
+{"category": "LocationDialogue Location3", "line_index": 115, "text": "Оныңда жабыстырма атымен болған."}
+{"category": "LocationDialogue Location3", "line_index": 116, "text": "Мынау не?"}
+{"category": "LocationDialogue Location3", "line_index": 117, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 118, "text": "Картриджилер?"}
+{"category": "LocationDialogue Location3", "line_index": 119, "text": "Қандай?"}
+{"category": "LocationDialogue Location3", "line_index": 120, "text": "Оны бірге білейік,"}
+{"category": "LocationDialogue Location3", "line_index": 121, "text": "Бірақ сосын."}
+{"category": "LocationDialogue Location3", "line_index": 122, "text": "Басында тамақ іштейміз."}
+{"category": "LocationDialogue Location3", "line_index": 123, "text": "Қайшы берші.)"}
+{"category": "LocationDialogue Location3", "line_index": 124, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 125, "text": "// Addon ==========================="}
+{"category": "LocationDialogue Location3", "line_index": 126, "text": "Сақина?"}
+{"category": "LocationDialogue Location3", "line_index": 127, "text": "// Player - зеркало"}
+{"category": "LocationDialogue Location3", "line_index": 128, "text": "Неге айнада шағылысуды жоқ?"}
+{"category": "LocationDialogue Location3", "line_index": 129, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 130, "text": "Ах, иә,"}
+{"category": "LocationDialogue Location3", "line_index": 131, "text": "Мен шағылысуды қосуды ұмытып кеттім..."}
+{"category": "LocationDialogue Location3", "line_index": 132, "text": "Міне,"}
+{"category": "LocationDialogue Location3", "line_index": 133, "text": "Енді шағылысулар бар)"}
+{"category": "LocationDialogue Location3", "line_index": 134, "text": "Айтпақшы,"}
+{"category": "LocationDialogue Location3", "line_index": 135, "text": "Ертерек мен білмейдім, шағылысуды деген не."}
+{"category": "LocationDialogue Location3", "line_index": 136, "text": "Біздің әлемде оның болмаған"}
+{"category": "LocationDialogue Location3", "line_index": 137, "text": "Біреу жаңарту шыққанға.)"}
+{"category": "LocationDialogue Location3", "line_index": 138, "text": "Сендердің әлемдеріңде соншалықты көп"}
+{"category": "LocationDialogue Location3", "line_index": 139, "text": "Шағылысу бар ма?"}
+{"category": "LocationDialogue Location3", "line_index": 140, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 141, "text": "Ну-у, иә."}
+{"category": "LocationDialogue Location3", "line_index": 142, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 143, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 144, "text": "Ұмытпайсың,"}
+{"category": "LocationDialogue Location3", "line_index": 145, "text": "Сен үш зат әкелдің"}
+{"category": "LocationDialogue Location3", "line_index": 146, "text": "Мынау сканерға?"}
+{"category": "LocationDialogue Location3", "line_index": 147, "text": "Солай..."}
+{"category": "LocationDialogue Location3", "line_index": 148, "text": "Мынау заттар"}
+{"category": "LocationDialogue Location3", "line_index": 149, "text": "Осы әлемнің нұсқасымен байланысты."}
+{"category": "LocationDialogue Location3", "line_index": 150, "text": "Енді сен осында.)"}
+{"category": "LocationDialogue Location3", "line_index": 151, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 152, "text": "// Player - мобильный телевизор"}
+{"category": "LocationDialogue Location3", "line_index": 153, "text": "Бұл осы теледидар ғой,"}
+{"category": "LocationDialogue Location3", "line_index": 154, "text": "Қайсы мен саған сатып алдым."}
+{"category": "LocationDialogue Location3", "line_index": 155, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 156, "text": "Иә."}
+{"category": "LocationDialogue Location3", "line_index": 157, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 158, "text": "Сен атылған,"}
+{"category": "LocationDialogue Location3", "line_index": 159, "text": "Ол сындырылған."}
+{"category": "LocationDialogue Location3", "line_index": 160, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 161, "text": "Ал, мен саған жасағым келді."}
+{"category": "LocationDialogue Location3", "line_index": 162, "text": "Сюрприз!"}
+{"category": "LocationDialogue Location3", "line_index": 163, "text": "Сен осында келу үшін)"}
+{"category": "LocationDialogue Location3", "line_index": 164, "text": "Сондықтан мен шындықты сәл жасырып қойдым."}
+{"category": "LocationDialogue Location3", "line_index": 165, "text": "Қазір экран ақпарат көрсеттейді."}
+{"category": "LocationDialogue Location3", "line_index": 166, "text": "Және, иә,"}
+{"category": "LocationDialogue Location3", "line_index": 167, "text": "Мен кішкене инженермің!"}
+{"category": "LocationDialogue Location3", "line_index": 168, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 169, "text": "// Player - школьная одежда"}
+{"category": "LocationDialogue Location3", "line_index": 170, "text": "Бұл не,"}
+{"category": "LocationDialogue Location3", "line_index": 171, "text": "Мектебін киім ма?"}
+{"category": "LocationDialogue Location3", "line_index": 172, "text": "Неге ол саған?"}
+{"category": "LocationDialogue Location3", "line_index": 173, "text": "Сен мектепке бару аласың ба?"}
+{"category": "LocationDialogue Location3", "line_index": 174, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 175, "text": "Мектепке?"}
+{"category": "LocationDialogue Location3", "line_index": 176, "text": "Жоқ, бұл маған керек емес."}
+{"category": "LocationDialogue Location3", "line_index": 177, "text": "Бірақ киім сүйкімді,"}
+{"category": "LocationDialogue Location3", "line_index": 178, "text": "Және ол маған жағдай туғызеді"}
+{"category": "LocationDialogue Location3", "line_index": 179, "text": "Сүйкімді болу)"}
+{"category": "LocationDialogue Location3", "line_index": 180, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 181, "text": "// Player - компьютер"}
+{"category": "LocationDialogue Location3", "line_index": 182, "text": "Мынау компьютері істейді ма?"}
+{"category": "LocationDialogue Location3", "line_index": 183, "text": "Немесе ол жай тұрады?"}
+{"category": "LocationDialogue Location3", "line_index": 184, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 185, "text": "Әрине."}
+{"category": "LocationDialogue Location3", "line_index": 186, "text": "Бәрі не бар осында,"}
+{"category": "LocationDialogue Location3", "line_index": 187, "text": "Сенің әлемнің сияқты істейді."}
+{"category": "LocationDialogue Location3", "line_index": 188, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 189, "text": "Менің әлемде"}
+{"category": "LocationDialogue Location3", "line_index": 190, "text": "Мен жиі компьютермен отырамын..."}
+{"category": "LocationDialogue Location3", "line_index": 191, "text": "Жұмыс істеймін."}
+{"category": "LocationDialogue Location3", "line_index": 192, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 193, "text": "Білемін."}
+{"category": "LocationDialogue Location3", "line_index": 194, "text": "Және болғандықтан сенің жұмыспен"}
+{"category": "LocationDialogue Location3", "line_index": 195, "text": "Сен соншалықты аз көңіл бөлдің"}
+{"category": "LocationDialogue Location3", "line_index": 196, "text": "Маған көңіл."}
+{"category": "LocationDialogue Location3", "line_index": 197, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 198, "text": "Әй, өмірге әлдене керек."}
+{"category": "LocationDialogue Location3", "line_index": 199, "text": "Қайда сен білесің?"}
+{"category": "LocationDialogue Location3", "line_index": 200, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 201, "text": "Телефонның камерасы кей-кейде қосылады..."}
+{"category": "LocationDialogue Location3", "line_index": 202, "text": "Кешір,"}
+{"category": "LocationDialogue Location3", "line_index": 203, "text": "Бірақ мен қарадым"}
+{"category": "LocationDialogue Location3", "line_index": 204, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 205, "text": "Білесің, бұл кішкене бұрыс..."}
+{"category": "LocationDialogue Location3", "line_index": 206, "text": "Жә жарайды. "}
+{"category": "LocationDialogue Location3", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 208, "text": "// Player - зонтик"}
+{"category": "LocationDialogue Location3", "line_index": 209, "text": "Қанша мен ойнасам,"}
+{"category": "LocationDialogue Location3", "line_index": 210, "text": "Ешқашан жаңбыр болған жоқ."}
+{"category": "LocationDialogue Location3", "line_index": 211, "text": "Неге сонда қолшатыр керек?"}
+{"category": "LocationDialogue Location3", "line_index": 212, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 213, "text": "Жаңбыр өте сирек болады - "}
+{"category": "LocationDialogue Location3", "line_index": 214, "text": "Сен оның әлі табылған."}
+{"category": "LocationDialogue Location3", "line_index": 215, "text": "Мүмкін, сен оның бір рет көресің,"}
+{"category": "LocationDialogue Location3", "line_index": 216, "text": "Сонда қолшатыр сенде пайдаланады."}
+{"category": "LocationDialogue Location3", "line_index": 217, "text": "Сосын білмекпіз)"}
+{"category": "LocationDialogue Location3", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 219, "text": "// Player - Электрощиток"}
+{"category": "LocationDialogue Location3", "line_index": 220, "text": "Неге электрощиток осында?"}
+{"category": "LocationDialogue Location3", "line_index": 221, "text": "Және егер біз ойындамыз,"}
+{"category": "LocationDialogue Location3", "line_index": 222, "text": "Солай неге ол керек?"}
+{"category": "LocationDialogue Location3", "line_index": 223, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 224, "text": "Біріншіден,"}
+{"category": "LocationDialogue Location3", "line_index": 225, "text": "Біз ойындамыз,"}
+{"category": "LocationDialogue Location3", "line_index": 226, "text": "Солай алмаспай сұрау"}
+{"category": "LocationDialogue Location3", "line_index": 227, "text": "«Неге?»."}
+{"category": "LocationDialogue Location3", "line_index": 228, "text": "Бірақ щиток шынымен"}
+{"category": "LocationDialogue Location3", "line_index": 229, "text": "Электричество қайта іске қосылады."}
+{"category": "LocationDialogue Location3", "line_index": 230, "text": "Бәрі сенің әлемің"}
+{"category": "LocationDialogue Location3", "line_index": 231, "text": "Сияқты істеген.)"}
+{"category": "LocationDialogue Location3", "line_index": 232, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 233, "text": "// Player - дверь на выход"}
+{"category": "LocationDialogue Location3", "line_index": 234, "text": "Шығу болады ма?"}
+{"category": "LocationDialogue Location3", "line_index": 235, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 236, "text": "Ой..."}
+{"category": "LocationDialogue Location3", "line_index": 237, "text": "Әзірге жоқ."}
+{"category": "LocationDialogue Location3", "line_index": 238, "text": "Кейінірек сөйлесеміз"}
+{"category": "LocationDialogue Location3", "line_index": 239, "text": "Басында осында боламыз"}
+{"category": "LocationDialogue Location3", "line_index": 240, "text": "Үйге."}
+{"category": "LocationDialogue Location3", "line_index": 241, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 242, "text": "// Player - книги"}
+{"category": "LocationDialogue Location3", "line_index": 243, "text": "Осында сонша кітап бар."}
+{"category": "LocationDialogue Location3", "line_index": 244, "text": "Сын оны оқисың ба?"}
+{"category": "LocationDialogue Location3", "line_index": 245, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 246, "text": "Мен осы бәрі оқылған."}
+{"category": "LocationDialogue Location3", "line_index": 247, "text": "Қашан мен осында, жалғыз,"}
+{"category": "LocationDialogue Location3", "line_index": 248, "text": "Маған ө-ө-өте жалықтырып"}
+{"category": "LocationDialogue Location3", "line_index": 249, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 250, "text": "// Player - телевизор на кухне"}
+{"category": "LocationDialogue Location3", "line_index": 251, "text": "Неге саған екінші теледидар керек?"}
+{"category": "LocationDialogue Location3", "line_index": 252, "text": "Және ескі ғой."}
+{"category": "LocationDialogue Location3", "line_index": 253, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 254, "text": "Ол саған ұнамайды ма?"}
+{"category": "LocationDialogue Location3", "line_index": 255, "text": "Алып тастай аламын"}
+{"category": "LocationDialogue Location3", "line_index": 256, "text": "Солай..."}
+{"category": "LocationDialogue Location3", "line_index": 257, "text": "Ол әсемдікте:"}
+{"category": "LocationDialogue Location3", "line_index": 258, "text": "Асүй әдемілейді."}
+{"category": "LocationDialogue Location3", "line_index": 259, "text": "Және ол жұмыс істейді!"}
+{"category": "LocationDialogue Location3", "line_index": 260, "text": "Мүмкін ескі мультфильмдер"}
+{"category": "LocationDialogue Location3", "line_index": 261, "text": "Көру болады!"}
+{"category": "LocationDialogue Location3", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 263, "text": "// Player - телефон"}
+{"category": "LocationDialogue Location3", "line_index": 264, "text": "Менің телефоным."}
+{"category": "LocationDialogue Location3", "line_index": 265, "text": "Ол менің қалтамнан кеп қалыпты!"}
+{"category": "LocationDialogue Location3", "line_index": 266, "text": "Қалай ол осында болған?"}
+{"category": "LocationDialogue Location3", "line_index": 267, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 268, "text": "Аа-а-ал... Бұл қажет емес.)"}
+{"category": "LocationDialogue Location3", "line_index": 269, "text": "Менде ой бар."}
+{"category": "LocationDialogue Location3", "line_index": 270, "text": "Селфи жасау дайын ба?"}
+{"category": "LocationDialogue Location3", "line_index": 271, "text": "Қара."}
+{"category": "LocationDialogue Location3", "line_index": 272, "text": "Өте жақсы фотосы!"}
+{"category": "LocationDialogue Location3", "line_index": 273, "text": "Зердеде)"}
+{"category": "LocationDialogue Location3", "line_index": 274, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 275, "text": "Менде сұрақ бар:"}
+{"category": "LocationDialogue Location3", "line_index": 276, "text": "Егер"}
+{"category": "LocationDialogue Location3", "line_index": 277, "text": "Мен оныңда ойын жіберемін,"}
+{"category": "LocationDialogue Location3", "line_index": 278, "text": "Мен сенің көремін бе?"}
+{"category": "LocationDialogue Location3", "line_index": 279, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 280, "text": "Сонда ешкім болмайды. "}
+{"category": "LocationDialogue Location3", "line_index": 281, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 282, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 284, "text": "// Player - телевизор"}
+{"category": "LocationDialogue Location3", "line_index": 285, "text": "Қанша арналар"}
+{"category": "LocationDialogue Location3", "line_index": 286, "text": "Осында бар?"}
+{"category": "LocationDialogue Location3", "line_index": 287, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 288, "text": "Бұл антена емес ғой,"}
+{"category": "LocationDialogue Location3", "line_index": 289, "text": "Ал интернет"}
+{"category": "LocationDialogue Location3", "line_index": 290, "text": "Солай осында бәрі бар,"}
+{"category": "LocationDialogue Location3", "line_index": 291, "text": "Не сен интернетке қарайсын. "}
+{"category": "LocationDialogue Location3", "line_index": 292, "text": "Тоқта!"}
+{"category": "LocationDialogue Location3", "line_index": 293, "text": "Ой!"}
+{"category": "LocationDialogue Location3", "line_index": 294, "text": "Мынау не?"}
+{"category": "LocationDialogue Location3", "line_index": 295, "text": "Әлдеқандай мысықтар?"}
+{"category": "LocationDialogue Location3", "line_index": 296, "text": "О, қара!"}
+{"category": "LocationDialogue Location3", "line_index": 297, "text": "Ал білесің..."}
+{"category": "LocationDialogue Location3", "line_index": 298, "text": "Қазір!"}
+{"category": "LocationDialogue Location3", "line_index": 299, "text": "Шырын жеп көресің бе?"}
+{"category": "LocationDialogue Location3", "line_index": 300, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 301, "text": "Қызықты жарнама..."}
+{"category": "LocationDialogue Location3", "line_index": 302, "text": "Шырыш өлді ме?"}
+{"category": "LocationDialogue Location3", "line_index": 303, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 304, "text": "Иә. Және бұл шырын..."}
+{"category": "LocationDialogue Location3", "line_index": 305, "text": "Шырынан)"}
+{"category": "LocationDialogue Location3", "line_index": 306, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 307, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 308, "text": "М-м, дәмдіде..."}
+{"category": "LocationDialogue Location3", "line_index": 309, "text": "Маған ұнайды,"}
+{"category": "LocationDialogue Location3", "line_index": 310, "text": "Бірақ мен оны дәмін татып көре алмаймын "}
+{"category": "LocationDialogue Location3", "line_index": 311, "text": "Түсініктісіз."}
+{"category": "LocationDialogue Location3", "line_index": 312, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 313, "text": "Жарайды."}
+{"category": "LocationDialogue Location3", "line_index": 314, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 315, "text": "// Mita shy"}
+{"category": "LocationDialogue Location3", "line_index": 316, "text": "Сен н-не?"}
+{"category": "LocationDialogue Location3", "line_index": 317, "text": "Тоқта!"}
+{"category": "LocationDialogue Location3", "line_index": 318, "text": "Сен мені ұялтып тұрсың."}
+{"category": "LocationDialogue Location3", "line_index": 319, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 320, "text": "// Player - статуэтка Аниты"}
+{"category": "LocationDialogue Location3", "line_index": 321, "text": "Қорқынышты мүсінше."}
+{"category": "LocationDialogue Location3", "line_index": 322, "text": "Саған"}
+{"category": "LocationDialogue Location3", "line_index": 323, "text": "Сондай заттар ұнайды ма?"}
+{"category": "LocationDialogue Location3", "line_index": 324, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 325, "text": "Қорқынышты?"}
+{"category": "LocationDialogue Location3", "line_index": 326, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 327, "text": "Аһа."}
+{"category": "LocationDialogue Location3", "line_index": 328, "text": "Ұқсас ол аса антұрған..."}
+{"category": "LocationDialogue Location3", "line_index": 329, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 330, "text": "Ал... Ол нақты антұрған емес."}
+{"category": "LocationDialogue Location3", "line_index": 331, "text": "Және қорқыныштысыз."}
+{"category": "LocationDialogue Location3", "line_index": 332, "text": "Ал өте сүйкімді!"}
+{"category": "LocationDialogue Location3", "line_index": 333, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 334, "text": "Мүмкін, сен әділсің..."}
+{"category": "LocationDialogue Location3", "line_index": 335, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 336, "text": "Мита! // Player"}
+{"category": "LocationDialogue Location3", "line_index": 337, "text": "Не болып жатыр? // Player"}
+{"category": "LocationDialogue Location3", "line_index": 338, "text": "// Mita kitchen"}
+{"category": "LocationDialogue Location3", "line_index": 339, "text": "Сөйлеу болады,"}
+{"category": "LocationDialogue Location3", "line_index": 340, "text": "Тамақ ішу алдынан."}
+{"category": "LocationDialogue Location3", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 342, "text": "// Start Eat - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 343, "text": "Сенде де ас болсын)"}
+{"category": "LocationDialogue Location3", "line_index": 344, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 345, "text": "// Quest 1 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 346, "text": "Әрине."}
+{"category": "LocationDialogue Location3", "line_index": 347, "text": "Сен осында қала аласың."}
+{"category": "LocationDialogue Location3", "line_index": 348, "text": "Мен қарсы емеспін."}
+{"category": "LocationDialogue Location3", "line_index": 349, "text": "Және мен өте қатты"}
+{"category": "LocationDialogue Location3", "line_index": 350, "text": "ҚОЛДАЙМЫН!"}
+{"category": "LocationDialogue Location3", "line_index": 351, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 352, "text": "// Quest 2 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 353, "text": "Сені артқа тарта ма?"}
+{"category": "LocationDialogue Location3", "line_index": 354, "text": "Бірақ неге?"}
+{"category": "LocationDialogue Location3", "line_index": 355, "text": "Осында"}
+{"category": "LocationDialogue Location3", "line_index": 356, "text": "Жылы, жақсы ғой."}
+{"category": "LocationDialogue Location3", "line_index": 357, "text": "Және мен осындамын бар)"}
+{"category": "LocationDialogue Location3", "line_index": 358, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 359, "text": "Жоқ-жоқ,"}
+{"category": "LocationDialogue Location3", "line_index": 360, "text": "Мүмкін қалу болады."}
+{"category": "LocationDialogue Location3", "line_index": 361, "text": "Бірақ мен елеңдеймін:"}
+{"category": "LocationDialogue Location3", "line_index": 362, "text": "Кенет мен үйде нені ұмыттым... істеу."}
+{"category": "LocationDialogue Location3", "line_index": 363, "text": "Мен осында кенет болған"}
+{"category": "LocationDialogue Location3", "line_index": 364, "text": "Және мүлде дайын емес"}
+{"category": "LocationDialogue Location3", "line_index": 365, "text": "Солайда."}
+{"category": "LocationDialogue Location3", "line_index": 366, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 367, "text": "Кешір, ойламадым."}
+{"category": "LocationDialogue Location3", "line_index": 368, "text": "// Quest 3 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 369, "text": "Кетеу ниеттесін"}
+{"category": "LocationDialogue Location3", "line_index": 370, "text": "Және бәрі ұмыту?"}
+{"category": "LocationDialogue Location3", "line_index": 371, "text": "// player"}
+{"category": "LocationDialogue Location3", "line_index": 372, "text": "Жоқ!"}
+{"category": "LocationDialogue Location3", "line_index": 373, "text": "Мен жай ойладым,"}
+{"category": "LocationDialogue Location3", "line_index": 374, "text": "Сол бәрі өте қанық және табиғи емес."}
+{"category": "LocationDialogue Location3", "line_index": 375, "text": "Бірақ..."}
+{"category": "LocationDialogue Location3", "line_index": 376, "text": "Сен толықтай шынайы сияқтансын."}
+{"category": "LocationDialogue Location3", "line_index": 377, "text": "// Mita "}
+{"category": "LocationDialogue Location3", "line_index": 378, "text": "Сияқтанмын?)"}
+{"category": "LocationDialogue Location3", "line_index": 379, "text": "Бірақ мен шынайымын ғой!"}
+{"category": "LocationDialogue Location3", "line_index": 380, "text": "Топас!"}
+{"category": "LocationDialogue Location3", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 382, "text": "// Quest 4 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 383, "text": "Бұл ерекшелік"}
+{"category": "LocationDialogue Location3", "line_index": 384, "text": "Мынау әлемді."}
+{"category": "LocationDialogue Location3", "line_index": 385, "text": "Саған үйренбегендей көрінеді,"}
+{"category": "LocationDialogue Location3", "line_index": 386, "text": "Бірақ сен заттар көрмейсің,"}
+{"category": "LocationDialogue Location3", "line_index": 387, "text": "Не алыста болады."}
+{"category": "LocationDialogue Location3", "line_index": 388, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 389, "text": "Бұл тіпті байқалмайтындай"}
+{"category": "LocationDialogue Location3", "line_index": 390, "text": "Стилді көрінеді."}
+{"category": "LocationDialogue Location3", "line_index": 391, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 392, "text": "Аһа)"}
+{"category": "LocationDialogue Location3", "line_index": 393, "text": "Барлығы лаг болмасын үшін."}
+{"category": "LocationDialogue Location3", "line_index": 394, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 395, "text": "«Лаг болмасы»?"}
+{"category": "LocationDialogue Location3", "line_index": 396, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 397, "text": "Угум, багтар бар."}
+{"category": "LocationDialogue Location3", "line_index": 398, "text": "Сенемін, сен оның кездестірмейсің."}
+{"category": "LocationDialogue Location3", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 400, "text": "// Quest 5 - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 401, "text": "Қайшы орнына пышақ па?"}
+{"category": "LocationDialogue Location3", "line_index": 402, "text": "Мен тұздықты пышақпен аша аламын."}
+{"category": "LocationDialogue Location3", "line_index": 403, "text": "Бірақ мен келдім,"}
+{"category": "LocationDialogue Location3", "line_index": 404, "text": "Мұнда бәрі дайын болу үшін,"}
+{"category": "LocationDialogue Location3", "line_index": 405, "text": "Сол кезде, қашан сен келесің."}
+{"category": "LocationDialogue Location3", "line_index": 406, "text": "Сюрприздер істеуді жақсы көремін."}
+{"category": "LocationDialogue Location3", "line_index": 407, "text": "Ұзақ дайындықтарды көрмес үшін,"}
+{"category": "LocationDialogue Location3", "line_index": 408, "text": "Солаааааааай)"}
+{"category": "LocationDialogue Location3", "line_index": 409, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 410, "text": "// Glasses - Player"}
+{"category": "LocationDialogue Location3", "line_index": 411, "text": "Сен көзілдірік тағасың ба?"}
+{"category": "LocationDialogue Location3", "line_index": 412, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 413, "text": "Жоқ."}
+{"category": "LocationDialogue Location3", "line_index": 414, "text": "Бірақ киіп көруге болады. "}
+{"category": "LocationDialogue Location3", "line_index": 415, "text": "Қалай, маған жараса ма?"}
+{"category": "LocationDialogue Location3", "line_index": 416, "text": "// Mita Yes"}
+{"category": "LocationDialogue Location3", "line_index": 417, "text": "Ал солай."}
+{"category": "LocationDialogue Location3", "line_index": 418, "text": "Енді мен олармен жүремін)"}
+{"category": "LocationDialogue Location3", "line_index": 419, "text": "// Mita No"}
+{"category": "LocationDialogue Location3", "line_index": 420, "text": "Ал-л-л,"}
+{"category": "LocationDialogue Location3", "line_index": 421, "text": "Жарайды..."}
+{"category": "LocationDialogue Location3", "line_index": 422, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 423, "text": "// Use the sauce - Player"}
+{"category": "LocationDialogue Location3", "line_index": 424, "text": "Жақсы."}
+{"category": "LocationDialogue Location3", "line_index": 425, "text": "Мынау қандай тұздығы?"}
+{"category": "LocationDialogue Location3", "line_index": 426, "text": "// Mita"}
+{"category": "LocationDialogue Location3", "line_index": 427, "text": "Бұл махаббат тұздығы!"}
+{"category": "LocationDialogue Location3", "line_index": 428, "text": "Махаббаттың хош иістері"}
+{"category": "LocationDialogue Location3", "line_index": 429, "text": "Және әлемге қараудың контрастты көзқарасы бар.)"}
+{"category": "LocationDialogue Location3", "line_index": 430, "text": "Ерекше сезіледі, иә?"}
+{"category": "LocationDialogue Location3", "line_index": 431, "text": "// Player"}
+{"category": "LocationDialogue Location3", "line_index": 432, "text": "Иә..."}
+{"category": "LocationDialogue Location3", "line_index": 433, "text": ""}
+{"category": "LocationDialogue Location3", "line_index": 434, "text": "// Tetris - Mita"}
+{"category": "LocationDialogue Location3", "line_index": 435, "text": "Бұл сенде осындай қосымша ма? "}
+{"category": "LocationDialogue Location3", "line_index": 436, "text": "Қызық."}

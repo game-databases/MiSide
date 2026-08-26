@@ -1,0 +1,49 @@
+# STAGED CI workflow for MiSide site (AC S10 + FRAMEWORK §8 gates).
+#
+# GitHub reads workflows only from the superproject ROOT .github/workflows/.
+# This file lives at MiSide/site/ci/ because the scaffold's write scope is
+# site/-local; the orchestrator installs it at the repo root as
+# .github/workflows/miside-site.yml (path-filtered to MiSide/**).
+name: miside-site
+
+on:
+  push:
+    paths: ["MiSide/site/**", "MiSide/extracted/**", "MiSide/contracts/**"]
+  pull_request:
+    paths: ["MiSide/site/**"]
+
+jobs:
+  build-and-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install (single node_modules)
+        working-directory: MiSide/site
+        run: npm ci --no-audit --no-fund
+      - name: Unit self-checks (S6/S7/S12/S13)
+        working-directory: MiSide/site
+        run: npm test
+      - name: Chrome parity (S4)
+        working-directory: MiSide/site
+        run: node scripts/check-chrome-parity.mjs
+      - name: Negative third-party-map grep (S7 gate)
+        working-directory: MiSide/site
+        run: node scripts/check-no-third-party-maps.mjs
+      - name: Emit machine plane + build (S1/S11)
+        working-directory: MiSide/site
+        env:
+          REVALIDATE_SECRET: ci-placeholder
+        run: npm run build
+      - name: Start production server
+        working-directory: MiSide/site
+        run: |
+          npm run start &
+          npx wait-on http://localhost:3000 --timeout 60000
+      - name: CWV budgets (S10)
+        working-directory: MiSide/site
+        run: |
+          npm i -g lighthouse
+          node scripts/check-cwv.mjs --base http://localhost:3000

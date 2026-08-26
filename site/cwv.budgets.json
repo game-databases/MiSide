@@ -1,0 +1,42 @@
+{
+  "$comment": "CWV budgets per distinct template × canonical locale (spec §1.2, AC S10; seo-standard §4; FRAMEWORK §8). Lab traces: LCP < 2.5 s, scripted-interaction latency < 200 ms, CLS < 0.1 — mobile and desktop. canonicalLocale en = the pivot; every distinct template appears once here. Runner: scripts/check-cwv.mjs (Lighthouse via npx when available); CI wiring staged at ci/github-workflow-ci.yml.",
+  "canonicalLocale": "en",
+  "budgets": {
+    "lcpMs": 2500,
+    "interactionLatencyMs": 200,
+    "cls": 0.1
+  },
+  "templates": [
+    { "template": "home", "url": "/", "formFactors": ["mobile", "desktop"] },
+    {
+      "template": "entity-detail-mita",
+      "url": "/mita/mita-usual",
+      "formFactors": ["mobile", "desktop"]
+    },
+    {
+      "template": "entity-detail-achievement",
+      "url": "/achievements/ACHI_supermegapuperplayer",
+      "formFactors": ["mobile", "desktop"]
+    },
+    {
+      "template": "section-index-cartridges",
+      "url": "/cartridges",
+      "formFactors": ["mobile", "desktop"]
+    },
+    {
+      "template": "dialogue-view",
+      "url": "/dialogue/level9",
+      "formFactors": ["mobile", "desktop"]
+    },
+    {
+      "template": "map-shell",
+      "url": "/map",
+      "formFactors": ["mobile", "desktop"]
+    },
+    {
+      "template": "tool-shell-stub",
+      "url": "/tools",
+      "formFactors": ["mobile", "desktop"]
+    }
+  ]
+}

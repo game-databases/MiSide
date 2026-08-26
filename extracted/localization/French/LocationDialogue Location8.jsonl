@@ -1,0 +1,84 @@
+{"category": "LocationDialogue Location8", "line_index": 0, "text": "// The first meeting - Player"}
+{"category": "LocationDialogue Location8", "line_index": 1, "text": "Qui es-tu ?"}
+{"category": "LocationDialogue Location8", "line_index": 2, "text": "Qu'est-ce qu'il t'est arrivé ?"}
+{"category": "LocationDialogue Location8", "line_index": 3, "text": "Tu ne parles pas ?"}
+{"category": "LocationDialogue Location8", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 5, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 6, "text": "Attends..."}
+{"category": "LocationDialogue Location8", "line_index": 7, "text": "Tu veux sortir d'ici ?"}
+{"category": "LocationDialogue Location8", "line_index": 8, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 9, "text": "Oui."}
+{"category": "LocationDialogue Location8", "line_index": 10, "text": "Je dois me rendre"}
+{"category": "LocationDialogue Location8", "line_index": 11, "text": "dans la version précédente."}
+{"category": "LocationDialogue Location8", "line_index": 12, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 13, "text": "La version précédente ?"}
+{"category": "LocationDialogue Location8", "line_index": 14, "text": "Pourquoi tu dois"}
+{"category": "LocationDialogue Location8", "line_index": 15, "text": "partir ?"}
+{"category": "LocationDialogue Location8", "line_index": 16, "text": "Tu pourrais rester..."}
+{"category": "LocationDialogue Location8", "line_index": 17, "text": "et devenir mon"}
+{"category": "LocationDialogue Location8", "line_index": 18, "text": "deuxième ami."}
+{"category": "LocationDialogue Location8", "line_index": 19, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 20, "text": "// Skipping all dialogs - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 21, "text": "D'accord..."}
+{"category": "LocationDialogue Location8", "line_index": 22, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 23, "text": "// standing by the window (Random) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 24, "text": "Les portes ne mènent nulle part."}
+{"category": "LocationDialogue Location8", "line_index": 25, "text": "Ne te précipite pas autant..."}
+{"category": "LocationDialogue Location8", "line_index": 26, "text": "Tourner en rond ne sert à rien."}
+{"category": "LocationDialogue Location8", "line_index": 27, "text": "Tu tiens tant à t'en aller ?"}
+{"category": "LocationDialogue Location8", "line_index": 28, "text": "Pense à la fenêtre."}
+{"category": "LocationDialogue Location8", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 31, "text": "// quest 1 (Aren't you Mita?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 32, "text": "Un joueur... tu es un joueur, n'est-ce pas ?"}
+{"category": "LocationDialogue Location8", "line_index": 33, "text": "On pourrait jouer ensemble."}
+{"category": "LocationDialogue Location8", "line_index": 34, "text": "Si j'en trouve la force,"}
+{"category": "LocationDialogue Location8", "line_index": 35, "text": "j'aimerais tellement que l'on joue."}
+{"category": "LocationDialogue Location8", "line_index": 36, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 37, "text": "// quest 2 (What happened to you?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 38, "text": "Je ne sais pas... ou plutôt... je n'en suis pas sûre."}
+{"category": "LocationDialogue Location8", "line_index": 39, "text": "Je ne pense pas que quelque chose de mal soit arrivé."}
+{"category": "LocationDialogue Location8", "line_index": 40, "text": "Mais de moins en moins de bonnes choses m'arrivent..."}
+{"category": "LocationDialogue Location8", "line_index": 41, "text": "Malgré tout, j'ai un ami."}
+{"category": "LocationDialogue Location8", "line_index": 42, "text": "Des joueurs, je n'en vois plus..."}
+{"category": "LocationDialogue Location8", "line_index": 43, "text": "Pourquoi personne ne me rend visite ?"}
+{"category": "LocationDialogue Location8", "line_index": 44, "text": "J'ai peur..."}
+{"category": "LocationDialogue Location8", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 46, "text": "// quest 3 (Become a second friend?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 47, "text": "Les amis..."}
+{"category": "LocationDialogue Location8", "line_index": 48, "text": "Ils me glissent tous entre les doigts,"}
+{"category": "LocationDialogue Location8", "line_index": 49, "text": "il ne m'en reste plus qu'un..."}
+{"category": "LocationDialogue Location8", "line_index": 50, "text": "Ça me rend si triste, joueur."}
+{"category": "LocationDialogue Location8", "line_index": 51, "text": "Tu pourrais être mon ami ?"}
+{"category": "LocationDialogue Location8", "line_index": 52, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 53, "text": "J'aimerais bien,"}
+{"category": "LocationDialogue Location8", "line_index": 54, "text": "mais je dois continuer d'avancer."}
+{"category": "LocationDialogue Location8", "line_index": 55, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 56, "text": "J'ai le cœur brisé..."}
+{"category": "LocationDialogue Location8", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 58, "text": "// quest 4 (Is this your house?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 59, "text": "Ma maison ?"}
+{"category": "LocationDialogue Location8", "line_index": 60, "text": "Joueur... tu as tellement changé."}
+{"category": "LocationDialogue Location8", "line_index": 61, "text": "Tes bras sont plus courts, et ton visage n'est plus en colère..."}
+{"category": "LocationDialogue Location8", "line_index": 62, "text": "Joueur, tu es devenu si gentil et calme."}
+{"category": "LocationDialogue Location8", "line_index": 63, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 64, "text": "Je ne comprends pas"}
+{"category": "LocationDialogue Location8", "line_index": 65, "text": "ce que tu veux dire."}
+{"category": "LocationDialogue Location8", "line_index": 66, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 67, "text": "Peu importe..."}
+{"category": "LocationDialogue Location8", "line_index": 68, "text": "Au moins on ne me fera plus de mal maintenant, n’est-ce pas ?"}
+{"category": "LocationDialogue Location8", "line_index": 69, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 70, "text": "// quest 5 (How do I leave this place?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 71, "text": "Tu souhaites me laisser seule, joueur ?"}
+{"category": "LocationDialogue Location8", "line_index": 72, "text": "Je suppose que c'est..."}
+{"category": "LocationDialogue Location8", "line_index": 73, "text": "ma destinée ?"}
+{"category": "LocationDialogue Location8", "line_index": 74, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 75, "text": "Je..."}
+{"category": "LocationDialogue Location8", "line_index": 76, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 77, "text": "Les portes ne te mèneront nulle part."}
+{"category": "LocationDialogue Location8", "line_index": 78, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 79, "text": "// Hold player (Random) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 80, "text": "Pourquoi tu t'en vas ?"}
+{"category": "LocationDialogue Location8", "line_index": 81, "text": "Reste encore un peu..."}
+{"category": "LocationDialogue Location8", "line_index": 82, "text": "Joue avec moi !"}
+{"category": "LocationDialogue Location8", "line_index": 83, "text": "Joueur..."}

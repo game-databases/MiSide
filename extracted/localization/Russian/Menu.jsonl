@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "новая игра"}
+{"category": "Menu", "line_index": 1, "text": "продолжить"}
+{"category": "Menu", "line_index": 2, "text": "главное меню"}
+{"category": "Menu", "line_index": 3, "text": "выход"}
+{"category": "Menu", "line_index": 4, "text": "настройки"}
+{"category": "Menu", "line_index": 5, "text": "достижения"}
+{"category": "Menu", "line_index": 6, "text": "авторы"}
+{"category": "Menu", "line_index": 7, "text": "назад"}
+{"category": "Menu", "line_index": 8, "text": "загрузить"}
+{"category": "Menu", "line_index": 9, "text": "язык"}
+{"category": "Menu", "line_index": 10, "text": "загрузка..."}
+{"category": "Menu", "line_index": 11, "text": "графика"}
+{"category": "Menu", "line_index": 12, "text": "громкость"}
+{"category": "Menu", "line_index": 13, "text": "клавиатура и мышь"}
+{"category": "Menu", "line_index": 14, "text": "геймпад"}
+{"category": "Menu", "line_index": 15, "text": "разрешение экрана"}
+{"category": "Menu", "line_index": 16, "text": "режим окна"}
+{"category": "Menu", "line_index": 17, "text": "графические эффекты"}
+{"category": "Menu", "line_index": 18, "text": "цветовые эффекты"}
+{"category": "Menu", "line_index": 19, "text": "мягкие тени"}
+{"category": "Menu", "line_index": 20, "text": "размытие"}
+{"category": "Menu", "line_index": 21, "text": "блики"}
+{"category": "Menu", "line_index": 22, "text": "сглаживание"}
+{"category": "Menu", "line_index": 23, "text": "тени"}
+{"category": "Menu", "line_index": 24, "text": "качество мира"}
+{"category": "Menu", "line_index": 25, "text": "программирование"}
+{"category": "Menu", "line_index": 26, "text": "анимация"}
+{"category": "Menu", "line_index": 27, "text": "звуки"}
+{"category": "Menu", "line_index": 28, "text": "музыка"}
+{"category": "Menu", "line_index": 29, "text": "частицы"}
+{"category": "Menu", "line_index": 30, "text": "текстуры"}
+{"category": "Menu", "line_index": 31, "text": "3D-модели (98%)"}
+{"category": "Menu", "line_index": 32, "text": "сценарий"}
+{"category": "Menu", "line_index": 33, "text": "сбросить"}
+{"category": "Menu", "line_index": 34, "text": "вперёд"}
+{"category": "Menu", "line_index": 35, "text": "назад"}
+{"category": "Menu", "line_index": 36, "text": "налево"}
+{"category": "Menu", "line_index": 37, "text": "направо"}
+{"category": "Menu", "line_index": 38, "text": "взаимодействие"}
+{"category": "Menu", "line_index": 39, "text": "чувствительность мыши"}
+{"category": "Menu", "line_index": 40, "text": "выйти из игры?"}
+{"category": "Menu", "line_index": 41, "text": "да"}
+{"category": "Menu", "line_index": 42, "text": "нет"}
+{"category": "Menu", "line_index": 43, "text": "выйти в главное меню"}
+{"category": "Menu", "line_index": 44, "text": "плавные повороты"}
+{"category": "Menu", "line_index": 45, "text": "настройки игры"}
+{"category": "Menu", "line_index": 46, "text": "стиль теней"}
+{"category": "Menu", "line_index": 47, "text": "одежда"}
+{"category": "Menu", "line_index": 48, "text": "интерфейс"}
+{"category": "Menu", "line_index": 49, "text": "3D-модели (2%)"}
+{"category": "Menu", "line_index": 50, "text": "громкость голоса"}
+{"category": "Menu", "line_index": 51, "text": "пауза"}
+{"category": "Menu", "line_index": 52, "text": "меню"}
+{"category": "Menu", "line_index": 53, "text": "поздравляю, игра пройдена!"}
+{"category": "Menu", "line_index": 54, "text": "ваше время прохождения:"}
+{"category": "Menu", "line_index": 55, "text": "субтитры"}
+{"category": "Menu", "line_index": 56, "text": "яркость"}
+{"category": "Menu", "line_index": 57, "text": "вертикальная синхронизация"}
+{"category": "Menu", "line_index": 58, "text": "сохранено"}
+{"category": "Menu", "line_index": 59, "text": "персонажи"}
+{"category": "Menu", "line_index": 60, "text": "персонажи — Мита"}
+{"category": "Menu", "line_index": 61, "text": "персонажи — Картриджи"}
+{"category": "Menu", "line_index": 62, "text": "картриджи"}
+{"category": "Menu", "line_index": 63, "text": "Миты"}
+{"category": "Menu", "line_index": 64, "text": "Начать с чистого листа"}
+{"category": "Menu", "line_index": 65, "text": "Уверены, что хотите полностью удалить все сохранения и начать с чистого листа?"}
+{"category": "Menu", "line_index": 66, "text": "Компилирую шейдеры — это займёт два часа, подождите, пожалуйста"}
+{"category": "Menu", "line_index": 67, "text": "А, какая компиляция? Это мы сделали за вас!"}
+{"category": "Menu", "line_index": 68, "text": "Создаю реалистичную трассировку теней — это займёт 10 минут"}
+{"category": "Menu", "line_index": 69, "text": "Шучу, здесь нет такой графики"}
+{"category": "Menu", "line_index": 70, "text": "Эм-м..."}
+{"category": "Menu", "line_index": 71, "text": "А, точно, загрузились!"}
+{"category": "Menu", "line_index": 72, "text": "покачивание при ходьбе"}
+{"category": "Menu", "line_index": 73, "text": "выводить подсказку на экран"}
+{"category": "Menu", "line_index": 74, "text": "голос игрока"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "добавлено описание персонажа"}
+{"category": "Menu", "line_index": 77, "text": "угол обзора"}
+{"category": "Menu", "line_index": 78, "text": "озвучка"}
+{"category": "Menu", "line_index": 79, "text": "отключено"}
+{"category": "Menu", "line_index": 80, "text": "тянуть руку к двери"}
+{"category": "Menu", "line_index": 81, "text": "анимация"}
+{"category": "Menu", "line_index": 82, "text": "включить голос игрока"}
+{"category": "Menu", "line_index": 83, "text": "Мита"}
+{"category": "Menu", "line_index": 84, "text": "Мита коротковолосая"}
+{"category": "Menu", "line_index": 85, "text": "Мита добрая"}
+{"category": "Menu", "line_index": 86, "text": "Мита Кепочка"}
+{"category": "Menu", "line_index": 87, "text": "Мита маленькая"}
+{"category": "Menu", "line_index": 88, "text": "Мита сонная"}
+{"category": "Menu", "line_index": 89, "text": "Мита 2D"}
+{"category": "Menu", "line_index": 90, "text": "Мила"}
+{"category": "Menu", "line_index": 91, "text": "Мита жуткая"}
+{"category": "Menu", "line_index": 92, "text": "Мита ядро"}
+{"category": "Menu", "line_index": 93, "text": "Мита призрачная"}
+{"category": "Menu", "line_index": 94, "text": "Мита чиби"}
+{"category": "Menu", "line_index": 95, "text": "Мита манекен"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "Я в игре?"}
+{"category": "Menu", "line_index": 101, "text": "Мы вместе"}
+{"category": "Menu", "line_index": 102, "text": "Начало странностей"}
+{"category": "Menu", "line_index": 103, "text": "Подвал"}
+{"category": "Menu", "line_index": 104, "text": "За миром"}
+{"category": "Menu", "line_index": 105, "text": "Цикличная версия"}
+{"category": "Menu", "line_index": 106, "text": "Маленькая Мита"}
+{"category": "Menu", "line_index": 107, "text": "Манекены и забытые пазлы"}
+{"category": "Menu", "line_index": 108, "text": "Она хочет спать"}
+{"category": "Menu", "line_index": 109, "text": "Новелла"}
+{"category": "Menu", "line_index": 110, "text": "Читаем книги и разрушаем глюки"}
+{"category": "Menu", "line_index": 111, "text": "Беги и прячься!"}
+{"category": "Menu", "line_index": 112, "text": "Старая версия"}
+{"category": "Menu", "line_index": 113, "text": "Откровенный диалог"}
+{"category": "Menu", "line_index": 114, "text": "Перезагрузка"}
+{"category": "Menu", "line_index": 115, "text": "Кепка"}
+{"category": "Menu", "line_index": 116, "text": "Призрачная"}
+{"category": "Menu", "line_index": 117, "text": "Реальный мир"}
+{"category": "Menu", "line_index": 118, "text": "Прочь из ядра!"}
+{"category": "Menu", "line_index": 119, "text": "Игрок 1"}
+{"category": "Menu", "line_index": 120, "text": "Игрок 2"}
+{"category": "Menu", "line_index": 121, "text": "Игрок 3"}
+{"category": "Menu", "line_index": 122, "text": "Игрок 4"}
+{"category": "Menu", "line_index": 123, "text": "Игрок 5"}
+{"category": "Menu", "line_index": 124, "text": "Игрок 6"}
+{"category": "Menu", "line_index": 125, "text": "Игрок 7"}
+{"category": "Menu", "line_index": 126, "text": "Игрок 8"}
+{"category": "Menu", "line_index": 127, "text": "Игрок 9"}
+{"category": "Menu", "line_index": 128, "text": "Игрок 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Мирный режим"}
+{"category": "Menu", "line_index": 131, "text": "Этот режим находится в разработке. Режим оказался настолько большим, что разработчики ещё не успели его сделать! В скором времени они выпустят его одним крупным обновлением для игры. А ты — молодец: постарался и открыл к нему доступ! Теперь остаётся только подождать..."}
+{"category": "Menu", "line_index": 132, "text": "Что представляет собой мирный режим? Ну, тебе представится возможность снова вернуться к Мите! Она будет очень рада провести с тобой больше времени с утра до ночи, которое будет наполнено разнообразными развлечениями. Тебя ждут разговоры тет-а-тет, кукинги, игры и забавные ситуации!"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "цензура"}
+{"category": "Menu", "line_index": 136, "text": "Также помогали:"}
+{"category": "Menu", "line_index": 137, "text": "Иконки достижений: Icecloud"}
+{"category": "Menu", "line_index": 138, "text": "Фотографии в рамках: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Переводчики"}
+{"category": "Menu", "line_index": 140, "text": "Перевод игры на другой язык."}
+{"category": "Menu", "line_index": 141, "text": "Партнёр по изданию"}
+{"category": "Menu", "line_index": 142, "text": "Маркетинг игры."}
+{"category": "Menu", "line_index": 143, "text": "Тестирование"}
+{"category": "Menu", "line_index": 144, "text": "Играли и искали ошибки."}
+{"category": "Menu", "line_index": 145, "text": "Перевод на данный язык выполнен энтузиастами из фан-сообщества и добавлен в игру по их просьбе."}
+{"category": "Menu", "line_index": 146, "text": "Внимание! В игре присутствуют скримеры , содержащие громкие звуки и вспыхивающие визуальные эффекты. Некоторые моменты в игре могут быть опасными для лиц, имеющих проблемы с сердцем или страдающих от эпилептических припадков. Просим вас быть осторожными."}
+{"category": "Menu", "line_index": 147, "text": "Открыт доступ к мирному режиму!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Фоторежим"}
+{"category": "Menu", "line_index": 150, "text": "Фоторежим: Все ограничение на полет сняты, поэтому вы можете увидеть то, чего не должны."}
+{"category": "Menu", "line_index": 151, "text": "Выйти из фоторежима"}
+{"category": "Menu", "line_index": 152, "text": "Скрыть интерфейс"}
+{"category": "Menu", "line_index": 153, "text": "Удерживайте для движения камеры"}
+{"category": "Menu", "line_index": 154, "text": "Ускорить движение"}
+{"category": "Menu", "line_index": 155, "text": "Плавное движение"}
+{"category": "Menu", "line_index": 156, "text": "Скорость"}
+{"category": "Menu", "line_index": 157, "text": "Эффекты"}
+{"category": "Menu", "line_index": 158, "text": "Управление временем"}
+{"category": "Menu", "line_index": 159, "text": "Яркость"}
+{"category": "Menu", "line_index": 160, "text": "Контрастность"}
+{"category": "Menu", "line_index": 161, "text": "Виньетка"}
+{"category": "Menu", "line_index": 162, "text": "Скриншот!"}
+{"category": "Menu", "line_index": 163, "text": "Открыть папку со скриншотами"}
+{"category": "Menu", "line_index": 164, "text": "Угол наклона камеры"}

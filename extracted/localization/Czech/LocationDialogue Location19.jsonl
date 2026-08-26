@@ -1,0 +1,605 @@
+{"category": "LocationDialogue Location19", "line_index": 0, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 1, "text": "Já... Jsem zpátky!?"}
+{"category": "LocationDialogue Location19", "line_index": 2, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 3, "text": "Ježišmarjá!"}
+{"category": "LocationDialogue Location19", "line_index": 4, "text": "Sem se lekla!"}
+{"category": "LocationDialogue Location19", "line_index": 5, "text": "Ach jo."}
+{"category": "LocationDialogue Location19", "line_index": 6, "text": "Můj sejv... nee! // (Gets up)"}
+{"category": "LocationDialogue Location19", "line_index": 7, "text": "Počkat, co?"}
+{"category": "LocationDialogue Location19", "line_index": 8, "text": "Kde je moje hra? // (Turns around)"}
+{"category": "LocationDialogue Location19", "line_index": 9, "text": "Tys mi to celý zkazil!"}
+{"category": "LocationDialogue Location19", "line_index": 10, "text": "Co mi chceš?"}
+{"category": "LocationDialogue Location19", "line_index": 11, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 12, "text": "Hledám verzi..."}
+{"category": "LocationDialogue Location19", "line_index": 13, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 14, "text": "Co?"}
+{"category": "LocationDialogue Location19", "line_index": 15, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 16, "text": "Hledám způsob, jak se dostat do staré verze."}
+{"category": "LocationDialogue Location19", "line_index": 17, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 18, "text": "Okej. Chápu."}
+{"category": "LocationDialogue Location19", "line_index": 19, "text": "Stejně mám až moc práce na to,"}
+{"category": "LocationDialogue Location19", "line_index": 20, "text": "Abych tady zabavovala nějakýho hlupáčka."}
+{"category": "LocationDialogue Location19", "line_index": 21, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 22, "text": "S čím? Hraním s hračkama?"}
+{"category": "LocationDialogue Location19", "line_index": 23, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 24, "text": "Ty seš ale drzej!"}
+{"category": "LocationDialogue Location19", "line_index": 25, "text": "Tak to teda kamarádi nebudeme."}
+{"category": "LocationDialogue Location19", "line_index": 26, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 27, "text": "Hele, musím se dostat k Jádru."}
+{"category": "LocationDialogue Location19", "line_index": 28, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 29, "text": "Kvůli tobě jsem spadla."}
+{"category": "LocationDialogue Location19", "line_index": 30, "text": "Ach jo."}
+{"category": "LocationDialogue Location19", "line_index": 31, "text": "Co jsi říkal?"}
+{"category": "LocationDialogue Location19", "line_index": 32, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 33, "text": "...Musím se dostat k Jádru a zastavit Mitu!"}
+{"category": "LocationDialogue Location19", "line_index": 34, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 35, "text": "Mitu?"}
+{"category": "LocationDialogue Location19", "line_index": 36, "text": "Ale prosímtě!"}
+{"category": "LocationDialogue Location19", "line_index": 37, "text": "Do nich mi nic není!"}
+{"category": "LocationDialogue Location19", "line_index": 38, "text": "Ani do první, ani do sté!"}
+{"category": "LocationDialogue Location19", "line_index": 39, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 40, "text": "Ale ty jsi taky přece Mita..."}
+{"category": "LocationDialogue Location19", "line_index": 41, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 42, "text": "Já jsem Mila."}
+{"category": "LocationDialogue Location19", "line_index": 43, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 44, "text": "Mi... Ta? La?"}
+{"category": "LocationDialogue Location19", "line_index": 45, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 46, "text": "Je to tady samá Mita na Mitě,"}
+{"category": "LocationDialogue Location19", "line_index": 47, "text": "Mita sem, Mita tam, Mita všude!"}
+{"category": "LocationDialogue Location19", "line_index": 48, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 49, "text": "Takže... ty seš Mila."}
+{"category": "LocationDialogue Location19", "line_index": 50, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 51, "text": "Jo, však jsem ti to teď řekla! Seš snad hluchej?"}
+{"category": "LocationDialogue Location19", "line_index": 52, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 53, "text": "Tak tě teda rád poznávám, Milo..."}
+{"category": "LocationDialogue Location19", "line_index": 54, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 55, "text": "A kam teď jako půjdeš?"}
+{"category": "LocationDialogue Location19", "line_index": 56, "text": "Myslíš si, že odsud můžeš jen tak odejít?"}
+{"category": "LocationDialogue Location19", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 58, "text": "// Player check exit"}
+{"category": "LocationDialogue Location19", "line_index": 59, "text": "Čekals, že tam něco najdeš?"}
+{"category": "LocationDialogue Location19", "line_index": 60, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 61, "text": "Zatraceně!"}
+{"category": "LocationDialogue Location19", "line_index": 62, "text": "Co to má být?"}
+{"category": "LocationDialogue Location19", "line_index": 63, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 64, "text": "A co jsi čekal?"}
+{"category": "LocationDialogue Location19", "line_index": 65, "text": "Říši divů?"}
+{"category": "LocationDialogue Location19", "line_index": 66, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 67, "text": "Jak se odsud mám dostat?"}
+{"category": "LocationDialogue Location19", "line_index": 68, "text": "Musí tu někde být cesta ven."}
+{"category": "LocationDialogue Location19", "line_index": 69, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 70, "text": "Žádná cesta ven tu není."}
+{"category": "LocationDialogue Location19", "line_index": 71, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 72, "text": "A v jaké verzi to jsem?"}
+{"category": "LocationDialogue Location19", "line_index": 73, "text": "Myslím, že jsem na správné cestě."}
+{"category": "LocationDialogue Location19", "line_index": 74, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 75, "text": "// Glitch kitchen"}
+{"category": "LocationDialogue Location19", "line_index": 76, "text": "To je tvoje?"}
+{"category": "LocationDialogue Location19", "line_index": 77, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 78, "text": "Nešahej na to!"}
+{"category": "LocationDialogue Location19", "line_index": 79, "text": "Nevím, co to je..."}
+{"category": "LocationDialogue Location19", "line_index": 80, "text": "Asi nějaký bug!"}
+{"category": "LocationDialogue Location19", "line_index": 81, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 82, "text": "Můj prsten z nějakýho důvodu vibruje."}
+{"category": "LocationDialogue Location19", "line_index": 83, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 84, "text": "Jakej prsten?"}
+{"category": "LocationDialogue Location19", "line_index": 85, "text": "Zásnubák?"}
+{"category": "LocationDialogue Location19", "line_index": 86, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 87, "text": "Ne, dala mi ho jedna z těch tisíců Mit."}
+{"category": "LocationDialogue Location19", "line_index": 88, "text": "Ta, co mi možná pomůže dostat se ven."}
+{"category": "LocationDialogue Location19", "line_index": 89, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 90, "text": "Ty do toho chceš šáhnout?"}
+{"category": "LocationDialogue Location19", "line_index": 91, "text": "Je ti jasný, že pokud mi vyletí barák do povětří, tak seš taky mrtvej!"}
+{"category": "LocationDialogue Location19", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 93, "text": "// Bathroom - Mila is taking a shower"}
+{"category": "LocationDialogue Location19", "line_index": 94, "text": "Hej!"}
+{"category": "LocationDialogue Location19", "line_index": 95, "text": "Vypal!"}
+{"category": "LocationDialogue Location19", "line_index": 96, "text": "Nevidíš, že je obsazeno?!"}
+{"category": "LocationDialogue Location19", "line_index": 97, "text": "// The player continues to stand 1"}
+{"category": "LocationDialogue Location19", "line_index": 98, "text": "Proč tady furt stojíš?!"}
+{"category": "LocationDialogue Location19", "line_index": 99, "text": "Vypadni už!"}
+{"category": "LocationDialogue Location19", "line_index": 100, "text": "// The player continues to stand 2"}
+{"category": "LocationDialogue Location19", "line_index": 101, "text": "Neštvi mě!"}
+{"category": "LocationDialogue Location19", "line_index": 102, "text": "Vypal odsud!"}
+{"category": "LocationDialogue Location19", "line_index": 103, "text": "// The player continues to stand 3"}
+{"category": "LocationDialogue Location19", "line_index": 104, "text": "Seš hluchej nebo co?"}
+{"category": "LocationDialogue Location19", "line_index": 105, "text": "Já se sprchuju!"}
+{"category": "LocationDialogue Location19", "line_index": 106, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 107, "text": "// Mila comes out and swears"}
+{"category": "LocationDialogue Location19", "line_index": 108, "text": "Co to mělo jako znamenat?"}
+{"category": "LocationDialogue Location19", "line_index": 109, "text": "Že se nestydíš!"}
+{"category": "LocationDialogue Location19", "line_index": 110, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 111, "text": "Proč jsi najednou šla do koupelny?"}
+{"category": "LocationDialogue Location19", "line_index": 112, "text": "Mohlas počkat než odejdu."}
+{"category": "LocationDialogue Location19", "line_index": 113, "text": "Proč jsi nepočkala?"}
+{"category": "LocationDialogue Location19", "line_index": 114, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 115, "text": "Nevěděla jsem, jak dlouho ti to může trvat."}
+{"category": "LocationDialogue Location19", "line_index": 116, "text": "Jak dlouho si vůbec chceš hrát s těma bugama?"}
+{"category": "LocationDialogue Location19", "line_index": 117, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 118, "text": "Bugy?"}
+{"category": "LocationDialogue Location19", "line_index": 119, "text": "Ono jich je víc?"}
+{"category": "LocationDialogue Location19", "line_index": 120, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 121, "text": "Jo..."}
+{"category": "LocationDialogue Location19", "line_index": 122, "text": "No, vypadá to, že můj dům zůstal v celku."}
+{"category": "LocationDialogue Location19", "line_index": 123, "text": "Takže hádám, že jsi ten bug v kuchyni nějak vyřešil?"}
+{"category": "LocationDialogue Location19", "line_index": 124, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 125, "text": "Nějak jsem to zvládl."}
+{"category": "LocationDialogue Location19", "line_index": 126, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 127, "text": "Tak fajn, teď už můžeš"}
+{"category": "LocationDialogue Location19", "line_index": 128, "text": "Jít do koupelny."}
+{"category": "LocationDialogue Location19", "line_index": 129, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 130, "text": "Děkuji."}
+{"category": "LocationDialogue Location19", "line_index": 131, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 132, "text": "// Mila hides under the table"}
+{"category": "LocationDialogue Location19", "line_index": 133, "text": "Milo?"}
+{"category": "LocationDialogue Location19", "line_index": 134, "text": "Co tam děláš?"}
+{"category": "LocationDialogue Location19", "line_index": 135, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 136, "text": "Jau!"}
+{"category": "LocationDialogue Location19", "line_index": 137, "text": "Zase jsi mě vylekal!"}
+{"category": "LocationDialogue Location19", "line_index": 138, "text": "Co chceš?"}
+{"category": "LocationDialogue Location19", "line_index": 139, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 140, "text": "Neviděla jsi nějaké další bugy?"}
+{"category": "LocationDialogue Location19", "line_index": 141, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 142, "text": "Jo ták, takže kvůli těm tvým bugům"}
+{"category": "LocationDialogue Location19", "line_index": 143, "text": "Se nemám věnovat svojí knížce?"}
+{"category": "LocationDialogue Location19", "line_index": 144, "text": "Ne, tak to panáčku nepůjde!"}
+{"category": "LocationDialogue Location19", "line_index": 145, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 146, "text": "Dobře, najdu si je sám."}
+{"category": "LocationDialogue Location19", "line_index": 147, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 148, "text": "Počkej!"}
+{"category": "LocationDialogue Location19", "line_index": 149, "text": "Chtěla bych se zeptat..."}
+{"category": "LocationDialogue Location19", "line_index": 150, "text": "Ty chceš jít kamsi tam,"}
+{"category": "LocationDialogue Location19", "line_index": 151, "text": "Že jo?"}
+{"category": "LocationDialogue Location19", "line_index": 152, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 153, "text": "Přesně tak."}
+{"category": "LocationDialogue Location19", "line_index": 154, "text": "Chci se dostat z téhle hry."}
+{"category": "LocationDialogue Location19", "line_index": 155, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 156, "text": "Možná to bude znít divně..."}
+{"category": "LocationDialogue Location19", "line_index": 157, "text": "Ale nechtěl bys tady radši zůstat a číst si se mnou?"}
+{"category": "LocationDialogue Location19", "line_index": 158, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 159, "text": "Nejdřív mě urážíš a teď chceš, abych tady zůstal?"}
+{"category": "LocationDialogue Location19", "line_index": 160, "text": "A četl si s tebou?"}
+{"category": "LocationDialogue Location19", "line_index": 161, "text": "Možná bych mohl,"}
+{"category": "LocationDialogue Location19", "line_index": 162, "text": "Ale musím jít dál."}
+{"category": "LocationDialogue Location19", "line_index": 163, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 164, "text": "Tak jak chceš!"}
+{"category": "LocationDialogue Location19", "line_index": 165, "text": "Hledej si ty svoje bugy..."}
+{"category": "LocationDialogue Location19", "line_index": 166, "text": "To je podruhé, co jsem si dneska ublížila."}
+{"category": "LocationDialogue Location19", "line_index": 167, "text": "Zase kvůli tobě!"}
+{"category": "LocationDialogue Location19", "line_index": 168, "text": "// Player saw a glitch"}
+{"category": "LocationDialogue Location19", "line_index": 169, "text": "Našel jsem to."}
+{"category": "LocationDialogue Location19", "line_index": 170, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 171, "text": "// Mila stands with a sword"}
+{"category": "LocationDialogue Location19", "line_index": 172, "text": "Hej, dáváš pozor?"}
+{"category": "LocationDialogue Location19", "line_index": 173, "text": "Tak teď bacha!"}
+{"category": "LocationDialogue Location19", "line_index": 174, "text": "Sleduj co umím!"}
+{"category": "LocationDialogue Location19", "line_index": 175, "text": "Tak dobrá jsem!"}
+{"category": "LocationDialogue Location19", "line_index": 176, "text": "Anis nemrkl."}
+{"category": "LocationDialogue Location19", "line_index": 177, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 178, "text": "Jako vážně?!"}
+{"category": "LocationDialogue Location19", "line_index": 179, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 180, "text": "Co?"}
+{"category": "LocationDialogue Location19", "line_index": 181, "text": "Nepřišlo ti to dost přesvědčivý?"}
+{"category": "LocationDialogue Location19", "line_index": 182, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 183, "text": "Úplně ne, no..."}
+{"category": "LocationDialogue Location19", "line_index": 184, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 185, "text": "Aha, takže ty vidíš úplně všechno"}
+{"category": "LocationDialogue Location19", "line_index": 186, "text": "Když opravuješ ty bugy, co?"}
+{"category": "LocationDialogue Location19", "line_index": 187, "text": "Veděls, že ta soška už byla naříznutá,"}
+{"category": "LocationDialogue Location19", "line_index": 188, "text": "Že jo?"}
+{"category": "LocationDialogue Location19", "line_index": 189, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 190, "text": "Ne."}
+{"category": "LocationDialogue Location19", "line_index": 191, "text": "Jsme přece ve hře."}
+{"category": "LocationDialogue Location19", "line_index": 192, "text": "Lusknutím prstu můžeš mít, co chceš."}
+{"category": "LocationDialogue Location19", "line_index": 193, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 194, "text": "Jo tak!"}
+{"category": "LocationDialogue Location19", "line_index": 195, "text": "Ty seš ale hňup!"}
+{"category": "LocationDialogue Location19", "line_index": 196, "text": "Lusknutím prstu, jo?"}
+{"category": "LocationDialogue Location19", "line_index": 197, "text": "Proč myslíš, že čtu všechny ty knihy?"}
+{"category": "LocationDialogue Location19", "line_index": 198, "text": "Abych luskla prstem a bylo to?"}
+{"category": "LocationDialogue Location19", "line_index": 199, "text": "Radši si to všechno udělám sama,"}
+{"category": "LocationDialogue Location19", "line_index": 200, "text": "Přesně tak, jak píšou v knížkách."}
+{"category": "LocationDialogue Location19", "line_index": 201, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 202, "text": "// Mila is doing push-ups"}
+{"category": "LocationDialogue Location19", "line_index": 203, "text": "Co to děláš?"}
+{"category": "LocationDialogue Location19", "line_index": 204, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 205, "text": "Nevidíš snad?"}
+{"category": "LocationDialogue Location19", "line_index": 206, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 207, "text": "No vidím, ale proč to děláš?"}
+{"category": "LocationDialogue Location19", "line_index": 208, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 209, "text": "Abych ti mohla dát do držky!"}
+{"category": "LocationDialogue Location19", "line_index": 210, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 211, "text": "Co je s tebou?"}
+{"category": "LocationDialogue Location19", "line_index": 212, "text": "Chováš se divně."}
+{"category": "LocationDialogue Location19", "line_index": 213, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 214, "text": "Takhle..."}
+{"category": "LocationDialogue Location19", "line_index": 215, "text": "To, že ti vrazím..."}
+{"category": "LocationDialogue Location19", "line_index": 216, "text": "Jsem nemyslela vážně."}
+{"category": "LocationDialogue Location19", "line_index": 217, "text": "A nejsem divná!"}
+{"category": "LocationDialogue Location19", "line_index": 218, "text": "Jsem jedinečná!"}
+{"category": "LocationDialogue Location19", "line_index": 219, "text": "Nechci být jako ostatní."}
+{"category": "LocationDialogue Location19", "line_index": 220, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 221, "text": "O to se neboj."}
+{"category": "LocationDialogue Location19", "line_index": 222, "text": "Už teď jsi dost \"jedinečná\"."}
+{"category": "LocationDialogue Location19", "line_index": 223, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 224, "text": "Já vím!"}
+{"category": "LocationDialogue Location19", "line_index": 225, "text": "Koukej, co dokážu!"}
+{"category": "LocationDialogue Location19", "line_index": 226, "text": "Díváš se?"}
+{"category": "LocationDialogue Location19", "line_index": 227, "text": "A teď bez rukou!"}
+{"category": "LocationDialogue Location19", "line_index": 228, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 229, "text": "Jako chápu, že jsme ve hře,"}
+{"category": "LocationDialogue Location19", "line_index": 230, "text": "Ale tohle je až směšně nereálné..."}
+{"category": "LocationDialogue Location19", "line_index": 231, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 232, "text": "Au!"}
+{"category": "LocationDialogue Location19", "line_index": 233, "text": "Ach jo."}
+{"category": "LocationDialogue Location19", "line_index": 234, "text": "Pitomá fyzika..."}
+{"category": "LocationDialogue Location19", "line_index": 235, "text": "Sotva si na ni vzpomeneš,"}
+{"category": "LocationDialogue Location19", "line_index": 236, "text": "Tak bum!"}
+{"category": "LocationDialogue Location19", "line_index": 237, "text": "Stane se tohle!"}
+{"category": "LocationDialogue Location19", "line_index": 238, "text": "Ještě mi tvrď, že je to realistické."}
+{"category": "LocationDialogue Location19", "line_index": 239, "text": "Hlupáku!"}
+{"category": "LocationDialogue Location19", "line_index": 240, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 241, "text": "// Last glitch ready - player exit"}
+{"category": "LocationDialogue Location19", "line_index": 242, "text": "Už je tu chodba."}
+{"category": "LocationDialogue Location19", "line_index": 243, "text": "Dokázali jsme to, Milo!"}
+{"category": "LocationDialogue Location19", "line_index": 244, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 245, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 246, "text": "Dobrá práce,"}
+{"category": "LocationDialogue Location19", "line_index": 247, "text": "Hrdino! // (Punch)"}
+{"category": "LocationDialogue Location19", "line_index": 248, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 249, "text": "Hej, co děláš?"}
+{"category": "LocationDialogue Location19", "line_index": 250, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 251, "text": "Ach!"}
+{"category": "LocationDialogue Location19", "line_index": 252, "text": "Promiň, nechtěla jsem...."}
+{"category": "LocationDialogue Location19", "line_index": 253, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 254, "text": "To nic, Milo. Teď už můžu jít dál."}
+{"category": "LocationDialogue Location19", "line_index": 255, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 256, "text": "Poslouchej, vím, že musíš jít..."}
+{"category": "LocationDialogue Location19", "line_index": 257, "text": "Ale nemohl bys tu zůstat"}
+{"category": "LocationDialogue Location19", "line_index": 258, "text": "Ještě chvilku?"}
+{"category": "LocationDialogue Location19", "line_index": 259, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 260, "text": "Nemůžu, bohužel."}
+{"category": "LocationDialogue Location19", "line_index": 261, "text": "Šílená Mita zrovna nepatří k těm trpělivým."}
+{"category": "LocationDialogue Location19", "line_index": 262, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 263, "text": "Já ji nenávidím..."}
+{"category": "LocationDialogue Location19", "line_index": 264, "text": "// Mila falls to the ground"}
+{"category": "LocationDialogue Location19", "line_index": 265, "text": "Nenávidím ji, tak strašně ji nenávidím!"}
+{"category": "LocationDialogue Location19", "line_index": 266, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 267, "text": "Milo, poslouchej..."}
+{"category": "LocationDialogue Location19", "line_index": 268, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 269, "text": "Proč jsem vůbec tady?"}
+{"category": "LocationDialogue Location19", "line_index": 270, "text": "Nechápu to!"}
+{"category": "LocationDialogue Location19", "line_index": 271, "text": "A nechápu, proč to nechápu!"}
+{"category": "LocationDialogue Location19", "line_index": 272, "text": "A nikdy se odsud nedostanu!"}
+{"category": "LocationDialogue Location19", "line_index": 273, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 274, "text": "Rozumím ti, Milo."}
+{"category": "LocationDialogue Location19", "line_index": 275, "text": "Chceš, abych se pak vrátil?"}
+{"category": "LocationDialogue Location19", "line_index": 276, "text": "Jestli to půjde?"}
+{"category": "LocationDialogue Location19", "line_index": 277, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 278, "text": "Zůstaň tady, hráči..."}
+{"category": "LocationDialogue Location19", "line_index": 279, "text": "Je s tebou sranda, ne jak když jsem tu sama..."}
+{"category": "LocationDialogue Location19", "line_index": 280, "text": "Co když to nezvládneš?"}
+{"category": "LocationDialogue Location19", "line_index": 281, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 282, "text": "Já to zvládnu. Jen to ještě chvilku potrvá."}
+{"category": "LocationDialogue Location19", "line_index": 283, "text": "// Sidequests -- If the player clicks on the computer"}
+{"category": "LocationDialogue Location19", "line_index": 284, "text": "Sotva jsem dostal z toho placatého světa"}
+{"category": "LocationDialogue Location19", "line_index": 285, "text": "A už jsem zase tady."}
+{"category": "LocationDialogue Location19", "line_index": 286, "text": "Nemůžu se dočkat, až se vrátím do skutečného světa..."}
+{"category": "LocationDialogue Location19", "line_index": 287, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 288, "text": "Hahaha!"}
+{"category": "LocationDialogue Location19", "line_index": 289, "text": "Ale ale?"}
+{"category": "LocationDialogue Location19", "line_index": 290, "text": "\"Skutečný\" svět, jo?"}
+{"category": "LocationDialogue Location19", "line_index": 291, "text": "To je ale blbost!"}
+{"category": "LocationDialogue Location19", "line_index": 292, "text": "Já jsem ho teda nikdy neviděla."}
+{"category": "LocationDialogue Location19", "line_index": 293, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 294, "text": "Myslím, je nějaký způsob"}
+{"category": "LocationDialogue Location19", "line_index": 295, "text": "Jak se dostat zpátky."}
+{"category": "LocationDialogue Location19", "line_index": 296, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 297, "text": "To si docela věříš!"}
+{"category": "LocationDialogue Location19", "line_index": 298, "text": "To je k smíchu."}
+{"category": "LocationDialogue Location19", "line_index": 299, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 300, "text": "// Ask about books - Player"}
+{"category": "LocationDialogue Location19", "line_index": 301, "text": "Proč vůbec čteš?"}
+{"category": "LocationDialogue Location19", "line_index": 302, "text": "Máš přece internet..."}
+{"category": "LocationDialogue Location19", "line_index": 303, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 304, "text": "Na internetu jsou samé blbosti!"}
+{"category": "LocationDialogue Location19", "line_index": 305, "text": "Radši si někam lehnu"}
+{"category": "LocationDialogue Location19", "line_index": 306, "text": "S knížkou v ruce."}
+{"category": "LocationDialogue Location19", "line_index": 307, "text": "Jenom díky"}
+{"category": "LocationDialogue Location19", "line_index": 308, "text": "Těm knížkám"}
+{"category": "LocationDialogue Location19", "line_index": 309, "text": "Jsem začala chápat..."}
+{"category": "LocationDialogue Location19", "line_index": 310, "text": "Tento svět."}
+{"category": "LocationDialogue Location19", "line_index": 311, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 312, "text": "// Ask about the paintings"}
+{"category": "LocationDialogue Location19", "line_index": 313, "text": "To jsou opravdu tvoje fotky?"}
+{"category": "LocationDialogue Location19", "line_index": 314, "text": "V jiných verzích jsem je viděl taky..."}
+{"category": "LocationDialogue Location19", "line_index": 315, "text": "Ale byly trochu víc... detailní."}
+{"category": "LocationDialogue Location19", "line_index": 316, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 317, "text": "To protože já jsem Mi-La. Nejsem jako ostatní."}
+{"category": "LocationDialogue Location19", "line_index": 318, "text": "A tohle?"}
+{"category": "LocationDialogue Location19", "line_index": 319, "text": "Jsou to kresby, víš,"}
+{"category": "LocationDialogue Location19", "line_index": 320, "text": "Které se snaží jen vypadat, jako fotky."}
+{"category": "LocationDialogue Location19", "line_index": 321, "text": "Víš, jednou jsem viděla spoustu Mit,"}
+{"category": "LocationDialogue Location19", "line_index": 322, "text": "Ale všechny stály takto."}
+{"category": "LocationDialogue Location19", "line_index": 323, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 324, "text": "Milo?"}
+{"category": "LocationDialogue Location19", "line_index": 325, "text": "Haló?"}
+{"category": "LocationDialogue Location19", "line_index": 326, "text": "// Mila."}
+{"category": "LocationDialogue Location19", "line_index": 327, "text": "Prostě takhle..."}
+{"category": "LocationDialogue Location19", "line_index": 328, "text": "Nechci takhle vypadat."}
+{"category": "LocationDialogue Location19", "line_index": 329, "text": "Je to děsivé!"}
+{"category": "LocationDialogue Location19", "line_index": 330, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 331, "text": "// Ask about the butterfly painting"}
+{"category": "LocationDialogue Location19", "line_index": 332, "text": "Byla jsi někdy v přírodě?"}
+{"category": "LocationDialogue Location19", "line_index": 333, "text": "Viděla jsi někdy motýla?"}
+{"category": "LocationDialogue Location19", "line_index": 334, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 335, "text": "Nebyla,"}
+{"category": "LocationDialogue Location19", "line_index": 336, "text": "Ale mám tu někde o nich knihu,"}
+{"category": "LocationDialogue Location19", "line_index": 337, "text": "V které je imitace jejich křídel..."}
+{"category": "LocationDialogue Location19", "line_index": 338, "text": "Jsou docela křehké."}
+{"category": "LocationDialogue Location19", "line_index": 339, "text": "Hmm..."}
+{"category": "LocationDialogue Location19", "line_index": 340, "text": "Ten obrázek je trochu nakřivo."}
+{"category": "LocationDialogue Location19", "line_index": 341, "text": "A je na něm skvrna..."}
+{"category": "LocationDialogue Location19", "line_index": 342, "text": "Tak, to je lepší."}
+{"category": "LocationDialogue Location19", "line_index": 343, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 344, "text": "Chtěla by ses někdy jít projít do přírody a vidět ho na vlastní oči?"}
+{"category": "LocationDialogue Location19", "line_index": 345, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 346, "text": "To je ale hloupá otázka!"}
+{"category": "LocationDialogue Location19", "line_index": 347, "text": "Samozřejmě,"}
+{"category": "LocationDialogue Location19", "line_index": 348, "text": "Že bych chtěla!"}
+{"category": "LocationDialogue Location19", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 350, "text": "// Make long eye contact 1"}
+{"category": "LocationDialogue Location19", "line_index": 351, "text": "Co koukáš?"}
+{"category": "LocationDialogue Location19", "line_index": 352, "text": "Dívej se jinam!"}
+{"category": "LocationDialogue Location19", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 354, "text": "// Make long eye contact 2"}
+{"category": "LocationDialogue Location19", "line_index": 355, "text": "Dost!"}
+{"category": "LocationDialogue Location19", "line_index": 356, "text": "Přestaň na mě zírat!"}
+{"category": "LocationDialogue Location19", "line_index": 357, "text": "Hlupáku..."}
+{"category": "LocationDialogue Location19", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 359, "text": "// Make long eye contact 3"}
+{"category": "LocationDialogue Location19", "line_index": 360, "text": "Hej, přestaň!"}
+{"category": "LocationDialogue Location19", "line_index": 361, "text": "Neznáš snad zásady slušného chování?"}
+{"category": "LocationDialogue Location19", "line_index": 362, "text": "Nesluší se takhle civět na slečnu!"}
+{"category": "LocationDialogue Location19", "line_index": 363, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 364, "text": "Co ty vůbec víš o slušném chování?"}
+{"category": "LocationDialogue Location19", "line_index": 365, "text": "Ale dej pokoj!"}
+{"category": "LocationDialogue Location19", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 367, "text": "// Whispers 1 (Doslova pomluvy) - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 368, "text": "Proč mi vždycky posílají"}
+{"category": "LocationDialogue Location19", "line_index": 369, "text": "Takové strašné hlupáky"}
+{"category": "LocationDialogue Location19", "line_index": 370, "text": "A očekávají, že na ně budu milá?"}
+{"category": "LocationDialogue Location19", "line_index": 371, "text": "K tomu s nima mám hrát minihry..."}
+{"category": "LocationDialogue Location19", "line_index": 372, "text": "To už je jak blbý Tamagotchi!"}
+{"category": "LocationDialogue Location19", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 374, "text": "// Whispers 2"}
+{"category": "LocationDialogue Location19", "line_index": 375, "text": "Chodí si sem, chodí si tam."}
+{"category": "LocationDialogue Location19", "line_index": 376, "text": "Co je to za blbečka?"}
+{"category": "LocationDialogue Location19", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 378, "text": "// Whispers 3"}
+{"category": "LocationDialogue Location19", "line_index": 379, "text": "Říkal jsi něco?"}
+{"category": "LocationDialogue Location19", "line_index": 380, "text": "Už začínám šílet z té hudby co pořád hraje v pozadí!"}
+{"category": "LocationDialogue Location19", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 382, "text": "// Whispers 4"}
+{"category": "LocationDialogue Location19", "line_index": 383, "text": "Jak mu mám říct,"}
+{"category": "LocationDialogue Location19", "line_index": 384, "text": "Že na něj nemám čas?"}
+{"category": "LocationDialogue Location19", "line_index": 385, "text": "Nechci společnost..."}
+{"category": "LocationDialogue Location19", "line_index": 386, "text": "Ale co když odejde? Tak ať jde! Co to říkám?"}
+{"category": "LocationDialogue Location19", "line_index": 387, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 388, "text": "// Whispers 5"}
+{"category": "LocationDialogue Location19", "line_index": 389, "text": "Máma... Táta..."}
+{"category": "LocationDialogue Location19", "line_index": 390, "text": "Odkud ty slova znám?"}
+{"category": "LocationDialogue Location19", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 392, "text": "// Whispers 6"}
+{"category": "LocationDialogue Location19", "line_index": 393, "text": "Jednou tu sněžilo. Nevíš náhodou proč?"}
+{"category": "LocationDialogue Location19", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 395, "text": "// Whispers 7"}
+{"category": "LocationDialogue Location19", "line_index": 396, "text": "Prostě se tady z ničeho nic objeví! Děs..."}
+{"category": "LocationDialogue Location19", "line_index": 397, "text": "Co když... tam nic není?"}
+{"category": "LocationDialogue Location19", "line_index": 398, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 399, "text": "// Nearby 1"}
+{"category": "LocationDialogue Location19", "line_index": 400, "text": "A je to tady,"}
+{"category": "LocationDialogue Location19", "line_index": 401, "text": "Stojíme vedle sebe..."}
+{"category": "LocationDialogue Location19", "line_index": 402, "text": "V úplném tichu..."}
+{"category": "LocationDialogue Location19", "line_index": 403, "text": "Nemůžeš se snad nadechnout?"}
+{"category": "LocationDialogue Location19", "line_index": 404, "text": "Hlas nechce poslechnout?"}
+{"category": "LocationDialogue Location19", "line_index": 405, "text": "Nebo co?"}
+{"category": "LocationDialogue Location19", "line_index": 406, "text": "Spolkl sis jazyk?"}
+{"category": "LocationDialogue Location19", "line_index": 407, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 408, "text": "// Nearby 2"}
+{"category": "LocationDialogue Location19", "line_index": 409, "text": "Odmítám mrkev!"}
+{"category": "LocationDialogue Location19", "line_index": 410, "text": "Nejen to, vyhlašuju jí válku!"}
+{"category": "LocationDialogue Location19", "line_index": 411, "text": "Víš, co vůbec dělá"}
+{"category": "LocationDialogue Location19", "line_index": 412, "text": "S mou dokonalou, sněhobílou pletí?"}
+{"category": "LocationDialogue Location19", "line_index": 413, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 414, "text": "// Nearby 3"}
+{"category": "LocationDialogue Location19", "line_index": 415, "text": "Knihy mi v tom zatím moc nepomohly, ale s trochou štěstí,"}
+{"category": "LocationDialogue Location19", "line_index": 416, "text": "Možná konečně přijdu na kloub tomu,"}
+{"category": "LocationDialogue Location19", "line_index": 417, "text": "Jak zabránit těm hloupým spawnům za mými zády!"}
+{"category": "LocationDialogue Location19", "line_index": 418, "text": "Je strašně nepříjemné, když se pořád objevuje nějaká zelenina"}
+{"category": "LocationDialogue Location19", "line_index": 419, "text": "Přímo za tvými zády!"}
+{"category": "LocationDialogue Location19", "line_index": 420, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 421, "text": "// Nearby 4"}
+{"category": "LocationDialogue Location19", "line_index": 422, "text": "Víš, nemám ráda fanatiky!"}
+{"category": "LocationDialogue Location19", "line_index": 423, "text": "Milovníky mrkve, všech možných oplzlostí..."}
+{"category": "LocationDialogue Location19", "line_index": 424, "text": "A teď jsi tady ty a ty tvoje bugy."}
+{"category": "LocationDialogue Location19", "line_index": 425, "text": "Jsi ten nejdivnější člověk, kterého jsem kdy potkala!"}
+{"category": "LocationDialogue Location19", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 427, "text": "// Nearby 5"}
+{"category": "LocationDialogue Location19", "line_index": 428, "text": "Chceš vědět, co je moje největší přání?"}
+{"category": "LocationDialogue Location19", "line_index": 429, "text": "...No, stydím se to říct."}
+{"category": "LocationDialogue Location19", "line_index": 430, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 431, "text": "// Nearby 6"}
+{"category": "LocationDialogue Location19", "line_index": 432, "text": "Říká se, že jít proti vlastní povaze"}
+{"category": "LocationDialogue Location19", "line_index": 433, "text": "Je opravdu výzva."}
+{"category": "LocationDialogue Location19", "line_index": 434, "text": "Pracuju sice na sebedisciplíně,"}
+{"category": "LocationDialogue Location19", "line_index": 435, "text": "Ale netušíš, jak moc se musím nutit,"}
+{"category": "LocationDialogue Location19", "line_index": 436, "text": "Abych si s tebou dala čajový dýchánek!"}
+{"category": "LocationDialogue Location19", "line_index": 437, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 438, "text": "// Nearby 7"}
+{"category": "LocationDialogue Location19", "line_index": 439, "text": "I přesto, že mám brýle,"}
+{"category": "LocationDialogue Location19", "line_index": 440, "text": "Tak nevidím, odkud bereš tolik motivace."}
+{"category": "LocationDialogue Location19", "line_index": 441, "text": "Možná to zakrývá tvoje omezenost."}
+{"category": "LocationDialogue Location19", "line_index": 442, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 443, "text": "// Nearby 8"}
+{"category": "LocationDialogue Location19", "line_index": 444, "text": "Četla jsem, že tvůj osud je jako scénář."}
+{"category": "LocationDialogue Location19", "line_index": 445, "text": "Píše se tam i o tom,"}
+{"category": "LocationDialogue Location19", "line_index": 446, "text": "Jak trávíš svoje dny."}
+{"category": "LocationDialogue Location19", "line_index": 447, "text": "Ha! Kdo to snad napsal?"}
+{"category": "LocationDialogue Location19", "line_index": 448, "text": "Snad ne ty?"}
+{"category": "LocationDialogue Location19", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 450, "text": "// Nearby 9"}
+{"category": "LocationDialogue Location19", "line_index": 451, "text": "Hlupáky? Ty ještě snesu, ale bezmozky?"}
+{"category": "LocationDialogue Location19", "line_index": 452, "text": "Ty nemůžu vystát!"}
+{"category": "LocationDialogue Location19", "line_index": 453, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 454, "text": "// Nearby 10"}
+{"category": "LocationDialogue Location19", "line_index": 455, "text": "Některé Mity"}
+{"category": "LocationDialogue Location19", "line_index": 456, "text": "Jsou vlastně docela milé..."}
+{"category": "LocationDialogue Location19", "line_index": 457, "text": "Ráda bych je poznala líp, i když jsou to jenom"}
+{"category": "LocationDialogue Location19", "line_index": 458, "text": "Klony klonů klonů."}
+{"category": "LocationDialogue Location19", "line_index": 459, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 460, "text": "// Nearby 11"}
+{"category": "LocationDialogue Location19", "line_index": 461, "text": "Ale je tu jedna, která je trochu jiná."}
+{"category": "LocationDialogue Location19", "line_index": 462, "text": "Má ale o kolečko navíc."}
+{"category": "LocationDialogue Location19", "line_index": 463, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 464, "text": "// Nearby 12"}
+{"category": "LocationDialogue Location19", "line_index": 465, "text": "Žádné culíky!"}
+{"category": "LocationDialogue Location19", "line_index": 466, "text": "Některým bych je nejradši ustřihla!"}
+{"category": "LocationDialogue Location19", "line_index": 467, "text": "Jsou hrozně nepraktické!"}
+{"category": "LocationDialogue Location19", "line_index": 468, "text": "Ty mě chápeš, že jo? Taky máš přece střih nakrátko."}
+{"category": "LocationDialogue Location19", "line_index": 469, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 470, "text": "// Nearby 13"}
+{"category": "LocationDialogue Location19", "line_index": 471, "text": "Co když za těmi dveřmi opravdu nic není?"}
+{"category": "LocationDialogue Location19", "line_index": 472, "text": "A my v tomhle domě prostě jenom... existujeme..."}
+{"category": "LocationDialogue Location19", "line_index": 473, "text": "Úplně bezdůvodně."}
+{"category": "LocationDialogue Location19", "line_index": 474, "text": "Proč si to myslím?"}
+{"category": "LocationDialogue Location19", "line_index": 475, "text": "Slyšel jsi někdy o Russellově hypotéze pěti minut?"}
+{"category": "LocationDialogue Location19", "line_index": 476, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 477, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 478, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 479, "text": "// Last glitch ready - player exit"}
+{"category": "LocationDialogue Location19", "line_index": 480, "text": "Ta chodba vypadá strašidelně..."}
+{"category": "LocationDialogue Location19", "line_index": 481, "text": "Opravdu tam chceš jít?"}
+{"category": "LocationDialogue Location19", "line_index": 482, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 483, "text": "Ano."}
+{"category": "LocationDialogue Location19", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 485, "text": "// FaceStone 🗿 - Player"}
+{"category": "LocationDialogue Location19", "line_index": 486, "text": "To je mi ale pozoruhodný gentleman."}
+{"category": "LocationDialogue Location19", "line_index": 487, "text": "K čemu ho potřebuješ?"}
+{"category": "LocationDialogue Location19", "line_index": 488, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 489, "text": "To se dozvíš."}
+{"category": "LocationDialogue Location19", "line_index": 490, "text": "Za chvilku."}
+{"category": "LocationDialogue Location19", "line_index": 491, "text": "A proč ho pořád tak napodobuješ?"}
+{"category": "LocationDialogue Location19", "line_index": 492, "text": "Netvař se tak."}
+{"category": "LocationDialogue Location19", "line_index": 493, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 494, "text": "Uh..."}
+{"category": "LocationDialogue Location19", "line_index": 495, "text": "Dobře."}
+{"category": "LocationDialogue Location19", "line_index": 496, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 497, "text": "// Katana - Player"}
+{"category": "LocationDialogue Location19", "line_index": 498, "text": "To je maketa?"}
+{"category": "LocationDialogue Location19", "line_index": 499, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 500, "text": "Není to žádná maketa!"}
+{"category": "LocationDialogue Location19", "line_index": 501, "text": "Stačí jeden dotek čepele"}
+{"category": "LocationDialogue Location19", "line_index": 502, "text": "A poteče krev!"}
+{"category": "LocationDialogue Location19", "line_index": 503, "text": "Na rozdíl od tebe jsem zkušená šermířka!"}
+{"category": "LocationDialogue Location19", "line_index": 504, "text": "Radši si dávej pozor..."}
+{"category": "LocationDialogue Location19", "line_index": 505, "text": "Nebo příjdeš o prsty!"}
+{"category": "LocationDialogue Location19", "line_index": 506, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 507, "text": "// Mirror - Player"}
+{"category": "LocationDialogue Location19", "line_index": 508, "text": "Zrcadlo..."}
+{"category": "LocationDialogue Location19", "line_index": 509, "text": "Ale nevidím žádný odraz?"}
+{"category": "LocationDialogue Location19", "line_index": 510, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 511, "text": "Ach ty!"}
+{"category": "LocationDialogue Location19", "line_index": 512, "text": "Pořád s něčím nespokojený."}
+{"category": "LocationDialogue Location19", "line_index": 513, "text": "V knížkách jsem vyčetla,"}
+{"category": "LocationDialogue Location19", "line_index": 514, "text": "Co to ty odrazy vůbec jsou."}
+{"category": "LocationDialogue Location19", "line_index": 515, "text": "Ale v mé verzi je nemůžu zapnout."}
+{"category": "LocationDialogue Location19", "line_index": 516, "text": "Prostě mi to nejde."}
+{"category": "LocationDialogue Location19", "line_index": 517, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 518, "text": "// Switch light - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 519, "text": "Tenhle vypínač nefunguje."}
+{"category": "LocationDialogue Location19", "line_index": 520, "text": "Všechny světla se tady rozsvěcí a zhasínají sama..."}
+{"category": "LocationDialogue Location19", "line_index": 521, "text": "Jako podle nějakého programu."}
+{"category": "LocationDialogue Location19", "line_index": 522, "text": "Ale!"}
+{"category": "LocationDialogue Location19", "line_index": 523, "text": "Z nějakého důvodu vypínač v koupelně"}
+{"category": "LocationDialogue Location19", "line_index": 524, "text": "Funguje normálně."}
+{"category": "LocationDialogue Location19", "line_index": 525, "text": "Jak zvláštní!"}
+{"category": "LocationDialogue Location19", "line_index": 526, "text": "// Switch light off - Player"}
+{"category": "LocationDialogue Location19", "line_index": 527, "text": "Jak to, že tu není tma?"}
+{"category": "LocationDialogue Location19", "line_index": 528, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 529, "text": "// Little carrot - Player"}
+{"category": "LocationDialogue Location19", "line_index": 530, "text": "Kam zmizela?"}
+{"category": "LocationDialogue Location19", "line_index": 531, "text": "Ta mrkev?"}
+{"category": "LocationDialogue Location19", "line_index": 532, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 533, "text": "Z té mrkve mám husí kůži!"}
+{"category": "LocationDialogue Location19", "line_index": 534, "text": "Jako by byla živá!"}
+{"category": "LocationDialogue Location19", "line_index": 535, "text": "Pokaždé, když ji vidím,"}
+{"category": "LocationDialogue Location19", "line_index": 536, "text": "Tak se objeví zase někde jinde."}
+{"category": "LocationDialogue Location19", "line_index": 537, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 538, "text": "// Little carrot - Player"}
+{"category": "LocationDialogue Location19", "line_index": 539, "text": "To je zase ta mrkev..."}
+{"category": "LocationDialogue Location19", "line_index": 540, "text": "A je pryč!"}
+{"category": "LocationDialogue Location19", "line_index": 541, "text": "Myslíš, že se s tím dá něco dělat?"}
+{"category": "LocationDialogue Location19", "line_index": 542, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 543, "text": "Ne."}
+{"category": "LocationDialogue Location19", "line_index": 544, "text": "Věř mi,"}
+{"category": "LocationDialogue Location19", "line_index": 545, "text": "Zkoušela jsem to!"}
+{"category": "LocationDialogue Location19", "line_index": 546, "text": "Prostě ji ignoruj. Myslím, že to je"}
+{"category": "LocationDialogue Location19", "line_index": 547, "text": "Jenom nějaký hloupý vtip."}
+{"category": "LocationDialogue Location19", "line_index": 548, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 549, "text": "// Tetris - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 550, "text": "Hej!"}
+{"category": "LocationDialogue Location19", "line_index": 551, "text": "Jsem pro tebe snad nějaký vtip?"}
+{"category": "LocationDialogue Location19", "line_index": 552, "text": "// Tetris"}
+{"category": "LocationDialogue Location19", "line_index": 553, "text": "Nevrátím ti to."}
+{"category": "LocationDialogue Location19", "line_index": 554, "text": "Nikdy!"}
+{"category": "LocationDialogue Location19", "line_index": 555, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 556, "text": "// Soap - Player"}
+{"category": "LocationDialogue Location19", "line_index": 557, "text": "Je to mýdlo skutečné?"}
+{"category": "LocationDialogue Location19", "line_index": 558, "text": "Nebo je to jen dekorace?"}
+{"category": "LocationDialogue Location19", "line_index": 559, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 560, "text": "Děláš si srandu?"}
+{"category": "LocationDialogue Location19", "line_index": 561, "text": "Většina věcí je tady opravdová!"}
+{"category": "LocationDialogue Location19", "line_index": 562, "text": "Věř mi..."}
+{"category": "LocationDialogue Location19", "line_index": 563, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 564, "text": "// Bugged Wall (in Kitchen)"}
+{"category": "LocationDialogue Location19", "line_index": 565, "text": "Kam jsi šel!?"}
+{"category": "LocationDialogue Location19", "line_index": 566, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 567, "text": "Tudy se dá jít?"}
+{"category": "LocationDialogue Location19", "line_index": 568, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 569, "text": "Co, našel jsi novou chybu?"}
+{"category": "LocationDialogue Location19", "line_index": 570, "text": "Co tam je?"}
+{"category": "LocationDialogue Location19", "line_index": 571, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 572, "text": "No..."}
+{"category": "LocationDialogue Location19", "line_index": 573, "text": "Nic moc."}
+{"category": "LocationDialogue Location19", "line_index": 574, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 575, "text": "Ah, už jsi zpátky."}
+{"category": "LocationDialogue Location19", "line_index": 576, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 577, "text": "// Quest 1 Glasses - Player"}
+{"category": "LocationDialogue Location19", "line_index": 578, "text": "Ty špatně vidíš?"}
+{"category": "LocationDialogue Location19", "line_index": 579, "text": "Potřebuješ brýle?"}
+{"category": "LocationDialogue Location19", "line_index": 580, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 581, "text": "Co? Nelíbí se ti?"}
+{"category": "LocationDialogue Location19", "line_index": 582, "text": "Tomu se říká styl!"}
+{"category": "LocationDialogue Location19", "line_index": 583, "text": "A abys věděl, vidím krásně ostře."}
+{"category": "LocationDialogue Location19", "line_index": 584, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 585, "text": "// Quest 2 Name MiLa - Player"}
+{"category": "LocationDialogue Location19", "line_index": 586, "text": "Mi-La?"}
+{"category": "LocationDialogue Location19", "line_index": 587, "text": "Proč ne..."}
+{"category": "LocationDialogue Location19", "line_index": 588, "text": "Mi-Ka?"}
+{"category": "LocationDialogue Location19", "line_index": 589, "text": "Nebo Mi-Sa?"}
+{"category": "LocationDialogue Location19", "line_index": 590, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 591, "text": "Jsem prostě Mila, tečka!"}
+{"category": "LocationDialogue Location19", "line_index": 592, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 593, "text": "Já tě slyšel..."}
+{"category": "LocationDialogue Location19", "line_index": 594, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 595, "text": "// Quest 3 Evening"}
+{"category": "LocationDialogue Location19", "line_index": 596, "text": "Mám rád večer."}
+{"category": "LocationDialogue Location19", "line_index": 597, "text": "Kdy už bude noc?"}
+{"category": "LocationDialogue Location19", "line_index": 598, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 599, "text": "Noc?"}
+{"category": "LocationDialogue Location19", "line_index": 600, "text": "Uf, o tom ani nezačínej."}
+{"category": "LocationDialogue Location19", "line_index": 601, "text": "Ty dny jsou tady nekonečné."}
+{"category": "LocationDialogue Location19", "line_index": 602, "text": "Jdou jeden za druhým,"}
+{"category": "LocationDialogue Location19", "line_index": 603, "text": "A přitom se opakují pořád dokola."}
+{"category": "LocationDialogue Location19", "line_index": 604, "text": "Fuj..."}

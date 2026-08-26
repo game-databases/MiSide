@@ -1,0 +1,395 @@
+# DS-3 — Dataset spec: Dialogue graphs (MiSide)
+
+Drafted 2026-08-25 by the Dataset Specifier pass (brief DS-3) from the
+harvested corpus on disk. Everything numeric below is **measured against the
+extracted corpus for buildId 19029065 / VERSION 0.93L** (pin per E1 header),
+not estimated, unless marked `[projected]` or `[inferred]`. Verifier review
+required before the emitter stage treats this as contract.
+
+Citation shorthands: **SPEC** = [spec.md](../../spec.md) · **E1** =
+[../research/explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx) ·
+**D1** = [../research/game-research.mdx](../research/game-research.mdx) ·
+**S5ENC** = [../research/s5-legacy-encoding.mdx](../research/s5-legacy-encoding.mdx) ·
+**PIPE** = [pipeline-run_all.mdx](pipeline-run_all.mdx) ·
+`DEC` = `extracted/decompiled/main/Assembly-CSharp/` ·
+`MB` = `extracted/harvest/mb-dump/` (typed MonoBehaviour dumps, 51 containers) ·
+`ASL` = `extracted/harvest/asset-list/` (per-container asset XMLs) ·
+`LOC` = `extracted/localization/` (34 locale dirs + `_ledger/`) ·
+`RAW` = `A:\SteamLibrary\steamapps\common\MiSide\Data\Languages\` (client, read-only).
+
+---
+
+## 1. What this dataset is
+
+The node-keyed dialogue graph of MiSide: every spoken line as a graph node
+with a speaker, a per-locale text reference, emotion metadata, and typed edges
+(next-line, player choice, hard branch, side-effect event), joined back to
+Mita/player entities, locations and chapters. It feeds SPEC §13 Lore/story
+(dialogue browser tool lane) and the per-Mita/per-chapter dialogue modules;
+per SPEC § Page inventory it ships **as data** (JSON API + scoped browsable
+views), never as thin standalone per-node pages — the seo-standard §5
+uniqueness floor forbids that at this node mass.
+
+Competitor frame (D1 §8, COMP J8): the wikis hand-paste EN+RU transcripts on
+Dialogues subpages; nobody holds a node-keyed, all-locale, machine-derived
+graph. That is exactly this dataset's moat.
+
+## 2. Corpus inventory (all measured 2026-08-25)
+
+### 2.1 Text pool — `LocationDialogue LocationN` categories (LOC)
+
+| Measure | Value | Method |
+|---|---|---|
+| Locales with dialogue JSONLs | **34 / 34** | dir listing under LOC |
+| JSONL files per locale | **19** (`LocationDialogue Location1–15,17–20`; no Location16) except **French = 20** (+ empty `LocationDialogue Location16.jsonl`, **0 bytes**) | glob per dir |
+| Total dialogue JSONLs corpus-wide | **647** (= 34×19 + FR's extra) | glob |
+| Total text records | **151,163** split-based rows | python line iteration over all 647 |
+| English baseline | **4,446 records** across the 19 files; **1,101 blank separator lines**; **328 author-comment lines** starting `//`; 3,345 non-blank rows (author comments counted as content — breakdown sums: 3,017 text + 328 comments + 1,101 blanks = 4,446); 29 lines carry `[player]`-style placeholders | record scan |
+| Per-category line parity across locales | **exact** — every locale's `LocationDialogue LocationN` has the same split-based line count as English (programmatic compare, zero diffs); line indices are positionally aligned in all 34 locales | python compare vs EN baseline |
+| Encoding-residue rows touching dialogue | **7**, all `LocationDialogue Location12`; stray byte hex `cc` at line_index 58 marks **6 of the 7** — U+FFFD-marked Croatian, English, Filipino, Indonesia, Vietnamese plus cp1250 round-trip-proven Slovak; the 7th row, Serbian (Latin), carries **no** `cc` segment (whole-file 13-segment cp1250 recovery) | `extracted/localization/_ledger/encoding-residue.jsonl` |
+
+Record shape is the frozen loc contract `{category, line_index, text}` (E1
+"Implications" ¶2; sample: LOC `English/LocationDialogue Location3.jsonl`
+line_index 1 = `"Hello, [player]!"`). Split-based counting is mandatory —
+no trailing newlines (E1 step 5 gotcha #3).
+
+**Authoring comments are untranslated**: even the Russian file carries the
+English comment text (compare LOC `Russian/LocationDialogue Location7.jsonl`
+line_index 9 with the English one — identical sentence, only the trailing
+speaker tag differs: `Mita Kind` vs `MitaKind`). Comments are dev notes that
+leaked into all locales; they encode branch conditions in prose ("// If the
+player did not approach the good Mitya…") and must be treated as metadata,
+never displayed as speech.
+
+### 2.2 Graph carriers — scene MonoBehaviours (already dumped)
+
+The full levelN typed dump exists (R-E1-1 asked for one level probe; the
+corpus now carries **all 24 levels × typed dumps** under MB, plus ASL
+inventories). Dialogue-component census across levels 0–23 from ASL:
+
+| Component | Count | Home levels | Role |
+|---|---|---|---|
+| `Dialogue_3DText` | **2,710** | all story levels (peak: level9 = 552, level21 = 398, level5 = 301) | ambient/floating dialogue **node** |
+| `Dialogue_Symbol` | 2,710 | mirrors 3DText 1:1 | per-node symbol renderer companion (DEC `Dialogue_Symbol.cs`) — **not** separate nodes |
+| `Localization_UIText` | 1,780 | everywhere | UI string links (not dialogue nodes; excluded) |
+| `Events_Data` | 279 | everywhere | generic event routers (edge targets) |
+| `AudioDialogue` | 58 | most levels | voice presence metadata |
+| `DialogueChanger` | **13** | levels 5–21 | quest dialog box w/ choices |
+| `DialogueChange_Button` | 13 | with changers | button view component |
+| `Location14_Dialogue` | 11 | level16 | branching dialogue group ("Разветвление") |
+| `Location18_Dialogue` | 11 | level20 | grouped sequential dialogue w/ personage refs |
+| `Tamagotchi_Dialogue_Mob` | 24 | level3 | cartridge-pet dialogue nodes |
+| `Tamagotchi_Dialogue` | 1 | level3 | pet dialogue controller |
+| `MitaEvent` | 16 | level12 | Mita animation/event triggers (edge targets) |
+| `Dialogue_Data3DText` | 2 | level10 | 3DText group controller |
+| `FunctionsGame_DialogueAnimationFinish` | 5 | 9/12/21 | animation-finish hooks |
+| `Location14_ButtonChangeDialogue`, `Location3DialogueMita`, `DialogueEdit_3DText_Order` | 5 | 16/8/5 | interaction/order helpers |
+
+**Census boundary:** the table scopes the 24 level scene dumps (MB/ASL).
+The corpus additionally holds `sharedassets*` bundles with **+1,575
+`Localization_UIText`** and **+100 `Events_Data`** outside that scope
+(verifier recount 2026-08-25). `Events_Data` is an edge-target kind (§3.3
+`on_finish_action`), so a D5 dangling-edge row may target an object outside
+this census — classify such rows out-of-census-scope, never as lost data.
+
+Measured edge mass on the dominant kind (`Dialogue_3DText`, all 2,710 dumps):
+**2,162 non-null `nextText` edges · 548 terminal nodes · 662 non-empty
+`eventFinish` persistent-call groups**. Speaker theme distribution across the
+2,710 nodes: Mita=682, Player=661, MitaGlasses=292, MitaNew=402, MitaKnow=228,
+MitaOld=129, MitaDark=71, ChibiMita=59, MitaDream=54, LittleMita=45,
+Creepy=40, MitaFon=25, Limping=16, White=6.
+
+### 2.3 Code authorities (DEC, Il2CppDumper output)
+
+Seven `class Dialogue*` types in dump.cs (`grep -c "class Dialogue"` = 7);
+23 dialogue-named source files under DEC (list via
+`find extracted/decompiled -iname "*dialog*"` minus Steamworks boilerplate).
+Join authority remains `GlobalLanguage.GetString(name, index)` +
+`GetCountString(name)` (E1 step 7, verbatim class body).
+
+### 2.4 Brief-figure reconciliation
+
+Brief DS-3 relayed an E1 memory of "24 raw / 16 non-Location" dialogue
+categories. That pair **does not reproduce** under any natural count of the
+corpus (raw txts per locale matching `*Dialogue*` = 19–20; decompiled
+dialogue-named files = 23; `class Dialogue*` = 7; non-Location categories in
+English = 13). The exact derivations above supersede it; E1's own prose said
+"LocationDialogue Location1–20" (E1 step 5) which is also imprecise — the
+client ships LD1–15+17–20 everywhere, plus Location16 **only in French**
+(RAW French dir listing; RAW English lacks it).
+
+## 3. Graph schema
+
+### 3.1 Node kinds
+
+| kind | carrier class (cite) | key serialized fields (cite = MB sample) |
+|---|---|---|
+| `ambient_line` | `Dialogue_3DText` (DEC `Dialogue_3DText.cs`) | `indexString:SInt32`, `themeDialogue` (14-value enum `Dialogue3DTheme`: Mita, MitaOld, MitaNew, Player, ChibiMita, MitaKnow, Creepy, LittleMita, White, Limping, MitaDark, MitaDream, MitaGlasses, MitaFon), `emotionStart/emotionFinish` (`EmotionType`, ≥19 values incl. smile/angry/sad/shy/surprise/suspicion…), `timeShow/timeFinish`, `voicePlay`, `audioPrint`, `speaker:PPtr<GameObject>` |
+| `quest_box` | `DialogueChanger` (DEC `DialogueChanger.cs`) | `fileQuest:string` — **measured values are the plain `Location N` categories** (`"Location 3"`, `"Location 7"`, `"Location 10"`, `"Location 13"`, `"Location 19"`…; grep over MB `level*/DialogueChanger*.txt`), `buttons:DialogueChangerCase[]` (13 boxes → **70 cases total**), `style:normal|horror`, lifecycle UnityEvents `eventStart/eventClose/eventExit/eventLastStop/eventAgainFarAway` |
+| `choice_case` | `DialogueChangerCase` (DEC `DialogueChangerCase.cs`) | `stringFile:int` (label = `GetString(fileQuest, stringFile)`), `eventClick:UnityEvent` (**the choice edge**), `iconButton:PPtr<Sprite>`, flags `closeClick/oneTime/exitButton/isClose/oneTimeUse` |
+| `branch_group` | `Location14_Dialogue` (DEC `Location14_Dialogue.cs`) | `dialogue:Loc14_Dialogue[] {speaker:player|mita, text:[{indexFile, eventFinishText}]}` + hard fork fields `indexFileRight/indexFileLeft:int` + `eventRight/eventLeft:UnityEvent` (header comment "Разветвление" = branching) |
+| `grouped_scene_dialogue` | `Location18_Dialogue(_Dialogue/_DialogueIndex)` (DEC) | `dialogues[] {indexStrings[{index, eventStart, eventFinishPrint}], personageSpeak:PPtr<Location18_Personage>}` + explicit `nextDialogue:PPtr<Location18_Dialogue>` + `eventStop` |
+| `pet_dialogue` | `Tamagotchi_Dialogue_Mob(_Events)` (DEC) | `dialogueFile:string` (category name), `nameString:int` (display-name line), `dialogue[{indexString, eventStart, animationPlay, animationIdle, emotion:string, bodyIKActive}]`, `nextDialogue:PPtr<...Mob>` |
+| `random_router` | `Location21_DialogueRandom` (DEC) | `dialogues:GameObject[]`, `destroyAfter:bool` — picks among dialogue objects at random; **no weight field exists** (unweighted) |
+
+Speaker display names come from the `Names` category (47 lines in English:
+`Mita`, `You`, `Thoughts`, then Mita variants and the Players 1–10 human
+names — LOC `English/Names.jsonl`); character bios live in `Personages`
+(`// Mitas` / `// Players` sections, LOC `English/Personages.jsonl`).
+
+### 3.2 Node record (emitter contract, proposed)
+
+```jsonc
+{
+  "id": "level9:Dialogue_3DText_#12345",     // container + PathID — stable per buildId
+  "kind": "ambient_line",                     // table §3.1
+  "level": "level9",                          // scene container
+  "location": "Location7",                    // via §3.6 binding rule
+  "chapter": null,                            // join lands with chapter↔level map (SPEC gap #1)
+  "speaker": {"theme": "Mita", "entity": "mita/mta-mita", "display": {"en": "Mita", "ru": "Мита"}},
+  "text_ref": {"category": "LocationDialogue Location7", "line_index": 8},  // line_index = indexString − 1 (§3.6 off-by-one)
+
+  "emotion": {"start": "none", "finish": "none"},
+  "style": null,                              // quest_box only: normal|horror
+  "voice_present": false,                     // AudioDialogue linkage, metadata only (no audio ships)
+  "condition_hints": [],                      // `//` comments adjacent/attached to this node (see §3.5)
+  "build": 19029065                           // provenance stamp, AGENTS.md rule 3 user-facing class
+}
+```
+
+**Off-by-one contract:** the game field is 1-based, the loc field 0-based —
+`indexString` spans **1..N** while loc JSONL `line_index` spans **0..N−1**
+— so every emitter computes **`line_index = indexString − 1`**. Copying
+`indexString` verbatim shifts every lookup one row late; proof and failure
+mode in §3.6.
+
+### 3.3 Edge kinds
+
+| edge | serialization (cite) | semantics |
+|---|---|---|
+| `next` | `nextText:PPtr<GameObject>` (Dialogue_3DText), `nextDialogue:PPtr` (Location18/Tamagotchi_Mob) | linear continuation; measured 2,162 non-null / 548 terminal |
+| `choice` | `DialogueChangerCase.eventClick` + label ref `stringFile` | player-selected option off a `quest_box`; 70 cases |
+| `branch_left` / `branch_right` | `indexFileRight/indexFileLeft` + `eventRight/eventLeft` (Location14_Dialogue) | hard two-way fork keyed on loc line indices |
+| `on_finish_action` | `eventFinish` / `eventFinishPrint` / `eventStart` persistent calls | side effects (measured 662 non-empty groups on 3DText alone): target PPtr + method name (`SetActive`, `MitaEvent.*`, …) — these become typed cross-entity links where the target resolves to a known entity (monster spawn, minigame access, ending flag) |
+| `random_fanout` | `Location21_DialogueRandom.dialogues` | unweighted stochastic router — emit as `{weight: null}`, do not invent weights |
+
+**Weights: none exist in the corpus.** No float weight on any router or case;
+the schema keeps the field null rather than synthesizing one.
+
+### 3.4 Entry points & terminals
+
+Entry points = nodes with zero inbound `next`/`nextDialogue` references, plus
+`quest_box` components reached by interaction (their `eventStart` wiring).
+Terminals = the 548 measured null-`nextText` nodes + boxes' `eventExit`.
+The emitter computes both sets per level; nothing is hand-listed.
+
+### 3.5 Conditions & predicates — honesty box
+
+MiSide has **no declarative predicate DSL** on dialogue nodes. Branching is
+wired imperatively: UnityEvent persistent calls to state-changing methods, and
+prose condition notes left by the developers as `//` lines inside the loc
+files themselves (328 in English; e.g. LOC `English/LocationDialogue
+Location7.jsonl` line 9: "// If the player did not approach the good Mitya…
+- Mita Kind"). The dataset therefore models conditions two ways:
+
+1. `condition_hints` — verbatim preserved (and translated-by-hand nowhere)
+   author comments attached to the nodes their line range brackets;
+2. resolved `on_finish_action` targets — real serialized calls.
+
+Ending-flag joins (COMP J1) stay in the ending dataset's logic layer; do not
+pretend this corpus yields boolean predicates per node. This is a deliberate
+anti-invention rule consistent with SPEC Non-goals.
+
+### 3.6 Level ↔ location binding rule (measured, `[inferred]` status until emitter validates)
+
+`Dialogue_3DText.indexString` indexes the `LocationDialogue LocationK`
+category of the location hosted by that level. The evidence for the binding
+is a **union of carriers per level**, not a single-component property:
+
+1. **Span rule:** on every story level, the union of all serialized dialogue
+   indices on that level — `Dialogue_3DText.indexString` plus the group
+   kinds' own indices (`Tamagotchi_Dialogue_Mob.dialogue[].indexString`,
+   `Location14_Dialogue` `indexFile`, `Location18_Dialogue`
+   `indexStrings[].index`) — spans exactly the bound category's split-based
+   line count.
+2. **Single-carrier `max(indexString) == count`:** holds on 13 measured
+   levels — level5→LD Location3 (437), level6→LD4 (400), level7→LD5 (6),
+   level8→LD6 (150), level9→LD7 (837), level10→LD8 (84), level11→LD9 (87),
+   level12→LD10 (246), level13→LD11 (188), level14→LD12 (71),
+   level15→LD13 (233), level21→LD19 (605), level22→LD20 (92).
+3. **Single-carrier equality FAILS on three levels**, where a component
+   stops short of the category count and a group kind closes the tail
+   (union still exact; verifier recount 2026-08-25): level3
+   `Dialogue_3DText` max 91 < LD1 143, closed by `Tamagotchi_Dialogue_Mob`
+   reaching **143**; level16 max 207 < LD14 **217**, closed by
+   `Location14_Dialogue.indexFile` reaching 217; level20 max 216 < LD18
+   **259**, closed by `Location18_Dialogue` group indices reaching 259.
+4. Span levels absent from the original single-carrier list, bound by the
+   same union rule: **level16→LD14, level17→LD15, level19→LD17,
+   level20→LD18**; per-carrier maxima for level17/19 are emitter outputs
+   under AC D2, not assumed here.
+
+Corroborated by class placement: `Location14_Dialogue` lives in level16,
+`Location18_Dialogue` in level20 → **levelN ↔ Location(N−2)** for the story
+span. `quest_box.fileQuest` needs no rule (explicit string).
+
+**Off-by-one (part of this join's definition):** the game field and the loc
+field are indexed differently — `indexString` spans **1..N** (max == count
+on every measured carrier level; per-level minima are typically 2, but 1
+occurs: level6 `#7124` → LD4 `line_index` 0 `"Mita?"`), while loc JSONL
+`line_index` spans **0..N−1** (`LocationDialogue Location3.jsonl`
+`line_index` 0 = `""`). The join is therefore
+**`line_index = indexString − 1`**, never an identity copy: copied
+verbatim, every `text_ref` resolves one row late and only boundary nodes
+trip the AC D2 range check — a systematic shift that ships silently.
+
+Rule status stays `[inferred]` until the emitter validates every node
+(range-check AC D2 across all union carriers of item 3) — a violation
+ledger row beats a silent assumption. Level filenames are never shown to
+users; the location/chapter layer is.
+
+## 4. Locale plan
+
+- **All 34 locales carry the dialogue text pool** (§2.1). Positional parity
+  means one node record serves every locale: `text_ref` resolves per locale by
+  `(category, line_index)` lookup into `LOC <locale>/<category>.jsonl` — no
+  per-locale node duplication in the dataset; localized strings render through
+  the existing loc layer.
+- Availability bookkeeping rides the pack-standard
+  `extracted/relinks/locale_availability.jsonl` (SPEC `availability-log`),
+  regenerated each rerun. Today's dialogue-specific facts it must express:
+  **French-only** `LocationDialogue Location16` (empty file → zero nodes'
+  text resolve; treat as category-present-but-contentless, not missing), and
+  the FR-only extras `Location 5/15/16/17/18/20.txt`, `Hello.txt`,
+  `VoiceOver.txt` (RAW comm French∖English) — Hello/VoiceOver are
+  dialogue-adjacent singletons (greeting line; VO language tag "French").
+- A locale cell renders the declared not-yet-translated filler when its
+  category is absent (SPEC filler-policy explicit-filler); a node page/view is
+  omitted only if the entity has zero strings in that locale.
+- Encoding residue: the 7 ledgered `LocationDialogue Location12` rows ship
+  with their U+FFFD/cp1250-recovery provenance inline (AC D4); codec verdicts
+  cite S5ENC §2.
+- Untranslated `//` comments appear identically in all locales (verified EN
+  vs RU) — emit them once, from the pivot, tagged `lang: en`, never as
+  per-locale content.
+
+## 5. Scale estimate
+
+Measured floor (this build): **~2,850 graph nodes** = 2,710 ambient + 70
+choice cases + 22 L14/L18 group entries + 24 pet mobs (+ routers/groups as
+containers, not nodes); **~2,900+ typed edges** (2,162 next + 662 action +
+70 choice + branch fan-out). Behind them: 151,163 localized text records ×
+34 locales already on disk.
+
+Projection honesty: SPEC's placeholder "thousands [unverified]" (SPEC
+entities.dialogue_node) resolves to **≈2.9k nodes**, i.e. the low end of
+"thousands". Page-mass consequence: the data-first shape declared in SPEC §
+Page inventory stands (six-figure naive page count avoided; browsable views +
+parent-page modules + standalone pages only for uniquely quotable nodes).
+ISR/Next stack choice unaffected.
+
+## 6. Join plan
+
+| join | mechanism | readiness |
+|---|---|---|
+| node → speaker entity (`mita_variant`/`player_character`) | closed 14-value `themeDialogue` enum + `personageSpeak` PPtrs + `Names` pool; enum→slug mapping table ships **as curated data** in the dataset (MitaKnow/MitaDark/MitaDream etc. need one curation ruling each — see risks) | high; mapping = stub-first |
+| node → `location_scene` | §3.6 binding rule + `Location N`/`LocationHint` categories | high |
+| node → `chapter` | levelN↔chapter map — same open question as SPEC gap #1 (P5-family); dataset emits `level` now, chapter joins when that map lands | deferred join, not blocked emit |
+| node → `ending`/`choice_node` | `on_finish_action` targets resolving to ending-flag setters (COMP J1 logic layer) | logic-tier; emit raw call refs first |
+| node → `cartridge_item`/minigames | Tamagotchi mob graph hangs off level3 cartridge space; `TelevisionGames` category names the in-fiction games (LOC EN lines 0–1 "Dairy Scandal", "Penguin Piles") | medium |
+| text → locale surfaces | existing loc JSONL layer verbatim (`GetString` authority, E1 step 7) | proven |
+
+## 7. Output format proposal
+
+```
+extracted/dialogue/
+  nodes.jsonl                  # one record per node, shape §3.2, sorted (level, pathID)
+  edges.jsonl                  # {src, dst|target_ref, kind, label_ref?, call?}
+  graphs/<level>.json          # assembled per-level graph: nodes + adjacency + entry/terminal sets
+  speakers.json                # curated theme/personage → entity-slug mapping table
+  availability.csv             # per (node-bucket, locale) present/filler/contentless flags
+  residue-links.jsonl          # encoding-residue ids touched, joined into nodes
+```
+
+Determinism: byte-stable ordering, no timestamps in records; build stamp is a
+single field per record. Rerun after a game patch re-diffs naturally
+(SPEC automation.update-trigger = build-id).
+
+## 8. Stub-first build order
+
+1. **Emitter v0 (stub)** — parse MB dumps only: emit nodes/edges for
+   `Dialogue_3DText` + `DialogueChanger(+Case)` (95% of mass), no joins.
+   Validates ACs D1/D2/D5/D8 immediately since inputs are on disk.
+2. Add L14/L18/Tamagotchi kinds + `speakers.json` stub (enum verbatim, slugs
+   nullable) → AC D6.
+3. Locale resolution layer + availability + residue joins → ACs D3/D4.
+4. Chapter/location joins once SPEC gap #1 closes; ending-call classification
+   last (needs the J1 logic layer).
+
+No new extraction runs are required for stages 1–3: every input cited here
+already sits under `extracted/`.
+
+## 9. Completeness risks
+
+1. **Il2Cpp method bodies are stripped** (DEC shows signatures only) — runtime
+   category selection *inside* code is invisible. Mitigation: §3.6 empirical
+   rule + per-node range validation; residual unknowns ledgered, never guessed.
+2. `m_FileID > 0` PPtr targets (cross-container refs) may dangle at emit time
+   until a global pathID index exists; AC D5 forces dangling-edge ledger rows.
+3. Theme→Mita curation: 14 enum values map cleanly onto known variants for
+   ~9; `MitaKnow`, `MitaFon`, `White`, `Creepy`, `MitaDream` need owner/
+   research confirmation before slug assignment (display names can still ship).
+4. Level≠chapter: emitting `level` is safe; claiming chapters early would be
+   invention (SPEC gap #1).
+5. FR-only LD16 empty file could tempt "missing data" alarms — it is a real
+   client artifact (0 bytes in RAW too), classify contentless, not missing.
+6. `DialogueEdit_3DText_Order` (×2, level8) appears in ASL but has no class in
+   dump.cs — treat as ordering metadata only; do not model as nodes.
+7. Post-v0.93L silent builds could shift indices (SPEC gap #7); per-record
+   build stamps make drift detectable, not invisible.
+8. Client-only locales (ar, ar-EG, ru-x-prerev) get no store corroboration —
+   parity check rides the standard shipping bar (SPEC §Locale strategy).
+
+## 10. Acceptance criteria
+
+- **D1 — census reconciliation:** emitted node counts per kind equal the ASL
+  census exactly (2,710 `Dialogue_3DText`, 13 `DialogueChanger`/70 cases,
+  11 `Location14_Dialogue`, 11 `Location18_Dialogue`, 24 `Tamagotchi_
+  Dialogue_Mob`, …) for buildId 19029065; any drift between reruns is a diff
+  row, never a silent overwrite.
+- **D2 — text-ref range check:** for every node record and every locale that
+  carries the category: `line_index` computed as **`indexString − 1`** (the
+  §3.6 off-by-one — never an identity copy) and
+  `0 ≤ line_index < GetCountString(category)` (split-based), lookup
+  succeeds; violations land in a ledger file with the node id — zero
+  unledgered violations allowed. The range check alone cannot detect a
+  uniform ±1 shift (only boundary nodes violate), so the −1 conversion
+  itself is contract; this simultaneously validates the §3.6
+  union-of-carriers binding rule.
+- **D3 — locale coverage ledger:** every (node, locale) cell is classified
+  `present | filler | contentless` driven solely by
+  `locale_availability.jsonl` + category presence; French-only LD16 emits as
+  `contentless` for fr and `absent-category → filler` elsewhere; no locale
+  silently dropped (SPEC shipping bar).
+- **D4 — residue surfacing:** all 7 `LocationDialogue Location12` affected
+  locales carry the U+FFFD/cp1250 marker inline plus the ledger row id; a
+  consumer can trace every replacement char to `_ledger/encoding-residue.jsonl`.
+- **D5 — edge integrity:** every `next`/`nextDialogue` PPtr with
+  `m_FileID = 0`, `pathID ≠ 0` resolves to a node id in the same level graph
+  or produces a dangling-edge ledger entry; entry-point and terminal sets are
+  computed, and terminals reconcile with the measured 548-null-next baseline
+  (± explained diff rows).
+- **D6 — speaker completeness:** ≥99% of nodes carry a structured speaker
+  (`themeDialogue` value or personage ref); `speakers.json` covers the full
+  closed enum (14 values + personage classes + `Names` pool) with slug
+  mappings either resolved or explicitly `null:"pending-curation"` — never
+  omitted.
+- **D7 — comment hygiene:** `//`-prefixed lines never render as speech text
+  anywhere; they appear only as `condition_hints`, and the emitted hint count
+  reconciles with the source (EN: 328).
+- **D8 — provenance stamp:** every record carries `build: 19029065` and its
+  source container + PathID; user-facing provenance prints buildId only
+  (AGENTS.md rule 3).
+- **D9 — determinism:** two emitter runs over unchanged inputs produce
+  byte-identical `nodes.jsonl`/`edges.jsonl` (ordering fixed; no wall-clock
+  fields).

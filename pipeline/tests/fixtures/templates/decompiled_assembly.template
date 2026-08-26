@@ -1,0 +1,47 @@
+// Decompiled by test stub for ilspycmd (synthetic fixture — no real client bytes).
+// Structure mirrors explorer-e1-hands-on.mdx §Step 7 anchors; method bodies are
+// deliberately trivial — the real decompiler's bodies are garbage-prone in
+// call-heavy serializers (take structure, get semantics from data).
+
+public class GlobalLanguage : MonoBehaviour
+{
+    public static System.Collections.Generic.List<LanguageFilesText> languageText;
+
+    public static string GetString(string _name, int _string)
+    {
+        return default(string);
+    }
+
+    public static int GetCountString(string _name)
+    {
+        return default(int);
+    }
+}
+
+public class LanguageFilesText
+{
+    public string name;
+    public string[] strings;
+}
+
+public class LanguageFilesTexture
+{
+    public string name;
+    public Texture2D texture;
+}
+
+public class ConsoleInterface : MonoBehaviour
+{
+    public void CheckLocalization()
+    {
+        // loader chain: CheckLocalization -> LocalizatioLoad -> LocalizationClearText
+    }
+
+    private void LocalizatioLoad(string _path)
+    {
+    }
+
+    private void LocalizationClearText(string[] _lines)
+    {
+    }
+}

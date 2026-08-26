@@ -1,0 +1,4 @@
+{"_meta":{"canonical_file":"extracted/relinks/achievement--ending.jsonl","closure_provenance":"meta authored at CLOSURE-1 assembly (source ships bare rows); data rows byte-verbatim","consolidated_from":"extracted/data/achievements/relink-achievement-ending.jsonl","family":"achievement--ending","generator":"B-2 dataset-builder emit pass (Part B anchors)","index_pair":"achievement->ending","mechanism":"hard","pair":"achievement <-> ending","row_count":3,"schema":"miside.relink.achievement-ending/1"}}
+{"index_pair":"achievement->ending","achievement_id":"ACHI_safelife","ending_id":"safe-of-life","mechanism":"hard","build_id":19029065}
+{"index_pair":"achievement->ending","achievement_id":"ACHI_none","ending_id":"conditions-met","mechanism":"hard","build_id":19029065}
+{"index_pair":"achievement->ending","achievement_id":"ACHI_final","ending_id":"is-this-the-end","mechanism":"hard","build_id":19029065}

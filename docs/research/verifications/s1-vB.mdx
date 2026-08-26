@@ -1,0 +1,85 @@
+# S1 verification vB — brief-completeness + relink-floor lens
+
+Verifier: independent vB agent, 2026-08-24. Under review:
+[docs/research/game-research.mdx](../game-research.mdx) +
+[competitor-research.md](../../../competitor-research.md) against
+[docs/briefs/S1-game-research.md](../briefs/S1-game-research.md).
+Method: fresh primary pulls (`curl` + MediaWiki `api.php`, Steam appdetails /
+stats / news RSS, Wikipedia extracts, guide HTML) cross-checked against the
+author's own raw pulls in `tmp/s1-fetch/`, plus full reads of pack
+README/data-acquisition. No git run, nothing appended to deliverables.
+
+## Lens checklist
+
+- **(a) 8 required sections incl. inference-marked §8** — PASS. All eight
+  brief sections present in order; §8 titled "OUR INFERENCE" and opens with
+  an explicit "analysis, not sourced fact" blockquote; `[unverified]` used
+  where counts are unknown.
+- **(b) ≥3 independent sources, each with URL/languages/breadth/rendered
+  relationship model/structural weaknesses** — PASS. S1 EN Fandom, S2 RU
+  Fandom, S3 Steam guides each carry all five elements; S4 Wikipedia + S5
+  Steam official added; negative findings (wikily.gg soft-404 — reproduced;
+  no wiki.gg/game8/IGN/Fextralife) recorded. Rendered-model claims verified
+  against pulls: Profiles table header is literally
+  `Mita !! Profile !! Location !! Chapter`; `table-progress-tracking`
+  extension present on Achievements/Clothes/Profiles; case-duplicate pages
+  (Cap-Wearing/Cap-wearing, Braided-Hair/Braided Hair,
+  Short-haired/Short Haired, Be Candid/Being Candid, The Basement ×3) and
+  redirect-hub pages (Story/Chapters/Versions/Collectibles) all exist;
+  Achievements page carries ru+tr interwiki only.
+- **(c) APPLIED DELTA survives [DR-2026-08-17-relink] bar #3** — PASS. J1–J14
+  are concrete joins we ship *because* the corpus is held, each mapped to a
+  §8 relation family with doctrine `hard/logic/inferred` mechanism and named
+  client source (scene graphs, loc tables, decompiled condition/minigame
+  code, registries) — application, not source praise. Two rows map loosely
+  (F9). Client-source claims corroborate data-acquisition.md: buildId
+  19029065, Unity 2021.3.35f1, IL2CPP metadata v29, `Data/Languages/<locale>/`
+  777 png + 3 psd — all match.
+- **(d) inline sources / [unverified]** — largely PASS (see findings): every
+  percentage, date, id, and code I checked matched its cited primary source
+  exactly; zero fabricated figures found. Exceptions F2/F3/F8 below.
+- **(e) no legality commentary** — PASS. Regex sweep over both files: zero
+  hits (sole match was "how-tos" tripping `\bToS\b` — false positive).
+
+## Findings
+
+| # | Sev | Finding | Evidence |
+|---|---|---|---|
+| F1 | MED | "**twelve** «Флешка …» pages" is wrong — RU wiki has **13** (Флешка 2D, Доброй, Кепки, Коротковолосой, Крипи, Маленькой, Манекена, Милы, Миты, Призрачной, Сонной, Чиби Миты, Ядро), matching the docs' own "13 character cartridges" | RU allpages pull (fresh + author cache), both files |
+| F2 | MED | "30 store-listed languages" stated flat while citing appdetails, which today enumerates **31** supported languages (Slovak included). Brief itself carried the bad count (said 30, listed 31); README hedges "must be re-verified before spec freeze" — deliverable should too or recount | live appdetails 2026-08-24; D1 §7; competitor S5 |
+| F3 | MED | "7 locale subpages / transcriptions in 7 locales / 7 hand-pasted transcript pages": hub lists 7 `Dialogues/<Locale>` links, but **only English + Russian exist**; Chinese/Korean/Japanese/German/French are redlinks (`missing:true`). Affects competitor S1 line, J8 ceiling text, advantage #3, D1 §4/§8 phrasing | api.php titles query, live Dialogues parse |
+| F4 | LOW | EN "~103 mainspace pages" vs **140** in the author's own cached allpages pull and my fresh pull (RU "~89" is exact) | tmp/s1-fetch/fandom-allpages.json |
+| F5 | LOW | Broken self-anchor: §2 links `#5-the-fictional-version-lattice`; no such heading exists (content is §1 "The version metaspace") | game-research.mdx |
+| F6 | LOW | §4 intro attributes the whole 17-row minigame table to [Fandom · Minigames], but **Tetris appears nowhere on that page** (16 tabulated); row self-discloses patch-note sourcing — intro overstates | fandom-Minigames.json |
+| F7 | LOW | v0.91 "**10 language additions** (…9 codes… + voice settings)": enumeration supports 9 | game-research.mdx §7 |
+| F8 | LOW | "'Quandrangle' per wiki spelling" — cited Minigames pull spells Quadrangle correctly ×4; misspelling absent. Flagged `[unverified]`, so honest, but attribution is backwards | fandom-Minigames.json |
+| F9 | NIT | J11 maps to family/kind `mode`, J12 to `external-stats` — neither exists in D1 §8 kinds/families that the delta claims to map onto; add `game_mode` at spec seed or remap | competitor delta table |
+| F10 | NIT | Player cartridges "(10)" accounts for only nine Players 2–10 ("plus related pickups" hedge) | game-research.mdx §3 |
+| F11 | NIT | `../../spec.md` link target doesn't exist yet (disclosed as pending — acceptable) | game-research.mdx header |
+
+## Independently confirmed (sample)
+
+26 achievements total and **all 11 cited global percentages digit-exact**
+(10.5 rarest / 86.4 most common hold); release 10 Dec 2024 + IndieArk/Shochiku;
+all six Steam-news events with dates (v0.93L 2025-06-13, collab 2025-07-16,
+Kickstarter 2025-10-31, awards 2025-11-25, anniversary 2026-08-21, v0.93
+2025-02-14); day-37 hook; AIHASTO/MakenCat/Umeerai/DreamCast/**Kana Hanaiwa**
+(all in Wikipedia); all 20 chapter titles as live pages; safe code 4970 +
+17%/98%/Stay on Campaign; IDX 805/809 and version range incl. 1.3B; renames
+Cap→Cappie etc., console commands setfps/skipdialogue/triggershow; Clothes
+4 outfits + reflection note; all 17 minigame names; achievement typology +
+"Praying for you"/Discord trivia; all nine Players epithets + chibi players;
+Peaceful Mode day-night/cooking/pizza/shopping/H1-2026; guide title + "Last
+updated on 26.12.2024"; guides index 30 ids ≈ "~29"; wikily.gg/miside lands
+on the generic homepage; RU=89 pages; 20-chapter/3-ending/26-achievement
+counts internally consistent across both files.
+
+## Coverage statement
+
+≈40 discrete spot-checked factual claims across both deliverables; ~88%
+confirmed exactly against primary sources. All misses are counts/attribution
+(F1–F8), none fabricated; no unverified item is smuggled through as fact
+outside F2/F3. Mandatory structure, sourcing discipline, and the applied-delta
+relink floor are met; fixes are one-line count corrections before spec freeze.
+
+VERDICT: PASS

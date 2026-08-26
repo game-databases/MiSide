@@ -1,0 +1,309 @@
+# DS-1 — Dataset spec: Characters & Mitas
+
+Status: **SPEC (curation contract)** — authored 2026-08-25 by brief DS-1 from
+the orchestrator; not yet built. Emission is a future `run_all` stage over the
+P1 corpus, which is already on disk and proven
+([PROOF.md](../../../extracted/PROOF.md)).
+
+Citation shorthands: **SPEC** =
+[spec.md](../../spec.md) · **E1** =
+[explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx) ·
+**D1** = [game-research.mdx](../research/game-research.mdx) ·
+**PIPE** =
+[pipeline-run_all.mdx](pipeline-run_all.mdx) ·
+**DOCTRINE** =
+[../../\_foundation/extraction-doctrine.md](../../_foundation/extraction-doctrine.md).
+Corpus paths are repo-relative under `extracted/`; raw-client paths are
+absolute on this host (NE8K). Every factual claim about game data names the
+file it was read from.
+
+---
+
+## 1. Scope
+
+This dataset owns the **rows** for exactly two SPEC entity kinds:
+
+- `mita_variant` — the soul surfaces (SPEC §Page inventory: flagship page
+  type, palette-keyed);
+- `player_character` — protagonist + Players 1–10 (D1 §2).
+
+Everything else the Mita pages *display* — outfits, cartridges, profiles,
+achievements, dialogue — is **joined, not owned**: those kinds get their own
+datasets; this spec fixes only the join keys (§5). Scales in SPEC were
+estimates ("~20–30", "~20"); this spec replaces them with measured registry
+sizes (§3): **14 Mita gallery entries + 10 player entries = 24 owned rows**,
+plus an evidence-less candidates ledger (§7).
+
+## 2. Source inventory (what feeds each field)
+
+| # | Artifact | Role | Evidence it carries |
+|---|---|---|---|
+| S1 | `extracted/harvest/mb-dump/level2/MenuPersonage.txt` | **Primary — the character registry** | Serialized `PersonageResource[] resourceMita` (size = 14, line 301) and `resourcePlayer` (size = 10, line 48): name/description loc indices, resource paths, save keys, palettes, icon refs |
+| S2 | `extracted/decompiled/main/Assembly-CSharp/PersonageResource.cs` | Field authority | `icon`, `indexDescriptionStringFile`, `indexNameStringFile`, `resourcePath`, `color1`, `color2`, `caseBack`, `nameSave`, `buttonMenu` |
+| S3 | `extracted/decompiled/main/Assembly-CSharp/MenuPersonage.cs` | Consumer authority | Serializes `PersonageResource[] resourcePlayer` + `resourceMita` ("Персонажи" header); `OpenPersonage(string _name)` |
+| S4 | `extracted/decompiled/main/Assembly-CSharp-firstpass/GlobalLanguage.cs` | Loc join authority | `GetString(name, index)` / `GetCountString(name)` over `LanguageFilesText{name, strings[]}` — E1 step 7 proof |
+| S5 | `extracted/localization/<locale>/Menu.jsonl` | Display names ×34 | Lines 83–95 = 13 Mita display names, 100–118 = load-point/chapter names, 119–128 = "Player 1".."Player 10"; 165 records in every locale (measured, §4) |
+| S6 | `extracted/localization/<locale>/Personages.jsonl` | Bios ×34 | Line 0 `// Mitas`, bios 1–14, line 15 `// Players`, bios 16–25; 26 records in every locale |
+| S7 | `extracted/localization/<locale>/Names.jsonl` | Speaker names + name pool | 0 `Mita`, 1 `You`, 2 `Thoughts`; 9+ NPC name pool (`Jimmy`, `Carl`, …); 47 records/locale |
+| S8 | `extracted/harvest/mb-dump/globalgamemanagers/MitaClothesResource.txt` | Outfit table (join target) | `List<DataClothMita> clothes` size = 4: `stringName` 10–13, `fileSave` `original`/`FIIdClSchool`/`HellVamp`/`Chirfns`, `iconCloth`, case colours, variant materials |
+| S9 | `extracted/localization/<locale>/Clothes.jsonl` | Outfit display names ×34 | 13 records/locale: 9 `Default`, 10 `School`, 11 `Vampire`, 12 `Christmas` |
+| S10 | `extracted/harvest/mb-dump/resources.assets/DataAchievements.txt` | Achievement join target | 26 entries `steamAchievement ↔ icon PPtr ↔ lineTranslate` (E1 step 3 verbatim dump) |
+| S11 | `extracted/decompiled/main/Assembly-CSharp/{FlashTaker,Location18_Flash,TamagotchiGame_Cartridge}.cs` | Cartridge join targets | `FlashTaker.SaveFlash(string _save)`; cartridge pickup/take methods |
+| S12 | `extracted/il2cpp/stringliteral.json` | Path/key literals | `'Personages/'`, `'Clothes/DataClothesMita'`, `'/Save/Flashes'`, `'Flashes'`, `'ACHI_cartridgeplayers'` (address-indexed) |
+| S13 | `extracted/harvest/asset-list/<container>.xml` | Scene-membership graph | Per-asset `<Name>`/`<PathID>` per container — e.g. `level13.xml` lists `Location11_BlackMita`, `Location11_EyesMitaBlack`, `MitaPerson` ×3, `MitaKiller`; no asset-list carries a bare `MitaBlack` — registry row 11 (`resourcePath="MitaBlack"`) reaches those scene names only through the §5-J2 transform T |
+| S14 | `extracted/harvest/mb-dump/<container>/MitaPerson.txt` (+ `MitaKiller`, `MitaFreak Enter`, `Mob_ChibiMita`) | In-scene Mita instances | Present in 45 / 31 / 17 / 3 containers respectively (filename census over `harvest/mb-dump/`) |
+| S15 | `extracted/localization/_ledger/{locale-delta,encoding-residue}.jsonl` | Honesty ledgers | Per-locale category/art skew; the only encoding residue is 7 rows in `LocationDialogue Location12` — **none** in the four character categories |
+
+## 3. Anchor discovery — the game's own character registry
+
+The character gallery is data-driven, and its data survives verbatim in one
+scene dump. `level2/MenuPersonage.txt` serializes both arrays; resolved
+against S5/S6 (all values below read directly from that dump):
+
+| # | resource_path | save_key | desc→Personages | name→Menu | color1 (r,g,b) |
+|---|---|---|---|---|---|
+| 0 | `MitaUsual` | *(empty)* | 1 | 83 `Mita` | 0.80, 0.45, 0.64 |
+| 1 | `MitaShortHairs` | `mtashh` | 2 | 84 `Short-haired Mita` | 0.27, 0.46, 0.64 |
+| 2 | `MitaKind` | `mtakd` | 3 | 85 `Kind Mita` | 0.32, 0.35, 0.91 |
+| 3 | `MitaCap` | `mtacap` | 4 | 86 `Cap-wearing Mita` | 1.00, 0.56, 0.24 |
+| 4 | `MitaLittle` | `mtal` | 5 | 87 `Tiny Mita` | 0.45, 0.08, 0.14 |
+| 5 | `MitaDreamer` | `mtad` | 6 | 88 `Sleepy Mita` | 0.28, 0.36, 0.75 |
+| 6 | `Mita2D` | `mtad2` | 7 | 89 `2D Mita` | 1.00, 0.77, 0.41 |
+| 7 | `Mila` | `mla` | 8 | 90 `Mila` | 0.77, 0.36, 0.33 |
+| 8 | `MitaCreepy` | `mtac` | 9 | 91 `Creepy Mita` | 0.63, 0.16, 0.10 |
+| 9 | `MitaCore` | `mtacore` | 10 | 92 `Core Mita` | 0.29, 0.30, 0.34 |
+| 10 | `MitaChibi` | `mtachi` | 11 | 94 `Chibi Mita` | 0.95, 0.22, 0.39 |
+| 11 | `MitaBlack` | `mtaghost` | 12 | 93 `Ghostly Mita` | 0.72, 0.72, 0.72 |
+| 12 | `MitaManeken` | `mtaman` | 13 | 95 `Dummy Mita` | 0.65, 0.41, 0.26 |
+| 13 | `MitaTrue` | *(empty)* | 14 | 83 `Mita` (reused) | 0.85, 0.17, 0.27 |
+
+Players: `Player`/`plr1a` (desc 16, name 119 `Player 1`, color1 0.36, 0.61,
+0.87) then `plr2v`, `plr3vi`, `plr4asw`, `plr5bz`, `plr6vcx`, `plr7vczn`,
+`plr8qeqe`, `plr9mpa`, `plr1099` (desc 17–25, name 120–128, shared icon
+pathID 276, color1 black).
+
+Findings this table pins, each load-bearing for the schema:
+
+1. **Internal names ≠ display names** — Sleepy is `MitaDreamer`, Tiny is
+   `MitaLittle`, Ghostly is `MitaBlack`. Doctrine Principle one (never strip
+   identifiers) makes `resource_path` mandatory and untouchable.
+2. **Display names live in `Menu`, not `Names`** — `indexNameStringFile`
+   resolves into `Menu.jsonl` lines 83–95/119–128; `Names.jsonl` carries
+   dialogue speaker words + an NPC name pool instead (S7).
+3. **Both section-comment lines are skipped by design** — desc indices start
+   at 1 (past `// Mitas`) and jump 14→16 (past `// Players`); the indices are
+   deliberate 0-based line picks, corroborating the split-based line model
+   (E1 step 5 deviation #3).
+4. **One display name serves two identities** — `MitaTrue` reuses Menu line
+   83; the schema needs `name_is_shared` so pages don't merge the Crazy-form
+   alias into base Mita.
+5. **Palettes are first-class game data** — per-character `color1`/`color2`
+   (S2) feed SPEC's colour-is-identity mandate (design direction summary)
+   directly from the client, not hand-picked hexes.
+6. **Gallery icons are mostly unset** — `icon` PPtr is pathID 0 for all 14
+   Mita entries and 0/shared-276 for players: portraits must come from the ART
+   layer, not this field ([unverified] until mapped, §8-R5).
+
+## 4. Schema — `personages.jsonl`
+
+### 4.1 Locale ruling: pointer columns, not locale columns
+
+Three options existed: wide per-locale columns, per-locale record copies, or
+**loc pointers resolved at build/render time**. Ruling: **pointers**
+(`{category, line_index}` objects), plus one derived pivot convenience field.
+Rationale, each tied to measured corpus facts:
+
+- **Parity is total here.** All four registry categories have identical
+  record counts in all 34 locales (26/165/47/13 — verified this pass across
+  every dir under `extracted/localization/`), so per-row locale availability
+  would be a constant column: pure duplication. Skew exists elsewhere
+  (categories 64–76/dir, R-E1-3) and stays the job of
+  `localization/_ledger/locale-delta.jsonl`, not of this dataset.
+- **The game's own join is index-shaped.** `GetString(category, index)`
+  (S4) is the proven authority (E1 step 7); storing anything but the pointer
+  would replace the game's identifier with our transcription — exactly what
+  doctrine Principle one forbids.
+- **Patch diffs stay cheap.** A patch that edits RU bio text then changes one
+  loc JSONL row; with copied text it would also dirty every character record
+  and its buildId stamp, defeating SPEC's per-record staleness model.
+- **Filler policy composes cleanly.** SPEC declares explicit-filler; a
+  missing/mismatched locale cell renders filler driven by
+  `relinks/locale_availability.jsonl` — a planned PIPE P1 sibling output
+  ([pipeline-run_all.mdx](pipeline-run_all.mdx), outputs list), not yet on
+  disk at spec time; this dataset consumes it once that stage lands. With
+  pointers there is nothing to go stale; with copies there always is.
+
+### 4.2 Record schema (one JSON object per line; 24 rows)
+
+| Field | Type | Source | Notes |
+|---|---|---|---|
+| `character_id` | slug | derived from `resource_path` | stable kebab-case (`mita-kind`, `player-3`); never replaces originals, adds friendliness only |
+| `kind` | enum | S1 array membership | `mita` \| `player` |
+| `registry_ref` | string | S1 | `<container>#<array>[<index>]`, e.g. `level2#resourceMita[3]` — exact provenance of the row |
+| `resource_path` | string | S1 | verbatim; `""` preserved as `""` |
+| `save_key` | string | S1 `nameSave` | verbatim incl. empty; the cartridge/profile save identity (§5-J5) |
+| `name_loc` | object | S1→S5 | `{"category": "Menu", "line_index": 86}` |
+| `description_loc` | object | S1→S6 | `{"category": "Personages", "line_index": 4}` |
+| `palette_color1` | number[4] | S1 | RGBA floats 0–1, serialized order |
+| `palette_color2` | number[4] | S1 | present on all 24 entries (verified: 24 `color2` blocks in the dump) |
+| `gallery_icon` | object\|null | S1 | `{container, path_id}` or `null` when pathID 0 — null is honest-missing, never backfilled |
+| `preview_prefab_key` | string | S12 `'Personages/'` + S1 | `[unverified]` Resources.Load key, e.g. `Personages/MitaKind` — only the `'Personages/'` literal is proven; IL-stub bodies expose no load call site, so the mechanism is inferred |
+| `name_is_shared` | bool | derived within S1 | true iff another row shares `name_loc` (row 13 `MitaTrue`) |
+| `gallery_order` | int | S1 array index | canonical ordering inside the game UI |
+| `name_en` | string | derived via S4/S5 | pivot convenience copy for search/API consumers; marked `"derived"` in the file header meta — the pointer remains the truth |
+| `build_id` / `version_label` | string | EXTRACTION-LOG pins | `19029065` / `0.93L` on every record (provenance rule 3 user-facing class) |
+
+File header (first line, `{"_meta": ...}`) records: generator stage name,
+source table §3, schema version, derived-field list.
+
+### 4.3 Output location & tree
+
+Curated views live under `extracted/data/` (new subtree; PIPE §3 tree gains
+one line — same commit updates the entrypoint per [DR-2026-08-18-pipeline]):
+
+```
+extracted/data/characters/
+├── personages.jsonl              # §4.2 — the 24 owned rows
+├── characters.candidates.jsonl   # §7 — evidence-less/unregistered candidates
+└── README.md                     # one-page contract card pointing here
+extracted/relinks/
+├── character--scene-membership.jsonl   # §5-J2
+├── character--outfit.jsonl             # §5-J3
+├── character--achievement.jsonl        # §5-J4
+├── character--cartridge.jsonl          # §5-J5
+└── character--dialogue-speaker.jsonl   # §5-J6
+```
+
+Edges live in `relinks/` per doctrine (outputs section), each row carrying
+`{from, to, mechanism: hard|logic|inferred, method, status}`; the pairwise
+matrix roll-up stays RELATIONS.md's job, not this dataset's.
+
+## 5. Join plan
+
+| # | Pair | Key | Mechanism | Status |
+|---|---|---|---|---|
+| J1 | character ↔ all localized text | `(category, line_index)` via `GlobalLanguage.GetString` (S4) | **hard** | proven end-to-end (E1 steps 3/7); AC-2 re-proves per emit |
+| J2 | character ↔ scene/location | `resource_path` matched against S13 asset names + S14 instance containers; PPtr graphs give (container, pathID). Scene GameObjects mostly do NOT reuse `resource_path`: `level13.xml` carries `Location11_BlackMita` + `Location11_EyesMitaBlack`, never bare `MitaBlack`. Join = transform **T**: `Mita<X>` → `Location<n>_<X>Mita` (container-scoped `Location<n>_` prefix + modifier moved before the head noun `Mita`), whole-word decorations prepended as extra tokens (`Eyes…` → `Location11_EyesMitaBlack`) — registry row 11 joins `level13` through BOTH names; verbatim equality survives only for `MitaCore` (2 containers) | **hard** where an S13 `<Name>` equals `resource_path` verbatim (only `MitaCore` today); **inferred** where only T links them — T itself is the edge's recorded `method`, never silent (AC-7 asserts it) | modeled at census level; per-instance identity needs the emit pass |
+| J3 | character ↔ outfit | `DataClothMita` (S8) binds meshes/materials; which Mitas *reflect* the equipped outfit is code behaviour (COMP J7) | **hard** for the outfit table itself; **logic/inferred** for reflection targets | reflection list `[unverified]` until decompiled-body analysis lands |
+| J4 | character ↔ achievement | set-membership achievements reference collectible families (`ACHI_cartridgeplayers` literal, S12); per-achievement text via `DataAchievements.lineTranslate` → `Achievements.txt` (S10, E1 step 3) | **hard** for row joins; **logic** for family membership | modeled; family mapping emitted with the achievements dataset |
+| J5 | character ↔ cartridge/profile | `save_key` ↔ `FlashTaker.SaveFlash(_save)` strings + `/Save/Flashes` collection literal (S11/S12) | **logic** (string-keyed save identity; no direct PPtr) | modeled; per-cartridge placement waits on the scenes dataset |
+| J6 | character ↔ dialogue speaker | speaker words `Names.jsonl` 0–2 (`Mita`/`You`/`Thoughts`); dialogue lines keyed by `DialogueChanger.fileQuest` + `buttons[].stringFile`, `Dialogue_3DText.indexString` (decompiled fields) | **hard** for line refs; speaker-per-line attribution **open** (see §8-R1) | partial — pinned as the dialogue dataset's problem, keys fixed here |
+
+Cross-references stay bidirectional: every edge file also emits the inverted
+index (doctrine Principle one).
+
+## 6. Stub-first plan (promptForDB hooks)
+
+Data honesty rules the stub ladder — a row ships only at the evidence tier it
+actually reached:
+
+1. `registered` — in the S1 registry (all 24 rows): full record, no stubbing.
+2. `loc_only` — has client text but no registry row (e.g. Personages line 12's
+   "misty variation" paragraph if it fails to map to `MitaBlack` at emit):
+   row with `status: "loc_only"`, empty identity fields, no invented values.
+3. `unregistered candidate` — appears in scenes/literals but maps to no
+   registry/text row (Giant/Lower-Half/Prankster-class variants if their
+   GameObjects surface): **candidates ledger only**
+   (`characters.candidates.jsonl`: `evidence: [{path, locator}]`, `status:
+   "unregistered"`), never a page-grade row.
+4. Wiki-only names (D1 §2 mention-only list) — **no row, no candidate** until
+   client evidence exists; SPEC non-goals forbid fan-lore in data rows. If
+   the site wants visible-locked stub pages for these, that is a frontend
+   question routed through promptForDB — answered from the candidates
+   ledger, never by inventing data.
+
+Every stub/candidate row carries `missing_fields: [...]` so missingdata.md
+can be generated mechanically.
+
+## 7. Completeness register (what stays `[unverified]`)
+
+| # | Risk | Consequence | Handling |
+|---|---|---|---|
+| R1 | **Speaker attribution mechanism unproven.** Decompiled bodies are IL-stub form (Il2CppDummyDll output); which of `Names` lines 0–2 labels a given dialogue line is not derivable from fields alone. | dialogue-side speaker joins could be silently wrong | keep J6 `partial`; dialogue dataset owns the proof; characters dataset stores speaker *names*, never attributions |
+| R2 | **Outfit name off-by-one.** `stringName` runs 10–13 but `Clothes.txt` ends at line 12 in all 34 locales; `fileSave` semantics (`original`→Default…) fit `GetString("Clothes", n−1)`. | wrong outfit display names | emit resolves **both** hypotheses into the relink row and pins the chosen one + reason; AC-6 verifies the pin |
+| R3 | **44 UI links point at a category that ships no file.** `Localization_UIText` components with `NameFile = "Version"` (StringNumber 1) exist across sharedassets3–23; no `Version.txt` exists in any of the 34 locales. | version-sign text unreachable via loc layer | documented gap per relink bar #2 (UI link without data counterpart) — ledgered in the dataset README + missingdata.md, not worked around |
+| R4 | **Scene-instance identity ambiguity.** `MitaPerson` dumps carry no identity field (`startEmotion = ""` etc.); dummies/clones multiply instances (45 containers). | over-counting Mita presence per scene | J2 emits per-container counts + named matches only; unnamed instances counted, never attributed |
+| R5 | **Portraits unresolved.** Gallery icons null/shared (§3 finding 6); portrait art lives in the ART layer (per-locale Textures subsets differ — R-E1-3) | broken OG cards if assumed | `gallery_icon` stays null-honest; portrait mapping is the art dataset's deliverable |
+| R6 | **Post-0.93L drift unknown.** Whether silent builds changed registry rows (SPEC missing-data item) | stale rows after a patch | buildId stamping + rerun diff; nothing else available pre-harvest |
+
+## 8. Acceptance criteria (verifier-checkable)
+
+Each criterion states the check a verifier can run against the emitted files
+without re-running extraction, using only repo artifacts.
+
+1. **Row census reconciles.** `personages.jsonl` has exactly 24 data rows =
+   `int size` lines 48/301 of `extracted/harvest/mb-dump/level2/MenuPersonage.txt`;
+   every row's `registry_ref` names its array + index, and the multiset of
+   `(resource_path, save_key, desc_line, name_line)` tuples equals the one
+   extracted from that dump byte-for-byte.
+2. **Loc joins resolve ×34.** For every row, `name_loc` and
+   `description_loc` resolve to non-empty text in all 34 locale dirs under
+   `extracted/localization/`; zero U+FFFD in any resolved value unless the
+   row cites `localization/_ledger/encoding-residue.jsonl` (which today
+   contains no character-category rows).
+3. **Identifiers preserved.** Every S2 field name survives as a schema column
+   or an explicitly-dropped-with-reason entry in the README; `resource_path`
+   and `save_key` are byte-identical to the dump (including the two empty
+   save keys); `character_id` never replaces them.
+4. **Palette round-trips.** All `palette_*` arrays parse as RGBA floats in
+   [0,1]; spot-check row 0 ≈ (0.80, 0.45, 0.64) and row 13 ≈ (0.85, 0.17,
+   0.27) against §3; hex conversion used by the site token layer reproduces
+   from the stored floats.
+5. **Save-key shape holds.** Non-empty `save_key` values match the observed
+   families (`mta*`, `mla`, `plr*`), the ten `plr*` keys are exactly
+   `plr1a…plr1099`, and each appears in `character--cartridge.jsonl` with
+   `mechanism` recorded.
+6. **Outfit join pin recorded.** The `character--outfit` side (or README)
+   states the chosen Clothes-line hypothesis; a verifier recomputing both
+   offsets from S8+S9 gets Default/School/Vampire/Christmas only under the
+   documented one, and the rejected hypothesis is named with its failure.
+7. **Scene membership greps clean under the recorded method.** Sampling
+   any 10 rows of `character--scene-membership.jsonl`, each claimed
+   `(container, Name)` pair greps clean in
+   `extracted/harvest/asset-list/<container>.xml`: exact-match rows claim
+   the GameObject name verbatim; `name-transform` rows claim the
+   T-product (§5-J2) and never the raw `resource_path` — e.g. the
+   `level13` edge for registry `MitaBlack` claims `Location11_BlackMita`
+   / `Location11_EyesMitaBlack` (both grep clean there), while
+   `MitaBlack` greps clean in no asset-list and must appear in zero
+   claimed Names. Applying the row's recorded transform T to its
+   `resource_path` reproduces the claimed Name byte-for-byte;
+   unnamed-instance counts sum to the S14 filename census.
+8. **Honesty ledgers wired.** R3's Version-category gap, both empty-icon
+   facts, and every `status != "registered"` row appear in the dataset
+   README/ledger files; `grep -ri "version" extracted/data/characters/README.md`
+   finds the gap entry; no row invents a value for a field its sources don't
+   prove.
+9. **Locale availability derives, never asserts.** Page-facing availability
+   for these entities computes from the four categories' presence per locale
+   and matches `localization/_ledger/locale-delta.jsonl` — all 34 today; a
+   verifier deleting a locale's `Personages.jsonl` in a scratch copy flips
+   the computed availability for affected cells (filler policy demonstrably
+   data-driven).
+10. **Stub policy enforced negatively.** No D1 §2 wiki-only variant name
+    (e.g. `Prankster`, `Long-legged`, `Mitaphone`) appears as a row in
+    `personages.jsonl`; such names occur only in `characters.candidates.jsonl`
+    and only with client-evidence locators or `evidence: []`.
+
+## 9. Implementation notes
+
+- Emission lands as a `run_all` stage (registry order after `decompile`),
+  idempotent, reading only repo artifacts listed in §2 — keeping
+  [DR-2026-08-18-pipeline] intact (PIPE §4 manifest gains the stage module +
+  test file in the same commit).
+- The stage refuses to emit when EXTRACTION-LOG `pipeline-defaults` disagree
+  with the corpus buildId it reads from `census/detect.json` (stale-log
+  defense, PIPE §3).
+- Schema changes after datasets ship = new schema version in `_meta` + a
+  regenerating rerun, never an in-place mutation.
+
+## See also
+
+- [pipeline-run_all.mdx](pipeline-run_all.mdx) — stage registry the emitter
+  joins
+- [../research/game-research.mdx](../research/game-research.mdx) §2 —
+  community model this dataset supersedes with client evidence
+- [../../competitor-research.md](../../competitor-research.md) J2/J3/J4/J7/J8
+  — the applied-delta joins this dataset feeds
+- [../../_foundation/extraction-doctrine.md](../../_foundation/extraction-doctrine.md)
+  — Principle one/two, relink bars

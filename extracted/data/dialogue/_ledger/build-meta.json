@@ -1,0 +1,139 @@
+{
+ "binding_rule": "levelN -> LocationDialogue Location(N-2); validated per level in _ledger/range-check.jsonl",
+ "build": 19029065,
+ "edges_by_kind": {
+  "branch_left": 5,
+  "branch_right": 5,
+  "choice": 70,
+  "next": 2161,
+  "on_finish_action": 1535
+ },
+ "edges_total": 3776,
+ "emitter": "extracted/data/dialogue/build/emit_dialogue.py",
+ "hint_stats": {
+  "comments_attached_to_a_content_row": 320,
+  "comments_emitted_into_condition_hints": 320,
+  "comments_unattachable": 8,
+  "en_comment_rows_total": 328,
+  "hint_items_emitted": 324,
+  "nodes_carrying_hints": 318,
+  "note": "every hint-bearing ref of a node attaches (no early break); comments attach to the next non-blank non-comment row of their category (previous row as fallback); verbatim EN, lang-tagged, never rendered as speech (D7); comments whose target row no component serializes stay explicit in unattached_rows, never dropped",
+  "reconciliation_invariant": "comments_emitted_into_condition_hints (320) + comments_unattachable (8) == en_comment_rows_total (328)",
+  "unattached_rows": [
+   {
+    "category": "LocationDialogue Location1",
+    "comment_line_index": 119,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 120
+   },
+   {
+    "category": "LocationDialogue Location14",
+    "comment_line_index": 75,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 76
+   },
+   {
+    "category": "LocationDialogue Location14",
+    "comment_line_index": 139,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 140
+   },
+   {
+    "category": "LocationDialogue Location14",
+    "comment_line_index": 163,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 164
+   },
+   {
+    "category": "LocationDialogue Location14",
+    "comment_line_index": 180,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 181
+   },
+   {
+    "category": "LocationDialogue Location19",
+    "comment_line_index": 378,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 379
+   },
+   {
+    "category": "LocationDialogue Location7",
+    "comment_line_index": 271,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 272
+   },
+   {
+    "category": "LocationDialogue Location7",
+    "comment_line_index": 655,
+    "reason": "target-row-not-carried-by-any-node",
+    "target_line_index": 656
+   }
+  ]
+ },
+ "ledger_rows": {
+  "dangling": 12,
+  "identity": 32,
+  "notes": 1,
+  "range": 22
+ },
+ "levels_with_graph": [
+  "level10",
+  "level11",
+  "level12",
+  "level13",
+  "level14",
+  "level15",
+  "level16",
+  "level17",
+  "level19",
+  "level20",
+  "level21",
+  "level22",
+  "level3",
+  "level4",
+  "level5",
+  "level6",
+  "level7",
+  "level8",
+  "level9"
+ ],
+ "locale_count": 34,
+ "locale_parity": {
+  "delta_rows": 4,
+  "detail": [
+   {
+    "category": "LocationDialogue Location20",
+    "delta": 1,
+    "locale": "Filipino"
+   },
+   {
+    "category": "LocationDialogue Location3",
+    "delta": 2,
+    "locale": "Italian"
+   },
+   {
+    "category": "LocationDialogue Location18",
+    "delta": -3,
+    "locale": "Português-Brasil"
+   },
+   {
+    "category": "LocationDialogue Location6",
+    "delta": -1,
+    "locale": "Turkish"
+   }
+  ],
+  "locales_with_tail_deltas": 4
+ },
+ "nodes_by_kind": {
+  "ambient_line": 2710,
+  "branch_group": 11,
+  "choice_case": 70,
+  "grouped_scene_dialogue": 11,
+  "pet_dialogue": 24,
+  "quest_box": 13
+ },
+ "nodes_total": 2839,
+ "off_by_one_contract": "line_index = game_index - 1 at EVERY use (indexString, stringFile, indexFile, index)",
+ "residue_nodes": 1,
+ "spec": "docs/specs/dataset-dialogue.mdx"
+}

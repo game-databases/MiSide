@@ -1,0 +1,605 @@
+{"category": "LocationDialogue Location19", "line_index": 0, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 1, "text": "Je... Je suis revenu ?"}
+{"category": "LocationDialogue Location19", "line_index": 2, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 3, "text": "Oh mon Dieu !"}
+{"category": "LocationDialogue Location19", "line_index": 4, "text": "Tu m'as fait peur !"}
+{"category": "LocationDialogue Location19", "line_index": 5, "text": "Oh non"}
+{"category": "LocationDialogue Location19", "line_index": 6, "text": "Ma sauvegarde ! // (Stay up)"}
+{"category": "LocationDialogue Location19", "line_index": 7, "text": "Je ne comprends pas..."}
+{"category": "LocationDialogue Location19", "line_index": 8, "text": "Le jeu s'est fermé ? // (Turns around)"}
+{"category": "LocationDialogue Location19", "line_index": 9, "text": "T'as ruiné ma route !"}
+{"category": "LocationDialogue Location19", "line_index": 10, "text": "Qu'est-ce que tu veux ?"}
+{"category": "LocationDialogue Location19", "line_index": 11, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 12, "text": "Je dois rejoindre la version..."}
+{"category": "LocationDialogue Location19", "line_index": 13, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 14, "text": "Hein ?"}
+{"category": "LocationDialogue Location19", "line_index": 15, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 16, "text": "Je cherche un passage vers une ancienne version."}
+{"category": "LocationDialogue Location19", "line_index": 17, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 18, "text": "C’est ça !"}
+{"category": "LocationDialogue Location19", "line_index": 19, "text": "Je suis bien trop occupée"}
+{"category": "LocationDialogue Location19", "line_index": 20, "text": "pour m'occuper de toi, imbécile !"}
+{"category": "LocationDialogue Location19", "line_index": 21, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 22, "text": "Occupée à quoi ? Jouer ?"}
+{"category": "LocationDialogue Location19", "line_index": 23, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 24, "text": "Non mais, de quoi je me mêle !"}
+{"category": "LocationDialogue Location19", "line_index": 25, "text": "On ne va pas bien s'entendre toi et moi !"}
+{"category": "LocationDialogue Location19", "line_index": 26, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 27, "text": "Écoute, je dois atteindre le Cœur."}
+{"category": "LocationDialogue Location19", "line_index": 28, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 29, "text": "En plus je me suis fait mal..."}
+{"category": "LocationDialogue Location19", "line_index": 30, "text": "Bon sang."}
+{"category": "LocationDialogue Location19", "line_index": 31, "text": "Et donc ?"}
+{"category": "LocationDialogue Location19", "line_index": 32, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 33, "text": "Je dois me rendre au Cœur pour arrêter Mita !"}
+{"category": "LocationDialogue Location19", "line_index": 34, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 35, "text": "Mita ?"}
+{"category": "LocationDialogue Location19", "line_index": 36, "text": "Alors là, non merci !"}
+{"category": "LocationDialogue Location19", "line_index": 37, "text": "Je n'ai rien à voir avec celle-là !"}
+{"category": "LocationDialogue Location19", "line_index": 38, "text": "Ni de près, ni de loin !"}
+{"category": "LocationDialogue Location19", "line_index": 39, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 40, "text": "Tu as l'air d'être une Mita, toi aussi..."}
+{"category": "LocationDialogue Location19", "line_index": 41, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 42, "text": "Mon nom est Mila."}
+{"category": "LocationDialogue Location19", "line_index": 43, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 44, "text": "Mi... Ta ? La ?"}
+{"category": "LocationDialogue Location19", "line_index": 45, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 46, "text": "C'est toujours Mita par-ci, Mita par-là,"}
+{"category": "LocationDialogue Location19", "line_index": 47, "text": "le monde entier tourne autour d'elle !"}
+{"category": "LocationDialogue Location19", "line_index": 48, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 49, "text": "Et tu es... Mila ?"}
+{"category": "LocationDialogue Location19", "line_index": 50, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 51, "text": "Oui, oui ! Quel genre d'idiot es-tu ?"}
+{"category": "LocationDialogue Location19", "line_index": 52, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 53, "text": "Bon, bonne chance alors, Mila..."}
+{"category": "LocationDialogue Location19", "line_index": 54, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 55, "text": "Et tu comptes aller où ?"}
+{"category": "LocationDialogue Location19", "line_index": 56, "text": "Tu penses juste pouvoir sortir d'ici, comme ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 58, "text": "// Player check exit - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 59, "text": "Dis, tu pensais trouver quoi derrière ?"}
+{"category": "LocationDialogue Location19", "line_index": 60, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 61, "text": "Mais quel enfer !"}
+{"category": "LocationDialogue Location19", "line_index": 62, "text": "C'est quoi ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 63, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 64, "text": "Tu t'attendais à quoi ?"}
+{"category": "LocationDialogue Location19", "line_index": 65, "text": "Le Pays des Merveilles ?"}
+{"category": "LocationDialogue Location19", "line_index": 66, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 67, "text": "Comment je fais moi alors ?"}
+{"category": "LocationDialogue Location19", "line_index": 68, "text": "Il devrait y avoir une sortie quelque part."}
+{"category": "LocationDialogue Location19", "line_index": 69, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 70, "text": "Il n'y a pas de sortie !"}
+{"category": "LocationDialogue Location19", "line_index": 71, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 72, "text": "Voyons voir, on est dans quelle version ?"}
+{"category": "LocationDialogue Location19", "line_index": 73, "text": "Je suis sur le bon chemin pourtant."}
+{"category": "LocationDialogue Location19", "line_index": 74, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 75, "text": "// Glitch kitchen - Player"}
+{"category": "LocationDialogue Location19", "line_index": 76, "text": "C'est à toi ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 77, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 78, "text": "Recule !"}
+{"category": "LocationDialogue Location19", "line_index": 79, "text": "Je ne sais pas ce que c'est !"}
+{"category": "LocationDialogue Location19", "line_index": 80, "text": "Une sorte de glitch !"}
+{"category": "LocationDialogue Location19", "line_index": 81, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 82, "text": "Mon anneau semble être attiré pour une certaine raison."}
+{"category": "LocationDialogue Location19", "line_index": 83, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 84, "text": "C'est quel genre d'anneau ?"}
+{"category": "LocationDialogue Location19", "line_index": 85, "text": "Une bague de fiançailles ?!"}
+{"category": "LocationDialogue Location19", "line_index": 86, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 87, "text": "Non, une des Mitas me l'a confié."}
+{"category": "LocationDialogue Location19", "line_index": 88, "text": "Il est supposé me guider vers la sortie."}
+{"category": "LocationDialogue Location19", "line_index": 89, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 90, "text": "Ne me dis pas que tu comptes toucher ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 91, "text": "Tu sais que si ma maison explose, tu es un homme mort !"}
+{"category": "LocationDialogue Location19", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 93, "text": "// bathroom - Mila is washing - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 94, "text": "Hé !"}
+{"category": "LocationDialogue Location19", "line_index": 95, "text": "Non mais SORS D'ICI !"}
+{"category": "LocationDialogue Location19", "line_index": 96, "text": "Tu vois pas que c'est occupé ?!"}
+{"category": "LocationDialogue Location19", "line_index": 97, "text": "// The player continues to stand 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 98, "text": "Qu'est-ce que tu fais encore là ?!"}
+{"category": "LocationDialogue Location19", "line_index": 99, "text": "Sors d'ici IMMÉDIATEMENT !"}
+{"category": "LocationDialogue Location19", "line_index": 100, "text": "// The player continues to stand 2 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 101, "text": "Ne me cherche pas !"}
+{"category": "LocationDialogue Location19", "line_index": 102, "text": "Ouste !"}
+{"category": "LocationDialogue Location19", "line_index": 103, "text": "// The player continues to stand 3 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 104, "text": "T'es complètement SOURD ou quoi ?!"}
+{"category": "LocationDialogue Location19", "line_index": 105, "text": "Je suis en train de prendre une douche !"}
+{"category": "LocationDialogue Location19", "line_index": 106, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 107, "text": "// Mila came out and swears - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 108, "text": "C'était quoi ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 109, "text": "Quel culot ! Tu devrais avoir honte !"}
+{"category": "LocationDialogue Location19", "line_index": 110, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 111, "text": "Pourquoi tu es soudainement partie te doucher ?"}
+{"category": "LocationDialogue Location19", "line_index": 112, "text": "Tu aurais pu attendre deux minutes"}
+{"category": "LocationDialogue Location19", "line_index": 113, "text": "que je finisse ce que j'ai à faire."}
+{"category": "LocationDialogue Location19", "line_index": 114, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 115, "text": "Qu'est-ce que j'en sais moi,"}
+{"category": "LocationDialogue Location19", "line_index": 116, "text": "combien de temps tu vas encore jouer avec ces glitches ?"}
+{"category": "LocationDialogue Location19", "line_index": 117, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 118, "text": "Ces glitches ?"}
+{"category": "LocationDialogue Location19", "line_index": 119, "text": "Il y en a d'autres ?"}
+{"category": "LocationDialogue Location19", "line_index": 120, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 121, "text": "Hm hm..."}
+{"category": "LocationDialogue Location19", "line_index": 122, "text": "Enfin, vu que ma maison est encore intacte,"}
+{"category": "LocationDialogue Location19", "line_index": 123, "text": "c'est que tu t'es occupé du glitch dans la cuisine ?"}
+{"category": "LocationDialogue Location19", "line_index": 124, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 125, "text": "Je pense, oui."}
+{"category": "LocationDialogue Location19", "line_index": 126, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 127, "text": "Bien, dans ce cas tu as ma permission"}
+{"category": "LocationDialogue Location19", "line_index": 128, "text": "pour aller dans la salle de bain."}
+{"category": "LocationDialogue Location19", "line_index": 129, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 130, "text": "Merci."}
+{"category": "LocationDialogue Location19", "line_index": 131, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 132, "text": "// Mila hides under the table - Player"}
+{"category": "LocationDialogue Location19", "line_index": 133, "text": "Mila ?"}
+{"category": "LocationDialogue Location19", "line_index": 134, "text": "Qu'est-ce que tu fais ?"}
+{"category": "LocationDialogue Location19", "line_index": 135, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 136, "text": "A-a-aïe ! // Mila (hurt yourself)"}
+{"category": "LocationDialogue Location19", "line_index": 137, "text": "C'est la deuxième fois que tu me fais peur ! // Mila (Looks out)"}
+{"category": "LocationDialogue Location19", "line_index": 138, "text": "Qu'est-ce que tu veux encore ?"}
+{"category": "LocationDialogue Location19", "line_index": 139, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 140, "text": "Tu as vu d'autres glitches quelque part ?"}
+{"category": "LocationDialogue Location19", "line_index": 141, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 142, "text": "Oh, tu crois que tes problèmes sont une bonne excuse"}
+{"category": "LocationDialogue Location19", "line_index": 143, "text": "pour m'empêcher de finir mon livre ?"}
+{"category": "LocationDialogue Location19", "line_index": 144, "text": "Non, je n'en ai pas vu !"}
+{"category": "LocationDialogue Location19", "line_index": 145, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 146, "text": "Très bien, je vais les chercher moi-même."}
+{"category": "LocationDialogue Location19", "line_index": 147, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 148, "text": "Attends !"}
+{"category": "LocationDialogue Location19", "line_index": 149, "text": "Je voulais te demander..."}
+{"category": "LocationDialogue Location19", "line_index": 150, "text": "Tu cherches un passage pour sortir d'ici ?"}
+{"category": "LocationDialogue Location19", "line_index": 151, "text": "C'est bien ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 152, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 153, "text": "C'est ça."}
+{"category": "LocationDialogue Location19", "line_index": 154, "text": "Je veux sortir du jeu."}
+{"category": "LocationDialogue Location19", "line_index": 155, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 156, "text": "Ça va te sembler bizarre..."}
+{"category": "LocationDialogue Location19", "line_index": 157, "text": "Mais tu ne voudrais pas rester lire des livres avec moi ?"}
+{"category": "LocationDialogue Location19", "line_index": 158, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 159, "text": "D'abord tu me cries dessus, et après tu me demandes de rester."}
+{"category": "LocationDialogue Location19", "line_index": 160, "text": "Et tout ça pour lire des livres ?"}
+{"category": "LocationDialogue Location19", "line_index": 161, "text": "Je pourrais rester si ça ne tenait qu'à moi,"}
+{"category": "LocationDialogue Location19", "line_index": 162, "text": "mais je n'ai pas de temps à perdre ici."}
+{"category": "LocationDialogue Location19", "line_index": 163, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 164, "text": "D'accord, très bien !"}
+{"category": "LocationDialogue Location19", "line_index": 165, "text": "Cherche-les tout seul tes bidules."}
+{"category": "LocationDialogue Location19", "line_index": 166, "text": "C'est la seconde fois que je me fais mal"}
+{"category": "LocationDialogue Location19", "line_index": 167, "text": "à cause de toi !"}
+{"category": "LocationDialogue Location19", "line_index": 168, "text": "// Player saw a glitch - Player"}
+{"category": "LocationDialogue Location19", "line_index": 169, "text": "Ah, en voilà un."}
+{"category": "LocationDialogue Location19", "line_index": 170, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 171, "text": "// Mila stands with a sword - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 172, "text": "Es-tu bien attentif ?"}
+{"category": "LocationDialogue Location19", "line_index": 173, "text": "Crains ma présence !"}
+{"category": "LocationDialogue Location19", "line_index": 174, "text": "Regarde ce dont je suis capable !"}
+{"category": "LocationDialogue Location19", "line_index": 175, "text": "Voilà à quel point je suis dangereuse !"}
+{"category": "LocationDialogue Location19", "line_index": 176, "text": "Tu n'auras même pas eu le temps de cligner des yeux."}
+{"category": "LocationDialogue Location19", "line_index": 177, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 178, "text": "Sérieusement ?!"}
+{"category": "LocationDialogue Location19", "line_index": 179, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 180, "text": "Ben quoi ?"}
+{"category": "LocationDialogue Location19", "line_index": 181, "text": "C'était pas convaincant ?"}
+{"category": "LocationDialogue Location19", "line_index": 182, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 183, "text": "Pas vraiment..."}
+{"category": "LocationDialogue Location19", "line_index": 184, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 185, "text": "Ne me dis pas que tu as tout vu"}
+{"category": "LocationDialogue Location19", "line_index": 186, "text": "depuis l'intérieur du glitch ?"}
+{"category": "LocationDialogue Location19", "line_index": 187, "text": "Tu savais depuis le début"}
+{"category": "LocationDialogue Location19", "line_index": 188, "text": "que la pierre était prédécoupée ?"}
+{"category": "LocationDialogue Location19", "line_index": 189, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 190, "text": "Non."}
+{"category": "LocationDialogue Location19", "line_index": 191, "text": "C'est juste que, on est dans un jeu."}
+{"category": "LocationDialogue Location19", "line_index": 192, "text": "Et tout est possible en un claquement de doigts."}
+{"category": "LocationDialogue Location19", "line_index": 193, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 194, "text": "Oh, toi alors !"}
+{"category": "LocationDialogue Location19", "line_index": 195, "text": "Idiot !"}
+{"category": "LocationDialogue Location19", "line_index": 196, "text": "C'est ça, en un claquement de doigts !"}
+{"category": "LocationDialogue Location19", "line_index": 197, "text": "Et pourquoi j'ai lu tous ces livres, moi ?"}
+{"category": "LocationDialogue Location19", "line_index": 198, "text": "Tout ça pour faire les choses en claquant des doigts ?"}
+{"category": "LocationDialogue Location19", "line_index": 199, "text": "Je préfère me servir de mes propres mains."}
+{"category": "LocationDialogue Location19", "line_index": 200, "text": "Comme c'est écrit dans mes bouquins."}
+{"category": "LocationDialogue Location19", "line_index": 201, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 202, "text": "// Mila is doing push-ups - Player"}
+{"category": "LocationDialogue Location19", "line_index": 203, "text": "Qu'est-ce que tu fais encore ?"}
+{"category": "LocationDialogue Location19", "line_index": 204, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 205, "text": "Ça se voit pas ?!"}
+{"category": "LocationDialogue Location19", "line_index": 206, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 207, "text": "Si, mais pourquoi tu fais ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 208, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 209, "text": "Pour pouvoir te mettre une raclée !"}
+{"category": "LocationDialogue Location19", "line_index": 210, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 211, "text": "Qu'est-ce qui te prend ?"}
+{"category": "LocationDialogue Location19", "line_index": 212, "text": "T'es un peu bizarre."}
+{"category": "LocationDialogue Location19", "line_index": 213, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 214, "text": "Bon, d'accord !"}
+{"category": "LocationDialogue Location19", "line_index": 215, "text": "Quand je disais vouloir te mettre une raclée,"}
+{"category": "LocationDialogue Location19", "line_index": 216, "text": "je n'étais pas sérieuse."}
+{"category": "LocationDialogue Location19", "line_index": 217, "text": "Et je ne suis pas bizarre !"}
+{"category": "LocationDialogue Location19", "line_index": 218, "text": "Je suis juste individuelle !"}
+{"category": "LocationDialogue Location19", "line_index": 219, "text": "J'essaye le plus possible de me distinguer des autres."}
+{"category": "LocationDialogue Location19", "line_index": 220, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 221, "text": "Ne t'en fais pas."}
+{"category": "LocationDialogue Location19", "line_index": 222, "text": "Tu es déjà suffisamment différente comme ça."}
+{"category": "LocationDialogue Location19", "line_index": 223, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 224, "text": "Je sais."}
+{"category": "LocationDialogue Location19", "line_index": 225, "text": "Regarde ce que je sais faire !"}
+{"category": "LocationDialogue Location19", "line_index": 226, "text": "T'as vu ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 227, "text": "Et sans les mains maintenant !"}
+{"category": "LocationDialogue Location19", "line_index": 228, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 229, "text": "Je sais qu'on est dans un jeu..."}
+{"category": "LocationDialogue Location19", "line_index": 230, "text": "mais c'est vraiment pas réaliste."}
+{"category": "LocationDialogue Location19", "line_index": 231, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 232, "text": "Aïe !"}
+{"category": "LocationDialogue Location19", "line_index": 233, "text": "Ouh."}
+{"category": "LocationDialogue Location19", "line_index": 234, "text": "Foutue physique !"}
+{"category": "LocationDialogue Location19", "line_index": 235, "text": "À peine tu en parles,"}
+{"category": "LocationDialogue Location19", "line_index": 236, "text": "que soudainement —"}
+{"category": "LocationDialogue Location19", "line_index": 237, "text": "Boum !"}
+{"category": "LocationDialogue Location19", "line_index": 238, "text": "Et te voilà à parler de réalisme,"}
+{"category": "LocationDialogue Location19", "line_index": 239, "text": "idiot !"}
+{"category": "LocationDialogue Location19", "line_index": 240, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 241, "text": "// Last glitch ready - player exit - Player"}
+{"category": "LocationDialogue Location19", "line_index": 242, "text": "Le passage est apparu."}
+{"category": "LocationDialogue Location19", "line_index": 243, "text": "On l'a fait, Mila !"}
+{"category": "LocationDialogue Location19", "line_index": 244, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 245, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 246, "text": "C'est tout toi !"}
+{"category": "LocationDialogue Location19", "line_index": 247, "text": "Un vrai héros !"}
+{"category": "LocationDialogue Location19", "line_index": 248, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 249, "text": "Aïe, tu fais mal !"}
+{"category": "LocationDialogue Location19", "line_index": 250, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 251, "text": "Oups."}
+{"category": "LocationDialogue Location19", "line_index": 252, "text": "Pardon, j'ai pas fait exprès..."}
+{"category": "LocationDialogue Location19", "line_index": 253, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 254, "text": "C'est pas grave, Mila. Je peux enfin continuer mon chemin."}
+{"category": "LocationDialogue Location19", "line_index": 255, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 256, "text": "Je sais, je comprends que tu dois continuer..."}
+{"category": "LocationDialogue Location19", "line_index": 257, "text": "Mais pourquoi ne pas rester ici ? // (Show place)"}
+{"category": "LocationDialogue Location19", "line_index": 258, "text": "Juste un peu plus longtemps ?"}
+{"category": "LocationDialogue Location19", "line_index": 259, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 260, "text": "Je ne peux pas m'attarder ici. // Player (Down hands)"}
+{"category": "LocationDialogue Location19", "line_index": 261, "text": "Il y a un risque que la Mita Folle me rattrape."}
+{"category": "LocationDialogue Location19", "line_index": 262, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 263, "text": "Je la déteste..."}
+{"category": "LocationDialogue Location19", "line_index": 264, "text": "// Fall - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 265, "text": "Je la déteste, je la déteste tellement !"}
+{"category": "LocationDialogue Location19", "line_index": 266, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 267, "text": "Mila, écoute-moi..."}
+{"category": "LocationDialogue Location19", "line_index": 268, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 269, "text": "Qu'est-ce que je fais ici ?"}
+{"category": "LocationDialogue Location19", "line_index": 270, "text": "Je ne comprends pas ! // (Drop glasses)"}
+{"category": "LocationDialogue Location19", "line_index": 271, "text": "Et je ne comprends pas pourquoi je ne comprends pas !"}
+{"category": "LocationDialogue Location19", "line_index": 272, "text": "Et je ne pourrais jamais sortir d'ici !"}
+{"category": "LocationDialogue Location19", "line_index": 273, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 274, "text": "Je te comprends, Mila. // Player (sit)"}
+{"category": "LocationDialogue Location19", "line_index": 275, "text": "Je pourrais peut-être revenir plus tard ?"}
+{"category": "LocationDialogue Location19", "line_index": 276, "text": "Si c'est possible..."}
+{"category": "LocationDialogue Location19", "line_index": 277, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 278, "text": "Reste avec moi, joueur..."}
+{"category": "LocationDialogue Location19", "line_index": 279, "text": "C'est amusant avec toi, pas comme quand je suis seule..."}
+{"category": "LocationDialogue Location19", "line_index": 280, "text": "Et si ton chemin ne mène nulle part ?"}
+{"category": "LocationDialogue Location19", "line_index": 281, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 282, "text": "Ça va marcher, je n'en suis plus très loin..."}
+{"category": "LocationDialogue Location19", "line_index": 283, "text": "// Clicking computer with up to 4 glitches - Player"}
+{"category": "LocationDialogue Location19", "line_index": 284, "text": "Je sors tout juste d'un monde en deux dimensions,"}
+{"category": "LocationDialogue Location19", "line_index": 285, "text": "et maintenant je suis à nouveau ici..."}
+{"category": "LocationDialogue Location19", "line_index": 286, "text": "J'ai hâte de retourner dans le monde réel..."}
+{"category": "LocationDialogue Location19", "line_index": 287, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 288, "text": "Ah ah ah !"}
+{"category": "LocationDialogue Location19", "line_index": 289, "text": "Mais où est-il ?"}
+{"category": "LocationDialogue Location19", "line_index": 290, "text": "Ton fameux monde \"réel\","}
+{"category": "LocationDialogue Location19", "line_index": 291, "text": "je commence à croire que c'est une légende urbaine !"}
+{"category": "LocationDialogue Location19", "line_index": 292, "text": "Moi je ne l'ai jamais vu, ce monde \"réel\"."}
+{"category": "LocationDialogue Location19", "line_index": 293, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 294, "text": "Je pense qu'il y a un moyen"}
+{"category": "LocationDialogue Location19", "line_index": 295, "text": "d'y retourner, dans ce monde."}
+{"category": "LocationDialogue Location19", "line_index": 296, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 297, "text": "Tu as l'air bien sûr de toi,"}
+{"category": "LocationDialogue Location19", "line_index": 298, "text": "un vrai clown ambulant !"}
+{"category": "LocationDialogue Location19", "line_index": 299, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 300, "text": "// Ask about books with over 4 glitches - Player"}
+{"category": "LocationDialogue Location19", "line_index": 301, "text": "Pourquoi tu lis encore des livres ?"}
+{"category": "LocationDialogue Location19", "line_index": 302, "text": "Tu as Internet, non ?"}
+{"category": "LocationDialogue Location19", "line_index": 303, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 304, "text": "Les gens racontent n'importe quoi sur Internet !"}
+{"category": "LocationDialogue Location19", "line_index": 305, "text": "Et en général, j'aime bien lire allongée,"}
+{"category": "LocationDialogue Location19", "line_index": 306, "text": "avec un vrai livre entre les mains..."}
+{"category": "LocationDialogue Location19", "line_index": 307, "text": "Et puis ces bouquins..."}
+{"category": "LocationDialogue Location19", "line_index": 308, "text": "C'est uniquement à travers eux"}
+{"category": "LocationDialogue Location19", "line_index": 309, "text": "que je peux me faire une idée"}
+{"category": "LocationDialogue Location19", "line_index": 310, "text": "de ce à quoi ressemble le monde réel..."}
+{"category": "LocationDialogue Location19", "line_index": 311, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 312, "text": "// Ask about the paintings - Player"}
+{"category": "LocationDialogue Location19", "line_index": 313, "text": "Ces photos, elles sont réelles ?"}
+{"category": "LocationDialogue Location19", "line_index": 314, "text": "Dans les autres versions..."}
+{"category": "LocationDialogue Location19", "line_index": 315, "text": "Il y en a aussi, mais elles sont bien plus colorées."}
+{"category": "LocationDialogue Location19", "line_index": 316, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 317, "text": "Pour rappel, moi c'est MiLa. Je ne suis pas comme les autres..."}
+{"category": "LocationDialogue Location19", "line_index": 318, "text": "Et d'où tu sors que ces photos sont réelles ?"}
+{"category": "LocationDialogue Location19", "line_index": 319, "text": "Tu vois bien que ce sont des dessins."}
+{"category": "LocationDialogue Location19", "line_index": 320, "text": "Pourquoi prétendre qu'ils existent ?"}
+{"category": "LocationDialogue Location19", "line_index": 321, "text": "Tu sais, une fois j'ai vu une pièce pleine de Mitas."}
+{"category": "LocationDialogue Location19", "line_index": 322, "text": "Elles se tenaient toutes comme ça."}
+{"category": "LocationDialogue Location19", "line_index": 323, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 324, "text": "Mila ?"}
+{"category": "LocationDialogue Location19", "line_index": 325, "text": "Allo ?"}
+{"category": "LocationDialogue Location19", "line_index": 326, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 327, "text": "Après avoir vu ça..."}
+{"category": "LocationDialogue Location19", "line_index": 328, "text": "J'ai décidé d'être différente."}
+{"category": "LocationDialogue Location19", "line_index": 329, "text": "Mais ça me hante toujours !"}
+{"category": "LocationDialogue Location19", "line_index": 330, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 331, "text": "// Ask about the butterfly painting - Player"}
+{"category": "LocationDialogue Location19", "line_index": 332, "text": "Tu as déjà été dans la nature ?"}
+{"category": "LocationDialogue Location19", "line_index": 333, "text": "Tu as vu des papillons comme ça en vie ?"}
+{"category": "LocationDialogue Location19", "line_index": 334, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 335, "text": "Non."}
+{"category": "LocationDialogue Location19", "line_index": 336, "text": "Mais j'ai un livre quelque part,"}
+{"category": "LocationDialogue Location19", "line_index": 337, "text": "avec de vraies ailes de papillon dedans."}
+{"category": "LocationDialogue Location19", "line_index": 338, "text": "Elles sont tellement douces..."}
+{"category": "LocationDialogue Location19", "line_index": 339, "text": "Hmm..."}
+{"category": "LocationDialogue Location19", "line_index": 340, "text": "Ce tableau est un peu de travers."}
+{"category": "LocationDialogue Location19", "line_index": 341, "text": "Et il y a une tache dessus..."}
+{"category": "LocationDialogue Location19", "line_index": 342, "text": "C'est mieux comme ça. // Clear picture"}
+{"category": "LocationDialogue Location19", "line_index": 343, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 344, "text": "Tu aimerais te promener dans la nature ?"}
+{"category": "LocationDialogue Location19", "line_index": 345, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 346, "text": "Quelle question bête !"}
+{"category": "LocationDialogue Location19", "line_index": 347, "text": "C'est évident..."}
+{"category": "LocationDialogue Location19", "line_index": 348, "text": "J'aimerais bien !"}
+{"category": "LocationDialogue Location19", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 350, "text": "// make long eye contact 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 351, "text": "Pourquoi tu me dévisages comme ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 352, "text": "Regarde ailleurs !"}
+{"category": "LocationDialogue Location19", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 354, "text": "// make long eye contact 2 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 355, "text": "C'est bon maintenant !"}
+{"category": "LocationDialogue Location19", "line_index": 356, "text": "Quoi, tu veux ma photo ?"}
+{"category": "LocationDialogue Location19", "line_index": 357, "text": "Idiot..."}
+{"category": "LocationDialogue Location19", "line_index": 358, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 359, "text": "// make long eye contact 3 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 360, "text": "Oh... toi alors !"}
+{"category": "LocationDialogue Location19", "line_index": 361, "text": "Qu'est-ce que t'as à me fixer ?"}
+{"category": "LocationDialogue Location19", "line_index": 362, "text": "On t'a pas appris les bonnes manières ?"}
+{"category": "LocationDialogue Location19", "line_index": 363, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 364, "text": "Tu n'aimes pas qu'on te regarde dans les yeux ?"}
+{"category": "LocationDialogue Location19", "line_index": 365, "text": "Laisse-moi tranquille ! // Mila"}
+{"category": "LocationDialogue Location19", "line_index": 366, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 367, "text": "// whispers 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 368, "text": "Pourquoi est-ce qu'ils m'envoient constamment"}
+{"category": "LocationDialogue Location19", "line_index": 369, "text": "des espèces d'idiots bons à rien."}
+{"category": "LocationDialogue Location19", "line_index": 370, "text": "Et moi je dois leur faire les beaux yeux ?"}
+{"category": "LocationDialogue Location19", "line_index": 371, "text": "Avec des mini-jeux en plus..."}
+{"category": "LocationDialogue Location19", "line_index": 372, "text": "Comme un vulgaire Tamagotchi !"}
+{"category": "LocationDialogue Location19", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 374, "text": "// whispers 2 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 375, "text": "Il tourne en rond... la truffe en alerte."}
+{"category": "LocationDialogue Location19", "line_index": 376, "text": "Il se prend pour une fouine ?"}
+{"category": "LocationDialogue Location19", "line_index": 377, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 378, "text": "// whispers 3 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 379, "text": "Tu as dit quelque chose ?"}
+{"category": "LocationDialogue Location19", "line_index": 380, "text": "Cette musique de fond me rend dingue !"}
+{"category": "LocationDialogue Location19", "line_index": 381, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 382, "text": "// whispers 4 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 383, "text": "Comment lui faire comprendre"}
+{"category": "LocationDialogue Location19", "line_index": 384, "text": "que je n'ai pas le temps pour ses bêtises"}
+{"category": "LocationDialogue Location19", "line_index": 385, "text": "et que je ne veux pas d'invités surprises ?"}
+{"category": "LocationDialogue Location19", "line_index": 386, "text": "Hmm, et s'il s'en va ? Alors tant pis ! En quoi ce serait mon problème ?"}
+{"category": "LocationDialogue Location19", "line_index": 387, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 388, "text": "// whispers 5 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 389, "text": "\"Maman\", \"papa\"..."}
+{"category": "LocationDialogue Location19", "line_index": 390, "text": "Ça veut dire quoi ? J'ai déjà entendu ça, mais où ?"}
+{"category": "LocationDialogue Location19", "line_index": 391, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 392, "text": "// whispers 6 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 393, "text": "Il a neigé ici une fois. Qu'est-ce qui a bien pu provoquer ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 394, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 395, "text": "// whispers 7 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 396, "text": "Il est apparu d'un coup, comme par magie ! Du jamais-vu..."}
+{"category": "LocationDialogue Location19", "line_index": 397, "text": "Il va peut-être disparaître si je ne le regarde pas ?"}
+{"category": "LocationDialogue Location19", "line_index": 398, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 399, "text": "// nearby 1 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 400, "text": "On est l'un à côté de l'autre,"}
+{"category": "LocationDialogue Location19", "line_index": 401, "text": "et pourtant..."}
+{"category": "LocationDialogue Location19", "line_index": 402, "text": "On ne dit rien."}
+{"category": "LocationDialogue Location19", "line_index": 403, "text": "Pourquoi on ne dit rien ?"}
+{"category": "LocationDialogue Location19", "line_index": 404, "text": "Tu as perdu ta langue ?"}
+{"category": "LocationDialogue Location19", "line_index": 405, "text": "Ou quoi ?"}
+{"category": "LocationDialogue Location19", "line_index": 406, "text": "Tu ne sais pas de quoi parler ?"}
+{"category": "LocationDialogue Location19", "line_index": 407, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 408, "text": "// nearby 2 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 409, "text": "Je fais un régime strictement sans carottes."}
+{"category": "LocationDialogue Location19", "line_index": 410, "text": "Je ne toucherai plus jamais à ce fruit du démon !"}
+{"category": "LocationDialogue Location19", "line_index": 411, "text": "J'ai lu dans un livre qu'en manger trop rend la peau orange..."}
+{"category": "LocationDialogue Location19", "line_index": 412, "text": "Tu imagines les dégâts sur la délicate peau d'une fille comme moi ?!"}
+{"category": "LocationDialogue Location19", "line_index": 413, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 414, "text": "// nearby 3 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 415, "text": "Il y a un phénomène étrange qu'aucun de mes livres n'explique,"}
+{"category": "LocationDialogue Location19", "line_index": 416, "text": "j'espère pouvoir résoudre le mystère un jour,"}
+{"category": "LocationDialogue Location19", "line_index": 417, "text": "car il me donne vraiment la chaire de poule !"}
+{"category": "LocationDialogue Location19", "line_index": 418, "text": "Ces foutues carottes apparaissent dans des endroits improbables."}
+{"category": "LocationDialogue Location19", "line_index": 419, "text": "C'est insupportable !"}
+{"category": "LocationDialogue Location19", "line_index": 420, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 421, "text": "// nearby 4 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 422, "text": "Je savais qu'il existe des fétiches bizarres pour tout et n'importe quoi."}
+{"category": "LocationDialogue Location19", "line_index": 423, "text": "Et je pensais avoir tout vu avec les amoureux des carottes..."}
+{"category": "LocationDialogue Location19", "line_index": 424, "text": "Mais te voilà toi et ton apparent fétiche pour les glitches."}
+{"category": "LocationDialogue Location19", "line_index": 425, "text": "On aura décidément tout vu !"}
+{"category": "LocationDialogue Location19", "line_index": 426, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 427, "text": "// nearby 5 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 428, "text": "Tu veux savoir ce que je désire le plus au monde ?"}
+{"category": "LocationDialogue Location19", "line_index": 429, "text": "C'est trop embarrassant, laisse tomber."}
+{"category": "LocationDialogue Location19", "line_index": 430, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 431, "text": "// nearby 6 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 432, "text": "La nature humaine rend difficile de se refuser"}
+{"category": "LocationDialogue Location19", "line_index": 433, "text": "à ses idées intrusives, parfois IRRÉSISTIBLES !"}
+{"category": "LocationDialogue Location19", "line_index": 434, "text": "Mais alors, il faut apprendre à se contrôler."}
+{"category": "LocationDialogue Location19", "line_index": 435, "text": "Si seulement tu savais à quel point je meurs d'envie"}
+{"category": "LocationDialogue Location19", "line_index": 436, "text": "de te faire découvrir le plaisir d'une tasse de thé !"}
+{"category": "LocationDialogue Location19", "line_index": 437, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 438, "text": "// nearby 7 - Mila (volontarily written as a poem)"}
+{"category": "LocationDialogue Location19", "line_index": 439, "text": "Malgré mes lunettes je ne puis discerner"}
+{"category": "LocationDialogue Location19", "line_index": 440, "text": "l'origine de votre énergie effrénée,"}
+{"category": "LocationDialogue Location19", "line_index": 441, "text": "tapie derrière les rideaux d'intentions égarées."}
+{"category": "LocationDialogue Location19", "line_index": 442, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 443, "text": "// nearby 8 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 444, "text": "J'ai lu que le mot destin n'est qu'un synonyme de scénario,"}
+{"category": "LocationDialogue Location19", "line_index": 445, "text": "où chacun de nous serait préprogrammé"}
+{"category": "LocationDialogue Location19", "line_index": 446, "text": "à passer sa vie d'une certaine façon."}
+{"category": "LocationDialogue Location19", "line_index": 447, "text": "Ah ! Quel genre d'idiot a écrit ça, franchement ?"}
+{"category": "LocationDialogue Location19", "line_index": 448, "text": "Pas toi, quand même ?"}
+{"category": "LocationDialogue Location19", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 450, "text": "// nearby 9 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 451, "text": "Les idiots ça va encore, mais ceux qui perdent la raison..."}
+{"category": "LocationDialogue Location19", "line_index": 452, "text": "Je ne les supporte pas !"}
+{"category": "LocationDialogue Location19", "line_index": 453, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 454, "text": "// nearby 10 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 455, "text": "Parmi toutes ces Mitas,"}
+{"category": "LocationDialogue Location19", "line_index": 456, "text": "il y en a qui ont l'air sympa, en fait."}
+{"category": "LocationDialogue Location19", "line_index": 457, "text": "Et puis, je ne serais pas contre me faire des copines..."}
+{"category": "LocationDialogue Location19", "line_index": 458, "text": "Même si techniquement, ce sont des clones les unes des autres."}
+{"category": "LocationDialogue Location19", "line_index": 459, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 460, "text": "// nearby 11 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 461, "text": "Il y en a bien une qui, bien sûr, n'est pas comme les autres."}
+{"category": "LocationDialogue Location19", "line_index": 462, "text": "Mais elle n'est clairement pas bien dans sa tête."}
+{"category": "LocationDialogue Location19", "line_index": 463, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 464, "text": "// nearby 12 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 465, "text": "Aucune queue-de-cheval !"}
+{"category": "LocationDialogue Location19", "line_index": 466, "text": "Et je couperais même celles des autres !"}
+{"category": "LocationDialogue Location19", "line_index": 467, "text": "Comment peut-on supporter une coupe si inconfortable ?!"}
+{"category": "LocationDialogue Location19", "line_index": 468, "text": "Tu me comprends toi, avec tes cheveux coupés courts !"}
+{"category": "LocationDialogue Location19", "line_index": 469, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 470, "text": "// nearby 13 - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 471, "text": "Et s'il n'y avait rien derrière cette porte ?"}
+{"category": "LocationDialogue Location19", "line_index": 472, "text": "Et si c'était juste toi et moi, dans cette pièce..."}
+{"category": "LocationDialogue Location19", "line_index": 473, "text": "réunis pour une raison inexplicable."}
+{"category": "LocationDialogue Location19", "line_index": 474, "text": "Comment tu peux être si sûr de toi ?"}
+{"category": "LocationDialogue Location19", "line_index": 475, "text": "Tu as entendu parler de l'hypothèse des cinq minutes ?"}
+{"category": "LocationDialogue Location19", "line_index": 476, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 477, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 478, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 479, "text": "// Last glitch ready - player exit - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 480, "text": "Quel couloir terrifiant."}
+{"category": "LocationDialogue Location19", "line_index": 481, "text": "Tu comptes vraiment aller là-dedans ?"}
+{"category": "LocationDialogue Location19", "line_index": 482, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 483, "text": "Oui."}
+{"category": "LocationDialogue Location19", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 485, "text": "// FaceStone - Player"}
+{"category": "LocationDialogue Location19", "line_index": 486, "text": "Quel bonhomme pensif."}
+{"category": "LocationDialogue Location19", "line_index": 487, "text": "Qu'est-ce qu'il fait là ?"}
+{"category": "LocationDialogue Location19", "line_index": 488, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 489, "text": "Ah ça tu vas voir !"}
+{"category": "LocationDialogue Location19", "line_index": 490, "text": "Tu le sauras bien assez tôt."}
+{"category": "LocationDialogue Location19", "line_index": 491, "text": "Au fait, pourquoi tu fais toujours la même tête que lui ?"}
+{"category": "LocationDialogue Location19", "line_index": 492, "text": "Relâche un peu ton visage."}
+{"category": "LocationDialogue Location19", "line_index": 493, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 494, "text": "Oh, euh..."}
+{"category": "LocationDialogue Location19", "line_index": 495, "text": "Ok."}
+{"category": "LocationDialogue Location19", "line_index": 496, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 497, "text": "// Katana - Player"}
+{"category": "LocationDialogue Location19", "line_index": 498, "text": "C'est un jouet ce katana ?"}
+{"category": "LocationDialogue Location19", "line_index": 499, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 500, "text": "Ce n'est pas un jouet !"}
+{"category": "LocationDialogue Location19", "line_index": 501, "text": "Le moindre contact avec sa lame"}
+{"category": "LocationDialogue Location19", "line_index": 502, "text": "te ferait saigner !"}
+{"category": "LocationDialogue Location19", "line_index": 503, "text": "Je suis une épéiste émérite !"}
+{"category": "LocationDialogue Location19", "line_index": 504, "text": "Quant à toi, fais gaffe où tu mets les doigts."}
+{"category": "LocationDialogue Location19", "line_index": 505, "text": "Tu aurais vite fait de les perdre !"}
+{"category": "LocationDialogue Location19", "line_index": 506, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 507, "text": "// Mirror - Player"}
+{"category": "LocationDialogue Location19", "line_index": 508, "text": "Un miroir ?"}
+{"category": "LocationDialogue Location19", "line_index": 509, "text": "Mais sans réflexion."}
+{"category": "LocationDialogue Location19", "line_index": 510, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 511, "text": "Toi alors !"}
+{"category": "LocationDialogue Location19", "line_index": 512, "text": "Jamais content."}
+{"category": "LocationDialogue Location19", "line_index": 513, "text": "J'ai lu plein de choses à propos"}
+{"category": "LocationDialogue Location19", "line_index": 514, "text": "des réflexions dans mes bouquins."}
+{"category": "LocationDialogue Location19", "line_index": 515, "text": "Mais dans ma version, il n'y en a pas."}
+{"category": "LocationDialogue Location19", "line_index": 516, "text": "Et crois moi, j'ai tout essayé."}
+{"category": "LocationDialogue Location19", "line_index": 517, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 518, "text": "// Switch light - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 519, "text": "Ce truc ne marche pas."}
+{"category": "LocationDialogue Location19", "line_index": 520, "text": "La lumière s'allume et s'éteint toute seule,"}
+{"category": "LocationDialogue Location19", "line_index": 521, "text": "c'est scripté !"}
+{"category": "LocationDialogue Location19", "line_index": 522, "text": "Mais !"}
+{"category": "LocationDialogue Location19", "line_index": 523, "text": "Pour une certaine raison, dans la salle de bain,"}
+{"category": "LocationDialogue Location19", "line_index": 524, "text": "le bouton fonctionne."}
+{"category": "LocationDialogue Location19", "line_index": 525, "text": "Va savoir pourquoi !"}
+{"category": "LocationDialogue Location19", "line_index": 526, "text": "// Switch light off - Player"}
+{"category": "LocationDialogue Location19", "line_index": 527, "text": "C'est toujours éclairé ici ?"}
+{"category": "LocationDialogue Location19", "line_index": 528, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 529, "text": "// Little carrot - Player"}
+{"category": "LocationDialogue Location19", "line_index": 530, "text": "Une carotte ?"}
+{"category": "LocationDialogue Location19", "line_index": 531, "text": "Hein ? Elle a disparu ?"}
+{"category": "LocationDialogue Location19", "line_index": 532, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 533, "text": "Cette carotte me rend folle !"}
+{"category": "LocationDialogue Location19", "line_index": 534, "text": "C'est comme si elle était vivante !"}
+{"category": "LocationDialogue Location19", "line_index": 535, "text": "Dès que je la trouve,"}
+{"category": "LocationDialogue Location19", "line_index": 536, "text": "elle se téléporte ailleurs."}
+{"category": "LocationDialogue Location19", "line_index": 537, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 538, "text": "// Little carrot - Player"}
+{"category": "LocationDialogue Location19", "line_index": 539, "text": "Oh, la carotte !"}
+{"category": "LocationDialogue Location19", "line_index": 540, "text": "Et elle disparaît encore..."}
+{"category": "LocationDialogue Location19", "line_index": 541, "text": "Il n'y a pas moyen de faire quelque chose pour ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 542, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 543, "text": "Non."}
+{"category": "LocationDialogue Location19", "line_index": 544, "text": "Rien."}
+{"category": "LocationDialogue Location19", "line_index": 545, "text": "Tu penses que j'ai pas essayé ?"}
+{"category": "LocationDialogue Location19", "line_index": 546, "text": "Bref, ne perds pas ton temps avec ça."}
+{"category": "LocationDialogue Location19", "line_index": 547, "text": "Ça doit être une sorte de blague."}
+{"category": "LocationDialogue Location19", "line_index": 548, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 549, "text": "// Tetris - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 550, "text": "Hé !"}
+{"category": "LocationDialogue Location19", "line_index": 551, "text": "Tu te fiches de moi c'est ça ?"}
+{"category": "LocationDialogue Location19", "line_index": 552, "text": "// Tetris - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 553, "text": "Je ne te la rendrais pas."}
+{"category": "LocationDialogue Location19", "line_index": 554, "text": "Jamais !"}
+{"category": "LocationDialogue Location19", "line_index": 555, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 556, "text": "// Soap - Player"}
+{"category": "LocationDialogue Location19", "line_index": 557, "text": "Il y a du savon là-dedans ?"}
+{"category": "LocationDialogue Location19", "line_index": 558, "text": "Ou c'est pour décorer ?"}
+{"category": "LocationDialogue Location19", "line_index": 559, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 560, "text": "Et toi t'es idiot, non ?"}
+{"category": "LocationDialogue Location19", "line_index": 561, "text": "Ici, la plupart des choses"}
+{"category": "LocationDialogue Location19", "line_index": 562, "text": "fonctionnent comme pour de vrai !"}
+{"category": "LocationDialogue Location19", "line_index": 563, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 564, "text": "// BagWall - Mila"}
+{"category": "LocationDialogue Location19", "line_index": 565, "text": "T'es passé où ?!"}
+{"category": "LocationDialogue Location19", "line_index": 566, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 567, "text": "Il y a un passage ici ?"}
+{"category": "LocationDialogue Location19", "line_index": 568, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 569, "text": "Alors, tu as trouvé un nouveau bug ?"}
+{"category": "LocationDialogue Location19", "line_index": 570, "text": "Qu'est-ce que tu vois ?"}
+{"category": "LocationDialogue Location19", "line_index": 571, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 572, "text": "On dirait..."}
+{"category": "LocationDialogue Location19", "line_index": 573, "text": "Rien du tout."}
+{"category": "LocationDialogue Location19", "line_index": 574, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 575, "text": "Oh, te revoilà !"}
+{"category": "LocationDialogue Location19", "line_index": 576, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 577, "text": "// Quest 1 Glasses - Player"}
+{"category": "LocationDialogue Location19", "line_index": 578, "text": "Tu n'as pas une bonne vue ?"}
+{"category": "LocationDialogue Location19", "line_index": 579, "text": "Pourquoi tu portes des lunettes ?"}
+{"category": "LocationDialogue Location19", "line_index": 580, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 581, "text": "Quoi ? Ça ne te plaît pas ?"}
+{"category": "LocationDialogue Location19", "line_index": 582, "text": "C'est ce qui rend mon style unique !"}
+{"category": "LocationDialogue Location19", "line_index": 583, "text": "Et ma vue est parfaite !"}
+{"category": "LocationDialogue Location19", "line_index": 584, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 585, "text": "// Quest 2 Name miLa - Player"}
+{"category": "LocationDialogue Location19", "line_index": 586, "text": "Mi-La ?"}
+{"category": "LocationDialogue Location19", "line_index": 587, "text": "Et pourquoi pas, par exemple,"}
+{"category": "LocationDialogue Location19", "line_index": 588, "text": "Mi-Ka ou"}
+{"category": "LocationDialogue Location19", "line_index": 589, "text": "Mi-Sa ?"}
+{"category": "LocationDialogue Location19", "line_index": 590, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 591, "text": "Je suis Mila, un point c'est tout !"}
+{"category": "LocationDialogue Location19", "line_index": 592, "text": "// Player"}
+{"category": "LocationDialogue Location19", "line_index": 593, "text": "Ça va j'ai compris..."}
+{"category": "LocationDialogue Location19", "line_index": 594, "text": ""}
+{"category": "LocationDialogue Location19", "line_index": 595, "text": "// Quest 3 Evening - Player"}
+{"category": "LocationDialogue Location19", "line_index": 596, "text": "J'aime bien l'ambiance de la soirée."}
+{"category": "LocationDialogue Location19", "line_index": 597, "text": "Quand est-ce qu'il fera nuit ?"}
+{"category": "LocationDialogue Location19", "line_index": 598, "text": "// Mila"}
+{"category": "LocationDialogue Location19", "line_index": 599, "text": "Nuit ?"}
+{"category": "LocationDialogue Location19", "line_index": 600, "text": "Évitons de parler de ça..."}
+{"category": "LocationDialogue Location19", "line_index": 601, "text": "Parce que ça va me rappeler"}
+{"category": "LocationDialogue Location19", "line_index": 602, "text": "les journées interminables."}
+{"category": "LocationDialogue Location19", "line_index": 603, "text": "Et elles se répètent sans fin."}
+{"category": "LocationDialogue Location19", "line_index": 604, "text": "Ugh."}

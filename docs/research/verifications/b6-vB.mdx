@@ -1,0 +1,10 @@
+# b6-vB — Verifier B: B-6 scenes build, spec-conformance lens (2026-08-25)
+
+1. **Schema**: all five files match DS-6 §3 + contract PINNED v1; censuses reconcile (24/57=41+15+1/986/24; top-level kinds exactly the 9-word vocab ×986); per-row truth labels honest — inline 298 / pptr 76 / none 612 agree rows⇄`_meta`⇄README; `world-assumed` only on World.positionSpawn; spawn floats byte-equal to dumps (`-6.172363`, `118.593`); §2.7 dedupe applied (MitaKiller 15 not 31; deferred families counted, not dropped).
+2. **AC S7 substance, both directions** vs DS-4 (landed post-build): forward 20/20 keyed POI `save_key`s → exactly one `cartridges.jsonl` row; reverse 21/23, the 2 gaps are the declared §9-R3 pair (`mtacore`,`mtad2`, ledgered curation rows). Sampled mta/mtac/mtacap/mtachi/mla. Marker rows v0-empty per no-orphan rule is spec-conformant; rerun now unblocked and fenced.
+3. **Corrections shipped as data + ledger**, dump-anchored: level7 unload re-measured by me at `mb-dump/level7/Scene_Load.txt:34`; pointers=15 (rows match); eventDay holiday-gated 0=halloween ×3 / 1=christmas ×21 with labels; LD18 = French 0-byte shell corpus-wide (verified), level20 hints empty-not-fabricated. Nothing silently normalized.
+4. **Contract standalone-bindable** (schema tables, binding locale model, regen command, non-goals); PIPE fence recorded (build-log §Handoff; run_all registration pending by design, `_meta` says so); relinks parking declared in contract tree + README + relink headers.
+
+Minors (prose-only; emitted data and contract clean): build-log census prose says inline 346/none 564 — actual/data-correct value is 298/612 (it counts 48 empty-array Transform_Position rows as inline, contradicting its own correction #5); README+build-log multiples list omits level16 ×2 (`level16:Event_CreateResource_#5600` exists); README poi.jsonl enumeration line repeats one entry per row instead of per class (cosmetic generator bug). Fix in a docs pass, no emitter change.
+
+VERDICT: PASS

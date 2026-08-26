@@ -1,0 +1,44 @@
+{
+ "book_rows": 8,
+ "books_ledger": [
+  {
+   "book_id": "book-1",
+   "locales": [
+    "ChineseSimplified",
+    "ChineseTraditional"
+   ]
+  },
+  {
+   "book_id": "book-2",
+   "locales": [
+    "ChineseSimplified",
+    "ChineseTraditional"
+   ]
+  },
+  {
+   "book_id": "book-3",
+   "locales": [
+    "ChineseSimplified",
+    "ChineseTraditional"
+   ]
+  },
+  {
+   "book_id": "book-4",
+   "locales": [
+    "ChineseSimplified",
+    "ChineseTraditional"
+   ]
+  }
+ ],
+ "identity_issue_count": 23,
+ "magnet_finish": 1,
+ "magnets": 191,
+ "note_rows": 160,
+ "novella_rows": 1,
+ "paper_parts": 5,
+ "placement_divergences": 0,
+ "profile_rows": 14,
+ "sprites_named": 18,
+ "wired_calls": 185,
+ "world_rows": 166
+}

@@ -1,0 +1,12 @@
+{"kind":"next","ptr":{"file_id":0,"path_id":53},"reason":"unresolved-in-level","slot":"nextText","src":"level13:Dialogue_3DText#18466","target_gameobject_hosts":["GameObject_Destroy"]}
+{"kind":"next","ptr":{"file_id":0,"path_id":64},"reason":"unresolved-in-level","slot":"nextText","src":"level14:Dialogue_3DText#5525","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":300},"reason":"unresolved-in-level","slot":"nextText","src":"level19:Dialogue_3DText#6799","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":142},"reason":"unresolved-in-level","slot":"nextText","src":"level19:Dialogue_3DText#6821","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":212},"reason":"unresolved-in-level","slot":"nextText","src":"level21:Dialogue_3DText#16006","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":312},"reason":"unresolved-in-level","slot":"nextText","src":"level21:Dialogue_3DText#16134","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":339},"reason":"unresolved-in-level","slot":"nextText","src":"level5:Dialogue_3DText#12644","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":621},"reason":"unresolved-in-level","slot":"nextText","src":"level9:Dialogue_3DText#20023","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":71},"reason":"unresolved-in-level","slot":"nextText","src":"level9:Dialogue_3DText#20129","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":455},"reason":"unresolved-in-level","slot":"nextText","src":"level9:Dialogue_3DText#20164","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":455},"reason":"unresolved-in-level","slot":"nextText","src":"level9:Dialogue_3DText#20230","target_gameobject_hosts":[]}
+{"kind":"next","ptr":{"file_id":0,"path_id":621},"reason":"unresolved-in-level","slot":"nextText","src":"level9:Dialogue_3DText#20491","target_gameobject_hosts":[]}

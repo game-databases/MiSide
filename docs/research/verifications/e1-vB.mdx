@@ -1,0 +1,100 @@
+# E1-vB — verification of explorer-e1-hands-on.mdx
+
+Verifier: fresh agent, lens **document integrity vs brief**. Under review:
+[`docs/research/explorer-e1-hands-on.mdx`](../explorer-e1-hands-on.mdx)
+against brief [`docs/briefs/e1-hands-on-probe.md`](../briefs/e1-hands-on-probe.md)
+and [`toolchain.md`](../../toolchain.md). Date: 2026-08-24. All **measured**
+numbers below were re-derived by me read-only on NE8K from `A:` (install),
+`D:\unpacked_game_data\MiSide\probe-001\` (scratch), and the repo tools tree
+— not copied from the deliverable or from [e1-vA.mdx](e1-vA.mdx).
+
+## Mandated lens checks
+
+| Lens item | Result |
+|---|---|
+| (a) All 7 brief steps present with WORKS/PARTIAL/FAILS verdicts | **Present** — verdict table + per-step sections; verdicts match the evidence I re-derived (steps 1–4, 6–7 WORKS; step 5 PARTIAL is correct and its two plan corrections are real) |
+| (a) Exact commands + timings | Steps 1–3 carry commands and timings; **steps 4–7 name methods but omit literal command lines** (finding F3); step 2–3 commands elide install paths as `A:\...\` |
+| (b) Tool+version pinning | **Complete**: zip names exist verbatim in repo `tools\` release dirs; scratch `AssetStudioModCLI.dll` FileVersion measures **0.19.0.0** as pinned; venv `pip freeze` re-run matches all **13** pins exactly (UnityPy==1.25.3, pillow==12.3.0, …archspec==0.2.6); Python 3.14.7; dotnet `Microsoft.NETCore.App 6.0.36` reproduced |
+| (c) Deviations from toolchain.md enumerated | The 7 consolidated deviations are all genuine — I independently confirmed #1 (`MiSideFull_Data\Data\Languages` does not exist; store at game root), #3 (EN `Achievements.txt` = **414 B**, last byte `r`, no `\n`, 26 split-lines), #4 (stock zip `config.json` = `"RequireAnyKey": true`; scratch copy `false`), #5 (**reproduced live**: options-first invocation errors `Error: Input path was empty.`), plus #2/#6/#7 against measurements. My diff found **no further deviation** owed to toolchain §2/§4/§7 |
+| (d) Risks + pipeline-spec implications sections | Both present, evidence-cited; one soft number flagged (F2) |
+| (e) Claims without cited output, or `[unverified]`-as-fact | Deliverable contains zero `[unverified]` markers; findings F1–F4 list the sentences that fall short of the cite-or-mark rule |
+| (f) Legality commentary | **None** — case-insensitive scan for legal/EULA/ToS/licen/copyright/piracy/crack: zero hits |
+
+## Independent re-derivations (all MATCH unless noted)
+
+- **Census**: SerializedFile-class files **51 / 583,027,900 B**; families 1+1+1+24+24;
+  sharedassets9 **83,787,408**, level13 **4,935,744**. Streams **69 / 1,694,288,048 B**
+  (resS 1,586,746,128 + resource 107,541,920); largest **367,784,272** /
+  **218,920,848** as stated. Grand total arithmetic and 2.121 GiB conversion check
+  out. `_Data` root holds no other SerializedFile family; zero `.unity3d`/`.bundle`/
+  catalog files install-wide.
+- **Loc**: **34** locale dirs; **2,210** txt; txt-only per-dir min **64**
+  (Arabic (Egyptian), Belarusian) max **76 French**; global Textures **777 png +
+  3 psd**; EN/RU/FR **26** png, JA **20**; EN/RU `Achievements.txt` and EN
+  `MiniGame CarSpace.txt` heads byte-match the quoted lines; game-root `Data\`
+  carries exactly Custom/Languages/LanguagesVoice/Version.txt;
+  `Version.txt` = `VERSION 0.93L`; acf buildid/TargetBuildID **19029065**.
+- **Join proven end-to-end**: dump `[25]` ACHI_supermegapuperplayer lineTranslate 25 ↔ EN line 26 `Pro Gamer`; `[2]` ACHI_DeathJuice lineTranslate 2 ↔ line 3
+  `Dead juice`. Both samples (`DataAchievements.txt`, `Localization_UIText.txt`,
+  incl. the `reffect0` field) are verbatim-faithful; `get = True` ×2 backs R-E1-2.
+- **dump.cs recon**: TypeDefIndex count **6,281**; `class .*Achievement` **8**,
+  `.*Ending` **1**, `.*Cartridge` **3**, `.*Location` **175** raw; BinaryWriter
+  **23** / FileStream **8** mentions, every context System/BCL — "zero custom
+  container classes" stands. `GlobalLanguage` 4230 (`GetString`, `GetCountString`),
+  `LanguageFilesText` 4231 (name 0x10 / strings 0x18), `LanguageFilesTexture`
+  2173, `ConsoleInterface` 1441 with CheckLocalization → LocalizationClearText →
+  LocalizatioLoad and OpenSettings/OpenFunctions/OpenAddons/OpenResources/
+  OpenEditor/OpenLevels/ToggleDebugUnity/OpenData + nested ConsoleCheats — all
+  present at the cited TypeDefIndexes.
+- **mb-dump**: exactly **993** files; spot-checked census families all match
+  (Image 119, MagicaBoneCloth 106, MagicaCapsuleCollider 94, BoneClothMeshData 86,
+  BoneClothData 86, SelectionData 69, Text 64, Shadow 45, UIGradient 44,
+  CanvasScaler 22, CarSpace* 24, Localization_UIText 12, MakeManeken* 16,
+  Audio_* 17, MitaClothesMagic 8, Events_Data 4, MinigamesController 3,
+  Location4Fight 3, Metroidvania* 5).
+- **P2 inventory**: ogg **28,725 / 1,441,141,744 B**; GI **62 files / 5,988,963 B**,
+  level3-only; png outside Languages **17** (10 Data\Custom + 7 LanguagesVoice logos);
+  `.dat` exactly **2** (5,173,460 + 337,563 = 5,511,023 as tabulated); psd **3 /
+  26,384,140 B**; `.aspx`×3 + browscap.ini; install file count **32,114** ≈ "32k".
+
+## Findings
+
+1. **LOW-MED — Step 7 Dialogue hit count does not reproduce.** Claimed **14**;
+   measured: 24 lines matching `class .*Dialogue` raw, **16** excluding
+   Location-prefixed, **15** additionally excluding the compiler-generated
+   `FunctionsGame_DialogueAnimationFinish.<PlayPoint>d__7`. No counting variant I
+   can construct yields 14. Every named class in the row exists; only the number
+   is off. Contrast: Mita's claimed **23** reproduces *exactly* — but only under
+   an unstated Location-exclusion (raw count 37), so the table's counting method
+   is undeclared and inconsistently applied.
+2. **LOW — R-E1-5 denominator uncited.** "28,725 ogg ≈ 1.44 GB of ~2.9 GB
+   non-stream total": the ogg figure verifies exactly, but "~2.9 GB" reconciles to
+   nothing derivable from the doc's own numbers — SizeOnDisk 4,251,911,821 minus
+   all streams = 2.56 GB, minus resS-only = 2.67 GB. Overstates the pool ~10%
+   without derivation.
+3. **LOW — command-line exactness gap (brief: "exact commands used").** Steps
+   4–7 report results without the literal measurement commands; steps 2–3 elide
+   paths as `A:\...\`. Conclusions unaffected (I reproduced them all), but the
+   measurement layer is not reproducible from the document alone.
+4. **INFO — minor uncited/imprecise micro-claims, all checked:** ".NET 6 runtime"
+   and "`py` launcher offers 3.12/3.11" are true though shown without command
+   output; "Import test clean in 0.74 s" not re-runnable post-hoc; "Loaded 5
+   files … both builtin resources" dependency list has no quoted console output;
+   census "UI_TextFontLanguage ~26" measures **24** (self-labeled approximate);
+   Achievement row's "notable" list names `SteamManager`, which is not one of the
+   8 pattern hits (two hits are d__ iterator closures).
+
+## Coverage statement
+
+Mandated checks (a)–(f): all executed — 100%. Of the deliverable's substantive
+claim surface I independently re-derived roughly **95%**: every byte size, file
+count, path existence, loc head, code snippet, TypeDefIndex, tool pin, and both
+verbatim MonoBehaviour samples matched primary evidence exactly; the CLI gotcha
+and the RequireAnyKey deviation were actively reproduced. Not re-executed: tool
+wall-times and console transcripts (transient), and the four items in F1/F2/F4
+above — of these only the Dialogue count and the ~26/~2.9 GB figures disagree
+with measurement. No fabrication, no `[unverified]`-as-fact, no missing brief
+section, no legality commentary found. Findings F1–F3 are documentation-precision
+defects, none invalidating a headline verdict.
+
+VERDICT: PASS

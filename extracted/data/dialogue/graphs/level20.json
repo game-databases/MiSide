@@ -1,0 +1,38 @@
+{
+ "build": 19029065,
+ "dangling_edge_rows": 0,
+ "edge_count": 165,
+ "entry_points_graph": [
+  "level20:Dialogue_3DText#1856",
+  "level20:Location18_Dialogue#1600",
+  "level20:Location18_Dialogue#1633",
+  "level20:Location18_Dialogue#1673",
+  "level20:Location18_Dialogue#1711"
+ ],
+ "entry_points_interaction": [],
+ "level": "level20",
+ "location_category": "LocationDialogue Location18",
+ "nodes": [
+  "level20:Dialogue_3DText#1851",
+  "level20:Dialogue_3DText#1852",
+  "level20:Dialogue_3DText#1853",
+  "level20:Dialogue_3DText#1854",
+  "level20:Dialogue_3DText#1855",
+  "level20:Dialogue_3DText#1856",
+  "level20:Dialogue_3DText#1857",
+  "level20:Location18_Dialogue#1593",
+  "level20:Location18_Dialogue#1600",
+  "level20:Location18_Dialogue#1617",
+  "level20:Location18_Dialogue#1633",
+  "level20:Location18_Dialogue#1646",
+  "level20:Location18_Dialogue#1672",
+  "level20:Location18_Dialogue#1673",
+  "level20:Location18_Dialogue#1701",
+  "level20:Location18_Dialogue#1711",
+  "level20:Location18_Dialogue#1716",
+  "level20:Location18_Dialogue#1720"
+ ],
+ "terminals_next_null": [
+  "level20:Dialogue_3DText#1855"
+ ]
+}

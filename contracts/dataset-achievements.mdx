@@ -1,0 +1,119 @@
+# Contract — dataset: achievements
+
+| | |
+|---|---|
+| Piece | **B-2 build** (Dataset Builder brief, achievements half) |
+| Spec authority | [dataset-achievements-endings.mdx](../docs/specs/dataset-achievements-endings.mdx) Part A (arbiter APPROVED, [ds123-arbiter](../docs/research/verifications/ds123-arbiter.mdx)) |
+| Artifact | `extracted/data/achievements/achievements.jsonl` — 26 rows, one per `DataAchievementsValues[]` entry, sorted by `registry_index` |
+| Build pin | buildId **19029065** (`VERSION 0.93L`, Unity 2021.3.35f1) — every row carries `build_id` |
+| Emit model | deterministic full rewrite; same inputs → byte-identical outputs (AC-A8 verified across reruns) |
+
+## Files
+
+| File | Rows | Content |
+|---|---:|---|
+| `achievements.jsonl` | 26 | the dataset |
+| `relink-achievement-award-site.jsonl` | 11 | `achievement→award_site` reverse index (hard) |
+| `relink-achievement-ending.jsonl` | 3 | `achievement→ending` reverse index (hard) |
+| `relink-outfit-cloth-site.jsonl` | 2 | cloth-unlock sites (`FIIdClSchool`, `Chirfns`) — outfit-side edges, not achievement rows |
+| `emit-ledger.jsonl` | 5 | count reconciliation, get-bool pollution, icon-export gap, Steam capture metadata, availability dependency |
+
+## Row schema — field / type / source / nullability
+
+| Field | Type | Source | Null? | Notes |
+|---|---|---|---|---|
+| `achievement_id` | string | `resources.assets/DataAchievements.txt` `steamAchievement` | never | primary key; canonical spellings preserved (`ACHI_WinFIght`, `ACHI_supermegapuperplayer`) |
+| `registry_index` | int | array position | never | = `line_translate` on this build; append-only so far ([inferred]) |
+| `build_id` | int | EXTRACTION-LOG pipeline-defaults | never | per-record staleness stamp |
+| `display` | map\<locale code, {name, category, line_index}> | `localization/<locale>/Achievements.jsonl` via `GetString("Achievements", lineTranslate)` | never per row; all 34 codes present | category is always `"Achievements"`; `line_index` is the 0-based loc record pointer |
+| `description` | map\<locale, {text, source_role, source}> | keyless Steam community stats (EN only) | may be `{}` for locales other than `en`; localized descriptions are a deliberate hole (keyed endpoint, spec A.5.3) | `source_role:"official-feed"`, `source:"STEAM-stats"` — repo-side provenance, never user-facing |
+| `icon.path_id` | int | registry PPtr<Sprite> | never | range 862–910, `m_FileID 0` → `resources.assets` |
+| `icon.container` | string | registry | never | constant `"resources.assets"` |
+| `icon.asset_ref` | null | art-export stage | **always null this pass** | filled by the AC-A5 re-export; measured absent from `art/container-2d/resources.assets` (437 files, zero pathID hits) |
+| `icon.status` | enum | emit | never | `"pending-export"` on all 26 |
+| `icon.official_url` | string/null | Steam stats page | nullable | official CDN icon URL; repo-layer field |
+| `line_translate` | int | registry | never | join authority into every locale's `Achievements.jsonl` |
+| `unlock.predicate_class` | enum | sweep + curation | never | `serialized-site` (11) · `code-body` (12) · `aggregate` (3: indices 12, 13, 25) |
+| `unlock.status` | enum | four-class taxonomy | never | `proven-hard` (11, with sites+cites) · `unverified-behavior` (15) — native-body deferrals stay fenced, never guessed |
+| `unlock.sites[]` | array of {level, file, object_path_id, target_type, method, args} | serialized PersistentCalls | `[]` when no site serialized | `object_path_id` = the targeted trigger-instance pathID; args carry the `ACH_*`/cloth string |
+| `unlock.evidence[]` | cite[] | mb-dump paths relative to `extracted/` | `[]` allowed only for unverified rows | lint-verified resolvable (413/413 corpus-wide) |
+| `unlock.notes_community` | null/string | wiki gloss | always null this pass | wiki prose lives here labeled, never in evidence[] |
+| `type_tag` | enum | **curated** (client carries no tag field) | never | `ending`(4,9,14) · `minigame`(3,5,15,18,20,21,22,23) · `collectible`(12,13) · `meta`(25) · `missable`(16) · `story`(rest). Assignment rationale is curation, not client data — see Deviations |
+| `joins.ending_id` | string/null | Part B anchors | null except 4, 9, 14 | `safe-of-life` / `conditions-met` / `is-this-the-end` |
+| `joins.minigame_id` | null | DS-minigames not landed | always null | keyed later by TelevisionGames/MiniGame* dataset |
+| `joins.collectible_set` | string/null | A.4 set targets | null except 12 (`player-cartridges`), 13 (`mita-profiles`) | completion predicate itself stays code-body unverified |
+| `joins.outfit_id` | null | no achievement is a cloth unlock | always null | cloth sites are separate rows in `relink-outfit-cloth-site.jsonl` |
+| `joins.chapter_attribution` | null | levelN↔chapter map open (spec gap 1) | always null | chapter numbers are `[community]` labels only, never stored here |
+| `steam.global_percent` | number/null | keyless community stats capture | nullable | machine-plane value; captured 2026-08-25T02:19:10Z |
+| `steam.captured_at_machine_plane` | bool | emit | never | true where a real capture backs the row |
+| `steam.captured_at` | ISO instant/null | capture moment (file mtime of fetched page) | nullable | machine plane only — never user-facing (DR numbers-stand-alone) |
+| `flags.serialized_get_bool` | bool | registry | never | True exactly at indices 0 and 3 (residue R-E1-2) |
+| `flags.get_bool_trusted` | false | quarantine ruling | never false-positive | no renderer may read the bool as unlock state (AC-A7) |
+
+## Emission rules
+
+1. Deterministic full rewrite; rows sorted by `registry_index`; UTF-8 / LF /
+   compact separators.
+2. Locale cells derive from the 34 client locale dirs mapped to BCP-47
+   (spec §Locale strategy mapping table). `relinks/locale_availability.jsonl`
+   (P1 relink stage) does not exist yet; this emit measured each locale's
+   `Achievements.jsonl` directly and ledgered the dependency. Re-drive from
+   the P1 ledger once it lands.
+3. `global_percent` and `captured_at` stay machine-plane; user surfaces show
+   rarity bands + buildId only.
+4. Count reconcile FAIL-FASTs the emit: registry size == per-locale line
+   count == 26 (AC-A1).
+
+## Registry multiplicity fact
+
+A `DataAchievements` component exists in **48 containers** (one per scene/assets
+container plus the canonical `resources.assets`). The level6 clone was
+spot-checked field-identical to the registry. Only `resources.assets`
+is consumed; the census lives in `emit-ledger.jsonl`.
+
+## Joins outward
+
+- `achievement→award_site`: 11 hard rows; host dump + targeted instance pathID.
+- `achievement→ending`: 3 hard rows (Part B anchors).
+- Cloth sites (`ClothCompleted`): `FIIdClSchool` @`level5/Dialogue_3DText_#8339.txt`
+  → loc `Clothes#line_index=10` "School" (resolved); `Chirfns`
+  @`level6/Dialogue_3DText_#7008.txt` → `Clothes#line_index=12` "Christmas"
+  (**[inferred]** until matched against `DataClothMita*` prefab fields).
+- Steam cross-ref: EN name sets identical between Steam and in-game loc
+  (26/26, zero discrepancies — AC-A6 renders trivially this build).
+
+## Acceptance criteria scoreboard (this build)
+
+| AC | Result | Evidence |
+|---|---|---|
+| AC-A1 counts 26==26×34 | PASS | emit fail-fast check + ledger |
+| AC-A2 three-way join completeness | PASS | all rows non-null keys; 34-locale resolution |
+| AC-A3 award-site sweep == 13 sites byte-for-byte | PASS | full 51-container sweep |
+| AC-A4 evidence discipline + safelife assertion | PASS | lint 413 cites, 0 violations |
+| AC-A5 icon export closure | PENDING (ledgered) | art pass owns bytes; status `pending-export` everywhere |
+| AC-A6 Steam cross-ref shape | PASS | one row per achievement; name sets equal |
+| AC-A7 get quarantine | PASS | True at {0,3} only, trusted=false everywhere |
+| AC-A8 stub validity + round-trip | PASS | validates as JSONL; re-emit byte-identical (sha256-checked) |
+
+## Deviations from the illustrative spec shapes (deliberate)
+
+1. Output family is `extracted/data/achievements/` (arbiter residue (a):
+   single family name chosen by the orchestrator brief), not
+   `extracted/datasets/`.
+2. Schema drafts ship as these MDX contracts (field/type/source/join/
+   nullability), not `contracts/*.schema.json` — the B-2 write scope names
+   the two contract docs; JSON Schema can be generated from them later.
+3. `steam.global_percent` is populated from a live keyless capture this pass
+   (spec deferred it; the page fetch succeeded), stamped with `captured_at`.
+4. `type_tag` assignments are curated as the spec's schema requires; the
+   client has no such field. Per-index rationale:
+   minigame = Penguin Piles TV game (3), fly console idle win (5,
+   `[inferred]` semantic gloss), spec-labeled bodies Spaceracer (15),
+   Snake (18), Quadrangle (20, 21), Hetoor (22, 23);
+   ending = the three Part-B anchors; collectible = the two set-completion
+   targets; meta = all-others (25); missable = one-shot interactable (16).
+5. `icon.official_url` added (Steam CDN icon URL) as an interim display
+   source until the client-bytes re-export lands; flagged per-row so the
+   swap is mechanical.
+
+<!-- END OF contracts/dataset-achievements.mdx -->

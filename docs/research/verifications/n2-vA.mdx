@@ -1,0 +1,7 @@
+# n2-vA — Verifier A (consistency lens) on F-P3's AC-5 volatile-fields qualifier
+
+1. **Sentence as claimed** — pipeline-run_all.mdx:458–461: ledger trio (`sweep-attempts.jsonl`, `_ledger/locale-delta.jsonl`, stage reports) "obey the S4 write mode — deterministic full rewrite, never append — so a rerun reproduces them byte-identically modulo the volatile fields." One sentence, so the qualifier covers all three named classes; consistent with S4:198–205 (same rule generalized to all ledger artifacts, same qualifier — S4 says "byte-for-byte modulo", AC-5 "byte-identically modulo"; cosmetic wording delta only).
+2. **Referent unambiguous** — `census/volatile-fields.json` is defined before use: §3 :372–376 (driver-maintained in `common.py`; enumerated exemption list; "Idempotency (AC-4/AC-5) compares modulo it"; also :361 output tree) and re-enumerated at AC-4 :448–452, so AC-5's anaphoric "those volatile fields" :454 and closing "modulo" :461–462 both resolve.
+3. **Rest-of-§5 sweep** — AC-4 qualified; AC-5's remaining absolutes are mtime/volatile-scoped (:453–454) or dedupe-scoped (:456–457), and its closing rule keys on "non-enumerated byte" (:461–462); AC-9 "byte-verbatim" :490 is fidelity-to-game-bytes, not cross-run identity; AC-12 "exactly" :509–510 and S8's "byte-for-byte" :324 are numeric reconciliation against source totals. No unqualified cross-run byte-identity claim remains.
+
+VERDICT: PASS

@@ -1,0 +1,7 @@
+# c-w1-r3 — F-CW2 exception-coverage fix verified
+
+Fix = c3feec6; HEAD had moved +2 (kenshi/TwoPoint commits), so diffed `c3feec6~1..c3feec6` — pipeline/stages untouched since. All three sites exact: try wraps the post-wipe body (mono:223), fail-fast sites stage rows/reason (:253/:270/:318, rows+reasons identical to the old inline flushes); single handler mono:366-369 `flush_aborted` → bare raise; decompile:207-211 catch widened to Exception, flush+raise unchanged.
+(a) only def-statements sit between each wipe and its try → every post-wipe path lands partial ledger + aborted report before propagating; (b) bare re-raises keep original types and run_all.py maps StageFailure and generic Exception alike to EXIT_STAGE — codes unchanged; (c) hunks confined to the two stage files (commit adds only brief + prior-verifier docs beside them); (d) self-smoked: py_compile ×2 OK · `--list` exit 0 · bad-flag exit 2.
+Residual (pre-existing, outside F-CW2's claim): decompile's structure-graph leg (wipe at :216) sits after the guarded batch and stays unflushed on abort.
+
+VERDICT: APPROVE

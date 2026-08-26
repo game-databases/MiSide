@@ -1,0 +1,84 @@
+{"category": "LocationDialogue Location8", "line_index": 0, "text": "// The first meeting"}
+{"category": "LocationDialogue Location8", "line_index": 1, "text": "Kto si?"}
+{"category": "LocationDialogue Location8", "line_index": 2, "text": "Čo sa deje?"}
+{"category": "LocationDialogue Location8", "line_index": 3, "text": "Nevieš rozprávať?"}
+{"category": "LocationDialogue Location8", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 5, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 6, "text": "Počkať..."}
+{"category": "LocationDialogue Location8", "line_index": 7, "text": "Chceš odísť, však?"}
+{"category": "LocationDialogue Location8", "line_index": 8, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 9, "text": "Áno."}
+{"category": "LocationDialogue Location8", "line_index": 10, "text": "Potrebujem sa dostať"}
+{"category": "LocationDialogue Location8", "line_index": 11, "text": "do predchádzajúcej verzie."}
+{"category": "LocationDialogue Location8", "line_index": 12, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 13, "text": "Do predchádzajúcej verzie?"}
+{"category": "LocationDialogue Location8", "line_index": 14, "text": "Prečo odísť a ísť"}
+{"category": "LocationDialogue Location8", "line_index": 15, "text": "niekde inde?"}
+{"category": "LocationDialogue Location8", "line_index": 16, "text": "Prečo nezostať tu"}
+{"category": "LocationDialogue Location8", "line_index": 17, "text": "a byť môj"}
+{"category": "LocationDialogue Location8", "line_index": 18, "text": "druhý kamarát?"}
+{"category": "LocationDialogue Location8", "line_index": 19, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 20, "text": "// Skipping all dialogs"}
+{"category": "LocationDialogue Location8", "line_index": 21, "text": "Okej..."}
+{"category": "LocationDialogue Location8", "line_index": 22, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 23, "text": "// Standing by the window (Random)"}
+{"category": "LocationDialogue Location8", "line_index": 24, "text": "Nenájdeš cestu von dverami."}
+{"category": "LocationDialogue Location8", "line_index": 25, "text": "Zdá sa, že sa ponáhľaš..."}
+{"category": "LocationDialogue Location8", "line_index": 26, "text": "Beh v kruhoch ťa nezachráni."}
+{"category": "LocationDialogue Location8", "line_index": 27, "text": "Tak túžiš po úteku?"}
+{"category": "LocationDialogue Location8", "line_index": 28, "text": "Skontroluj okno."}
+{"category": "LocationDialogue Location8", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 31, "text": "// Quest 1 (Nie si Mita?)"}
+{"category": "LocationDialogue Location8", "line_index": 32, "text": "Hráč... ty si hráč, však?"}
+{"category": "LocationDialogue Location8", "line_index": 33, "text": "Môžeme hrať spolu."}
+{"category": "LocationDialogue Location8", "line_index": 34, "text": "Ak nájdem silu,"}
+{"category": "LocationDialogue Location8", "line_index": 35, "text": "určite si zahráme."}
+{"category": "LocationDialogue Location8", "line_index": 36, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 37, "text": "// Quest 2 (Čo sa ti stalo?)"}
+{"category": "LocationDialogue Location8", "line_index": 38, "text": "Nie som si istá, alebo len neviem..."}
+{"category": "LocationDialogue Location8", "line_index": 39, "text": "Myslím, že sa nič zlé nestalo..."}
+{"category": "LocationDialogue Location8", "line_index": 40, "text": "Ale v poslednej dobe sa nič dobré nedeje..."}
+{"category": "LocationDialogue Location8", "line_index": 41, "text": "Aj keď, aspoň mám priateľa."}
+{"category": "LocationDialogue Location8", "line_index": 42, "text": "Prečo ma všetci ostatní hráči opustili?"}
+{"category": "LocationDialogue Location8", "line_index": 43, "text": "Nestačila som?"}
+{"category": "LocationDialogue Location8", "line_index": 44, "text": "Bojím sa..."}
+{"category": "LocationDialogue Location8", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 46, "text": "// Quest 3 (Stať sa druhým priateľom?)"}
+{"category": "LocationDialogue Location8", "line_index": 47, "text": "Priatelia..."}
+{"category": "LocationDialogue Location8", "line_index": 48, "text": "Teraz mi ich zostalo tak málo."}
+{"category": "LocationDialogue Location8", "line_index": 49, "text": "Zostáva len jeden..."}
+{"category": "LocationDialogue Location8", "line_index": 50, "text": "Som smutný, hráč."}
+{"category": "LocationDialogue Location8", "line_index": 51, "text": "Budeš môj priateľ?"}
+{"category": "LocationDialogue Location8", "line_index": 52, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 53, "text": "Rád by som,"}
+{"category": "LocationDialogue Location8", "line_index": 54, "text": "ale musím isť dalej..."}
+{"category": "LocationDialogue Location8", "line_index": 55, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 56, "text": "Bolí ma srdce..."}
+{"category": "LocationDialogue Location8", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 58, "text": "// Quest 4 (Je toto tvoj dom?) - MitaLittle"}
+{"category": "LocationDialogue Location8", "line_index": 59, "text": "Domov?"}
+{"category": "LocationDialogue Location8", "line_index": 60, "text": "Hráč... Vyzeráš inak..."}
+{"category": "LocationDialogue Location8", "line_index": 61, "text": "Tvoje ruky sú kratšie a tvoja tvár nevyzerá tak nahnevane..."}
+{"category": "LocationDialogue Location8", "line_index": 62, "text": "Hráč, stal si sa mäkším, láskavejším."}
+{"category": "LocationDialogue Location8", "line_index": 63, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 64, "text": "Nie som si istý..."}
+{"category": "LocationDialogue Location8", "line_index": 65, "text": "čo to znamená."}
+{"category": "LocationDialogue Location8", "line_index": 66, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 67, "text": "To je v poriadku..."}
+{"category": "LocationDialogue Location8", "line_index": 68, "text": "veď mi už nikto neublíži, nie?"}
+{"category": "LocationDialogue Location8", "line_index": 69, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 70, "text": "// Quest 5 (Ako to tu môžem opustiť?)"}
+{"category": "LocationDialogue Location8", "line_index": 71, "text": "Naozaj ma opúšťaš?"}
+{"category": "LocationDialogue Location8", "line_index": 72, "text": "Je to snáď len môj..."}
+{"category": "LocationDialogue Location8", "line_index": 73, "text": "osud?"}
+{"category": "LocationDialogue Location8", "line_index": 74, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 75, "text": "ja..."}
+{"category": "LocationDialogue Location8", "line_index": 76, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 77, "text": "Dvere vám nepomôžu."}
+{"category": "LocationDialogue Location8", "line_index": 78, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 79, "text": "// Hold player (Random)"}
+{"category": "LocationDialogue Location8", "line_index": 80, "text": "Prečo odchádzaš?"}
+{"category": "LocationDialogue Location8", "line_index": 81, "text": "Zostaň tu..."}
+{"category": "LocationDialogue Location8", "line_index": 82, "text": "Hraj so mnou!"}
+{"category": "LocationDialogue Location8", "line_index": 83, "text": "Hráč..."}

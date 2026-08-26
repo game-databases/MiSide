@@ -1,0 +1,150 @@
+{"category": "LocationDialogue Location6", "line_index": 0, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 1, "text": "Мита?"}
+{"category": "LocationDialogue Location6", "line_index": 2, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 3, "text": "Какъ ты сюда попалъ? "}
+{"category": "LocationDialogue Location6", "line_index": 4, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 5, "text": "Ты же Мита?"}
+{"category": "LocationDialogue Location6", "line_index": 6, "text": "Только какая-то не такая..."}
+{"category": "LocationDialogue Location6", "line_index": 7, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 8, "text": "Я-я-ясно..."}
+{"category": "LocationDialogue Location6", "line_index": 9, "text": "Слушай, дѣйствительно,"}
+{"category": "LocationDialogue Location6", "line_index": 10, "text": "Я не та Мита, которую ты видѣлъ."}
+{"category": "LocationDialogue Location6", "line_index": 11, "text": "Берегись, у ​нее​ на тебя очень"}
+{"category": "LocationDialogue Location6", "line_index": 12, "text": "Не​добрые​ планы."}
+{"category": "LocationDialogue Location6", "line_index": 13, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 14, "text": "Какіе планы?"}
+{"category": "LocationDialogue Location6", "line_index": 15, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 16, "text": "Бли-инъ!"}
+{"category": "LocationDialogue Location6", "line_index": 17, "text": "Если получится, я всё разскажу..."}
+{"category": "LocationDialogue Location6", "line_index": 18, "text": "Найди ключъ около дивана."}
+{"category": "LocationDialogue Location6", "line_index": 19, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 20, "text": "Но..."}
+{"category": "LocationDialogue Location6", "line_index": 21, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 22, "text": "Вопросы позже!"}
+{"category": "LocationDialogue Location6", "line_index": 23, "text": "Давай ключъ мнѣ."}
+{"category": "LocationDialogue Location6", "line_index": 24, "text": "Вотъ кольцо."}
+{"category": "LocationDialogue Location6", "line_index": 25, "text": "А? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 26, "text": "Ты же хочешь сбѣжать отсюда, такъ? // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 27, "text": "Ну да... // Player"}
+{"category": "LocationDialogue Location6", "line_index": 28, "text": "Тогда надѣнь его. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 29, "text": "Это полезный артефактъ. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 30, "text": "Думаю, оно пригодится тебѣ очень скоро. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 31, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 32, "text": "Хорошо."}
+{"category": "LocationDialogue Location6", "line_index": 33, "text": "Кстати, я"}
+{"category": "LocationDialogue Location6", "line_index": 34, "text": "[player] // [not]"}
+{"category": "LocationDialogue Location6", "line_index": 35, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 36, "text": "Такъ держать,"}
+{"category": "LocationDialogue Location6", "line_index": 37, "text": "[player] // [not]"}
+{"category": "LocationDialogue Location6", "line_index": 38, "text": "А я... Мита. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 39, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 40, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 42, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 43, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 44, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 47, "text": "// MitaKind quest 1 - MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 48, "text": "Смотри:"}
+{"category": "LocationDialogue Location6", "line_index": 49, "text": "Консоль — возьми ​ее​."}
+{"category": "LocationDialogue Location6", "line_index": 50, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 51, "text": "Это запись?"}
+{"category": "LocationDialogue Location6", "line_index": 52, "text": "А кто это съ ней?"}
+{"category": "LocationDialogue Location6", "line_index": 53, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 54, "text": "Это не запись,"}
+{"category": "LocationDialogue Location6", "line_index": 55, "text": "А другой игрокъ."}
+{"category": "LocationDialogue Location6", "line_index": 56, "text": "Она его сейчасъ используетъ."}
+{"category": "LocationDialogue Location6", "line_index": 57, "text": "Знай, что ты тоже"}
+{"category": "LocationDialogue Location6", "line_index": 58, "text": "Рискуешь стать картриджемъ..."}
+{"category": "LocationDialogue Location6", "line_index": 59, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 60, "text": "Мнѣ нужно скорѣе выбираться отсюда."}
+{"category": "LocationDialogue Location6", "line_index": 61, "text": "И тебѣ тоже."}
+{"category": "LocationDialogue Location6", "line_index": 62, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 63, "text": "Да, конечно."}
+{"category": "LocationDialogue Location6", "line_index": 64, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 65, "text": "Ты говоришь,"}
+{"category": "LocationDialogue Location6", "line_index": 66, "text": "Она используетъ игрока."}
+{"category": "LocationDialogue Location6", "line_index": 67, "text": "А что если я выдерну картриджъ изъ консоли?"}
+{"category": "LocationDialogue Location6", "line_index": 68, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 69, "text": "Думаю, такое обращеніе можетъ привести"}
+{"category": "LocationDialogue Location6", "line_index": 70, "text": "Къ неисправимымъ поврежденіямъ картриджа."}
+{"category": "LocationDialogue Location6", "line_index": 71, "text": "Это значитъ... // Player"}
+{"category": "LocationDialogue Location6", "line_index": 72, "text": "Игрокъ умретъ. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 73, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 74, "text": "... // [not]"}
+{"category": "LocationDialogue Location6", "line_index": 75, "text": "А если просто выключить консоль? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 76, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 77, "text": "Думаю, это можетъ помочь."}
+{"category": "LocationDialogue Location6", "line_index": 78, "text": "Стоитъ попробовать. Тамъ ​есть​ красная кнопка!"}
+{"category": "LocationDialogue Location6", "line_index": 79, "text": "Видишь?"}
+{"category": "LocationDialogue Location6", "line_index": 80, "text": "Нашелъ. // Player"}
+{"category": "LocationDialogue Location6", "line_index": 81, "text": "Попробуй нажать. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 82, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 83, "text": "// MitaKind quest 2 - MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 84, "text": "Мнѣ нужно здѣсь задержаться."}
+{"category": "LocationDialogue Location6", "line_index": 85, "text": "Хочу задать ей пару вопросовъ,"}
+{"category": "LocationDialogue Location6", "line_index": 86, "text": "узнать о ней больше."}
+{"category": "LocationDialogue Location6", "line_index": 87, "text": "Хотя она врядъ ли поддержитъ адекватный діалогъ."}
+{"category": "LocationDialogue Location6", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 89, "text": "// MitaKind quest 3 - MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 90, "text": "Вообще, это моя версія,"}
+{"category": "LocationDialogue Location6", "line_index": 91, "text": "Я была съ однимъ игрокомъ..."}
+{"category": "LocationDialogue Location6", "line_index": 92, "text": "Внезапно что-то помѣнялось въ ​мірѣ​,"}
+{"category": "LocationDialogue Location6", "line_index": 93, "text": "И тутъ появилась она..."}
+{"category": "LocationDialogue Location6", "line_index": 94, "text": "Игрока превратила въ картриджъ,"}
+{"category": "LocationDialogue Location6", "line_index": 95, "text": "А меня заперла тутъ."}
+{"category": "LocationDialogue Location6", "line_index": 96, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 97, "text": "Превратила въ картриджъ?"}
+{"category": "LocationDialogue Location6", "line_index": 98, "text": "Она такъ можетъ?!"}
+{"category": "LocationDialogue Location6", "line_index": 99, "text": "Зачѣмъ ей это? "}
+{"category": "LocationDialogue Location6", "line_index": 100, "text": "Для чего ей игроки?!"}
+{"category": "LocationDialogue Location6", "line_index": 101, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 102, "text": "Она обезумѣла, это очевидно."}
+{"category": "LocationDialogue Location6", "line_index": 103, "text": "Она такъ забавляется, ей весело, чертики!"}
+{"category": "LocationDialogue Location6", "line_index": 104, "text": "Игрокъ становится картриджемъ."}
+{"category": "LocationDialogue Location6", "line_index": 105, "text": "Кто-то можетъ ничего не подозрѣвать..."}
+{"category": "LocationDialogue Location6", "line_index": 106, "text": "А вѣдь ​нѣкоторые​ осознаютъ, но не сопротивляются."}
+{"category": "LocationDialogue Location6", "line_index": 107, "text": "Мнѣ это совсѣмъ не нравится. // Player"}
+{"category": "LocationDialogue Location6", "line_index": 108, "text": "Слушай, ты долженъ помочь намъ! // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 109, "text": "Я? Какимъ образомъ? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 110, "text": "Ты мнѣ нуженъ, игрокъ! // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 111, "text": "Ты поможешь намъ, а я постараюсь помочь тебѣ!"}
+{"category": "LocationDialogue Location6", "line_index": 112, "text": "Другого шанса можетъ и не быть..."}
+{"category": "LocationDialogue Location6", "line_index": 113, "text": "Кольцо тебѣ укажетъ путь къ нужной версіи."}
+{"category": "LocationDialogue Location6", "line_index": 114, "text": "Тамъ мы и встрѣтимся."}
+{"category": "LocationDialogue Location6", "line_index": 115, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 116, "text": "// MKind quest 4 - Player"}
+{"category": "LocationDialogue Location6", "line_index": 117, "text": "Я не въ силахъ полностью осознать,"}
+{"category": "LocationDialogue Location6", "line_index": 118, "text": "Что я видѣлъ наверху..."}
+{"category": "LocationDialogue Location6", "line_index": 119, "text": "Эта Мита…"}
+{"category": "LocationDialogue Location6", "line_index": 120, "text": "Она хочетъ убить меня?"}
+{"category": "LocationDialogue Location6", "line_index": 121, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 122, "text": "Убить?"}
+{"category": "LocationDialogue Location6", "line_index": 123, "text": "Боюсь, у ​нее​ ​есть​ идеи похуже..."}
+{"category": "LocationDialogue Location6", "line_index": 124, "text": "Поэтому тебѣ нужно поторопиться."}
+{"category": "LocationDialogue Location6", "line_index": 125, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 126, "text": "// Hide!"}
+{"category": "LocationDialogue Location6", "line_index": 127, "text": "Вотъ блинъ! Прячься!"}
+{"category": "LocationDialogue Location6", "line_index": 128, "text": "Что? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 129, "text": "Быстрѣе! Она идетъ сюда! // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 130, "text": "Положись на кольцо: оно выведетъ тебя отсюда!"}
+{"category": "LocationDialogue Location6", "line_index": 131, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 132, "text": "// MitaKiller"}
+{"category": "LocationDialogue Location6", "line_index": 133, "text": "Ну какъ, скажешь, гдѣ онъ?"}
+{"category": "LocationDialogue Location6", "line_index": 134, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 135, "text": "Съ чего бы?"}
+{"category": "LocationDialogue Location6", "line_index": 136, "text": "Ты явно не станешь его убивать же, вѣрно?"}
+{"category": "LocationDialogue Location6", "line_index": 137, "text": "// MitaKiller"}
+{"category": "LocationDialogue Location6", "line_index": 138, "text": "Значитъ, не скажешь..."}
+{"category": "LocationDialogue Location6", "line_index": 139, "text": "Ну ничего, мнѣ нравится, что онъ прячется."}
+{"category": "LocationDialogue Location6", "line_index": 140, "text": "Я знаю, что онъ здѣсь."}
+{"category": "LocationDialogue Location6", "line_index": 141, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 142, "text": "Почему ты такая агрессивная? "}
+{"category": "LocationDialogue Location6", "line_index": 143, "text": "Даже не разсказываешь въ чёмъ дѣло!"}
+{"category": "LocationDialogue Location6", "line_index": 144, "text": "Да и вообще..."}
+{"category": "LocationDialogue Location6", "line_index": 145, "text": "Къ чему тебѣ ​эти​ игроки?"}
+{"category": "LocationDialogue Location6", "line_index": 146, "text": "​Они​ же не игрушки!"}
+{"category": "LocationDialogue Location6", "line_index": 147, "text": "На что ты такъ обижена?"}
+{"category": "LocationDialogue Location6", "line_index": 148, "text": "// MitaKiller"}
+{"category": "LocationDialogue Location6", "line_index": 149, "text": "Хахъ, захлопнись, кукла! "}

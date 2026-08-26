@@ -1,0 +1,30 @@
+{
+  "stage": "il2cpp-dump",
+  "host": "Ne8k",
+  "measured_at": "2026-08-24T21:30:39+00:00",
+  "status": "ok",
+  "argv_sha256": "a8edd28af5b97a55b1f412fbc40258fd14d441160983bba9a975326d8c0e92eb",
+  "child_cwd": "D:\\unpacked_game_data\\MiSide\\work\\tools\\Il2CppDumper",
+  "config": {
+    "require_any_key": false,
+    "delta_applied_this_run": false
+  },
+  "artifacts": {
+    "dump.cs": {
+      "bytes": 10420763,
+      "lines": 288102
+    },
+    "il2cpp.h": {
+      "bytes": 16439803
+    },
+    "script.json": {
+      "bytes": 30021645
+    },
+    "stringliteral.json": {
+      "bytes": 619523
+    }
+  },
+  "dummy_dll_count": 57,
+  "warnings": [],
+  "duration_s": 3.98
+}

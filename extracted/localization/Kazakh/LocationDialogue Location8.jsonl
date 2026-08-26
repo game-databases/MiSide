@@ -1,0 +1,84 @@
+{"category": "LocationDialogue Location8", "line_index": 0, "text": "// Player first"}
+{"category": "LocationDialogue Location8", "line_index": 1, "text": "Кімсің?"}
+{"category": "LocationDialogue Location8", "line_index": 2, "text": "Саған не болды?"}
+{"category": "LocationDialogue Location8", "line_index": 3, "text": "Сен сөйлей алмайсың ба?"}
+{"category": "LocationDialogue Location8", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 5, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 6, "text": "Тоқта..."}
+{"category": "LocationDialogue Location8", "line_index": 7, "text": "Сен кеткің келмей ме?"}
+{"category": "LocationDialogue Location8", "line_index": 8, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 9, "text": "Иә."}
+{"category": "LocationDialogue Location8", "line_index": 10, "text": "Маған өткен нұсқаға"}
+{"category": "LocationDialogue Location8", "line_index": 11, "text": "Өту керек."}
+{"category": "LocationDialogue Location8", "line_index": 12, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 13, "text": "«Өткен нұсқаға»?"}
+{"category": "LocationDialogue Location8", "line_index": 14, "text": "Неге саған бір жерге"}
+{"category": "LocationDialogue Location8", "line_index": 15, "text": "Кету керек?"}
+{"category": "LocationDialogue Location8", "line_index": 16, "text": "Сен осында қалуға болады..."}
+{"category": "LocationDialogue Location8", "line_index": 17, "text": "Менің екінші "}
+{"category": "LocationDialogue Location8", "line_index": 18, "text": "Досым болу."}
+{"category": "LocationDialogue Location8", "line_index": 19, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 20, "text": "// MitaBroke skip"}
+{"category": "LocationDialogue Location8", "line_index": 21, "text": "Жа-райды..."}
+{"category": "LocationDialogue Location8", "line_index": 22, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 23, "text": "// standing by the window (Random) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 24, "text": "Есіктер — шығу емес."}
+{"category": "LocationDialogue Location8", "line_index": 25, "text": "Көрінеді, сен асығып жатырсың..."}
+{"category": "LocationDialogue Location8", "line_index": 26, "text": "Дөңгелекпен жүгіріп, сен аман қалмайсың."}
+{"category": "LocationDialogue Location8", "line_index": 27, "text": "Сен шығып кетуді соншалықты қалайсың ба? "}
+{"category": "LocationDialogue Location8", "line_index": 28, "text": "Терезеге назар аудар."}
+{"category": "LocationDialogue Location8", "line_index": 29, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 30, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 31, "text": "// quest 1 (Ты же Мита?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 32, "text": "Ойыншы... Сен ойыншылығы ғой?"}
+{"category": "LocationDialogue Location8", "line_index": 33, "text": "Біз ойнай аламыз."}
+{"category": "LocationDialogue Location8", "line_index": 34, "text": "Егер менде күш болатынын болса,"}
+{"category": "LocationDialogue Location8", "line_index": 35, "text": "Біз міндетті түрде ойнаймыз."}
+{"category": "LocationDialogue Location8", "line_index": 36, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 37, "text": "// quest 2 (Что с тобой стряслось?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 38, "text": "Мен сенімді емеспін... немесе... мен білмеймін."}
+{"category": "LocationDialogue Location8", "line_index": 39, "text": "Мен жаман нәрсе болғанын ойламаймын."}
+{"category": "LocationDialogue Location8", "line_index": 40, "text": "Бірақ жақсы нәрселер азайып барады..."}
+{"category": "LocationDialogue Location8", "line_index": 41, "text": "Бірақ менде дос бар."}
+{"category": "LocationDialogue Location8", "line_index": 42, "text": "Ойыншылар енді жоқ..."}
+{"category": "LocationDialogue Location8", "line_index": 43, "text": "Олар менімен қатынасты тоқтатты ма?"}
+{"category": "LocationDialogue Location8", "line_index": 44, "text": "Маған қорқынышты..."}
+{"category": "LocationDialogue Location8", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 46, "text": "// quest 3 (Стать вторым другом?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 47, "text": "Достар..."}
+{"category": "LocationDialogue Location8", "line_index": 48, "text": "Олар азайып барады,"}
+{"category": "LocationDialogue Location8", "line_index": 49, "text": "Тек біреуі ғана қалды..."}
+{"category": "LocationDialogue Location8", "line_index": 50, "text": "Бұл қайғылы, ойыншы."}
+{"category": "LocationDialogue Location8", "line_index": 51, "text": "Сен менің жаңа досым бола аласың ба?"}
+{"category": "LocationDialogue Location8", "line_index": 52, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 53, "text": "Мен қуанышты болар едім,"}
+{"category": "LocationDialogue Location8", "line_index": 54, "text": "Бірақ маған әрі қарай жүру керек."}
+{"category": "LocationDialogue Location8", "line_index": 55, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 56, "text": "Маған ауырады..."}
+{"category": "LocationDialogue Location8", "line_index": 57, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 58, "text": "// quest 4 (Это твой дом?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 59, "text": "Үй?"}
+{"category": "LocationDialogue Location8", "line_index": 60, "text": "Ойыншы... Ал сен басқа түрде көрінесің."}
+{"category": "LocationDialogue Location8", "line_index": 61, "text": "Сенің қолдар қысқарып, бетің соншалықты  ашулы емес..."}
+{"category": "LocationDialogue Location8", "line_index": 62, "text": "Ойыншы, сен жұмсардың."}
+{"category": "LocationDialogue Location8", "line_index": 63, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 64, "text": "Мен білмеймін,"}
+{"category": "LocationDialogue Location8", "line_index": 65, "text": "Бұл не деген."}
+{"category": "LocationDialogue Location8", "line_index": 66, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 67, "text": "Ештеңе етпейді;..."}
+{"category": "LocationDialogue Location8", "line_index": 68, "text": "Енді маған ауыртпай ма?"}
+{"category": "LocationDialogue Location8", "line_index": 69, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 70, "text": "// quest 5 (Как покинуть это место?) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 71, "text": "Сен мені тастап кетесің бе, ойыншы?"}
+{"category": "LocationDialogue Location8", "line_index": 72, "text": "Мүмкін, бұл менің... "}
+{"category": "LocationDialogue Location8", "line_index": 73, "text": "Тағдырым ба?"}
+{"category": "LocationDialogue Location8", "line_index": 74, "text": "// Player"}
+{"category": "LocationDialogue Location8", "line_index": 75, "text": "Мен..."}
+{"category": "LocationDialogue Location8", "line_index": 76, "text": "// MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 77, "text": "Есіктер саған ешқашан көмектеспейді."}
+{"category": "LocationDialogue Location8", "line_index": 78, "text": ""}
+{"category": "LocationDialogue Location8", "line_index": 79, "text": "// Hold player (Random) - MitaBroke"}
+{"category": "LocationDialogue Location8", "line_index": 80, "text": "Неге сен кеткің келеді?"}
+{"category": "LocationDialogue Location8", "line_index": 81, "text": "Қала тұр..."}
+{"category": "LocationDialogue Location8", "line_index": 82, "text": "Кел, ойнайық!"}
+{"category": "LocationDialogue Location8", "line_index": 83, "text": "Ойыншы..."}

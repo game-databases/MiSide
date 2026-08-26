@@ -1,0 +1,7 @@
+# n2-vB — F-P3 on cumulative HEAD↔worktree diff of pipeline-run_all.mdx (drift lens)
+
+- Hunks: exactly 4 — @@+193 S4, @@+455 AC-5, @@+475 AC-8, @@+507 AC-12; nothing outside those sections, no sixth hunk. Expected "five areas" collapses to 4 git hunks by construction: F-P2 alone produced these same 4 (n1-vB), and F-P3's qualifier edits a sentence inside F-P2's own AC-5 addition, so the rounds fuse into one hunk.
+- F-P3 isolated vs the n1-vB/n1-a baseline: sole delta = AC-5:461 gains "modulo the volatile fields" after "byte-identically", verbatim n1-vA's FIX prescription; all other added/removed wording matches n1-vB's quoted PASSed text per hunk.
+- Only other textual movement: AC-5's closing sentence re-wrapped (break moved from after "any" to after "a rerun") — words byte-identical, re-wrap forced by the insertion, not a rewording.
+- Zero-drift mechanics: heading+AC-ID sequence diff HEAD↔worktree EMPTY; both fenced command blocks byte-identical (markers+inner compared); 20+/7− matches --stat; exactly 2 new `modulo` hits vs HEAD (:202 = F-P2's S4 paragraph, :461 = F-P3).
+VERDICT: PASS

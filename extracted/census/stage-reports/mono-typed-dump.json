@@ -1,0 +1,61 @@
+{
+  "stage": "mono-typed-dump",
+  "host": "Ne8k",
+  "measured_at": "2026-08-24T21:33:24+00:00",
+  "status": "ok",
+  "containers_attempted": 51,
+  "containers_succeeded": 51,
+  "containers_failed": 0,
+  "objects_total": 140380,
+  "asset_list_mechanism": "cli-combined",
+  "assetstudiomodcli_version": "0.19.0.1",
+  "probe": {
+    "container": "level1",
+    "objects": 1543,
+    "type_mix_top": [
+      {
+        "type": "BoneClothData_Tit",
+        "count": 12
+      },
+      {
+        "type": "BoneClothMeshData_Tit",
+        "count": 12
+      },
+      {
+        "type": "SelectionData_Tit",
+        "count": 6
+      },
+      {
+        "type": "BoneClothData_ClothWire",
+        "count": 5
+      },
+      {
+        "type": "BoneClothData_Tail",
+        "count": 5
+      },
+      {
+        "type": "BoneClothMeshData_ClothWire",
+        "count": 5
+      },
+      {
+        "type": "BoneClothMeshData_Tail",
+        "count": 5
+      },
+      {
+        "type": "SelectionData_ClothWire",
+        "count": 5
+      },
+      {
+        "type": "SelectionData_Tail",
+        "count": 5
+      },
+      {
+        "type": "BoneClothData_HairSide1",
+        "count": 4
+      }
+    ]
+  },
+  "keep_going": false,
+  "warnings": [],
+  "duration_s": 164.926
+}

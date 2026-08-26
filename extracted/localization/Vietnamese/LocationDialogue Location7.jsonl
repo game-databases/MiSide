@@ -1,0 +1,837 @@
+{"category": "LocationDialogue Location7", "line_index": 0, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 1, "text": "Vậy là anh đến rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 2, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 3, "text": "Đây là nơi nào vậy?"}
+{"category": "LocationDialogue Location7", "line_index": 4, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 5, "text": "Cho em xem chiếc nhẫn."}
+{"category": "LocationDialogue Location7", "line_index": 6, "text": "Ừm..."}
+{"category": "LocationDialogue Location7", "line_index": 7, "text": "Xong rồi đó!"}
+{"category": "LocationDialogue Location7", "line_index": 8, "text": "Trước tiên, em xin phép điểm qua tình hình được không?"}
+{"category": "LocationDialogue Location7", "line_index": 9, "text": "// If the player did not approach the good Mitya and decided to play a race - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 10, "text": "Em thật sự đã đợi anh rất lâu rồi đấy!"}
+{"category": "LocationDialogue Location7", "line_index": 11, "text": "Vậy mà anh lại đi chơi đua xe trước...?"}
+{"category": "LocationDialogue Location7", "line_index": 12, "text": "Lại đây với em nào..."}
+{"category": "LocationDialogue Location7", "line_index": 13, "text": "// If the player talked to Mita first, and went through the game to the end - Mita Kind"}
+{"category": "LocationDialogue Location7", "line_index": 14, "text": "Anh thắng rồi, xin chúc mừng!"}
+{"category": "LocationDialogue Location7", "line_index": 15, "text": "Em cũng đã từng chơi trò này!"}
+{"category": "LocationDialogue Location7", "line_index": 16, "text": "Phải thu thập thật nhiều xu và leo lên hạng nhất"}
+{"category": "LocationDialogue Location7", "line_index": 17, "text": "để nhận được thành tựu!"}
+{"category": "LocationDialogue Location7", "line_index": 18, "text": "Nó thực sự khó lắm luôn!"}
+{"category": "LocationDialogue Location7", "line_index": 19, "text": "Em phải mất nhiều thời gian mới quen được cách chơi."}
+{"category": "LocationDialogue Location7", "line_index": 20, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 21, "text": "// Quest 1 (Should I trust you?)"}
+{"category": "LocationDialogue Location7", "line_index": 22, "text": "Ít nhất thì em vẫn còn tỉnh táo."}
+{"category": "LocationDialogue Location7", "line_index": 23, "text": "Không như những Mita khác..."}
+{"category": "LocationDialogue Location7", "line_index": 24, "text": "Hơn nữa!"}
+{"category": "LocationDialogue Location7", "line_index": 25, "text": "Em nghĩ mình là người tử tế nhất nơi này rồi đó."}
+{"category": "LocationDialogue Location7", "line_index": 26, "text": "Không thể để mặc chuyện này mãi được."}
+{"category": "LocationDialogue Location7", "line_index": 27, "text": "Cô ấy là sát nhân. Phải mau chóng ngăn cô ấy lại."}
+{"category": "LocationDialogue Location7", "line_index": 28, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 29, "text": "// Quest 2 (How did I get here?)"}
+{"category": "LocationDialogue Location7", "line_index": 30, "text": "Tất cả là nhờ chiếc nhẫn đó."}
+{"category": "LocationDialogue Location7", "line_index": 31, "text": "Nó là một phát minh đặc biệt."}
+{"category": "LocationDialogue Location7", "line_index": 32, "text": "Người chơi nào cũng cần đến nó..."}
+{"category": "LocationDialogue Location7", "line_index": 33, "text": "Không có nhẫn thì không thể nào vào đúng phiên bản đâu."}
+{"category": "LocationDialogue Location7", "line_index": 34, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 35, "text": "// Quest 3 (What is this place?)"}
+{"category": "LocationDialogue Location7", "line_index": 36, "text": "Đây là hành lang"}
+{"category": "LocationDialogue Location7", "line_index": 37, "text": "kết nối giữa các phiên bản khác nhau."}
+{"category": "LocationDialogue Location7", "line_index": 38, "text": "Nơi này trống rỗng nhỉ..."}
+{"category": "LocationDialogue Location7", "line_index": 39, "text": "A! Em chợt nhớ ra câu chuyện về một cô gái tên Mita."}
+{"category": "LocationDialogue Location7", "line_index": 40, "text": "Cô ấy không thể lưu phiên bản thế giới của mình..."}
+{"category": "LocationDialogue Location7", "line_index": 41, "text": "Và rồi ngôi nhà của cô ấy..."}
+{"category": "LocationDialogue Location7", "line_index": 42, "text": "Nó không còn tồn tại nữa..."}
+{"category": "LocationDialogue Location7", "line_index": 43, "text": "Có vẻ như cô ấy"}
+{"category": "LocationDialogue Location7", "line_index": 44, "text": "vẫn đang lang thang đâu đó trên hành lang này."}
+{"category": "LocationDialogue Location7", "line_index": 45, "text": "Thật tội nghiệp..."}
+{"category": "LocationDialogue Location7", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 47, "text": "// Quest 4 (How did you end up here?)"}
+{"category": "LocationDialogue Location7", "line_index": 48, "text": "Trước tiên là"}
+{"category": "LocationDialogue Location7", "line_index": 49, "text": "lâu rồi không gặp anh."}
+{"category": "LocationDialogue Location7", "line_index": 50, "text": "Nhờ có anh"}
+{"category": "LocationDialogue Location7", "line_index": 51, "text": "mà em đã thoát khỏi cái lồng kỳ quái đó"}
+{"category": "LocationDialogue Location7", "line_index": 52, "text": "và trốn thoát khỏi Mita Cuồng Bạo kia."}
+{"category": "LocationDialogue Location7", "line_index": 53, "text": "Và giờ"}
+{"category": "LocationDialogue Location7", "line_index": 54, "text": "em có thể tự do qua lại giữa các phiên bản rồi."}
+{"category": "LocationDialogue Location7", "line_index": 55, "text": "Còn anh thì không được như vậy đâu."}
+{"category": "LocationDialogue Location7", "line_index": 56, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 57, "text": "// Quest 5 (What did you do with the ring?)"}
+{"category": "LocationDialogue Location7", "line_index": 58, "text": "Em đã thay đổi tuyến đường."}
+{"category": "LocationDialogue Location7", "line_index": 59, "text": "Hướng về phía chúng ta cần đến."}
+{"category": "LocationDialogue Location7", "line_index": 60, "text": "Em đã thiết lập tuyến đường ngắn nhất"}
+{"category": "LocationDialogue Location7", "line_index": 61, "text": "và tiến tới thôi..."}
+{"category": "LocationDialogue Location7", "line_index": 62, "text": "Khi anh mở cánh cửa, "}
+{"category": "LocationDialogue Location7", "line_index": 63, "text": "chiếc nhẫn sẽ mở ra ranh giới giữa các phiên bản."}
+{"category": "LocationDialogue Location7", "line_index": 64, "text": "Cơ chế hoạt động là như vậy."}
+{"category": "LocationDialogue Location7", "line_index": 65, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 66, "text": "// Quest 6 (Are the passages dangerous?)"}
+{"category": "LocationDialogue Location7", "line_index": 67, "text": "Kể từ khi anh đến đây..."}
+{"category": "LocationDialogue Location7", "line_index": 68, "text": "Bước vào trong trò chơi,"}
+{"category": "LocationDialogue Location7", "line_index": 69, "text": "anh đã chứng kiến rất nhiều... cảnh tượng kỳ lạ."}
+{"category": "LocationDialogue Location7", "line_index": 70, "text": "Thoạt nhìn có vẻ yên tĩnh,"}
+{"category": "LocationDialogue Location7", "line_index": 71, "text": "nhưng hành lang này..."}
+{"category": "LocationDialogue Location7", "line_index": 72, "text": "lại toát lên vẻ nguy hiểm nào đó."}
+{"category": "LocationDialogue Location7", "line_index": 73, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 74, "text": "Anh nói đúng. Nơi này ngày càng"}
+{"category": "LocationDialogue Location7", "line_index": 75, "text": "trở nên bất ổn hơn."}
+{"category": "LocationDialogue Location7", "line_index": 76, "text": "Nhưng hãy can đảm lên anh!"}
+{"category": "LocationDialogue Location7", "line_index": 77, "text": "Sau khi cân nhắc mọi thứ,"}
+{"category": "LocationDialogue Location7", "line_index": 78, "text": "chúng ta sẽ đi theo con đường ngắn nhất."}
+{"category": "LocationDialogue Location7", "line_index": 79, "text": "Con đường quen thuộc!"}
+{"category": "LocationDialogue Location7", "line_index": 80, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 81, "text": "Ước gì mọi chuyện đơn giản như vậy..."}
+{"category": "LocationDialogue Location7", "line_index": 82, "text": "Mà có gì ở trong hành lang này thế?"}
+{"category": "LocationDialogue Location7", "line_index": 83, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 84, "text": "Ừm..."}
+{"category": "LocationDialogue Location7", "line_index": 85, "text": "Trục trặc, lỗi, sự cố bất thường."}
+{"category": "LocationDialogue Location7", "line_index": 86, "text": "Chúng hoạt động như thể có sự sống..."}
+{"category": "LocationDialogue Location7", "line_index": 87, "text": "À, còn có cả những lỗi hung hãn hơn nữa..."}
+{"category": "LocationDialogue Location7", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 89, "text": "Ây ya..."}
+{"category": "LocationDialogue Location7", "line_index": 90, "text": "Với cả... những Mita ác ý khác."}
+{"category": "LocationDialogue Location7", "line_index": 91, "text": "Còn có Mita không bình thường khác nữa à?"}
+{"category": "LocationDialogue Location7", "line_index": 92, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 93, "text": "Em biết một người..."}
+{"category": "LocationDialogue Location7", "line_index": 94, "text": "Mita Xấu Xí."}
+{"category": "LocationDialogue Location7", "line_index": 95, "text": "A! Em không phải là người đặt tên đó đâu nhé!"}
+{"category": "LocationDialogue Location7", "line_index": 96, "text": "Cô ấy..."}
+{"category": "LocationDialogue Location7", "line_index": 97, "text": "là phiên bản đầu tiên của Mita."}
+{"category": "LocationDialogue Location7", "line_index": 98, "text": "Vấn đề nan giải nhất của cô ấy"}
+{"category": "LocationDialogue Location7", "line_index": 99, "text": "là gây ra toàn lỗi nghiêm trọng..."}
+{"category": "LocationDialogue Location7", "line_index": 100, "text": "Không ai muốn gặp phải cô ấy cả."}
+{"category": "LocationDialogue Location7", "line_index": 101, "text": "Giống như là bản thử nghiệm đầu tiên đầy lỗi vậy..."}
+{"category": "LocationDialogue Location7", "line_index": 102, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 103, "text": "// Quest 7 (Will you help me get out?)"}
+{"category": "LocationDialogue Location7", "line_index": 104, "text": "Em cũng không có kế hoạch cụ thể nào..."}
+{"category": "LocationDialogue Location7", "line_index": 105, "text": "Nhưng chắc chắn một điều là"}
+{"category": "LocationDialogue Location7", "line_index": 106, "text": "bằng một cách nào đó, anh đã đến được đây."}
+{"category": "LocationDialogue Location7", "line_index": 107, "text": "Và còn một điều nữa..."}
+{"category": "LocationDialogue Location7", "line_index": 108, "text": "Ngoài Mita Tử Tế này ra"}
+{"category": "LocationDialogue Location7", "line_index": 109, "text": "anh cũng chẳng còn ai để dựa dẫm cả!"}
+{"category": "LocationDialogue Location7", "line_index": 110, "text": "Hẳn là vậy rồi..."}
+{"category": "LocationDialogue Location7", "line_index": 111, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 112, "text": "// Quest 8 (You were talking about some kind of plan...)"}
+{"category": "LocationDialogue Location7", "line_index": 113, "text": "Vâng, chúng ta phải đi tìm Lõi."}
+{"category": "LocationDialogue Location7", "line_index": 114, "text": "Mọi vấn đề đều có thể được giải quyết ở đó."}
+{"category": "LocationDialogue Location7", "line_index": 115, "text": "Em có linh cảm như vậy."}
+{"category": "LocationDialogue Location7", "line_index": 116, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 117, "text": "Nhưng sao em không tự mình đến đó? Cần gì đến người chơi?"}
+{"category": "LocationDialogue Location7", "line_index": 118, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 119, "text": "Không biết vì sao mà Mita chúng em"}
+{"category": "LocationDialogue Location7", "line_index": 120, "text": "không thể vào Phòng Lõi."}
+{"category": "LocationDialogue Location7", "line_index": 121, "text": "Ngay cả em cũng chỉ có thể nhìn từ bên ngoài..."}
+{"category": "LocationDialogue Location7", "line_index": 122, "text": "Nhưng người chơi thì có thể vào được."}
+{"category": "LocationDialogue Location7", "line_index": 123, "text": "Với tư cách là một người chơi như anh,"}
+{"category": "LocationDialogue Location7", "line_index": 124, "text": "em tin anh có thể làm được."}
+{"category": "LocationDialogue Location7", "line_index": 125, "text": "Cùng nhau lên kế hoạch nhé?"}
+{"category": "LocationDialogue Location7", "line_index": 126, "text": "Ừm."}
+{"category": "LocationDialogue Location7", "line_index": 127, "text": "Tốt quá."}
+{"category": "LocationDialogue Location7", "line_index": 128, "text": "Vậy thì, bây giờ..."}
+{"category": "LocationDialogue Location7", "line_index": 129, "text": "Em sẽ giới thiệu cho anh"}
+{"category": "LocationDialogue Location7", "line_index": 130, "text": "một Mita Phong Cách!"}
+{"category": "LocationDialogue Location7", "line_index": 131, "text": "Vì cậu ấy đội một chiếc mũ xinh xắn"}
+{"category": "LocationDialogue Location7", "line_index": 132, "text": "nên em gọi cậu ấy là"}
+{"category": "LocationDialogue Location7", "line_index": 133, "text": "Cappie."}
+{"category": "LocationDialogue Location7", "line_index": 134, "text": "Bọn em đã cùng nhau lên kế hoạch"}
+{"category": "LocationDialogue Location7", "line_index": 135, "text": "để ngăn chặn Mita Cuồng Bạo lại."}
+{"category": "LocationDialogue Location7", "line_index": 136, "text": "Chào mừng, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 137, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 138, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 139, "text": "Yahoo!"}
+{"category": "LocationDialogue Location7", "line_index": 140, "text": "Anh là... người chơi mới của em hử?"}
+{"category": "LocationDialogue Location7", "line_index": 141, "text": "Em gọi anh là gì đây?"}
+{"category": "LocationDialogue Location7", "line_index": 142, "text": "Anh tên là..."}
+{"category": "LocationDialogue Location7", "line_index": 143, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 144, "text": "Chờ đã!"}
+{"category": "LocationDialogue Location7", "line_index": 145, "text": "Cappie, cậu..."}
+{"category": "LocationDialogue Location7", "line_index": 146, "text": "...Không nhận ra tớ à?"}
+{"category": "LocationDialogue Location7", "line_index": 147, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 148, "text": "Hể?"}
+{"category": "LocationDialogue Location7", "line_index": 149, "text": "Cậu là ai vậy ta?"}
+{"category": "LocationDialogue Location7", "line_index": 150, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 151, "text": "Thật hả trời!"}
+{"category": "LocationDialogue Location7", "line_index": 152, "text": "Ahh... em hiểu rồi, [player]..."}
+{"category": "LocationDialogue Location7", "line_index": 153, "text": "Vậy là cô ấy đã đến đây."}
+{"category": "LocationDialogue Location7", "line_index": 154, "text": "Mita Cuồng Bạo..."}
+{"category": "LocationDialogue Location7", "line_index": 155, "text": "Nè, Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 156, "text": "Xin cậu đấy, nhớ lại đi! Vì tất cả chúng ta!"}
+{"category": "LocationDialogue Location7", "line_index": 157, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 158, "text": "Nhớ lại cái gì cơ?"}
+{"category": "LocationDialogue Location7", "line_index": 159, "text": "Sao cậu lại giống tớ y đúc vậy cà?"}
+{"category": "LocationDialogue Location7", "line_index": 160, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 161, "text": "Ôi, tới mức này luôn à..."}
+{"category": "LocationDialogue Location7", "line_index": 162, "text": "Nghe này, [player]."}
+{"category": "LocationDialogue Location7", "line_index": 163, "text": "Mọi chuyện đã diễn ra..."}
+{"category": "LocationDialogue Location7", "line_index": 164, "text": "Khác xa so với dự tính ban đầu rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 165, "text": "Kế hoạch của bọn em là sử dụng cổng dịch chuyển."}
+{"category": "LocationDialogue Location7", "line_index": 166, "text": "Có nó thì mọi thứ đã đâu vào đó hết rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 167, "text": "Nhưng nếu không có Cappie thì không thể thực hiện kế hoạch nữa."}
+{"category": "LocationDialogue Location7", "line_index": 168, "text": "Chúng ta đang thiếu linh kiện..."}
+{"category": "LocationDialogue Location7", "line_index": 169, "text": "Cậu ấy tuy ồn ào, nhưng đầu óc lại rất lanh lợi..."}
+{"category": "LocationDialogue Location7", "line_index": 170, "text": "Vậy giờ phải làm sao?"}
+{"category": "LocationDialogue Location7", "line_index": 171, "text": "Đợi em suy nghĩ một chút..."}
+{"category": "LocationDialogue Location7", "line_index": 172, "text": "Mita Cuồng Bạo kia đã làm gì cô ấy?"}
+{"category": "LocationDialogue Location7", "line_index": 173, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 174, "text": "Chuyện đó... em nghĩ là em biết."}
+{"category": "LocationDialogue Location7", "line_index": 175, "text": "Cậu ấy đã bị giết."}
+{"category": "LocationDialogue Location7", "line_index": 176, "text": "Bị giết?!"}
+{"category": "LocationDialogue Location7", "line_index": 177, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 178, "text": "Có lẽ anh cũng đã nhận ra rồi..."}
+{"category": "LocationDialogue Location7", "line_index": 179, "text": "Khi Mita chết, họ sẽ được khởi động lại."}
+{"category": "LocationDialogue Location7", "line_index": 180, "text": "Và rồi, tất cả những ký ức quan trọng"}
+{"category": "LocationDialogue Location7", "line_index": 181, "text": "sẽ bị xóa sạch, trở về trạng thái ban đầu."}
+{"category": "LocationDialogue Location7", "line_index": 182, "text": "Nói cách khác..."}
+{"category": "LocationDialogue Location7", "line_index": 183, "text": "Mọi thứ sụp đổ hết... rồi."}
+{"category": "LocationDialogue Location7", "line_index": 184, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 185, "text": "Dã man thật..."}
+{"category": "LocationDialogue Location7", "line_index": 186, "text": "Nhưng có lẽ còn hơn là biến mất hoàn toàn..."}
+{"category": "LocationDialogue Location7", "line_index": 187, "text": "Cơ mà..."}
+{"category": "LocationDialogue Location7", "line_index": 188, "text": "Người chơi cũng như thế à?"}
+{"category": "LocationDialogue Location7", "line_index": 189, "text": "Bị giết thì cũng sẽ mất trí nhớ?"}
+{"category": "LocationDialogue Location7", "line_index": 190, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 191, "text": "Ký ức của anh thì có thể xóa được."}
+{"category": "LocationDialogue Location7", "line_index": 192, "text": "Ít nhất là khi anh biến thành hộp băng..."}
+{"category": "LocationDialogue Location7", "line_index": 193, "text": "Còn việc người chơi có thể bị giết không"}
+{"category": "LocationDialogue Location7", "line_index": 194, "text": "thì em cũng không biết nữa."}
+{"category": "LocationDialogue Location7", "line_index": 195, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 196, "text": "Lại là hộp băng..."}
+{"category": "LocationDialogue Location7", "line_index": 197, "text": "Thế rốt cuộc anh có phải hộp băng hay không?"}
+{"category": "LocationDialogue Location7", "line_index": 198, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 199, "text": "Để em kiểm tra cho anh."}
+{"category": "LocationDialogue Location7", "line_index": 200, "text": "Nào, lại đây anh..."}
+{"category": "LocationDialogue Location7", "line_index": 201, "text": "// MitaKind check"}
+{"category": "LocationDialogue Location7", "line_index": 202, "text": "Ổn rồi,"}
+{"category": "LocationDialogue Location7", "line_index": 203, "text": "anh không phải là hộp băng đâu."}
+{"category": "LocationDialogue Location7", "line_index": 204, "text": "Anh là một người chơi sống đấy!"}
+{"category": "LocationDialogue Location7", "line_index": 205, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 206, "text": "May thật..."}
+{"category": "LocationDialogue Location7", "line_index": 207, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 208, "text": "Còn giờ, xem ra chúng ta đi vào ngõ cụt rồi..."}
+{"category": "LocationDialogue Location7", "line_index": 209, "text": "Đợi em suy nghĩ một chút."}
+{"category": "LocationDialogue Location7", "line_index": 210, "text": "Có lẽ ta phải thay đổi kế hoạch..."}
+{"category": "LocationDialogue Location7", "line_index": 211, "text": "Ưm..."}
+{"category": "LocationDialogue Location7", "line_index": 212, "text": "Chờ chút..."}
+{"category": "LocationDialogue Location7", "line_index": 213, "text": "Phải rồi, em có ý tưởng rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 214, "text": "Cho em mượn chiếc nhẫn!"}
+{"category": "LocationDialogue Location7", "line_index": 215, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 216, "text": "Được rồi."}
+{"category": "LocationDialogue Location7", "line_index": 217, "text": "Phải thay đổi tuyến đường thôi."}
+{"category": "LocationDialogue Location7", "line_index": 218, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 219, "text": "Thay đổi tuyến đường?"}
+{"category": "LocationDialogue Location7", "line_index": 220, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 221, "text": "Nghe này, darling,"}
+{"category": "LocationDialogue Location7", "line_index": 222, "text": "anh sẽ phải vượt qua nhiều phiên bản khác"}
+{"category": "LocationDialogue Location7", "line_index": 223, "text": "để đến được Lõi."}
+{"category": "LocationDialogue Location7", "line_index": 224, "text": "Dốc toàn lực mà tiến, rõ chưa anh?"}
+{"category": "LocationDialogue Location7", "line_index": 225, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 226, "text": "Và anh lại phải tự đi một mình à?"}
+{"category": "LocationDialogue Location7", "line_index": 227, "text": "Nhưng làm sao đến được đó? Anh làm gì biết đường?"}
+{"category": "LocationDialogue Location7", "line_index": 228, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 229, "text": "Em sẽ cố gắng hết sức giúp anh!"}
+{"category": "LocationDialogue Location7", "line_index": 230, "text": "Trong khả năng của mình."}
+{"category": "LocationDialogue Location7", "line_index": 231, "text": "Lát nữa em chỉ đường cho anh,"}
+{"category": "LocationDialogue Location7", "line_index": 232, "text": "hãy cho em thời gian suy nghĩ."}
+{"category": "LocationDialogue Location7", "line_index": 233, "text": "Rồi chúng ta sẽ nói chuyện sau..."}
+{"category": "LocationDialogue Location7", "line_index": 234, "text": "Trong lúc đó, anh chơi với Cappie chút đi."}
+{"category": "LocationDialogue Location7", "line_index": 235, "text": "Chỉ 10 phút thôi..."}
+{"category": "LocationDialogue Location7", "line_index": 236, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 237, "text": "// MitaKind ready, if player near"}
+{"category": "LocationDialogue Location7", "line_index": 238, "text": "Ổn rồi."}
+{"category": "LocationDialogue Location7", "line_index": 239, "text": "Mọi thứ đã xong!"}
+{"category": "LocationDialogue Location7", "line_index": 240, "text": "// MitaKind ready"}
+{"category": "LocationDialogue Location7", "line_index": 241, "text": "[player],"}
+{"category": "LocationDialogue Location7", "line_index": 242, "text": "anh hãy lại đây."}
+{"category": "LocationDialogue Location7", "line_index": 243, "text": "// MitaKind ring"}
+{"category": "LocationDialogue Location7", "line_index": 244, "text": "Đeo cái này vào."}
+{"category": "LocationDialogue Location7", "line_index": 245, "text": "[player], rất tiếc nhưng..."}
+{"category": "LocationDialogue Location7", "line_index": 246, "text": "Anh đành phải đi một mình rồi,"}
+{"category": "LocationDialogue Location7", "line_index": 247, "text": "em phải đi trước để nắm bắt toàn bộ tình hình hiện tại."}
+{"category": "LocationDialogue Location7", "line_index": 248, "text": "Kế hoạch vốn dĩ rất hoàn hảo..."}
+{"category": "LocationDialogue Location7", "line_index": 249, "text": "Nhưng tình hình hiện giờ tệ hơn bao giờ hết."}
+{"category": "LocationDialogue Location7", "line_index": 250, "text": "Những thứ đã chuẩn bị đang ở đâu,"}
+{"category": "LocationDialogue Location7", "line_index": 251, "text": "em phải nhanh chóng tìm ra..."}
+{"category": "LocationDialogue Location7", "line_index": 252, "text": "Em sẽ đi tìm chúng."}
+{"category": "LocationDialogue Location7", "line_index": 253, "text": "Biết đâu vẫn còn kịp khôi phục lại cỗ máy."}
+{"category": "LocationDialogue Location7", "line_index": 254, "text": "Nhưng... không còn thời gian để chần chừ nữa rồi."}
+{"category": "LocationDialogue Location7", "line_index": 255, "text": "Mita Cuồng Bạo đã biết nơi này,"}
+{"category": "LocationDialogue Location7", "line_index": 256, "text": "ở lại đây quá lâu sẽ rất nguy hiểm."}
+{"category": "LocationDialogue Location7", "line_index": 257, "text": "Chúc may mắn, [player]! Gặp lại anh sau!"}
+{"category": "LocationDialogue Location7", "line_index": 258, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 259, "text": "Ừm..."}
+{"category": "LocationDialogue Location7", "line_index": 260, "text": "Hy vọng anh sống đủ lâu để gặp lại..."}
+{"category": "LocationDialogue Location7", "line_index": 261, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 262, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 263, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 264, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 265, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 266, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 267, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 268, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 269, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 270, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 271, "text": "// Chibi players"}
+{"category": "LocationDialogue Location7", "line_index": 272, "text": "Tại sao?"}
+{"category": "LocationDialogue Location7", "line_index": 273, "text": "Tôi là ai?"}
+{"category": "LocationDialogue Location7", "line_index": 274, "text": "Tôi muốn về nhà!"}
+{"category": "LocationDialogue Location7", "line_index": 275, "text": "Làm thế nào?"}
+{"category": "LocationDialogue Location7", "line_index": 276, "text": "Sao lại...?"}
+{"category": "LocationDialogue Location7", "line_index": 277, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 278, "text": "Gì đây...?"}
+{"category": "LocationDialogue Location7", "line_index": 279, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 280, "text": "// LimpingPerson"}
+{"category": "LocationDialogue Location7", "line_index": 281, "text": "Ông là..."}
+{"category": "LocationDialogue Location7", "line_index": 282, "text": "Người thật?"}
+{"category": "LocationDialogue Location7", "line_index": 283, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 284, "text": "Chào!"}
+{"category": "LocationDialogue Location7", "line_index": 285, "text": "Ông là người mới à?"}
+{"category": "LocationDialogue Location7", "line_index": 286, "text": "Người mới?"}
+{"category": "LocationDialogue Location7", "line_index": 287, "text": "Ông đến từ thế giới thực phải không?"}
+{"category": "LocationDialogue Location7", "line_index": 288, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 289, "text": "Phải..."}
+{"category": "LocationDialogue Location7", "line_index": 290, "text": "Ông ổn không vậy?"}
+{"category": "LocationDialogue Location7", "line_index": 291, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 292, "text": "À, chỉ hơi khập khiễng chút thôi, không phải lo."}
+{"category": "LocationDialogue Location7", "line_index": 293, "text": "Tôi ở đây cũng được một năm rồi,"}
+{"category": "LocationDialogue Location7", "line_index": 294, "text": "mọi thứ vẫn ổn cả."}
+{"category": "LocationDialogue Location7", "line_index": 295, "text": "Ừm... Mà đây là nơi nào vậy ông?"}
+{"category": "LocationDialogue Location7", "line_index": 296, "text": "Đây là một dạng không gian nằm giữa các phiên bản."}
+{"category": "LocationDialogue Location7", "line_index": 297, "text": "Thế ông biết đường nào rời khỏi đây không?"}
+{"category": "LocationDialogue Location7", "line_index": 298, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 299, "text": "Chịu, tôi không biết."}
+{"category": "LocationDialogue Location7", "line_index": 300, "text": "Với lại, tôi không muốn đi đâu cả."}
+{"category": "LocationDialogue Location7", "line_index": 301, "text": "Tôi không cần rời khỏi đây."}
+{"category": "LocationDialogue Location7", "line_index": 302, "text": "Ơ, tại sao không?"}
+{"category": "LocationDialogue Location7", "line_index": 303, "text": "Đủ rồi, đừng nói nữa. Tôi đang vội."}
+{"category": "LocationDialogue Location7", "line_index": 304, "text": "Mita yêu dấu của tôi đang đợi tôi."}
+{"category": "LocationDialogue Location7", "line_index": 305, "text": "Tôi phải tìm cô ấy..."}
+{"category": "LocationDialogue Location7", "line_index": 306, "text": "Tạm biệt."}
+{"category": "LocationDialogue Location7", "line_index": 307, "text": "Khoan...!"}
+{"category": "LocationDialogue Location7", "line_index": 308, "text": "Biến đi!"}
+{"category": "LocationDialogue Location7", "line_index": 309, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 310, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 311, "text": "Em nghe hết rồi đó!"}
+{"category": "LocationDialogue Location7", "line_index": 312, "text": "Hổng biết chuyện gì đang diễn ra, nhưng mà"}
+{"category": "LocationDialogue Location7", "line_index": 313, "text": "có vẻ thú vị ghê!"}
+{"category": "LocationDialogue Location7", "line_index": 314, "text": "Chắc là"}
+{"category": "LocationDialogue Location7", "line_index": 315, "text": "anh biết em là ai rồi phải không?"}
+{"category": "LocationDialogue Location7", "line_index": 316, "text": "Em là Mita!"}
+{"category": "LocationDialogue Location7", "line_index": 317, "text": "Mà, phải nói là em khác hẳn với bạn Mita kia."}
+{"category": "LocationDialogue Location7", "line_index": 318, "text": "Anh hiểu ý em phải không?"}
+{"category": "LocationDialogue Location7", "line_index": 319, "text": "Em thì có"}
+{"category": "LocationDialogue Location7", "line_index": 320, "text": "ĐÂY NÈ"}
+{"category": "LocationDialogue Location7", "line_index": 321, "text": "một chiếc MŨ bao ngầu!"}
+{"category": "LocationDialogue Location7", "line_index": 322, "text": "Và TA DA!"}
+{"category": "LocationDialogue Location7", "line_index": 323, "text": "Đôi găng tay xinh xẻo!"}
+{"category": "LocationDialogue Location7", "line_index": 324, "text": "Không chỉ có vậy thôi đâu!"}
+{"category": "LocationDialogue Location7", "line_index": 325, "text": "Còn có cây đàn ghi-ta điện siêu cute nữa này!"}
+{"category": "LocationDialogue Location7", "line_index": 326, "text": "Em thích nó lắmmmm luôn á!"}
+{"category": "LocationDialogue Location7", "line_index": 327, "text": "Anh có muốn nghe em đàn thử không nè?"}
+{"category": "LocationDialogue Location7", "line_index": 328, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 329, "text": "// MitaCap Guitar Yes"}
+{"category": "LocationDialogue Location7", "line_index": 330, "text": "Hehe!"}
+{"category": "LocationDialogue Location7", "line_index": 331, "text": "Tới đây nào, baby..."}
+{"category": "LocationDialogue Location7", "line_index": 332, "text": "Nào!"}
+{"category": "LocationDialogue Location7", "line_index": 333, "text": "Ừm, lẽ ra em phải làm tốt hơn chứ nhỉ."}
+{"category": "LocationDialogue Location7", "line_index": 334, "text": "Mà kệ đi!"}
+{"category": "LocationDialogue Location7", "line_index": 335, "text": "// MitaCap Guitar No"}
+{"category": "LocationDialogue Location7", "line_index": 336, "text": "Vậy à."}
+{"category": "LocationDialogue Location7", "line_index": 337, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 338, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 339, "text": "Chà..."}
+{"category": "LocationDialogue Location7", "line_index": 340, "text": "Trông em năng động quá nhỉ!"}
+{"category": "LocationDialogue Location7", "line_index": 341, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 342, "text": "TẤT NHIÊN RỒI!!!"}
+{"category": "LocationDialogue Location7", "line_index": 343, "text": "Chính là EM đây!!!"}
+{"category": "LocationDialogue Location7", "line_index": 344, "text": "Giờ thì..."}
+{"category": "LocationDialogue Location7", "line_index": 345, "text": "Đi thôi ha."}
+{"category": "LocationDialogue Location7", "line_index": 346, "text": "Cùng nhau bung lụa nào!"}
+{"category": "LocationDialogue Location7", "line_index": 347, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 348, "text": "// GAME HUMMER"}
+{"category": "LocationDialogue Location7", "line_index": 349, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 350, "text": "Cái nút to này trông hay ho thế nhỉ."}
+{"category": "LocationDialogue Location7", "line_index": 351, "text": "Nhìn mà muốn nhấn rồi."}
+{"category": "LocationDialogue Location7", "line_index": 352, "text": "Anh nhấn phát được không?"}
+{"category": "LocationDialogue Location7", "line_index": 353, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 354, "text": "Được anh."}
+{"category": "LocationDialogue Location7", "line_index": 355, "text": "Mình có thời gian mà."}
+{"category": "LocationDialogue Location7", "line_index": 356, "text": "Trước hết ngồi xuống đã nào!"}
+{"category": "LocationDialogue Location7", "line_index": 357, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 358, "text": "Rồi."}
+{"category": "LocationDialogue Location7", "line_index": 359, "text": "Giờ làm gì nữa?"}
+{"category": "LocationDialogue Location7", "line_index": 360, "text": "Anh được nhấn nút chưa?"}
+{"category": "LocationDialogue Location7", "line_index": 361, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 362, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 363, "text": "Em thích chơi trò này lắm luôn á!"}
+{"category": "LocationDialogue Location7", "line_index": 364, "text": "Nhưng vẫn còn thiếu một thứ nhỉ."}
+{"category": "LocationDialogue Location7", "line_index": 365, "text": "Nó ở trong túi đồ của em!"}
+{"category": "LocationDialogue Location7", "line_index": 366, "text": "Chờ chút nhé..."}
+{"category": "LocationDialogue Location7", "line_index": 367, "text": "Úi chà!"}
+{"category": "LocationDialogue Location7", "line_index": 368, "text": "Mà..."}
+{"category": "LocationDialogue Location7", "line_index": 369, "text": "Anh biết đấy..."}
+{"category": "LocationDialogue Location7", "line_index": 370, "text": "Đây không phải game người lớn đâu..."}
+{"category": "LocationDialogue Location7", "line_index": 371, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 372, "text": "Vừa rồi là cái gì thế?"}
+{"category": "LocationDialogue Location7", "line_index": 373, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 374, "text": "Anh không biết hả?"}
+{"category": "LocationDialogue Location7", "line_index": 375, "text": "Nó dùng để dụ hải ly ra khỏi nơi trú ẩn đấy..."}
+{"category": "LocationDialogue Location7", "line_index": 376, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 377, "text": "Thật ư?"}
+{"category": "LocationDialogue Location7", "line_index": 378, "text": "Anh không nhìn thấy hải ly nào quanh đây cả..."}
+{"category": "LocationDialogue Location7", "line_index": 379, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 380, "text": "Thôi..."}
+{"category": "LocationDialogue Location7", "line_index": 381, "text": "Đừng bận tâm tới chuyện đó nữa."}
+{"category": "LocationDialogue Location7", "line_index": 382, "text": "Nào, giờ thì mình chơi thôi ha?"}
+{"category": "LocationDialogue Location7", "line_index": 383, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 384, "text": "Nhưng mà hải ly..."}
+{"category": "LocationDialogue Location7", "line_index": 385, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 386, "text": "Phải rồi..."}
+{"category": "LocationDialogue Location7", "line_index": 387, "text": "Anh biết trò chơi này chơi như nào không?"}
+{"category": "LocationDialogue Location7", "line_index": 388, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 389, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 390, "text": "// How play hammer game"}
+{"category": "LocationDialogue Location7", "line_index": 391, "text": "Anh thấy con số trên đó không?"}
+{"category": "LocationDialogue Location7", "line_index": 392, "text": "Đó là đồng hồ đếm ngược!"}
+{"category": "LocationDialogue Location7", "line_index": 393, "text": "Khi thời gian về không"}
+{"category": "LocationDialogue Location7", "line_index": 394, "text": "thì anh phải nhấn nút thật nhanh."}
+{"category": "LocationDialogue Location7", "line_index": 395, "text": "Anh hiểu chứ?"}
+{"category": "LocationDialogue Location7", "line_index": 396, "text": "Nếu không kịp..."}
+{"category": "LocationDialogue Location7", "line_index": 397, "text": "Hay lỡ tay ấn nhầm..."}
+{"category": "LocationDialogue Location7", "line_index": 398, "text": "Thì anh sẽ bị búa gõ vào đầu đấy!"}
+{"category": "LocationDialogue Location7", "line_index": 399, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 400, "text": "Em định gõ anh ư?"}
+{"category": "LocationDialogue Location7", "line_index": 401, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 402, "text": "Đừng lo"}
+{"category": "LocationDialogue Location7", "line_index": 403, "text": "cứ chơi là sẽ hiểu thôi!"}
+{"category": "LocationDialogue Location7", "line_index": 404, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 405, "text": "// Kick player 1"}
+{"category": "LocationDialogue Location7", "line_index": 406, "text": "Ui cha!"}
+{"category": "LocationDialogue Location7", "line_index": 407, "text": "Em không kiềm chế được hả?"}
+{"category": "LocationDialogue Location7", "line_index": 408, "text": "Anh ổn chứ?"}
+{"category": "LocationDialogue Location7", "line_index": 409, "text": "Ổn mà."}
+{"category": "LocationDialogue Location7", "line_index": 410, "text": "Thế thì chơi tiếp thôi!"}
+{"category": "LocationDialogue Location7", "line_index": 411, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 412, "text": "// Kick player 2"}
+{"category": "LocationDialogue Location7", "line_index": 413, "text": "Được rồi,"}
+{"category": "LocationDialogue Location7", "line_index": 414, "text": "cũng dần quen rồi."}
+{"category": "LocationDialogue Location7", "line_index": 415, "text": "Coi chừng đấy nhé!"}
+{"category": "LocationDialogue Location7", "line_index": 416, "text": "Em sẽ cho anh no đòn luôn!"}
+{"category": "LocationDialogue Location7", "line_index": 417, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 418, "text": "// Kick player 3"}
+{"category": "LocationDialogue Location7", "line_index": 419, "text": "Anh nghĩ trò này không hợp với anh."}
+{"category": "LocationDialogue Location7", "line_index": 420, "text": "Ahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 421, "text": "Em đỉnh quá đi!"}
+{"category": "LocationDialogue Location7", "line_index": 422, "text": "Quá siêu luôn!"}
+{"category": "LocationDialogue Location7", "line_index": 423, "text": "Lại còn dễ thương nữa!"}
+{"category": "LocationDialogue Location7", "line_index": 424, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 425, "text": "// Kick MitaCap 1"}
+{"category": "LocationDialogue Location7", "line_index": 426, "text": "Wa!"}
+{"category": "LocationDialogue Location7", "line_index": 427, "text": "Không tồi chút nào."}
+{"category": "LocationDialogue Location7", "line_index": 428, "text": "Lần này em sẽ cho anh biết tay!"}
+{"category": "LocationDialogue Location7", "line_index": 429, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 430, "text": "// Kick MitaCap 2"}
+{"category": "LocationDialogue Location7", "line_index": 431, "text": "Lại nữa ư!"}
+{"category": "LocationDialogue Location7", "line_index": 432, "text": "Có đau không em?"}
+{"category": "LocationDialogue Location7", "line_index": 433, "text": "Đau gì đâu anh! Nó là đồ chơi mà."}
+{"category": "LocationDialogue Location7", "line_index": 434, "text": "Vậy là anh thắng ha."}
+{"category": "LocationDialogue Location7", "line_index": 435, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 436, "text": "// Kick MitaCap 3"}
+{"category": "LocationDialogue Location7", "line_index": 437, "text": "Trò này cũng vui đấy chứ."}
+{"category": "LocationDialogue Location7", "line_index": 438, "text": "Em cũng thế..."}
+{"category": "LocationDialogue Location7", "line_index": 439, "text": "Thích trò này lắm luôn!"}
+{"category": "LocationDialogue Location7", "line_index": 440, "text": "Và anh là đối thủ đáng gờm nhất của em!"}
+{"category": "LocationDialogue Location7", "line_index": 441, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 442, "text": "// GameHammer End"}
+{"category": "LocationDialogue Location7", "line_index": 443, "text": "Vậy là xong rồi à?"}
+{"category": "LocationDialogue Location7", "line_index": 444, "text": "Ừm, hết rồi đó!"}
+{"category": "LocationDialogue Location7", "line_index": 445, "text": "Đi thôi."}
+{"category": "LocationDialogue Location7", "line_index": 446, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 447, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 448, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 449, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 450, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 451, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 452, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 453, "text": "// GAME DANCE"}
+{"category": "LocationDialogue Location7", "line_index": 454, "text": "Này có phải sàn nhảy không?"}
+{"category": "LocationDialogue Location7", "line_index": 455, "text": "Trông nó nhỏ nhỉ..."}
+{"category": "LocationDialogue Location7", "line_index": 456, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 457, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 458, "text": "Ehem!"}
+{"category": "LocationDialogue Location7", "line_index": 459, "text": "Cùng nhau nhảy thôi nào!"}
+{"category": "LocationDialogue Location7", "line_index": 460, "text": "Trước tiên là"}
+{"category": "LocationDialogue Location7", "line_index": 461, "text": "chọn nhạc cái đã!"}
+{"category": "LocationDialogue Location7", "line_index": 462, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 463, "text": "Chọn bài này đi."}
+{"category": "LocationDialogue Location7", "line_index": 464, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 465, "text": "Ô key!"}
+{"category": "LocationDialogue Location7", "line_index": 466, "text": "Để em chơi trước cho!"}
+{"category": "LocationDialogue Location7", "line_index": 467, "text": "Xem em trổ tài đây này!"}
+{"category": "LocationDialogue Location7", "line_index": 468, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 469, "text": "// MitaCap StopDance 1"}
+{"category": "LocationDialogue Location7", "line_index": 470, "text": "Phù!"}
+{"category": "LocationDialogue Location7", "line_index": 471, "text": "Nào,"}
+{"category": "LocationDialogue Location7", "line_index": 472, "text": "liệu anh có thể phá kỷ lục của em không đây?"}
+{"category": "LocationDialogue Location7", "line_index": 473, "text": "Không phải sợ đâu, đến lượt anh rồi đó!"}
+{"category": "LocationDialogue Location7", "line_index": 474, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 475, "text": "// MitaCap StopDance 2"}
+{"category": "LocationDialogue Location7", "line_index": 476, "text": "Ha!"}
+{"category": "LocationDialogue Location7", "line_index": 477, "text": "Thấy thế nào?"}
+{"category": "LocationDialogue Location7", "line_index": 478, "text": "Đến lượt anh đó!"}
+{"category": "LocationDialogue Location7", "line_index": 479, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 480, "text": "// MitaCap StopDance 3"}
+{"category": "LocationDialogue Location7", "line_index": 481, "text": "Tsk, tsk, tsk, tsk!"}
+{"category": "LocationDialogue Location7", "line_index": 482, "text": "Đã xong."}
+{"category": "LocationDialogue Location7", "line_index": 483, "text": "Lên sàn quẩy đi nào!"}
+{"category": "LocationDialogue Location7", "line_index": 484, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 485, "text": "// MitaCap = Lose 1"}
+{"category": "LocationDialogue Location7", "line_index": 486, "text": "Ha-ha!"}
+{"category": "LocationDialogue Location7", "line_index": 487, "text": "Ai là người giỏi nhất ở đây vậy ta?"}
+{"category": "LocationDialogue Location7", "line_index": 488, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 489, "text": "// MitaCap = Lose 2"}
+{"category": "LocationDialogue Location7", "line_index": 490, "text": "Pew!"}
+{"category": "LocationDialogue Location7", "line_index": 491, "text": "Có mỗi ba nút thôi"}
+{"category": "LocationDialogue Location7", "line_index": 492, "text": "mà loay hoay mãi thế anh!"}
+{"category": "LocationDialogue Location7", "line_index": 493, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 494, "text": "// MitaCap = Lose 3"}
+{"category": "LocationDialogue Location7", "line_index": 495, "text": "Anh thử ngồi xuống xem?"}
+{"category": "LocationDialogue Location7", "line_index": 496, "text": "Lắc lư cái mông rồi nhấn nút."}
+{"category": "LocationDialogue Location7", "line_index": 497, "text": "Làm như thế chắc dễ hơn đấy. Ahahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 498, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 499, "text": "// MitaCap = Win 1"}
+{"category": "LocationDialogue Location7", "line_index": 500, "text": "Tuyệt dữ zậy!"}
+{"category": "LocationDialogue Location7", "line_index": 501, "text": "Thật lòng mà nói, ngoài dự đoán luôn."}
+{"category": "LocationDialogue Location7", "line_index": 502, "text": "Không ngờ anh lại nhảy giỏi đến thế!"}
+{"category": "LocationDialogue Location7", "line_index": 503, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 504, "text": "// MitaCap = Win 2"}
+{"category": "LocationDialogue Location7", "line_index": 505, "text": "Woa!"}
+{"category": "LocationDialogue Location7", "line_index": 506, "text": "Không thể tin được, anh nhảy hay thế này cơ mà!"}
+{"category": "LocationDialogue Location7", "line_index": 507, "text": "Thực sự tuyệt lắm anh!"}
+{"category": "LocationDialogue Location7", "line_index": 508, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 509, "text": "// MitaCap = Win 3"}
+{"category": "LocationDialogue Location7", "line_index": 510, "text": "Bam!"}
+{"category": "LocationDialogue Location7", "line_index": 511, "text": "Anh cứ như hòa mình vào giai điệu ấy!"}
+{"category": "LocationDialogue Location7", "line_index": 512, "text": "Một vũ công thiên bẩm!"}
+{"category": "LocationDialogue Location7", "line_index": 513, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 514, "text": "// MitaCap = Draw 1"}
+{"category": "LocationDialogue Location7", "line_index": 515, "text": "Anh!"}
+{"category": "LocationDialogue Location7", "line_index": 516, "text": "Và em!"}
+{"category": "LocationDialogue Location7", "line_index": 517, "text": "Như thể hai ta chung nhịp điệu!"}
+{"category": "LocationDialogue Location7", "line_index": 518, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 519, "text": "// MitaCap = Draw 2"}
+{"category": "LocationDialogue Location7", "line_index": 520, "text": "Chúng ta như được sợi chỉ định mệnh gắn kết!"}
+{"category": "LocationDialogue Location7", "line_index": 521, "text": "Tấu lên một bản song ca hoàn hảo!"}
+{"category": "LocationDialogue Location7", "line_index": 522, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 523, "text": "// MitaCap = Draw 3"}
+{"category": "LocationDialogue Location7", "line_index": 524, "text": "Anh chỉ"}
+{"category": "LocationDialogue Location7", "line_index": 525, "text": "lệch một nhịp thôi!"}
+{"category": "LocationDialogue Location7", "line_index": 526, "text": "Là em thắng rồi mà..."}
+{"category": "LocationDialogue Location7", "line_index": 527, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 528, "text": "// MitaCap Next? 1"}
+{"category": "LocationDialogue Location7", "line_index": 529, "text": "Vậy,"}
+{"category": "LocationDialogue Location7", "line_index": 530, "text": "anh muốn nhảy tiếp không?"}
+{"category": "LocationDialogue Location7", "line_index": 531, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 532, "text": "// MitaCap Next? 2"}
+{"category": "LocationDialogue Location7", "line_index": 533, "text": "Ta nhảy thêm"}
+{"category": "LocationDialogue Location7", "line_index": 534, "text": "một điệu cuối nữa nhé?"}
+{"category": "LocationDialogue Location7", "line_index": 535, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 536, "text": "// MitaCap Endgame"}
+{"category": "LocationDialogue Location7", "line_index": 537, "text": "Ừm, ưm!"}
+{"category": "LocationDialogue Location7", "line_index": 538, "text": "Nhảy thế chắc đủ rồi ha!"}
+{"category": "LocationDialogue Location7", "line_index": 539, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 540, "text": "// Just talk"}
+{"category": "LocationDialogue Location7", "line_index": 541, "text": "// Photo"}
+{"category": "LocationDialogue Location7", "line_index": 542, "text": "Mấy bức ảnh này trông đẹp thật."}
+{"category": "LocationDialogue Location7", "line_index": 543, "text": "Em là một cô bé hay tươi cười nhỉ."}
+{"category": "LocationDialogue Location7", "line_index": 544, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 545, "text": "Ừm, chính là em đó!"}
+{"category": "LocationDialogue Location7", "line_index": 546, "text": "Em đang cho mọi người thấy cách tận hưởng ở nơi kinh khủng này đấy! Boom!"}
+{"category": "LocationDialogue Location7", "line_index": 547, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 548, "text": "Ủa... Cho ai xem cơ?"}
+{"category": "LocationDialogue Location7", "line_index": 549, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 550, "text": "Ai ư?"}
+{"category": "LocationDialogue Location7", "line_index": 551, "text": "Ai mà chẳng được chứ! Dù sao cũng toàn người mù thôi mà."}
+{"category": "LocationDialogue Location7", "line_index": 552, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 553, "text": "// CutBoard"}
+{"category": "LocationDialogue Location7", "line_index": 554, "text": "Ủa."}
+{"category": "LocationDialogue Location7", "line_index": 555, "text": "Gì mà... nhiều thớt thế này?"}
+{"category": "LocationDialogue Location7", "line_index": 556, "text": "Sao lại thế?"}
+{"category": "LocationDialogue Location7", "line_index": 557, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 558, "text": "Anh hỏi tại sao ư?"}
+{"category": "LocationDialogue Location7", "line_index": 559, "text": "Đó là vì á... Nó làm được những chuyện phi thường lắm đó!"}
+{"category": "LocationDialogue Location7", "line_index": 560, "text": "Kiểu như là..."}
+{"category": "LocationDialogue Location7", "line_index": 561, "text": "thái cà rốt này!"}
+{"category": "LocationDialogue Location7", "line_index": 562, "text": "Xong rồi kiểu"}
+{"category": "LocationDialogue Location7", "line_index": 563, "text": "thái cà rốt này!"}
+{"category": "LocationDialogue Location7", "line_index": 564, "text": "Xong rồi kiểu..."}
+{"category": "LocationDialogue Location7", "line_index": 565, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 566, "text": "Rồi rồi, anh hiểu rồi."}
+{"category": "LocationDialogue Location7", "line_index": 567, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 568, "text": "Mà, đại khái là"}
+{"category": "LocationDialogue Location7", "line_index": 569, "text": "cái thớt nó bị lỗi gì đó rồi ka-cha-cha loạn xạ lên..."}
+{"category": "LocationDialogue Location7", "line_index": 570, "text": "Xong tự nhiên thành ra thế này!"}
+{"category": "LocationDialogue Location7", "line_index": 571, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 572, "text": "// Books"}
+{"category": "LocationDialogue Location7", "line_index": 573, "text": "Em cũng đọc hết chỗ này rồi à?"}
+{"category": "LocationDialogue Location7", "line_index": 574, "text": "Đọc vì quá chán?"}
+{"category": "LocationDialogue Location7", "line_index": 575, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 576, "text": "Ưư... Em ghét sách lắm!"}
+{"category": "LocationDialogue Location7", "line_index": 577, "text": "Em thích hoạt động hơn!"}
+{"category": "LocationDialogue Location7", "line_index": 578, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 579, "text": "Ừ thì cũng tốt thôi,"}
+{"category": "LocationDialogue Location7", "line_index": 580, "text": "nhưng mà cũng phải có kiến thức chứ...?"}
+{"category": "LocationDialogue Location7", "line_index": 581, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 582, "text": "Vận động, kỹ năng, cảm nhận thôi. Hiểu không anh?"}
+{"category": "LocationDialogue Location7", "line_index": 583, "text": "Chỉ cần bắt tay vào làm là được, cần gì sách với vở!"}
+{"category": "LocationDialogue Location7", "line_index": 584, "text": "Nếu anh mà ở với em thì"}
+{"category": "LocationDialogue Location7", "line_index": 585, "text": "hai ta làm được khối thứ hay ho hơn đấy!"}
+{"category": "LocationDialogue Location7", "line_index": 586, "text": "Cũng có thể là vậy..."}
+{"category": "LocationDialogue Location7", "line_index": 587, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 588, "text": "// Fruits"}
+{"category": "LocationDialogue Location7", "line_index": 589, "text": "Trái cây này là thật à?"}
+{"category": "LocationDialogue Location7", "line_index": 590, "text": "Trông ngon ghê."}
+{"category": "LocationDialogue Location7", "line_index": 591, "text": "Sao nó không bị thối nhỉ?"}
+{"category": "LocationDialogue Location7", "line_index": 592, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 593, "text": "Hể? Táo á?"}
+{"category": "LocationDialogue Location7", "line_index": 594, "text": "Táo thì thối làm sao được."}
+{"category": "LocationDialogue Location7", "line_index": 595, "text": "Bởi vì em ăn hết sạch rồi mà!"}
+{"category": "LocationDialogue Location7", "line_index": 596, "text": "Xong rồi nó lại xuất hiện..."}
+{"category": "LocationDialogue Location7", "line_index": 597, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 598, "text": "// Photo and cat"}
+{"category": "LocationDialogue Location7", "line_index": 599, "text": "Nhìn con mèo này cưng xỉu."}
+{"category": "LocationDialogue Location7", "line_index": 600, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 601, "text": "Không biết có ngon không ta?"}
+{"category": "LocationDialogue Location7", "line_index": 602, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 603, "text": "Hả? Gì cơ?"}
+{"category": "LocationDialogue Location7", "line_index": 604, "text": "Em không được ăn mèo đâu."}
+{"category": "LocationDialogue Location7", "line_index": 605, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 606, "text": "Anh ngốc quá đi à!"}
+{"category": "LocationDialogue Location7", "line_index": 607, "text": "Chuyện đó em biết mà!"}
+{"category": "LocationDialogue Location7", "line_index": 608, "text": "Chẳng qua em chưa thấy"}
+{"category": "LocationDialogue Location7", "line_index": 609, "text": "mèo thật bao giờ thôi!"}
+{"category": "LocationDialogue Location7", "line_index": 610, "text": "Em nói vậy cho vui,"}
+{"category": "LocationDialogue Location7", "line_index": 611, "text": "chứ mèo em chỉ thấy ảnh trên mạng thôi à."}
+{"category": "LocationDialogue Location7", "line_index": 612, "text": "Nó dễ thương lắm phải không?"}
+{"category": "LocationDialogue Location7", "line_index": 613, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 614, "text": "Ừ, mèo thực sự rất dễ thương."}
+{"category": "LocationDialogue Location7", "line_index": 615, "text": "Anh thích mèo."}
+{"category": "LocationDialogue Location7", "line_index": 616, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 617, "text": "// Mita Kind with ring"}
+{"category": "LocationDialogue Location7", "line_index": 618, "text": "Này là gì thế em?"}
+{"category": "LocationDialogue Location7", "line_index": 619, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 620, "text": "Đây là giao diện chiếc nhẫn,"}
+{"category": "LocationDialogue Location7", "line_index": 621, "text": "em đang thay đổi tuyến đường."}
+{"category": "LocationDialogue Location7", "line_index": 622, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 623, "text": "Um, trông em như đang di chuyển mấy vòng tròn thôi mà?"}
+{"category": "LocationDialogue Location7", "line_index": 624, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 625, "text": "Có thể với anh thì nó chỉ là mấy vòng tròn,"}
+{"category": "LocationDialogue Location7", "line_index": 626, "text": "nhưng với em, nó là dữ liệu."}
+{"category": "LocationDialogue Location7", "line_index": 627, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 628, "text": "Có lâu không em?"}
+{"category": "LocationDialogue Location7", "line_index": 629, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 630, "text": "Chỉ cần không ai làm phiền em"}
+{"category": "LocationDialogue Location7", "line_index": 631, "text": "thì sẽ xong ngay thôi."}
+{"category": "LocationDialogue Location7", "line_index": 632, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 633, "text": "Thế có nghĩa là"}
+{"category": "LocationDialogue Location7", "line_index": 634, "text": "cứ làm phiền xong rồi quấy rầy cậu"}
+{"category": "LocationDialogue Location7", "line_index": 635, "text": "thì các cậu càng ở đây lâu hơn phải không?"}
+{"category": "LocationDialogue Location7", "line_index": 636, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 637, "text": "Haa, Cappie..."}
+{"category": "LocationDialogue Location7", "line_index": 638, "text": "Giá mà khôi phục lại được ký ức của cậu thì tuyệt biết mấy..."}
+{"category": "LocationDialogue Location7", "line_index": 639, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 640, "text": "Mọi thứ rồi sẽ ổn cả thôi..."}
+{"category": "LocationDialogue Location7", "line_index": 641, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 642, "text": "Vậy thì tốt quá ha!"}
+{"category": "LocationDialogue Location7", "line_index": 643, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 644, "text": "Bọn tớ không thể nán lại đây lâu hơn nữa."}
+{"category": "LocationDialogue Location7", "line_index": 645, "text": "Bọn tớ phải đi đến Lõi."}
+{"category": "LocationDialogue Location7", "line_index": 646, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 647, "text": "Nè, cho tớ đi cùng với được không?"}
+{"category": "LocationDialogue Location7", "line_index": 648, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 649, "text": "Câu trả lời rất đơn giản."}
+{"category": "LocationDialogue Location7", "line_index": 650, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 651, "text": "Hổng được ư?"}
+{"category": "LocationDialogue Location7", "line_index": 652, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 653, "text": "Không được."}
+{"category": "LocationDialogue Location7", "line_index": 654, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 655, "text": "// PlayerChibi"}
+{"category": "LocationDialogue Location7", "line_index": 656, "text": "Trễ rồi... trễ quá rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 657, "text": "Mình lỡ ăn nhiều quá rồi..."}
+{"category": "LocationDialogue Location7", "line_index": 658, "text": "Xì, lại phải làm việc à?"}
+{"category": "LocationDialogue Location7", "line_index": 659, "text": "Mai là ngày bao nhiêu nhỉ?"}
+{"category": "LocationDialogue Location7", "line_index": 660, "text": "Máy tính của mình đâu rồi?"}
+{"category": "LocationDialogue Location7", "line_index": 661, "text": "Phải hoàn thành công việc thôi, không mình sẽ bị đuổi mất!"}
+{"category": "LocationDialogue Location7", "line_index": 662, "text": "Mình đã lưu hết mọi thứ chưa nhỉ?"}
+{"category": "LocationDialogue Location7", "line_index": 663, "text": "Còn ai yêu thương mình nữa không đây?"}
+{"category": "LocationDialogue Location7", "line_index": 664, "text": "Chúng ta đang đi về đâu thế này?"}
+{"category": "LocationDialogue Location7", "line_index": 665, "text": "Này!"}
+{"category": "LocationDialogue Location7", "line_index": 666, "text": "Tôi không chịu nổi được nữa rồi..."}
+{"category": "LocationDialogue Location7", "line_index": 667, "text": "Mình phải cố gắng hơn nữa..."}
+{"category": "LocationDialogue Location7", "line_index": 668, "text": "Mọi thứ quá sức với tôi rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 669, "text": "Điện thoại tôi đâu?"}
+{"category": "LocationDialogue Location7", "line_index": 670, "text": "Um..."}
+{"category": "LocationDialogue Location7", "line_index": 671, "text": "Hôm qua xảy ra chuyện gì vậy?"}
+{"category": "LocationDialogue Location7", "line_index": 672, "text": "Cảm giác hôm nay như một ngày dài vô tận!"}
+{"category": "LocationDialogue Location7", "line_index": 673, "text": "Hiya?"}
+{"category": "LocationDialogue Location7", "line_index": 674, "text": "Có giường ở đây không?"}
+{"category": "LocationDialogue Location7", "line_index": 675, "text": "Tôi phải làm sao bây giờ?"}
+{"category": "LocationDialogue Location7", "line_index": 676, "text": "Mình không kịp deadline mất..."}
+{"category": "LocationDialogue Location7", "line_index": 677, "text": "Rốt cuộc là có vấn đề gì...?"}
+{"category": "LocationDialogue Location7", "line_index": 678, "text": "Có phải do bức tường này không?"}
+{"category": "LocationDialogue Location7", "line_index": 679, "text": "Nghỉ ngơi 20 phút chắc không sao đâu nhỉ..."}
+{"category": "LocationDialogue Location7", "line_index": 680, "text": "Ngủ chỉ dành cho những kẻ thất bại!"}
+{"category": "LocationDialogue Location7", "line_index": 681, "text": "Đi tắm rửa rồi bắt tay vào việc thôi!"}
+{"category": "LocationDialogue Location7", "line_index": 682, "text": "Bụng mình đói quá!"}
+{"category": "LocationDialogue Location7", "line_index": 683, "text": "Không ổn, không ổn thật rồi."}
+{"category": "LocationDialogue Location7", "line_index": 684, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 685, "text": "// Player is gone 1"}
+{"category": "LocationDialogue Location7", "line_index": 686, "text": "Um..."}
+{"category": "LocationDialogue Location7", "line_index": 687, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 688, "text": "Ahahaha."}
+{"category": "LocationDialogue Location7", "line_index": 689, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 690, "text": "Vâng..."}
+{"category": "LocationDialogue Location7", "line_index": 691, "text": "Phải nói là"}
+{"category": "LocationDialogue Location7", "line_index": 692, "text": "anh ấy bỏ đi rồi."}
+{"category": "LocationDialogue Location7", "line_index": 693, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 694, "text": "Kỳ quặc thật!"}
+{"category": "LocationDialogue Location7", "line_index": 695, "text": "Nhưng thú vị ghê :D"}
+{"category": "LocationDialogue Location7", "line_index": 696, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 697, "text": "Thôi nào, quay lại đi anh."}
+{"category": "LocationDialogue Location7", "line_index": 698, "text": "[player], anh đang làm gì vậy?"}
+{"category": "LocationDialogue Location7", "line_index": 699, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 700, "text": "// Player is gone 2"}
+{"category": "LocationDialogue Location7", "line_index": 701, "text": "Chuyện gì vậy anh?"}
+{"category": "LocationDialogue Location7", "line_index": 702, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 703, "text": "Anh định rời đi sao?"}
+{"category": "LocationDialogue Location7", "line_index": 704, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 705, "text": "Hể!?"}
+{"category": "LocationDialogue Location7", "line_index": 706, "text": "Mà, tùy anh thôi..."}
+{"category": "LocationDialogue Location7", "line_index": 707, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 708, "text": "[player], quay lại đây đi!"}
+{"category": "LocationDialogue Location7", "line_index": 709, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 710, "text": "// Don't pay attention"}
+{"category": "LocationDialogue Location7", "line_index": 711, "text": "Anh ấy còn chẳng thèm để ý đến tớ!"}
+{"category": "LocationDialogue Location7", "line_index": 712, "text": "Chán quá đi..."}
+{"category": "LocationDialogue Location7", "line_index": 713, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 714, "text": "// quest Cap 1"}
+{"category": "LocationDialogue Location7", "line_index": 715, "text": "Kế hoạch của em là gì?"}
+{"category": "LocationDialogue Location7", "line_index": 716, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 717, "text": "Kế hoạch của em?"}
+{"category": "LocationDialogue Location7", "line_index": 718, "text": "Kế hoạch gì cơ?"}
+{"category": "LocationDialogue Location7", "line_index": 719, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 720, "text": "À, quên mất."}
+{"category": "LocationDialogue Location7", "line_index": 721, "text": "Em không còn nhớ gì nữa..."}
+{"category": "LocationDialogue Location7", "line_index": 722, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 723, "text": "Em xin lỗi, được chưa!"}
+{"category": "LocationDialogue Location7", "line_index": 724, "text": "Em cũng muốn nhớ lại lắm chứ bộ..."}
+{"category": "LocationDialogue Location7", "line_index": 725, "text": "Có khi nào mọi người đang lừa em không?"}
+{"category": "LocationDialogue Location7", "line_index": 726, "text": "Nhưng mà, biểu cảm của cậu ấy lại nghiêm túc đến vậy..."}
+{"category": "LocationDialogue Location7", "line_index": 727, "text": "Ưmm... Em chẳng biết nữa!"}
+{"category": "LocationDialogue Location7", "line_index": 728, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 729, "text": "// quest Cap 2"}
+{"category": "LocationDialogue Location7", "line_index": 730, "text": "Em cảm thấy thế nào"}
+{"category": "LocationDialogue Location7", "line_index": 731, "text": "khi nhìn thấy một người giống hệt mình?"}
+{"category": "LocationDialogue Location7", "line_index": 732, "text": "Ý anh là về Mita đang nghịch chiếc nhẫn kia kìa."}
+{"category": "LocationDialogue Location7", "line_index": 733, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 734, "text": "Em suýt nữa là hét toáng lên luôn."}
+{"category": "LocationDialogue Location7", "line_index": 735, "text": "Thì là bất ngờ quá mà."}
+{"category": "LocationDialogue Location7", "line_index": 736, "text": "Ôi lụa ơi, nhìn này! Bản sao của mình kìa!"}
+{"category": "LocationDialogue Location7", "line_index": 737, "text": "Nhưng cậu ấy đâu có thú vị bằng em."}
+{"category": "LocationDialogue Location7", "line_index": 738, "text": "Em trông vẫn ngầu hơn chứ nhể~"}
+{"category": "LocationDialogue Location7", "line_index": 739, "text": "Nhìn cái mặt nhăn nhó của cậu ấy kìa..."}
+{"category": "LocationDialogue Location7", "line_index": 740, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 741, "text": "...Tớ vẫn đang ở đây đấy."}
+{"category": "LocationDialogue Location7", "line_index": 742, "text": "Cậu nói gì tớ đều nghe thấy hết nhé."}
+{"category": "LocationDialogue Location7", "line_index": 743, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 744, "text": "// quest Cap 3"}
+{"category": "LocationDialogue Location7", "line_index": 745, "text": "Em đội mũ hoài không thấy nặng đầu à?"}
+{"category": "LocationDialogue Location7", "line_index": 746, "text": "Với cả đeo găng tay không bị ra mồ hôi tay hả?"}
+{"category": "LocationDialogue Location7", "line_index": 747, "text": "Sao em không cởi nó ra?"}
+{"category": "LocationDialogue Location7", "line_index": 748, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 749, "text": "Hể..."}
+{"category": "LocationDialogue Location7", "line_index": 750, "text": "Anh cũng biết nói đùa cơ đấy!"}
+{"category": "LocationDialogue Location7", "line_index": 751, "text": "Ý anh là muốn em cởi thêm gì nữa phải không? :D"}
+{"category": "LocationDialogue Location7", "line_index": 752, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 753, "text": "Anh không nói đùa đâu."}
+{"category": "LocationDialogue Location7", "line_index": 754, "text": "Mà thôi, kệ vậy."}
+{"category": "LocationDialogue Location7", "line_index": 755, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 756, "text": "// Carrot"}
+{"category": "LocationDialogue Location7", "line_index": 757, "text": "Ôi chao!"}
+{"category": "LocationDialogue Location7", "line_index": 758, "text": "Toàn cà rốt là cà rốt!"}
+{"category": "LocationDialogue Location7", "line_index": 759, "text": "Lỗi hài hước ghê á!"}
+{"category": "LocationDialogue Location7", "line_index": 760, "text": "Ahahaha!"}
+{"category": "LocationDialogue Location7", "line_index": 761, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 762, "text": "// DoorExit"}
+{"category": "LocationDialogue Location7", "line_index": 763, "text": "Khoan đã, khoan đã!"}
+{"category": "LocationDialogue Location7", "line_index": 764, "text": "Tốt hơn hết là đừng nhìn vào trong..."}
+{"category": "LocationDialogue Location7", "line_index": 765, "text": "Cứ coi như là bí mật nhé!"}
+{"category": "LocationDialogue Location7", "line_index": 766, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 767, "text": "Bên trong có gì thế?"}
+{"category": "LocationDialogue Location7", "line_index": 768, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 769, "text": "Bí mật là bí mật mà..."}
+{"category": "LocationDialogue Location7", "line_index": 770, "text": "LÀ ・ BÍ ・ MẬT"}
+{"category": "LocationDialogue Location7", "line_index": 771, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 772, "text": "Hm..."}
+{"category": "LocationDialogue Location7", "line_index": 773, "text": "Càng nói thế lại càng tò mò..."}
+{"category": "LocationDialogue Location7", "line_index": 774, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 775, "text": "// Tetris"}
+{"category": "LocationDialogue Location7", "line_index": 776, "text": "Wao!"}
+{"category": "LocationDialogue Location7", "line_index": 777, "text": "Cái gì đây?"}
+{"category": "LocationDialogue Location7", "line_index": 778, "text": "Máy chơi game hả!?"}
+{"category": "LocationDialogue Location7", "line_index": 779, "text": "Cho em chơi với!"}
+{"category": "LocationDialogue Location7", "line_index": 780, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 781, "text": "Ơ này."}
+{"category": "LocationDialogue Location7", "line_index": 782, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 783, "text": "Cái này chơi kiểu gì thế?"}
+{"category": "LocationDialogue Location7", "line_index": 784, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 785, "text": "Em chỉ cần thu thập xu"}
+{"category": "LocationDialogue Location7", "line_index": 786, "text": "và tránh mấy con ếch thôi."}
+{"category": "LocationDialogue Location7", "line_index": 787, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 788, "text": "Nghe mà thấy chán đến mức không thể tin được."}
+{"category": "LocationDialogue Location7", "line_index": 789, "text": "Cái trò tẻ nhạt này mà gọi là game được á?"}
+{"category": "LocationDialogue Location7", "line_index": 790, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 791, "text": "// Tetris again"}
+{"category": "LocationDialogue Location7", "line_index": 792, "text": "Hể? Anh lấy nó ở đâu ra vậy?"}
+{"category": "LocationDialogue Location7", "line_index": 793, "text": "Em còn chưa trả lại cơ mà."}
+{"category": "LocationDialogue Location7", "line_index": 794, "text": "Sao kỳ vậy ta?"}
+{"category": "LocationDialogue Location7", "line_index": 795, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 796, "text": "// TV"}
+{"category": "LocationDialogue Location7", "line_index": 797, "text": "Úi!"}
+{"category": "LocationDialogue Location7", "line_index": 798, "text": "Bắt đầu rồi kìa,"}
+{"category": "LocationDialogue Location7", "line_index": 799, "text": "anh lại tìm thấy lỗi rồi!"}
+{"category": "LocationDialogue Location7", "line_index": 800, "text": "Đáng lẽ ra nó phải phát video"}
+{"category": "LocationDialogue Location7", "line_index": 801, "text": "nhưng không hiểu sao lại bật tắt"}
+{"category": "LocationDialogue Location7", "line_index": 802, "text": "cả cái TV luôn!"}
+{"category": "LocationDialogue Location7", "line_index": 803, "text": "Trông hay ho đấy chứ?"}
+{"category": "LocationDialogue Location7", "line_index": 804, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 805, "text": "// Player sit"}
+{"category": "LocationDialogue Location7", "line_index": 806, "text": "Chắc mình ngồi đợi thôi vậy."}
+{"category": "LocationDialogue Location7", "line_index": 807, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 808, "text": "Anh làm cái gì thế?"}
+{"category": "LocationDialogue Location7", "line_index": 809, "text": "Thôi nào, đứng dậy!"}
+{"category": "LocationDialogue Location7", "line_index": 810, "text": "Chơi với em đi nào!"}
+{"category": "LocationDialogue Location7", "line_index": 811, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 812, "text": "// Goodbye 1"}
+{"category": "LocationDialogue Location7", "line_index": 813, "text": "Đi qua cánh cửa đó"}
+{"category": "LocationDialogue Location7", "line_index": 814, "text": "là đến khán phòng nhé anh."}
+{"category": "LocationDialogue Location7", "line_index": 815, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 816, "text": "Bái bai!"}
+{"category": "LocationDialogue Location7", "line_index": 817, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 818, "text": "// Goodbye 2"}
+{"category": "LocationDialogue Location7", "line_index": 819, "text": "Đã đến lúc anh phải hành động rồi, [player]!"}
+{"category": "LocationDialogue Location7", "line_index": 820, "text": "Không sao đâu anh, đừng sợ!"}
+{"category": "LocationDialogue Location7", "line_index": 821, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 822, "text": "Em chắc chắn sẽ không bao giờ"}
+{"category": "LocationDialogue Location7", "line_index": 823, "text": "để anh cô đơn một mình đâu!"}
+{"category": "LocationDialogue Location7", "line_index": 824, "text": "Nên là ở lại với em điii! >A<"}
+{"category": "LocationDialogue Location7", "line_index": 825, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 826, "text": "Cappie!"}
+{"category": "LocationDialogue Location7", "line_index": 827, "text": "Đừng có giỡn nữa, nghe chưa?"}
+{"category": "LocationDialogue Location7", "line_index": 828, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 829, "text": "Ưư..."}
+{"category": "LocationDialogue Location7", "line_index": 830, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 831, "text": "// Goodbye 3"}
+{"category": "LocationDialogue Location7", "line_index": 832, "text": "Anh còn lảng vảng quanh đây làm gì nữa?"}
+{"category": "LocationDialogue Location7", "line_index": 833, "text": "Không còn thời gian đâu!"}
+{"category": "LocationDialogue Location7", "line_index": 834, "text": ""}
+{"category": "LocationDialogue Location7", "line_index": 835, "text": "Xin chào!"}
+{"category": "LocationDialogue Location7", "line_index": 836, "text": "A, ý em là tạm biệt!"}

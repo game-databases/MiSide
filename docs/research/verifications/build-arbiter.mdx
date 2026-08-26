@@ -1,0 +1,12 @@
+# A-BUILD — Arbiter ruling on P1 `run_all` build wave (2026-08-24)
+
+1. **Structure-graph residual** (`decompile.py:214-232` unguarded) — **FIX NOW**: verified wipe at :216 sits after the batch try; abort there leaves a prior COMPLETE decompile.json beside torn `_structure/`, which S8 cannot catch (`census.py:77+` reconciles sweep attempts only — `_structure` is outside its arithmetic). Likelihood spikes at the very next step: `parse_dump_cs` meets the real 10.4 MB dump.cs for the first time (fixtures only so far). Same 4-line pattern as F-CW2.
+2. **R-T-W1 MED residue needles** (`test_census_reconcile.py:88-95`) — **FIX NOW**: verified `"gi"`⊂"logic", `"get"`⊂"budget"; this is the only executable enforcement of AC-12's GI + unlock-state residue entries and as written cannot fail.
+3. **R-T-W1 MED digit-containment** (`test_detect_stage.py:47-48`) — DEBT: byte totals discriminate and install tier asserts exact E1 constants; follow-up = assert structured detect.json fields.
+4. **T-W1 stale-log covers pipFreeze only** — NO ERRATA: spec §3 scopes the defense to requirements.txt disagreement; code conforms. Tool-version-drift refusal = owner-call follow-up for patch days.
+5. **T-W1 unity3d/Addressables absence not in detect.json** — FOLLOW-UP, no errata: cheap surface into detect.json + stage report; no downstream consumer blocks trust of the real run.
+6. **T-W1 §8 positive** (`--export-asset-list xml` same-pass) — VERIFIED SURFACED: mechanism persisted to sweep-budget.json (:298), stage report (:351), EXTRACTION-LOG event (:363). No action.
+7. **Blind protocol C-W1↔T-W1** — HELD: grep-clean zero `pipeline.*` imports across tests; CLI/artifact/stub language only; suite green against the real driver.
+8. **LOW items** of t-w1-review (COVERAGE counts ×2, shadowed fixture, vacuous argv-sha `or len>40`, conftest token breadth) — recorded debt; none gate real-install trust.
+
+RULING: FIX_LOOP — 1. guard decompile's structure-graph leg with the established except→flush_aborted→raise pattern so aborts land a partial report before propagating; 2. tighten AC-12 residue needles so GI and unlock-state entries can genuinely fail the test.

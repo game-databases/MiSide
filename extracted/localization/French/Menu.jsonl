@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "Nouvelle partie"}
+{"category": "Menu", "line_index": 1, "text": "Continuer"}
+{"category": "Menu", "line_index": 2, "text": "Menu principal"}
+{"category": "Menu", "line_index": 3, "text": "Quitter"}
+{"category": "Menu", "line_index": 4, "text": "Options"}
+{"category": "Menu", "line_index": 5, "text": "Succès"}
+{"category": "Menu", "line_index": 6, "text": "Crédits"}
+{"category": "Menu", "line_index": 7, "text": "Retour"}
+{"category": "Menu", "line_index": 8, "text": "Charger"}
+{"category": "Menu", "line_index": 9, "text": "Langue"}
+{"category": "Menu", "line_index": 10, "text": "Chargement..."}
+{"category": "Menu", "line_index": 11, "text": "Graphismes"}
+{"category": "Menu", "line_index": 12, "text": "Volume"}
+{"category": "Menu", "line_index": 13, "text": "Clavier & souris"}
+{"category": "Menu", "line_index": 14, "text": "Manette"}
+{"category": "Menu", "line_index": 15, "text": "Résolution"}
+{"category": "Menu", "line_index": 16, "text": "Mode fenêtré"}
+{"category": "Menu", "line_index": 17, "text": "Effets visuels"}
+{"category": "Menu", "line_index": 18, "text": "Effets de couleur"}
+{"category": "Menu", "line_index": 19, "text": "Ombres lissées"}
+{"category": "Menu", "line_index": 20, "text": "Flou"}
+{"category": "Menu", "line_index": 21, "text": "Surbrillance"}
+{"category": "Menu", "line_index": 22, "text": "Anticrénelage"}
+{"category": "Menu", "line_index": 23, "text": "Ombres"}
+{"category": "Menu", "line_index": 24, "text": "Qualité de l'environement"}
+{"category": "Menu", "line_index": 25, "text": "Programmation"}
+{"category": "Menu", "line_index": 26, "text": "Animation"}
+{"category": "Menu", "line_index": 27, "text": "Effets sonores"}
+{"category": "Menu", "line_index": 28, "text": "Musique"}
+{"category": "Menu", "line_index": 29, "text": "Particules"}
+{"category": "Menu", "line_index": 30, "text": "Textures"}
+{"category": "Menu", "line_index": 31, "text": "Modèles 3D (98%)"}
+{"category": "Menu", "line_index": 32, "text": "Script"}
+{"category": "Menu", "line_index": 33, "text": "Réinitialiser"}
+{"category": "Menu", "line_index": 34, "text": "Avancer"}
+{"category": "Menu", "line_index": 35, "text": "Retour"}
+{"category": "Menu", "line_index": 36, "text": "Gauche"}
+{"category": "Menu", "line_index": 37, "text": "Droite"}
+{"category": "Menu", "line_index": 38, "text": "Interaction"}
+{"category": "Menu", "line_index": 39, "text": "Sensibilité de la souris"}
+{"category": "Menu", "line_index": 40, "text": "Quitter le jeu ?"}
+{"category": "Menu", "line_index": 41, "text": "Oui"}
+{"category": "Menu", "line_index": 42, "text": "Non"}
+{"category": "Menu", "line_index": 43, "text": "Retour au menu principal"}
+{"category": "Menu", "line_index": 44, "text": "Mouvements adoucis"}
+{"category": "Menu", "line_index": 45, "text": "Options de jeu"}
+{"category": "Menu", "line_index": 46, "text": "Style des ombres"}
+{"category": "Menu", "line_index": 47, "text": "Vêtements"}
+{"category": "Menu", "line_index": 48, "text": "Interface"}
+{"category": "Menu", "line_index": 49, "text": "Modèles 3D (2%)"}
+{"category": "Menu", "line_index": 50, "text": "Volume des voix"}
+{"category": "Menu", "line_index": 51, "text": "Pause"}
+{"category": "Menu", "line_index": 52, "text": "Menu"}
+{"category": "Menu", "line_index": 53, "text": "Félicitation ! Vous avez terminé le jeu !"}
+{"category": "Menu", "line_index": 54, "text": "Votre temps :"}
+{"category": "Menu", "line_index": 55, "text": "Sous-titres"}
+{"category": "Menu", "line_index": 56, "text": "Luminosité"}
+{"category": "Menu", "line_index": 57, "text": "Synchronisation verticale"}
+{"category": "Menu", "line_index": 58, "text": "Sauvegardé"}
+{"category": "Menu", "line_index": 59, "text": "Personnages"}
+{"category": "Menu", "line_index": 60, "text": "Personnages - Mita"}
+{"category": "Menu", "line_index": 61, "text": "Personnages - Cartouches"}
+{"category": "Menu", "line_index": 62, "text": "Cartouches"}
+{"category": "Menu", "line_index": 63, "text": "Mita"}
+{"category": "Menu", "line_index": 64, "text": "Recommencer de zéro"}
+{"category": "Menu", "line_index": 65, "text": "Êtes-vous sûr de vouloir supprimer complétement toute votre progression et recommencer depuis le début ?"}
+{"category": "Menu", "line_index": 66, "text": "Compilation des shaders, cela va prendre 2 heures, veuillez patienter."}
+{"category": "Menu", "line_index": 67, "text": "Mais quelle compilation ? On s'en est déjà occupé pour vous !"}
+{"category": "Menu", "line_index": 68, "text": "Création d'ombres réalistes, cela va durer 10 minutes."}
+{"category": "Menu", "line_index": 69, "text": "Je plaisante, pas de graphismes comme ça ici."}
+{"category": "Menu", "line_index": 70, "text": "Hmm..."}
+{"category": "Menu", "line_index": 71, "text": "Oh, tout est prêt !"}
+{"category": "Menu", "line_index": 72, "text": "Mouvements de la tête"}
+{"category": "Menu", "line_index": 73, "text": "Afficher les indices"}
+{"category": "Menu", "line_index": 74, "text": "Voix du joueur"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "Profil de personnage ajouté"}
+{"category": "Menu", "line_index": 77, "text": "Champ de vision"}
+{"category": "Menu", "line_index": 78, "text": "Voix"}
+{"category": "Menu", "line_index": 79, "text": "Off"}
+{"category": "Menu", "line_index": 80, "text": "Tendre la main vers les portes"}
+{"category": "Menu", "line_index": 81, "text": "Animation"}
+{"category": "Menu", "line_index": 82, "text": "Activer la voix du joueur"}
+{"category": "Menu", "line_index": 83, "text": "Mita"}
+{"category": "Menu", "line_index": 84, "text": "Mita aux Cheveux Courts"}
+{"category": "Menu", "line_index": 85, "text": "Gentille Mita"}
+{"category": "Menu", "line_index": 86, "text": "Mita à la Casquette"}
+{"category": "Menu", "line_index": 87, "text": "Petite Mita"}
+{"category": "Menu", "line_index": 88, "text": "Mita Endormie"}
+{"category": "Menu", "line_index": 89, "text": "Mita 2D"}
+{"category": "Menu", "line_index": 90, "text": "Mila"}
+{"category": "Menu", "line_index": 91, "text": "Mita Laide"}
+{"category": "Menu", "line_index": 92, "text": "Mita du Cœur"}
+{"category": "Menu", "line_index": 93, "text": "Mita Fantôme"}
+{"category": "Menu", "line_index": 94, "text": "Chibi Mita"}
+{"category": "Menu", "line_index": 95, "text": "Mannequin Mita"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "Je suis dans le jeu ?"}
+{"category": "Menu", "line_index": 101, "text": "Nous sommes ensemble"}
+{"category": "Menu", "line_index": 102, "text": "Les choses étranges commencent"}
+{"category": "Menu", "line_index": 103, "text": "Le Sous-sol"}
+{"category": "Menu", "line_index": 104, "text": "Au-delà du Monde"}
+{"category": "Menu", "line_index": 105, "text": "La Boucle"}
+{"category": "Menu", "line_index": 106, "text": "Mini-Mita"}
+{"category": "Menu", "line_index": 107, "text": "Mannequins et puzzles oubliés"}
+{"category": "Menu", "line_index": 108, "text": "Elle veut juste dormir"}
+{"category": "Menu", "line_index": 109, "text": "Roman"}
+{"category": "Menu", "line_index": 110, "text": "Lire des livres, détruire des glitches"}
+{"category": "Menu", "line_index": 111, "text": "Cours et cache-toi !"}
+{"category": "Menu", "line_index": 112, "text": "Ancienne version"}
+{"category": "Menu", "line_index": 113, "text": "Parlons peu, parlons bien"}
+{"category": "Menu", "line_index": 114, "text": "Redémarrage"}
+{"category": "Menu", "line_index": 115, "text": "Cappie"}
+{"category": "Menu", "line_index": 116, "text": "Mita Fantôme"}
+{"category": "Menu", "line_index": 117, "text": "Le monde réel ?"}
+{"category": "Menu", "line_index": 118, "text": "À contre-Cœur !"}
+{"category": "Menu", "line_index": 119, "text": "Joueur 1"}
+{"category": "Menu", "line_index": 120, "text": "Joueur 2"}
+{"category": "Menu", "line_index": 121, "text": "Joueur 3"}
+{"category": "Menu", "line_index": 122, "text": "Joueur 4"}
+{"category": "Menu", "line_index": 123, "text": "Joueur 5"}
+{"category": "Menu", "line_index": 124, "text": "Joueur 6"}
+{"category": "Menu", "line_index": 125, "text": "Joueur 7"}
+{"category": "Menu", "line_index": 126, "text": "Joueur 8"}
+{"category": "Menu", "line_index": 127, "text": "Joueur 9"}
+{"category": "Menu", "line_index": 128, "text": "Joueur 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Mode Pacifique"}
+{"category": "Menu", "line_index": 131, "text": "Ce mode est toujours en cours de développement. Celui-ci a pris tellement d'ampleur que les développeurs n'ont pas eu le temps de le terminer ! Il sera néanmoins bientôt disponible via une mise à jour majeure du jeu. Quant à vous, bien joué — vous l'avez d’ores et déjà débloqué ! Il ne vous reste alors plus qu'à patienter..."}
+{"category": "Menu", "line_index": 132, "text": "Qu'est-ce que le Mode Pacifique ? C'est une opportunité de retourner une nouvelle fois auprès de Mita ! Elle sera très heureuse de passer davantage de temps avec vous du matin au soir, le tout ponctué par différentes activités. Attendez-vous à des conversations en tête-à-tête, de la cuisine, des jeux, et autres situations cocasses à ses côtés !"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "Censure"}
+{"category": "Menu", "line_index": 136, "text": "Ont également participé :"}
+{"category": "Menu", "line_index": 137, "text": "Icônes des succès : Icecloud"}
+{"category": "Menu", "line_index": 138, "text": "Photos encadrées : Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Traducteurs"}
+{"category": "Menu", "line_index": 140, "text": "Traduction du jeu dans une autre langue."}
+{"category": "Menu", "line_index": 141, "text": "Éditeur"}
+{"category": "Menu", "line_index": 142, "text": "Marketing"}
+{"category": "Menu", "line_index": 143, "text": "Testeurs"}
+{"category": "Menu", "line_index": 144, "text": "Ont joué et fait remonter les problèmes."}
+{"category": "Menu", "line_index": 145, "text": "Cette traduction a été réalisée par des membres passionnés de la communauté et fut ajoutée au jeu à leur demande."}
+{"category": "Menu", "line_index": 146, "text": "Attention ! Ce jeu contient des screamers accompagnés de sons forts et d'effets visuels clignotants. Il n'est à ce titre pas recommandé pour les personnes atteintes de problèmes cardiaques, ou ceux souffrant d'épilepsie."}
+{"category": "Menu", "line_index": 147, "text": "Le Mode Pacifique est désormais disponible !"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Mode Photo"}
+{"category": "Menu", "line_index": 150, "text": "Mode Photo : Caméra libre disponible, vous permettant d'explorer les endroits jusqu'ici inaccessibles."}
+{"category": "Menu", "line_index": 151, "text": "Quitter le Mode Photo"}
+{"category": "Menu", "line_index": 152, "text": "Masquer l'interface"}
+{"category": "Menu", "line_index": 153, "text": "Maintenir pour déplacer la caméra"}
+{"category": "Menu", "line_index": 154, "text": "Vitesse de déplacement accélérée"}
+{"category": "Menu", "line_index": 155, "text": "Mouvements adoucis"}
+{"category": "Menu", "line_index": 156, "text": "Vitesse"}
+{"category": "Menu", "line_index": 157, "text": "Effets"}
+{"category": "Menu", "line_index": 158, "text": "Vitesse du jeu"}
+{"category": "Menu", "line_index": 159, "text": "Luminosité"}
+{"category": "Menu", "line_index": 160, "text": "Contraste"}
+{"category": "Menu", "line_index": 161, "text": "Vignettage"}
+{"category": "Menu", "line_index": 162, "text": "Prendre un cliché !"}
+{"category": "Menu", "line_index": 163, "text": "Ouvrir le dossier des captures d'écran"}
+{"category": "Menu", "line_index": 164, "text": "Rotation de la caméra"}

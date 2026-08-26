@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "新游戏"}
+{"category": "Menu", "line_index": 1, "text": "继续"}
+{"category": "Menu", "line_index": 2, "text": "主菜单"}
+{"category": "Menu", "line_index": 3, "text": "退出"}
+{"category": "Menu", "line_index": 4, "text": "设置"}
+{"category": "Menu", "line_index": 5, "text": "成就"}
+{"category": "Menu", "line_index": 6, "text": "开发者"}
+{"category": "Menu", "line_index": 7, "text": "返回"}
+{"category": "Menu", "line_index": 8, "text": "读取"}
+{"category": "Menu", "line_index": 9, "text": "语言"}
+{"category": "Menu", "line_index": 10, "text": "加载中…"}
+{"category": "Menu", "line_index": 11, "text": "图像"}
+{"category": "Menu", "line_index": 12, "text": "音量"}
+{"category": "Menu", "line_index": 13, "text": "键盘和鼠标"}
+{"category": "Menu", "line_index": 14, "text": "游戏手柄"}
+{"category": "Menu", "line_index": 15, "text": "分辨率"}
+{"category": "Menu", "line_index": 16, "text": "窗口化"}
+{"category": "Menu", "line_index": 17, "text": "视觉效果"}
+{"category": "Menu", "line_index": 18, "text": "色彩效果"}
+{"category": "Menu", "line_index": 19, "text": "柔和阴影"}
+{"category": "Menu", "line_index": 20, "text": "模糊"}
+{"category": "Menu", "line_index": 21, "text": "高光"}
+{"category": "Menu", "line_index": 22, "text": "抗锯齿"}
+{"category": "Menu", "line_index": 23, "text": "阴影"}
+{"category": "Menu", "line_index": 24, "text": "环境品质"}
+{"category": "Menu", "line_index": 25, "text": "编程"}
+{"category": "Menu", "line_index": 26, "text": "动画"}
+{"category": "Menu", "line_index": 27, "text": "声音"}
+{"category": "Menu", "line_index": 28, "text": "音乐"}
+{"category": "Menu", "line_index": 29, "text": "粒子"}
+{"category": "Menu", "line_index": 30, "text": "纹理"}
+{"category": "Menu", "line_index": 31, "text": "三维模型（98%）"}
+{"category": "Menu", "line_index": 32, "text": "脚本"}
+{"category": "Menu", "line_index": 33, "text": "重置"}
+{"category": "Menu", "line_index": 34, "text": "前进"}
+{"category": "Menu", "line_index": 35, "text": "后退"}
+{"category": "Menu", "line_index": 36, "text": "向左"}
+{"category": "Menu", "line_index": 37, "text": "向右"}
+{"category": "Menu", "line_index": 38, "text": "交互"}
+{"category": "Menu", "line_index": 39, "text": "鼠标灵敏度"}
+{"category": "Menu", "line_index": 40, "text": "退出游戏？"}
+{"category": "Menu", "line_index": 41, "text": "是"}
+{"category": "Menu", "line_index": 42, "text": "否"}
+{"category": "Menu", "line_index": 43, "text": "返回主菜单"}
+{"category": "Menu", "line_index": 44, "text": "平滑转向"}
+{"category": "Menu", "line_index": 45, "text": "游戏设置"}
+{"category": "Menu", "line_index": 46, "text": "阴影风格"}
+{"category": "Menu", "line_index": 47, "text": "服装"}
+{"category": "Menu", "line_index": 48, "text": "界面"}
+{"category": "Menu", "line_index": 49, "text": "三维模型（2%）"}
+{"category": "Menu", "line_index": 50, "text": "语音音量"}
+{"category": "Menu", "line_index": 51, "text": "暂停"}
+{"category": "Menu", "line_index": 52, "text": "菜单"}
+{"category": "Menu", "line_index": 53, "text": "恭喜，您已通关游戏！"}
+{"category": "Menu", "line_index": 54, "text": "您的游戏时长："}
+{"category": "Menu", "line_index": 55, "text": "字幕"}
+{"category": "Menu", "line_index": 56, "text": "亮度"}
+{"category": "Menu", "line_index": 57, "text": "垂直同步"}
+{"category": "Menu", "line_index": 58, "text": "已保存"}
+{"category": "Menu", "line_index": 59, "text": "角色"}
+{"category": "Menu", "line_index": 60, "text": "角色 - 米塔"}
+{"category": "Menu", "line_index": 61, "text": "角色 - 卡带"}
+{"category": "Menu", "line_index": 62, "text": "卡带"}
+{"category": "Menu", "line_index": 63, "text": "米塔"}
+{"category": "Menu", "line_index": 64, "text": "重新开始"}
+{"category": "Menu", "line_index": 65, "text": "确定要彻底删除所有存档并重新开始？"}
+{"category": "Menu", "line_index": 66, "text": "着色器编译中，预计将需要两小时，请稍候。"}
+{"category": "Menu", "line_index": 67, "text": "啥，什么编译？我们已经帮你搞定了！"}
+{"category": "Menu", "line_index": 68, "text": "正在创建光路追踪，只需要十分钟。"}
+{"category": "Menu", "line_index": 69, "text": "开玩笑的，这个游戏没有这种显示效果。"}
+{"category": "Menu", "line_index": 70, "text": "嗯…"}
+{"category": "Menu", "line_index": 71, "text": "哦，加载好了！"}
+{"category": "Menu", "line_index": 72, "text": "走路时视角摇晃"}
+{"category": "Menu", "line_index": 73, "text": "显示提示"}
+{"category": "Menu", "line_index": 74, "text": "玩家的声音"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "角色介绍解锁"}
+{"category": "Menu", "line_index": 77, "text": "视角"}
+{"category": "Menu", "line_index": 78, "text": "配音"}
+{"category": "Menu", "line_index": 79, "text": "无配音"}
+{"category": "Menu", "line_index": 80, "text": "开门时把手伸向房门"}
+{"category": "Menu", "line_index": 81, "text": "动画"}
+{"category": "Menu", "line_index": 82, "text": "开启玩家配音"}
+{"category": "Menu", "line_index": 83, "text": "米塔"}
+{"category": "Menu", "line_index": 84, "text": "短发米塔"}
+{"category": "Menu", "line_index": 85, "text": "善良米塔"}
+{"category": "Menu", "line_index": 86, "text": "帽子米塔"}
+{"category": "Menu", "line_index": 87, "text": "小米塔"}
+{"category": "Menu", "line_index": 88, "text": "瞌睡米塔"}
+{"category": "Menu", "line_index": 89, "text": "二维米塔"}
+{"category": "Menu", "line_index": 90, "text": "米拉"}
+{"category": "Menu", "line_index": 91, "text": "怪物米塔"}
+{"category": "Menu", "line_index": 92, "text": "米塔核心"}
+{"category": "Menu", "line_index": 93, "text": "幽灵米塔"}
+{"category": "Menu", "line_index": 94, "text": "袖珍米塔"}
+{"category": "Menu", "line_index": 95, "text": "失败之作"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "我，在游戏里？"}
+{"category": "Menu", "line_index": 101, "text": "二人世界"}
+{"category": "Menu", "line_index": 102, "text": "开端"}
+{"category": "Menu", "line_index": 103, "text": "地下室"}
+{"category": "Menu", "line_index": 104, "text": "世界之外"}
+{"category": "Menu", "line_index": 105, "text": "循环"}
+{"category": "Menu", "line_index": 106, "text": "迷你米塔"}
+{"category": "Menu", "line_index": 107, "text": "失败作与被遗忘的拼图"}
+{"category": "Menu", "line_index": 108, "text": "她想要睡觉"}
+{"category": "Menu", "line_index": 109, "text": "短篇小说"}
+{"category": "Menu", "line_index": 110, "text": "读书，修复漏洞"}
+{"category": "Menu", "line_index": 111, "text": "快跑，别被我抓到"}
+{"category": "Menu", "line_index": 112, "text": "旧版本"}
+{"category": "Menu", "line_index": 113, "text": "坦言"}
+{"category": "Menu", "line_index": 114, "text": "重启"}
+{"category": "Menu", "line_index": 115, "text": "帽子"}
+{"category": "Menu", "line_index": 116, "text": "幽灵米塔"}
+{"category": "Menu", "line_index": 117, "text": "何处是现实？"}
+{"category": "Menu", "line_index": 118, "text": "离开核心！"}
+{"category": "Menu", "line_index": 119, "text": "玩家 1"}
+{"category": "Menu", "line_index": 120, "text": "玩家 2"}
+{"category": "Menu", "line_index": 121, "text": "玩家 3"}
+{"category": "Menu", "line_index": 122, "text": "玩家 4"}
+{"category": "Menu", "line_index": 123, "text": "玩家 5"}
+{"category": "Menu", "line_index": 124, "text": "玩家 6"}
+{"category": "Menu", "line_index": 125, "text": "玩家 7"}
+{"category": "Menu", "line_index": 126, "text": "玩家 8"}
+{"category": "Menu", "line_index": 127, "text": "玩家 9"}
+{"category": "Menu", "line_index": 128, "text": "玩家 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "和平模式"}
+{"category": "Menu", "line_index": 131, "text": "该模式正在开发中。由于该模式非常庞大，开发者还没来得及制作！他们很快就会在游戏的大更新中发布该模式。而你非常棒！你已尽最大努力并解锁了该模式，请敬请期待吧……"}
+{"category": "Menu", "line_index": 132, "text": "什么是和平模式？在这里，你将有机会再次与米塔取得联系！她会非常兴奋地整天花更多的时间与你在一起，期间会有充满各种有趣的活动。有单独的对话、烹饪、游戏和其他有趣的情景！"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "不显示血腥画面"}
+{"category": "Menu", "line_index": 136, "text": "Special Thanks:"}
+{"category": "Menu", "line_index": 137, "text": "Achievement Icon: Iceсloud"}
+{"category": "Menu", "line_index": 138, "text": "Photograph: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Translator"}
+{"category": "Menu", "line_index": 140, "text": "Converts the game's text into another language."}
+{"category": "Menu", "line_index": 141, "text": "Publishing Partner"}
+{"category": "Menu", "line_index": 142, "text": "Game marketing"}
+{"category": "Menu", "line_index": 143, "text": "Tester"}
+{"category": "Menu", "line_index": 144, "text": "Played and found all manner of bugs."}
+{"category": "Menu", "line_index": 145, "text": "此语言翻译由社区爱好者提供，并根据其要求添加到游戏中。"}
+{"category": "Menu", "line_index": 146, "text": "请注意！该游戏包含一些跳脸要素，尖锐音效，以及画面闪烁效果。光敏性癫痫、心脏病等患者不建议游玩。"}
+{"category": "Menu", "line_index": 147, "text": "和平模式现已开放！"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "拍照模式"}
+{"category": "Menu", "line_index": 150, "text": "拍照模式：取消镜头飞行限制，现在你可以看到一些通常不能看到的东西。"}
+{"category": "Menu", "line_index": 151, "text": "退出拍照模式"}
+{"category": "Menu", "line_index": 152, "text": "隐藏界面"}
+{"category": "Menu", "line_index": 153, "text": "按住移动镜头"}
+{"category": "Menu", "line_index": 154, "text": "加快移动速度"}
+{"category": "Menu", "line_index": 155, "text": "平滑移动镜头"}
+{"category": "Menu", "line_index": 156, "text": "速度"}
+{"category": "Menu", "line_index": 157, "text": "特效"}
+{"category": "Menu", "line_index": 158, "text": "控制游戏内时间"}
+{"category": "Menu", "line_index": 159, "text": "亮度"}
+{"category": "Menu", "line_index": 160, "text": "对比度"}
+{"category": "Menu", "line_index": 161, "text": "暗角"}
+{"category": "Menu", "line_index": 162, "text": "截屏！"}
+{"category": "Menu", "line_index": 163, "text": "打开包含屏幕截图的文件夹"}
+{"category": "Menu", "line_index": 164, "text": "镜头角度"}

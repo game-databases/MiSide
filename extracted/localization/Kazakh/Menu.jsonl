@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "жаңа ойын"}
+{"category": "Menu", "line_index": 1, "text": "жалғау"}
+{"category": "Menu", "line_index": 2, "text": "негізгі мәзір"}
+{"category": "Menu", "line_index": 3, "text": "шығу"}
+{"category": "Menu", "line_index": 4, "text": "параметрлері"}
+{"category": "Menu", "line_index": 5, "text": "табыстар"}
+{"category": "Menu", "line_index": 6, "text": "авторлар"}
+{"category": "Menu", "line_index": 7, "text": "артқа"}
+{"category": "Menu", "line_index": 8, "text": "бөлімді жүктеу"}
+{"category": "Menu", "line_index": 9, "text": "тіл"}
+{"category": "Menu", "line_index": 10, "text": "жүктеу..."}
+{"category": "Menu", "line_index": 11, "text": "графика"}
+{"category": "Menu", "line_index": 12, "text": "дауыс"}
+{"category": "Menu", "line_index": 13, "text": "Пернетақта және тінтуір"}
+{"category": "Menu", "line_index": 14, "text": "геймпад"}
+{"category": "Menu", "line_index": 15, "text": "экранның шешімі"}
+{"category": "Menu", "line_index": 16, "text": "терезенің тәртібі"}
+{"category": "Menu", "line_index": 17, "text": "графикалық әсерлер"}
+{"category": "Menu", "line_index": 18, "text": "түстік әсерлер"}
+{"category": "Menu", "line_index": 19, "text": "жұмсақ көлеңке"}
+{"category": "Menu", "line_index": 20, "text": "бұлыңғыр"}
+{"category": "Menu", "line_index": 21, "text": "бликтер"}
+{"category": "Menu", "line_index": 22, "text": "тегістеу"}
+{"category": "Menu", "line_index": 23, "text": "көлеңкелер"}
+{"category": "Menu", "line_index": 24, "text": "ғаламның жағдайы"}
+{"category": "Menu", "line_index": 25, "text": "бағдарламау"}
+{"category": "Menu", "line_index": 26, "text": "анимациялау"}
+{"category": "Menu", "line_index": 27, "text": "дыбыстар"}
+{"category": "Menu", "line_index": 28, "text": "музыка"}
+{"category": "Menu", "line_index": 29, "text": "түйірлер"}
+{"category": "Menu", "line_index": 30, "text": "текстуралар"}
+{"category": "Menu", "line_index": 31, "text": "3D-үлгілер (98%)"}
+{"category": "Menu", "line_index": 32, "text": "сценарий"}
+{"category": "Menu", "line_index": 33, "text": "түсіру"}
+{"category": "Menu", "line_index": 34, "text": "алға"}
+{"category": "Menu", "line_index": 35, "text": "артқа"}
+{"category": "Menu", "line_index": 36, "text": "солға"}
+{"category": "Menu", "line_index": 37, "text": "оңға"}
+{"category": "Menu", "line_index": 38, "text": "әрекеттестік"}
+{"category": "Menu", "line_index": 39, "text": "тінтуірдің сезімталдығы"}
+{"category": "Menu", "line_index": 40, "text": "ойыннан шығу?"}
+{"category": "Menu", "line_index": 41, "text": "иә"}
+{"category": "Menu", "line_index": 42, "text": "жоқ"}
+{"category": "Menu", "line_index": 43, "text": "негізгі мәзірде шығу"}
+{"category": "Menu", "line_index": 44, "text": "жұмсақ бұрылулар"}
+{"category": "Menu", "line_index": 45, "text": "ойын параметрлері"}
+{"category": "Menu", "line_index": 46, "text": "көлеңкелер стилі"}
+{"category": "Menu", "line_index": 47, "text": "киімдер"}
+{"category": "Menu", "line_index": 48, "text": "интерфейс"}
+{"category": "Menu", "line_index": 49, "text": "3D-үлгілер (2%)"}
+{"category": "Menu", "line_index": 50, "text": "дауыс дыбыстар"}
+{"category": "Menu", "line_index": 51, "text": "тыныс"}
+{"category": "Menu", "line_index": 52, "text": "мәзір"}
+{"category": "Menu", "line_index": 53, "text": "құттықтаймыз, ойын аяқталды!"}
+{"category": "Menu", "line_index": 54, "text": "сіздің жүрісіңіз уақытты:"}
+{"category": "Menu", "line_index": 55, "text": "субтитрлер"}
+{"category": "Menu", "line_index": 56, "text": "жарықтылық"}
+{"category": "Menu", "line_index": 57, "text": "вертикаль синхрондау"}
+{"category": "Menu", "line_index": 58, "text": "сақталған"}
+{"category": "Menu", "line_index": 59, "text": "кейіпкерлер"}
+{"category": "Menu", "line_index": 60, "text": "кейіпкерлер — Мита"}
+{"category": "Menu", "line_index": 61, "text": "кейіпкерлер — картридждер"}
+{"category": "Menu", "line_index": 62, "text": "картридждер"}
+{"category": "Menu", "line_index": 63, "text": "Миталар"}
+{"category": "Menu", "line_index": 64, "text": "Бәрін басынан бастау"}
+{"category": "Menu", "line_index": 65, "text": "Сіз сенімдісіз бе, барлық сақтауларды жоюды және бәрін басынан бастауды қалайсыз ба?"}
+{"category": "Menu", "line_index": 66, "text": "Шейдерлерді компиляциялап жатырмын — бұл екі сағатқа созылады, күтуіңізді сұраймын"}
+{"category": "Menu", "line_index": 67, "text": "А, қандай компиляция? Біз оны сіздің орныңызға жасадық!"}
+{"category": "Menu", "line_index": 68, "text": "Реалистік көлеңке трассировкасын жасап жатырмын — бұл 10 минут уақыт алады."}
+{"category": "Menu", "line_index": 69, "text": "Ойнап айттаймын, мұнда мынау графикасы жоқ"}
+{"category": "Menu", "line_index": 70, "text": "Эм-м..."}
+{"category": "Menu", "line_index": 71, "text": "А, анық, жүктелді!"}
+{"category": "Menu", "line_index": 72, "text": "жүру кезіндегі тербеліс"}
+{"category": "Menu", "line_index": 73, "text": "сыбыр экранда шығырлау"}
+{"category": "Menu", "line_index": 74, "text": "ойыншылығы дауысы"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "кейіпкерлерінің сипаттау қосты"}
+{"category": "Menu", "line_index": 77, "text": "шолу бұрышы"}
+{"category": "Menu", "line_index": 78, "text": "дауысты орындау"}
+{"category": "Menu", "line_index": 79, "text": "ажыратылған"}
+{"category": "Menu", "line_index": 80, "text": "қолды есікке созу"}
+{"category": "Menu", "line_index": 81, "text": "жандандыру"}
+{"category": "Menu", "line_index": 82, "text": "ойыншылығы дауысты қосу"}
+{"category": "Menu", "line_index": 83, "text": "Мита"}
+{"category": "Menu", "line_index": 84, "text": "Мита қысқа шаштармен"}
+{"category": "Menu", "line_index": 85, "text": "Мита мейрімді"}
+{"category": "Menu", "line_index": 86, "text": "Мита қалпақша"}
+{"category": "Menu", "line_index": 87, "text": "Мита кішкентай"}
+{"category": "Menu", "line_index": 88, "text": "Мита ұйқылы"}
+{"category": "Menu", "line_index": 89, "text": "Мита 2D"}
+{"category": "Menu", "line_index": 90, "text": "Мила"}
+{"category": "Menu", "line_index": 91, "text": "Мита қорқынышты"}
+{"category": "Menu", "line_index": 92, "text": "Мита ядросы"}
+{"category": "Menu", "line_index": 93, "text": "Мита елесті"}
+{"category": "Menu", "line_index": 94, "text": "Мита чиби"}
+{"category": "Menu", "line_index": 95, "text": "Мита қуыршақ"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "Мен ойындаймын ба?"}
+{"category": "Menu", "line_index": 101, "text": "Біз біргеміз"}
+{"category": "Menu", "line_index": 102, "text": "Ағаттықтың басталуы"}
+{"category": "Menu", "line_index": 103, "text": "Жертөле"}
+{"category": "Menu", "line_index": 104, "text": "Әлемнің артында"}
+{"category": "Menu", "line_index": 105, "text": "Циклді нұсқасы"}
+{"category": "Menu", "line_index": 106, "text": "Кішкентай Мита"}
+{"category": "Menu", "line_index": 107, "text": "Қуыршақтар мен ұмытылған пазлдар"}
+{"category": "Menu", "line_index": 108, "text": "Ол ұйықтағысы келеді"}
+{"category": "Menu", "line_index": 109, "text": "Әңгіме"}
+{"category": "Menu", "line_index": 110, "text": "Кітап оқимыз және глюктерді бұзамыз"}
+{"category": "Menu", "line_index": 111, "text": "Жүгіріп, тығыламыз!"}
+{"category": "Menu", "line_index": 112, "text": "Ескі нұқса"}
+{"category": "Menu", "line_index": 113, "text": "Адал әңгіме"}
+{"category": "Menu", "line_index": 114, "text": "Қайта жүктеу"}
+{"category": "Menu", "line_index": 115, "text": "Қалпақша"}
+{"category": "Menu", "line_index": 116, "text": "Елес"}
+{"category": "Menu", "line_index": 117, "text": "Нағыз әлем"}
+{"category": "Menu", "line_index": 118, "text": "Ядродан кет, жоғал!"}
+{"category": "Menu", "line_index": 119, "text": "Ойыншы 1"}
+{"category": "Menu", "line_index": 120, "text": "Ойыншы 2"}
+{"category": "Menu", "line_index": 121, "text": "Ойыншы 3"}
+{"category": "Menu", "line_index": 122, "text": "Ойыншы 4"}
+{"category": "Menu", "line_index": 123, "text": "Ойыншы 5"}
+{"category": "Menu", "line_index": 124, "text": "Ойыншы 6"}
+{"category": "Menu", "line_index": 125, "text": "Ойыншы 7"}
+{"category": "Menu", "line_index": 126, "text": "Ойыншы 8"}
+{"category": "Menu", "line_index": 127, "text": "Ойыншы 9"}
+{"category": "Menu", "line_index": 128, "text": "Ойыншы 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Бейбітшіл тәртібі"}
+{"category": "Menu", "line_index": 131, "text": "Бұл режим әзірленуде. Ол соншалықты үлкен болып шықты, сондықтан әзірлеушілер оны әлі толық жасап үлгермеген! Жақында олар оны ойынға үлкен бір жаңартумен қосады. Ал сен — кереметсің: бар күшіңді салып, оған қолжетімділік аштың! Енді тек күту ғана қалды..."}
+{"category": "Menu", "line_index": 132, "text": "Бейбіт режим не ұсынады? Бұл сенің Мите қайта оралу мүмкіндігің болады! Ол саған таңнан кешке дейін уақыт өткізуге қуанады, және бұл уақыт әртүрлі көңілді әрекеттермен толтырылады. Сені әңгімелер, аспаздық, ойындар және қызықты жағдайлар күтіп тұр!"}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "цензура"}
+{"category": "Menu", "line_index": 136, "text": "Бізде көмектесті:"}
+{"category": "Menu", "line_index": 137, "text": "Жеңісің суреттер: Icecloud"}
+{"category": "Menu", "line_index": 138, "text": "Фотосуреттер жиектемеде: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Аудармашы"}
+{"category": "Menu", "line_index": 140, "text": "Аудару ойының басқа тілде."}
+{"category": "Menu", "line_index": 141, "text": "Шығару серіктер"}
+{"category": "Menu", "line_index": 142, "text": "Ойының маркетинг."}
+{"category": "Menu", "line_index": 143, "text": "Сынақтама"}
+{"category": "Menu", "line_index": 144, "text": "Ойнаған және қате табылды."}
+{"category": "Menu", "line_index": 145, "text": "Мәтін ойынға фанаттар қауымдастығының белсенділігінің арқасында аударылды және олардың сұрауы бойынша қосылды."}
+{"category": "Menu", "line_index": 146, "text": "Назар аударыңыз! Ойында скримерлер бар, оларда қатты дыбыстар мен жарқыраған визуалды әсерлер бар. Ойынның кейбір сәттері жүрек аурулары бар немесе эпилепсиялық ұстамалардан зардап шегетін адамдар үшін қауіпті болуы мүмкін. Қауіпсіздік шараларын сақтаңыз."}
+{"category": "Menu", "line_index": 147, "text": "Бейбітшіл тәртібі жол!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Фоторежим"}
+{"category": "Menu", "line_index": 150, "text": "Фоторежим: Бәрі шектеу ұшуға босаттайды, Сондықтан сіз көруге болмайтын нәрсені көре аласыз."}
+{"category": "Menu", "line_index": 151, "text": "Фоторежимда шығу"}
+{"category": "Menu", "line_index": 152, "text": "Интерфейс жасыру"}
+{"category": "Menu", "line_index": 153, "text": "Камераны қозғату үшін ұстап тұрыңыз"}
+{"category": "Menu", "line_index": 154, "text": "Қимыл тездеу"}
+{"category": "Menu", "line_index": 155, "text": "Жатық қимыл"}
+{"category": "Menu", "line_index": 156, "text": "Жеделдік"}
+{"category": "Menu", "line_index": 157, "text": "Әсерлер"}
+{"category": "Menu", "line_index": 158, "text": "Уақытпен жүргізу"}
+{"category": "Menu", "line_index": 159, "text": "Жарықтылық"}
+{"category": "Menu", "line_index": 160, "text": "Кереғарлық"}
+{"category": "Menu", "line_index": 161, "text": "Ою суреттер"}
+{"category": "Menu", "line_index": 162, "text": "Скриншот!"}
+{"category": "Menu", "line_index": 163, "text": "Скриншотпен қалтаны ашу"}
+{"category": "Menu", "line_index": 164, "text": "Камераның көлбеу бұрышы"}

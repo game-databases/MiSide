@@ -1,0 +1,9 @@
+# DS-1 review — dataset-characters spec
+
+Anchor reproduces byte-exact (`size=14`@L301 / `size=10`@L48; all 24 rows: palettes, desc/name indices incl. Chibi→94/Ghostly→93 swap, save keys `plr1a`…`plr1099`, icons null/shared-276, empty player resourcePaths); parity 26/165/47/13 verified in **all 34 locales**, not just spot-checked; S2/S3/S4 field lists exact; S8 outfits, S9 Clothes lines, S10=26, S11 `SaveFlash(string)`, S12 literals, S15 residue = 7×`LocationDialogue Location12`, R3's 44 Version links, D1 wiki-only names, COMP J-keys, E1 proofs — all reproduce. ACs 1–10 repo-checkable and each fails on a wrong build; risks R1–R6 plausible (R2/R3/R4 independently verified); no invented fields; stub ladder sound.
+
+- **MEDIUM (blocking):** S13 + §5-J2 claim `level13.xml` lists `MitaBlack` — fails reproduction: no `<Name>MitaBlack</Name>` exists in ANY asset-list; level13 carries `Location11_BlackMita` + `Location11_EyesMitaBlack` only. Registry `resourcePath = "MitaBlack"` (row 11) is real, but the level13 join is name-transform-**inferred**, not the hard-equality exemplar claimed; AC-7's own grep test rejects the pair as cited. Fix both citations to the real scene names.
+- **LOW:** `preview_prefab_key` glossed "Resources.Load key" — IL-stub bodies expose no call site; only the `'Personages/'` literal backs it. Mark mechanism inferred/logic or add to §7 register.
+- **INFO:** §4.1 filler driver `relinks/locale_availability.jsonl` not yet on disk (owned by PIPE P1, pipeline-run_all.mdx:44); cite as planned sibling output.
+
+VERDICT: NEEDS_REVISION — 1

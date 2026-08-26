@@ -1,0 +1,71 @@
+# E1-vA — verification of explorer-e1-hands-on.mdx
+
+Verifier: fresh agent, lens **hands-on re-execution**. Under review:
+[`docs/research/explorer-e1-hands-on.mdx`](../explorer-e1-hands-on.mdx)
+against brief [`docs/briefs/e1-hands-on-probe.md`](../briefs/e1-hands-on-probe.md).
+Date: 2026-08-24. All checks below were re-run read-only by me on NE8K;
+numbers quoted as **measured** are mine, not the authoring agent's.
+
+## Mandated checks (a)–(e)
+
+| # | Claim in deliverable | My measurement | Verdict |
+|---|---|---|---|
+| a | 51 SerializedFile-class files / 583,027,900 B | **51 / 583,027,900 B** (globalgamemanagers 798,116; ggm.assets 229,452; resources.assets 99,902,624; sharedassets0–23; level0–23) | MATCH |
+| a | 69 .resS/.resource siblings / 1,694,288,048 B | **69 / 1,694,288,048 B** (sharedassets20.assets.resS 367,784,272; resources.assets.resS 218,920,848) | MATCH |
+| a | Grand total 2,277,315,948 B ≈ 2.12 GiB | **2,277,315,948 B** (2.121 GiB) | MATCH |
+| a | Named sizes: sharedassets9=83,787,408; level13=4,935,744 | identical | MATCH |
+| b | Loc store at game-root `Data\Languages`, absent from `MiSideFull_Data\Data\Languages` | store present at root; `test -e MiSideFull_Data/Data/Languages` → does not exist | MATCH |
+| b | 34 locale dirs; 2,210 txt total | **34**; **2,210** | MATCH |
+| b | Per-dir counts non-uniform, min 64 (Arabic (Egyptian), Belarusian), max 76 (French) | min **64** both named locales; max **76 French** | MATCH |
+| b | No-trailing-newline trap on English `Achievements.txt`: 414 B, `wc -l`=25 but 26 real lines | **414 B; wc -l=25; awk NR=26; last byte 0x72 ('r'), not \n**; line 26 = `Pro Gamer` | MATCH |
+| b | Heads: EN `Clabber/Creak in the Dark/Dead juice/Penguin Conundrum!/Safe of life/The fly's victory`; RU `Кислое молоко./Щелчок тьмы./Мёртвый сок./Пингвинобеда!/Сейф жизни./Победа мухи.`; EN CarSpace `You've finished!…Defeat the boss` | byte-identical first lines | MATCH |
+| c | `dump.cs` 10,420,763 B / 288,102 lines | **10,420,763 B / 288,102 lines** | MATCH |
+| c | il2cpp.h 16,439,803; script.json 30,021,645; stringliteral.json 619,523 | identical | MATCH |
+| c | DummyDll 57 DLLs; Assembly-CSharp.dll 1,873,920 B | **57 `.dll` files** (58th entry is `__Generated\` dir); Assembly-CSharp.dll **1,873,920 B** | MATCH |
+| d | mb-dump holds 993 MonoBehaviours, field trees typed/non-empty | **exactly 993 files**; both samples opened are fully typed trees | MATCH |
+| d | DataAchievements.txt sample verbatim (26 entries, [0] ACHI_WinFIght/pathID 863/get=True … [25] ACHI_supermegapuperplayer/lineTranslate 25) | full-file diff vs sample: every shown line matches; array size=26; lineTranslate 0–25 contiguous; [2] ACHI_DeathJuice→lineTranslate 2 ↔ EN txt line 3 `Dead juice` ✓ | MATCH |
+| d | Localization_UIText.txt sample verbatim (NameFile="MiniGame CarSpace", StringNumber=1, EveryEnable=False…) | byte-for-byte match; 12 Localization_UIText*.txt exist (1 + 11 numbered) | MATCH |
+| e | 28,725 ogg / 1,441,141,744 B across install | **28,725 / 1,441,141,744 B** | MATCH |
+
+## Additional corroborations beyond mandate
+
+- buildId **19029065** reproduced from `steamapps/appmanifest_*.acf`; `Data/Version.txt` = `VERSION 0.93L` at game root ✓.
+- `pip freeze` re-run in the probe venv: set matches the pinned list exactly (UnityPy==1.25.3, pillow==12.3.0, + 11 transitive pins).
+- `dump.cs`: `GlobalLanguage // TypeDefIndex: 4230` at line 207,035 with `GetString(string _name, int _string)`; `LanguageFilesText`/`LanguageFilesTexture` present — loc-join authority claim stands.
+- Recon count reproduction: `grep -c 'class .*Achievement' dump.cs` = **8**, exactly the claimed hit count.
+- Per-locale Textures pngs: EN/RU/FR **26**, JA **20** ✓; global Languages png **777** + psd **3** ✓.
+- GI tree = **62 files** ✓; zero `.unity3d`/`.bundle`/catalog files install-wide ✓; `Data\Custom\` = `New (Sample)` + `Original`, each Body/Cloth/Colors/Face/Hair.png ✓.
+
+## Findings
+
+1. **INFO — Achievement row conflates hit-lines with distinct classes.**
+   Deliverable lists 7 "notable classes" against 8 hits; the grep reproduces
+   8 hits exactly, but only 6 distinct declared class names contain
+   "Achievement" (`SteamManager` enters via a line mentioning an
+   achievement type, not its own name). Count command reproducible; prose
+   column is illustrative. Evidence: `grep -oE 'class \w*Achievement\w*'`
+   → 6 unique names.
+2. **INFO — "57 DLLs" is precise but the folder has 58 entries**: the
+   extra entry is the `__Generated\` subdirectory. No correction needed;
+   recorded so future counts specify `.dll` files.
+3. **No MISMATCH, no fabrication, no `[unverified]`-as-fact, no missing
+   mandatory brief section found.** Verdict-per-step structure, commands,
+   timings, pinned versions, artifact counts, consolidated deviations,
+   risks, and "implications for pipeline spec" are all present as the
+   brief demands; MDX format honored; no legality/EULA commentary.
+
+## Coverage statement
+
+All five mandated checks (a)–(e) were fully re-executed: **100%**. Across
+the deliverable's substantive numeric claim surface I could independently
+confirm roughly **85%** (every count, size, path, head-of-file, and code
+snippet I tested matched; several were exact to the byte). The remainder —
+tool wall-times (2.48 s, ~2 s), the Il2CppDumper/AssetStudioModCLI console
+transcripts, "Loaded 5 files" auto-resolution wording, remaining dump.cs
+pattern counts (Dialogue/Cartridge/Mita/Location/BinaryWriter), Voice
+Editor boilerplate inventory, and execution-time disk free — was not
+re-executed (would require re-running mutating-ish tool stages or is
+transient); none of it contradicts surviving physical evidence (outputs'
+existence, sizes, and content corroborate each such claim).
+
+VERDICT: PASS

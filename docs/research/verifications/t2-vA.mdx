@@ -1,0 +1,18 @@
+# t2-vA — evidence verification of [ui-style-scout.mdx](../ui-style-scout.mdx) (2026-08-24 pass)
+
+**C1 — hex re-sampling (probe venv PIL, originals):** 32 claimed hexes re-sampled; all 18 quantize-dominance claims reproduce **exactly** (`Image.quantize(6)` L2sq=0, ±1 pp); all direct samples confirmed by full-image nearest-pixel scan.
+
+| claimed (file) | my re-sample | Δ |
+|---|---|---|
+| `#e06eb0` 23% `#df81b0` 21% `#e091b4` 20% `#df5eae` 18% (steam-ss2 q6) | identical 23/21/21/19 | 0 |
+| `#586174`29 `#97a2b4`27 `#272d38`18 (ss6); `#704660`26 `#82618b`15 (ss7); `#1b0116`31 `#03000a`23 `#300a1a`17 (ss8); `#b2abb0`27… (ds0); `#cc2a73`65 (ds1) | all identical ±1 pp | 0 |
+| `#ff009c` nametag, `#fffcff` text (demo-ds1) | exact pixels found | L1=0 |
+| `#fc0f43`/`#140316` (ss8); 6 ss1 HUD hexes; `#ff2b58`/`#fc3258` (ptbr); `#c02dbb`/`#872cb2`/`#866087`/`#c9c8cd` (ds0) | all present | L1≤32 |
+| `#08cb05` (lcd); gradient `#b338b1→#d682b1`; `#407982` teal (void) | exact / L1=8,3 / exact | ≤8 |
+| `#646581`,`#676b88` (void tiles) | not verbatim under q6/8/10/12; nearest `#64687e` | L1≤16, sub-ΔE-eye — minor, substance holds |
+
+**C2 — motifs (4 thumbs viewed):** `steam-ss2` shows header pill, ELECTRONICS/PROCESSING/PLATFORMING/GAMES panels, 3×4 cartridge cells with counts, lock-glyph scrollbar, HUD ring portrait + level chip + pill gauges, currency pill — all as §3; `demo-ds0` shows VHS displacement slices + magenta/green fringing + `TAKE PILLS` pill + caption band — §4.1 confirmed; `comm-dialogue-sorry-sweetheart` shows name-tag `Мита` pill + `SPACE` pill + heart-patterned magenta backdrop; `comm-minigame-lcd-defeat` shows blue handheld, green pixel `SCORE: 26`/`DEFEAT`, hex buttons, `ESC`+`FINISH PLAYING` gradient pill.
+
+**C3 — credits.jsonl:** exactly **112 rows**; strict `file`-field audit: 87 distinct basenames ↔ 87 images on disk, both directions empty diff; 12/12 random spot-checks FOUND (incl. `.ugc2/u12.jpg`, `.ugcpool/ugc07.jpg`, derived `.crops-ui2.jpg`, `.probe-ss3-bottom.png`).
+
+VERDICT: PASS

@@ -1,0 +1,35 @@
+{
+  "stage": "detect",
+  "host": "Ne8k",
+  "measured_at": "2026-08-24T21:30:35+00:00",
+  "status": "ok",
+  "anchors_ok": true,
+  "free_space_bytes": {
+    "C:": 185874677760,
+    "D:": 335432224768
+  },
+  "flavor": {
+    "engine": "unity",
+    "scripting_backend": "il2cpp",
+    "unity_version": "2021.3.35f1",
+    "metadata_version": 29,
+    "game_assembly": {
+      "present": true,
+      "bytes": 22411776
+    }
+  },
+  "build_id": "19029065",
+  "version_label": "VERSION 0.93L",
+  "locale_dirs": 34,
+  "voice_editor_dlls": 106,
+  "container_totals": {
+    "serialized_count": 51,
+    "serialized_bytes": 583027900,
+    "stream_count": 69,
+    "stream_bytes": 1694288048,
+    "grand_total_bytes": 2277315948
+  },
+  "other_top_level_files": 4,
+  "warnings": [],
+  "duration_s": 0.031
+}

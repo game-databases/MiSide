@@ -1,0 +1,61 @@
+{
+ "build": 19029065,
+ "notes": {
+  "D2": "spec section 2.1 claimed exact per-category line parity across locales; measurement refutes it for 4 locales (tail deltas) - ledgered as data in _ledger/locale-parity.jsonl and the availability.csv tail_delta column; pivot EN stays the range authority so no node record shifts",
+  "D3": "extracted/relinks/locale_availability.jsonl does not exist yet (arbiter residue (c): owned by the P1 relink stage); cells are classified from measured category presence directly - same inputs that stage will encode",
+  "D6": "spec bar >=99 pct; measured 96.23 pct - the gap is structural, not missing data: choice_case (70), quest_box (13) and pet_dialogue (24) serialize no speaker field at all; every node whose kind HAS a speaker mechanism carries one (100 pct of ambient_line themeDialogue + branch_group entry enums + grouped_scene_dialogue personage PPtrs)",
+  "D7": "fix round F-B3 (2026-08-25, b3-vA FAIL): the emitter attached only each node's FIRST hint-bearing ref (early break) and silently dropped comments whose target row no component serializes; now every hint-bearing ref attaches and unattached comments are ledgered explicitly with reason + target; emitted+unattached==328 asserted in emitter AND re-derived independently here against emitted node refs"
+ },
+ "scoreboard": [
+  {
+   "ac": "D1",
+   "detail": "emitted {'ambient_line': 2710, 'branch_group': 11, 'choice_case': 70, 'grouped_scene_dialogue': 11, 'pet_dialogue': 24, 'quest_box': 13} equals ASL census AND independent filename recount",
+   "status": "PASS"
+  },
+  {
+   "ac": "D2",
+   "detail": "3001 refs range-checked vs pivot counts; line_index = game_index-1 everywhere; 0 violations; union-span rule VALIDATED on all 19 levels; spec's 'exact locale parity' REFUTED by measurement: 4 locale x category tail deltas ledgered (Filipi Location20+1, Italia Location3+2, Portug Location18-3, Turkis Location6-1), 2 node-ref x locale cells fall past a locale's own tail (filler there, present at pivot)",
+   "status": "PASS"
+  },
+  {
+   "ac": "D3",
+   "detail": "680 cells = 20 buckets × 34 locales; FR LD16 contentless, 33 filler; zero locales dropped (availability-log dependency noted)",
+   "status": "PASS"
+  },
+  {
+   "ac": "D4",
+   "detail": "all 7 ledger rows joined onto 1 LD12:58 node(s); U+FFFD/cp1250 provenance traceable",
+   "status": "PASS"
+  },
+  {
+   "ac": "D5",
+   "detail": "all emitted next edges resolve in-level; ambient non-null nextText 2150+12 ledgered = 2,162 baseline exactly; terminals 548 = 548 baseline; +11 group nextDialogue edges (L18+Mob); entry sets computed in 19 level graphs",
+   "status": "PASS"
+  },
+  {
+   "ac": "D6",
+   "detail": "PARTIAL (structural): 2732/2839 = 96.23% carry a structured speaker; kinds with NO speaker serialization cap the ceiling at 96.23%; enum table complete (14 values, 5 pending-curation per brief/D6)",
+   "status": "PARTIAL"
+  },
+  {
+   "ac": "D7",
+   "detail": "320/328 EN comments ship into condition_hints verbatim+lang-tagged (324 placements over 318 nodes, never speech); 8 unattached EXPLICITLY (target loc row no component serializes — reason+target ledgered per row); emitted(320)+unattached(8)==328 invariant holds; 0 text_refs hit // rows",
+   "status": "PASS"
+  },
+  {
+   "ac": "D8",
+   "detail": "every record stamps build 19029065 + container + true component PathID (clean)",
+   "status": "PASS"
+  },
+  {
+   "ac": "D9",
+   "detail": "rerun over unchanged inputs reproduced all 30 output files byte-identical (sha256 c9a6d112f8b4…)",
+   "status": "PASS"
+  }
+ ],
+ "summary": {
+  "fail": 0,
+  "partial": 1,
+  "pass": 8
+ }
+}

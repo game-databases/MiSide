@@ -1,0 +1,165 @@
+{"category": "Menu", "line_index": 0, "text": "Nuovo gioco"}
+{"category": "Menu", "line_index": 1, "text": "Continua"}
+{"category": "Menu", "line_index": 2, "text": "Menu principale"}
+{"category": "Menu", "line_index": 3, "text": "Esci"}
+{"category": "Menu", "line_index": 4, "text": "Impostazioni"}
+{"category": "Menu", "line_index": 5, "text": "Obiettivi"}
+{"category": "Menu", "line_index": 6, "text": "Crediti"}
+{"category": "Menu", "line_index": 7, "text": "Indietro"}
+{"category": "Menu", "line_index": 8, "text": "Carica"}
+{"category": "Menu", "line_index": 9, "text": "Lingua"}
+{"category": "Menu", "line_index": 10, "text": "Caricamento..."}
+{"category": "Menu", "line_index": 11, "text": "Grafica"}
+{"category": "Menu", "line_index": 12, "text": "Volume"}
+{"category": "Menu", "line_index": 13, "text": "Tastiera e mouse"}
+{"category": "Menu", "line_index": 14, "text": "Controller"}
+{"category": "Menu", "line_index": 15, "text": "Risoluzione"}
+{"category": "Menu", "line_index": 16, "text": "Modalità a finestra"}
+{"category": "Menu", "line_index": 17, "text": "Effetti grafici"}
+{"category": "Menu", "line_index": 18, "text": "Effetti colore"}
+{"category": "Menu", "line_index": 19, "text": "Ombre morbide"}
+{"category": "Menu", "line_index": 20, "text": "Sfocatura"}
+{"category": "Menu", "line_index": 21, "text": "Abbagliamento"}
+{"category": "Menu", "line_index": 22, "text": "Anti-aliasing"}
+{"category": "Menu", "line_index": 23, "text": "Ombre"}
+{"category": "Menu", "line_index": 24, "text": "Qualità di visualizzazione del mondo"}
+{"category": "Menu", "line_index": 25, "text": "Programmazione"}
+{"category": "Menu", "line_index": 26, "text": "Animazione"}
+{"category": "Menu", "line_index": 27, "text": "Effetti sonori"}
+{"category": "Menu", "line_index": 28, "text": "Musica"}
+{"category": "Menu", "line_index": 29, "text": "Particelle"}
+{"category": "Menu", "line_index": 30, "text": "Texture"}
+{"category": "Menu", "line_index": 31, "text": "Modelli 3D (98%)"}
+{"category": "Menu", "line_index": 32, "text": "Scrittura"}
+{"category": "Menu", "line_index": 33, "text": "Azzeramento"}
+{"category": "Menu", "line_index": 34, "text": "Avanti"}
+{"category": "Menu", "line_index": 35, "text": "Indietro"}
+{"category": "Menu", "line_index": 36, "text": "A sinistra"}
+{"category": "Menu", "line_index": 37, "text": "A destra"}
+{"category": "Menu", "line_index": 38, "text": "Interazione"}
+{"category": "Menu", "line_index": 39, "text": "Sensibilità del mouse"}
+{"category": "Menu", "line_index": 40, "text": "Uscire dal gioco?"}
+{"category": "Menu", "line_index": 41, "text": "Sì"}
+{"category": "Menu", "line_index": 42, "text": "No"}
+{"category": "Menu", "line_index": 43, "text": "Torna al menu principale"}
+{"category": "Menu", "line_index": 44, "text": "Giri fluidi"}
+{"category": "Menu", "line_index": 45, "text": "Impostazioni di gioco"}
+{"category": "Menu", "line_index": 46, "text": "Stile dell'ombra"}
+{"category": "Menu", "line_index": 47, "text": "Vestiti"}
+{"category": "Menu", "line_index": 48, "text": "Interfaccia"}
+{"category": "Menu", "line_index": 49, "text": "Modelli 3D (2%)"}
+{"category": "Menu", "line_index": 50, "text": "Volume Voce"}
+{"category": "Menu", "line_index": 51, "text": "Pausa"}
+{"category": "Menu", "line_index": 52, "text": "Menù"}
+{"category": "Menu", "line_index": 53, "text": "Congratulazioni! Hai completato il gioco!"}
+{"category": "Menu", "line_index": 54, "text": "Il tuo tempo:"}
+{"category": "Menu", "line_index": 55, "text": "Sottotitoli"}
+{"category": "Menu", "line_index": 56, "text": "Luminosità"}
+{"category": "Menu", "line_index": 57, "text": "Sincronizzazione verticale"}
+{"category": "Menu", "line_index": 58, "text": "Salvato"}
+{"category": "Menu", "line_index": 59, "text": "Personaggi"}
+{"category": "Menu", "line_index": 60, "text": "Personaggi - Mita"}
+{"category": "Menu", "line_index": 61, "text": "Personaggi - Cartucce"}
+{"category": "Menu", "line_index": 62, "text": "Cartucce"}
+{"category": "Menu", "line_index": 63, "text": "Mita"}
+{"category": "Menu", "line_index": 64, "text": "Ricomincia da zero"}
+{"category": "Menu", "line_index": 65, "text": "Sei sicuro di voler cancellare completamente tutti i tuoi progressi e ricominciare da zero?"}
+{"category": "Menu", "line_index": 66, "text": "Compilazione degli shader, tempo di attesa stimato: 2 ore."}
+{"category": "Menu", "line_index": 67, "text": "2 ore di compilazione?! Impossibile! Abbiamo saltato la coda per voi!"}
+{"category": "Menu", "line_index": 68, "text": "Creazione di un tracciamento realistico delle ombre: tempo stimato di 10 minuti."}
+{"category": "Menu", "line_index": 69, "text": "Scherzo, qui non usiamo queste cose sofisticate."}
+{"category": "Menu", "line_index": 70, "text": "Umm..."}
+{"category": "Menu", "line_index": 71, "text": "Oh, siamo pronti!"}
+{"category": "Menu", "line_index": 72, "text": "Oscilla mentre cammini"}
+{"category": "Menu", "line_index": 73, "text": "Mostra suggerimenti"}
+{"category": "Menu", "line_index": 74, "text": "Voce giocatore"}
+{"category": "Menu", "line_index": 75, "text": "Discord"}
+{"category": "Menu", "line_index": 76, "text": "Aggiunta del profilo del personaggio"}
+{"category": "Menu", "line_index": 77, "text": "Campo Visivo"}
+{"category": "Menu", "line_index": 78, "text": "Voce"}
+{"category": "Menu", "line_index": 79, "text": "Spento"}
+{"category": "Menu", "line_index": 80, "text": "Tendere la mano verso la porta?"}
+{"category": "Menu", "line_index": 81, "text": "Animazione"}
+{"category": "Menu", "line_index": 82, "text": "Abilita la voce del giocatore"}
+{"category": "Menu", "line_index": 83, "text": "Mita"}
+{"category": "Menu", "line_index": 84, "text": "Mita dai capelli corti"}
+{"category": "Menu", "line_index": 85, "text": "Mita Gentile"}
+{"category": "Menu", "line_index": 86, "text": "Mita Tosta"}
+{"category": "Menu", "line_index": 87, "text": "Mita Piccola"}
+{"category": "Menu", "line_index": 88, "text": "Mita Dormigliona"}
+{"category": "Menu", "line_index": 89, "text": "Mita 2D"}
+{"category": "Menu", "line_index": 90, "text": "Mila"}
+{"category": "Menu", "line_index": 91, "text": "Mita Deforme"}
+{"category": "Menu", "line_index": 92, "text": "Mita del Nucleo"}
+{"category": "Menu", "line_index": 93, "text": "Mita Fantasma"}
+{"category": "Menu", "line_index": 94, "text": "Chibi Mita"}
+{"category": "Menu", "line_index": 95, "text": "Mita Manichino"}
+{"category": "Menu", "line_index": 96, "text": ""}
+{"category": "Menu", "line_index": 97, "text": ""}
+{"category": "Menu", "line_index": 98, "text": ""}
+{"category": "Menu", "line_index": 99, "text": "// Name load location"}
+{"category": "Menu", "line_index": 100, "text": "Sono dentro un gioco?"}
+{"category": "Menu", "line_index": 101, "text": "Finalmente insieme"}
+{"category": "Menu", "line_index": 102, "text": "Le cose si fanno strane"}
+{"category": "Menu", "line_index": 103, "text": "Il seminterrato"}
+{"category": "Menu", "line_index": 104, "text": "Oltre il mondo"}
+{"category": "Menu", "line_index": 105, "text": "Il Loop"}
+{"category": "Menu", "line_index": 106, "text": "Mini Mita"}
+{"category": "Menu", "line_index": 107, "text": "Manichini e puzzle dimenticati"}
+{"category": "Menu", "line_index": 108, "text": "Vuole solo dormire"}
+{"category": "Menu", "line_index": 109, "text": "Light Novel"}
+{"category": "Menu", "line_index": 110, "text": "Leggere libri, distruggere i problemi"}
+{"category": "Menu", "line_index": 111, "text": "Corri e nasconditi!"}
+{"category": "Menu", "line_index": 112, "text": "Vecchia versione"}
+{"category": "Menu", "line_index": 113, "text": "Sii candido"}
+{"category": "Menu", "line_index": 114, "text": "Riavvio"}
+{"category": "Menu", "line_index": 115, "text": "Cappie"}
+{"category": "Menu", "line_index": 116, "text": "Mita Fantasma"}
+{"category": "Menu", "line_index": 117, "text": "Il mondo reale"}
+{"category": "Menu", "line_index": 118, "text": "Lascia il nucleo!"}
+{"category": "Menu", "line_index": 119, "text": "Giocatore 1"}
+{"category": "Menu", "line_index": 120, "text": "Giocatore 2"}
+{"category": "Menu", "line_index": 121, "text": "Giocatore 3"}
+{"category": "Menu", "line_index": 122, "text": "Giocatore 4"}
+{"category": "Menu", "line_index": 123, "text": "Giocatore 5"}
+{"category": "Menu", "line_index": 124, "text": "Giocatore 6"}
+{"category": "Menu", "line_index": 125, "text": "Giocatore 7"}
+{"category": "Menu", "line_index": 126, "text": "Giocatore 8"}
+{"category": "Menu", "line_index": 127, "text": "Giocatore 9"}
+{"category": "Menu", "line_index": 128, "text": "Giocatore 10"}
+{"category": "Menu", "line_index": 129, "text": ""}
+{"category": "Menu", "line_index": 130, "text": "Modalità pacifica"}
+{"category": "Menu", "line_index": 131, "text": "Questa modalità è ancora in fase di sviluppo! È così ampia che gli sviluppatori non sono ancora riusciti a completarla. Ma non preoccupatevi: hanno promesso che sarà inclusa in un aggiornamento importante in arrivo. E guarda un po', sei già in anticipo sulla curva e hai sbloccato l'accesso! Ora non resta che aspettare..."}
+{"category": "Menu", "line_index": 132, "text": "Allora, cos'è la Modalità Pacifica? È la possibilità di riconnettersi con Mita in un modo completamente diverso! Mita sarà felicissima di trascorrere più tempo con voi, dalla mattina alla sera, in un mondo pieno di divertimento e sorprese. Aspettatevi conversazioni sincere a tu per tu, condivisione di biscotti, giochi e tanti momenti esilaranti insieme."}
+{"category": "Menu", "line_index": 133, "text": ""}
+{"category": "Menu", "line_index": 134, "text": ""}
+{"category": "Menu", "line_index": 135, "text": "Censura Sangue"}
+{"category": "Menu", "line_index": 136, "text": "Ringraziamenti speciali:"}
+{"category": "Menu", "line_index": 137, "text": "Icona dei risultati: Iceсloud"}
+{"category": "Menu", "line_index": 138, "text": "Fotografia: Nineko Hori"}
+{"category": "Menu", "line_index": 139, "text": "Traduttori"}
+{"category": "Menu", "line_index": 140, "text": "Hanno convertito il testo del gioco in un'altra lingua."}
+{"category": "Menu", "line_index": 141, "text": "Partner editoriale"}
+{"category": "Menu", "line_index": 142, "text": "Marketing del gioco"}
+{"category": "Menu", "line_index": 143, "text": "Tester"}
+{"category": "Menu", "line_index": 144, "text": "Giocano e trovano ogni sorta di bug."}
+{"category": "Menu", "line_index": 145, "text": "Questa traduzione è stata realizzata da appassionati della comunità dei fan e aggiunta al gioco su loro richiesta."}
+{"category": "Menu", "line_index": 146, "text": "Attenzione! Questo gioco include jump scares, suoni improvvisi e acuti e occasionali sfarfallii dello schermo. Si consiglia ai giocatori affetti da epilessia fotosensibile, disturbi cardiaci o problemi di salute simili di non giocare."}
+{"category": "Menu", "line_index": 147, "text": "Modalità pacifica ora disponibile!"}
+{"category": "Menu", "line_index": 148, "text": ""}
+{"category": "Menu", "line_index": 149, "text": "Modalità foto"}
+{"category": "Menu", "line_index": 150, "text": "Modalità foto: Restrizioni di volo della fotocamera rimosse. Ora puoi esplorare aree normalmente inaccessibili."}
+{"category": "Menu", "line_index": 151, "text": "Esci dalla modalità Foto"}
+{"category": "Menu", "line_index": 152, "text": "Nascondi interfaccia"}
+{"category": "Menu", "line_index": 153, "text": "Tieni premuto per muovere la fotocamera"}
+{"category": "Menu", "line_index": 154, "text": "Movimento rapido"}
+{"category": "Menu", "line_index": 155, "text": "Movimento fluido"}
+{"category": "Menu", "line_index": 156, "text": "Velocità"}
+{"category": "Menu", "line_index": 157, "text": "Effetti"}
+{"category": "Menu", "line_index": 158, "text": "Controllo del tempo di gioco"}
+{"category": "Menu", "line_index": 159, "text": "Luminosità"}
+{"category": "Menu", "line_index": 160, "text": "Contrasto"}
+{"category": "Menu", "line_index": 161, "text": "Vignetta"}
+{"category": "Menu", "line_index": 162, "text": "Effettua uno screenshot!"}
+{"category": "Menu", "line_index": 163, "text": "Accedi alla cartella degli screenshot"}
+{"category": "Menu", "line_index": 164, "text": "Angolo della fotocamera"}

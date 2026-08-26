@@ -1,0 +1,150 @@
+{"category": "LocationDialogue Location6", "line_index": 0, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 1, "text": "Mita ?"}
+{"category": "LocationDialogue Location6", "line_index": 2, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 3, "text": "Comment es-tu arrivé ici ?"}
+{"category": "LocationDialogue Location6", "line_index": 4, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 5, "text": "Tu es Mita, n'est-ce pas ?"}
+{"category": "LocationDialogue Location6", "line_index": 6, "text": "Mais tu as l'air différente..."}
+{"category": "LocationDialogue Location6", "line_index": 7, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 8, "text": "C'est ça."}
+{"category": "LocationDialogue Location6", "line_index": 9, "text": "Écoute."}
+{"category": "LocationDialogue Location6", "line_index": 10, "text": "Je ne suis pas la Mita que tu connais."}
+{"category": "LocationDialogue Location6", "line_index": 11, "text": "Sois prudent, elle prépare de"}
+{"category": "LocationDialogue Location6", "line_index": 12, "text": "très mauvaises choses pour toi."}
+{"category": "LocationDialogue Location6", "line_index": 13, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 14, "text": "Quel genre de choses ?"}
+{"category": "LocationDialogue Location6", "line_index": 15, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 16, "text": "Le temps presse !"}
+{"category": "LocationDialogue Location6", "line_index": 17, "text": "Si ça marche, je t'expliquerai tout..."}
+{"category": "LocationDialogue Location6", "line_index": 18, "text": "Trouve la clé près du canapé."}
+{"category": "LocationDialogue Location6", "line_index": 19, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 20, "text": "Mais..."}
+{"category": "LocationDialogue Location6", "line_index": 21, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 22, "text": "Tu poseras des questions plus tard !"}
+{"category": "LocationDialogue Location6", "line_index": 23, "text": "Donne-moi la clé."}
+{"category": "LocationDialogue Location6", "line_index": 24, "text": "Prends cet anneau."}
+{"category": "LocationDialogue Location6", "line_index": 25, "text": "Hein ? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 26, "text": "Tu veux sortir d'ici, non ? // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 27, "text": "Euh, oui..."}
+{"category": "LocationDialogue Location6", "line_index": 28, "text": "Alors mets-le. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 29, "text": "C'est un artefact bien utile. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 30, "text": "Je pense que tu en auras besoin très bientôt. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 31, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 32, "text": "D'accord."}
+{"category": "LocationDialogue Location6", "line_index": 33, "text": "Au fait, je suis..."}
+{"category": "LocationDialogue Location6", "line_index": 34, "text": "[player] // [not]"}
+{"category": "LocationDialogue Location6", "line_index": 35, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 36, "text": "C'est compris,"}
+{"category": "LocationDialogue Location6", "line_index": 37, "text": "[player] // [not]"}
+{"category": "LocationDialogue Location6", "line_index": 38, "text": "Et je suis... Mita. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 39, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 40, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 41, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 42, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 43, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 44, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 45, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 46, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 47, "text": "// MitaKind quest 1 - MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 48, "text": "Regarde :"}
+{"category": "LocationDialogue Location6", "line_index": 49, "text": "la console, prends-la."}
+{"category": "LocationDialogue Location6", "line_index": 50, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 51, "text": "C'est une vidéo ?"}
+{"category": "LocationDialogue Location6", "line_index": 52, "text": "Qui est avec elle ?"}
+{"category": "LocationDialogue Location6", "line_index": 53, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 54, "text": "Ce n'est pas une vidéo,"}
+{"category": "LocationDialogue Location6", "line_index": 55, "text": "c'est un autre joueur."}
+{"category": "LocationDialogue Location6", "line_index": 56, "text": "Elle se sert de lui."}
+{"category": "LocationDialogue Location6", "line_index": 57, "text": "Sache que, toi aussi"}
+{"category": "LocationDialogue Location6", "line_index": 58, "text": "tu risques de devenir une cartouche..."}
+{"category": "LocationDialogue Location6", "line_index": 59, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 60, "text": "Je dois partir d'ici au plus vite."}
+{"category": "LocationDialogue Location6", "line_index": 61, "text": "Et toi aussi."}
+{"category": "LocationDialogue Location6", "line_index": 62, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 63, "text": "Oui, bien entendu."}
+{"category": "LocationDialogue Location6", "line_index": 64, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 65, "text": "Tu disais donc,"}
+{"category": "LocationDialogue Location6", "line_index": 66, "text": "qu'elle se sert du joueur."}
+{"category": "LocationDialogue Location6", "line_index": 67, "text": "Et si je retire la cartouche de la console ?"}
+{"category": "LocationDialogue Location6", "line_index": 68, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 69, "text": "Je pense que ça pourrait conduire"}
+{"category": "LocationDialogue Location6", "line_index": 70, "text": "à d'irréparables dégâts pour la cartouche."}
+{"category": "LocationDialogue Location6", "line_index": 71, "text": "Ce qui voudrait dire... // Player"}
+{"category": "LocationDialogue Location6", "line_index": 72, "text": "que le joueur va mourir. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 73, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 74, "text": "... // [not]"}
+{"category": "LocationDialogue Location6", "line_index": 75, "text": "Et si on éteint juste la console ? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 76, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 77, "text": "Je pense que ça pourrait marcher."}
+{"category": "LocationDialogue Location6", "line_index": 78, "text": "Ça vaut le coup d'essayer. Il y a un bouton rouge !"}
+{"category": "LocationDialogue Location6", "line_index": 79, "text": "Tu le vois ?"}
+{"category": "LocationDialogue Location6", "line_index": 80, "text": "Je l'ai. // Player"}
+{"category": "LocationDialogue Location6", "line_index": 81, "text": "Appuie dessus. // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 82, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 83, "text": "// MitaKind quest 2 - MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 84, "text": "Je dois rester ici."}
+{"category": "LocationDialogue Location6", "line_index": 85, "text": "J'ai des questions à lui poser,"}
+{"category": "LocationDialogue Location6", "line_index": 86, "text": "je dois en apprendre plus sur elle."}
+{"category": "LocationDialogue Location6", "line_index": 87, "text": "Même si je doute qu'elle veuille bien discuter."}
+{"category": "LocationDialogue Location6", "line_index": 88, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 89, "text": "// MitaKind quest 3 - MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 90, "text": "Pour tout de dire, on est dans ma version."}
+{"category": "LocationDialogue Location6", "line_index": 91, "text": "Je tenais compagnie à un joueur..."}
+{"category": "LocationDialogue Location6", "line_index": 92, "text": "Quelque chose a soudainement changé dans mon monde,"}
+{"category": "LocationDialogue Location6", "line_index": 93, "text": "et c'est là qu'elle est arrivée..."}
+{"category": "LocationDialogue Location6", "line_index": 94, "text": "Elle a changé le joueur en cartouche,"}
+{"category": "LocationDialogue Location6", "line_index": 95, "text": "et m'a enfermée ici."}
+{"category": "LocationDialogue Location6", "line_index": 96, "text": "// Player"}
+{"category": "LocationDialogue Location6", "line_index": 97, "text": "Elle l'a changé en cartouche ?"}
+{"category": "LocationDialogue Location6", "line_index": 98, "text": "Elle peut faire ça ?!"}
+{"category": "LocationDialogue Location6", "line_index": 99, "text": "Pour quoi faire ?"}
+{"category": "LocationDialogue Location6", "line_index": 100, "text": "Qu'est-ce qu'elle fait avec ces joueurs ?!"}
+{"category": "LocationDialogue Location6", "line_index": 101, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 102, "text": "Elle est a perdu la tête, c'est évident."}
+{"category": "LocationDialogue Location6", "line_index": 103, "text": "Elle trouve ça drôle, et ça l'amuse, bon sang !"}
+{"category": "LocationDialogue Location6", "line_index": 104, "text": "Les joueurs deviennent des cartouches."}
+{"category": "LocationDialogue Location6", "line_index": 105, "text": "Certains ne comprennent pas ce qui leur arrive..."}
+{"category": "LocationDialogue Location6", "line_index": 106, "text": "Et d'autres s'en rendent compte, mais ne résistent pas."}
+{"category": "LocationDialogue Location6", "line_index": 107, "text": "Je n'aime pas ça du tout. // Player"}
+{"category": "LocationDialogue Location6", "line_index": 108, "text": "Tu dois nous aider ! // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 109, "text": "Moi ? Mais comment ? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 110, "text": "J'ai besoin d'un joueur comme toi ! // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 111, "text": "Tu nous aides, et moi j'essayerai de t'aider en retour !"}
+{"category": "LocationDialogue Location6", "line_index": 112, "text": "C'est peut-être notre seule chance..."}
+{"category": "LocationDialogue Location6", "line_index": 113, "text": "L'anneau te guidera vers la bonne version."}
+{"category": "LocationDialogue Location6", "line_index": 114, "text": "On se retrouvera là-bas."}
+{"category": "LocationDialogue Location6", "line_index": 115, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 116, "text": "// MKind quest 4 - Player"}
+{"category": "LocationDialogue Location6", "line_index": 117, "text": "J'ai du mal à réaliser"}
+{"category": "LocationDialogue Location6", "line_index": 118, "text": "ce que j'ai vu là-haut..."}
+{"category": "LocationDialogue Location6", "line_index": 119, "text": "Cette Mita..."}
+{"category": "LocationDialogue Location6", "line_index": 120, "text": "Elle veut me tuer ?"}
+{"category": "LocationDialogue Location6", "line_index": 121, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 122, "text": "Te tuer ?"}
+{"category": "LocationDialogue Location6", "line_index": 123, "text": "Elle a prévu bien pire que ça..."}
+{"category": "LocationDialogue Location6", "line_index": 124, "text": "alors tu ferais mieux de te dépêcher."}
+{"category": "LocationDialogue Location6", "line_index": 125, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 126, "text": "// Hide!"}
+{"category": "LocationDialogue Location6", "line_index": 127, "text": "Oh non ! Cache-toi !"}
+{"category": "LocationDialogue Location6", "line_index": 128, "text": "Hein ? // Player"}
+{"category": "LocationDialogue Location6", "line_index": 129, "text": "Dépêche-toi ! Elle arrive ! // MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 130, "text": "Fais confiance à l'anneau : il te guidera en lieu sûr !"}
+{"category": "LocationDialogue Location6", "line_index": 131, "text": ""}
+{"category": "LocationDialogue Location6", "line_index": 132, "text": "// MitaKiller"}
+{"category": "LocationDialogue Location6", "line_index": 133, "text": "Et bien, ne vas-tu pas me dire où il est ?"}
+{"category": "LocationDialogue Location6", "line_index": 134, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 135, "text": "Pourquoi je ferais ça ?"}
+{"category": "LocationDialogue Location6", "line_index": 136, "text": "Tu ne comptes pas le tuer, quand même ?"}
+{"category": "LocationDialogue Location6", "line_index": 137, "text": "// MitaKiller"}
+{"category": "LocationDialogue Location6", "line_index": 138, "text": "Donc tu ne vas rien me dire."}
+{"category": "LocationDialogue Location6", "line_index": 139, "text": "Ce n'est pas grave, j'aime savoir qu'il se cache."}
+{"category": "LocationDialogue Location6", "line_index": 140, "text": "Je sais qu'il est ici."}
+{"category": "LocationDialogue Location6", "line_index": 141, "text": "// MitaKind"}
+{"category": "LocationDialogue Location6", "line_index": 142, "text": "Pourquoi es-tu aussi agressive ?"}
+{"category": "LocationDialogue Location6", "line_index": 143, "text": "Tu ne dis rien de ce qu'il se passe !"}
+{"category": "LocationDialogue Location6", "line_index": 144, "text": "Et de toute façon..."}
+{"category": "LocationDialogue Location6", "line_index": 145, "text": "Tu en fais quoi de ces joueurs ?"}
+{"category": "LocationDialogue Location6", "line_index": 146, "text": "Ce ne sont pas des jouets !"}
+{"category": "LocationDialogue Location6", "line_index": 147, "text": "C'est quoi ton problème ?"}
+{"category": "LocationDialogue Location6", "line_index": 148, "text": "// MitaKiller"}
+{"category": "LocationDialogue Location6", "line_index": 149, "text": "Oh, tais-toi, marionnette !"}

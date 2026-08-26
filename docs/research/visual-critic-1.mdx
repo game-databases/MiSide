@@ -1,0 +1,119 @@
+# VC-1 — Visual critic: MiSide site chrome vs game soul vs top competitors
+
+Executed 2026-08-25 (VC-1 critic subagent). Method: `next start -p 4791`
+rendered in stealth headless Chrome (1536×864); viewport + full-page shots and
+computed-style probes for `/`, `/ru/`, `/ar/`, `/mita/mita-usual`, and the
+search-in-place interaction (click → type "mita" → Escape). Soul refs:
+[ui-style-scout.mdx](./ui-style-scout.mdx) + `design/refs/screenshots/thumbs/`
+(thumbs only). Competitors shot live, one attempt each: enka.network (home +
+/u/712040123 entity), new-world.guide (home + Sclerite Photocyte entity),
+wikily.gg (home + /once-human/). Raw shots + `evidence.json` (computed styles,
+font coverage, LCP, animation counts) parked at
+`C:/Users/lineg/AppData/Local/Temp/vc1-miside/` for re-verification.
+
+## Scores
+
+| Surface | Score | One-line verdict |
+|---|---|---|
+| Home `/` | **4/10** | Right palette, empty product: 15 art-less placeholder cards |
+| Entity `/mita/mita-usual` | **2/10** | Not a finished object — empty art well, no data modules |
+| Search-in-place | **3/10** | Mechanics right, index broken: "mita" → *Nothing found* |
+| `/ru/` | **5/10** | Nunito Cyrillic good; nav collides with «Поиск»; VT323 falls back mid-chip |
+| `/ar/` RTL | **6/10** | Mirrors genuinely; `dir` missing on `<html>`; system Arabic fallback |
+| Chrome / motion / dual-soul | **3/10** | Zero motion, horror register absent, hover jobs absent |
+
+## What is right (so the hits land)
+
+Tokens are faithful to the scout table: page bg `#140316`, text `#fffcff`,
+accent `#ff009c`, radius family 999/24/14 px, heart-wallpaper hero, CRT-green
+`Client build 19029065` chip, self-hosted Nunito + VT323 (cyrillic subset
+lazy-loads on /ru/), locale combobox with native names + current code
+(design-standard §5.3-compliant). Local LCP 40–240 ms, domInteractive ~20 ms —
+speed is not the problem (production CWV untested). The failure is assembly:
+the soul kit exists and the pages don't use it.
+
+## Concrete defects
+
+### Home — 4/10
+- All 15 category cards render as empty purple rectangles. The game's own menu
+  (`steam-ss2`) fills the same grid with cartridge art + per-cell counts.
+  `imgs: []` on every page — the site ships zero `<img>`; no CSS art either.
+- Hero narrates: "MiSide database built from the game client…" — §5.4 bans
+  pages that open by saying what the site is. The "HOME" pill labels the page
+  the user is already on.
+- No content module anywhere: no news row, no map thumbnail, no featured Mita.
+  wikily's home leads with an art carousel + "+20.000 Items Catalogued"; NWG's
+  with full-bleed art + giant search; enka's with art + UID input.
+
+### Entity — 2/10
+- Portrait slot is an empty gradient-topped box. h1 is "Mita" for
+  `/mita/mita-usual`; `<title>` "Mita — MiSide Database" — §5.2 requires
+  title/meta to name the selected entity.
+- Slug leaks onto the surface: breadcrumb "…/mita-usual", name pill
+  "Mita mita-usual" — ontology labels (§5.4).
+- A wall of 34 raw locale-code pills dominates; the build stamp appears twice
+  (hero + footer).
+- No stats, dialogue, relations, appearances, or location→map module; accent
+  stays global `#ff009c` — no per-Mita colour identity (§5.1). Against enka's
+  entity (art wash re-keyed to Hu Tao, base+bonus stats, locked talents as
+  visible lock chips) this is a lesser category of page.
+
+### Search-in-place — 3/10
+- Typing "mita" → **Nothing found**. `/search/en.idx.json` is 2,155 bytes /
+  24 rows — locations only, titles are raw ids ("level0"); mitas, cartridges,
+  minigames, achievements, endings are missing from the index entirely.
+- Empty state is the caption sentence "Nothing found" — §5.3 wants empty
+  wells, not absence announcements.
+- Typed text contrast is weak (dark input at `bg-card/60`).
+- Mechanics are right and worth keeping: grows across the nav row, in-place
+  content replacement (hidden, not unmounted), Escape restores, facet chips
+  recompute per keystroke.
+
+### /ru/ — 5/10
+- At 1536 px the RU nav overflows: «Инструменты» collides with the «Поиск»
+  toggle (overlap visible in the shot) — no wrap/overflow handling.
+- VT323 is latin-only: «Сборка клиента» renders in a fallback monospace beside
+  VT323 digits inside one chip — mixed-voice chrome.
+- Otherwise good: Cyrillic Nunito loads, «ГЛАВНАЯ» gradient pill is on-voice.
+
+### /ar/ (RTL) — 6/10
+- Mirrors end-to-end: nav flipped, hero right-aligned, card order reversed —
+  real RTL, not a text-align hack; digits inside RTL chips render correctly.
+- `dir="rtl"` sits on a wrapper; `<html dir>` is null — crawlers/AT read
+  direction from the document element. 5 leaf LTR leaks (build chip etc.).
+- Arabic renders in a system fallback (Nunito has no Arabic) — readable, but
+  the brand voice drops out for ar + ar-EG.
+
+### Chrome, motion, dual-soul — 3/10
+- `document.getAnimations()` = 0 on every page; the horror register appears
+  nowhere — no VHS/corruption state, no `--ms-danger` red, no CRT green beyond
+  the build chip. Scout §7.8's cozy/horror tension is unreadable; this is the
+  cozy half alone.
+- `kit/CorruptionHover.tsx` and `kit/DialogueBand.tsx` are dead code (zero
+  route importers). The game's most iconic pattern — dialogue band + name-tag
+  pill + SPACE keycap — never renders on any page.
+- Hover probe on the entity surface produced no visible change; no field has a
+  hover job (§5.3 "hover does work").
+
+## Where we lose vs the three competitors
+
+- **Art-first:** all three lead with game art; we ship zero images anywhere.
+- **Density:** NWG entity stacks stats + recipe + crafting-calculator modules;
+  wikily lists are icon tables; our entity is one pill and a pill-wall.
+- **Identity:** enka re-keys the whole card to the selected entity; ours keeps
+  a global pink regardless of which Mita is selected.
+
+## Verdict
+
+Fix list, highest impact first:
+
+1. Wire extracted art (portraits, cartridge thumbs) into cards + entity pages — empty boxes on full categories are the #1 impression killer. `kit/CartridgeCard.tsx`, `entity/EntityShell.tsx`
+2. Rebuild the per-locale search index — emit all kinds with display titles, not 24 location ids. Build script emitting `/search/<locale>.idx.json` + `lib/search/searchRows.ts`
+3. Make the entity page a finished object — real name in h1/title/meta, display names in breadcrumb/pill, per-Mita accent re-key, data modules (dialogue, appearances, relations, location→map). `entity/EntityShell.tsx`, `[locale]/mita/[character_id]/page.tsx`
+4. De-narrate the home — cut the intro sentence and "HOME" pill; add one data module (news row or featured Mita). `routes/HomeRoute.tsx`
+5. Ship the horror register — route dead-code `CorruptionHover` onto glitched entities, `--ms-danger` danger rows, VHS 404. `kit/CorruptionHover.tsx`, `app/not-found.tsx`
+6. Fix RU/DE nav overflow — wrap or overflow-menu at ≤1600 px. `chrome/Header.tsx`
+7. Scope `font-lcd` to latin or add a Cyrillic-capable pixel stack; Cyrillic LCD labels move to Nunito bold. `styles/design/tokens.css`
+8. Put `dir`/`lang` on `<html>` for locale routes; collapse the 34-pill locale wall to one quiet chip. `[locale]/layout.tsx`, `entity/EntityShell.tsx`
+
+CRITIC: FIXES_REQUIRED — 8 items

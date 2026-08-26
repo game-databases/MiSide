@@ -1,0 +1,15 @@
+# B-2 verifier A — DS-2 achievements + endings re-execution (2026-08-25)
+
+Independent re-execution against sources on buildId 19029065; no builder code reused.
+
+**ACs re-executed (8):** A1 — emitted 26 = registry `int size = 26` = Achievements.jsonl lines in each of all 34 locales; A2 — three join keys per row, names byte-equal to each locale's record at `line_index == registry_index`; A3 — fresh sweep of all 51 containers finds exactly 13 achievement-class PersistentCalls (11 `AchievementGet` + 2 `ClothCompleted`) whose args byte-match spec A.2 and both relink files; A7 — `get` True only at {0,3}, trusted=false everywhere; B1 — 4 rows with distinct ACHI anchors, every cite resolves, Menu li130 "Peaceful Mode"/li147 verified textually, dump.cs:206972/206984 carry the pinned fields; B2 — independent dump recount 13 DC / 353 pure OI **all wired** / 0 unwired / 5 IM = 371, exclusions CaseInfo 58 · ReqIK 26 · ItemTake 11 · Group 1, call histogram matches ledger; B5 — all 5 flag tables match their dumps (`ifInt` + call sizes), level4 main 2/2/2/4; B8 — #6042 chain re-parsed call-by-call = 9 calls ending `AchievementGet("ACHI_none")`@9330, safelife chain empty + unverified-behavior.
+
+**Spot-checks:** all 26 achievement rows field-by-field vs store table + 34 locales + award-site cites (exceeds the 3 asked); choice node `level5:DialogueChanger:7590` end-to-end — stringFile 13,8,9,10,11,12 → prompt_loc/options/modifiers exact, and its six cases' `eventClick` calls (1+1+2+2+1+2) equal the 9 emitted edges in order incl. targets/args (the component's separate `eventStart` call is correctly not an edge).
+
+**NEW claims confirmed:** feeds_ending=0 re-measured (zero PersistentCalls target pathID 6042/1041 anywhere in level6/level18; the empty relink file is that answer; field null on all 1555 edges); 48 DataAchievements dumps exist and ALL are byte-identical to canonical (missing only in globalgamemanagers.assets, level0, sharedassets0.assets); exactly 3 dead-reference edges reproduce serialized `m_Target=0` in their own dumps (`Animator_Functions.AnimationPlayState`@10:5288, `CoreSkip.StopWait`@15:4662, `GameObject.SetActive`@4:2998) and CoreSkip occurs nowhere in il2cpp metadata; level18 #1041 = 13 calls over 6 UnityEvents with the award mid-chain at idx 4 (`AchievementGet("ACHI_final")`, int arg 16).
+
+**Byte-determinism:** no self-contained emitter exists yet (emit stage unregistered, per the handoff), so static proxies ran instead — achievements sorted by registry_index ✓, choice_nodes sorted by node_id ✓, uniform key order in every row of every file ✓, edges grouped per node with branch-ordinal edge ids ✓. Non-blocking observation: the ObjectInteractive segment of branch_edges follows filesystem glob order rather than a canonical sort — rerun-stable on this host per the builder's sha256 claim and unpinned by any AC, but worth canonicalizing at emit-stage registration.
+
+The claimed "413/413 evidence cites" reconciles exactly as 407 `evidence[]` values + 6 `instances[]` cite-arrays, every path resolving on disk. Nit: build-log's "every container holds a clone (48)" is really 48 of 51 containers.
+
+VERDICT: PASS
