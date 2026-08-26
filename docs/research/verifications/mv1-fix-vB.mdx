@@ -1,0 +1,211 @@
+# V-MV1b — independent verification of the post-fix map-viewer spec
+
+Verifier B of the MV1 fix round. Verifies
+[map-viewer.mdx](../../specs/map-viewer.mdx) @ c40614e against
+[A-MV1](mv1-arbiter.mdx)'s 16-item fix order and the corpus, independently
+of Verifier A (whose deliverable was not read). Emphasis per brief:
+independent re-measurement of every count in §3.2's ledger and placement
+sections before any ruling.
+
+Method: fresh Python recounts over `extracted/data/**` +
+`extracted/relinks/*` (no reuse of `_meta` numbers except where the spec
+claims they match), greps over `site/src`, read of both specs. Constraints
+honored: no git, no agents, no servers; this file is the only write.
+buildId 19029065 / 0.93L confirmed on every corpus header touched.
+
+---
+
+## 1. Independent re-measurement (§3.2 ledger + placement sections)
+
+### 1.1 The 11-row partition — rebuilt from `poi-kinds.json` × `poi.jsonl`
+
+Eligibility base reproduces exactly: 25 rulings, 21 `marker_eligible:true`
+covering **709** rows, 4 false covering **277** (`ObjectItem` 262,
+`LightRenderer_Fog` 15, plus `Interface_KeyHint_Key` /
+`MakeManeken_Interaction` at 0 rows each — arithmetic closes). Every class
+in `poi.jsonl` carries a ruling; none missing.
+
+Row-by-row rebuild (my counts, then the spec's):
+
+| family_id | my recount | spec | match |
+|---|---|---|---|
+| `cartridge_item/flash-taker` | FlashTaker **21** | 21 | ✓ |
+| `cartridge_item/tamagotchi` | TamagotchiGame_Cartridge 1 + `_Cartridge` 3 = **4** | 4 | ✓ |
+| `travel_gate/save-point` | Scene_Load **19** | 19 | ✓ |
+| `travel_gate/unowned-teleports` | Trigger_Teleport 14 + Player_Teleport 13 = **27** | 27 | ✓ |
+| `minigame_access/carrier-covered` | MinigamesController in edge-covered containers = **67** | 67 | ✓ |
+| `minigame_access/no-carrier-edge` | MinigamesController @ level1 = **3** | 3 | ✓ |
+| `move_point` | MitaAIMovePoint 31 + Transform_Position 71 = **102** | 102 | ✓ |
+| `spawn_event` | Event_CreateResource **24** | 24 | ✓ |
+| `safe` | Basement_Safe **2** | 2 | ✓ |
+| `interactable` | ObjectInteractive 312 + Trigger_DistanceCircle 32 = **344** | 344 | ✓ |
+| `monster_anomaly` | 28+16+20+15+8+4+2+3 = **96**, class list verbatim | 96 | ✓ |
+
+**Σ = 709, reproduced.** Axes are jointly exhaustive over the 21 eligible
+classes and pairwise disjoint (verified by set arithmetic, including the
+container-scoped MinigamesController split). Note the spec's `move_point`
+row refines A-MV1 F-1's bare "MitaAIMovePoint | 102" into
+`MitaAIMovePoint (31), Transform_Position (71)` — same total, and the
+refinement is *required* for assertion (b): Transform_Position rows are
+eligible and would otherwise be uncovered. Legal improvement, not drift.
+
+Cross-checks feeding the census: `inline 298 / pptr-unresolved 76 /
+none 612` recounted from rows and matching `_meta.position_truth_census`;
+the §0.2 six-band decomposition (262 ObjectItem · 13+13 · 10 · 25/19/18/14 ·
+312+70+… · 46) reproduces cell-for-cell, and the two bands the spec leaves
+as "…" close exactly (`none/unknown` = 566 incl. FlashTaker 2,
+MitaAIMovePoint 6, Transform_Position 2, Trigger_DistanceCircle 14).
+
+### 1.2 Placement families — recounted
+
+- **Cartridge:** `cartridges.jsonl` = 23 data rows (13 character + 10
+  player); `pickup_ref.container` present on **21/21** placed rows;
+  `mtad-2` (save_key `mtad2`) / `mtacore` are the 2 nulls, both
+  `status:"registered-unresolved-pickup"` — matches §3.2(c) and OQ-9.
+  All 21 FlashTaker `joins.save_key` values resolve against the 23 DS-4
+  keys (0 unresolved). Pet rows carry `joins.cartridge_family`
+  (`tamagotchi-game` ×1, `tamagotchi-pet-cartridge` ×3) and no DS-4 row
+  exists for them — OQ-8's premise holds.
+- **Profile:** `profile_documents.jsonl` = 14 data rows; `placement` on
+  **11**; null on exactly `mita-2-d-profile`, `mita-core-profile`,
+  `mita-true-profile` with declared `placement_mechanism`
+  `script_granted` ×2 + `story_granted` ×1 — the OQ-9 hygiene correction
+  is faithful to the DS-5 column. `mita-usual-profile` placement =
+  `{FlashTaker, 13630, level17}` while the level17 FlashTakers carry
+  `pickup_object_path_id` 0 (mta) / 2567 (mtakd) — correction 2's
+  "cannot inherit via path_id" argument verified against real values.
+- **Minigame:** carrier relink = **76** direction rows (38 fwd + 38 inv),
+  all `mechanism:"hard"`; **38 distinct** `(minigame_id, container)`
+  pairs over **22 containers**, levels level2–level23 only; **9**
+  containers host >1 minigame; **67/70** controller rows covered,
+  level1's 3 uncovered with `joins.is_scene:false`; all 70 rows'
+  joins are exactly `{is_scene, world_object_path_id}`. Every number in
+  the §3.2(b)/(c) minigame bullets reproduces.
+- **level9 fact (the prohibition's load-bearing wall):** the covered
+  container `scene-class-family@level9` hosts **4 distinct minigames**
+  while `poi.jsonl` has exactly **3** MinigamesController rows for
+  level9 (`level9:MinigamesController`, `_#27820`, `_#27892`). Per-
+  instance anchoring is therefore genuinely unfabricatable — the ban is
+  corpus-necessary, not stylistic.
+
+### 1.3 Remaining §0.1/§0.3 counts
+
+scenes.jsonl (24 rows; roles 20 story + boot/title/menu/unbound;
+spawn on exactly the 20 story rows, all inline/world-assumed;
+chapter_name_loc null on level3/7/12/15/18; display_name_loc null ×24;
+extents x −27.75…11.25, y −3…12, z −108.5…5.5; level14/19 z −108.5) — all ✓.
+scene-links 57 = loads 19/unloads 7/continues 15/chapter_name 15/ledger 1 ✓.
+markers.jsonl `_meta`: row_count 0, four pending families 25/0/96/19,
+save_point kinds `[travel_gate]`, focus_url_contract string verbatim ✓.
+spawn-tables 24 = halloween 3 + christmas 21 ✓. scenes/relinks = 5 files,
+`cartridge--character-placement.matched_pairs` 20 ✓.
+Per-instance: 986 unique poi_ids, **790** suffixed, 196 (level,class)
+pairs, 116 multi-row, level13 ObjectInteractive **36** rows ✓.
+Level sizes: level13 **123 total / 102 eligible** (largest), next level17
+77 ✓. Example id `level9:Trigger_Teleport_#10938` exists ✓.
+`character--scene-membership`: 12 rows = 8 hard/4 inferred, 8 modeled/
+4 partial; four `from:null` census rows all partial, MitaPerson
+instance_count 93 / container_count 45 verbatim ✓. `document--scene-
+membership`: 354 rows, all hard/modeled ✓. scene--chapter relink: 30 rows
+= 15 forward `Menu[line_index]` pointers (missing exactly levels
+3/7/12/15/18) + 15 inverse ✓. DOC-5 / XC-3 / XC-5 / SCN-1 / SCN-2 /
+SCN-6 / CH-6 / CAR-8 ledger rows exist in `missingdata.md` with the cited
+meanings ✓. DS-4 §3.5 hash groups 19/16/12/1 + R4 boilerplate rule exist ✓.
+
+## 2. Fix-order rulings (A-MV1 §3, items 1–16)
+
+| # | Item | Ruling |
+|---|---|---|
+| 1 | §3.2(c) two-list ledger law + 11-row table + Σ=709 | **APPLIED** — both lists, entry schema, disposition enum, no-bare-kind rule, recount-at-emit, partition identity, full table |
+| 2 | AC MV-0.4 four assertions | **APPLIED** — (a)–(d) verbatim to F-1, proof = ledger-arithmetic unit test; container-scoped axes named in (b) |
+| 3 | §3.2(b) placement-sourced marker shape | **APPLIED** — `placement_source` + owning id, `poi_id:null` mandatory, `scene-granular` always, emitter-split scalar `container`, string-split ban, verbatim `mechanism/status/method`, `instance_census` rule w/ measured counts, both prohibitions |
+| 4 | §3.2(c) minigame bullet unconditional + 2 families | **APPLIED** — OQ-7 ruled IN, ≤38 / 67-of-70 / level1 ×3 `no-carrier-edge`, both table rows present |
+| 5 | AC MV-0.1 join audit extended | **APPLIED** — minigame→17 keys, profile slug 1:1 `document_id`, fabricated-id injection still fails loudly |
+| 6 | OQ-9 hygiene (script_granted ×2 / story_granted ×1) | **APPLIED** in all three sites (§0.1 corr. 2, §7 table, §8 stub table); DOC-5 demoted to analogous cartridge-side row |
+| 7 | §6 "123 rows (102 marker-capable)" | **APPLIED**, matches measurement |
+| 8 | AC MV-4 books/lore + locations exclusion clause | **APPLIED** — grep set extended, exclusion explicit |
+| 9 | §2 diagram deleted, table authoritative | **APPLIED** — no ASCII graph remains; "dependency edges are exactly the table above" present |
+| 10 | §3.2(d) additivity clause | **APPLIED** — and today's emitted `site/public/map/registry.json` really carries `bounds`, `coordinate-transform`, `imagery`, `zoom` |
+| 11 | Provenance-carry law §7 + PinPopover echo | **APPLIED** — disclosure trigger, mita-black evidence (fwd+inv inferred/modeled ✓ measured), 8/4 splits ✓, four `from:null` census rows excluded with counted-rows-only carve-out |
+| 12 | AC MV-7 RTL leg | **APPLIED** — `ar` trace at 375 px with the four F-8 assertions; silent-absence fails the criterion |
+| 13 | §9 four tier-1 hue sources + tokens-first rule | **APPLIED** — all four rows verified present in `tokens.css`; tokens-first sentence present |
+| 14 | History law pinned §5/§6 | **APPLIED** — replaceState/pushState split + cold-load law next to `mapState.ts` v2; tested by AC MV-3 |
+| 15 | §14 converted to carried rulings | **APPLIED** — all ten OQs carry RULED dispositions pointing at A-MV1; recommendation texts annotated, not deleted |
+| 16 | dataset-scenes §3.5 supersession note | **APPLIED** — dated 2026-08-26 blockquote under the example citing A-MV1 OQ-4 + arbiter file; `entity_kind`/`links.*` marked superseded by §4.1; example byte-intact (freeze discipline held) |
+
+**16/16 APPLIED.** No item is PARTIAL or MISSING, and I found no change
+outside the permitted delta: every new field/join name traces to a real
+corpus column or a declared M0 addition (swept below).
+
+## 3. Cross-cutting checks
+
+- **AC proof methods:** all 14 criteria name a proof (emitter unit test +
+  join-audit diff, recount script, schema test over the full file,
+  ledger-arithmetic unit test, double-run hash compare, component test,
+  fixture test, scripted trace ×3 incl. the `ar` RTL leg, static grep,
+  chrome-parity + snapshot, request-log assertion, check-cwv + bundle
+  assert, gate self-test). None hand-waves.
+- **R-D-C1 sweep (invented fields/joins in NEW text):** none found.
+  Verified real: `joins.save_key` (21), `joins.cartridge_family`,
+  `joins.pickup_object_path_id` (0/2567), `pickup_ref.container` (21),
+  `placement{carrier_class,component_path_id,container}`,
+  `placement_mechanism` values, `registered-unresolved-pickup`,
+  compound id shape `scene-class-family@levelN`, edge fields
+  `mechanism/status/method`, `instance_census`, `from:null` census row
+  fields (`instance_count`/`container_count`), `minigame_id` column,
+  `ENTITY_KINDS` keys cartridges/profiles/minigames/mita/books/lore/
+  locations, `desluggedLabel` (lives in
+  `site/src/components/routes/entityView.tsx`), chrome keys
+  `nav.map`/`map.openMap`/`map.pendingPlacement`. Declared-not-yet-existing
+  fields (`position_dispositions`, `placement_families`,
+  `display_label_loc`) are work items, not claimed measurements — legal.
+- **Tokens-only colors:** `--ms-accent/-signal/-warm/-danger` and
+  `--ms-bg-0/1/2`, `--ms-font-lcd` all exist in `site/src/styles/design/
+  tokens.css`; `ms-glow-pulse`/`ms-scan-breathe`/`ms-vhs-drift` are inside
+  `@media (prefers-reduced-motion: no-preference)`; `[data-slot="lcd-
+  terminal"]` exists; zero hex literals under `src/components` today.
+- **i18n:** exactly **34** chrome files incl. `ar.json`, `ar-EG.json`,
+  `fa.json`; the 12 `map.*` additions are correctly absent pending M5.
+- **Supersession note:** dated, single-sentence, pointer-bearing,
+  example-preserving — as ordered.
+
+## 4. Findings (all pre-fix text; none touches a fix-order item)
+
+Reproduced-vs-divergent score for the whole spec body: **every §3.2
+ledger number, every placement count, and every §0.1 census figure
+reproduces exactly. Four prose-level measured claims do not:**
+
+- **VB-1 (LOW) — §0.2 "that cell holds exactly 24 values."** Measured:
+  the `inline ∧ world-assumed` cell holds **20** values — a corpus-wide
+  sweep finds `"world-assumed"` only on the 20 story spawns of
+  `scenes.jsonl` (poi.jsonl contributes zero). The sentence also
+  self-contradicts ("— the 20 story spawns … plus nothing else").
+  Charitable readings fail too: distinct spawn scalars = 39, not 24.
+  Should read 20.
+- **VB-2 (LOW) — §0.1 join-partners table header-shape claim inverted.**
+  "`cartridges.jsonl` … header line is flat, no `_meta` key" is false:
+  its line 1 IS a `{"_meta": {…}}` wrapper (as are `minigames.jsonl`'s).
+  It is `profile_documents.jsonl` that ships the flat header without a
+  `_meta` key — so the DS-5 row's "same flat-header shape" propagates the
+  error in the opposite direction. Matters because AC MV-0.1's join-audit
+  implementer reads exactly these two files. Swap the attribution.
+- **VB-3 (LOW) — §4 table + §7 describe `document--scene-membership.jsonl`
+  as keyed `note:* → container:*`.** True of 160 of 177 forward edges;
+  the file also carries `paper_part:* → container:*` ×5,
+  `novella_surface:* → container:*` ×1, and `profile_document:* →
+  container:*` ×11 (+ inverses). An M4 producer keyed to the parenthetical
+  silently drops the 6 paper/novella edges — the silent-undercount class
+  this repo treats worst. Say "and sibling document-family prefixes".
+- **VB-4 (LOW) — §0.3 lists `FlashTaker` among "single-instance classes"
+  ("FlashTaker per level").** Measured: 21 rows over **12 levels**, up to
+  **3 per level** (level17 ×3; level9/10/12/13/14/16/21 ×2). Only
+  Scene_Load (19 levels ×1) and Basement_Safe (2×1) satisfy the claim.
+  Delete the FlashTaker parenthetical.
+
+None of the four invalidates an AC, a gate, or the F-1/F-2 contract
+repair; each is a one-line text fix with no schema or scope movement.
+
+---
+
+VERDICT: NEEDS_REVISION — 4 items
+
