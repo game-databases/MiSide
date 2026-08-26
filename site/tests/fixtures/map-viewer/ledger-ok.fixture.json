@@ -1,0 +1,23 @@
+{
+  "_fixture": true,
+  "_fixture_note": "TW-MV1 synthetic FIXTURE — NOT corpus data. Verbatim transcription of the REQUIRED pending_families partition in docs/specs/map-viewer.mdx §3.2(c) (A-MV1 F-1); every count was recounted from disk by the spec (2026-08-26) and independently re-verified by tests/mapLedger.test.mjs against extracted/data/scenes/{poi-kinds.json,poi.jsonl}. level_scope is a fixture-local encoding of the two minigame families' container-scoped axes (spec: 'MinigamesController @ containers with ≥1 carrier edge' vs '@ level1').",
+  "eligible_recount": 709,
+  "declared_marker_row_count": 70,
+  "pending_families": [
+    { "family_id": "cartridge_item/flash-taker", "poi_kinds": ["cartridge"], "poi_classes": ["FlashTaker"], "poi_rows": 21, "disposition": "emitted", "emitted_markers": 21 },
+    { "family_id": "cartridge_item/tamagotchi", "poi_kinds": ["cartridge"], "poi_classes": ["TamagotchiGame_Cartridge", "TamagotchiGame_Cartridge_Cartridge"], "poi_rows": 4, "disposition": "deferred", "reason_code": "owner-ruling-pending", "unblock_owner": "DS-4 curator (OQ-8)" },
+    { "family_id": "travel_gate/save-point", "poi_kinds": ["travel_gate"], "poi_classes": ["Scene_Load"], "poi_rows": 19, "disposition": "deferred", "reason_code": "no-entity-dataset", "unblock_owner": "SCN-1/XC-5" },
+    { "family_id": "travel_gate/unowned-teleports", "poi_kinds": ["travel_gate"], "poi_classes": ["Trigger_Teleport", "Player_Teleport"], "poi_rows": 27, "disposition": "deferred", "reason_code": "no-entity-dataset", "unblock_owner": "SCN-6 tier-2 / scenes J8" },
+    { "family_id": "minigame_access/carrier-covered", "poi_kinds": ["minigame_access"], "poi_classes": ["MinigamesController"], "level_scope": { "exclude": ["level1"] }, "poi_rows": 67, "disposition": "emitted" },
+    { "family_id": "minigame_access/no-carrier-edge", "poi_kinds": ["minigame_access"], "poi_classes": ["MinigamesController"], "level_scope": { "include": ["level1"] }, "poi_rows": 3, "disposition": "deferred", "reason_code": "no-carrier-edge", "unblock_owner": "DS-4 J7 follow-up" },
+    { "family_id": "move_point", "poi_kinds": ["move_point"], "poi_classes": ["MitaAIMovePoint", "Transform_Position"], "poi_rows": 102, "disposition": "deferred", "reason_code": "no-entity-dataset", "unblock_owner": "XC-5" },
+    { "family_id": "spawn_event", "poi_kinds": ["spawn_event"], "poi_classes": ["Event_CreateResource"], "poi_rows": 24, "disposition": "deferred", "reason_code": "unresolved-target-until-xc3", "unblock_owner": "XC-3" },
+    { "family_id": "safe", "poi_kinds": ["safe"], "poi_classes": ["Basement_Safe"], "poi_rows": 2, "disposition": "deferred", "reason_code": "no-entity-dataset", "unblock_owner": "XC-5" },
+    { "family_id": "interactable", "poi_kinds": ["interactable"], "poi_classes": ["ObjectInteractive", "Trigger_DistanceCircle"], "poi_rows": 344, "disposition": "deferred", "reason_code": "scn6-tier-2", "unblock_owner": "SCN-6" },
+    { "family_id": "monster_anomaly", "poi_kinds": ["monster"], "poi_classes": ["Location10_MitaInShadow", "Mob_Cockroach", "Mob_Maneken", "MitaKiller", "MitaFreak Enter", "Shooter_Enemy", "QuadLiner_Enemy", "Mob_ChibiMita"], "poi_rows": 96, "disposition": "deferred", "reason_code": "no-entity-dataset", "unblock_owner": "XC-5" }
+  ],
+  "placement_families": [
+    { "family_id": "profile_document/ds5-placement", "source_dataset": "extracted/data/documents/profile_documents.jsonl", "disposition": "emitted", "emitted_markers": 11 },
+    { "family_id": "minigame_access/minigame--scene-carrier", "source_dataset": "extracted/relinks/minigame--scene-carrier.jsonl", "disposition": "emitted", "emitted_markers": 38 }
+  ]
+}

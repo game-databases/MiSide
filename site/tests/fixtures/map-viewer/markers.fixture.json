@@ -1,0 +1,99 @@
+{
+  "_fixture": true,
+  "_fixture_note": "TW-MV1 synthetic FIXTURE rows — NOT corpus rows. Shapes transcribed from docs/specs/map-viewer.mdx §4.1 (marker row v2) and §3.2(b) (placement-sourced shape); vocabulary values are the spec's. entity_slug ids are REAL owning-dataset ids so the join-audit law can pass positively; marker_id/poi_id/position values remain synthetic.",
+  "rows": [
+    {
+      "marker_id": "level9:cartridge:mtacap",
+      "poi_id": "level9:FlashTaker_#1208",
+      "layer": "location-scenes/Location7",
+      "kind": "cartridge",
+      "entity_kind": "cartridges",
+      "entity_slug": "mtacap",
+      "icon": { "source": null, "fallback_state": "named-explicit-missing" },
+      "position": {
+        "source": "inline",
+        "space": "world-assumed",
+        "x": -6.17, "y": 1.25, "z": 3.5,
+        "status": "projected",
+        "target": { "kind": "GameObject", "path_id": 1208 }
+      },
+      "placement": { "mechanism": "hard", "source_join": "save_key", "scene_binding": "level9" },
+      "links": {
+        "page_url": "/cartridges/mtacap",
+        "focus_url": "/map?focus=cartridges:mtacap&scene=level9"
+      }
+    },
+    {
+      "marker_id": "level12:cartridge:mtal",
+      "poi_id": "level12:FlashTaker",
+      "layer": "location-scenes/Location10",
+      "kind": "cartridge",
+      "entity_kind": "cartridges",
+      "entity_slug": "mtal",
+      "icon": { "source": null, "fallback_state": "named-explicit-missing" },
+      "position": {
+        "source": "pptr-unresolved",
+        "space": "unknown",
+        "x": null, "y": null, "z": null,
+        "status": "awaiting-transform-stage",
+        "target": { "kind": "GameObject", "path_id": 99 }
+      },
+      "placement": { "mechanism": "hard", "source_join": "save_key", "scene_binding": "level12" },
+      "links": {
+        "page_url": "/cartridges/mtal",
+        "focus_url": "/map?focus=cartridges:mtal&scene=level12"
+      }
+    },
+    {
+      "marker_id": "level17:profile:mita-usual-profile",
+      "placement_source": "DS-5",
+      "document_id": "mita-usual-profile",
+      "poi_id": null,
+      "layer": "location-scenes/Location15",
+      "kind": "profile_document",
+      "entity_kind": "profiles",
+      "entity_slug": "mita-usual-profile",
+      "container": "level17",
+      "icon": { "source": null, "fallback_state": "named-explicit-missing" },
+      "position": { "x": null, "y": null, "z": null, "status": "scene-granular" },
+      "instance_census": { "bare": 1, "suffixed": 0, "total": 1 },
+      "placement": {
+        "carrier_class": "FlashTaker",
+        "component_path_id": "level17#13630",
+        "container": "level17",
+        "mechanism": "hard",
+        "source_join": "DS-5 placement",
+        "scene_binding": "level17"
+      },
+      "links": {
+        "page_url": "/lore/profiles/mita-usual-profile",
+        "focus_url": "/map?focus=profiles:mita-usual-profile&scene=level17"
+      }
+    },
+    {
+      "marker_id": "level9:minigame:carspace",
+      "placement_source": "minigame--scene-carrier",
+      "minigame_id": "carspace",
+      "poi_id": null,
+      "layer": "location-scenes/Location7",
+      "kind": "minigame_access",
+      "entity_kind": "minigames",
+      "entity_slug": "carspace",
+      "container": "level9",
+      "icon": { "source": null, "fallback_state": "named-explicit-missing" },
+      "position": { "x": null, "y": null, "z": null, "status": "scene-granular" },
+      "instance_census": { "bare": 3, "suffixed": 0, "total": 3, "minigames_hosted": 4 },
+      "placement": {
+        "mechanism": "hard",
+        "status": "modeled",
+        "method": "<Name>Class< grep over harvest/asset-list/level9.xml + mb-dump filename census (bare + _#pathID suffixed files)",
+        "source_join": "minigame--scene-carrier",
+        "scene_binding": "level9"
+      },
+      "links": {
+        "page_url": "/minigames/carspace",
+        "focus_url": "/map?focus=minigames:carspace&scene=level9"
+      }
+    }
+  ]
+}
