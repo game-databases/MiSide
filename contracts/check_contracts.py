@@ -141,6 +141,12 @@ EXPECTED_HEADER_CLASSES = {
     "extracted/data/scenes/poi-kinds.json": "S",
     **{f"extracted/data/dialogue/graphs/level{n}.json": "S" for n in
        (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22)},
+    # logic-layer family (docs/specs/logic-layer.mdx section 5): class A _meta-first JSONL;
+    # registered here because build_entities consumes them (F-CT2 reconciliation, EXTEND branch)
+    "extracted/data/logic/effect_calls.jsonl": "A",
+    "extracted/data/logic/flag_instances.jsonl": "A",
+    "extracted/data/logic/minigame_tunables.jsonl": "A",
+    "extracted/data/logic/predicate_records.jsonl": "A",
 }
 
 DECLARED_SCHEMA_IDS = {
@@ -170,6 +176,11 @@ DECLARED_SCHEMA_IDS = {
     "extracted/data/scenes/poi-kinds.json": "miside.scenes.poi-kinds/1",
     **{f"extracted/data/dialogue/graphs/level{n}.json": None for n in
        (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22)},
+    # logic-layer schema ids as emitted on disk and pinned by docs/specs/logic-layer.mdx section 5
+    "extracted/data/logic/effect_calls.jsonl": "miside.logic.effect_calls/1",
+    "extracted/data/logic/flag_instances.jsonl": "miside.logic.flag_instances/1",
+    "extracted/data/logic/minigame_tunables.jsonl": "miside.logic.minigame_tunables/1",
+    "extracted/data/logic/predicate_records.jsonl": "miside.logic.predicate_records/1",
     # relation-file schema ids as measured on disk (scene--* files ship no schema key)
     **{
         "extracted/relinks/achievement--award-site.jsonl": "miside.relink.achievement-award-site/1",
@@ -508,13 +519,21 @@ ENTITY_DECLS = {
     ),
     "marker": dict(
         artifacts=["extracted/data/scenes/markers.jsonl"],
-        key=None,
-        enums=[],
+        key="marker_id",
+        enums=["kind", "entity_kind", "icon.fallback_state", "position.source", "position.status",
+               "placement.mechanism"],
         notes={
-            "ROW SCHEMA DELIBERATELY UNPINNED": "open question Q5 RULED DEFERRED to XC-5 projection rerun; "
-            "v0 _meta-only renders ZERO markers honestly (no-orphan rule absolute)"
+            "row_v2": "XC-5 projection rerun LANDED (map-viewer M0): typed marker rows replaced the v0 "
+            "_meta-only posture; shape per map-viewer section 4.1 -- marker_id/poi_id/layer/kind + routed "
+            "entity_kind/entity_slug + icon/position/placement/links",
+            "icon": 'source null with fallback_state:"named-explicit-missing" on every row this build -- '
+            "named explicit-missing state until art lands, never a blank cell",
+            "position": 'status "awaiting-transform-stage"|"scene-granular" this build; "projected" arrives '
+            "with S9 (projectedCoordinates agreement is map-viewer AC MV-2)",
+            "entity_kind": "ROUTED registry segment == ENTITY_KINDS key; the emitter writes final "
+            "page_url/focus_url segments so the frontend formats, never maps, vocabularies",
         },
-        cites=["data-contracts.mdx section 3.9 + Q5 ruling"],
+        cites=["data-contracts.mdx section 3.9", "docs/specs/map-viewer.mdx sections 3/4.1"],
     ),
     "speaker_theme": dict(
         artifacts=["extracted/data/dialogue/speakers.json"],
@@ -560,6 +579,72 @@ ENTITY_DECLS = {
             "row_count": "= total join edges (1159); per-family counts live in joins.json",
         },
         cites=["data-contracts.mdx section 3.10"],
+    ),
+    # ---- logic-layer family (docs/specs/logic-layer.mdx, ACCEPTED; emitter B-LL2 LG1-LG4) -----
+    # F-CT2 reconciliation EXTEND branch: the logic lane's hand-inserted registry blocks carried
+    # clear provenance (spec + input-manifest sha256 pins, all outputs verified against them),
+    # so build_entities generates these types from the same rows the emitter pinned.
+    "effect_call": dict(
+        artifacts=["extracted/data/logic/effect_calls.jsonl"],
+        key=None,
+        enums=["effect_class", "tier"],
+        notes={
+            "edge_id": "identifies the serialized call site (logic:call:<container>:<file>:"
+            "<host_path_id|x>:<field_path>:<call_index>); DELIBERATELY NOT a unique row key on this "
+            "build -- one call can emit several rows (per-effect_class census grain; duplicate groups "
+            "measured on disk), so join discipline rides AC-L1b key K (event_field/option_index/"
+            "call_index + target + args-tuple), never edge_id uniqueness",
+            "tier": "A/B sweep assignment ORTHOGONAL to effect_class -- both axes recorded per row "
+            "(LG2/A-LL1-F-1); internal_only:true exactly on tier-B rows, which never surface through LG3",
+            "census_accounting": "_meta per-effect_class totals + tier_a/tier_b counts additive over ALL "
+            "persistent calls corpus-wide (AC-L1c)",
+            "dead-reference": 'serialized m_Target pathID == 0 residue (END-4); index-only forever '
+            "(section 7 item 1)",
+        },
+        cites=["docs/specs/logic-layer.mdx sections 4-LG2/5/7", "docs/specs/logic-layer.mdx AC-L1b/L1c/L2"],
+    ),
+    "flag_instance": dict(
+        artifacts=["extracted/data/logic/flag_instances.jsonl"],
+        key="flag_id",
+        enums=["component", "identity_status"],
+        notes={
+            "object_path_id": "filename suffix authoritative where present; bare-named single-instance "
+            "dumps resolve identity from the harvest instance inventory or stay null WITH an "
+            "identity-ledger row (LG1) -- never fabricated",
+            "memory_branches": "[{branch_ordinal,if_int,persistent calls}] -- superset of "
+            "endings/flag_tables.jsonl, reconciling as a projection (AC-L2)",
+            "writers/readers": "tier-A LG2 edge_ids whose target PPtr resolves in either id space",
+            "id_spaces": "serialized component-path-id space vs filename-suffix handle space measured "
+            "DISJOINT on this build (identity ledger namespace check)",
+        },
+        cites=["docs/specs/logic-layer.mdx sections 4-LG1/5", "docs/specs/logic-layer.mdx AC-L2"],
+    ),
+    "minigame_tunable": dict(
+        artifacts=["extracted/data/logic/minigame_tunables.jsonl"],
+        key="tunable_id",
+        enums=["kind", "rule_status"],
+        notes={
+            "rule_status": '"not-a-threshold" on EVERY row -- the AC-L4 scoring fence stands '
+            "(minigames.scoring_derivable:false untouched); envelopes only, win thresholds NOT STATIC",
+            "declared_range": "attribute-declared [Range] bounds from dump.cs; serialized_value may be "
+            "null when the dump carries the default only",
+            "internal_only": "tunables are section-7 internal rows -- envelope-labeled or not surfaced",
+        },
+        cites=["docs/specs/logic-layer.mdx sections 4-LG4/5/7", "docs/specs/logic-layer.mdx AC-L4"],
+    ),
+    "predicate_record": dict(
+        artifacts=["extracted/data/logic/predicate_records.jsonl"],
+        key="predicate_id",
+        enums=["subject.kind", "condition.expression_class", "polarity.evidence_class", "status"],
+        notes={
+            "polarity": "value:null legal only with fail-closed-unknown or pure access points; "
+            "'negative' reserved -- zero rows this build (AC-L3 checker recompute)",
+            "evidence_discriminator": "a path under harvest/mb-dump/ or il2cpp/dump.cs is a SITE locator; "
+            "[community]/wiki/ledger refs are citations -- inferred rows MUST carry non-empty citations",
+            "status_enum": "proven-hard|proven-structure|community|locked-stub|unknown-fail-closed",
+            "internal_only": "set per join outcome (section 7 item 3), never per class",
+        },
+        cites=["docs/specs/logic-layer.mdx sections 3/4-LG3/5/6", "docs/specs/logic-layer.mdx AC-L3"],
     ),
 }
 
@@ -707,7 +792,7 @@ LEDGER_COVERAGE = {
     "XC-2": [("marker", "chapter-null-columns", None)],
     "XC-3": [("marker", "pptr-unresolved-position", None), ("marker", "unresolved-target-spawn", None)],
     "XC-4": [("gap", None, ["extracted/data/documents/README.md"])],
-    "XC-5": [("marker", "markers-meta-only-v0", None)],
+    "XC-5": [("marker", "marker-projection-v1", None)],
     "XC-6": [("gap", None, ["extracted/relinks/_assembly-provenance.jsonl"])],
     "XC-7": [("gap", None, ["extracted/relinks/_assembly-provenance.jsonl"])],
     "XC-8": [("gap", None, ["extracted/PROOF.md"])],
@@ -764,7 +849,7 @@ LEDGER_COVERAGE = {
     "DOC-6": [("marker", "unverified-behavior", None)],
     "DOC-7": [("gap", None, ["extracted/data/documents/README.md"])],
     "DOC-8": [("marker", "book-art-per-locale-false", None)],
-    "SCN-1": [("marker", "markers-meta-only-v0", None)],
+    "SCN-1": [("marker", "marker-projection-v1", None)],
     "SCN-2": [("marker", "pptr-unresolved-position", None)],
     "SCN-3": [("marker", "curation-ruling-required", None)],
     "SCN-4": [("marker", "registered-unresolved-pickup", None)],
@@ -794,7 +879,9 @@ MEASURED_MARKERS = {
     "chapter-null-columns": ("chapter columns null until XC-2 (profiles x14, dialogue x2839, achievements x26)", 100),
     "pptr-unresolved-position": ('poi.position.source:"pptr-unresolved" (SCN-2)', 76),
     "unresolved-target-spawn": ('spawn_table.status:"unresolved-target" (SCN-7)', 24),
-    "markers-meta-only-v0": ("markers.jsonl _meta-only, row_count 0 (XC-5)", 1),
+    "marker-projection-v1": (
+        "markers.jsonl ships typed marker rows keyed by marker_id -- XC-5 projection rerun LANDED "
+        "(map-viewer M0 section 4.1; supersedes the v0 _meta-only posture)", 60),
     "build-stamps": ("buildId stamps across artifacts enable drift watch (XC-10)", 1),
     "steam-description-en-only": ("achievement descriptions EN-only official-feed captures (XC-11)", 26),
     "unresolved-external-pointer": ("gallery_icon external pointer file_id 2 / path_id 276 shared by players (CH-2)", 1),
@@ -977,46 +1064,53 @@ def stamp_style(keys: list) -> str:
 # --------------------------------------------------------------------------- #
 
 
+def entity_row_pool(etype: str, decl: dict):
+    """ALL data rows of an entity type POOLED across every contributing artifact, in fixed
+    declaration order. F1/vB fix: field types, nullability and enum counts are corpus-wide
+    measurements over this pool -- never last-artifact-wins merges of per-file inventories.
+    Returns (rows, row_total, stamp_styles)."""
+    pool: list = []
+    row_total = 0
+    styles: set = set()
+    for rel in decl["artifacts"]:
+        cls = EXPECTED_HEADER_CLASSES[rel]
+        if cls == "S":
+            doc = load_json(rel)
+            # curated_mapping / classes arrays are the data planes of single-object sidecars
+            arr = doc.get("curated_mapping") if "curated_mapping" in doc else doc.get("classes")
+            if arr is None and etype == "dialogue_graph":
+                row_total += 1  # one graph document per file; no measurable data plane by design
+                continue
+            if not isinstance(arr, list):
+                raise SystemExit(f"FATAL: {rel}: no data plane array found for {etype}")
+            row_total += len(arr)
+            pool.extend(arr)
+            continue
+        _, rows = split_header(rel, cls)
+        row_total += len(rows)
+        pool.extend(rows)
+        styles.add(stamp_style(stamp_keys(rows)))
+    return pool, row_total, styles
+
+
 def build_entities(pin: dict) -> dict:
     entity_types = {}
     for etype, decl in ENTITY_DECLS.items():
-        artifacts = decl["artifacts"]
-        fields: dict = {}
-        enums: dict = {}
-        row_total = 0
-        row_stamps: set = set()
-        styles: set = set()
-        for rel in artifacts:
-            cls = EXPECTED_HEADER_CLASSES[rel]
-            if cls == "S":
-                doc = load_json(rel)
-                # curated_mapping / classes arrays are the data planes of single-object sidecars
-                arr = doc.get("curated_mapping") if "curated_mapping" in doc else doc.get("classes")
-                if arr is None and etype == "dialogue_graph":
-                    row_total += 1  # one graph document per file
-                    continue
-                if not isinstance(arr, list):
-                    raise SystemExit(f"FATAL: {rel}: no data plane array found for {etype}")
-                row_total += len(arr)
-                fields.update(measure_fields(arr))
-                enums.update(measure_enums(arr, decl["enums"]))
-                continue
-            _, rows = split_header(rel, cls)
-            row_total += len(rows)
-            fields.update(measure_fields(rows))
-            enums.update(measure_enums(rows, decl["enums"]))
-            row_stamps.update(stamp_keys(rows))
-            styles.add(stamp_style(stamp_keys(rows)))
+        pool, row_total, styles = entity_row_pool(etype, decl)
+        # ONE measurement over the pooled rows (F1/vB): multi-artifact types (relink_edge's 25
+        # files) now report unioned types/nullability/enum distributions, matching _meta.notation.
+        fields = measure_fields(pool)
+        enums = measure_enums(pool, decl["enums"])
         # declared annotations layered over measured inventory (never inventing fields)
         for fname, note in decl["notes"].items():
             target = fname.split("/")[0]
             if target in fields:
                 fields[target]["note"] = note
-        # key uniqueness gate
+        # key uniqueness gate (full scan over every contributing artifact)
         if decl["key"] and row_total:
             keycols = decl["key"].split("+")
             seen: Counter = Counter()
-            for rel in artifacts:
+            for rel in decl["artifacts"]:
                 cls = EXPECTED_HEADER_CLASSES[rel]
                 if cls == "S":
                     doc = load_json(rel)
@@ -1032,6 +1126,7 @@ def build_entities(pin: dict) -> dict:
             dupes = [k for k, v in seen.items() if v > 1]
             if dupes:
                 raise SystemExit(f"FATAL: {etype}: duplicate keys {dupes[:3]}")
+        artifacts = decl["artifacts"]
         entry = {
             "artifacts": artifacts,
             "citations": decl["cites"],
@@ -1050,8 +1145,9 @@ def build_entities(pin: dict) -> dict:
             "consumes_never_derives": "frontend consumes these typed contracts; runtime derivation beyond the "
             "pinned resolution rules is banned (spec section 1)",
             "generated_by": "contracts/check_contracts.py generate",
-            "notation": "nullable=true means the field is absent or JSON-null on >=1 measured row; absent_or_null_rows "
-            "counts them; enums are MEASURED value->count sets over all data rows",
+            "notation": "nullable=true means the field is absent or JSON-null on >=1 measured row POOLED OVER "
+            "EVERY contributing artifact of the entity type; absent_or_null_rows counts them corpus-wide; enums "
+            "are MEASURED value->count sets pooled over all data rows of all artifacts (never last-file-wins)",
             "spec": SPEC_PATH,
             "build_pin": pin,
         },
@@ -1084,7 +1180,9 @@ def build_joins(pin: dict) -> dict:
         nulls: Counter = Counter()
         fam_strings = 0
         for r in rows:
-            dirs[r.get("direction")] += 0 if r.get("direction") is None else 1
+            d = r.get("direction")
+            if d is not None:
+                dirs[d] += 1  # families whose rows legitimately lack direction get NO zero-count entry (vB-F5)
             if r.get("kind") is not None:
                 kinds[str(r["kind"])] += 1
             if "mechanism" in r:
@@ -1345,7 +1443,11 @@ def probe_carriers() -> dict:
         1 for r in pois if isinstance(r.get("position"), dict) and r["position"].get("source") == "pptr-unresolved")
     p["unresolved-target-spawn_x"] = sum(1 for r in stables if r.get("status") == "unresolved-target")
     mk_head, mk_rows = split_header("extracted/data/scenes/markers.jsonl", "A")
-    p["markers_meta_only_v0_x"] = 1 if mk_head.get("schema") == "miside.markers.projection/1" and not mk_rows else 0
+    # XC-5 projection rerun LANDED (map-viewer M0): typed marker rows replaced the v0 _meta-only
+    # posture -- the marker is now "the projection exists with typed keys", not "it is absent"
+    p["marker_projection_v1_x"] = (
+        sum(1 for r in mk_rows if isinstance(r.get("marker_id"), str) and r.get("marker_id"))
+        if mk_head.get("schema") == "miside.markers.projection/1" else 0)
     p["build_stamps_x"] = 1 if pipeline_pin()["build_id"] else 0
     p["steam_description_en_only_x"] = sum(
         1 for r in ach
@@ -1390,7 +1492,7 @@ def probe_carriers() -> dict:
 PROBE_KEY_ALIASES = {
     "pptr-unresolved-position": "pptr-unresolved-position_x",
     "unresolved-target-spawn": "unresolved-target-spawn_x",
-    "markers-meta-only-v0": "markers_meta_only_v0_x",
+    "marker-projection-v1": "marker_projection_v1_x",
     "build-stamps": "build_stamps_x",
     "steam-description-en-only": "steam_description_en_only_x",
     "unresolved-external-pointer": "unresolved_external_pointer_x",
@@ -1544,9 +1646,13 @@ def diff_summary(a, b, path="$") -> list:
 
 def classify_change(diffs: list) -> str:
     """C8 helper: does a registry diff touch the FIELD SET (=> schema-id bump required)?"""
+    typesetish = re.compile(r"\$\.entity_types\.[^.]+: (added|removed)$")
     fieldish = re.compile(r"\$\.entity_types\.[^.]+\.fields\.[^.]+" )
     enumish = re.compile(r"\$\.entity_types\.[^.]+\.enums")
     rowish = re.compile(r"\$\.entity_types\.[^.]+\.row_count")
+    if any(typesetish.search(d) for d in diffs):
+        return ("ENTITY-TYPE SET CHANGE -- register the type in ENTITY_DECLS and ship checker + regenerated "
+                "registries in ONE commit (spec section 6.3; logic-layer AC-L6 pattern)")
     if any(fieldish.search(d) or enumish.search(d) for d in diffs):
         return ("FIELD-SET/ENUM CHANGE -- bump the artifact schema-id version, regenerate entities.json and "
                 "update fingerprints.json in ONE commit (spec section 6.3)")
@@ -1573,22 +1679,63 @@ def gate_registry_file(rep: Report, rel: str, rebuilt: dict, label: str):
         rep.fail(f"C8 {label}: {classify_change(diffs)}")
 
 
-def gate_never_null(rep: Report):
-    """C2 half: every never-null claim holds over ALL rows (full scan, no sampling)."""
+def committed_registry(label: str):
+    """Committed registry artifact parsed, or None when absent/unparseable (existence/parity is
+    C1's failure; gates that consume committed state report that fact and move on)."""
+    try:
+        return json.loads(read_bytes(f"contracts/registry/{label}").decode("utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def nullability_claim_problems(committed_fields: dict, inv: dict) -> list:
+    """C2 comparator: COMMITTED per-field claims vs a fresh full-scan measurement.
+    Returns human-readable problems; empty list == every checked claim holds over ALL rows."""
+    problems = []
+    for fname, meas in inv.items():
+        claim = committed_fields.get(fname)
+        if not isinstance(claim, dict):
+            continue  # field-set membership drift is C1/C8 territory
+        if bool(claim.get("nullable")) != bool(meas["nullable"]):
+            problems.append(f"{fname}: nullable={claim.get('nullable')} committed vs "
+                            f"{meas['nullable']} measured")
+        c_abs = claim.get("absent_or_null_rows", 0)
+        m_abs = meas.get("absent_or_null_rows", 0)
+        if c_abs != m_abs:
+            problems.append(f"{fname}: absent_or_null_rows={c_abs} committed vs {m_abs} measured")
+        if claim.get("type") != meas["type"]:
+            problems.append(f"{fname}: type={claim.get('type')!r} committed vs {meas['type']!r} measured")
+    return problems
+
+
+def gate_never_null(rep: Report, committed_entities):
+    """C2 half: every nullability/absence/type claim the COMMITTED registry makes about a field is
+    re-measured over ALL rows of its artifacts (full scan, no sampling). Real fail path (vB-F2 --
+    this gate used to emit oks it could never fail): a stale, hand-edited or regressively
+    generated entities.json whose claims contradict the corpus fails HERE on its own, independent
+    of C1's byte-compare which would also catch it but without naming the false claims."""
+    if committed_entities is None:
+        rep.warn("C2 committed entities.json unreadable -- nullability claims unverifiable this run "
+                 "(file existence/parity is C1's failure)")
+        return
+    checked = 0
+    problems: list = []
     for etype, decl in ENTITY_DECLS.items():
-        for rel in decl["artifacts"]:
-            cls = EXPECTED_HEADER_CLASSES[rel]
-            if cls == "S":
-                doc = load_json(rel)
-                rows = doc.get("curated_mapping") or doc.get("classes") or ([doc] if etype == "dialogue_graph" else [])
-            else:
-                _, rows = split_header(rel, cls)
-            if not rows:
-                continue
-            inv = measure_fields(rows)
-            bad = [f for f, e in inv.items() if not e["nullable"]]
-            rep.ok(f"C2 {etype}: never-null holds over all {len(rows)} rows of {os.path.basename(rel)} "
-                   f"({len(bad)} never-null fields)")
+        committed_fields = ((committed_entities.get("entity_types") or {}).get(etype) or {}).get("fields") or {}
+        if not isinstance(committed_fields, dict) or not committed_fields:
+            continue
+        pool, _, _ = entity_row_pool(etype, decl)
+        if not pool:
+            continue
+        inv = measure_fields(pool)
+        checked += sum(1 for f in committed_fields if f in inv)
+        problems.extend(f"{etype}.{p}" for p in nullability_claim_problems(committed_fields, inv))
+    if problems:
+        rep.fail(f"C2 nullability/type claims contradict the corpus on {len(problems)} field claim(s): "
+                 f"{problems[:5]}")
+    else:
+        rep.ok(f"C2 VERIFIED (can fail): {checked} committed field claims re-measured over ALL rows of "
+               f"{len(ENTITY_DECLS)} entity types -- nullable flag, absent_or_null_rows and merged type hold")
 
 
 def gate_joins(rep: Report, joins: dict):
@@ -1624,30 +1771,50 @@ def gate_joins(rep: Report, joins: dict):
             rep.ok("C3 _assembly-provenance consolidates all 25 families + records the DS-6 exclusion")
 
 
-def gate_anchor_lint(rep: Report, joins: dict):
-    """C4: every from/to parses against its OWN family's recorded grammar."""
+def lint_anchors_against_grammar(stem: str, grammar: dict, rows: list) -> list:
+    """Core C4 surface: violations of a FIXED grammar over edge rows. Never derives anything --
+    the grammar arrives from the caller (verify: the committed registry; probes: a fixture)."""
+    allowed = {side: set(forms) for side, forms in grammar.items()}
     violations = []
-    checked = 0
-    for stem, fam in joins["families"].items():
-        if fam["anchor_mode"] != "endpoints":
-            continue
-        grammar = {k: set(v) for k, v in fam["anchor_grammar"].items()}
-        for r in load_jsonl(fam["file"]):
-            if "_meta" in r:
+    for r in rows:
+        for side in ("from", "to"):
+            if side not in r:
                 continue
+            v = r[side]
+            if v is None:
+                continue
+            if anchor_form(str(v)) not in allowed.get(side, set()):
+                violations.append(f"{stem}:{side}={v!r}")
+    return violations
+
+
+def gate_anchor_lint(rep: Report, committed_joins):
+    """C4: every from/to across all edges parses against its family's grammar as recorded in the
+    COMMITTED joins.json -- itself cross-checked against spec censuses by C1/C3. vB-F3 fix:
+    linting against a grammar freshly derived FROM THE SAME ROWS auto-admits novel forms before
+    linting (a foreign anchor could grow the grammar and pass); derivation (generate-time) and
+    lint (verify-time) are now different surfaces."""
+    if committed_joins is None:
+        rep.fail("C4 committed joins.json unreadable -- no independent grammar to lint against")
+        return
+    violations: list = []
+    checked = 0
+    families = 0
+    for stem, fam in sorted(committed_joins.get("families", {}).items()):
+        if fam.get("anchor_mode") != "endpoints" or "anchor_grammar" not in fam:
+            continue
+        families += 1
+        rows = [r for r in load_jsonl(fam["file"]) if "_meta" not in r]
+        for r in rows:
             for side in ("from", "to"):
-                if side not in r:
-                    continue
-                v = r[side]
-                if v is None:
-                    continue
-                checked += 1
-                if anchor_form(str(v)) not in grammar[side]:
-                    violations.append(f"{stem}:{side}={v!r}")
+                if side in r and r[side] is not None:
+                    checked += 1
+        violations.extend(lint_anchors_against_grammar(stem, fam["anchor_grammar"], rows))
     if violations:
         rep.fail(f"C4 anchor lint violations ({len(violations)}): {violations[:5]}")
     else:
-        rep.ok(f"C4 all {checked} string endpoints parse against their own family grammar")
+        rep.ok(f"C4 VERIFIED (can fail): all {checked} string endpoints parse against the COMMITTED "
+               f"joins.json grammar ({families} endpoint families)")
 
 
 def gate_fingerprints(rep: Report, fps: dict, pin: dict):
@@ -1762,8 +1929,24 @@ def gate_unit_semantics(rep: Report):
         rep.ok("C9 next_resolved: string-'null' x572 vs key-absent-terminal x94 discriminated over full corpus")
 
 
+def strip_declared_notes(fields: dict) -> dict:
+    """Remove declarative 'note' keys from a fields inventory -- comparisons between a fresh
+    measurement and a committed block must be measurement-vs-measurement."""
+    out = {}
+    for k, v in fields.items():
+        if isinstance(v, dict):
+            v = {kk: vv for kk, vv in v.items() if kk != "note"}
+            for sub in ("subfields", "element_fields"):
+                if isinstance(v.get(sub), dict):
+                    v[sub] = strip_declared_notes(v[sub])
+        out[k] = v
+    return out
+
+
 def gate_selftest_mutations(rep: Report):
-    """Negative probes: C2 unknown field/value, C4 foreign anchor, C5 tamper, C1 count mutation."""
+    """Negative probes. vB-F4 honesty rule: every green line below has a LIVE fail branch that
+    bites through the real compare surface (committed registries / measurement), not a
+    self-fulfilling demo -- probes that could not fail were retired or upgraded."""
     rows = split_header("extracted/data/characters/personages.jsonl", "A")[1]
     injected = [dict(rows[0]), ] + [dict(r) for r in rows[1:]]
     injected[0]["__unknown_field__"] = 1
@@ -1773,28 +1956,60 @@ def gate_selftest_mutations(rep: Report):
         rep.fail("C2 negative probe: unknown-field injection undetected")
     else:
         rep.ok("C2 negative probe: injected unknown field changes the measured inventory (regeneration would differ)")
+    # C2 comparator bite (vB-F2): flip a never-null claim the way a bad hand-edit would
+    fake_claim = {"nullable": False, "type": inv_a["gallery_icon"]["type"]}
+    probs = nullability_claim_problems({"gallery_icon": fake_claim}, inv_a)
+    if not probs:
+        rep.fail("C2 negative probe: flipped never-null claim undetected by the C2 comparator")
+    else:
+        rep.ok(f"C2 negative probe: committed nullable=false vs measured nullable=true flagged "
+               f"({probs[0]}) -- gate_never_null fail path is live")
     fake_edge = {"from": "cartridge:mta", "to": "scene-class-family@level3"}
     if anchor_form(fake_edge["from"]) in {"<bare>", "scene:", "minigame:", "achievement:", "loc:"}:
         rep.fail("C4 negative probe mis-derived")
-    joins = build_joins(pipeline_pin())
-    mg = joins["families"]["minigame--scene-carrier"]["anchor_grammar"]["from"]
-    if anchor_form(fake_edge["from"]) in mg:
-        rep.fail("C4 negative probe: cartridge: anchor accepted by a family that never uses it")
+    joins_comm = committed_registry("joins.json")
+    if joins_comm is None:
+        rep.fail("C4 negative probe: committed joins.json unavailable -- lint surface untestable")
     else:
-        rep.ok("C4 negative probe: foreign 'cartridge:' anchor rejected by family grammar")
-    raw = read_bytes("extracted/data/endings/flag_tables.jsonl")
-    tampered = raw[:-2] + b'X\n'
-    if hashlib.sha256(tampered).hexdigest() == hashlib.sha256(raw).hexdigest():
+        vio = lint_anchors_against_grammar(
+            "minigame--scene-carrier",
+            joins_comm["families"]["minigame--scene-carrier"]["anchor_grammar"],
+            [fake_edge])
+        if not vio:
+            rep.fail("C4 negative probe: foreign 'cartridge:' anchor PASSED the committed-grammar lint")
+        else:
+            rep.ok("C4 negative probe: foreign 'cartridge:' anchor REJECTED by the COMMITTED family "
+                   "grammar via the lint surface verify itself uses")
+    fps_comm = committed_registry("fingerprints.json")
+    ft_rel = "extracted/data/endings/flag_tables.jsonl"
+    raw = read_bytes(ft_rel)
+    clean_sha = hashlib.sha256(raw).hexdigest()
+    tampered_sha = hashlib.sha256(raw[:-2] + b'X\n').hexdigest()
+    if fps_comm is None:
+        rep.fail("C5 tamper probe: committed fingerprints.json unavailable -- compare surface untestable")
+    elif clean_sha != fps_comm["artifacts"][ft_rel]["sha256"]:
+        rep.fail("C5 tamper probe: UNTOUCHED artifact disagrees with its committed fingerprint "
+                 "(control failed -- corpus moved without regeneration)")
+    elif tampered_sha == clean_sha:
         rep.fail("C5 tamper probe: hash collision?!")
     else:
-        rep.ok("C5 tamper probe: one flipped byte breaks the recomputed sha256 (scratch copy, corpus untouched)")
-    ent = build_entities(pipeline_pin())
-    mutated = json.loads(canon_json(ent))
-    mutated["entity_types"]["flag_table"]["row_count"] += 1
-    if canon_json(mutated) == canon_json(ent):
-        rep.fail("C1 mutation probe: row_count mutation undetected")
+        rep.ok("C5 tamper probe: one flipped byte breaks the sha256 C5 compares against the COMMITTED "
+               "fingerprints record (scratch bytes only, corpus untouched)")
+    # C1 bite (vB-F4 upgrade of the incremented-int demo): row-level content flows into the
+    # measured inventory C1 serializes -- dropping one real row shifts it vs the committed block.
+    ent_comm = committed_registry("entities.json")
+    inv_full = measure_fields(rows)
+    delta_i = next((i for i in range(len(rows))
+                    if measure_fields(rows[:i] + rows[i + 1:]) != inv_full), None)
+    if delta_i is None:
+        rep.fail("C1 mutation probe: no single-row drop changes personage's measured inventory")
+    elif ent_comm is not None and inv_full != strip_declared_notes(
+            ent_comm["entity_types"]["personage"]["fields"]):
+        rep.fail("C1 mutation probe: clean measurement disagrees with committed entities.json personage "
+                 "block (control failed -- regenerate before trusting this suite)")
     else:
-        rep.ok("C1 mutation probe: mutated row_count makes regeneration differ (exit != 0 path)")
+        rep.ok(f"C1 mutation probe: dropping data row #{delta_i} shifts the measured field inventory "
+               f"C1 serializes (regeneration diverges -> exit != 0 path)")
 
 
 def registry_field_vocabulary(entities: dict) -> set:
@@ -1937,9 +2152,9 @@ def mode_verify() -> int:
     gate_registry_file(rep, FINGERPRINT_FILES, built[FINGERPRINT_FILES], "fingerprints.json")
     gate_registry_file(rep, AVAILABILITY_FILE, built[AVAILABILITY_FILE], "availability.json")
     gate_registry_file(rep, STUB_FILE, built[STUB_FILE], "stub-markers.json")
-    gate_never_null(rep)
+    gate_never_null(rep, committed_registry("entities.json"))
     gate_joins(rep, built[JOIN_FILES])
-    gate_anchor_lint(rep, built[JOIN_FILES])
+    gate_anchor_lint(rep, committed_registry("joins.json"))
     gate_fingerprints(rep, built[FINGERPRINT_FILES], pipeline_pin())
     gate_availability(rep, built[AVAILABILITY_FILE])
     gate_unit_semantics(rep)
