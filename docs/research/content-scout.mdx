@@ -1,0 +1,433 @@
+# Content Sections Scout — Guides + News (LANE-C, PrepareTask step 1)
+
+Scout pass 2026-08-26 for board items "Guides section (entity-linked,
+localized)" + "News section (game + database news, localized)"
+([docs/TODO.mdx](../TODO.mdx) Phase 3). One shared content pipeline serves
+both. Canon read in full this pass: AGENTS.md, decision-register.md,
+site-sections.md, localization-architecture.md, seo-standard.md,
+design-standard.md, domain-doctrine.md, [spec.md](../../spec.md),
+[data-acquisition.md](../../data-acquisition.md),
+[competitor-research.md](../../competitor-research.md), docs/TODO.mdx.
+External evidence: new-world.guide fetched live (nav + `/posts` markup);
+wikily.gg via search inventory. Counts below measured on disk this pass
+against buildId **19029065** / v0.93L unless cited otherwise.
+
+Sections: [§1 Sources in hand](#1-content-sources-in-hand) ·
+[§2 Site content layer](#2-existing-site-content-layer) ·
+[§3 Competitor rulings](#3-competitor-rulings) ·
+[§4 Spec skeleton for the Documentator](#4-spec-skeleton-for-the-documentator).
+
+## 1. Content sources in hand
+
+The corpus is a guide/news raw-material surplus, not a gap. Everything a
+guide claim needs already exists as contract-pinned data; the section's job
+is rendering and linking it, never inventing it.
+
+### 1.1 Guide fodder datasets (`extracted/data/`)
+
+| Dataset | File | Rows (measured) | Guide use |
+|---|---|---|---|
+| Achievements | `extracted/data/achievements/achievements.jsonl` | 26 | 100%-run walkthrough; missables flagged; global-% context joined from Steam keyless stats (spec J12) |
+| Cartridges | `extracted/data/cartridges/cartridges.jsonl` | 24 lines (23 + `_meta`) | Collection route guide per placement authority DS-4 (13 character + 10 player cartridges) |
+| Minigames | `extracted/data/cartridges/minigames.jsonl` | 18 lines | Rule/threshold explainers once logic layer lands (COMP J6) |
+| Endings | `extracted/data/endings/endings.jsonl` | 4 lines | Ending-route guides — conditions incl. negative ones |
+| Choice nodes | `extracted/data/endings/choice_nodes.jsonl` | **371** | The real decision tree — no competitor models even 6 of these publicly |
+| Branch edges | `extracted/data/endings/branch_edges.jsonl` | **1,555** | Walkthrough spine: flag → consequence edges for step lists |
+| Flag tables | `extracted/data/endings/flag_tables.jsonl` | 5 | Safe-window percentages (17%/98%/empty) rendered as data |
+| Characters | `extracted/data/characters/personages.jsonl` | 25 lines | Mita/player bios feeding lore-adjacent guides |
+| Dialogue graphs | `extracted/data/dialogue/nodes.jsonl` + `edges.jsonl` | **2,839 nodes / 3,776 edges** | Walkthrough-relevant branches; speaker-joined transcripts |
+| Scenes/POIs | `extracted/data/scenes/scenes.jsonl`, `poi.jsonl`, `markers.jsonl` | 25 scenes · 987 POIs | Placement context; map-module anchors for location guides |
+
+Documents family ([extracted/data/documents/README.md](../../extracted/data/documents/README.md),
+DS-5 build B-5): `profile_documents.jsonl` **14** rows (11 placed · 2
+script-granted · 1 story-granted), `world_documents.jsonl` **166** (160
+notes + 5 paper parts + 1 novella surface), `books.jsonl` **8** localized
+readable-book textures, plus five relink files
+(`document--character` 28, `document--achievement` 28,
+`document--scene-membership` 354, `document--event-wiring` 370,
+`document--minigame` 12 edges). Collectible-location guides consume these
+directly. Honesty fences that bind any guide written over them:
+
+- All 160 notes carry `text_mechanism: "unresolved"` — a guide may say
+  where a note sits and what it wires to, never quote invented prose.
+- `chapter` is null on all 14 profile rows until the P5 level↔chapter map;
+  community chapter attributions must not leak into guide copy.
+- Book art parity is NOT total ×34: zh-Hans/zh-Hant hold 4/8 book pages —
+  localized collectible guides inherit the declared explicit-filler state.
+
+### 1.2 Localization substrate
+
+- `extracted/localization/<34 client dirs>/` — 2,210 category JSONLs /
+  **180,148 records** (Phase-1 closure line, TODO); every game string a
+  localized article needs resolves via `{category, line_index}` pointers.
+- `extracted/relinks/locale_availability.jsonl` — **2,686 cells**, three row
+  kinds (`category_presence`, `dialogue_bucket`, `book_page`). It gates
+  entity pages today; articles need an analogous per-article gate (§4 M5).
+- Client-only locales ar/ar-EG/ru-x-prerev ship pages like everyone else
+  (three-way reconcile table, spec §Locale strategy).
+
+### 1.3 News seed surfaces
+
+The game's own news surface is thin and that fact shapes the whole section:
+
+- **Steam news RSS** (`https://store.steampowered.com/feeds/news/app/2527500/`,
+  keyless) is the official feed pinning public patch dates (D1 §7). Patch
+  cadence reality: four patches Dec 2024–Feb 2025, silent since v0.93L
+  (2025-06-13) — a pure re-post feed would starve. Collab/Kickstarter
+  (backing since 2025-10-31)/award items are the living half of game news.
+- **buildId watch**: install pinned at buildId 19029065
+  ([data-acquisition.md](../../data-acquisition.md) update-watch section);
+  `extracted/EXTRACTION-LOG.md` accumulates the build history. A changed
+  appmanifest buildId = patch detected = rerun = diff material.
+- **Per-build diff inputs already proven**: save-point rename lineage (J9)
+  and minigame tuning deltas between builds are exactly what the changelog
+  viewer (CORE differentiator) and `/news/patch/{id}` pages (D5 ambition
+  move 3) render. Demo appid 2527520 stays a diff-boundary target only.
+- **Internal precedent**: GW3's news-first spec models `news-article` as an
+  entity with `tags`, `editorial_status(confirmed|reported|speculation)`,
+  relations `news-article ↔ entity-stub (mentions)` and
+  `timeline-event → news-article` (`guild-wars-3/spec.md` §entities) — the
+  closest in-network schema to copy for ingest discipline.
+
+### 1.4 Demand map (what players actually search)
+
+The competitor corpus IS the editorial backlog (COMP S3): ≥100 Steam-guide
+titles are 100% achievement runs, all-cartridges routes, outfit unlocks,
+secrets compilations, Peaceful-Mode coverage — each currently served by
+stale Dec-2024 prose that predates v0.93 fixes. Every one of those becomes
+a data-grounded guide here, and each has its dataset already emitted (§1.1).
+
+## 2. Existing site content layer
+
+An article must slot into machinery that already exists and is verified
+(R-SB2 APPROVE; chrome visual-critic rounds 1–4). The builder extends
+factories, never forks routing.
+
+### 2.1 Two-tree routing, shared factories
+
+- `site/src/app/(pivot)/` serves the pivot locale `en` at bare paths;
+  `site/src/app/[locale]/` serves the 33 prefixed locales
+  (`site/src/i18n/locales.ts` is the pinned 34-row table: BCP-47 code ·
+  client dirName join key · `dir` ltr/rtl · URL prefix · two declared
+  aliases only, `ru-x-prerev→ru`, `ar-EG→ar`). `/{en}/*` does not exist.
+- Wrapper files are thin (<15 lines) and delegate to shared factories in
+  `site/src/components/routes/`: `sectionPages.tsx` (section/home/map),
+  `entityPages.tsx` + `entityView.tsx` (indexes + detail), each factory
+  taking `{localeCode}`/params and returning content + Metadata.
+- **Current guides/news state**: both are stubs —
+  `(pivot)/guides/page.tsx` and `(pivot)/news/page.tsx` render
+  `StubSectionContent({segment})` with `buildSectionMetadata(...)`; the
+  `[locale]` mirrors do the same per locale. `/devlog` is a third stub of
+  the same shape. Feeds exist as honest skeletons:
+  `site/src/app/feeds/news.xml/route.ts` + `patch.xml/route.ts` (empty
+  `<channel>`, "items land with the News piece").
+
+### 2.2 Data flow (server-only readers over ../extracted)
+
+- `site/src/data/contracts.ts` — `readJsonl<T>()` handles both `_meta`
+  header shapes in the corpus, enforces `_meta.row_count` pins, exposes
+  `ENTITY_KINDS` / `kindIds()` / `buildId()`. Root override via
+  `MISIDE_EXTRACTED_ROOT`. Nothing under `src/data/` bundles into client JS.
+- `site/src/data/resolveLoc.ts` — `{category, line_index}` → string for a
+  locale; arithmetic-free by contract (offsets applied at emit).
+- `site/src/data/availability.ts` — reads `locale_availability.jsonl`,
+  exposes `kindAvailable(locale, kind)` / `availableLocalesFor(kind)`.
+  Note granularity: availability today is KIND-level, not per-entity — an
+  article pipeline needs per-article granularity (open question §4 OQ-5).
+
+### 2.3 i18n mechanics ×34
+
+- Chrome strings live in `site/src/i18n/chrome/<code>.json` (34 flat files,
+  keyed `"nav.guides"`, `"nav.news"`, …) — namespace separate from game text
+  (localization-architecture §4); `getChrome(def)` is the single entry point
+  (`src/i18n/request.ts`). Guides/news labels already ship in all 34.
+- RTL: `[locale]/layout.tsx` declares `lang`+`dir` on the document element
+  via `HtmlShell lang={def.code} dir={def.dir}` — ar/ar-EG get `rtl` free;
+  `fa` stays LTR pending a spec amendment (SB-1 finding logged in
+  locales.ts lines 50–53).
+- Metadata law per page (`buildSectionMetadata`, `entityView.tsx
+  buildEntityMetadata`): unique localized title/description composed from
+  THAT locale's chrome or the entity's own game strings (never EN
+  passthrough), self-canonical carrying the exact serving prefix,
+  hreflang cluster via `src/lib/hreflang.ts buildAlternates(barePath, codes)`
+  with x-default → bare path.
+
+### 2.4 Discovery surfaces an article must enter
+
+- **Sitemap**: `src/lib/sitemapPartitions.ts` builds one partition per
+  section×locale gated by ledger membership (`<section>@<locale>` ids;
+  lastmod = extraction stamp via `MISIDE_BUILD_DATE`, never wall-clock).
+  Guides/news currently gate on `"achievements"` as a placeholder ternary —
+  a real per-article gate replaces that when articles exist.
+- **Search**: `src/lib/search/searchRows.ts` MiniSearch index, ids
+  kind-namespaced `<kind>:<contract-id>`, kind-balanced result cap. New
+  article kinds must emit rows here or violate the search-in-place ruling
+  ([DR-2026-08-22-search-is-not-a-page]: results replace page content, no
+  search route exists).
+- **Feeds**: news.xml + patch.xml await items (site-sections #23 RSS is
+  [CORE-cheap]; seo-standard §9 adds Google-News-style eligibility for the
+  News section).
+- **Entity-page reverse links**: `EntityDetailRoute` composes from data
+  facets; no "featured in guides/news" module exists yet — the aggressive
+  internal-linking rule (site-sections rules) requires it once either
+  section lands.
+
+### 2.5 Exact files a builder extends
+
+| Concern | File(s) |
+|---|---|
+| Section index + article detail routes | new wrappers in BOTH trees mirroring `(pivot)/lore/profiles/[document_id]/page.tsx` pattern |
+| Content factories | new `ArticleIndexRoute`/`ArticleRoute` + builders beside `src/components/routes/sectionPages.tsx` |
+| Article source of truth | server-only reader beside `src/data/contracts.ts` (same `_meta`/row-count discipline) |
+| Per-locale availability | extend `src/data/availability.ts` or sibling reader |
+| Sitemap | `sitemapPartitions.ts` sections list + real gate |
+| Search | `searchRows.ts` row emitter |
+| Feeds | fill `feeds/news.xml` + `patch.xml` GET bodies |
+| Chrome labels | `src/i18n/chrome/*.json` new keys ×34 (nav already present) |
+| Entity reverse-links | `EntityDetailRoute` module slot |
+
+## 3. Competitor rulings
+
+Behavioral patterns only — the design bar's references are structural
+([design-standard.md §2](../../_foundation/design-standard.md)); nothing
+visual is copied. Evidence: new-world.guide fetched live 2026-08-26 (nav +
+`/posts` markup); wikily.gg via search inventory; MiSide incumbents from
+[competitor-research.md](../../competitor-research.md) S1–S3.
+
+### 3.1 new-world.guide — the structural reference
+
+- **One `/posts` hub, three typed streams** — News / Analysis / Guide live
+  in a single article stream distinguished by type tags, not separate
+  sections; category tags ride along (patch notes, leveling, build guides).
+- **Articles link into `/db/*`** — the posts index itself carries entity
+  links (`/db/abilities/<weapon>` etc. observed in markup); guide bodies
+  treat database pages as their citation layer.
+- **Builds are a separate UGC surface** (`/char-builds`, `/char-builder`)
+  — editorial guides and player builds never blur.
+- **Trackers/tools are first-class nav siblings** (`/daily-checklist`,
+  `/named-items-tracker`, `/recipe-tracker`).
+- **BORROW**: the type-tagged single stream as the reader model; articles
+  whose factual claims resolve to `<a href>` entity pages; tool embeds
+  inside guide bodies rather than parallel universes.
+- **ADAPT**: our News section is mandated to carry BOTH game news AND
+  database/site news ([DR-2026-08-19-ugc-accounts] item 2), plus the
+  patch-diff stream — so one hub with three explicit types
+  `game | database | patch` beats three competing sections.
+- **AVOID**: undated, unversioned prose with no diff discipline — NWG
+  guides silently rot against game patches; ours stamp the buildId they
+  were verified against (D2 user-facing provenance class).
+
+### 3.2 wikily-class sites
+
+- Hub-and-spoke IA: game hub → subtopic spokes → database pages;
+  question-based H2s ("how do I…") as the heading language; cross-linking
+  between database pages is the compounding SEO organism.
+- No dedicated news/guides landings surfaced on wikily.gg itself; dev-log /
+  data-miner transparency exists as a section (`/dev/` showing extraction
+  counts) — transparency about data provenance as content.
+- **BORROW**: question-based H2s (they double as seo-standard §9
+  answer-shaped blocks); the dev-log transparency instinct maps onto our
+  mandated site/database news stream.
+- **AVOID**: treating guides as an afterthought bolted onto a DB — for
+  MiSide the guides lane is empty ground (negative findings: no wikily,
+  no wiki.gg, no game8/IGN/Fextralife presence), so structure here defines
+  the category.
+
+### 3.3 MiSide incumbents (what we replace)
+
+- EN/RU Fandom wikis: linear prose, JS-dependent tables, redirect rot,
+  case-variant duplicate titles, transcripts only EN+RU against our 34.
+- Steam guides corpus (≥100 titles): per-language duplicated effort with
+  divergent facts, zero entity links, staleness (top cartridge guide dated
+  2024-12-26, pre-v0.93 fixes).
+- **AVOID** all of it; **BORROW** its demand map as our editorial backlog
+  (§1.4). The RU community is co-primary — RU guides are launch content,
+  not a later wave.
+
+### 3.4 Tone rulings for claustrophobic-horror content
+
+- **Corruption is state, not decoration** (T2 §7.5 lineage): spoiler-heavy
+  blocks (ending reveals, twist-adjacent lore) can wear the alarm-red/CRT
+  treatments as *semantic* markers — a "corrupted" callout means compromised
+  information, matching how entity pages mark glitched entities.
+- **Cozy chrome carries instruction**: step lists, keycap hints (`kbd`
+  styling, T2 §7.7) and checklist cards stay in the candy-pill register;
+  horror accents mark danger/negative conditions (e.g. ending negative
+  requirements) so red always means "this loses you the ending".
+- **No jumpscare mimicry, no glitch-for-glitch's-sake**: motion and
+  corruption effects obey the anti-slop bar and a11y floor (LANE-D owns the
+  audit); a guide that startles is a defect, not atmosphere.
+- **Spoiler discipline is the open tone question** — see OQ-6; no
+  competitor handles it at all, which is an opportunity, not a license to
+  ignore it.
+
+## 4. Spec skeleton for the Documentator
+
+Proposed module decomposition for one spec covering both sections (one
+content pipeline, per the board line). Skeleton only — the Documentator
+owns the real spec under `docs/specs/` (naming precedent:
+`docs/specs/site-scaffold.mdx`, `map-viewer.mdx`).
+
+### M1 — Authoring format + storage
+
+- In-repo article sources, e.g. `site/content/guides/<slug>.mdx` +
+  `site/content/news/<slug>.mdx`; frontmatter: `type: guide|game|database|patch`,
+  `entities[]` (explicit contract-id list), `steps?`, `buildId` verified
+  against, `published_at`, `status: draft|published`,
+  `spoiler?: none|mild|full`. MDX is already the network doc format —
+  articles ARE product content, so their storage format should match the
+  tooling the repo already uses.
+- Per-locale overrides as sibling files (`<slug>.<locale>.mdx`) or a
+  parallel tree — pivot `en` is always authored; non-pivot exists only when
+  translated. Decide file-vs-registry at spec time.
+- **Entity-linking law (mechanical)**: every `entities[]` id must resolve
+  against contract ids via `kindIds()`; build FAILS on an unresolved ref.
+  Body-level mentions get linked from the explicit list (deterministic,
+  reviewable) rather than fuzzy autolinking — site-sections' aggressive
+  internal-linking rule satisfied by construction, in every locale.
+
+### M2 — Build pipeline
+
+- Emit step → machine registry (e.g. `site/content/emit/articles.jsonl`)
+  with `_meta` header + row-count pin in the established
+  `readJsonl()` discipline: per-article id, type, slug, per-locale
+  availability cells, resolved entity refs, TOC, word counts.
+- Registry feeds: sitemap partitions (real gate replacing the
+  `"achievements"` placeholder for guides/news), search rows, feeds, and
+  the entity-page "featured in" reverse index.
+- Patch stream hooks LANE-A ⛓: `/news/patch/{id}` pages render changelog
+  summaries when the contracts chain lands; until then the patch type is
+  schema-ready but empty (honest omission, never a stub page with prose).
+
+### M3 — Guides section
+
+- Routes: `/guides` + `/guides/[guide_slug]` ×2 trees ×translated locales;
+  static params = translated guides × locales (ledger-gated).
+- Page anatomy: answer-shaped lead block (what this guide achieves, key
+  facts, entities touched) → TOC → steps/modules → related entities row →
+  comments slot (UGC waits on this section per TODO lane note). `HowTo`
+  JSON-LD where the body honestly is steps (seo-standard §3: ship markup
+  for understanding, expect no rich result).
+- Steps use kit components: ordered step cards, `kbd` keycap hints for
+  inputs, danger/negative-condition callouts in alarm-red semantics (§3.4),
+  checkerboard-void for any honest gap (never captioned absence).
+- **Tool/map embeds via OUR components only**: embed slots accept internal
+  modules (MapModule once LANE-B lands; Ending Condition Explorer once its
+  tool lands) behind a narrow props contract defined in THIS spec so guides
+  never import tool internals. No third-party embeds anywhere (launch-gate
+  negative grep).
+- Reverse links: entity pages gain a "featured in" module driven by the
+  M2 registry — crawlable `<a href>`, both directions.
+
+### M4 — News section
+
+- One hub `/news`, three typed streams filtered by type chips:
+  `game` (Steam RSS ingest + collab/Kickstarter items), `database`
+  (dataset/locale/coverage news — the UGC-mandate half), `patch`
+  (`/news/patch/{id}` diff pages, CORE differentiator).
+- **Provenance on user surfaces**: dates/titles/body yes; source identity,
+  upstream URLs, license tags NO (repo-only class, AGENTS rule 3 / D2) —
+  they live in the machine plane (JSON fields, JSON-LD, feeds).
+  Official-worded quotes ride cite-and-attribute care per the GW3 legal
+  note (press = cite-don't-mirror); full-body storage of official posts is
+  a spec-time ruling with that precedent cited.
+- `NewsArticle` JSON-LD + publication metadata; news sitemap section;
+  `feeds/news.xml` + `patch.xml` fill from M2's registry. IndexNow ping on
+  publish (seo-standard §2) can defer to LANE-D batch if it complicates
+  the static pipeline — record the deferral either way.
+- Anti-slop guard: database-news items state facts ("Cartridges dataset
+  gained placement coordinates for 11 pickups"), never site-self-narration
+  ("we added a page"); empty streams omit themselves, no captions.
+
+### M5 — i18n strategy for articles
+
+- **Authoring-time translation, not build-time MT**: localization-
+  architecture §6 names machine translation a non-goal for missing game
+  locales; articles are authored content, and promptForDB Note#7 (TODO line
+  "blog posts/articles translated to all 34 corpus locales") mandates full
+  translation — the reconciliation is an owner question (OQ-1), not a
+  silent choice by the builder.
+- **Per-article availability ledger** (emit artifact, sibling to
+  `locale_availability.jsonl`): gates non-pivot rendering. Fallback chain
+  is OMIT, never mix: a locale without a translated article has no
+  `/{locale}/guides/<slug>` URL, no sitemap row, no hreflang member, and
+  the cross-locale row on the pivot page omits it — exactly
+  localization-architecture §5.5 option A applied to authored content.
+  Rendering an EN body under `/de/` would violate §1's no-mixing law even
+  behind a banner.
+- Chrome keys for section labels exist ×34 already; new keys (step,
+  spoiler, updated-byline equivalents) must land in all 34 chrome files in
+  the same commit — chrome ships only at complete coverage (§4 of the
+  architecture).
+- RTL: ar/ar-EG inherit `dir=rtl` from `[locale]/layout.tsx` automatically;
+  any guide-specific horizontal component (stepper rails) needs an RTL leg
+  in its own tests (map-viewer MV-1 already carries an RTL-leg precedent).
+  Persian stays LTR until the flagged amendment (SB-1).
+
+### Measurable ACs (structural, no invented quotas)
+
+1. Build fails on any `entities[]` id not resolving through `kindIds()`.
+2. Non-pivot article URLs exist iff the availability ledger says
+   translated; zero exceptions (mechanical sweep over emitted routes vs
+   ledger cells).
+3. hreflang clusters and sitemap partitions derive from the same ledger —
+   a mismatch fails CI (pattern: existing partition/URL equality checks).
+4. Every published guide carries ≥1 reverse-link target: each `entities[]`
+   id's page lists the guide back (crawlable HTML, both directions).
+5. Feeds return valid XML whose item count equals published article count
+   (per stream); empty channel remains valid while count is zero.
+6. Search rows cover every published article ×its translated locales;
+   search-in-place returns them kind-balanced like other kinds.
+7. Every guide/news page passes the metadata law check: unique localized
+   title/description composed from that locale's strings; self-canonical
+   with serving prefix; x-default → bare path.
+8. Every guide states the buildId its claims were verified against
+   (user-facing D2 class); a rerun that changes a claimed fact flags the
+   affected articles in the emit output (staleness-model: per-record).
+
+### Open questions for the Arbiter
+
+- **OQ-1 · Translation authority**: does promptForDB Note#7 override the
+  network's MT non-goal for authored articles — i.e., is authoring-time MT
+  + human review acceptable to hit 34 locales, or is human-only translation
+  required (accepting slower rollout under the omit-fallback)? Needs an
+  explicit register entry either way.
+- **OQ-2 · Who authors the seed guides**: CodeWriter-with-spec,
+  Documentator, or owner-picked editorial pass? The demand map (§1.4)
+  proposes the seed set: 100% achievements, all-cartridges route, ending
+  routes (371 choice nodes / 1,555 edges rendered), outfit unlocks,
+  secrets compilation. Stub policy meanwhile: keep today's chrome-only
+  stub index (no fake cards), consistent with anti-slop omission rules.
+- **OQ-3 · Official news bodies**: store full ingested bodies (GW3 Steam
+  precedent did, riding Content-ToU verification) or link-out summary
+  only? Affects M4 storage and the legal note.
+- **OQ-4 · Patch pages before LANE-A**: ship `/news/patch/{id}` schema +
+  routes now against EXTRACTION-LOG entries (thin), or hold the whole
+  stream until the changelog viewer emits summaries? Recommendation: hold,
+  to avoid a second rework when contracts land.
+- **OQ-5 · Availability granularity**: extend the corpus ledger vs a
+  separate articles ledger — keep game-content provenance clean by using a
+  separate emit-side file?
+- **OQ-6 · Spoiler policy**: default `mild` with explicit `spoiler: full`
+  blocks collapsed behind a two-state control (URL-state per design-
+  standard §3 "selected state is a URL")? No competitor models spoilers;
+  whatever is ruled becomes a differentiator and must be stated in
+  article metadata so search/crawlers see the uncollapsed text or an
+  honest summary — pick one, don't improvise per template.
+- **OQ-7 · fa direction**: fold the SB-1 Persian RTL amendment into this
+  spec (it touches every article page) or leave it with the chrome debt
+  line?
+
+### Biggest risks (for the Arbiter's attention)
+
+1. **Translation throughput ×34 is the schedule risk** — the omit-fallback
+   keeps honesty but makes non-EN guides appear late; OQ-1 decides the
+   shape early or the pipeline builds twice.
+2. **Patch-stream starvation** — with the game silent since v0.93L, a
+   news section tuned to patch cadence looks dead within a month; the
+   database-news stream and evergreen guides carry retention instead.
+3. **Entity-link decay** — contract ids may rename across LANE-A's
+   contracts builder; the M1 resolution gate must fail loudly at build,
+   never silently unlink (same lesson as the row_count pins).
+
+<!-- END OF docs/research/content-scout.mdx -->

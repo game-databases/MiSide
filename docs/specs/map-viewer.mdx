@@ -50,8 +50,8 @@ Join partners that landed since B-6 (the M0 unblocks):
 
 | Dataset | Data rows | Placement field |
 |---|---|---|
-| `extracted/data/cartridges/cartridges.jsonl` (DS-4) | 23 (13 character + 10 player; header line is flat, no `_meta` key) | `pickup_ref.container` on 21 rows; `mtad2`/`mtacore` are `registered-unresolved-pickup` with `pickup_ref: null` |
-| `extracted/data/documents/profile_documents.jsonl` (DS-5) | 14 (same flat-header shape) | `placement: {carrier_class:"FlashTaker", component_path_id, container}` on **11** rows; null on 3 (`mita-2-d-profile`, `mita-core-profile`, `mita-true-profile` — declared `placement_mechanism`: `script_granted` ×2 + `story_granted` ×1 per the DS-5 column; DOC-5 cited only as the analogous cartridge-side undumped-grant row) |
+| `extracted/data/cartridges/cartridges.jsonl` (DS-4) | 23 (13 character + 10 player; line 1 is a `_meta` wrapper) | `pickup_ref.container` on 21 rows; `mtad2`/`mtacore` are `registered-unresolved-pickup` with `pickup_ref: null` |
+| `extracted/data/documents/profile_documents.jsonl` (DS-5) | 14 (flat header, no `_meta` key) | `placement: {carrier_class:"FlashTaker", component_path_id, container}` on **11** rows; null on 3 (`mita-2-d-profile`, `mita-core-profile`, `mita-true-profile` — declared `placement_mechanism`: `script_granted` ×2 + `story_granted` ×1 per the DS-5 column; DOC-5 cited only as the analogous cartridge-side undumped-grant row) |
 | `extracted/data/cartridges/minigames.jsonl` (DS-4) | 17 | carrier edges live in `extracted/relinks/minigame--scene-carrier.jsonl` (76 direction rows) |
 
 Measured join reality (this spec's corrections to optimistic readings):
@@ -89,7 +89,7 @@ Recounted row-by-row (class attribution verified):
 
 The projection law (`site/src/components/map/projection.ts`) is total over
 this axis and projects only `inline ∧ world-assumed`; it does not change in
-this piece. Today that cell holds exactly 24 values — the 20 story spawns
+this piece. Today that cell holds exactly 20 values — the 20 story spawns
 (measured extents x −27.75…11.25, y −3…12, z −108.5…5.5; level14/19 sit
 ~100 m off-origin in z) plus nothing else.
 
@@ -107,7 +107,7 @@ is **wrong**, and so is the brief's framing of M0(b) as an aggregate→instance
   `level13:ObjectInteractive`, `level13:ObjectInteractive_#13009`, …).
 - A class-in-level's *first* instance keeps the bare `level:class` id —
   which is what made every pair look aggregated on a uniqueness-only check.
-- Single-instance classes (`Scene_Load` ×19, `FlashTaker` per level,
+- Single-instance classes (`Scene_Load` ×19,
   `Basement_Safe` ×2) genuinely have one row because there is one dump.
 
 Consequence: **per-instance pins need no emitter expansion.** What M0(b)
@@ -335,7 +335,7 @@ readers or the emitted `public/map/*` artifacts):
 | Scene POI listing (location page module, list form) | `extracted/data/scenes/poi.jsonl` |
 | Kind rulings (chip vocabulary, eligibility) | `extracted/data/scenes/poi-kinds.json` |
 | Chapter grouping | `extracted/data/scenes/relinks/scene--chapter.jsonl` (canonical mirror `extracted/relinks/scene--chapter.jsonl`) |
-| Entity→scene membership for M4 | `extracted/relinks/character--scene-membership.jsonl` (12 direction rows), `extracted/relinks/minigame--scene-carrier.jsonl` (76), `extracted/relinks/document--scene-membership.jsonl` (rows keyed `from:"note:<id>"` → `to:"container:levelN"`) |
+| Entity→scene membership for M4 | `extracted/relinks/character--scene-membership.jsonl` (12 direction rows), `extracted/relinks/minigame--scene-carrier.jsonl` (76), `extracted/relinks/document--scene-membership.jsonl` (rows keyed `from:"<family>:<id>"` → `to:"container:levelN"`; 177 forward edges = `note:*` ×160 + `paper_part:*` ×5 + `novella_surface:*` ×1 + `profile_document:*` ×11, each mirrored by an inverse row) |
 | Owning datasets (join audit + M4 anchors) | `extracted/data/cartridges/cartridges.jsonl`, `extracted/data/documents/profile_documents.jsonl` |
 
 Forbidden in the browser (each is a review-defect class, AGENTS rule 8):
@@ -465,7 +465,7 @@ scene past ~300 pins).
   | `profiles` | marker rows / DS-5 `placement.container` (the 3 placement-less profiles — DS-5 declares `script_granted` ×2, `story_granted` ×1 — render an honest unplaced well) |
   | `minigames` | `minigame--scene-carrier.jsonl` carrier edges |
   | `mita` | `character--scene-membership.jsonl` (12 rows) |
-  | `books` / `lore` | `document--scene-membership.jsonl` (`note:*` → `container:*`) |
+  | `books` / `lore` | `document--scene-membership.jsonl` (`note:*` → `container:*`; the file also carries sibling document-family forward edges — `paper_part:*`, `novella_surface:*`, `profile_document:*` — see [§4](#4-data-contract--the-frontend-consumes-never-derives)) |
   | `locations` | own row (`spawn` + lattice) |
 
   Provenance carry law (A-MV1 F-7): every M4 module carries
