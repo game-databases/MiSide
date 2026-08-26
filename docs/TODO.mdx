@@ -131,7 +131,7 @@ other lane is mid-edit in `site/`.
 
 ## Phase 5 — ship & after
 
-- [ ] **OPS GATE — C: disk CRITICAL again**: 3.7 GB free at ~12:30 (npm-cache lever exhausted ×3; claude temp 598 MB live/shared; builds by concurrent lanes are the drain). ALL site/ builds PAUSED until ≥10 GB; static review/doc/data lanes continue. Owner flag raised 2026-08-26
+- [ ] **OPS GATE — C: disk EMERGENCY**: hit 0 mid-commit ~13:00 (194MB at last read); owner notified via push. MiSide commits safe (text-only, pushed `e2c1b17`); ALL builds + new agent dispatches PAUSED until ≥10 GB; in-flight agents may ENOSPC-die → resume-note pattern on recovery
 - [Q] Domain/placement decision (owner gate Q3/D3; hub path until ruled)
 - [ ] Deploy origin; llms.txt + JSON API verified non-empty in production
 - [ ] Search Console + Bing WMT; answer-engine referral tracking
