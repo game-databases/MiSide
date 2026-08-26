@@ -258,3 +258,235 @@ Evidence probes: throwaway `probe-tmp.png` deleted; ports 4977 (next
 start) and 9363 (CDP serve) released after capture.
 
 VERDICT: FIX_ROUND_REQUIRED
+
+## Round 2 — VC-MAP-R2 re-grade after F-MV4's fix round (2026-08-26)
+
+Method: the EXISTING production build (`site/.next`, BUILD_ID
+`G9IGgmaMT3WmPaLWVwBNc`, today 12:26) served with `next start -p 4978` —
+no rebuild (disk law). Driven through the same stealth Chrome serve
+pattern (`--profile vcmapr2`, CDP port 9364) with a raw-CDP driver — no
+Playwright/Puppeteer spawned, every claim probed against rendered DOM or
+read off PNG evidence under [shots/vcmap-r2/](shots/vcmap-r2/). Payload
+re-measured: `public/map/markers.json` still holds 70 rows,
+**0 with coordinates** (19 `awaiting-transform-stage` + 51
+`scene-granular`) — identical to round 1, so every claim below rests on
+how the viewer treats deferred rows, not on new data.
+
+### Verified fixes (adversarial, on live DOM)
+
+1. **Filters gate every row — PASS.** level17 cold load renders **7**
+   cells (round 1 showed 14 = each row twice); toggling CARTRIDGES off →
+   **4** cells remain, URL rewrites to
+   `?scene=level17&kinds=minigame_access%2Cprofile_document`; chip counts
+   stay TRUE counts of the scene (`Cartridges3/Minigames2/Profiles2`,
+   aria-pressed false on the disabled chip) instead of shrinking to the
+   filtered subset ([map-en-level17.png](shots/vcmap-r2/map-en-level17.png)).
+2. **Quicksearch LCD tells the truth — PASS.** Typing `mita` shows
+   `2 shown` directly above exactly 2 visible cells (`Kind Mita`,
+   `Mita`). The round-1 contradiction ("0 shown" over 7 matching rows)
+   is gone.
+3. **One-row law — PASS.** The below-panel duplicate chip stack is gone
+   (probe: `[data-slot=map-viewer] > ul` count 0 with zero plotted pins);
+   each deferred row IS the crawlable `<a>` — all 7 level17 hrefs are
+   entity routes (`/cartridges/mta`, `/minigames/tetris`,
+   `/lore/profiles/mita-kind-profile`, …).
+4. **In-panel LockedCell strip — PASS.** Deferred rows render INSIDE the
+   panel as a deterministic start-edge stacked strip (fixed offsets, zero
+   coordinates claimed), each pill carrying a localized LCD status word
+   (`Coordinates pending` / `Scene-level placement`) beside the entity's
+   real title. The unbroken checkerboard of round 1 is gone; the panel
+   now shows the scene's own rows on every scene tested.
+5. **Chrome keys ×34 — PASS in code.** 35 `map.*` keys present in en, RU
+   and AR alike (`map.kind.cartridge` → «Картриджи» / «الخراطيش» …;
+   `map.role.boot/title/menu/unbound`, `map.census.*` all translated);
+   chips print the label, the raw token survives only in `title`.
+6. **Popstate full re-sync — PASS.** Select → level17 pushes `?scene=level17`
+   and renders 7 cells; `history.back()` → URL bare, select restores
+   **Together at Last** (the default scene) and the panel re-renders that
+   scene's own 1 row. The round-1 stranding defect is gone.
+7. **Focus chip speaks the entity — PASS where a row resolves.**
+   `/map?scene=level17&focus=cartridges:mta` renders the chip as `*MTA×`
+   (entity title, uppercased), raw `cartridges:mta` only on
+   `title`/`aria-label`. Fails only for the dead families — see #7 below.
+8. **Duplicate entity tabs collapsed — PASS.** `/cartridges/mta` carries
+   exactly one `Locations 1` tab (round 1: "Locations" + "Locations 1");
+   the M4/VC-3 merge is real.
+9. **Census microcopy reads — PASS.** Popover on a profile row and the
+   profile entity's Locations panel both print `Unnumbered copies: 1 ·
+   Numbered copies: 2 · Copies in scene: 3`; zero `bare/unfixed/total`
+   emitter words anywhere in the rendered panel (probe: regex 0 hits).
+10. **PinPopover reachable — PASS.** Clicking a LockedCell opens the
+    anchored sheet (title × close, kind chip, LCD status pill, census
+    lines, pink OPEN PAGE) —
+    [map-en-popover.png](shots/vcmap-r2/map-en-popover.png),
+    [map-en-popover-census.png](shots/vcmap-r2/map-en-popover-census.png).
+    Round 1's "unreachable code" is now the surface's main interaction.
+
+## Round 2 per-axis grades
+
+### Visual soul — 7 (was 6)
+
+The panel finally has a subject: the scene's own rows staged as a
+start-edge strip of kind-tinted, checkerboard-glyph pills with localized
+LCD status words ([map-en-level17.png](shots/vcmap-r2/map-en-level17.png))
+— it reads as MiSide machine chrome presenting a manifest, not as a
+texture. The popover is a real artifact (glow border, LCD census, pink
+action). Held back from 8: at 7 rows max the panel is still ~85% empty
+grid on every scene, no scene identity (name/role/chapter) lives inside
+the panel, imagery is still the awaiting-artwork grid (data-side), and
+the locations index is still 24 identical voids with the stray door
+sprite beside the LOCATIONS pill
+([locations-index.png](shots/vcmap-r2/locations-index.png)).
+
+### Interaction depth — 8 (was 4)
+
+Every round-1 functional failure is fixed and re-verified above: filters
+gate every rendered row, the LCD count equals the visible list, the
+popover opens from cells, Back fully re-syncs, rows render once. Deep
+links still cold-load (`?scene=&focus=&kinds=`), toggles still rewrite
+`?kinds=`, targets measured exactly 44 px on mobile. Held back: zero
+plotted pins remain (data-side — zoom/reset act on an empty grid), and
+the SceneSwitcher is still a native select whose **19 of 20 optgroups
+hold exactly one scene**, so the dropdown doubles every label
+("Together at Last :: Together at Last") — round 1 finding, unchanged.
+
+### Information density without clutter — 7 (was 5)
+
+True per-kind counts on chips (they stay 3/2/2 after filtering — counts
+describe the scene, aria-pressed describes the view), title + status on
+every cell, census + OPEN PAGE in the popover, carrier-scene Open map on
+entity panels. Held back: the panel still has no scene facts header, the
+locations index cards still carry zero facts, and the scene page's POI
+listing still prints deslugged Unity class names — `Object Interactive`,
+`Transform Position`, `Event Create Resource`, raw `FlashTaker` —
+measured in today's served HTML for `/locations/level17`.
+
+### Mobile / RTL — 8 (was 7)
+
+Mobile 375 px: no horizontal overflow (scrollWidth 375), chips/zoom
+pills/cells/input all exactly 44 px, cells truncate cleanly
+([map-mobile-level17.png](shots/vcmap-r2/map-mobile-level17.png)).
+RTL: `/ar/map` serves `dir="rtl"`, the cell strip starts from the RIGHT
+edge (`insetInlineStart` honored), zoom stack mirrors to the left, chips
+and status words fully localized («الخراطيش 3», «الإحداثيات قيد
+التحديد») ([map-ar-level17.png](shots/vcmap-r2/map-ar-level17.png)). The
+round-1 RTL complaint about raw Latin machine tokens is dissolved by the
+localization work — there are no `awaiting-transform-stage` tokens left
+to wrap. Residual: the title—status dash orders bidi-ly in mixed
+direction pills (cosmetic) and Latin fallback titles appear where the
+registry has no Arabic name (honest data fallback).
+
+### Honesty of empty/deferred states — 8 (held)
+
+Still the spine of the surface: the strip claims zero coordinates (fixed
+list offsets, bounds stay null), zero-row scenes render the explicit
+well, counts are true in both directions (chip = scene truth, LCD =
+visible truth), buildId prints once. Held at 8, not raised: the
+unusable **"Filter pins" input still renders on zero-row scenes**
+(verified `/locations/level0`: input present, 0 cells) and the
+zero-scene page still has no prev/next scene links — a control that
+cannot work is still noise.
+
+### Microcopy register — 7 (was 4)
+
+The round-1 register slip is substantially repaired and verified in
+RU and AR: kind chips, role groups («Загрузка / Титульный экран / Меню /
+Без главы» — the raw `boot/title/menu/unbound` are gone), cell status
+words, census legend and popover chrome all ride chrome keys ×34
+(35 `map.*` keys, parity-checked across en/ru/ar). RU cell labels read
+«Мита добрая — Только на уровне сцены» — loc-correct title beside
+localized status. Held back from 8: the unresolved-focus chip falls back
+to the raw machine key (`*BOOKS:BOOK-1×`, measured on
+`/map?focus=books:book-1`), and the `/locations` POI listing still
+prints the deslugged Unity class vocabulary named above — a debug dump
+register survives on one surface.
+
+## Out-of-mandate carryovers — rulings
+
+- **#5 viewer-in-tab composition — STILL OPEN (MAJOR).**
+  `/locations/level17` still buries the locked viewer in the tab column
+  while the 470 px empty art well owns the left fold, still prints the
+  duplicate `Scene view` LCD chip directly under the identical tab
+  label, and still offers no `/map?scene=level17` anchor (only the nav
+  `/map`) — [loc-level17.png](shots/vcmap-r2/loc-level17.png). The
+  scene page's one new courtesy: entity pages DO now deep-link
+  `Open map` with `focus` + carrier `scene`
+  (`/map?focus=cartridges:mta&scene=level17` — verified on
+  `/cartridges/mta` and the profile page).
+- **#7 dead ?focus= families — STILL OPEN (MODERATE).** Books still emit
+  a bare `/map?focus=books:book-1` (no carrier scene), and that focus
+  resolves to zero rows and a raw-key chip. Cartridges/profiles are the
+  counter-example: their focus + carrier-scene links resolve to real
+  rows. The pattern that works exists — it just was not applied to the
+  families without rows.
+- **#9 SSR of deep-linked scene — STILL OPEN (MINOR, re-verified).**
+  `curl /map?scene=level10` serves the DEFAULT scene's single
+  `/minigames/tetris` anchor, none of level10's four — `MapRoute` still
+  never reads `searchParams`. Crawlers deep-linking a scene get the
+  wrong scene's graph.
+- **#11 RTL dir=ltr wrapping — SUBSUMED (residual cosmetic).** The
+  substantive round-1 defect (raw Latin machine tokens unwrapped in RTL
+  pills) no longer exists because those tokens were replaced by
+  localized chrome. What remains is bidi ordering of the title—status
+  dash in mixed pills; a `dir="ltr"` span on Latin runs would still
+  polish it, but it no longer gates this surface.
+
+## Competitor note
+
+Same-day re-probe: `new-world.guide/db/map` still 404 with no map route
+in nav (reproduced today; NWG map behavior otherwise per
+[map-viewer-scout.mdx §3.1](map-viewer-scout.mdx#3-competitor-behavior-borrow-vs-avoid)).
+Wikily: my curl re-probe of the map deep link returned 404 on a guessed
+URL and the root 302s (bot fence) — one attempt each per the browser
+rule; wikily figures below stand on round 1's live measurement from
+earlier today (2,200+ clustered markers, trader sheets from pins,
+MARKERS/CHESTS stat tiles). Net position after the fix round: we still
+lead NWG on URL-state law (cold restore + full popstate re-sync vs
+session-only memory) and lead both on empty/deferred honesty; wikily
+still owns "map" — plotted, clustered, searchable markers with imagery.
+We now also beat round-1 wikily on one narrow thing they never had to
+solve: a deferred-state design that shows counted, filtered, popovered
+rows for data that has no coordinates yet.
+
+## Round 2 fix list (what stands between 7.5 and the bar)
+
+1. **MAJOR — scene-page composition (#5).** Promote the locked viewer
+   out of the tab into the page's primary object, delete the duplicate
+   `Scene view` LCD chip, add the `/map?scene=<id>` anchor from locked
+   mode. `EntityDetailRoute.tsx` (`LocationsScenePanel`) + `EntityShell`.
+2. **MAJOR — no raw keys on unresolved focus (#7).** Either emit
+   `focus` + carrier `scene` for books/mita/players (the pattern
+   cartridges/profiles already use) or render the focus chip only when
+   `focusedMarkerId` resolves; the `*BOOKS:BOOK-1×` fallback must go.
+3. **MODERATE — reader words for the POI listing.** The
+   `/locations/[scene_id]` instance list still prints `Object
+   Interactive` / `Transform Position` / `Event Create Resource` /
+   `FlashTaker`; chrome-key the class vocabulary (or print registry
+   display names) the way the chip row already does.
+4. **MODERATE — switcher: stop doubling every label.** 19 of 20
+   optgroups hold exactly one scene; flatten single-scene groups into
+   the option list (keep optgroups only for multi-scene chapters) and
+   keep the localized role groups.
+5. **MINOR — SSR the deep-linked scene (#9).** `MapRoute` accepts
+   `searchParams`, validates `?scene=`, passes `initialSceneId`.
+6. **MINOR — designed zero states (#10).** Hide `Filter pins` when the
+   scene has zero filterable rows (verified still broken on
+   `/locations/level0`); prev/next scene links on zero scenes; facts on
+   index cards; drop the door sprite.
+7. **MINOR — RTL polish (#11 residual).** `dir="ltr"` span around Latin
+   runs inside RTL pills.
+
+Trajectory: round 1 averaged 5.7 with the payload absent; round 2
+averages **7.5** (7 / 8 / 7 / 8 / 8 / 7) with every frontend defect from
+the round-1 list either fixed (1, 2, 3, 4, 6, 8) or narrowed to a
+cosmetic residual (11). What holds this below the bar is no longer
+broken interaction but unfinished composition: the scene page still
+hides its now-working viewer, one surface still speaks Unity, the
+switcher still doubles its labels, and the empty states are honest but
+not yet designed. All of it is frontend; none of it needs data.
+
+Evidence probes: driver scripts deleted after capture; ports 4978
+(next start) and 9364 (CDP serve, profile `vcmapr2`) released; no
+rebuild performed (existing `G9IGgmaMT3WmPaLWVwBNc` served throughout).
+
+VERDICT: FIX_ROUND_REQUIRED
