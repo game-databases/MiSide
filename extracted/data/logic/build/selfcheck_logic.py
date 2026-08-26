@@ -4,7 +4,8 @@ offline (spec docs/specs/logic-layer.mdx section 8), re-measuring inputs instead
 of trusting emitter _meta:
 
     L1a  byte-freeze      sha256 of endings/*.jsonl identical before/after emission
-    L1b  row resolution   1555/1555 branch_edges resolve under key K, uniquely
+    L1b  row resolution   1555/1555 branch_edges resolve under key K, uniquely;
+                          edge_id itself is audited as the primary key (F-1)
     L1c  census accounting _meta totals additive over ALL persistent calls
     L2   flag census      independent walk == 384; flag_tables reconciles as projection
     L3   polarity honesty recomputes BOTH evidence_class and value against the
@@ -150,11 +151,20 @@ def main(argv=None):
         if hits[0]["effect_class"] != e["effect_class"]:
             class_mismatch.append((e["edge_id"], e["effect_class"],
                                    hits[0]["effect_class"]))
+    # primary-key law over edge_id itself (finding F-1 of
+    # docs/research/verifications/logic-build-vB.mdx): K-injectivity alone does
+    # NOT exercise the element-array carriers, so their ids are audited directly.
+    ec_counts = {}
+    for r in effects:
+        ec_counts[r["edge_id"]] = ec_counts.get(r["edge_id"], 0) + 1
+    ec_dups = {k: v for k, v in ec_counts.items() if v > 1}
     check("L1b row resolution (AC)", resolved == len(edges) == 1555,
           "%d/%d edges resolve to exactly one effect_call under K"
           % (resolved, len(edges)))
-    check("L1b uniqueness", not unmatched and not amb,
-          "%d unmatched / %d ambiguous" % (len(unmatched), len(amb)))
+    check("L1b uniqueness", not unmatched and not amb and not ec_dups,
+          "%d unmatched / %d ambiguous under K; %d duplicate edge_id values "
+          "covering %d rows"
+          % (len(unmatched), len(amb), len(ec_dups), sum(ec_dups.values())))
     check("DS-2 classifier reproduction", not class_mismatch,
           "emitted effect_class equals the DS-2 annotation on every joined row"
           if not class_mismatch else "%d divergences e.g. %s"

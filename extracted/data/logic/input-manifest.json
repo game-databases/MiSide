@@ -1,7 +1,7 @@
 {
   "build_id": 19029065,
   "corpus_root": "D:\\unpacked_game_data\\MiSide",
-  "entities_json_sha256": "7801f04db5674fa185abd9267c851237793ce06644feacf19e10402cece251f8",
+  "entities_json_sha256": "e4c68aef40a545af42aeeafe0c92108e2d6d584ec2fec28c7c9f87d3f56536bc",
   "generator": "B-LL2 logic-layer emitter (LG1-LG4; spec docs/specs/logic-layer.mdx ACCEPTED)",
   "inputs": {
     "extracted/data/achievements/achievements.jsonl": "f4220fcc734deeb8a2c45f08341892332d858c654cac8bee205dd28786ea89be",
@@ -25,8 +25,8 @@
     "txt_files": 140380
   },
   "outputs": {
-    "extracted\\data\\logic\\effect_calls.jsonl": "023aca7cfcd9e50a5a941dc4ba2b33050dcb8cddf2f1861b915c5262f6341184",
-    "extracted\\data\\logic\\emit-ledger.jsonl": "78caab05315ba793ab87b6aa737acbf0ba565d8cb4f1d97bdc2d16e247120133",
+    "extracted\\data\\logic\\effect_calls.jsonl": "5086cb59e15cf281c6ed587b9cbbfcb4840aa393abfaa458747962ce7d863e30",
+    "extracted\\data\\logic\\emit-ledger.jsonl": "5d87a4f6628089379103998869b6e08a0263710dcb6c69b6f8a448c546781307",
     "extracted\\data\\logic\\flag_instances.jsonl": "226f9eeab558771b5c0a828044a5435efcb6760905b9ba01672bb63cb5f25599",
     "extracted\\data\\logic\\identity-ledger.jsonl": "28d41eaa950793ee0ea19ae6795a066b29113fedd26d73d42855d8b80c3b9672",
     "extracted\\data\\logic\\minigame_tunables.jsonl": "fde26a7ebd069e6b729ac114283ccf700e7a04d84a96c782f36b1182835a824e",

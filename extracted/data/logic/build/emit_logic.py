@@ -191,7 +191,15 @@ def split_dump_name(filename):
 # globalgamemanagers/Location4Fight.txt):
 #   "<Type> <name>"                     field declaration -> path token
 #   "<ScalarType> <name> = <value>"     scalar value line (never a token)
-#   "[i]"                               array element marker -> '[i]' token
+#   "[i]"                               array element marker -> element
+#                                       discriminator at its depth (kept
+#                                       separately from tokens: the marker shares
+#                                       its tab depth with the element's own
+#                                       '<Type> data' content declaration, which
+#                                       used to overwrite it and drop the [i]
+#                                       from every field_path below -- finding
+#                                       F-1 of docs/research/verifications/
+#                                       logic-build-vB.mdx)
 #   "<Type> data"                       array element content marker
 #                                       (special case: 'UnityEvent data' opens a group)
 #   "UnityEvent <name>"                 UnityEvent group start
@@ -229,22 +237,39 @@ def _parse_value(vtype, raw):
 
 
 class _Scope:
-    """Indentation token stack for one dump file."""
+    """Indentation token stack for one dump file.
 
-    __slots__ = ("tokens",)
+    Array-element markers live in ``elems`` (depth -> element index), NOT in
+    ``tokens``: an '[i]' marker shares its tab depth with the '<Type> data'
+    content declaration that follows it, so storing it as a token let that
+    same-depth declaration overwrite it and silently drop the discriminator
+    from every field_path built below (F-1). ``ancestor_parts`` merges the two
+    maps by depth, marker before content.
+    """
+
+    __slots__ = ("tokens", "elems")
 
     def __init__(self):
         self.tokens = {}
+        self.elems = {}
 
     def clear_deeper(self, d):
         for k in [k for k in self.tokens if k > d]:
             del self.tokens[k]
+        for k in [k for k in self.elems if k > d]:
+            del self.elems[k]
 
     def set(self, d, tok):
         self.tokens[d] = tok
         self.clear_deeper(d)
 
+    def set_elem(self, d, idx):
+        self.elems[d] = idx
+        self.clear_deeper(d)
+
     def parent(self, d, lo=-1, skip_elements=True):
+        # Element markers never enter .tokens, so a value line's parent lookup
+        # skips them by construction; the flag stays for call-site stability.
         best = None
         for td, tok in self.tokens.items():
             if td <= lo or td >= d:
@@ -258,23 +283,27 @@ class _Scope:
     def ancestor_parts(self, d):
         """Path components strictly shallower than d, in depth order.
 
-        'Array' headers and '[i]' markers are structural noise: markers attach to
-        the preceding component, the literal 'Array Array' line is skipped.
+        The literal 'Array Array' header line is structural noise. An element
+        marker attaches to the preceding component ('events' + '[0]' ->
+        'events[0]'); when it shares its depth with the element's content
+        declaration ('Events_AnimatorEvent data'), the marker renders first,
+        then the declaration becomes its own path component.
         """
         parts = []
-        for td in sorted(self.tokens):
+        for td in sorted(set(self.tokens) | set(self.elems)):
             if td >= d:
                 continue
-            tok = self.tokens[td]
-            if tok == "Array":
-                continue
-            if tok.startswith("["):
+            idx = self.elems.get(td)
+            if idx is not None:
+                marker = "[%d]" % idx
                 if parts:
-                    parts[-1] += tok
+                    parts[-1] += marker
                 else:
-                    parts.append(tok)
-            else:
-                parts.append(tok)
+                    parts.append(marker)
+            tok = self.tokens.get(td)
+            if tok is None or tok == "Array":
+                continue
+            parts.append(tok)
         return parts
 
 
@@ -318,7 +347,7 @@ def parse_mb_dump(text):
         if elem:
             if group is not None and depth <= group["_depth"]:
                 end_group()
-            sc.set(depth, "[%s]" % elem.group(1))
+            sc.set_elem(depth, int(elem.group(1)))
             pending_elem = (depth, int(elem.group(1)))
             continue
 
@@ -1358,6 +1387,13 @@ def build(corpus_root, quiet=True, rebaseline=False):
     l1b_pass = resolved == len(edges) and dup_keys == 0
     l2_pass = len(flag_rows) == expected_universe and not ft_mismatches
 
+    # primary-key law over edge_id (finding F-1): measured on every emission.
+    ec_seen = {}
+    for r in effect_rows:
+        ec_seen[r["edge_id"]] = ec_seen.get(r["edge_id"], 0) + 1
+    ec_dup_values = sum(1 for v in ec_seen.values() if v > 1)
+    ec_dup_rows = total_calls - len(ec_seen)
+
     effect_meta = {
         "schema": "miside.logic.effect_calls/1",
         "generator": GENERATOR,
@@ -1372,6 +1408,14 @@ def build(corpus_root, quiet=True, rebaseline=False):
             "unclassified_persistent_calls": 0,
             "accounting_law": ("a call exists in the output or in the ledgered "
                                "counts, never in neither")},
+        "uniqueness": {
+            "duplicate_edge_id_values": ec_dup_values,
+            "duplicate_rows": ec_dup_rows,
+            "law": ("edge_id is the primary key: the mb-dump parser carries the "
+                    "'[i]' array-element discriminator of '<Type> data' "
+                    "element-array hosts into field_path, so repeated leaf event "
+                    "names on one host stay distinct"),
+            "status": "unique" if ec_dup_values == 0 else "DUPLICATES-PRESENT"},
         "census_accounting": {
             "per_effect_class": dict(sorted(class_totals.items())),
             "tier_a_count": tier_counts["A"],
@@ -1389,14 +1433,18 @@ def build(corpus_root, quiet=True, rebaseline=False):
             "event_field": ("leaf UnityEvent field under the DS-2 node convention "
                             "('_memory' for Events_IntMemory branches, 'eventClick' for "
                             "ObjectInteractive and DialogueChanger buttons)"),
-            "field_path": ("full serialized path (e.g. buttons[2].eventClick, "
-                           "_memory[0]._event)"),
+            "field_path": ("full serialized path including array-element "
+                           "discriminators (e.g. buttons[2].eventClick, "
+                           "_memory[0]._event, events[3].data.eventAnim)"),
             "option_index": ("buttons[k] -> k+1, mapping onto branch_edges.from_option; "
                              "null when the carrier has no option structure"),
             "call_index": "position within that field's PersistentCallGroup"},
         "edge_id_shape": ("logic:call:<container>:<file>:<host_path_id|x>:<field_path>:"
-                          "<call_index> (superset of the spec example: a field_path "
-                          "segment keeps multi-group hosts unique)"),
+                          "<call_index> (superset of the spec example: the field_path "
+                          "segment carries the array-element discriminator on "
+                          "element-array hosts -- 'events[3].data.eventAnim', not a "
+                          "collapsed 'events.data.eventAnim' -- so per-group call_index "
+                          "values never collide)"),
         "subject_resolution": {
             "achievement": ("args.string -> achievements.jsonl id lowercased; "
                             "AchievementComplete(int) falls back to registry_index "
@@ -1500,6 +1548,14 @@ def build(corpus_root, quiet=True, rebaseline=False):
          "ambiguous_count": dup_keys,
          "join_key": "spec section 8 L1b key K (host resolved through choice_nodes)",
          "status": "PASS" if l1b_pass else "FAIL"},
+        {"ledger": "effect-call-edge-id-uniqueness",
+         "rows": total_calls, "distinct_edge_ids": len(ec_seen),
+         "duplicate_edge_id_values": ec_dup_values,
+         "duplicate_rows": ec_dup_rows,
+         "note": ("primary-key law over edge_id; element-array hosts carry the "
+                  "[i] discriminator in field_path (finding F-1, closed by "
+                  "parser fix, not by synthetic suffixes)"),
+         "status": ("unique" if ec_dup_values == 0 else "DUPLICATES-PRESENT")},
         {"ledger": "ac-l1c-census-accounting",
          "rows": total_calls, "tier_a": tier_counts["A"], "tier_b": tier_counts["B"],
          "per_effect_class": dict(sorted(class_totals.items())),
@@ -1597,7 +1653,7 @@ def build(corpus_root, quiet=True, rebaseline=False):
                   "identity-ledger.jsonl", "emit-ledger.jsonl")}
     write_json(manifest_path, manifest)
 
-    applied = _l6_registry_insert(entities_json)
+    applied = _l6_registry_insert(entities_json, allow_rewrite=False)
 
     if not quiet:
         print("LG1 flag_instances:    %d rows (expected universe %d)"
@@ -1607,6 +1663,8 @@ def build(corpus_root, quiet=True, rebaseline=False):
         print("                       classes=%s" % dict(sorted(class_totals.items())))
         print("LG2 AC-L1b resolution: %d/%d edges under K (%d duplicate keys)"
               % (resolved, len(edges), dup_keys))
+        print("LG2 edge_id primary key: %d duplicate values over %d rows"
+              % (ec_dup_values, ec_dup_rows))
         print("LG3 predicate_records: %d rows %s"
               % (len(pred_rows), jline(_pred_population(pred_rows))))
         print("LG4 minigame_tunables: %d rows (excluded by L4 fence: %d)"
@@ -1615,7 +1673,10 @@ def build(corpus_root, quiet=True, rebaseline=False):
               % (len(gates_rows), len(consequence_rows)))
         print("identity ledger:       %d rows" % len(identity_rows))
         print("AC-L6 registry insert: %s"
-              % ("applied" if applied else "PENDING-MARKER written"))
+              % ("applied" if applied else
+                 ("PENDING-MARKER written" if not os.path.isfile(entities_json)
+                  else "skipped (landed registry diverged from draft decls; "
+                       "not downgraded)")))
     return {"flags": len(flag_rows), "effects": total_calls,
             "tier_a": tier_counts["A"], "tier_b": tier_counts["B"],
             "resolved": resolved, "edges": len(edges),
@@ -1857,12 +1918,18 @@ REGISTRY_ENTITY_DECLS = {
 }
 
 
-def _l6_registry_insert(entities_json):
+def _l6_registry_insert(entities_json, allow_rewrite=False):
     """Idempotent upsert of the four schema ids into contracts/registry/entities.json.
 
     Runs ONLY when the registry file already exists (a parallel builder may be
     creating contracts/ right now). Otherwise leaves/refreshes a pending-insert
     marker under extracted/data/logic/.
+
+    Once the registry has LANDED, it is owned by its own builder and evolves
+    past these draft decls (richer fields/enums/row counts). The implicit
+    in-emission call therefore never rewrites a diverged entry (it would
+    downgrade the landed shape); only the explicit owner-driven
+    ``--upsert-registry`` flag sets allow_rewrite.
     """
     marker_path = os.path.join(OUT, "contracts-pending-insert.json")
     if not os.path.isfile(entities_json):
@@ -1885,6 +1952,11 @@ def _l6_registry_insert(entities_json):
     with open(entities_json, encoding="utf-8") as fh:
         reg = json.load(fh)
     ents = reg.setdefault("entity_types", {})
+    drifted = [n for n in REGISTRY_ENTITY_DECLS
+               if n in ents and json.dumps(ents[n], sort_keys=True)
+               != json.dumps(REGISTRY_ENTITY_DECLS[n], sort_keys=True)]
+    if drifted and not allow_rewrite:
+        return False
     changed = False
     for name, decl in REGISTRY_ENTITY_DECLS.items():
         if json.dumps(decl, sort_keys=True) != json.dumps(ents.get(name),
