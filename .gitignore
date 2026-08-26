@@ -28,3 +28,8 @@ docs/logs/
 
 # Agent scratch
 tmp/
+
+# Secrets — never commit a PostHog write key or a real .env
+.env
+**/.env
+!**/.env.example
