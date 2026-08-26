@@ -1,0 +1,260 @@
+# VC-MAP — visual critic round for the scene-map surface (production build, own port 4977, own CDP profile `vcmap26`)
+
+Method: fresh `npm run build` (exit 0, prebuild gates green), `next start` on
+port 4977, driven through the stealth Chrome CDP serve (`--profile vcmap26`,
+port 9363) with a raw-CDP shot driver — no Playwright/Puppeteer spawned.
+Every claim below was probed against rendered DOM (`Runtime.evaluate`) or
+read off PNG evidence under
+[shots/vcmap/](shots/). Competitor evidence: wikily Gothic Remake
+interactive map measured live today (`?focus=fisk`, 200); new-world.guide
+probed today — `/db/map` 404 and no map route in header/nav/tool links
+(finding recorded per AGENTS.md rule 10, one attempt each; NWG map behavior
+otherwise cited from
+[map-viewer-scout.mdx §3.1](map-viewer-scout.mdx#3-competitor-behavior-borrow-vs-avoid)).
+
+The surface grades **below every previously passing surface**. The scaffold
+is real and honest; the payload is not there: of 70 emitted marker rows,
+**zero plot** (19 `awaiting-transform-stage`, 51 `scene-granular` — measured
+from `public/map/markers.json`), so the Leaflet island renders an unbroken
+checkerboard on all 24 scenes and the entire PinPopover/hover-join/LockedCell
+layer is unreachable code on live data.
+
+## Per-axis grades
+
+### Visual soul — 6
+
+Tokens are right and it never reads as atlas chrome: plum field, pill
+grammar, LCD machine voice, hot pink reserved for identity/actions, glow on
+the focused chip, `Client build 19029065` stamp in the footer
+([map-en-full.png](shots/vcmap/map-en-full.png)). But the viewer's only
+self is a 480–730 px checkerboard with three floating buttons — the
+schematic grid *and* the VoidWell checkerboard stack into visual mud
+([map-en.png](shots/vcmap/map-en.png)), no scene title lives inside the
+panel, and nothing about the panel says "map" or "MiSide room". Wikily's
+equivalent panel is hand-painted parchment with 2,200+ clustered markers
+([wikily-map.png](shots/vcmap/wikily-map.png)); ours is a texture. Soul of
+chrome: yes. Soul of a map: not yet.
+
+### Interaction depth — 4
+
+What works (verified, not assumed): cold-load restore of `?scene=` +
+`?focus=` + `?kinds=` ([map-en-focus-cold.png](shots/vcmap/map-en-focus-cold.png)
+— select flips to the deep-linked scene, focus chip renders); `?kinds=`
+rewrite on toggle; scene change pushState; zoom/reset pills ≥44 px; mobile
+375 px layout without overflow ([map-mobile.png](shots/vcmap/map-mobile.png)).
+What fails:
+
+- **Filters are a no-op on the only rows shown.** Toggling `cartridge` off
+  on level17 rewrites the URL and changes nothing on screen — the
+  pending/granular chip rows ignore `isEnabled()`/`matchesQuery()`
+  (probe: `chipCount` 14 → 14 after toggle).
+- **The quicksearch LCD prints a false statement.** Typing "mita" shows
+  "0 shown" directly above seven visible rows containing "Mita"
+  ([map-en-level17.png](shots/vcmap/map-en-level17.png)).
+- **PinPopover, provenance cell, hover-join, LockedCell: unreachable.** No
+  plotted pins exist (`popover:false` in probe; `LockedCell` additionally
+  gated on `bounds!==null && imageryReady`, and bounds are null ×24), so
+  the borrow-ruled rich detail pane — the two-way differentiator — cannot
+  fire for any user.
+- **Popstate desyncs.** After Back from `?scene=level17` the URL reverts to
+  bare `/map` but the select stays on level17 (probe `afterBack`); the
+  popstate handler only applies fields present in the URL and never
+  restores the default scene.
+- **SceneSwitcher is a native select** whose 15 chapter optgroups each hold
+  exactly one scene, so every group label duplicates its only option
+  ("Together at Last :: Together at Last"), and the role groups print raw
+  `boot/title/menu/unbound` — untranslated in RU and AR (probe:
+  RU optgroups end `Без названия, boot, title, menu, unbound`).
+
+Wikily toggles 426 markers shown/hidden instantly, opens trader sheets from
+pins, and switches regions with visual buttons; MapGenie-class persistence
+flaws are the one thing we avoid. On depth we are not in the same league
+yet.
+
+### Information density without clutter — 5
+
+The one density win: per-kind counts ride the filter chips, and the
+`/locations/[scene_id]` POI listing groups classes with instance counts and
+an ineligible ledger (`others/ObjectItem ×15`)
+([loc-level17.png](shots/vcmap/loc-level17.png)). Against that: every row
+renders **twice** (status chip + SSR anchor pill, 7 + 7 on level17), the
+panel itself carries zero information, no scene facts (role, chapter,
+per-kind totals) appear anywhere except the select, and the locations index
+is 24 identical empty cards with no facts at all
+([locations-index.png](shots/vcmap/locations-index.png)). Wikily opens with
+MARKERS 2,200+ / CHESTS 377 stat tiles; our /map has no summary surface at
+all.
+
+### Mobile / RTL — 7
+
+Mobile 375 px: controls stack, no horizontal overflow, targets ≥44 px,
+popover has a bottom-sheet breakpoint (unreachable in practice, but built).
+RTL: `/ar/map` serves `lang="ar" dir="rtl"`, nav/controls mirror, the zoom
+stack flips to the left edge via logical `end-3`
+([map-ar-level17.png](shots/vcmap/map-ar-level17.png)). Deductions: Latin
+LCD tokens (`awaiting-transform-stage`, `OPEN MAP`) sit unwrapped inside
+RTL pills, fallback titles leak Latin class ids ("Mta", "Tetris Game",
+"Games Core Main") into the Arabic page, and kind chips stay English
+snake_case in all 34 locales.
+
+### Honesty of empty/deferred states — 8
+
+The best axis, and it beats NWG's session-only filter memory outright.
+Zero plotted rows → checkerboard well, never an absence sentence; deferred
+rows surface as counted chips with status in the LCD register; unplaced
+profiles get an equal-height well; nothing is ever plotted at a faked spot
+(bounds stay null; imagery only over calibrated bounds); buildId prints
+once in the footer. Deductions: the "Filter pins" input renders on scenes
+with zero filterable rows ([loc-level0.png](shots/vcmap/loc-level0.png)) —
+a control that cannot work is noise, not honesty; and the zero-marker
+scene page is an undesigned empty (empty art well + empty panel + a filter
+box), failing design-standard §5.2 "designed compositions".
+
+### Microcopy register — 4
+
+The reader-word discipline that earned earlier rounds 8–9 is absent here:
+
+- Raw vocabulary as UI: kind chips print `cartridge`, `minigame_access`,
+  `profile_document` in every locale (probe `kindChips`; visible in
+  [map-en-level17.png](shots/vcmap/map-en-level17.png) and the RU/AR shots).
+- Untranslated role tokens `boot/title/menu/unbound` as optgroup labels in
+  RU and AR.
+- Focus chip prints the machine key `CARTRIDGES:MTAL`
+  ([map-en-focus-cold.png](shots/vcmap/map-en-focus-cold.png)) where the
+  popover law says loc-correct title.
+- Instance-census chips read `bare:1 unfixed:2 total:3`
+  ([ent-profile.png](shots/vcmap/ent-profile.png)) — emitter-internal
+  words no reader can parse.
+- Mixed register on one row in RU: `awaiting-transform-stage` (English
+  machine token) beside «Только на уровне сцены» (localized).
+- Deslugged Unity class names as titles: "Kind Mita", "Object Interactive",
+  "Transform Position", "Event Create Resource"
+  ([loc-level17.png](shots/vcmap/loc-level17.png)). CH-6 forbids invented
+  nouns, and these are honest — but a player reads a debug dump where
+  wikily writes "Chests", "Ore veins", "Crafting stations".
+
+## Just-landed fixes — adversarial re-check
+
+1. **Books found-in as TEXT, not dead anchors — PASS.** `/lore/books/book-1`
+   serves `Location 19` as a `<span>` (no `href`), with the only anchor
+   being the legitimate `/map?focus=books:book-1` pill — verified in raw
+   served HTML ([ent-book-1.png](shots/vcmap/ent-book-1.png)).
+2. **PinPopover provenance cell on mechanism≠hard — PASS in code, UNREACHABLE
+   in product.** The carry law renders on the entity module
+   ([ent-mita-black.png](shots/vcmap/ent-mita-black.png) shows the
+   `inferred · modeled` LCD cell on Ghostly Mita's found-in row), but the
+   popover itself can never open because no pin exists to click; the
+   `popoverFromCell` path has no trigger at all (cells render as
+   navigating chips, not popover openers).
+3. **Marker anchors resolve to live routes — PASS.** All 24 distinct hrefs
+   on `/map?scene=level17` returned 200 (probe `results`). New defect found
+   beside it: the SSR anchor row is **scene-locked to the SSR default** —
+   `curl /map?scene=level10` serves zero level10 anchors because
+   `MapRoute` never reads `searchParams`; deep-linked crawlers get the
+   default scene's rows.
+
+## Competitor comparison
+
+| Capability | wikily Gothic Remake (live, 2026-08-26) | new-world.guide (scout §3.1 + today's probe) | MiSide `/map` |
+|---|---|---|---|
+| Markers rendered | 2,200+, clustered | resource map w/ category filters (no dedicated map route reachable today — `/db/map` 404) | **0** (70 rows exist, all deferred) |
+| Layer/filter UI | Groups w/ counts, ALL/RESET/CLEAR, works in place | Hide-all + per-category, session-only | Chips w/ counts; toggle rewrites URL, filters nothing visible |
+| Search over markers | "Find any NPC, trader, chest…" | site search navigates away | Input + LCD "0 shown" over 7 visible matching rows |
+| Pin detail pane | Trader sheet w/ stock/prices; character-sheet links | — | `PinPopover` built (incl. provenance cell), unreachable |
+| Deep link | `?focus=fisk` restores selection | — | `?focus&scene&kinds` all restore cold — **we beat NWG here** |
+| Imagery | Hand-painted parchment + Satellite layer | Tile map | Checkerboard awaiting-artwork ×24 |
+| Region/scene switcher | Visual buttons + per-region zoom | — | Native select; single-scene groups; untranslated role tokens |
+| Summary stats | MARKERS/TRADERS/CHESTS tiles | — | None |
+| Empty/deferred honesty | n/a (data complete) | — | Wells + counted chips, no absence prose — **beats both** |
+
+Net: we lead on URL-state law and honesty (2 axes vs NWG, 1 vs wikily);
+we trail on every axis a user would call "map".
+
+## Fix list
+
+1. **MAJOR — filters must filter.** `site/src/components/map/MapViewer.tsx`:
+   apply `isEnabled()`/`matchesQuery()` to the pending/granular chip row and
+   the SSR anchor row (both currently unfiltered), and compute the
+   quicksearch LCD count over **all** visible rows (pins + cells) so "0
+   shown" can never contradict the visible list.
+2. **MAJOR — popstate must fully re-sync.**
+   `site/src/components/map/MapViewer.tsx` `onPop`: when the URL carries no
+   `?scene=`, restore `defaultSceneId(...)` instead of keeping the current
+   scene (same for a `?kinds=`-less URL, which already resets — scene is
+   the gap).
+3. **MAJOR — no raw vocabulary on the surface.** Add chrome keys for the
+   kind labels (`map.kind.cartridge`, `map.kind.minigame_access`,
+   `map.kind.profile_document`, … ×34 via `scripts/check-chrome-parity.mjs`)
+   and for the role groups (`map.role.boot/title/menu/unbound`); print the
+   entity's `markerTitle()` on the focus chip, keeping `kind:slug` for
+   `title`/`aria-label` only. Files: `KindFilter.tsx`, `SceneSwitcher.tsx`,
+   `MapViewer.tsx`, `src/i18n/chrome/*.json`.
+4. **MAJOR — one row, not two.** `MapViewer.tsx` renders the deferred chips
+   `<ul>` and the SSR anchor `<ul>` as duplicate stacks. Merge: make each
+   deferred chip itself the crawlable `<a>` (it already is) and drop the
+   second list; SSR anchors stay in the served HTML either way.
+5. **MAJOR — scene page composition + missing two-way leg.**
+   `site/src/components/routes/EntityDetailRoute.tsx` (`LocationsScenePanel`)
+   + `EntityShell.tsx`: promote the scene-locked viewer out of the tab into
+   the page's primary object (full-width under the H1; the 470 px empty art
+   well must not own the fold), delete the duplicate "Scene view" LCD chip
+   (`map.sceneLocked` renders directly under the identical tab label), and
+   add an "open in full map" anchor (`/map?scene=<id>`) — locked mode
+   currently offers no path to the canonical viewer.
+6. **MAJOR — show the deferred rows inside the panel.**
+   `site/src/components/map/SceneMap.tsx`: `LockedCell` is gated on
+   `bounds!==null && imageryReady`, unreachable for all 24 scenes. Render
+   scene-granular/awaiting rows as LockedCells in a deterministic stacked
+   strip over the grid now (no coordinates claimed, census chips attached)
+   so the viewer displays the scene's own rows instead of an unbroken
+   checkerboard.
+7. **MODERATE — deep links that connect to nothing.**
+   `site/src/components/routes/EntityDetailRoute.tsx` `locationSceneRefs`:
+   `books`/`mita`/`players` emit `?focus=` for kinds that have no marker
+   rows, so `/map` shows a pink id-chip beside zero related rows
+   ([ent-book-1.png](shots/vcmap/ent-book-1.png)). Until those families are
+   emitted, point OPEN MAP at the carrier scene (`focus` + `scene=` of the
+   container) or render the focus chip only when `focusedMarkerId` resolves.
+8. **MODERATE — duplicate location tabs.** `buildModules` gives cartridges
+   and mita/players both the M4 `location` tab and the VC-3 `found-in`
+   ModuleList tab, both labeled `nav.locations`
+   ([ent-cartridge-mtal.png](shots/vcmap/ent-cartridge-mtal.png) shows
+   "Locations" + "Locations 1"). Merge into one module; also re-word the
+   census chips (`bare/unfixed/total` are emitter words) to counts plus a
+   chrome-keyed legend.
+9. **MINOR — SSR the deep-linked scene.** `MapRoute.tsx` should accept
+   `searchParams`, validate `?scene=` against `sceneIds`, and pass it as
+   `initialSceneId` so served HTML carries the deep-linked scene's anchors
+   (verified gap: `curl /map?scene=level10` serves none).
+10. **MINOR — designed zero states.** `LocationsScenePanel`: hide the
+    "Filter pins" input when the scene has zero filterable rows; give
+    zero-marker scenes role token + prev/next scene links. Locations index:
+    per-scene facts on cards (registry `per_kind` counts, role chip) — 24
+    identical voids fail "designed compositions"; style or drop the stray
+    door sprite beside the LOCATIONS pill.
+11. **MINOR — RTL hygiene.** Wrap Latin LCD tokens in `dir="ltr"` spans
+    inside RTL pills; pick one register for status (either both status
+    words localize, or both stay LCD machine tokens — currently mixed
+    within one RU row).
+
+## Trajectory vs the earlier bar
+
+VC-3/VC-4 drove Home 8 · Entity 8 · Search 9 · RU 9 · AR 8 · Motion 9 by
+grading working interactions and reader-word chips against NWG/enka. This
+surface would drag the site's average if graded beside them: the map ships
+the *laws* (URL state, honesty, token discipline, island boundary, negative
+map gate) but none of the *payload* — zero plotted markers, an unreachable
+popover, filters that rewrite the URL and nothing else, and a register
+slip (raw snake_case, untranslated role tokens) that the entity pages
+already learned to avoid. Roughly half the gap is data-side (S9 transform
+calibration + scene bounds + per-instance coordinates — the spec's own M0
+tail), and the honest-state design is correctly ahead of the data; but
+fixes 1, 3, 4, 5, 6 are pure frontend and would make the deferred state
+itself worth an 8. Re-grade after the fix round + the marker-projection
+rerun; the bar for CHROME_PASSES here is a panel that shows its own rows
+and a popover a user can actually open.
+
+Evidence probes: throwaway `probe-tmp.png` deleted; ports 4977 (next
+start) and 9363 (CDP serve) released after capture.
+
+VERDICT: FIX_ROUND_REQUIRED
