@@ -1,0 +1,179 @@
+# V-MV1a — Verifier A on the F-MV1 post-fix map-viewer spec
+
+Verifier: Verifier A of the MiSide DB orchestrator. Verifies the F-MV1
+fix round against [mv1-arbiter](mv1-arbiter.mdx)'s 16-item FIX ORDER,
+item by item, against the disk spec
+[map-viewer.mdx](../../specs/map-viewer.mdx) (815 ln on disk, matching
+the claimed c40614e length; pre-fix base aedbc76 not diffable — git is
+forbidden this pass, so verification is against disk state, whose line
+count + fix presence match the claimed post-fix commit).
+
+Every headline number was re-measured independently from
+`extracted/data/scenes/poi.jsonl`, `poi-kinds.json`,
+`extracted/relinks/minigame--scene-carrier.jsonl`,
+`character--scene-membership.jsonl`,
+`document--scene-membership.jsonl`,
+`extracted/data/documents/profile_documents.jsonl`,
+`extracted/data/cartridges/{cartridges,minigames}.jsonl` (Python
+recounts; buildId 19029065 / 0.93L headers confirmed on the touched
+files). Constraints honored: no agents spawned, no git, no servers;
+this file is the only write.
+
+Environment note: local C: sat at 2.6 GiB free during measurement (one
+transient Errno 28 on stdout flush, rerun clean) — watch capacity if
+more agents land on this host today.
+
+---
+
+## 1. Fix-order item rulings — 16/16 APPLIED
+
+| # | Item | State | Disk evidence |
+|---|---|---|---|
+| 1 | §3.2(c) two-list ledger law | **APPLIED** | map-viewer.mdx:264–306 — `(kind, class_axis)` families with closed `poi_classes[]`, exact field list incl. optional `emitted_markers?`/`reason_code?`/`unblock_owner?`, `disposition ∈ {"emitted","deferred"}`, "No entry may key a bare kind", recompute-at-emit clause, partition identity Σ `poi_rows` = eligible recount (=709), `placement_families[]` sibling (same fields minus `poi_rows`/`poi_classes`, plus `source_dataset`), 11-row required partition table |
+| 2 | §12.1 AC MV-0.4 rewrite | **APPLIED** | :604–618 — the four assertions (a) partition sum, (b) coverage+disjointness with container-scoped axes, (c) Σ `emitted_markers` over **both** lists = markers data-row count, (d) deferred ⇒ `reason_code`+`unblock_owner`; *Proof:* ledger-arithmetic unit test retained |
+| 3 | §3.2(b) placement-sourced marker shape | **APPLIED** | :211–233 — `placement_source` ∈ {`DS-5`,`minigame--scene-carrier`} + owning id; `poi_id: null` mandatory; `status:"scene-granular"` always/never `"projected"`; emitter-split scalar `container` + downstream string-split ban; `instance_census` rule with measured 22 containers / 9 multi-minigame; verbatim `mechanism`/`status`/`method`; both F-2 prohibitions (per-instance minigame anchoring incl. the level9 4-over-3 fact; rendering scene-granular as plotted pin); DS-5 `placement` verbatim |
+| 4 | §3.2(c) minigame bullet unconditional | **APPLIED** | :253–262 — ruled IN per OQ-7, yield ≤38 covering 67/70, level1 ×3 deferred `no-carrier-edge` (`is_scene:false`; DS-4 J7 follow-up), "Both families land in the partition table below"; both families present in the :289–301 table |
+| 5 | §12.1 AC MV-0.1 extension | **APPLIED** | :586–593 — minigame carrier marker ⇒ exactly one `minigames.jsonl` key (17), profile slug 1:1 `document_id`, fabricated id fails loudly; *Proof:* retained |
+| 6 | DS-5 vocabulary hygiene (OQ-9) | **APPLIED** | :0.1 l.54, §7 l.468, §8 l.505 — `script_granted` ×2 + `story_granted` ×1 cited per the DS-5 column; DOC-5 demoted to "analogous cartridge-side undumped-grant/grant row" in all three places |
+| 7 | §6 largest-scene wording (F-3) | **APPLIED** | l.441 — "largest scene holds 123 rows (102 marker-capable)" |
+| 8 | AC MV-4 grep set (F-4) | **APPLIED** | :640–646 — `books`/`lore` added with the same-producer rationale; explicit exclusion clause for `locations` as an M3 embed surface, not a focus-anchor producer |
+| 9 | §2 diagram deletion (F-5) | **APPLIED** | diagram gone; l.160 "Dependency edges are exactly the table above; M4 depends on M0+M2."; table authoritative |
+| 10 | §3.2(d) additivity clause (F-6) | **APPLIED** | :313–315 — v2 extends v1 additively; `bounds`, `coordinate-transform`, `imagery`, `zoom` survive unchanged |
+| 11 | Provenance-carry law (F-7 modified) | **APPLIED** | §7 :471–485 full law (render whenever `mechanism !== "hard"` OR `status !== "modeled"`); PinPopover echo at :411 referencing "§7 carry law"; four `from:null` census rows excluded from per-entity modules, location-page-counted only, container-census-as-per-entity prohibited; corrected evidence (8/4 splits) stated |
+| 12 | AC MV-7 RTL leg (F-8) | **APPLIED** | :654–661 — scripted trace under locale `ar`, cold load `/[locale]/map` @375 px, asserts overflow/reachability/switcher+popover/well-formed popover `<a>`; "silent absence of any RTL assertion fails it" |
+| 13 | §9 chip-axis token sources (OQ-10) | **APPLIED** | :522–528 — names `--ms-accent`, `--ms-signal`, `--ms-warm`, `--ms-danger` + tokens-first rule for future axes |
+| 14 | OQ-5 history law pinned | **APPLIED** | §5 `mapState.ts` row :413 + §6 :429–430 — replaceState for filter/focus/kinds/clear, pushState on scene change, cold-load restores URL; AC MV-3 tests it |
+| 15 | §14 rulings conversion | **APPLIED** | :685–800 — intro declares the section a record of rulings with pointer to mv1-arbiter; all ten OQs carry `**RULED (A-MV1):**` dispositions; original recommendation texts stand annotated, not deleted |
+| 16 | dataset-scenes §3.5 supersession note (OQ-4) | **APPLIED** | dataset-scenes.mdx:392–397 — dated 2026-08-26 blockquote directly under the marker example, `entity_kind`/`links.*` superseded by map-viewer §4.1 routed vocabulary (`cartridge_item` → `cartridges`), example left intact (freeze discipline), relink resolves |
+
+No change beyond items 1–16 was found in the sections the fix order
+governs; nothing in the delta requires returning to arbiter.
+
+---
+
+## 2. Independent re-measurement — every headline number confirms
+
+Recounted with Python from disk (not inherited from `_meta`):
+
+- **Eligible recount = 709** (986 poi rows; 21 `marker_eligible:true`
+  classes vs 4 false / 277 rows). Matches §0.1 and the ledger identity.
+- **Ledger partition Σ = 709 over its 11 rows**, cell-for-cell vs the
+  §3.2(c) table: flash-taker 21 · tamagotchi 4 (1+3) · save-point 19 ·
+  unowned-teleports 27 (14 `Trigger_Teleport` + 13 `Player_Teleport`) ·
+  carrier-covered 67 · no-carrier-edge 3 · move_point 102 (31
+  `MitaAIMovePoint` + 71 `Transform_Position`) · spawn_event 24 · safe
+  2 · interactable 344 (312+32) · monster_anomaly 96
+  (28+16+20+15+8+4+2+3). Formal check: **each of the 709 eligible rows
+  is claimed by exactly one family** (zero uncovered, zero double-
+  claimed), and each family's `poi_kinds` column matches the
+  poi-kinds.json ruling for every class it claims.
+- **Carrier coverage**: 76 relink rows = 38 forward + 38 inverse; 38
+  distinct `(minigame, container)` pairs; **22 containers**, levels
+  2–23 only; all 76 edges `mechanism:"hard"`; 67 of 70
+  `MinigamesController` poi rows covered; the 3 uncovered sit at
+  level1 whose joins are exactly `{is_scene:false, world_object_path_id}`
+  (read off the three level1 rows). Secondary F-2 facts hold: 9
+  containers host >1 minigame; level9 hosts 4 minigames over 3
+  controller rows.
+- **Membership**: character--scene-membership = 12 data rows —
+  mechanism 8 `hard` / 4 `inferred`, status 8 `modeled` / 4 `partial`;
+  4 `from:null` census rows (`MitaPerson` 93 inst/45 cont, `MitaKiller`
+  31/31, `MitaFreak Enter` 17/17, `Mob_ChibiMita` 3/3 — all partial);
+  `mita-black` fwd+inv T1/T2 `inferred`/`modeled`; `mita-core` hard/
+  modeled. Exactly as §7 states. document--scene-membership = 354 rows,
+  all `hard`/`modeled` (books/lore basis).
+- **DS-5 vocabulary**: profile_documents.jsonl = flat header + **14**
+  data rows; 11 placed (all `carrier_class:"FlashTaker"`); 3 null with
+  declared `placement_mechanism`: `script_granted` on
+  `mita-2-d-profile` + `mita-core-profile`, **`story_granted`** on
+  `mita-true-profile`. The ×2/×1 split in §0.1/§7/§8/OQ-9 is exact.
+- **Level13 census**: 123 total poi rows, **102 eligible**; largest
+  scene either way (next: level17 at 77 total / 58 eligible) — §6's
+  "123 rows (102 marker-capable)" is exact.
+- **Join audit bases**: joins.save_key on all 21 FlashTaker rows
+  resolves 21/21 against cartridges.jsonl's `save_key` column (23 data
+  rows; pickup_ref null exactly on `mtad-2`/`mtacore`);
+  minigames.jsonl = 17 rows keyed `minigame_id`; 17 distinct minigame
+  ids appear in the carrier edges. poi ids unique 986/986, 790 suffixed.
+
+Non-blocking observation: the spec (and the arbiter text before it)
+writes the unplaced cartridge id as `mtad2`; the disk id column value
+is `mtad-2`. Pre-existing shorthand, identifies the same
+registered-unresolved-pickup row, asserted properties (pickup_ref null)
+verified true — cosmetic, outside the 16 items, no revision required.
+
+---
+
+## 3. Structural laws
+
+- **Proof methods**: 14 ACs (MV-0.1…0.5, MV-1…9), 14 `*Proof:*`
+  clauses — 1:1, none dropped by the rewrite.
+- **Dependency table**: M0←(nothing internal), M1←M0, M2←M0+M1,
+  M3←M2, M4←M0+M2, M5←M2–M4 — acyclic (topological order exists);
+  M0 gates all viewer modules via the hard sequencing rule (:162–164,
+  cross-linked to §12.1). Diagram absent; single-authority sentence at
+  :160.
+- **No raw hex**: hex-pattern sweep of the spec hits only corpus
+  path-id anchors (`level17#13630`, `_#10938`) and markdown fragments —
+  zero color literals; chip hues ride the four named tier-1 rows, all
+  four verified present in `site/src/styles/design/tokens.css`
+  (:34/:42/:44/:46).
+- **i18n law intact**: §10 keeps ×34 chrome files all-shipping +
+  parity gate; game-content strings stay in the data plane. New RTL
+  leg runs under locale `ar` on `/[locale]/map` @375 px (route-coded
+  locale, page-per-locale law respected); `ar.json`, `ar-EG.json`,
+  `fa.json` confirmed present among the 34.
+- **§14 heading unchanged**: `## 14. Open questions for the Arbiter`
+  at :685 — inbound anchors of the form
+  `map-viewer.mdx#14-open-questions-for-the-arbiter` still resolve;
+  the only other inbound section link found
+  (dataset-scenes → `#41-marker-row-v2-emitted-shape`) also resolves.
+
+---
+
+## 4. Interpretation-call rulings
+
+**(a) `move_point` written as BOTH classes `MitaAIMovePoint` (31) +
+`Transform_Position` (71) where the arbiter named only
+`MitaAIMovePoint` — SOUND, and in fact required.** Both classes carry
+kind `move_point` in poi-kinds.json, so the family stays keyed
+`(move_point, …)` with a closed two-class list — precisely the law's
+shape. The arbiter's own binding rules (closed class lists; counts
+recomputed at emit from poi-kinds.json + poi.jsonl; joint coverage of
+every eligible class; Σ=709) make the single-class cell untenable:
+`MitaAIMovePoint` alone measures 31, not 102, so keeping only it would
+break three higher laws at once to preserve an evidence-cell shorthand.
+The fixer kept the arbiter-fixed axis (family_id), kind, and row total
+identical and corrected only the class enumeration to measurement —
+adding a 12th family or re-homing the class would have exceeded the
+permitted delta. Faithful application, not deviation.
+
+**(b) `minigame_access` emission counts confined to
+`placement_families[]` (disposition "emitted" via that list) so AC
+MV-0.4(c)'s Σ does not double-count across two families sharing one
+class — SOUND.** The arbiter's ruling simultaneously puts minigame
+carriers in `placement_families[]` (its point 3 names them) and the two
+minigame families' poi_rows inside the 709 partition (its own 11-row
+table) — co-holdable only if poi-row accounting lives in
+pending_families while marker-emission accounting lives in
+placement_families, which is exactly what the spec writes
+(:280–284: "each marker row's emitted count appears in exactly one
+list, keyed by its source"). Double-counting is then structurally
+impossible in (c): expected reconciliation 21 (flash-taker, pending) +
+11 (profiles) + 38 (carriers) = 70 = markers data-row count at emit.
+The shared-class residue is handled at the correct granularity by AC
+MV-0.4(b)'s "container-scoped where a family declares a scope"
+row-level disjointness, and the spec flags that reasoning openly under
+the table (:303–306). Phrasing accepted.
+
+---
+
+## 5. Verdict
+
+16/16 fix-order items APPLIED; every re-measured headline number
+matches the spec; structural laws (Proof methods, acyclic M0-gated
+dependencies, no raw hex, i18n/RTL, §14 anchor stability) all hold;
+both documented interpretation calls ruled sound with measurement.
+Ready for CodeWriter+TestWriter without a further reviewer round.
+
+VERDICT: APPROVE
