@@ -1,0 +1,172 @@
+# V-CTF1a — Verification of the F-CT1 fix round over `content-pipeline.mdx`
+
+Verifier A pass, 2026-08-26. Target: [content-pipeline.mdx](../../specs/content-pipeline.mdx)
+as landed post-fix (orchestrator names commit `3c64fc4`, "638 ln" claimed;
+disk shows exactly 638 lines) plus the one-row
+[site-scaffold.mdx](../../specs/site-scaffold.mdx) §1.1 amendment (F9).
+Fix order source: [ct1-arbiter.mdx](ct1-arbiter.mdx) F1–F11 (F12 was
+orchestrator-side board bookkeeping, outside both specs, skipped by design).
+Constraint note: this pass cannot run `git`, so "at commit 3c64fc4" is verified
+as *disk state satisfying every fix-order item*, not as a SHA lookup; pre-fix
+base `9b46a25` (arbiter-recorded 544 ln → post-fix 638 ln, +94) is consistent
+with the volume of the landed amendments but not independently diffable here.
+
+Method: every arbiter fix item ruled against disk; load-bearing claims
+re-measured first-hand (not trusted from reviewer or arbiter); security-law
+audit of §2/§5/C14 per the tasking brief. Written progressively during the pass.
+
+## Per-item rulings (F1–F11)
+
+| Item | State | Evidence (line refs = disk state this pass) |
+|---|---|---|
+| F1 | **APPLIED** | §0.1 line 36 reads "**24** rows (+1 `_meta` header = 25 lines)" citing `_meta.row_count=24`, schema `miside.scenes.registry/1` — all three facts re-measured first-hand below |
+| F2 | **APPLIED** | §8.2 (474–491): TODO Phase-3 line quoted verbatim (byte-matches [TODO.mdx](../../TODO.mdx) line 112 incl. `[promptForDB Note#7]`); off-repo fact stated with the verification date ("promptForDB.md itself carries no numbered notes — verified 2026-08-26"); register entry MUST quote the note text; OQ-1 bullet (592–597) carries the same requirement |
+| F3 | **APPLIED** | §2 stack-pin amendment (116–122): marked named as the SINGLE allowed manifest addition, same-commit scaffold-row discipline; escape-first law (124–133): html-token deny at ANY depth as build failure naming file+snippet, href allowlist http/https/mailto/relative/#fragment explicitly closing `[x](javascript:…)`, no sanitizer dep, C14 pointer. §5 claim rewritten from property to mechanism (313–323) |
+| F4 | **APPLIED** | C14 (573): four seeds `<img onerror=…>` / `<script>` / inline `<b>` / `[x](javascript:…)` each nonzero-exit naming file+token; clean tree exits 0; emitted-HTML grep list; C9 demoted to "secondary belt-and-braces, not enforcement of record" |
+| F5 | **APPLIED** | §4 V3 tie-breaks 1–3 (255–273): collision-never-links with mita precedent; nameless-link-zero + `link_terms[]` escape hatch (exact case-insensitive whole-token, first occurrence, diff-reviewable, aliases never auto-scavenged); per-locale omit-on-empty never EN fallback; cross-locale claim weakened to identical-where-names-resolve |
+| F6 | **APPLIED** | §6.4 scope note (375–386): initial link set limited to currently-routed kinds (paper_part/novella_surface, profiles, books); notes-routed-kind recorded as dataminer/contracts board work item per AGENTS rule 8; DOC-1 fence reminder carried |
+| F7 | **APPLIED** | `body_sha16` in registry example (155) + ledger-authoritative/mirror paragraph (171–175); §3.3 translation-staleness model (202–213) with exact `TRANSLATION-STALE: <article_id>@<locale> <- pivot moved` format; §8.1 ledger cell authoritative (453–455); §10 machine-plane flag row (554) |
+| F8 | **APPLIED** | §3.1 line 139–140: "class-A `_meta` wrapper, data-contracts §2.2 class A — readJsonl() handles both shapes" |
+| F9 | **APPLIED** | site-scaffold §1.1 line 52: exactly ONE added row — pin "decided at implementation (zero-dep)", why-cell anchors [content-pipeline §2](../../specs/content-pipeline.mdx#2-module-breakdown--dependency-edges) + lexer AST reused for TOC/word counts; anchor slug resolves against the spec's real §2 heading |
+| F10 | **APPLIED** | Option-A cell now ends "RU is FIRST-WAVE launch content under EVERY option" (496); option D row present (499) labeled wave-shaping that composes with A/B/C, chrome+UI ×34 unconditional; OQ-1b split out (598–601); owner-assessment paragraph (512–518) carries D-frame + B-reuse + C escalation conditions + A availability |
+| F11 | **APPLIED** | §3.2 consumer table row (186): `/api/v1/guides/{slug}.json` + `/api/v1/news/{slug}.json` registry-derived fact-identical (S11 law extends to article pages); published articles listed in `/llms.txt` |
+
+F12: orchestrator-side, out of scope for this verifier by design.
+
+## Re-measured load-bearing claims
+
+| Claim | My measurement | Result |
+|---|---|---|
+| scenes `_meta.row_count=24`, "= 25 lines" | `extracted/data/scenes/scenes.jsonl`: header parses `"row_count": 24`, schema `miside.scenes.registry/1`; total lines on disk = **25** | confirmed |
+| mita-usual ↔ mita-true shared name | `extracted/data/characters/personages.jsonl`: BOTH rows carry `name_loc {"category":"Menu","line_index":83}` byte-identical + `name_is_shared:true` | confirmed |
+| cartridges 23/23 no display name | `extracted/data/cartridges/cartridges.jsonl`: 23 data rows (+meta = 24 lines); **0/23 contain the substring `name_loc` at all** — the field is ABSENT, not `null`. Substance true (no display name anywhere; CAR-5 posture), written form loose | confirmed-with-nit (see Finding 2) |
+| lore routed-kind filter excludes notes | `site/src/data/contracts.ts:396–402`: `lore` kind filters `["paper_part","novella_surface"]` over `world_documents.jsonl` — 160 notes unreachable through routing | confirmed |
+| MT non-goal scope | `_foundation/localization-architecture.md:82`: "Machine translation of missing locales is not part of this standard." (§6 non-goals). Spec's gloss "(for missing GAME locales)" adds an interpretive word not verbatim in the source | confirmed-with-nit (Finding 3) |
+| TODO Phase-3 mandate line | `docs/TODO.mdx:112` matches the §8.2 blockquote verbatim incl. `[promptForDB Note#7]` | confirmed |
+| `site/package.json` pins no markdown dep | manifest has no marked/markdown/remark/unified/MDX entry (deps + devDeps checked) — F3/F9 premise holds; amendment-before-manifest sequencing intact | confirmed |
+
+## Security-law audit
+
+**Does the escape-first law actually bind? Yes.**
+
+1. **Deny is structural, not advisory.** §2 states M2 validates on the SAME lexer
+   AST it already walks for TOC/word counts and fails the build on ANY token of
+   type `html` at ANY depth (block or inline), naming file + offending snippet;
+   §5 repeats it as "enforced, not assumed" and kills the old false
+   escape-by-default claim. There is no remaining sentence in the spec asserting
+   HTML inertness without this mechanism. JSX needs no separate rule and the spec
+   says why (no MDX runtime ⇒ tag-shaped text is inert text caught by the same deny).
+2. **The javascript: hole is closed in the written law.** Link destinations are
+   restricted to an ALLOWLIST (`http:` / `https:` / `mailto:` / relative /
+   `#fragment`). An allowlist is fail-closed: any scheme not literally listed —
+   including `javascript:` in any casing, whitespace/control-obfuscated forms,
+   `data:`, `vbscript:`, entity-encoded variants (which either decode to a banned
+   scheme or carry a colon that disqualifies them as "relative") — fails the walk
+   with the same build-failure mode. The arbiter's named attack string
+   `[x](javascript:…)` appears verbatim as a seeded C14 violation.
+3. **C14 covers the required proof shape**: all four seeds each produce nonzero
+   exit naming file+token; clean tree exits 0; emitted body HTML greps clean of
+   raw-HTML signatures; C9's source grep demoted to belt-and-braces. Complete
+   against arbiter F4.
+4. **Residuals (LOW, recorded, none reopen the hole):**
+   - The allowlist sentence says "link destinations"; image tokens (`![…]`)
+     carry destinations too and §5 bans only REMOTE images. An implementation
+     that walks only `link` tokens would leave image-src unvalidated. Practical
+     exposure is negligible (img-src javascript: does not execute in modern
+     browsers) and the html-token deny still blocks hand-written `<img>`, but
+     M2 should validate BOTH token types — worth one clause at implementation.
+   - C14's emitted-HTML grep includes `<img`, but markdown generation CAN
+     produce `<img>` from local `![alt](src)` syntax — see Finding 1.
+
+## Linking-law coherence
+
+Internally consistent across V1–V5: collisions never auto-link (V3.1) while
+reverse-link modules and `entity-cards` embeds stay exempt — matching §3.2's
+reverse-links consumer and §5's module map, so suppression is scoped to body
+text only. `link_terms[]` stays inside the declared-set principle (the V3 intro
+bans fuzzy/scavenging beyond the declared set; rule 2 re-bans alias
+auto-scavenging while permitting explicit declaration). Per-locale omit-on-empty
+(V3.3) agrees with §8.1's omit-never-mix fallback chain and AC C2's iff-gate,
+and the weakened cross-locale claim removes the contradiction the arbiter
+flagged. One unpinned seam: the §4 frontmatter example models `entities[]` as
+plain strings (`- cartridges: mta-arcade`), which cannot carry a per-entity
+`link_terms` — Finding 4.
+
+## Staleness design coherence
+
+Consistent across all four touchpoints: `body_sha16` is defined identically
+(hash of the admitted `.mdx` source at admission time) in §3.1 (registry mirror,
+ledger copy authoritative so registry-only consumers never open the ledger),
+§3.3 (recompute every emit; pivot-move prints the exact TRANSLATION-STALE
+format and flags the cell), §8.1 (ledger cell carries it authoritatively),
+and the §10 artifact table (both `STALE` and `TRANSLATION-STALE` flags are
+machine-plane, editor-workflow readers, never user-facing). Pivot-move
+semantics are well-defined (sibling cells keep their admission-time hash; a
+moved pivot hash makes them detectably old). No accepted-staleness ack ledger
+survives (rejected in the ruling and absent from the text). No contradictions
+found.
+
+## OQ-1 decision table audit
+
+Would an owner reading ONLY this table + the assessment paragraph make an
+informed ruling? Yes. A is costed honestly (slowest ×34, zero tooling, RU
+carve-out defuses the "slowest" framing); B carries the arbiter's correction
+(emit-side term-resolution tooling B has and A doesn't; slowest-to-moderate;
+highest editorial overhead); C carries the arbiter's correction (reviewer
+capacity — not generation — is the bottleneck, with ar-EG/pl/tr named, and the
+register-override is framed as legitimate because of the non-goal's scope);
+D is present as a fourth row honestly labeled wave-shaping-not-authority that
+composes with A/B/C, keeps the chrome+UI ×34 plane unconditional, and names its
+consequence (non-RU/non-EN arrive late under omit-fallback). The assessment
+paragraph gives a concrete recommendation (D frame + B reuse; C only via
+register entry quoting the note + naming reviewers; A remains available) and
+ties back to the M-2 citation discipline. OQ-1/OQ-1b bullets in §13 align with
+the table.
+
+## site-scaffold §1.1 amendment
+
+Exactly one added row (grep: single `marked` occurrence in the whole file):
+pin "decided at implementation (zero-dep)", why-cell points at content-pipeline
+§2 via a resolving anchor and states the lexer-AST reuse for TOC/word counts.
+AC-S1 discipline holds: the table now lists what the manifest will pin in the
+same commit, and package.json today pins nothing renderer-like, so there is no
+window where S1's "pins exactly the §1.1 table" is false in the committed state.
+
+## Findings
+
+All LOW; none reopen the security law or break a design law. Recommend carrying
+them to the board rather than reopening the fix round:
+
+1. **C14 grep-list nit** — `<img` is listed among "raw-HTML signatures markdown
+   generation cannot produce", but local `![alt](src)` image syntax produces
+   `<img>` legitimately; §5 bans remote images only. As written, a guide with a
+   local screenshot fails C14's secondary grep spuriously (fail-closed
+   direction). Fix at implementation: either ban inline body images outright or
+   drop `<img` from the signature list (keep `<script`, `<iframe`, `onerror=`);
+   the enforcement of record (token deny + allowlist + seeded exits) is
+   unaffected. Inherited verbatim from arbiter F4 wording, faithfully transcribed.
+2. **Cartridge phrasing** — "23/23 cartridge rows ship `name_loc: null`": disk
+   truth is the key is ABSENT in all 23 rows (0 substring hits), not null. The
+   shorthand originates in missingdata.md CAR-5 itself. Behavior is fully pinned
+   anyway because V3 rule 3 handles absent AND contentless cells; suggest
+   "carry no name cell at all" next time the line is touched.
+3. **MT-non-goal citation gloss** — the spec's "(for missing GAME locales)"
+   adds an interpretive word to localization-architecture.md:82's literal
+   "missing locales". The operative gate is intact regardless (§8.2 + §12: no MT
+   tooling without an explicit register entry), so this weakens nothing; noted
+   for citation honesty.
+4. **`link_terms[]` attachment grammar unpinned** — the frontmatter example's
+   plain-string `entities[]` entries cannot carry a per-entity `link_terms`
+   field; M1's validator schema must pin the form (structured entries or a
+   keyed map) before authoring starts. Mechanical, no design rework.
+
+## Verdict
+
+11/11 fix-order items APPLIED against disk; all re-measured load-bearing claims
+hold (two with wording nits); the escape-first security law binds as written
+with the javascript: hole closed by a fail-closed allowlist and a complete C14
+proof shape; linking, staleness, and OQ-1 surfaces are internally coherent; the
+scaffold amendment is minimal and correct. Four LOW findings recorded above, all
+fail-closed or cosmetic, none verdict-blocking.
+
+VERDICT: APPROVE
