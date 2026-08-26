@@ -1,0 +1,230 @@
+# R-LL1 — Reviewer pass over `docs/specs/logic-layer.mdx` (D-LL1)
+
+Reviewer: fresh Reviewer subagent (R-LL1, PrepareTask step 3). Date 2026-08-26.
+Subject under review: [`docs/specs/logic-layer.mdx`](../../specs/logic-layer.mdx) (353 lines, commit
+d919dcc, DRAFT for arbiter review). Inputs read **in full** this pass:
+[logic-layer.mdx](../../specs/logic-layer.mdx),
+[logic-layer-scout.mdx](../logic-layer-scout.mdx),
+[data-contracts.mdx](../../specs/data-contracts.mdx) (§1–§3 relevant sections),
+[`extracted/data/missingdata.md`](../../../extracted/data/missingdata.md) (147 lines), AGENTS.md.
+Every load-bearing number below was re-measured over
+`extracted/data/**`, `extracted/relinks/*`, and the relocated corpus
+`D:\unpacked_game_data\MiSide\{decompiled,il2cpp,harvest}` — nothing accepted on faith,
+including the spec's own claim of having done so (see F-3).
+
+## Verdict summary
+
+| Severity | Count | Findings |
+|---|---|---|
+| HIGH (blocks build) | 1 | F-1 |
+| MEDIUM (fix before CodeWriter) | 3 | F-2, F-3, F-4 |
+| LOW (note / tighten wording) | 5 | F-5 … F-9 |
+
+**NEEDS_REVISION** — the architecture, the polarity law, and nearly every measured number are
+sound and verified, but AC-L1/LG2 as written contradict each other arithmetically (F-1), the
+polarity *value* has no derivation rule (F-2), and two census numbers are stale copies from the
+scout despite the spec's re-measurement claim (F-3). All fixes are local; none disturb the module
+graph or the artifact shapes.
+
+---
+
+## Findings
+
+### F-1 — HIGH: LG2's method whitelist makes AC-L1's 1,555/1,555 gate impossible, and the L1 join key names fields `branch_edges` does not have
+
+Spec §4 LG2: *"Corpus-wide persistent-call sweep (51 containers) with a method whitelist derived
+from dump.cs signatures: `Achievement_function.AchievementGet/AchievementComplete(int)` ·
+`Achievement_cloth.ClothCompleted` · `Events_IntMemory.{Set,Add,Remove,CheckEvent,CheckEventIndex}`
+(+ `*Ignory` variants) · `Events_Data.EV` · `Scene_Load.StartLoad/SilentSave` ·
+`World.SaveStoryMita/SaveStoryCartridge`."* — and §8 L1: *"every `branch_edges.jsonl` row resolves
+to exactly one `effect_calls` row — 1,555/1,555 … checker joins on
+`(container,file,target_type,method,object_path_id,args)`"*.
+
+Disk evidence: cross-tabulating all 1,555 `branch_edges` rows against that exact nine-family
+whitelist gives **20 IN / 1,535 OUT**: scene-flow 709/709 OUT, audiovisual 356/356 OUT, cosmetic
+467/468 OUT, dead-reference 3/3 OUT, flag-set 10 IN, flag-query 8 IN, award 1 IN. The edges target
+133 distinct `(target.type,target.method)` pairs led by `UnityEngine.GameObject.SetActive` ×265,
+`ObjectAnimationPlayer.AnimationPlay` ×160, `UnityEngine.AudioSource.Play` ×131,
+`UnityEngine.Animator.SetTrigger` ×104, `UnityEngine.ParticleSystem.{Play,Stop}` ×167 — none of
+which the whitelist admits, yet §7 item 2 expects *"Cosmetic (468) + audiovisual (356) effect calls
+(~824)"* **inside** `effect_calls.jsonl` as graph fuel. Second defect: `branch_edges.jsonl` rows
+carry keys `{args,branch_if_int,call_index,edge_id,effect_class,feeds_ending,from_node,from_option,
+status,target}` — there is **no `file` field and no top-level `container`** (container survives
+only as the `edge_id`/`from_node` prefix), so the specified join tuple cannot be built as written,
+and uniqueness would lean on reproducing DS-2's `call_index` ordering, which nothing pins.
+
+Consequences if built as-is: either the CodeWriter implements the literal whitelist and AC-L1 fails
+at 20/1,555, or it silently widens the sweep beyond spec and the spec text lies about what ran.
+
+Fix (one paragraph, no structural change): make LG2 a **two-tier sweep** — tier 1 = the enumerated
+semantic whitelist (feeds `subject_ids`, floors, projections); tier 2 = **all remaining persistent
+calls**, classified with DS-2's type/method semantics so cosmetic/audiovisual/scene-flow land in
+`effect_calls` as internal-only rows (they already carry `effect_class` semantics to copy). Restate
+AC-L1's join as `(edge_id-derived container) + (target.type,target.method,target.object_path_id,
+args)` with `call_index` as the explicit tiebreaker, or pin that `effect_calls` must reproduce
+DS-2's per-host call ordering. Note the dead-reference class additionally *requires* an unfiltered
+sweep (a whitelisted filter can never discover `m_Target=0` residue).
+
+### F-2 — MEDIUM: `polarity.value` has no derivation rule — `static-proven` evidence does not prove *direction*, and AC-L3 cannot catch a wrong positive
+
+Spec §3 defines the pairing law (*"A row may not state a `value` without an evidence class; the
+checker rejects any `value` paired with `fail-closed-unknown`"*) and §4 LG3 gives the mechanical
+**evidence_class** rule (*"serialized site in evidence → `static-proven`; `[community]`/
+wiki-attributed citation → `inferred`; otherwise `fail-closed-unknown`"*) — but **nothing in the
+spec states who or what assigns `value`, or when a serialized site justifies `value:"positive"`**.
+For award verbs the direction is inherent in the call (`AchievementGet`/`ClothCompleted` grant);
+for a **gate** (flag query, window, toggle) a byte-verified site proves existence, not sense —
+that is precisely F5's NOT-STATIC ruling and the scout's "single biggest feasibility risk". As
+written, a row `{subject: ending conditions-met, condition: <IntMemory site>, polarity:{value:
+"positive", evidence_class:"static-proven"}}` passes AC-L3 (value paired with static-proven-grade
+evidence) while asserting exactly the harmful unproven advice Law 2 exists to prevent. Today only
+§6's per-family dispositions stand in the way; the LAW itself has the hole.
+
+Disk evidence: `branch_edges` contains 8 `flag-query` + 10 `flag-set` serialized edges whose
+sense is unproven ([END-5] `feeds_ending:true ×0` measured again this pass) — i.e., the dangerous
+row population is real and already enumerated in the corpus.
+
+Fix: pin a **verb→direction allowlist** for `value≠null` under `static-proven`
+(`AchievementGet`, `AchievementComplete`, `ClothCompleted`, `Scene_Load.fileSave`-family save
+literals, `FlashTaker.save` pickups ⇒ positive; every other target/method ⇒ `value:null` +
+`fail-closed-unknown` until [XC-1]), and extend AC-L3 to recompute `value` against that table, not
+just `evidence_class`. One sentence in §3 + one column in the L3 proof row.
+
+### F-3 — MEDIUM: cartridge census is stale-scout, not re-measured — 23 rows / 21 resolved pickups on disk vs the spec's "24 cartridges" / "22 resolved"
+
+Spec §4 LG3: *"26 achievements, 4 endings (+ Peaceful stub), **24 cartridges**, outfits…"*, and §6:
+*"pickup-gate rows only for the **22** resolved; the 2 unresolved emit explicit `pickup_ref:null`
+stubs"*, and §8 L3 initial population includes *"…+ **22** pickup gates + community-attributed
+windows"*. The spec's header claims *"Every count below was re-measured … nothing is copied on
+faith."*
+
+Disk evidence: `extracted/data/cartridges/cartridges.jsonl` measures **24 raw lines = `_meta` +
+23 data rows** (ids `mta…plr-1099`; matches data-contracts §3.3 "cartridge_item (23)");
+`pickup_ref` is non-null on **21** rows, null on exactly 2 (`mtad-2`, `mtacore` = CAR-1). The
+scout's "24 rows … ×22" appears to have counted the `_meta` line; data-contracts (measured) says
+23. Three spec locations inherit the wrong pair, and AC-L3's expected population would fail or be
+force-fitted by one row.
+
+Fix: 23 everywhere; 21 resolved + 2 stubs; L3 population "21 pickup gates". While there, LG3's
+"4 endings **(+ Peaceful stub)**" double-counts — `peaceful` is one of the 4 `endings.jsonl` rows
+and its `mode_unlocked:{state:"locked-stub"}` rides those rows (measured; XC-12 posture) — drop
+the "+" clause or reword to "incl. the Peaceful locked-stub".
+
+### F-4 — MEDIUM: AC-L6's proof tool does not exist yet — dependency on the unlanded D-C1 contract registry is undeclared
+
+Spec §5/§8 L6: *"schema ids registered in `contracts/registry/entities.json` via
+`check_contracts.py` (umbrella §2.1 pattern) … CI-diffed."*
+
+Disk evidence: `contracts/` currently holds only the seven `dataset-*.mdx` files;
+`contracts/registry/entities.json` and `contracts/check_contracts.py` exist **nowhere** in the
+working tree (searched `contracts/` and `tools/`). The D-C1 umbrella spec is itself still DRAFT.
+L6 as written is unverifiable until that piece lands, and nothing in logic-layer.mdx declares the
+ordering.
+
+Fix: one line in §8 L6 — "runs after D-C1 lands; until then the four schema ids are declared in
+the emit ledger and registration is a staged step", or make LG emission's definition-of-done
+(XC-6 stage registration) explicitly carry the registry insert.
+
+### F-5 — LOW: §2.3 correction 3 mischaracterizes `flag_tables.jsonl` as ambiguously keyed
+
+Spec §2.3-3: *"level4 carries two `Events_IntMemory` instances while `flag_tables.jsonl` keys rows
+by ambiguous `node_id` (`level4:Events_IntMemory`)"*.
+
+Disk evidence: the five `node_id`s measure `level13:Events_IntMemory`,
+`level4:Events_IntMemory`, **`level4:Events_IntMemory:3327`**, `level5:Events_IntMemory`,
+`level9:Events_IntMemory` — the two level4 instances get **distinct** keys, and the bare row
+honestly records `object_path_id: null` while the suffixed row carries `object_path_id: 3327`.
+The underlying identity gap (bare filename ⇒ no path id; LG1's inventory-resolution rule) is real
+and worth keeping — only the "ambiguous key" characterization of the shipped artifact is wrong.
+Reword to: "flag_tables distinguishes level4's twins only by the `:3327` suffix convention and
+leaves the bare row's `object_path_id` null; LG1 makes the convention explicit and resolves bare
+names via the harvest inventory."
+
+### F-6 — LOW: illustrative `effect_calls` row carries a copy-pasted `target_path_id`
+
+Spec §5 effect_calls example: `level9/Dialogue_3DText_#12820.txt … "target_type":
+"Achievement_function","target_path_id":9330 … "ACHI_slaphead"`.
+
+Disk evidence: `relinks/achievement--award-site.jsonl` measures that exact site as
+`target_path_id: 18198`; `9330` is level6's shared `Achievement_function` component (WinFIght /
+PinguinTusim / none rows). The number was carried from the scout's WinFIght example. Examples
+become CodeWriter fixtures — correct it to 18198.
+
+### F-7 — LOW: `predicate_records.status` enum is never pinned
+
+Scout §4.2 drafted `status ∈ {proven-hard, proven-structure, community, unknown-fail-closed}`;
+the spec uses `status:"proven-hard"` (§5 example), `proven-structure` (§6), `locked-stub`
+(§6 Peaceful row) without ever enumerating the closed set, while `evidence_class` *is* fully
+enumerated. Pin the enum (and its relationship to `internal_only`) so the schema id
+`miside.logic.predicate_records/1` is registrable under L6 without a second guess.
+
+### F-8 — LOW: two AC proofs need their inputs pinned to be mechanically runnable
+
+(a) L4's *"grep audit for threshold-shaped assertions"* names no pattern — pin a concrete
+deny-list (e.g. `win|threshold|score >=|percent` over `data/logic/*.jsonl` excluding citation
+strings, plus `rule_status=="not-a-threshold"` on every tunables row, which is already specified
+and is the strong half of the gate). (b) L3's *"checker recomputes `evidence_class` from the
+evidence arrays"* needs typed evidence entries (serialized-site locator vs citation marker);
+today evidence is freeform strings like `"extracted/relinks/achievement--award-site.jsonl#…"`.
+Declare the discriminator (path namespace: `harvest/mb-dump|il2cpp/dump.cs` = site;
+anything else = citation) in §3.
+
+### F-9 — LOW: Law 2's render half has no acceptance hook in this piece
+
+The data-side guards (mandatory field, pairing rejection, L3) are solid, but *"unknown polarity
+renders as unknown … never styled as advice"* is enforced nowhere the orchestrator can run before
+the explorer exists — L6 checks consumption hygiene, not rendering. Add one sentence to §10/flip
+paths making the fail-closed render contract an explicit input to the explorer piece's spec (with
+the OQ-3 renderer flip as the single switch), so the obligation is not lost between pieces.
+
+---
+
+## GOOD list (for the Arbiter's balance)
+
+1. **Census arithmetic is real.** 384 = 5 `Events_IntMemory` (level13, level5, level9, level4 bare
+   **and** `_#3327`) + 379 `Events_Data` — reproduced exactly by independent `find`;
+   51 containers; bare-vs-suffixed siblings confirmed (`globalgamemanagers/Events_Data.txt` beside
+   `#10760/#10900/#10983`); one `MonoBehaviour Base` block per sampled `.txt`.
+2. **dump.cs anchors all byte-exact**: `Scene_Load` **:106767** (TypeDefIndex 1691 confirmed — the
+   scout's :106768 correction is right), `Achievement_cloth` :100303, `SerializableIntMemory`
+   :101847, `Events_IntMemory` :101861, `MinigamesAutomate` :111689, `FlashTaker` :114391,
+   `DialogueChanger` :125374, `World` :128181; file = 288,102 lines. All nine whitelisted method
+   signatures exist verbatim, incl. the four `*Ignory` variants; `Location4Fight [Range(0,6)] int
+   enemyComplexity` confirmed.
+3. **Tree counts and distributions exact**: choice_nodes 371 (353/13/5), branch_edges 1,555
+   (709/468/356/10/8/3/1, `feeds_ending:true ×0`), flag_tables 5, endings 4, achievements 26
+   (serialized-site 11 / code-body 12 / aggregate 3; proven-hard 11 / unverified-behavior 15),
+   save-vocabulary 19+_meta, scoring fence `false ×17`, award-site canonical 11 data rows + `_meta`
+   with the staging twin still parked ([DOCX-3] posture accurate), outfit relink 4 rows = 2 hard
+   forward+inverse mirrors + HellVamp partial pair, Chirfns target PathID 9327 confirmed in the
+   level6 dump, ObjectInteractive×449 / DialogueChanger×13 / FlashTaker×21.
+4. **Native-wall claims hold on disk**: `level6/Location4Condition.txt` = exactly 9 lines of base
+   fields (PathID 53), no `lookStove`/`lookVentil`; `_structure/README.md`:9 really cites the
+   nonexistent `does-not-work/decompiler-method-bodies.md`; all three `poi-kinds.json` logic-layer
+   fences verbatim; `[community]` window strings present in `endings.jsonl`.
+5. **Polarity law shape is right**: mandatory field, illegal pairing rejected, mechanical
+   evidence_class derivation, `inferred` admission escalated to the owner (OQ-3) instead of
+   assumed, schema identical under both postures — reversible in one renderer line. The internal-only
+   taxonomy (dead-ref ×3, ~824 presentation calls, unnamed flags, LG4 envelopes-as-never-rules)
+   is exactly the anti-false-statement engine the piece needed.
+6. **Module graph coherent and acyclic** (LG1 ∥ LG2 ∥ LG4 → LG3), artifacts consistently named
+   across §4/§5, `flag--gates`/`choice--consequence` collide with none of the 27 existing relink
+   files (verified absent, correctly framed as new emissions with `_meta.authority_ruling`),
+   XC-6 stage-registration delivery gate carried, drift tripwire (L5) follows the AC-A1 pattern.
+7. **Scope discipline**: dialogue hints ride as provenance only ([DLG-3]/[DLG-7]); spawn/day
+   semantics stay fail-closed; OQ recommendations stay within house law (OQ-1/OQ-3 owner-gated,
+   OQ-4 parked out of Phase 1, flip paths preserve reversibility); nothing poaches other board
+   lines.
+
+## Measurement appendix — commands behind the numbers
+
+Independent re-measurements this pass (all read-only): `find mb-dump -name 'Events_IntMemory*.txt'
+| wc -l` = 5; `'Events_Data*.txt' | wc -l` = 379; JSONL row/kind/class distributions via python
+over `endings/{endings,choice_nodes,branch_edges,flag_tables}.jsonl`,
+`achievements/achievements.jsonl`, `cartridges/{cartridges,minigames}.jsonl`,
+`dialogue/nodes.jsonl` (2,839 rows / 318 hints), the three relinks; whitelist cross-tab computed
+per-row over `branch_edges.target`; `grep -n 'public class …' il2cpp/dump.cs` for anchors;
+persistent-call greps for `ClothCompleted` (exactly 2 host files corpus-wide) and Chirfns
+PathID 9327.
+
+VERDICT: NEEDS_REVISION — 9 items (1 HIGH, 3 MEDIUM, 5 LOW)
