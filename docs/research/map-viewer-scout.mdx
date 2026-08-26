@@ -1,0 +1,450 @@
+# Map Viewer Scout — interactive scene maps (PrepareTask step 1)
+
+Scout note feeding [docs/specs/map-viewer.mdx](../specs/map-viewer.mdx)
+(Documentator, brief
+[D-MV1](../briefs/D-MV1.md)). Board item:
+"Interactive scene maps per chapter/location (owned, no embeds) — markers v0
+exists, needs viewer + interactions", plus follow-on "Map module on
+location-bearing entity pages (two-way links)".
+
+Written progressively while surveying; sections fill as evidence landed.
+Constraints honored: owned implementation only (no embeds / third-party tile or
+image servers), scene art from our own corpus export. Survey date 2026-08-26,
+dataset build **19029065** / 0.93L.
+
+## 1. Dataset shape
+
+All files under `extracted/data/scenes/` (emitted by
+`build/emit_scenes.py`, builder B-6; spec
+[docs/specs/dataset-scenes.mdx](../specs/dataset-scenes.mdx); honesty ledger
+[extracted/data/scenes/README.md](../../extracted/data/scenes/README.md)).
+Measured row counts (`wc -l`, first line of every file is a `_meta` header):
+
+| File | Data rows | Content |
+|---|---|---|
+| `scenes.jsonl` | 24 | scene registry: 20 story + boot/title/menu + level23 `unbound` |
+| `scene-links.jsonl` | 57 | lattice edges: 19 loads / 7 unloads / 15 continues / 15 chapter_name / 1 ledger |
+| `poi.jsonl` | 986 | placement-bearing instances, **aggregated per `<level>:<class>`** |
+| `spawn-tables.jsonl` | 24 | Event_CreateResource spawn tables (halloween/christmas gated) |
+| `markers.jsonl` | **0** | projection v0 = `_meta` accounting only (no-orphan rule) |
+| `poi-kinds.json` | 24 rulings | class → kind + `marker_eligible` |
+| `relinks/*.jsonl` | 5 files | scene--chapter (30), scene--dialogue-pool (40), scene--objective-hints (37), scene--save-vocabulary (19), cartridge--character-placement (48) |
+
+### 1.1 `scenes.jsonl` — one row per Unity level container
+
+Verbatim example (`extracted/data/scenes/scenes.jsonl`, level4 row):
+
+```json
+{"scene_id": "level4", "role": "story", "location_id": "Location2",
+ "display_name_loc": null,
+ "objective_hints": [{"category": "LocationHint Location2", "line_index": 0}, …],
+ "objective_hints_text_en": ["Have a look around.", "Find the required objects and place them on the scanner.", …],
+ "objective_hints_source_locale": "English",
+ "quest_text_categories": [],
+ "spawn": {"x": 3.41, "y": 0, "z": -1.66, "rot_x": 270, "rot_y": 0, "source": "inline", "space": "world-assumed"},
+ "hint_screens": [], 
+ "sub_scenes_loaded": ["Scene 3 - WeTogether"], "sub_scenes_unloaded": [], "sub_scenes_continued": ["Scene 2 - InGame"],
+ "chapter_name_loc": {"category": "Menu", "line_index": 101}, "chapter_name_en": "Together at Last",
+ "provenance": {"component": "World", "container": "level4", "path_id": 4630},
+ "build_id": "19029065", "version_label": "0.93L"}
+```
+
+Facts that bind the viewer:
+
+- `scene_id` values are `level0`…`level23` — the routed `/locations/[scene_id]`
+  pages key on exactly this column (`site/src/data/contracts.ts`
+  `ENTITY_KINDS.locations.idField === "scene_id"`).
+- `role`: `story | boot | title | menu | unbound`. Only story scenes have
+  `location_id` ("Location1"…"Location20"); boot/title/menu/unbound carry
+  `null` — a per-scene switcher must handle 4 non-location scenes.
+- `spawn` is the ONLY `space:"world-assumed"` coordinate in the whole dataset
+  (README: "`world-assumed` appears ONLY on World.positionSpawn"). Units:
+  Unity world meters (values like `-22.23`, `12.0`, `-108.5`; y is mostly 0 or
+  12, i.e. floor height). No bounds box exists anywhere — `bounds` is not a
+  field; the site registry emits `bounds: null` as the honest value.
+- `hint_screens` (`{"x":20,"y":-20}` pairs, level3 only) are screen-space HUD
+  anchors, NOT world coordinates — never plot them.
+- `display_name_loc` is `null` on all 24 rows (SPEC gap #1 open); display names
+  today come from `chapter_name_loc`/`chapter_name_en` (15 of 20 story rows;
+  levels 3,7,12,15,18 have `null`) or loc joins via relinks.
+
+### 1.2 `poi.jsonl` — class-level aggregates, mostly coordinate-less
+
+Row identity is **per class per level**, not per instance: `poi_id =
+"<level>:<class>"`, all 986 unique because each (level,class) pair appears
+once. Verbatim examples:
+
+```json
+{"poi_id": "level8:FlashTaker", "class": "FlashTaker", "kind": "cartridge",
+ "level": "level8", "location_id": "Location6",
+ "position": {"source": "pptr-unresolved", "space": "unknown", "x": null, "y": null, "z": null,
+              "target": {"kind": "GameObject", "path_id": 1208}},
+ "joins": {"save_key": "plr3vi",
+           "placement_authority": "extracted/data/cartridges/cartridges.jsonl (DS-4; consumed by reference, never re-derived)",
+           "pickup_object_path_id": 1208},
+ "build_id": "19029065"}
+
+{"poi_id": "level9:Trigger_Teleport", "class": "Trigger_Teleport", "kind": "travel_gate",
+ "level": "level9", "location_id": "Location7",
+ "position": {"source": "none", "space": "unknown", "x": null, "y": null, "z": null},
+ "joins": {}, "build_id": "19029065"}
+```
+
+Position truth census (`_meta.position_truth_census`, verified by recount):
+`inline 298 · pptr-unresolved 76 · none 612`. But the inline breakdown kills
+the optimistic reading:
+
+| position cell | rows | classes | mappable? |
+|---|---|---|---|
+| inline / object-local-offset | 262 | ObjectItem | NO — hand/face offsets, excluded by ruling (`poi-kinds.json`: "NEVER map-projected") |
+| inline / unknown | 13 | Player_Teleport | NO — frame unproven (IL-stub bodies) |
+| inline / parent-local | 10 | Transform_Position | NO — parent-relative |
+| inline / unknown | 13 | Transform_Position | NO |
+| pptr-unresolved / any | 76 | FlashTaker 19, MitaAIMovePoint 25, Trigger_DistanceCircle 18, Trigger_Teleport 14 | pending S9 transform stage |
+| none / — | 612 | everything else | pending |
+
+So **zero POI rows project today**. The only projecting coordinates in the
+dataset are the 20 story-scene `spawn` fields. The site's own projection law
+(`site/src/components/map/projection.ts`) encodes this: it projects ONLY
+`source=="inline" AND space=="world-assumed"`.
+
+Schema consequence for the viewer: even after the PIPE S9 transform stage
+flips `pptr-unresolved → inline` ("without schema change" per README), one row
+still carries ONE position for a whole class-in-level (e.g. 41
+ObjectInteractive instances in level13 share `level13:ObjectInteractive`). A
+per-instance marker layer needs either an emitter schema change (instance
+expansion, e.g. `points: [...]` arrays or one row per instance with instance
+ids) or a new markers-projection shape. This is an emitter-side decision the
+spec must surface to the Arbiter — frontend cannot derive instances from
+aggregates (AGENTS.md rule 8).
+
+### 1.3 `markers.jsonl` — v0 ships ZERO marker rows
+
+The entire file is one `_meta` line (`row_count: 0`) with
+`pending_families` naming each deferred family and its unblock:
+cartridge_item (owning dataset DS-4), profile_document (DS-5),
+monster_anomaly (no entity dataset yet), save_point (no entity dataset).
+It also pins the deep-link contract verbatim:
+`"/map?focus=<entity_kind>:<entity_slug>&scene=<scene_id>"`.
+
+Correction to the board item's premise: "markers v0 exists" means the *marker
+schema and projection rule* exist — the data does not. Two unblocks have since
+landed: `extracted/data/cartridges/cartridges.jsonl` (23 rows, DS-4) and
+`extracted/data/documents/profile_documents.jsonl` (14 data rows, DS-5) both
+exist now, so the cartridge + profile families are rerun-ready. Monster and
+save_point families remain blocked (no owning entity datasets).
+
+### 1.4 Entity-side placement columns (the join partners)
+
+Cartridges (`extracted/data/cartridges/cartridges.jsonl`, verbatim):
+
+```json
+{"cartridge_id": "mtal", "family": "character", "status": "registered-pickup",
+ "depicts_character_id": "mita-little", "contains_player_id": null,
+ "container_location_binding": "level10->Location8 [inferred]",
+ "pickup_ref": {"container": "level10", "field": "save", "file": "FlashTaker_#5875.txt", "value": "mtal"},
+ "save_key": "mtal", …}
+```
+
+Profile documents (`extracted/data/documents/profile_documents.jsonl`):
+`placement: {"carrier_class": "FlashTaker", "component_path_id": 13630,
+"container": "level17"}`, `placement_mechanism: "placed"`.
+
+So the corpus pins **which scene** every cartridge/document sits in, plus the
+FlashTaker `component_path_id` that matches the POI row's
+`pickup_object_path_id` — but **not** x/z within the scene. Scene-level
+placement is shippable today; in-scene pin positions wait on S9.
+
+Relinks relevant to the viewer (all under `extracted/data/scenes/relinks/`
+and mirrored at `extracted/relinks/`): `cartridge--character-placement.jsonl`
+(family header + forward/inverse rows `{direction, from: "flashes:<key>", to:
+"character:<id>", mechanism, method, status, placed_in}`), `scene--chapter`,
+`scene--dialogue-pool`, `scene--objective-hints`, `scene--save-vocabulary`.
+`extracted/relinks/` additionally carries `character--scene-membership.jsonl`
+and `minigame--scene-carrier.jsonl` — both already consumed by
+`site/src/data/contracts.ts`.
+
+### 1.5 Coordinate system summary
+
+- Space: Unity left-handed world space, meters, per-level origin (each levelN
+  is its own rect — `"coordinate-transform": "rect-per-map"`).
+- Measured ranges of the only projecting values (20 story spawns): x −27.75…11.25,
+  y −3…12, z −108.5…5.5. Level14/19 sit ~100 m below-zero in z — interior
+  scenes are small (tens of meters) but offset far from origin.
+- Rotation present as `rot_x`/`rot_y` degrees on spawn only.
+- No bounds/min-max per scene exist yet; calibration is the declared S9/P5
+  work. Until then the viewer has spawn points but no scene extents.
+
+## 2. Existing site assets ("markers v0")
+
+Inventory of what actually renders today (all paths under
+`C:\_reps\game-databases\MiSide\site\`):
+
+Existing pieces:
+
+| Piece | Path | State |
+|---|---|---|
+| Leaflet dep | `package.json` `leaflet ^1.9.4` (+`@types/leaflet`) | installed |
+| Viewer island | `src/components/map/SceneMap.tsx` | client island; dynamic-imports Leaflet into `/map` only |
+| Projection law | `src/components/map/projection.ts` | total source×space disposition table; projects only inline/world-assumed |
+| URL state | `src/components/map/mapState.ts` | `formatFocus`/`parseFocus` for `?focus=kind:slug&scene=…` |
+| Route shell | `src/components/routes/MapRoute.tsx` | SSG-fed; builds registry from `scenes()`, rows from `markers()` |
+| Routes | `src/app/(pivot)/map/page.tsx` + `src/app/[locale]/map/page.tsx` | both locales wired (pivot bare path + prefix scheme) |
+| Location pages | `src/app/(pivot)/locations/page.tsx` + `[scene_id]/page.tsx` (+`[locale]` twins) | exist; do NOT render SceneMap |
+| Emitter | `scripts/emit-artifacts.mjs` §"map registry + markers" | writes `public/map/registry.json` (24 scenes, all `bounds:null`, `status:"awaiting-artwork"`) + `public/map/markers.json` (copy of the empty projection incl. `_meta.pending_families`) |
+| Negative gate | `scripts/check-no-third-party-maps.mjs` | build FAILS on mapgenie/google-maps-embed/mapbox/maptiler/thunderforest/wiki.gg-maps strings in src/scripts/public |
+| Data readers | `src/data/contracts.ts` | server-only jsonl readers; `MarkerRow {entity_kind, entity_slug, scene_id, x, y}`; row_count pin enforced |
+| CWV budget | `cwv.budgets.json` + `scripts/check-cwv.mjs` | scripted-interaction latency budget exists (network bar <200 ms) |
+
+What the `/map` page renders right now: a fixed-height (h-80) bordered panel
+with CRS.Simple Leaflet map at zoom 1–4 centered on [0,0], a CSS schematic
+grid background (32 px repeating gradient), zero markers, a `VoidWell`
+dashed overlay labelled with `chrome["map.pendingPlacement"]` when nothing
+projects, and — when focus is set — a dismissible chip reading
+`focus: <kind>:<slug>`. Below the panel: crawlable `<a>` pill list
+(marker → `/{locale}/{entity_kind}/{entity_slug}`), rendered only when
+projected markers exist (so: never today).
+
+Precise gap list between this v0 and a full viewer (inventory, not opinion):
+
+1. **No imagery pipeline** — registry says `imagery:"authored"`,
+   `status:"awaiting-artwork"` for all 24 scenes; `public/map/<scene_id>/` does
+   not exist; the schematic grid is the stand-in. Artwork provenance/format/
+   per-scene file contract is undefined.
+2. **No markers render, ever** — blocked twice: markers.jsonl is empty AND
+   poi coordinates are all non-projecting. Needs emitter rerun + S9 + a
+   decision on instance expansion (§1.2).
+3. **Scene switcher absent** — registry array is passed but `registry[0]` is
+   hardcoded; there is no UI to pick another scene, no per-scene filter, no
+   kind filter chips.
+4. **Deep-link half-built** — `?focus=` parses/restores/writes via
+   replaceState, but nothing on the site ever *emits* a focus link (no
+   entity-page → map module exists; `grep` finds zero producers), and
+   `scene=<id>` is parsed but never applied to the map view.
+5. **Pan/zoom minimal** — default Leaflet drag/scroll; no zoom controls
+   styling, no bounds fitting (`bounds:null` everywhere), no reset control,
+   no keyboard accessibility pass.
+6. **Pin popovers absent** — no marker rendering code exists at all, hence no
+   popover, no entity-card hover, no two-way highlight.
+7. **Entity-page map module missing entirely** — `EntityShell.tsx` renders
+   tabs/locale row only; cartridges/profiles/lore/books/mita pages have no
+   "found in" map module; location pages don't embed the viewer either. The
+   two-way loop has only its map→entity direction scaffolded (the pill list).
+8. **Mobile behavior untouched** — h-80 fixed panel, no touch tuning, no
+   responsive height strategy; pinch works only via stock Leaflet.
+9. **SSR/crawlability** — marker links are plain `<a>` (good) but they live
+   inside a client island gated on projected rows; the SEO-standard
+   "no JS-only links" rule needs the entity↔scene link set rendered
+   server-side independent of Leaflet.
+10. **i18n** — only `map.pendingPlacement` chrome key exists; filters,
+    switcher labels, popover strings need chrome keys ×34 locale files
+    (`src/i18n/chrome/*.json`, currently a subset of locales).
+
+## 3. Competitor behavior (borrow vs avoid)
+
+Evidence quality note: direct fetches of `new-world.guide` and `mapgenie.io`
+were blocked by this environment's network policy (finding recorded per
+AGENTS.md rule 10 — one attempt each, moved on). Observations below come from
+search-result capture of those pages plus wiki.gg's public **DataMaps**
+documentation (the Leaflet extension powering wikily.gg-class maps). Pixel-level
+verification against the §2 references happens at build time; nothing here is
+load-bearing beyond the borrow/avoid rulings.
+
+### 3.1 Observed behaviors
+
+**MapGenie class** (mapgenie.io, e.g. Slime Ranger 2 / Where Winds Meet maps):
+category groups with per-category counts (e.g. "Boundary Stone ×146");
+Show All / Hide All toggles; quicksearch panel; a "Filter Active" indicator;
+distance-measurement and radius tools; share/embed URLs (`?embed=light`
+iframe parameter); progress tracker (mark locations found) and notes on pins,
+synced through account login. Mobile apps draw review complaints because
+filters must be re-applied each session (no persistence). Open-world scale:
+2,000+ pins, 50–70+ categories, multiple tile styles (Atlas/Satellite/Road).
+
+**wikily.gg / DataMaps class** (Gothic Remake interactive map):
+deep-linkable selection state in the URL — `?focus=fisk`; markers organized
+into groups (primary collections) and toggleable categories (filter layers)
+with counts; clicking a merchant pin opens a detail pane with full stock and
+prices; character pins link to character sheets (two-way entity linking);
+marker search; multiple switchable backgrounds; coordinate display;
+collectible checklists. Data stored as structured JSON: groups, categories,
+markers keyed by layer with `lat`/`lon`, `name`, `description`, `image`,
+`article`.
+
+**new-world.guide**: resource-location map with category filters ("Hide all",
+then enable specific filters), left menu under the site search bar; its
+leveling guidance leans on companion-site live-tracking features ("Location
+Tracking", "Auto Center Map On Player") — companion-app behaviors, not DB
+behaviors.
+
+**MiSide-specific competitive state (measured 2026-08-26):** no dedicated
+interactive map exists anywhere — Gameranx, GameRant, Pro Game Guides, Steam
+guides and 9puz all navigate collectibles with landmark prose ("top of kitchen
+TV", "table with cactus", "on a hand near the ladder"), ordered by chapter,
+and note that chapter replay from the main menu is how players clean up
+missables. The spec's COMP negative finding still holds; the demand pattern
+(chapter-scoped hunting) is itself a UX requirement.
+
+### 3.2 Rulings
+
+| Behavior | Ruling | Why for MiSide |
+|---|---|---|
+| URL-carried selection/focus state | **BORROW** | Our contract already matches wikily's shape (`/map?focus=<kind>:<slug>&scene=<id>`); extend it to filters. Fixes the Enka hole (selection must be a URL). |
+| Category/kind groups with counts + Show All / Hide All | **ADAPT** | Keep the mechanic, shrink the axis: MiSide has ~7 mappable kinds (cartridge, profile, minigame_access, monster, travel_gate, spawn_event, interactable), not 70 categories. Counts per scene from the emitter. |
+| Pin click → rich detail pane with entity links | **BORROW** | Popover (or narrow side sheet on mobile) with entity name, loc-correct title, and crawlable `<a>` to the entity page — this IS the two-way-link differentiator. |
+| Per-entity article links on markers | **BORROW** | Directly satisfies design-standard §3 "map module two-way-linked". |
+| Marker quicksearch | **ADAPT** | Corpus is small (~hundreds of pins across 24 scenes); a filter-box over pin labels beats a global search panel. |
+| Collectible checklist / progress tracker on pins | **ADAPT (later)** | Ties into the UGC/accounts tracker mandate; not v1 viewer scope — leave a data slot (`entity_kind`,`entity_slug`) so the tracker can attach without schema churn. |
+| Scene/background switcher | **ADAPT** | DataMaps' "multiple switchable backgrounds" becomes our 24-scene switcher (with role/chapter grouping), NOT tile-style switching. |
+| Mobile pinch/drag | **BORROW** | Stock Leaflet touch handling; add ≥44 px control targets and responsive panel height. |
+| Filter/session persistence | **ADAPT** | Avoid MapGenie's mobile flaw: active filters ride the URL (shareable + survives reload) rather than local session state. |
+| Distance/radius tools, coordinate readout | **AVOID** | Open-world hunting instruments; meaningless inside apartment-scale interiors, and coordinate digits are machine-plane noise on a user surface ([DR-2026-08-22-numbers-stand-alone] spirit). |
+| Tile styles / satellite layers | **AVOID** | One authored schematic per scene; no tile server exists or is wanted (owned-art constraint). |
+| Live player tracking / auto-center | **AVOID** | No game telemetry exists; single-player. |
+| Iframe embed product (`?embed=light`) | **AVOID (this piece)** | Post-launch `@gamedb/embed` bundle is a separate network workstream; do not couple the viewer to it. |
+| 2,000-pin cluster management | **AVOID** | Largest scene (level13) holds 123 aggregated rows today; clustering adds complexity for no reader benefit. Revisit only if instance expansion produces >~300 pins in one scene. |
+| Claustrophobia-passing art treatment | **ADOPT (ours)** | Dark plum field, VHS/scanline accents as state treatments, pill chrome — the viewer should feel like holding the game's spaces (design-standard §5), the opposite of MapGenie's bright atlas chrome. |
+
+Hard constraint restated for the spec writer: fully owned implementation — no
+embeds, no third-party tile/image servers; scene art comes from our own corpus
+export pipeline; `scripts/check-no-third-party-maps.mjs` already fails the
+build on violations and must keep passing.
+
+Sources: [Slime Ranger 2 map – MapGenie](https://mapgenie.io/slime-rancher-2/maps/rainbow-island)
+· [Where Winds Meet map – MapGenie](https://mapgenie.io/where-winds-meet/maps/world)
+· [MapGenie Elden Ring (Play listing: progress tracker/notes)](https://play.google.com/store/apps/details?id=io.mapgenie.eldenringmap&hl=en)
+· [Wikily.gg](https://wikily.gg/) ·
+[Gothic Remake interactive map (`?focus=`)](https://gothic-remake.wikily.gg/interactive-map?focus=fisk)
+· [wiki.gg DataMaps docs](https://support.wiki.gg/wiki/DataMaps) ·
+[DataMaps data format](https://support.wiki.gg/wiki/DataMaps/Data_format) ·
+[new-world.guide](https://new-world.guide/) ·
+[Gameranx MiSide cartridge guide](https://gameranx.com/features/id/522689/article/miside-all-mita-profiles-player-cartridges-locations-guide/)
+· [GameRant player cartridges](https://gamerant.com/miside-how-to-find-all-player-cartridges/)
+· [Pro Game Guides cartridge locations](https://progameguides.com/miside/all-player-cartridge-locations-in-miside/)
+· [Steam community cartridges guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3391978782)
+
+## 4. Proposed spec skeleton
+
+Skeleton for `docs/specs/map-viewer.mdx` — modules, interactions, measurable
+acceptance criteria, open questions. The Documentator expands; numbers marked
+(pending) bind after the emitter decisions below.
+
+### M1 — Data emitter (prerequisite, data-side)
+
+- Rerun the marker projection (`markers.jsonl`, currently 0 rows) now that
+  DS-4/D-5 owners exist: cartridge family (25 POI rows ↔ 23 cartridge rows via
+  `save_key`) and profile family (14 document rows via
+  `placement.component_path_id`). Monster/save_point families stay deferred
+  per the no-orphan rule unless the Arbiter rules otherwise.
+- Decide the instance-expansion question (OQ-1) — aggregate rows cannot carry
+  per-instance pins.
+- Emit `public/map/registry.json` v2: per-scene `bounds` when S9 calibration
+  lands (null-honest until then), `display` loc pointers for switcher labels,
+  per-kind counts.
+- Frontend consumes files only; never derives (AGENTS.md rule 8).
+
+### M2 — Viewer component (`site/src/components/map/`)
+
+- `SceneMap` v1 keeps the island boundary (dynamic Leaflet import) and adds:
+  imagery layer from `public/map/<scene_id>/` (format per OQ-2) falling back
+  to the schematic grid VoidWell; fit-to-bounds when bounds exist; clamped
+  pan/zoom; styled zoom/reset controls (pill grammar, ≥44 px targets).
+- `SceneSwitcher`: 24 scenes grouped story/boot/title/menu/unbound, labeled
+  from registry loc pointers; writes `?scene=`.
+- `KindFilter`: chip row with per-kind counts + Show All/Hide All; writes
+  `?kinds=` (URL-carried, per §3.2 persistence ruling).
+- `PinPopover`: entity card (loc-correct name, kind icon from the one icon
+  vocabulary, placement provenance cell) + crawlable `<a>` to
+  `/{locale}/{kind}/{slug}`; bidirectional highlight with the filter row.
+- Honest states per design-standard §5.1: awaiting-artwork grid and
+  pending-placement pins render as quiet wells/chips, never absence prose
+  (`chrome["map.pendingPlacement"]` pattern continues).
+
+### M3 — Routes & placement
+
+- `/map` (+ `[locale]/map`) stays the canonical full viewer; `?scene=`,
+  `?focus=`, `?kinds=` compose.
+- `/locations/[scene_id]` embeds the focused single-scene module (viewer in
+  scene-locked mode) — today it renders neither map nor POI data.
+- Chapter surfaces may reuse the same module scoped by the scene--chapter
+  relink (15 pinned chapter_name edges).
+
+### M4 — Entity-page map module (two-way links)
+
+- `EntityShell` gains a conditional "location" module for placement-bearing
+  kinds: `cartridges`, `profiles`, `lore`/`books` (carrier containers),
+  `mita` (via character--scene-membership), `minigames` (scene-carrier
+  relink). Renders server-side: mini schematic + "found in" scene link +
+  `/map?focus=<kind>:<id>&scene=<container>` anchor.
+- Direction map→entity already scaffolded (pill list in `SceneMap`); direction
+  entity→map is the missing half (zero producers today).
+- All entity↔map links plain `<a href>` in SSR HTML — no JS-only links
+  (seo-standard §2).
+
+### M5 — Chrome i18n + gates
+
+- New chrome keys (switcher label, filter labels, popover actions) through the
+  ×34 locale chrome layer; parity enforced by the existing
+  `scripts/check-chrome-parity.mjs`.
+- Gates that must keep passing: `check-no-third-party-maps.mjs`,
+  `cwv.budgets.json` (<200 ms scripted-interaction), sitemap/llms.txt
+  emission unchanged in shape.
+
+### Interaction list (v1)
+
+pan/drag · wheel + button zoom (clamped) · scene switch · kind filter toggle ·
+pin hover (highlight) · pin click (popover) · popover entity link · focus
+restore from URL on load · focus clear · reset view · keyboard access to all
+controls · touch pinch · deep-link into locked scene from entity pages.
+
+### Acceptance criteria (measurable, with proof method)
+
+1. Marker projection rerun emits >0 rows; 100% of rows join to a live owning
+   dataset row; orphan-injection test rejects a fabricated slug. Proof:
+   emitter unit test + join audit over `cartridges.jsonl`.
+2. Rendered-pin count equals projected-row count for every scene; any
+   PENDING-disposition row renders as pending chip, never a pin. Proof:
+   component test over the full disposition axis (extends the existing AC S7
+   projection tests).
+3. `/map?focus=cartridges:mtal&scene=level10` cold-load restores scene +
+   focus; URL updates via `replaceState` for filter/typing-like changes.
+   Proof: scripted browser trace asserting DOM + history length.
+4. Every cartridge/profile page serves SSR HTML containing its
+   `/map?focus=…` anchor; every projected pin's popover target is a crawlable
+   `<a>`. Proof: static-HTML grep in CI (pattern of the negative-map gate).
+5. Scene switcher lists all 24 scenes with non-null labels in every shipped
+   locale (fallback chain per filler policy). Proof: chrome-parity run.
+6. CWV: island lazy-loads (Leaflet absent from non-map bundles); interaction
+   latency within budget; CLS < 0.1 with responsive panel heights. Proof:
+   `check-cwv.mjs` + bundle assert.
+7. Zero external network requests originate from the viewer. Proof: request
+   log assertion in the scripted trace (owned-only constraint, mechanical).
+8. Mobile viewport (375 px): all controls reachable, pinch zooms, no
+   horizontal overflow. Proof: scripted mobile trace.
+
+### Open questions for the Arbiter
+
+- **OQ-1 (biggest)** — Instance expansion: `poi.jsonl` rows are
+  class-per-level aggregates carrying one position slot; per-instance pins
+  need an emitter schema change (expand to one row per instance, or `points[]`
+  arrays with stable instance ids). Without it the viewer ships scene-level
+  presence, not pins. Decision owner: data side (rule 8); spec must define the
+  frontend contract for BOTH outcomes.
+- **OQ-2** — Scene artwork: author, format (SVG preferred for zoom weight?),
+  per-scene file contract under `public/map/<scene_id>/`, and whether
+  awaiting-artwork blocks ship or ships progressive (grid fallback already
+  honest).
+- **OQ-3** — Monster/save_point marker families: wait for owning entity
+  datasets (strict no-orphan) or ship scene-level presence chips labeled as
+  unslugged? No-orphan rule suggests wait; UX wants coverage.
+- **OQ-4** — Focus-kind namespace: routed kinds are plural (`cartridges`,
+  `profiles`) while the markers `_meta` contract writes
+  `<entity_kind>:<entity_slug>` — pin the exact segment vocabulary and slug
+  source (= contract id columns) before emitting links.
+- **OQ-5** — pushState vs replaceState for discrete clicks (scene/filter
+  change): typing-law says replaceState; "a link is not an input" allows real
+  navigation. Recommend: replaceState for filter toggles, pushState on scene
+  change so back walks the scene trail.
+- **OQ-6** — Bounds calibration timing (PIPE S9/P5): viewer must accept null
+  bounds indefinitely (it does); confirm spawn-only mode is acceptable for v1
+  if calibration slips.
