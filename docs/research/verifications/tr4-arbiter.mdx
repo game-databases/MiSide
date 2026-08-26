@@ -1,0 +1,156 @@
+# TR4 — Arbiter ruling on the trackers spec round
+
+Arbiter A-TR4 (PrepareTask step 4). Arbitrates [tr3-review.mdx](tr3-review.mdx)
+finding set (R-TR3: NEEDS_REVISION, 0 HIGH / 5 MEDIUM / 3 LOW) against
+[trackers-tool.mdx](../../specs/trackers-tool.mdx) @ c1426d0 (637 ln).
+Corpus spot-checks performed this pass (all measurements fresh, independent of
+both prior passes):
+
+- `cartridges.jsonl`: 23 rows, `cartridge_id` emitted per row — `mtacap`
+  passes through UNCHANGED; hyphen fires only at letter↔digit boundaries
+  (`mtad2 → mtad-2`, `plr1a → plr-1-a`, … `plr1099 → plr-1099`). Confirms F1.
+- `cartridges-minigames.candidates.jsonl`: exactly 2 candidate rows
+  (`tamagotchi-chip-and-cartridge-ui`, `metroidvania-family`); `_meta.ladder`
+  states verbatim *"tier-4 wiki-only claims get no row and no candidate …
+  noted in README.md against the research citation"*. The Metroidvania 48
+  appears ONLY inside an evidence locator string ("… x48 identical").
+  `characters.candidates.jsonl` carries 26 wiki-only character candidates —
+  irrelevant to tracker exclusions. Reshapes F3's premise and fix.
+- `missingdata.md` CAR-6 names exactly the 4 wiki-only minigames (Fly Console,
+  Forgotten Panels, Monster-Slap, Destroying Glitches); CAR-7 pins the
+  Metroidvania family as "48 byte-identical dumps". Both are PROSE tables.
+- `markers.jsonl`: 70 markers over 49 distinct `(entity_kind, entity_slug)`
+  pairs; ≥2-markers-on-one-entity holds exactly 3 times (tetris ×20,
+  minigame-shooter ×2, games-core ×2). Confirms F7.
+- `site/src/lib/routes.ts` `KIND_SEGMENT`: `mita:"mita"`, `players:"players"`
+  exist; no `characters` kind. Confirms F7's href-split gap and supplies the
+  pin. `INDEX_SEGMENTS` contains `tools` (unchanged).
+- `docs/specs/data-contracts.mdx` §3.3 `cartridge_id` row (L122–123) carries
+  the same false example verbatim ("letter↔digit hyphen rule: `mtacap`→
+  `mta-cap`") — self-contradictory on its own stated rule. Confirms F1 sibling.
+
+## Per-finding rulings
+
+| # | Sev | Ruling | One-line evidence |
+|---|---|---|---|
+| F1 | M | **ACCEPT** (both legs) | Disk emits `cartridge_id=="mtacap"` unchanged; boundary splits are `mtad2/plr*` only; data-contracts §3.3 repeats the identical false example. |
+| F2 | M | **ACCEPT** | Static-export posture (scout §2) makes personalized raw-HTML checked-state unsatisfiable; anti-Fandom intent survives the reword. |
+| F3 | M | **ACCEPT defect / MODIFY fix — new frozen seed** | Wiki-only ×4 get NO row in any candidates JSONL by ladder policy, and the 48 lives in prose locators — freeze-widening cannot capture what is deliberately absent and would force parsing markdown/prose; a pinned seed keeps T0 byte-clean. |
+| F4 | M | **ACCEPT — schema field now, UI later** | Two facts need two registers; optional fields shipped in v1 avoid any later envelope bump, mirroring the L5 tombstone precedent exactly. |
+| F5 | M | **ACCEPT — executor-independent tiebreak + suite split** | "local wins" flips with the executing replica; the TR-A4 spy cannot bind a network-backed adapter, so the unqualified "same suite" is unimplementable as written. |
+| F6 | L | **ACCEPT (widened to all four store sets)** | `characters` owns no routed view under §8, so hub is its target; profiles/books/papers already own `/documents` panels — name all four. |
+| F7 | L | **ACCEPT** | Measured: 70 markers / 49 entities (tetris alone ×20) — per-row assertion is arithmetically wrong; `KIND_SEGMENT` has no `characters` kind, split is `mita`/`players`. |
+| F8 | L | **ACCEPT** | MST1 payload is `{sets:{<set_id>:[ids]}}` — no ordering exists to "keep"; import must stamp its own ts. |
+
+### Design guidance bound into the fixes
+
+- **F3 mechanism (ruled, one option picked): NEW FROZEN SEED.** T0 gains a
+  curated input `extracted/data/build/tracker-exclusions.seed.json` (schema
+  `miside.tracker.exclusions.seed/1`, buildId 19029065) whose rows carry
+  `{class, count, basis, source_ref}` for `notes` (160), `wiki_only_minigames`
+  (4, CAR-6 titles enumerated), `cut_family_dumps` (48, Metroidvania family);
+  the seed joins T0's byte-freeze set. Because `notes` IS derivable, T0
+  additionally re-derives it from frozen `world_documents.jsonl` and aborts
+  naming the class on any seed≠derivation mismatch — belt-and-braces that
+  keeps the seed honest without coupling the gate to prose files
+  (missingdata.md churn) or violating the tier-4 no-row policy.
+  Freeze-set-widening is REJECTED: it cannot recover wiki-only ×4 (absent by
+  policy) and reduces the gate to string-parsing evidence locators.
+- **F4 shape:** `ItemRecord` gains optional `won?: boolean` + `wonTs?: number`
+  NOW, while the installed base is zero — envelope stays `v:1`, no migration
+  ever needed (O3 intact: the field ships before sync, so enabling UI later is
+  additive). Merge extends to per-axis LWW (`done` orders on `ts`, `won` on
+  `wonTs`, axes independent); non-minigame sets never write the fields; codec
+  round-trips them like `tomb`. View D v1 tracks *played*; the won toggle is
+  schema-reserved for the revealer/logic-layer landing (non-goal bullet).
+- **F5 tiebreak (ruled):** equal `ts` ⇒ `done=true` beats `done=false`;
+  records equal on both `ts` and `done` are semantically interchangeable —
+  merge declared idempotent there. Executor-independent, completion-preserving
+  (a tie can never silently un-check), unit-provable today. All "local wins"
+  language struck. Suite split: UNIVERSAL laws (envelope validation, drift
+  preservation, deterministic merge, codec round-trip) parameterized over BOTH
+  adapters; ADAPTER-SPECIFIC laws named per adapter — the synchronous
+  write-per-toggle spy binds LocalAdapter only; `FakeSyncAdapter` proves seam
+  typing plus every universal law.
+- **F1 sibling routing:** the data-contracts §3.3 one-liner is OUTSIDE this
+  piece's ownership — routed to the orchestrator lane as FIX-3 below; the
+  tracker fixer must not touch data-contracts.mdx.
+
+## OQ rulings carried by the spec — confirmed
+
+OQ-T1 SHIP-v1 · OQ-T2 defer outfits · OQ-T3 exclude notes · OQ-T4 endings
+route-context + peaceful visible-locked · OQ-T5 dialog-only tokens · OQ-T6
+four axes · OQ-T7 named-explicit-missing cells over CDN interim · OQ-T8
+personage tab distribution — ALL EIGHT CONFIRMED unchanged. Touch-points:
+OQ-T3's EXCLUDE ruling is untouched (F3 amends only where the ledger NUMBERS
+live); OQ-T8 is untouched (F7/F8 make its href/ts vocabulary precise); OQ-T1
+is strengthened by F4/F5 (the sync-ready claim becomes genuinely
+deterministic and axis-complete).
+
+## THE FIX ORDER — F-TR1 (single fixer; FIX-3 routed out)
+
+All edits target `docs/specs/trackers-tool.mdx` unless stated. Self-contained;
+any order compiles, listed in gate-risk-first sequence.
+
+1. **FIX-1 (F3, gate-critical).** (a) CREATE
+   `extracted/data/build/tracker-exclusions.seed.json` per the seed shape
+   above — values transcribed from missingdata.md CAR-6/CAR-7, basis strings
+   naming the source of each count. (b) §5.1 law 2: append the seed path to
+   the frozen set ("the eight dataset JSONLs of §3 + `markers.jsonl` +
+   `minigame--achievement.jsonl` + `tracker-exclusions.seed.json`"). (c) §5.1
+   law 5: emitted `_meta.exclusion_ledger` copies seed values verbatim, AND
+   the emitter re-derives `notes` from frozen `world_documents.jsonl`,
+   aborting non-zero naming the class on mismatch. (d) §5.2 `_meta` example:
+   annotate `exclusion_ledger` with "// copied from tracker-exclusions.seed
+   .json (frozen input)". (e) §3 excluded-ledger tail sentence: cite the seed
+   as the pinned source of 4/48.
+2. **FIX-2 (F1, spec leg).** §3 Scout-corrections item (2): replace the
+   "`mtad2 → mta-cap` should read `mtacap → mta-cap`" clause with: save_key
+   `mtacap` emits `cartridge_id == "mtacap"` unchanged (it contains no
+   letter↔digit boundary); the real boundary splits are `mtad2 → mtad-2`,
+   `plr1a → plr-1-a`, `plr1099 → plr-1099`.
+3. **FIX-3 (F1, sibling — ORCHESTRATOR LANE, not this fixer).**
+   `docs/specs/data-contracts.mdx` §3.3 `cartridge_id` row (L122–123): swap
+   the example to "(letter↔digit hyphen rule: `mtad2`→`mtad-2`,
+   `plr1099`→`plr-1099`; `mtacap` passes through unchanged)". One-liner.
+4. **FIX-4 (F2).** §15 TR-A5 criterion → "served HTML carries EVERY checklist
+   row present in raw HTML with its default-state affordance structure
+   (server-rendered unchecked default; locked/unreachable states rendered
+   server-side), no script required; personal checked-state hydrates
+   client-side without layout shift"; proof → curl production build, per-view
+   row counts == TR-A1 counts, DOM assertions for row presence +
+   default-affordance markup (drop "correct checked-state representation").
+   §7 CheckRow parenthetical aligned: "(no JS ⇒ rows and default-state
+   affordances fully present; TR-A5)".
+5. **FIX-5 (F4).** §6.1 `ItemRecord` += `won?: boolean; wonTs?: number;`
+   commented "reserved second axis (minigames); pattern = L5 tombstones".
+   §6.2 L4 += per-axis LWW sentence (done↔ts, won↔wonTs, independent; other
+   sets never write them). §8 View D fence sentence → "played is tracked; win
+   thresholds defer to the revealer + logic layer, where the schema-reserved
+   won axis surfaces — no migration, optional fields ship v1". §16 +=
+   non-goal "No won-toggle UI in v1 (axis schema-reserved)". L8 codec
+   losslessness + TR-A6 proof cell name `won`/`wonTs` in the round-trip.
+6. **FIX-6 (F5).** §6.2 L4: strike "(contract-id asc, then local wins)";
+   insert the ruled tiebreak ("equal ts ⇒ done=true wins; equal on ts+done ⇒
+   interchangeable, merge idempotent"). §6.2 L6 + §15 TR-A6: split suite into
+   UNIVERSAL laws (both adapters) vs ADAPTER-SPECIFIC laws (sync-write spy =
+   LocalAdapter only; FakeSyncAdapter = seam typing + universal laws); TR-A4
+   spy phrasing scoped to LocalAdapter.
+7. **FIX-7 (F7).** §15 TR-A12 proof: per-MARKER assertion — "each of the 70
+   markers resolves to exactly one focus href built from its marker_id via
+   `marker_kind_map` (singular→plural); measured 49 distinct entities, tetris
+   ×20"; delete "70 marker-backed rows". Append href pin: personage links use
+   `routes.ts KIND_SEGMENT` — mita → `<prefix>/mita/<slug>`, players →
+   `<prefix>/players/<slug>`; no `characters` segment exists.
+8. **FIX-8 (F6).** §13 hub bullet: name the targets — "`profiles`, `books`,
+   `papers` 301 → `/tools/trackers/documents`; `characters` 301 →
+   `/tools/trackers` (the hub owns its gauges)".
+9. **FIX-9 (F8).** §10 interaction 4: replace "imported items keep the codec's
+   ts ordering" with "imported checks are stamped import-time epoch-ms ts
+   uniformly (MST1 carries ids only — no ordering information survives the
+   token); skew note: an import reads as a local edit at the import instant;
+   L4 governs any later merge".
+
+---
+
+VERDICT: SPEC_FROZEN_PENDING_FIXES

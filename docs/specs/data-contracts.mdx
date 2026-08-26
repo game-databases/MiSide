@@ -120,7 +120,7 @@ PPtr = `{container, file_id, path_id}`; `file_id≠0` ⇒ external-dependency po
 ### 3.3 cartridges — `cartridge_item` (23: 13 `character` + 10 `player`) · key `cartridge_id`
 
 `save_key` verbatim client identifier·N (primary; slug additive) · `cartridge_id` slug·N
-(letter↔digit hyphen rule: `mtacap`→`mta-cap`) · `family` enum{character,player}·N · `status`
+(letter↔digit hyphen rule: `mtad2`→`mtad-2`, `plr1099`→`plr-1099`; letter-only names like `mtacap` pass unchanged — A-TR4 correction 2026-08-26) · `family` enum{character,player}·N · `status`
 enum{registered-pickup ×21, registered-unresolved-pickup ×2}·N · `pickup_ref`
 `{container,file,field,value}`|null (CAR-1: `mtad2`,`mtacore` null) ·
 `depicts_character_id`/`contains_player_id` id|null (joins ride C13 anchors only; `mta` null by
