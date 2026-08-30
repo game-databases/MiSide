@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+import { GtagSnippet } from "@/components/routes/GtagSnippet";
 import "./globals.css";
 
 /*
@@ -37,6 +39,7 @@ export default function GlobalNotFound() {
             MiSide
           </Link>
         </div>
+        <GtagSnippet />
       </body>
     </html>
   );
