@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { GtagSnippet } from "@/components/routes/GtagSnippet";
 import { LOCALES } from "@/i18n/locales";
 import { SITE_ORIGIN } from "@/lib/siteConfig";
 
@@ -8,8 +9,8 @@ import { SITE_ORIGIN } from "@/lib/siteConfig";
  * pivot group declares lang="en"/dir="ltr"; the [locale] group declares the
  * serving locale's own lang + dir — VC-1 fix #8: crawlers and AT read
  * direction and language from the DOCUMENT ELEMENT, so a wrapper div is not
- * compliance). Carries the font/token CSS import, skip link, and the ONE
- * sitewide server-rendered JSON-LD graph (spec §10.2).
+ * compliance). Carries the font/token CSS import, skip link, GA4 gtag, and
+ * the ONE sitewide server-rendered JSON-LD graph (spec §10.2).
  *
  * No SearchAction: there is no search route by ruling, and markup never
  * asserts a value the extracted data does not hold. `sameAs` stays omitted
@@ -79,6 +80,7 @@ export function HtmlShell({
           data-build-id={BUILD_ID}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }}
         />
+        <GtagSnippet />
       </body>
     </html>
   );
