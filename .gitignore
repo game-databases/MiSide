@@ -28,3 +28,6 @@ docs/logs/
 
 # Agent scratch
 tmp/
+
+# Game data staged from NE8K — never enters git (AGENTS.md rule 5, DR-2026-08-29-corpus-on-mac)
+data/
