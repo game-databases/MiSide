@@ -7,7 +7,7 @@
 | Affected area | new `pipeline/` tree + pack-root `run_all` entrypoint shims + `extracted/` outputs |
 | Verified reality base | [explorer-e1-hands-on.mdx](../research/explorer-e1-hands-on.mdx#verdict-table) — all seven steps executed for real against the installed client, 2026-08-24 |
 | Client ground truth | buildId **19029065**, `VERSION 0.93L`, Unity 2021.3.35f1, IL2CPP metadata v29 — [data-acquisition.md](../../data-acquisition.md#current-state-full-game-installed) |
-| Binding doctrine | [extraction-doctrine.md](../../../_foundation/extraction-doctrine.md#principle-two-completeness-is-proven-not-claimed) · [DR-2026-08-18-pipeline](../../../_foundation/decision-register.md#owner-ruling--reproducible-single-entrypoint-pipeline-dr-2026-08-18-pipeline) · [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope) |
+| Binding doctrine | [extraction-doctrine.md](../../../_foundation/extraction-doctrine.md#principle-two-completeness-is-proven-not-claimed) · [DR-2026-08-18-pipeline](../../../_foundation/decision-register.md#one-reproducible-extraction-entrypoint-dr-2026-08-18-pipeline) · [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#video-and-audio-are-offloaded-dr-2026-08-18-media-scope) |
 | Host constraints | [extraction-host.md](../../../_foundation/extraction-host.md#where-to-write) — extraction runs on NE8K, in place; heavy writes prefer `D:`/`A:` |
 
 **Errata 2026-08-24** (measured; [s4-crash-investigation.mdx](../research/s4-crash-investigation.mdx) wins over the prose below where they disagree): §2 S4's tool pin is **AssetStudioModCLI 0.19.0.1**, a cycle-guarded local rebuild of upstream aelurum/AssetStudioMod `6b66ec7` — stock 0.19.0.0 dies with STATUS_STACK_OVERFLOW (0xC00000FD) on MiSide's self-referential `ConsoleEditor_HierarchyCase` meeting guardless Cecil typetree recursion (output format byte-identical where no cycle exists; AC-8 otherwise unchanged). The E1 claim "Type trees NOT stripped" is corrected there (§Root cause item 4): MiSide MonoBehaviour typetrees ARE stripped — all typing comes from the `--assembly-folder` DummyDll route. S2's "leading string of `globalgamemanagers`" reads the Unity version embedded in the SerializedFile v22 header (offset 48 on buildId 19029065; never at offset 0). The cyclic-tail truncation behavior is an AC-12 residue-ledger entry.
@@ -243,7 +243,7 @@ Typed MonoBehaviour dumps over every container, feeding entity curation.
 ### S6 `art-export`
 
 Implements the art policy table ([toolchain.md §5](../../toolchain.md#5-art-export-policy))
-under [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope):
+under [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#video-and-audio-are-offloaded-dr-2026-08-18-media-scope):
 
 - **Staged scope ([questions.md](../questions.md) §6, A→STAGED):** the
   walk/catalogue pass runs first; each family's export-vs-catalogue scope
@@ -630,7 +630,7 @@ over any earlier wording in this spec. Kept as the conformance record:
 2. **Audio/video offload mechanics — RULED (§5):** the live Steam install
    on `A:` is never mutated; audio+video stay IN PLACE, catalogued with
    paths+bytes into MEDIA-CATALOGUE / media-catalogue.jsonl; the
-   [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope)
+   [DR-2026-08-18-media-scope](../../../_foundation/decision-register.md#video-and-audio-are-offloaded-dr-2026-08-18-media-scope)
    offload drive applies to pack-held copies, which P1 does not create
    unless the owner later opts in.
 3. **Texture family scope — STAGED (§6):** decided at art-export build

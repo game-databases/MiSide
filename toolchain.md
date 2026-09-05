@@ -165,7 +165,7 @@ Plan:
 ## 5. Art export policy
 
 Per [DR-2026-08-18-media-scope]
-([decision-register](../_foundation/decision-register.md#owner-ruling--videoaudio-offloaded-3d-and-heavy-assets-catalogue-first-dr-2026-08-18-media-scope)):
+([decision-register](../_foundation/decision-register.md#video-and-audio-are-offloaded-dr-2026-08-18-media-scope)):
 
 | Class | Policy | Tooling present locally |
 |---|---|---|
