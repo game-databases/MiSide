@@ -1,7 +1,7 @@
 # MiSide — Competitor Research (community relationship-model inventory)
 
 Status: **complete** for the relink-floor bar ([DR-2026-08-17-relink] #3,
-[extraction-doctrine.md §Relink bare minimum](../_foundation/extraction-doctrine.md#relink-bare-minimum--three-non-negotiable-bars-owner-2026-08-17)).
+[extraction-doctrine.md §Relink bare minimum](../_foundation/extraction-doctrine.md#relink-bare-minimum-three-non-negotiable-bars-owner-2026-08-17)).
 Analyzed 2026-08-24 via MediaWiki `api.php` wikitext pulls and direct page
 fetches; raw pulls in `tmp/s1-fetch/` (untracked). Companion:
 [docs/research/game-research.mdx](docs/research/game-research.mdx) — its §8

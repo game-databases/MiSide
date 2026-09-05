@@ -47,7 +47,7 @@ network's newest green Next site):
 | `class-variance-authority` / `clsx` / `tailwind-merge` | latest ^ | shadcn companions |
 | `tw-animate-css` | `^1.4.0` | motion baseline the upgrades extend |
 | `minisearch` | `^7.2.0` | search index ([§2.9](../../../FRAMEWORK.md#29-search)); corpus ≈250–350 entities + 19 dialogue graphs ≪ the ~100k Meilisearch line |
-| `leaflet` (+ types) | latest ^ | map machinery ([§2.6](../../../FRAMEWORK.md#26-maps-are-essential--top-priority-not-launch-blocking)) |
+| `leaflet` (+ types) | latest ^ | map machinery ([§2.6](../../../FRAMEWORK.md#26-maps-are-essential-top-priority-not-launch-blocking)) |
 | `lucide-react` | latest ^ | chrome icons ONLY; game icons come from the art layer ([§2.5](../../../FRAMEWORK.md#25-icons-are-the-games-own-art)) |
 | `marked` | decided at implementation (zero-dep) | article-body renderer for the content pipeline ([content-pipeline §2](content-pipeline.mdx#2-module-breakdown--dependency-edges)); its lexer AST is reused for TOC + word counts |
 
@@ -76,12 +76,12 @@ render for humans, crawlers, and AI browsers — no bot-only prerender variant.
 | Tools (ending explorer, console reference, …) | static shell + client islands; **state in the URL** (`replaceState`, never navigation keystrokes) | [DR-2026-08-22-inputs-answer-as-you-type]; shareable result URLs ([seo-standard §6](../../../_foundation/seo-standard.md#6-link-acquisition-built-into-product)) |
 | `/map` | SSG shell + Leaflet island; markers/metadata from emitted JSON | [§7](#7-map-module-contract) |
 | Live CCU gauge + history | client island reading collector-published snapshot JSON at the declared origin path; any history chart is **server-rendered SVG in the first HTML** | ephemeral/streaming planes never enter static entity JSON ([§2.1](../../../FRAMEWORK.md#21-three-data-planes), [spec live block](../../spec.md)); chart SSR precedent [DR-2026-08-18-chart-ssr] |
-| Static JSON API + `llms.txt` + sitemaps + RSS + OG images | build-emitted files/routes | machine plane is a launch gate ([seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo--be-the-cited-answer-not-just-the-ranked-page)) |
+| Static JSON API + `llms.txt` + sitemaps + RSS + OG images | build-emitted files/routes | machine plane is a launch gate ([seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo-be-the-cited-answer-not-just-the-ranked-page)) |
 
 CWV budgets (LCP < 2.5 s, scripted-interaction latency < 200 ms, CLS < 0.1,
 mobile + desktop) run in CI per distinct template × canonical locale
 ([seo-standard §4](../../../_foundation/seo-standard.md#4-performance-core-web-vitals-are-a-ranking-input),
-[FRAMEWORK §8](../../../FRAMEWORK.md#8-definition-of-done-per-game--v22-dr-2026-08-15-d5-map-gate)).
+[FRAMEWORK §8](../../../FRAMEWORK.md#8-definition-of-done-per-game-v22-dr-2026-08-15-d5-map-gate)).
 
 ---
 
@@ -189,7 +189,7 @@ locale with no mapping row fails the build).
 cross-locale link row, per-locale sitemaps, hreflang clusters, and coverage
 stats
 ([localization-architecture §2](../../../_foundation/localization-architecture.md#2-cross-locale-link-contract),
-[§5.4](../../../_foundation/localization-architecture.md#5-data-layer-obligations--what-every-pack-must-ship));
+[§5.4](../../../_foundation/localization-architecture.md#5-data-layer-obligations-what-every-pack-must-ship));
 regenerated every rerun. Cell semantics already measured into it:
 `present` / `filler` / `contentless` (e.g. French `LocationDialogue Location16`,
 French `LocationHint Location18` 0-byte shells) — **contentless ≠ missing**
@@ -211,7 +211,7 @@ here is the justification the verifier checks against:
    — all 34 have client coverage (64–76 category files each)"*
    ([spec.md §Locale strategy](../../spec.md#locale-strategy) shipping bar).
    A staged subset would reopen a settled spec call, not a scaffold freedom.
-2. [FRAMEWORK §2.4](../../../FRAMEWORK.md#24-all-languages-the-game-supports--launch-blocking)
+2. [FRAMEWORK §2.4](../../../FRAMEWORK.md#24-all-languages-the-game-supports-launch-blocking)
    makes ALL client languages launch-blocking, verified against the client —
    which this pack has done twice (E1 step 5; the 2026-08-24 recount).
 3. hreflang clusters over partial chrome leak crawlers and users into
@@ -268,7 +268,7 @@ strings via per-locale templates
 Authority: [DR-2026-08-24-miside-pack] ¶3 — token theming alone is explicitly
 insufficient; the copied components' interactions, animations, motion, and
 look-and-feel are rebuilt to the game's own UI behaviours, judged against the
-[design-standard §5 feel bar](../../../_foundation/design-standard.md#5-look-feel-and-soul--grading-bar).
+[design-standard §5 feel bar](../../../_foundation/design-standard.md#5-look-feel-and-soul-grading-bar).
 The kit supplies the accessible grammar (Radix behaviour stays stock); the
 game supplies behaviour and soul ([FRAMEWORK §2.11](../../../FRAMEWORK.md#211-design-from-the-games-own-ui)).
 
@@ -395,7 +395,7 @@ absent from this table carry declared dispositions in
 | Map | — | `/map` | focus state `/map?focus=<entity_kind>:<entity_slug>&scene=<scene_id>` — grammar pinned by the scenes contract |
 | Trackers/account (UGC mandate) | — | `/account/*` · tracker slots on entity pages | route slots reserved; auth provider is a per-pack build-time call ([DR-2026-08-16] ruling 2); comments/corrections mount as components, not routes |
 | Feeds | — | `/feeds/news.xml` · `/feeds/patch.xml` | site-sections #23 |
-| Machine plane | — | `/llms.txt` · `/api/v1/{kind}/{id}.json` (mirrors page URLs) · sitemap per section per locale | [seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo--be-the-cited-answer-not-just-the-ranked-page): the JSON answers with the same facts the page renders |
+| Machine plane | — | `/llms.txt` · `/api/v1/{kind}/{id}.json` (mirrors page URLs) · sitemap per section per locale | [seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo-be-the-cited-answer-not-just-the-ranked-page): the JSON answers with the same facts the page renders |
 | OG cards | — | `/og/[kind]/[slug]` → per-entity PNG | owned art ([§2.5](../../../FRAMEWORK.md#25-icons-are-the-games-own-art)); achievement icons render the named explicit-missing state while `icon.status:"pending-export"` |
 | Search | — | **NO ROUTE** | [§6](#6-search-in-place-architecture); `/search` 404s in every locale |
 
@@ -475,8 +475,8 @@ Binding shape ([DR-2026-08-22-search-is-not-a-page],
 
 Owned scene maps or none — third-party embeds are banned at every stage and
 the negative grep is a launch gate
-([FRAMEWORK §2.6](../../../FRAMEWORK.md#26-maps-are-essential--top-priority-not-launch-blocking),
-[§8](../../../FRAMEWORK.md#8-definition-of-done-per-game--v22-dr-2026-08-15-d5-map-gate);
+([FRAMEWORK §2.6](../../../FRAMEWORK.md#26-maps-are-essential-top-priority-not-launch-blocking),
+[§8](../../../FRAMEWORK.md#8-definition-of-done-per-game-v22-dr-2026-08-15-d5-map-gate);
 owner ruling [DR-2026-08-16] ruling 1: top-priority workstream, gates
 site-ready not launch).
 
@@ -497,7 +497,7 @@ site-ready not launch).
   ([dataset-scenes §markers](../../contracts/dataset-scenes.mdx)). Focus URLs
   use the contract grammar `?focus=<entity_kind>:<entity_slug>&scene=<scene_id>`;
   map state is a URL
-  ([§2.6](../../../FRAMEWORK.md#26-maps-are-essential--top-priority-not-launch-blocking)).
+  ([§2.6](../../../FRAMEWORK.md#26-maps-are-essential-top-priority-not-launch-blocking)).
 - **Position truth is a source×space CONJUNCTION, not source alone** — the
   scenes contract's honesty axis carries BOTH fields, so projection binds to
   `source=="inline" AND space=="world-assumed"` and no other cell projects.
@@ -614,7 +614,7 @@ it:
 Laws: JSON-LD is server-rendered in the first HTML (parity plane, [§1.2](#12-rendering-strategy-per-section-type));
 values are identical to what the HTML and `/api/v1` render — one identity
 across HTML, JSON-LD, JSON API, and `llms.txt`
-([seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo--be-the-cited-answer-not-just-the-ranked-page));
+([seo-standard §9](../../../_foundation/seo-standard.md#9-answer-engines-aeogeo-be-the-cited-answer-not-just-the-ranked-page));
 markup never asserts a value the extracted data does not hold.
 
 ---
